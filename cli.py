@@ -106,7 +106,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--output",
         required=True,
         metavar="PATH",
-        help="Destination file path (use .txt extension for <> delimited format).",
+        help="Destination file path (use .txt extension for ♔ delimited format).",
     )
 
     # API configuration
@@ -147,6 +147,10 @@ def build_parser() -> argparse.ArgumentParser:
                      help="Simulated comment period length in days (default 60).")
     gen.add_argument("--docket-id", metavar="ID", default="",
                      help="Override docket ID in output (inferred from CSV name if omitted).")
+    gen.add_argument("--max-concurrent", type=int, default=10, metavar="N",
+                     help="Max concurrent API requests (async mode, default 10).")
+    gen.add_argument("--no-async", action="store_true",
+                     help="Disable async parallelization (slower but more predictable).")
 
     # Verbosity
     p.add_argument("--quiet", action="store_true", help="Suppress progress output.")
@@ -180,7 +184,7 @@ def main(argv: list[str] | None = None) -> int:
     # Import here so the module is usable without installed deps when just
     # running --help
     from slop.config import Config
-    from slop.pipeline import run
+    from slop.pipeline import run, run_async
 
     # Build config — CLI flags take precedence over env vars
     config = Config()
@@ -205,26 +209,51 @@ def main(argv: list[str] | None = None) -> int:
 
     rule_text = resolve_rule_text(args.rule_text)
 
+    # Choose sync or async pipeline
+    run_func = run if args.no_async else run_async
+    
     try:
-        result = run(
-            docket_csv=args.docket_csv,
-            rule_text=rule_text,
-            vector=args.vector,
-            objective=args.objective,
-            volume=args.volume,
-            output_path=args.output,
-            config=config,
-            seed=args.seed,
-            similarity_threshold=args.similarity_threshold,
-            max_retries=args.max_retries,
-            comment_period_days=args.comment_period_days,
-            include_failed_qc=args.include_failed_qc,
-            skip_relevance_check=args.no_relevance_check,
-            skip_argument_check=args.no_argument_check,
-            skip_embedding_check=args.no_embedding_check,
-            docket_id=args.docket_id,
-            verbose=not args.quiet,
-        )
+        if args.no_async:
+            result = run(
+                docket_csv=args.docket_csv,
+                rule_text=rule_text,
+                vector=args.vector,
+                objective=args.objective,
+                volume=args.volume,
+                output_path=args.output,
+                config=config,
+                seed=args.seed,
+                similarity_threshold=args.similarity_threshold,
+                max_retries=args.max_retries,
+                comment_period_days=args.comment_period_days,
+                include_failed_qc=args.include_failed_qc,
+                skip_relevance_check=args.no_relevance_check,
+                skip_argument_check=args.no_argument_check,
+                skip_embedding_check=args.no_embedding_check,
+                docket_id=args.docket_id,
+                verbose=not args.quiet,
+            )
+        else:
+            result = run_async(
+                docket_csv=args.docket_csv,
+                rule_text=rule_text,
+                vector=args.vector,
+                objective=args.objective,
+                volume=args.volume,
+                output_path=args.output,
+                config=config,
+                seed=args.seed,
+                similarity_threshold=args.similarity_threshold,
+                max_retries=args.max_retries,
+                comment_period_days=args.comment_period_days,
+                include_failed_qc=args.include_failed_qc,
+                skip_relevance_check=args.no_relevance_check,
+                skip_argument_check=args.no_argument_check,
+                skip_embedding_check=args.no_embedding_check,
+                docket_id=args.docket_id,
+                verbose=not args.quiet,
+                max_concurrent=args.max_concurrent,
+            )
     except Exception as exc:
         print(f"Fatal error: {exc}", file=sys.stderr)
         import traceback

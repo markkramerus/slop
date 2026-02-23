@@ -32,6 +32,7 @@ Usage
 
 from __future__ import annotations
 
+import asyncio
 import json
 from dataclasses import dataclass, field
 from typing import Any
@@ -121,6 +122,28 @@ def _check_relevance(comment: GeneratedComment, config: Config) -> tuple[bool, s
     return relevant, reason
 
 
+async def _check_relevance_async(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
+    client = config.async_openai_client()
+    prompt = _RELEVANCE_USER.format(
+        rule_title=comment.rule_title,
+        core_change=comment.frame.core_arguments[0] if comment.frame.core_arguments else "",
+        comment_text=comment.comment_text[:1500],
+    )
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _RELEVANCE_SYSTEM},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.0,
+        max_tokens=150,
+    )
+    parsed = _parse_json_response(response.choices[0].message.content or "{}")
+    relevant = bool(parsed.get("relevant", True))
+    reason = str(parsed.get("reason", ""))
+    return relevant, reason
+
+
 def _check_argument(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
     client = config.openai_client()
     prompt = _ARGUMENT_USER.format(
@@ -142,11 +165,41 @@ def _check_argument(comment: GeneratedComment, config: Config) -> tuple[bool, st
     return on_message, reason
 
 
+async def _check_argument_async(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
+    client = config.async_openai_client()
+    prompt = _ARGUMENT_USER.format(
+        objective=comment.objective,
+        comment_text=comment.comment_text[:1500],
+    )
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _ARGUMENT_SYSTEM},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.0,
+        max_tokens=150,
+    )
+    parsed = _parse_json_response(response.choices[0].message.content or "{}")
+    on_message = bool(parsed.get("on_message", True))
+    reason = str(parsed.get("reason", ""))
+    return on_message, reason
+
+
 # ── Embedding computation ──────────────────────────────────────────────────────
 
 def _get_embedding(text: str, config: Config) -> list[float]:
     client = config.embedding_client()
     response = client.embeddings.create(
+        model=config.embed_model,
+        input=text[:8000],
+    )
+    return response.data[0].embedding
+
+
+async def _get_embedding_async(text: str, config: Config) -> list[float]:
+    client = config.async_embedding_client()
+    response = await client.embeddings.create(
         model=config.embed_model,
         input=text[:8000],
     )
@@ -243,6 +296,74 @@ class QualityController:
         nearest_sim = 0.0
         if not self.skip_embedding_check:
             emb = _get_embedding(comment.comment_text, self.config)
+            comment.embedding = emb
+
+            if self._accepted_embeddings:
+                sims = [_cosine_similarity(emb, e) for e in self._accepted_embeddings]
+                nearest_sim = max(sims)
+                if nearest_sim >= self.similarity_threshold:
+                    unique = False
+                    notes.append(
+                        f"near_duplicate: nearest_similarity={nearest_sim:.4f}"
+                    )
+
+        passed = relevant and on_message and unique
+
+        if passed and not self.skip_embedding_check and comment.embedding:
+            self._accepted_embeddings.append(comment.embedding)
+
+        result = QCResult(
+            passed=passed,
+            relevant=relevant,
+            on_message=on_message,
+            unique=unique,
+            nearest_similarity=nearest_sim,
+            notes="; ".join(notes),
+        )
+
+        comment.qc_passed = passed
+        comment.qc_notes = result.notes
+
+        return result
+
+    async def check_async(self, comment: GeneratedComment) -> QCResult:
+        """
+        Async version of check.
+        Run all QC checks on `comment` using async API calls. Mutates 
+        `comment.qc_passed` and `comment.qc_notes` and `comment.embedding` 
+        in-place, and also returns a QCResult for the caller.
+        """
+        notes: list[str] = []
+
+        # Run relevance and argument checks concurrently
+        relevance_task = None
+        argument_task = None
+        
+        if not self.skip_relevance_check:
+            relevance_task = asyncio.create_task(_check_relevance_async(comment, self.config))
+        
+        if not self.skip_argument_check:
+            argument_task = asyncio.create_task(_check_argument_async(comment, self.config))
+        
+        # Wait for both checks to complete
+        relevant = True
+        on_message = True
+        
+        if relevance_task:
+            relevant, reason = await relevance_task
+            if not relevant:
+                notes.append(f"relevance_fail: {reason}")
+        
+        if argument_task:
+            on_message, reason = await argument_task
+            if not on_message:
+                notes.append(f"argument_fail: {reason}")
+
+        # 3. Embedding uniqueness
+        unique = True
+        nearest_sim = 0.0
+        if not self.skip_embedding_check:
+            emb = await _get_embedding_async(comment.comment_text, self.config)
             comment.embedding = emb
 
             if self._accepted_embeddings:

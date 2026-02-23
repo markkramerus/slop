@@ -121,6 +121,11 @@ def _build_row(
     docket_id = comment.docket_id or "UNKNOWN"
     posted = _posted_date(timing_deciles, comment_period_days, comment_start_date, rng)
 
+    # Replace newlines with <br> for Excel compatibility
+    abstract = (comment.abstract if comment.abstract else comment.comment_text[:250])
+    abstract = abstract.replace("\r\n", "<br>").replace("\n", "<br>").replace("\r", "<br>")
+    comment_text = comment.comment_text.replace("\r\n", "<br>").replace("\n", "<br>").replace("\r", "<br>")
+
     # Regulations.gov columns
     row: dict[str, str] = {
         "Comment ID": _make_comment_id(docket_id, index),
@@ -130,8 +135,8 @@ def _build_row(
         "Submitter's Representative": "",
         "Government Agency Type": "Government Agency" if comment.persona.archetype == "government" else "",
         "Government Agency": "",
-        "Abstract": comment.abstract if comment.abstract else comment.comment_text[:250],
-        "Comment": comment.comment_text,
+        "Abstract": abstract,
+        "Comment": comment_text,
         "Attachment Files": "",
         "Posted Date": posted,
         "Received Date": posted,
@@ -170,7 +175,7 @@ def _build_row(
 
 # ── Public API ────────────────────────────────────────────────────────────────
 
-def export_to_csv(
+def export_to_txt(
     comments: Sequence[GeneratedComment],
     output_path: str,
     timing_deciles: list[float] | None = None,
@@ -217,51 +222,15 @@ def export_to_csv(
     target = [c for c in comments if include_failed_qc or c.qc_passed]
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=ALL_COLUMNS, delimiter='<', escapechar='\\', quoting=csv.QUOTE_NONE)
         # Custom write header
-        f.write("<>".join(ALL_COLUMNS) + "\n")
+        f.write("♔".join(ALL_COLUMNS) + "\n")
         for i, comment in enumerate(target):
             row = _build_row(
                 comment, i, timing_deciles, comment_period_days,
                 comment_start_date, rng
             )
-            # Write row with <> delimiter
-            values = [str(row[col]).replace("<>", "< >") for col in ALL_COLUMNS]
-            f.write("<>".join(values) + "\n")
+            # Write row with ♔ delimiter
+            values = [str(row[col]).replace("♔", "< >") for col in ALL_COLUMNS]
+            f.write("♔".join(values) + "\n")
 
     return len(target)
-
-
-def to_csv_string(
-    comments: Sequence[GeneratedComment],
-    timing_deciles: list[float] | None = None,
-    comment_period_days: int = 60,
-    comment_start_date: datetime.date | None = None,
-    include_failed_qc: bool = False,
-    seed: int = 42,
-) -> str:
-    """
-    Same as export_to_csv but returns the CSV content as a string.
-    Useful for testing or programmatic downstream processing.
-    """
-    rng = np.random.default_rng(seed)
-
-    if timing_deciles is None:
-        timing_deciles = [0.1] * 10
-
-    if comment_start_date is None:
-        comment_start_date = datetime.date.today() - datetime.timedelta(days=90)
-
-    target = [c for c in comments if include_failed_qc or c.qc_passed]
-
-    buf = io.StringIO()
-    writer = csv.DictWriter(buf, fieldnames=ALL_COLUMNS)
-    writer.writeheader()
-    for i, comment in enumerate(target):
-        row = _build_row(
-            comment, i, timing_deciles, comment_period_days,
-            comment_start_date, rng
-        )
-        writer.writerow(row)
-
-    return buf.getvalue()

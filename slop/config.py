@@ -76,7 +76,17 @@ class Config:
         import openai  # noqa: PLC0415
         return openai.OpenAI(base_url=self.api_base_url, api_key=self.api_key)
     
+    def async_openai_client(self):
+        """Return an async openai.AsyncOpenAI client configured for chat/generation."""
+        import openai  # noqa: PLC0415
+        return openai.AsyncOpenAI(base_url=self.api_base_url, api_key=self.api_key)
+    
     def embedding_client(self):
         """Return an openai.OpenAI client configured for embeddings."""
         import openai  # noqa: PLC0415
         return openai.OpenAI(base_url=self.embed_api_base_url, api_key=self.embed_api_key)
+    
+    def async_embedding_client(self):
+        """Return an async openai.AsyncOpenAI client configured for embeddings."""
+        import openai  # noqa: PLC0415
+        return openai.AsyncOpenAI(base_url=self.embed_api_base_url, api_key=self.embed_api_key)

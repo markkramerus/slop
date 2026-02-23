@@ -31,7 +31,7 @@ from .persona import sample_persona, Persona
 from .argument_mapper import map_argument, ExpressionFrame
 from .generator import generate_comment, GeneratedComment
 from .quality_control import QualityController
-from .export import export_to_csv
+from .export import export_to_txt
 
 __all__ = [
     "Config",
@@ -46,5 +46,5 @@ __all__ = [
     "generate_comment",
     "GeneratedComment",
     "QualityController",
-    "export_to_csv",
+    "export_to_txt",
 ]

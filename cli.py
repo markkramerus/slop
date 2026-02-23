@@ -7,16 +7,18 @@ Usage
     python cli.py \\
         --docket-csv  CMS-2025-0050-0031.csv \\
         --rule-text   proposed_rule.txt \\
-        --vector      2 \\
+        --vector      2   \\ Attack vector: 1=Semantic Variance, 2=Persona Mimicry, 3=Citation Flooding, 4=Dilution/Noise
         --objective   "oppose the proposed reduction of Medicare Advantage quality bonus payments" \\
-        --volume      50 \\
-        --output      synthetic_comments.csv
+        --volume      50 \\ Number of accepted synthetic comments to produce.
+        --output      synthetic_comments.txt
 
 Environment variables (or .env file):
-    SLOP_API_BASE_URL   Base URL for the OpenAI-compatible API
-    SLOP_API_KEY        API key
-    SLOP_CHAT_MODEL     Chat/completion model name
-    SLOP_EMBED_MODEL    Embeddings model name
+    SLOP_API_BASE_URL        Base URL for the chat/completion API
+    SLOP_API_KEY             API key for chat/completion
+    SLOP_CHAT_MODEL          Chat/completion model name
+    SLOP_EMBED_API_BASE_URL  Base URL for the embeddings API
+    SLOP_EMBED_API_KEY       API key for embeddings
+    SLOP_EMBED_MODEL         Embeddings model name
 
 Optional flags let you tune cost vs. quality:
     --no-relevance-check    Skip LLM topical-relevance QC
@@ -30,6 +32,8 @@ Optional flags let you tune cost vs. quality:
     --api-base-url          Override SLOP_API_BASE_URL
     --api-key               Override SLOP_API_KEY
     --chat-model            Override SLOP_CHAT_MODEL
+    --embed-api-base-url    Override SLOP_EMBED_API_BASE_URL
+    --embed-api-key         Override SLOP_EMBED_API_KEY
     --embed-model           Override SLOP_EMBED_MODEL
     --docket-id             Override docket ID in output (inferred from CSV name)
     --quiet                 Suppress progress output
@@ -102,17 +106,21 @@ def build_parser() -> argparse.ArgumentParser:
         "--output",
         required=True,
         metavar="PATH",
-        help="Destination CSV file path.",
+        help="Destination file path (use .txt extension for <> delimited format).",
     )
 
     # API configuration
     api = p.add_argument_group("API configuration")
     api.add_argument("--api-base-url", metavar="URL", default=None,
-                     help="OpenAI-compatible API base URL (overrides SLOP_API_BASE_URL).")
+                     help="Chat API base URL (overrides SLOP_API_BASE_URL).")
     api.add_argument("--api-key", metavar="KEY", default=None,
-                     help="API key (overrides SLOP_API_KEY).")
+                     help="Chat API key (overrides SLOP_API_KEY).")
     api.add_argument("--chat-model", metavar="MODEL", default=None,
                      help="Chat model name (overrides SLOP_CHAT_MODEL).")
+    api.add_argument("--embed-api-base-url", metavar="URL", default=None,
+                     help="Embeddings API base URL (overrides SLOP_EMBED_API_BASE_URL).")
+    api.add_argument("--embed-api-key", metavar="KEY", default=None,
+                     help="Embeddings API key (overrides SLOP_EMBED_API_KEY).")
     api.add_argument("--embed-model", metavar="MODEL", default=None,
                      help="Embeddings model name (overrides SLOP_EMBED_MODEL).")
 
@@ -149,7 +157,18 @@ def build_parser() -> argparse.ArgumentParser:
 def resolve_rule_text(path_or_text: str) -> str:
     """If the argument looks like a file path that exists, read it; otherwise use as-is."""
     if os.path.exists(path_or_text):
-        with open(path_or_text, "r", encoding="utf-8") as f:
+        # Try multiple encodings to handle various file formats
+        encodings = ['utf-8', 'latin-1', 'cp1252', 'iso-8859-1']
+        
+        for encoding in encodings:
+            try:
+                with open(path_or_text, "r", encoding=encoding) as f:
+                    return f.read()
+            except UnicodeDecodeError:
+                continue
+        
+        # If all else fails, read with UTF-8 and replace problematic characters
+        with open(path_or_text, "r", encoding="utf-8", errors="replace") as f:
             return f.read()
     return path_or_text
 
@@ -171,6 +190,10 @@ def main(argv: list[str] | None = None) -> int:
         config.api_key = args.api_key
     if args.chat_model:
         config.chat_model = args.chat_model
+    if args.embed_api_base_url:
+        config.embed_api_base_url = args.embed_api_base_url
+    if args.embed_api_key:
+        config.embed_api_key = args.embed_api_key
     if args.embed_model:
         config.embed_model = args.embed_model
 

@@ -130,7 +130,7 @@ def _build_row(
         "Submitter's Representative": "",
         "Government Agency Type": "Government Agency" if comment.persona.archetype == "government" else "",
         "Government Agency": "",
-        "Abstract": comment.comment_text[:500],
+        "Abstract": comment.abstract if comment.abstract else comment.comment_text[:250],
         "Comment": comment.comment_text,
         "Attachment Files": "",
         "Posted Date": posted,
@@ -180,14 +180,14 @@ def export_to_csv(
     seed: int = 42,
 ) -> int:
     """
-    Write accepted synthetic comments to a CSV file.
+    Write accepted synthetic comments to a delimited text file.
 
     Parameters
     ----------
     comments:
         List of GeneratedComment objects (may include QC failures).
     output_path:
-        Destination CSV file path.
+        Destination file path (should end in .txt).
     timing_deciles:
         10-element list of relative comment-frequency per decile of the comment
         period.  If None, uniform distribution is used.
@@ -217,14 +217,17 @@ def export_to_csv(
     target = [c for c in comments if include_failed_qc or c.qc_passed]
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=ALL_COLUMNS)
-        writer.writeheader()
+        writer = csv.DictWriter(f, fieldnames=ALL_COLUMNS, delimiter='<', escapechar='\\', quoting=csv.QUOTE_NONE)
+        # Custom write header
+        f.write("<>".join(ALL_COLUMNS) + "\n")
         for i, comment in enumerate(target):
             row = _build_row(
                 comment, i, timing_deciles, comment_period_days,
                 comment_start_date, rng
             )
-            writer.writerow(row)
+            # Write row with <> delimiter
+            values = [str(row[col]).replace("<>", "< >") for col in ALL_COLUMNS]
+            f.write("<>".join(values) + "\n")
 
     return len(target)
 

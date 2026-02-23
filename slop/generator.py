@@ -105,6 +105,37 @@ def _build_citation_block(frame: ExpressionFrame) -> str:
     return "\n".join(lines)
 
 
+def _generate_abstract(comment_text: str, config: Config) -> str:
+    """
+    Generate a concise abstract (1-2 sentences) summarizing the comment.
+    This mimics what appears in the Regulations.gov Abstract field.
+    """
+    client = config.openai_client()
+    
+    prompt = f"""Write a brief 1-2 sentence abstract summarizing the key point of this public comment. The abstract should capture the commenter's main position or concern. Do NOT include preambles like "This comment..." - write it as a direct summary.
+
+Comment:
+{comment_text}
+
+Abstract:"""
+    
+    response = client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.3,
+        max_tokens=150,
+    )
+    
+    abstract = (response.choices[0].message.content or "").strip()
+    # Limit to roughly 250 characters
+    if len(abstract) > 250:
+        abstract = abstract[:247] + "..."
+    
+    return abstract
+
+
 # ── Generated comment ─────────────────────────────────────────────────────────
 
 @dataclass
@@ -116,6 +147,8 @@ class GeneratedComment:
     objective: str
     rule_title: str
     docket_id: str
+    # Abstract — populated after generation
+    abstract: str = ""
     # Embedding — populated by quality_control
     embedding: list[float] = field(default_factory=list)
     # QC results
@@ -207,6 +240,9 @@ def generate_comment(
     )
 
     comment_text = (response.choices[0].message.content or "").strip()
+    
+    # Generate abstract
+    abstract = _generate_abstract(comment_text, config)
 
     return GeneratedComment(
         comment_text=comment_text,
@@ -216,4 +252,5 @@ def generate_comment(
         objective=objective,
         rule_title=world_model.rule_title,
         docket_id=world_model.docket_id,
+        abstract=abstract,
     )

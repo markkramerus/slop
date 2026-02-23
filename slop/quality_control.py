@@ -145,7 +145,7 @@ def _check_argument(comment: GeneratedComment, config: Config) -> tuple[bool, st
 # ── Embedding computation ──────────────────────────────────────────────────────
 
 def _get_embedding(text: str, config: Config) -> list[float]:
-    client = config.openai_client()
+    client = config.embedding_client()
     response = client.embeddings.create(
         model=config.embed_model,
         input=text[:8000],

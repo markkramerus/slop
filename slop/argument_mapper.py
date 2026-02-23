@@ -275,3 +275,99 @@ def map_argument(
         raise ValueError(f"Attack vector must be 1–4, got {vector}")
 
     return _build_frame_via_llm(objective, vector, persona, world_model, config, rng)
+
+
+async def map_argument_async(
+    objective: str,
+    vector: AttackVector,
+    persona: Persona,
+    world_model: WorldModel,
+    config: Config,
+    rng: np.random.Generator,
+) -> ExpressionFrame:
+    """
+    Async version of map_argument.
+    Produce an ExpressionFrame for a single comment using async API calls.
+
+    Parameters
+    ----------
+    objective:
+        The position to advance or undermine (e.g. "oppose CMS's proposed
+        reduction of Medicare Advantage quality bonus payments").
+    vector:
+        Attack vector (1–4).
+    persona:
+        The instantiated persona who will write the comment.
+    world_model:
+        The rule's world model.
+    config:
+        API config.
+    rng:
+        Seeded random number generator.
+    """
+    if vector not in (1, 2, 3, 4):
+        raise ValueError(f"Attack vector must be 1–4, got {vector}")
+
+    client = config.async_openai_client()
+
+    rfi_qs = world_model.rfi_questions
+    rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
+
+    prompt = _FRAME_USER_TEMPLATE.format(
+        objective=objective,
+        vector_label=_VECTOR_LABELS[vector],
+        vector_guidance=_VECTOR_GUIDANCE[vector],
+        archetype=persona.archetype,
+        name=persona.full_name,
+        state=persona.state,
+        occupation=persona.occupation,
+        sophistication=persona.sophistication,
+        emotional_register=persona.emotional_register,
+        hook=persona.personal_hook,
+        rule_title=world_model.rule_title,
+        core_change=world_model.core_change,
+        consequence=world_model.consequence_for(persona.archetype),
+        key_terms=", ".join(world_model.key_terms[:8]),
+        rfi_questions=rfi_block,
+    )
+
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _FRAME_SYSTEM},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.3,
+        max_tokens=600,
+    )
+
+    raw = (response.choices[0].message.content or "{}").strip()
+    if raw.startswith("```"):
+        raw = raw.split("```", 2)[1]
+        if raw.startswith("json"):
+            raw = raw[4:]
+        raw = raw.rsplit("```", 1)[0]
+
+    try:
+        parsed = json.loads(raw)
+    except json.JSONDecodeError:
+        parsed = {}
+
+    # Vector 4 override: clamp target word count
+    twc = int(parsed.get("target_word_count", 250))
+    if vector == 4:
+        twc = min(twc, 100)
+
+    temperature_by_vector = {1: 1.05, 2: 0.95, 3: 0.85, 4: 0.7}
+
+    return ExpressionFrame(
+        core_arguments=parsed.get("core_arguments", [objective]),
+        framing=parsed.get("framing", ""),
+        evidence_types=parsed.get("evidence_types", ["personal anecdote"]),
+        rfi_questions_to_address=parsed.get("rfi_questions_to_address", []),
+        citation_agenda=parsed.get("citation_agenda", []) if vector == 3 else [],
+        target_word_count=twc,
+        temperature=temperature_by_vector.get(vector, 0.9),
+        vector_instructions=parsed.get("vector_instructions", ""),
+        is_dilution=(vector == 4),
+    )

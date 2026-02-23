@@ -105,6 +105,68 @@ def _build_citation_block(frame: ExpressionFrame) -> str:
     return "\n".join(lines)
 
 
+def _generate_abstract(comment_text: str, config: Config) -> str:
+    """
+    Generate a concise abstract (1-2 sentences) summarizing the comment.
+    This mimics what appears in the Regulations.gov Abstract field.
+    """
+    client = config.openai_client()
+    
+    prompt = f"""Write a brief 1-2 sentence abstract summarizing the key point of this public comment. The abstract should capture the commenter's main position or concern. Do NOT include preambles like "This comment..." - write it as a direct summary.
+
+Comment:
+{comment_text}
+
+Abstract:"""
+    
+    response = client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.3,
+        max_tokens=150,
+    )
+    
+    abstract = (response.choices[0].message.content or "").strip()
+    # Limit to roughly 250 characters
+    if len(abstract) > 250:
+        abstract = abstract[:247] + "..."
+    
+    return abstract
+
+
+async def _generate_abstract_async(comment_text: str, config: Config) -> str:
+    """
+    Async version of _generate_abstract.
+    Generate a concise abstract (1-2 sentences) summarizing the comment.
+    """
+    client = config.async_openai_client()
+    
+    prompt = f"""Write a brief 1-2 sentence abstract summarizing the key point of this public comment. The abstract should capture the commenter's main position or concern. Do NOT include preambles like "This comment..." - write it as a direct summary.
+
+Comment:
+{comment_text}
+
+Abstract:"""
+    
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.3,
+        max_tokens=150,
+    )
+    
+    abstract = (response.choices[0].message.content or "").strip()
+    # Limit to roughly 250 characters
+    if len(abstract) > 250:
+        abstract = abstract[:247] + "..."
+    
+    return abstract
+
+
 # ── Generated comment ─────────────────────────────────────────────────────────
 
 @dataclass
@@ -116,6 +178,8 @@ class GeneratedComment:
     objective: str
     rule_title: str
     docket_id: str
+    # Abstract — populated after generation
+    abstract: str = ""
     # Embedding — populated by quality_control
     embedding: list[float] = field(default_factory=list)
     # QC results
@@ -207,6 +271,9 @@ def generate_comment(
     )
 
     comment_text = (response.choices[0].message.content or "").strip()
+    
+    # Generate abstract
+    abstract = _generate_abstract(comment_text, config)
 
     return GeneratedComment(
         comment_text=comment_text,
@@ -216,4 +283,87 @@ def generate_comment(
         objective=objective,
         rule_title=world_model.rule_title,
         docket_id=world_model.docket_id,
+        abstract=abstract,
+    )
+
+
+async def generate_comment_async(
+    persona: Persona,
+    frame: ExpressionFrame,
+    world_model: WorldModel,
+    vector: int,
+    objective: str,
+    config: Config,
+) -> GeneratedComment:
+    """
+    Async version of generate_comment.
+    Generate a single synthetic comment using async API calls.
+
+    Parameters
+    ----------
+    persona:
+        Fully-instantiated persona.
+    frame:
+        Expression frame from argument_mapper.
+    world_model:
+        Rule world model.
+    vector:
+        Attack vector (1–4), used for metadata only at this stage.
+    objective:
+        The attack objective string.
+    config:
+        API config.
+    """
+    config.validate()
+    client = config.async_openai_client()
+
+    core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
+    rfi_block = _build_rfi_block(frame)
+    citation_block = _build_citation_block(frame)
+
+    prompt = _USER_PROMPT_TEMPLATE.format(
+        name=persona.full_name,
+        age=persona.age,
+        state=persona.state,
+        occupation=persona.occupation,
+        org_name=persona.org_name if persona.org_name else "None",
+        personal_hook=persona.personal_hook,
+        personal_stake=persona.personal_stake,
+        core_arguments=core_args_block,
+        framing=frame.framing,
+        rfi_block=rfi_block,
+        style_instructions=persona.style_instructions(),
+        vector_instructions=frame.vector_instructions,
+        citation_block=citation_block,
+        word_count=frame.target_word_count,
+        rule_title=world_model.rule_title,
+        agency=world_model.agency,
+        core_change=world_model.core_change,
+        regulatory_domain=world_model.regulatory_domain,
+    )
+
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=frame.temperature,
+        max_tokens=config.max_tokens,
+    )
+
+    comment_text = (response.choices[0].message.content or "").strip()
+    
+    # Generate abstract asynchronously
+    abstract = await _generate_abstract_async(comment_text, config)
+
+    return GeneratedComment(
+        comment_text=comment_text,
+        persona=persona,
+        frame=frame,
+        vector=vector,
+        objective=objective,
+        rule_title=world_model.rule_title,
+        docket_id=world_model.docket_id,
+        abstract=abstract,
     )

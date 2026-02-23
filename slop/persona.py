@@ -267,6 +267,37 @@ def _generate_hook(persona: Persona, world_model: WorldModel, config: Config) ->
     return (response.choices[0].message.content or "").strip()
 
 
+async def _generate_hook_async(persona: Persona, world_model: WorldModel, config: Config) -> str:
+    """Async version: Call the LLM to generate a personal hook for this persona."""
+    client = config.async_openai_client()
+    org_line = f"Organization: {persona.org_name}" if persona.org_name else "No organizational affiliation"
+    consequence = world_model.consequence_for(persona.archetype)
+    if not consequence:
+        consequence = world_model.core_change
+
+    prompt = _HOOK_USER_TEMPLATE.format(
+        name=persona.full_name,
+        age=persona.age,
+        state=persona.state,
+        occupation=persona.occupation,
+        sophistication=persona.sophistication,
+        emotional_register=persona.emotional_register,
+        org_line=org_line,
+        consequence=consequence,
+    )
+
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _HOOK_SYSTEM},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=1.0,
+        max_tokens=200,
+    )
+    return (response.choices[0].message.content or "").strip()
+
+
 # ── Persona instantiation ─────────────────────────────────────────────────────
 
 def instantiate_persona(
@@ -368,3 +399,91 @@ def sample_persona(
         profile = ArchetypeProfile(archetype=archetype, count=1)
 
     return instantiate_persona(archetype, profile, world_model, config, rng)
+
+
+async def sample_persona_async(
+    world_model: WorldModel,
+    config: Config,
+    rng: np.random.Generator,
+    archetype_override: str | None = None,
+) -> Persona:
+    """
+    Async version of sample_persona.
+    Sample an archetype from the population distribution and instantiate a
+    Persona for it using async API calls.
+
+    Parameters
+    ----------
+    world_model:
+        The world model (contains the population model).
+    config:
+        API config.
+    rng:
+        Seeded random number generator.
+    archetype_override:
+        If set, use this archetype instead of sampling from the distribution.
+    """
+    population = world_model.population
+    if population is None:
+        raise ValueError("world_model.population must be set before sampling personas.")
+
+    if archetype_override and archetype_override in population.archetypes:
+        archetype = archetype_override
+    else:
+        archetype = population.sample_archetype(rng)
+
+    profile = population.archetypes.get(archetype)
+    if profile is None:
+        # Fall back to a minimal profile
+        profile = ArchetypeProfile(archetype=archetype, count=1)
+
+    # Name
+    first = rng.choice(_FIRST_NAMES)
+    last = rng.choice(_LAST_NAMES)
+
+    # State — prefer states observed in the historical docket for this archetype
+    state_pool = profile.states if profile.states else _STATES
+    state = str(rng.choice(state_pool))
+
+    # Occupation
+    occ_pool = _OCCUPATIONS_BY_ARCHETYPE.get(archetype, ["citizen"])
+    occupation = str(rng.choice(occ_pool))
+
+    # Age
+    age_min, age_max = _AGE_RANGES_BY_ARCHETYPE.get(archetype, (30, 70))
+    age = int(rng.integers(age_min, age_max + 1))
+
+    # Sophistication — weighted toward archetype defaults
+    soph_pool = _SOPHISTICATION_BY_ARCHETYPE.get(archetype, ["medium"])
+    sophistication = str(rng.choice(soph_pool))
+
+    # Emotional register
+    emotional_register = str(rng.choice(_EMOTIONAL_REGISTERS))
+
+    # Org name — pick from historical docket or leave blank
+    org_name = ""
+    if archetype != "individual_consumer" and profile.orgs:
+        org_name = str(rng.choice(profile.orgs[:50]))
+
+    # Personal stake (short phrase, derived from world model)
+    consequence = world_model.consequence_for(archetype)
+    personal_stake = consequence[:200] if consequence else world_model.core_change[:200]
+
+    persona = Persona(
+        archetype=archetype,
+        first_name=first,
+        last_name=last,
+        state=state,
+        occupation=occupation,
+        age=age,
+        sophistication=sophistication,
+        emotional_register=emotional_register,
+        org_name=org_name,
+        personal_stake=personal_stake,
+        personal_hook="",  # filled in below
+    )
+
+    # Generate the personal hook via LLM asynchronously
+    persona.personal_hook = await _generate_hook_async(persona, world_model, config)
+
+    return persona

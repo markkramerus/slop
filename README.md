@@ -14,22 +14,26 @@ pip install -r requirements.txt
 #   SLOP_EMBED_API_KEY=your_key_here
 
 # 3. Download a docket and convert attachments to text
-python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
+python downloader/download_attachments.py CMS-2025-0050 --convert-text
 
 # 4. Analyze writing styles in the docket
-python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
+python stylometry/stylometry_analyzer.py CMS-2025-0050
 
 # 5. Generate synthetic comments
 python cli.py \
-    --docket-id   CMS-2025-0050 \
-    --rule-text   CMS-2025-0050/rule/proposed_rule.txt \
-    --vector      2 \
-    --objective   "oppose the proposed reduction of Medicare Advantage quality bonus payments" \
-    --volume      10 \
-    --output      CMS-2025-0050/synthetic_comments/comments.txt
+    --docket-id CMS-2025-0050 \
+    --vector    2 \
+    --objective "oppose the proposed reduction of Medicare Advantage quality bonus payments" \
+    --volume    10
 ```
 
-That's it! You'll have 10 synthetic public comments written in the voice styles of real commenters from that docket.
+That's it! You'll have 10 synthetic public comments written in the voice styles of real commenters from that docket, saved to `CMS-2025-0050/synthetic_comments/synthetic.txt`.
+
+**Even simpler with a campaign plan** — once you have a `CMS-2025-0050/campaign/campaign_plan.json`, the only required arguments are `--docket-id` and `--volume`:
+
+```bash
+python cli.py --docket-id CMS-2025-0050 --volume 50
+```
 
 ## What Does This Do?
 
@@ -98,7 +102,7 @@ SLOP is organized into five sub-applications, each with its own README:
 | **Stylometry** | `stylometry/` | Analyze real-comment writing styles; generate voice skill files |
 | **Campaign Planner** | `campaign/` | Decompose a scenario into a structured generation strategy |
 | **syncom** | `syncom/` | Core synthetic comment generator |
-| **Shuffler** | `shuffler/` | Translate synthetic output back to CMS CSV format |
+| **Shuffler** | `shuffler/` | Translate synthetic output to CMS CSV format and shuffle it into a real comment file with a ground-truth key |
 
 ---
 
@@ -107,10 +111,13 @@ SLOP is organized into five sub-applications, each with its own README:
 Downloads attachment files from regulations.gov CSV exports and organizes them in a docket-centric directory hierarchy.
 
 ```bash
-# Download all attachments for a docket
-python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv
+# Download all attachments for a docket (docket ID → derives CSV path automatically)
+python downloader/download_attachments.py CMS-2025-0050
 
 # Download and convert PDF/DOCX to .txt for downstream processing
+python downloader/download_attachments.py CMS-2025-0050 --convert-text
+
+# Explicit CSV path also still works
 python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
 
 # Convert already-downloaded files to text
@@ -137,7 +144,10 @@ CMS-2025-0050/
 Analyzes writing styles in real docket comments and generates reusable **voice skill** markdown files. These skills are used by the generator to produce synthetic comments that match the actual writing patterns of real commenters in that docket—rather than relying on generic instructions.
 
 ```bash
-# Analyze a docket and generate voice skill files
+# Analyze a docket (docket ID → derives CSV path automatically)
+python stylometry/stylometry_analyzer.py CMS-2025-0050
+
+# Explicit CSV path also still works
 python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
 ```
 
@@ -184,19 +194,19 @@ Translates a natural-language scenario brief into a structured **campaign plan**
 ```
 
 ```bash
-# Step 1: Generate a campaign plan from a scenario brief
-python campaign/planner.py \
-    --rule-text  CMS-2025-0050/rule/proposed_rule.txt \
-    --scenario   scenario_brief.txt \
-    --output     campaign_plan.json
+# Step 1: Generate a campaign plan (all paths derived from docket ID)
+python campaign/planner.py --docket-id CMS-2025-0050
 
-# Step 2: Review and edit campaign_plan.json, then generate
-python cli.py \
-    --docket-id     CMS-2025-0050 \
-    --rule-text     CMS-2025-0050/rule/proposed_rule.txt \
-    --campaign-plan campaign_plan.json \
-    --volume        50 \
-    --output        CMS-2025-0050/synthetic_comments/comments.txt
+# Step 2: Review and edit CMS-2025-0050/campaign/campaign_plan.json, then generate
+# campaign_plan.json is auto-detected — only --docket-id and --volume needed:
+python cli.py --docket-id CMS-2025-0050 --volume 50
+
+# Explicit paths still work if you want to override defaults:
+python campaign/planner.py \
+    --docket-id CMS-2025-0050 \
+    --rule-text CMS-2025-0050/rule/rule.txt \
+    --scenario  CMS-2025-0050/campaign/scenario_brief.txt \
+    --output    CMS-2025-0050/campaign/campaign_plan.json
 ```
 
 When `--campaign-plan` is provided, `--objective` and `--vector` are read from the plan; comments are automatically distributed across argument angles, stakeholder types, and vectors according to the plan's weights.
@@ -222,10 +232,51 @@ The core generation engine. Invoked via `cli.py`.
 
 ### Shuffler (`shuffler/`)
 
-Translates synthetic comments from the internal ♔-delimited format back to standard CMS CSV format, suitable for analysis alongside real comments.
+The final phase of the pipeline. It takes the ♔-delimited syncom output, translates it to standard CMS CSV format, then randomly interleaves the synthetic comments into a real CMS comment file. The result is a combined CSV indistinguishable in format from a real docket export, plus a **key file** that records the ground truth for every row.
+
+#### Full pipeline via `cli.py shuffle`
 
 ```bash
-# Translate to CMS CSV format
+# Simplest form — all paths derived from docket ID:
+python cli.py shuffle --docket-id CMS-2025-0050
+
+# Explicit paths also still work:
+python cli.py shuffle \
+    --syncom-output     CMS-2025-0050/synthetic_comments/synthetic.txt \
+    --translated-output CMS-2025-0050/shuffled_comments/synthetic_cms.csv \
+    --real-comments     CMS-2025-0050/comments/CMS-2025-0050.csv \
+    --combined-output   CMS-2025-0050/shuffled_comments/combined.csv
+```
+
+This single command:
+1. Translates `synthetic.txt` (♔-delimited) → `synthetic_cms.csv` (CMS CSV)
+2. Loads the real comment file and the translated synthetic file
+3. Randomly shuffles them together (reproducible via `--seed`)
+4. Writes the combined file to `combined.csv`
+5. Auto-generates `combined_key.csv` in the same directory
+
+#### Key file format
+
+The key CSV has three columns and one row per comment in the combined file:
+
+| Column | Description |
+|---|---|
+| `row_number` | 1-based position in the combined CSV (not counting the header) |
+| `document_id` | The `Document ID` value from that row |
+| `type` | `real` or `synthetic` |
+
+#### Skip the translation step
+
+If you have already translated the synthetic comments (e.g., in a prior run), use `--skip-translation` to go straight to shuffling:
+
+```bash
+python cli.py shuffle --docket-id CMS-2025-0050 --skip-translation
+```
+
+#### Translation only (lower-level)
+
+```bash
+# Translate ♔-delimited → CMS CSV without shuffling
 python shuffler/translate_to_cms_format.py \
     CMS-2025-0050/synthetic_comments/comments.txt \
     CMS-2025-0050/synthetic_comments/comments_cms.csv
@@ -234,35 +285,44 @@ python shuffler/translate_to_cms_format.py \
 python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_cms.csv
 ```
 
-📖 See [`shuffler/TRANSLATION_README.md`](shuffler/TRANSLATION_README.md) for full documentation.
+📖 See [`shuffler/TRANSLATION_README.md`](shuffler/TRANSLATION_README.md) for field-mapping details.
 
 ---
 
 ## Full Workflow
 
+All steps accept a docket ID and derive conventional file paths automatically.
+
 ```
 1. Download docket
-   python downloader/download_attachments.py {csv} --convert-text
+   python downloader/download_attachments.py {docket_id} --convert-text
    └── {docket_id}/comment_attachments/
 
 2. Analyze writing styles
-   python stylometry/stylometry_analyzer.py {csv}
+   python stylometry/stylometry_analyzer.py {docket_id}
    └── {docket_id}/stylometry/*.md
 
 3a. Direct generation (simple)
-    python cli.py --docket-id ... --rule-text ... --vector N --objective "..." --volume N --output ...
+    python cli.py --docket-id {docket_id} --vector N --objective "..." --volume N
+    # rule text read from {docket_id}/rule/rule.txt
+    # output written to {docket_id}/synthetic_comments/synthetic.txt
 
     OR
 
 3b. Campaign-planned generation (structured)
-    python campaign/planner.py --rule-text ... --scenario ... --output campaign_plan.json
-    # Review and edit campaign_plan.json
-    python cli.py --docket-id ... --rule-text ... --campaign-plan campaign_plan.json --volume N --output ...
-   └── {docket_id}/synthetic_comments/comments.txt
+    python campaign/planner.py --docket-id {docket_id}
+    # reads  {docket_id}/rule/rule.txt + {docket_id}/campaign/scenario_brief.txt
+    # writes {docket_id}/campaign/campaign_plan.json
+    # Review and edit campaign_plan.json, then:
+    python cli.py --docket-id {docket_id} --volume N
+    # campaign_plan.json is auto-detected; output → {docket_id}/synthetic_comments/synthetic.txt
 
-4. Translate to CMS format
-   python shuffler/translate_to_cms_format.py comments.txt comments_cms.csv
-   └── {docket_id}/synthetic_comments/comments_cms.csv
+4. Translate + shuffle
+   python cli.py shuffle --docket-id {docket_id}
+   └── {docket_id}/shuffled_comments/
+       ├── synthetic_cms.csv   ← translated synthetic comments in CMS format
+       ├── combined.csv        ← real + synthetic, randomly interleaved
+       └── combined_key.csv    ← ground-truth label for every row
 ```
 
 ## Command-Line Reference
@@ -272,14 +332,17 @@ python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_
 ```
 python cli.py [OPTIONS]
 
-Required arguments:
+Required:
   --docket-id ID        Docket identifier (e.g., 'CMS-2025-0050').
                         The tool looks for stylometry data in {docket_id}/stylometry/.
-  --rule-text PATH      Path to proposed rule text file (or inline text).
   --volume N            Number of accepted synthetic comments to produce.
-  --output PATH         Destination file path (.txt for ♔-delimited format).
 
-Direct mode (required unless --campaign-plan is provided):
+Convention-based defaults (derived from --docket-id):
+  --rule-text PATH      Default: {docket_id}/rule/rule.txt
+  --output PATH         Default: {docket_id}/synthetic_comments/synthetic.txt
+  --campaign-plan PATH  Auto-detected: {docket_id}/campaign/campaign_plan.json (if present)
+
+Direct mode (required when no campaign plan is found):
   --objective TEXT      The position to advance or oppose.
   --vector {1,2,3,4}    Attack vector (1=Semantic Variance, 2=Persona Mimicry,
                         3=Citation Flooding, 4=Dilution/Noise).
@@ -310,15 +373,42 @@ Generation options:
   --quiet               Suppress progress output
 ```
 
+### `cli.py shuffle` — Shuffler
+
+```
+python cli.py shuffle [OPTIONS]
+
+Required:
+  --docket-id ID            Docket identifier — all paths derived automatically.
+                            (or provide individual path arguments below)
+
+Convention-based defaults (derived from --docket-id):
+  --syncom-output PATH      Default: {docket_id}/synthetic_comments/synthetic.txt
+  --translated-output PATH  Default: {docket_id}/shuffled_comments/synthetic_cms.csv
+  --real-comments PATH      Default: {docket_id}/comments/{docket_id}.csv
+  --combined-output PATH    Default: {docket_id}/shuffled_comments/combined.csv
+
+Shuffle options:
+  --key-output PATH         Path for the key CSV (default: <combined-stem>_key.csv).
+  --skip-translation        Skip translation; use --translated-output as-is.
+  --seed N                  Random seed for reproducible shuffling (default 42).
+
+  --quiet                   Suppress progress output
+```
+
 ### `campaign/planner.py` — Campaign Planner
 
 ```
 python campaign/planner.py [OPTIONS]
 
 Required:
-  --scenario PATH_OR_TEXT   Scenario brief file or inline text
-  --rule-text PATH_OR_TEXT  Proposed rule text file or inline text
-  --output PATH             Destination for campaign_plan.json
+  --docket-id ID            Docket identifier — all paths derived automatically.
+                            (or provide individual path arguments below)
+
+Convention-based defaults (derived from --docket-id):
+  --scenario PATH_OR_TEXT   Default: {docket_id}/campaign/scenario_brief.txt
+  --rule-text PATH_OR_TEXT  Default: {docket_id}/rule/rule.txt
+  --output PATH             Default: {docket_id}/campaign/campaign_plan.json
 
 API configuration:
   --api-base-url URL    Override SLOP_API_BASE_URL
@@ -492,7 +582,8 @@ slop/
 │   ├── text_converter.py       # Convert PDF/DOCX attachments to .txt
 │   └── README_DOWNLOADER.md
 │
-├── shuffler/                   # Format Translation sub-application
+├── shuffler/                   # Shuffler sub-application
+│   ├── shuffler.py                 # Core shuffle logic (translate + interleave + key)
 │   ├── translate_to_cms_format.py  # Convert ♔-delimited → CMS CSV
 │   ├── verify_translation.py       # Verify translation output
 │   └── TRANSLATION_README.md

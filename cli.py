@@ -47,6 +47,242 @@ import os
 import sys
 
 
+# ── Shuffle subcommand ─────────────────────────────────────────────────────────
+
+def build_shuffle_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        prog="slop shuffle",
+        description=(
+            "Shuffler phase: translate synthetic comments to CMS format, then "
+            "randomly interleave them with a real CMS comment file and produce "
+            "a key that labels every row as real or synthetic."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Convention-based defaults (when --docket-id is provided)
+---------------------------------------------------------
+  --syncom-output     {docket_id}/synthetic_comments/synthetic.txt
+  --translated-output {docket_id}/shuffled_comments/synthetic_cms.csv
+  --real-comments     {docket_id}/comments/{docket_id}.csv
+  --combined-output   {docket_id}/shuffled_comments/combined.csv
+
+Examples
+--------
+  # Simplest form — all paths derived from docket ID:
+  python cli.py shuffle --docket-id CMS-2025-0050
+
+  # Full pipeline (translate + shuffle) with explicit paths:
+  python cli.py shuffle \\
+      --syncom-output  CMS-2025-0050/synthetic_comments/synthetic.txt \\
+      --translated-output CMS-2025-0050/shuffled_comments/synthetic_cms.csv \\
+      --real-comments  CMS-2025-0050/comments/CMS-2025-0050.csv \\
+      --combined-output CMS-2025-0050/shuffled_comments/combined.csv
+
+  # Skip translation (provide an already-translated CMS CSV):
+  python cli.py shuffle --docket-id CMS-2025-0050 --skip-translation
+
+Key file
+--------
+  A companion key CSV is written automatically next to the combined output
+  (e.g., combined_key.csv).  Use --key-output to override its path.
+  The key has three columns: row_number, document_id, type (real | synthetic).
+""",
+    )
+
+    p.add_argument(
+        "--docket-id",
+        default=None,
+        metavar="ID",
+        help=(
+            "Docket identifier (e.g., 'CMS-2025-0050'). When provided, all "
+            "file paths default to conventional locations inside the docket "
+            "directory; any explicit path argument overrides the default."
+        ),
+    )
+    p.add_argument(
+        "--syncom-output",
+        metavar="PATH",
+        default=None,
+        help=(
+            "Path to the ♔-delimited syncom output file produced by the "
+            "generate phase.  Required unless --skip-translation is set. "
+            "Default: {docket_id}/synthetic_comments/synthetic.txt"
+        ),
+    )
+    p.add_argument(
+        "--translated-output",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path where the translated synthetic CMS CSV will be saved.  "
+            "If --skip-translation is set this file must already exist. "
+            "Default: {docket_id}/shuffled_comments/synthetic_cms.csv"
+        ),
+    )
+    p.add_argument(
+        "--real-comments",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path to the real CMS comments file (comma-delimited CSV). "
+            "Default: {docket_id}/comments/{docket_id}.csv"
+        ),
+    )
+    p.add_argument(
+        "--combined-output",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path where the combined (shuffled) CMS CSV will be saved. "
+            "Default: {docket_id}/shuffled_comments/combined.csv"
+        ),
+    )
+    p.add_argument(
+        "--key-output",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path where the key CSV will be saved.  "
+            "Defaults to <combined-output-stem>_key.csv in the same directory."
+        ),
+    )
+    p.add_argument(
+        "--skip-translation",
+        action="store_true",
+        help=(
+            "Skip the translation step and use --translated-output directly "
+            "as the synthetic CMS CSV.  Useful when translation was run "
+            "previously and the file already exists."
+        ),
+    )
+    p.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        metavar="N",
+        help="Random seed for reproducible shuffling (default 42).",
+    )
+    p.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Suppress progress output.",
+    )
+
+    return p
+
+
+def run_shuffle(argv: list[str] | None = None) -> int:
+    """Entry point for the 'shuffle' subcommand."""
+    parser = build_shuffle_parser()
+    args = parser.parse_args(argv)
+
+    from shuffler.shuffler import translate_syncom_to_cms, shuffle_comments
+
+    verbose = not args.quiet
+
+    # ── Resolve defaults from docket-id ────────────────────────────────────
+    docket_id = args.docket_id
+
+    syncom_output     = args.syncom_output
+    translated_output = args.translated_output
+    real_comments     = args.real_comments
+    combined_output   = args.combined_output
+
+    if docket_id:
+        if syncom_output is None:
+            syncom_output = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
+        if translated_output is None:
+            translated_output = os.path.join(docket_id, "shuffled_comments", "synthetic_cms.csv")
+        if real_comments is None:
+            real_comments = os.path.join(docket_id, "comments", f"{docket_id}.csv")
+        if combined_output is None:
+            combined_output = os.path.join(docket_id, "shuffled_comments", "combined.csv")
+
+    # Validate that required args are present
+    missing = []
+    if translated_output is None:
+        missing.append("--translated-output")
+    if real_comments is None:
+        missing.append("--real-comments")
+    if combined_output is None:
+        missing.append("--combined-output")
+    if missing:
+        print(
+            f"Error: the following arguments are required: {', '.join(missing)}\n"
+            f"       (or provide --docket-id to use convention-based defaults)",
+            file=sys.stderr,
+        )
+        return 1
+
+    # Ensure output directories exist
+    for path in [translated_output, combined_output]:
+        out_dir = os.path.dirname(path)
+        if out_dir:
+            os.makedirs(out_dir, exist_ok=True)
+
+    # ── Step 1: Translation ─────────────────────────────────────────────────
+    if args.skip_translation:
+        if not os.path.exists(translated_output):
+            print(
+                f"Error: --skip-translation was set but translated file not found: "
+                f"{translated_output}",
+                file=sys.stderr,
+            )
+            return 1
+        if verbose:
+            print(f"[shuffler] Skipping translation — using {translated_output}")
+    else:
+        if syncom_output is None:
+            print(
+                "Error: --syncom-output is required unless --skip-translation is set.",
+                file=sys.stderr,
+            )
+            return 1
+        if not os.path.exists(syncom_output):
+            print(
+                f"Error: syncom output file not found: {syncom_output}",
+                file=sys.stderr,
+            )
+            return 1
+
+        try:
+            translate_syncom_to_cms(
+                syncom_input=syncom_output,
+                cms_output=translated_output,
+                verbose=verbose,
+            )
+        except Exception as exc:
+            print(f"Error during translation: {exc}", file=sys.stderr)
+            import traceback
+            traceback.print_exc()
+            return 1
+
+    # ── Step 2: Shuffle ─────────────────────────────────────────────────────
+    if not os.path.exists(real_comments):
+        print(
+            f"Error: real comments file not found: {real_comments}",
+            file=sys.stderr,
+        )
+        return 1
+
+    try:
+        shuffle_comments(
+            synthetic_cms_file=translated_output,
+            real_cms_file=real_comments,
+            combined_output=combined_output,
+            key_output=args.key_output,
+            seed=args.seed,
+            verbose=verbose,
+        )
+    except Exception as exc:
+        print(f"Error during shuffle: {exc}", file=sys.stderr)
+        import traceback
+        traceback.print_exc()
+        return 1
+
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="slop",
@@ -55,7 +291,22 @@ def build_parser() -> argparse.ArgumentParser:
             "detection research."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog=__doc__,
+        epilog="""
+Convention-based defaults (derived from --docket-id)
+-----------------------------------------------------
+  --rule-text     {docket_id}/rule/rule.txt
+  --output        {docket_id}/synthetic_comments/synthetic.txt
+  --campaign-plan {docket_id}/campaign/campaign_plan.json  (auto-detected if present)
+
+Simplest invocations
+--------------------
+  # With a campaign plan already in place:
+  python cli.py --docket-id CMS-2025-0050 --volume 50
+
+  # Direct mode (no campaign plan):
+  python cli.py --docket-id CMS-2025-0050 --volume 10 \\
+      --vector 2 --objective "oppose the proposed rule"
+""",
     )
 
     # Required inputs
@@ -72,11 +323,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     req.add_argument(
         "--rule-text",
-        required=True,
+        default=None,
         metavar="PATH_OR_TEXT",
         help=(
             "Path to a file containing the proposed rule text, OR the rule text "
-            "itself as a string."
+            "itself as a string. "
+            "Default: {docket_id}/rule/rule.txt"
         ),
     )
     req.add_argument(
@@ -111,9 +363,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     req.add_argument(
         "--output",
-        required=True,
+        default=None,
         metavar="PATH",
-        help="Destination file path (use .txt extension for ♔ delimited format).",
+        help=(
+            "Destination file path (use .txt extension for ♔ delimited format). "
+            "Default: {docket_id}/synthetic_comments/synthetic.txt"
+        ),
     )
 
     # Campaign plan
@@ -125,7 +380,8 @@ def build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to a campaign_plan.json file (produced by campaign/planner.py). "
             "When provided, --objective and --vector are read from the plan. "
-            "--vector can still be used to override the plan's vector mix."
+            "--vector can still be used to override the plan's vector mix. "
+            "Auto-detected at {docket_id}/campaign/campaign_plan.json if it exists."
         ),
     )
 
@@ -137,6 +393,12 @@ def build_parser() -> argparse.ArgumentParser:
                      help="Chat API key (overrides SLOP_API_KEY).")
     api.add_argument("--chat-model", metavar="MODEL", default=None,
                      help="Chat model name (overrides SLOP_CHAT_MODEL).")
+    api.add_argument("--embed-api-base-url", metavar="URL", default=None,
+                     help="Embedding API base URL (overrides SLOP_EMBED_API_BASE_URL).")
+    api.add_argument("--embed-api-key", metavar="KEY", default=None,
+                     help="Embedding API key (overrides SLOP_EMBED_API_KEY).")
+    api.add_argument("--embed-model", metavar="MODEL", default=None,
+                     help="Embedding model name (overrides SLOP_EMBED_MODEL).")
     
     # QC options
     qc = p.add_argument_group("quality control")
@@ -190,6 +452,15 @@ def resolve_rule_text(path_or_text: str) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Normalise argv so we can inspect it before handing to a sub-parser
+    if argv is None:
+        argv = sys.argv[1:]
+
+    # ── Subcommand dispatch ─────────────────────────────────────────────────
+    if argv and argv[0] == "shuffle":
+        return run_shuffle(argv[1:])
+
+    # ── Generate (default) mode ─────────────────────────────────────────────
     parser = build_parser()
     args = parser.parse_args(argv)
 
@@ -198,8 +469,43 @@ def main(argv: list[str] | None = None) -> int:
     from config import Config
     from syncom.pipeline import run, run_async, run_campaign, run_campaign_async
 
+    docket_id = args.docket_id
+
+    # ── Resolve convention-based defaults from docket-id ───────────────────
+    rule_text_path = args.rule_text
+    output_path    = args.output
+    campaign_plan  = args.campaign_plan
+
+    if rule_text_path is None:
+        rule_text_path = os.path.join(docket_id, "rule", "rule.txt")
+        if not args.quiet:
+            print(f"[cli] --rule-text not set, using {rule_text_path}", file=sys.stderr)
+
+    if output_path is None:
+        output_path = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
+        if not args.quiet:
+            print(f"[cli] --output not set, using {output_path}", file=sys.stderr)
+
+    # Auto-detect campaign plan if it exists and wasn't explicitly overridden
+    if campaign_plan is None:
+        default_plan = os.path.join(docket_id, "campaign", "campaign_plan.json")
+        if os.path.exists(default_plan):
+            campaign_plan = default_plan
+            if not args.quiet:
+                print(f"[cli] Auto-detected campaign plan: {campaign_plan}", file=sys.stderr)
+
+    # Validate rule text path
+    if not os.path.exists(rule_text_path) and len(rule_text_path.split()) == 1:
+        print(f"Error: --rule-text file not found: {rule_text_path}", file=sys.stderr)
+        return 1
+
+    # Ensure output directory exists
+    out_dir = os.path.dirname(output_path)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+
     # Validate argument combinations
-    use_campaign = args.campaign_plan is not None
+    use_campaign = campaign_plan is not None
     if not use_campaign:
         if args.objective is None:
             print("Error: --objective is required unless --campaign-plan is provided.", file=sys.stderr)
@@ -229,20 +535,20 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Error: {exc}", file=sys.stderr)
         return 1
 
-    rule_text = resolve_rule_text(args.rule_text)
+    rule_text = resolve_rule_text(rule_text_path)
 
     try:
         if use_campaign:
             # ── Campaign-plan mode ────────────────────────────────────────
             if not args.quiet:
-                print(f"Using campaign plan: {args.campaign_plan}", file=sys.stderr)
+                print(f"Using campaign plan: {campaign_plan}", file=sys.stderr)
 
             common_kwargs = dict(
-                docket_id=args.docket_id,
+                docket_id=docket_id,
                 rule_text=rule_text,
-                campaign_plan_path=args.campaign_plan,
+                campaign_plan_path=campaign_plan,
                 volume=args.volume,
-                output_path=args.output,
+                output_path=output_path,
                 config=config,
                 seed=args.seed,
                 similarity_threshold=args.similarity_threshold,
@@ -268,12 +574,12 @@ def main(argv: list[str] | None = None) -> int:
             # ── Direct mode (original behavior) ──────────────────────────
             if args.no_async:
                 result = run(
-                    docket_id=args.docket_id,
+                    docket_id=docket_id,
                     rule_text=rule_text,
                     vector=args.vector,
                     objective=args.objective,
                     volume=args.volume,
-                    output_path=args.output,
+                    output_path=output_path,
                     config=config,
                     seed=args.seed,
                     similarity_threshold=args.similarity_threshold,
@@ -287,12 +593,12 @@ def main(argv: list[str] | None = None) -> int:
                 )
             else:
                 result = run_async(
-                    docket_id=args.docket_id,
+                    docket_id=docket_id,
                     rule_text=rule_text,
                     vector=args.vector,
                     objective=args.objective,
                     volume=args.volume,
-                    output_path=args.output,
+                    output_path=output_path,
                     config=config,
                     seed=args.seed,
                     similarity_threshold=args.similarity_threshold,

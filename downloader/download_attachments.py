@@ -295,7 +295,10 @@ def main():
     
     parser.add_argument(
         'csv_file',
-        help='Path to the CSV file (e.g., CMS-2025-0050-0031.csv)'
+        help=(
+            'Docket ID (e.g., CMS-2025-0050) or path to the CSV file. '
+            'When given a docket ID, looks for {docket_id}/comments/{docket_id}.csv.'
+        ),
     )
     
     parser.add_argument(
@@ -334,14 +337,34 @@ def main():
     if args.verbose:
         logger.setLevel(logging.DEBUG)
     
+    # ── Resolve docket ID or CSV path ──────────────────────────────────────
+    # If the argument doesn't end in .csv, treat it as a docket ID and
+    # derive the conventional path: {docket_id}/comments/{docket_id}.csv
+    csv_input = args.csv_file
+    if not csv_input.lower().endswith('.csv'):
+        docket_id = csv_input.rstrip('/\\')
+        csv_path = os.path.join(docket_id, 'comments', f'{docket_id}.csv')
+        logger.info(f"Docket ID '{docket_id}' → using {csv_path}")
+    else:
+        csv_path = csv_input
+        # Derive docket_id from CSV filename for use in text conversion
+        csv_stem = Path(csv_path).stem
+        parts = csv_stem.split('-')
+        docket_id = '-'.join(parts[:3]) if len(parts) >= 3 else csv_stem
+
     # Verify CSV file exists
-    if not os.path.exists(args.csv_file):
-        logger.error(f"CSV file not found: {args.csv_file}")
+    if not os.path.exists(csv_path):
+        logger.error(f"CSV file not found: {csv_path}")
+        if not csv_input.lower().endswith('.csv'):
+            logger.error(
+                f"Hint: create the directory structure {docket_id}/comments/ "
+                f"and place {docket_id}.csv there, or pass the full CSV path."
+            )
         sys.exit(1)
     
     # Process the CSV and download files
     resume = not args.no_resume
-    stats = process_csv(args.csv_file, args.output, resume=resume)
+    stats = process_csv(csv_path, args.output, resume=resume)
     
     # Text conversion step (--force-convert implies --convert-text)
     conversion_stats = None
@@ -350,13 +373,7 @@ def main():
     if do_convert:
         from text_converter import convert_docket_to_text
         
-        # Determine docket_id from CSV filename (e.g., CMS-2025-0050.csv → CMS-2025-0050)
-        csv_stem = Path(args.csv_file).stem
-        parts = csv_stem.split('-')
-        if len(parts) >= 3:
-            docket_id = '-'.join(parts[:3])
-        else:
-            docket_id = csv_stem
+        # docket_id was already resolved above
         
         logger.info(f"\nConverting attachments to text for docket: {docket_id}")
         try:

@@ -243,30 +243,58 @@ def build_parser() -> argparse.ArgumentParser:
             "passed to syncom via --campaign-plan."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Convention-based defaults (when --docket-id is provided)
+---------------------------------------------------------
+  --scenario   {docket_id}/campaign/scenario_brief.txt
+  --rule-text  {docket_id}/rule/rule.txt
+  --output     {docket_id}/campaign/campaign_plan.json
+
+Example (all defaults from docket directory):
+  python campaign/planner.py --docket-id CMS-2025-0050
+""",
     )
 
-    req = p.add_argument_group("required arguments")
+    p.add_argument(
+        "--docket-id",
+        default=None,
+        metavar="ID",
+        help=(
+            "Docket identifier (e.g., 'CMS-2025-0050'). When provided, "
+            "--scenario, --rule-text, and --output default to conventional "
+            "paths inside the docket directory."
+        ),
+    )
+
+    req = p.add_argument_group("path arguments (optional when --docket-id is set)")
     req.add_argument(
         "--scenario",
-        required=True,
+        default=None,
         metavar="PATH_OR_TEXT",
         help=(
             "Path to a scenario brief file, OR the scenario text itself as a "
             "string. Describe your position, why you hold it, and who would "
-            "agree with you."
+            "agree with you. "
+            "Default: {docket_id}/campaign/scenario_brief.txt"
         ),
     )
     req.add_argument(
         "--rule-text",
-        required=True,
+        default=None,
         metavar="PATH_OR_TEXT",
-        help="Path to the proposed rule text file, OR the text itself.",
+        help=(
+            "Path to the proposed rule text file, OR the text itself. "
+            "Default: {docket_id}/rule/rule.txt"
+        ),
     )
     req.add_argument(
         "--output",
-        required=True,
+        default=None,
         metavar="PATH",
-        help="Destination path for the campaign plan JSON file.",
+        help=(
+            "Destination path for the campaign plan JSON file. "
+            "Default: {docket_id}/campaign/campaign_plan.json"
+        ),
     )
 
     api = p.add_argument_group("API configuration")
@@ -299,8 +327,56 @@ def main(argv: list[str] | None = None) -> int:
         print("Error: No API key found. Set SLOP_API_KEY or pass --api-key.", file=sys.stderr)
         return 1
 
-    scenario = _resolve_text(args.scenario)
-    rule_text = _resolve_text(args.rule_text)
+    # ── Resolve defaults from docket-id ────────────────────────────────────
+    docket_id = args.docket_id
+
+    scenario_arg = args.scenario
+    rule_text_arg = args.rule_text
+    output_arg = args.output
+
+    if docket_id:
+        if scenario_arg is None:
+            scenario_arg = os.path.join(docket_id, "campaign", "scenario_brief.txt")
+        if rule_text_arg is None:
+            rule_text_arg = os.path.join(docket_id, "rule", "rule.txt")
+        if output_arg is None:
+            output_arg = os.path.join(docket_id, "campaign", "campaign_plan.json")
+
+    # Validate that required args are present
+    missing = []
+    if scenario_arg is None:
+        missing.append("--scenario")
+    if rule_text_arg is None:
+        missing.append("--rule-text")
+    if output_arg is None:
+        missing.append("--output")
+    if missing:
+        print(
+            f"Error: the following arguments are required: {', '.join(missing)}\n"
+            f"       (or provide --docket-id to use convention-based defaults)",
+            file=sys.stderr,
+        )
+        return 1
+
+    # Validate that scenario and rule text files exist (when they look like paths)
+    for label, path in [("--scenario", scenario_arg), ("--rule-text", rule_text_arg)]:
+        if os.path.sep in path or (len(path) < 260 and not path.startswith("http")):
+            if not os.path.exists(path) and len(path.split()) == 1:
+                print(f"Error: {label} file not found: {path}", file=sys.stderr)
+                return 1
+
+    # Ensure output directory exists
+    output_dir = os.path.dirname(output_arg)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+
+    scenario = _resolve_text(scenario_arg)
+    rule_text = _resolve_text(rule_text_arg)
+
+    if not args.quiet:
+        print(f"Scenario:  {scenario_arg}", file=sys.stderr)
+        print(f"Rule text: {rule_text_arg}", file=sys.stderr)
+        print(f"Output:    {output_arg}", file=sys.stderr)
 
     try:
         plan = generate_campaign_plan(
@@ -316,14 +392,21 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     # Save the plan
-    plan.save(args.output)
+    plan.save(output_arg)
 
     if not args.quiet:
-        print(f"\nCampaign plan saved to: {args.output}", file=sys.stderr)
+        print(f"\nCampaign plan saved to: {output_arg}", file=sys.stderr)
         print(f"", file=sys.stderr)
         print(plan.summary(), file=sys.stderr)
-        print(f"\nReview and edit the plan, then pass it to syncom:", file=sys.stderr)
-        print(f"  python cli.py --campaign-plan {args.output} --docket-id ... --rule-text ... --volume N --output ...", file=sys.stderr)
+        print(f"\nReview and edit the plan, then generate:", file=sys.stderr)
+        if docket_id:
+            print(f"  python cli.py --docket-id {docket_id} --volume N", file=sys.stderr)
+        else:
+            print(
+                f"  python cli.py --campaign-plan {output_arg} "
+                f"--docket-id ... --volume N",
+                file=sys.stderr,
+            )
 
     return 0
 

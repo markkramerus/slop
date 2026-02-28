@@ -36,6 +36,17 @@ class Config:
     chat_model: str = field(
         default_factory=lambda: os.getenv("SLOP_CHAT_MODEL", "gpt-4o")
     )
+
+    # Embedding API configuration
+    embed_api_base_url: str = field(
+        default_factory=lambda: os.getenv("SLOP_EMBED_API_BASE_URL", "https://api.openai.com/v1")
+    )
+    embed_api_key: str = field(
+        default_factory=lambda: os.getenv("SLOP_EMBED_API_KEY", "")
+    )
+    embed_model: str = field(
+        default_factory=lambda: os.getenv("SLOP_EMBED_MODEL", "text-embedding-3-small")
+    )
     
     # Generation parameters
     max_tokens: int = field(

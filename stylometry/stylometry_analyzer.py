@@ -850,7 +850,10 @@ def main():
     )
     parser.add_argument(
         "csv_path",
-        help="Path to docket CSV file (e.g., CMS-2025-0050/comments/CMS-2025-0050.csv)"
+        help=(
+            "Docket ID (e.g., CMS-2025-0050) or path to the CSV file. "
+            "When given a docket ID, looks for {docket_id}/comments/{docket_id}.csv."
+        ),
     )
     parser.add_argument(
         "--output-dir",
@@ -870,10 +873,30 @@ def main():
     )
     
     args = parser.parse_args()
-    
+
+    # ── Resolve docket ID or CSV path ──────────────────────────────────────
+    # If the argument doesn't end in .csv, treat it as a docket ID and
+    # derive the conventional path: {docket_id}/comments/{docket_id}.csv
+    csv_input = args.csv_path
+    import os
+    if not csv_input.lower().endswith('.csv'):
+        docket_id = csv_input.rstrip('/\\')
+        resolved_csv = os.path.join(docket_id, 'comments', f'{docket_id}.csv')
+        logger.info(f"Docket ID '{docket_id}' → using {resolved_csv}")
+        if not os.path.exists(resolved_csv):
+            logger.error(f"CSV file not found: {resolved_csv}")
+            logger.error(
+                f"Hint: create the directory structure {docket_id}/comments/ "
+                f"and place {docket_id}.csv there, or pass the full CSV path."
+            )
+            return 1
+        csv_path = resolved_csv
+    else:
+        csv_path = csv_input
+
     try:
         result = analyze_docket_stylometry(
-            csv_path=args.csv_path,
+            csv_path=csv_path,
             output_dir=args.output_dir,
             attachments_dir=args.attachments_dir,
             min_group_size=args.min_group_size,

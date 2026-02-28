@@ -2,20 +2,34 @@
 
 ## Quick Start
 
-### Generate synthetic public comments in 3 steps:
+### Generate synthetic public comments in 5 steps:
 
 ```bash
 # 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. Set up your OpenAI API key
-# Create a .env file with: OPENAI_API_KEY=your_key_here
+# 2. Set up your API keys
+# Create a .env file with:
+#   SLOP_API_KEY=your_key_here
+#   SLOP_EMBED_API_KEY=your_key_here
 
-# 3. Generate synthetic comments
-python cli.py generate --input CMS-2025-0050-0031.csv --output synthetic_comments.txt --count 10
+# 3. Download a docket and convert attachments to text
+python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
+
+# 4. Analyze writing styles in the docket
+python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
+
+# 5. Generate synthetic comments
+python cli.py \
+    --docket-id   CMS-2025-0050 \
+    --rule-text   CMS-2025-0050/rule/proposed_rule.txt \
+    --vector      2 \
+    --objective   "oppose the proposed reduction of Medicare Advantage quality bonus payments" \
+    --volume      10 \
+    --output      CMS-2025-0050/synthetic_comments/comments.txt
 ```
 
-That's it! You'll have 10 synthetic public comments that look and feel authentic.
+That's it! You'll have 10 synthetic public comments written in the voice styles of real commenters from that docket.
 
 ## What Does This Do?
 
@@ -49,7 +63,7 @@ funding, we'll be locked into legacy systems..."
 
 ### Prerequisites
 - Python 3.8 or higher
-- OpenAI API key (GPT-4 recommended)
+- OpenAI-compatible API key (GPT-4o recommended; any OpenAI-compatible endpoint works)
 
 ### Install
 
@@ -61,175 +75,352 @@ cd slop
 # Install dependencies
 pip install -r requirements.txt
 
-# Set up your API key
-echo "OPENAI_API_KEY=your_key_here" > .env
+# Set up your API keys
+echo "SLOP_API_KEY=your_key_here" >> .env
+echo "SLOP_EMBED_API_KEY=your_key_here" >> .env
 ```
 
-## Basic Usage
+### Environment Variables
 
-### Generate Comments
+| Variable | Description |
+|---|---|
+| `SLOP_API_BASE_URL` | Chat API base URL (default: `https://api.openai.com/v1`) |
+| `SLOP_API_KEY` | Chat/completion API key (required) |
+| `SLOP_CHAT_MODEL` | Chat model name (default: `gpt-4o`) |
+
+## Sub-Applications
+
+SLOP is organized into five sub-applications, each with its own README:
+
+| Sub-Application | Directory | Purpose |
+|---|---|---|
+| **Downloader** | `downloader/` | Download attachments from regulations.gov dockets |
+| **Stylometry** | `stylometry/` | Analyze real-comment writing styles; generate voice skill files |
+| **Campaign Planner** | `campaign/` | Decompose a scenario into a structured generation strategy |
+| **syncom** | `syncom/` | Core synthetic comment generator |
+| **Shuffler** | `shuffler/` | Translate synthetic output back to CMS CSV format |
+
+---
+
+### Downloader (`downloader/`)
+
+Downloads attachment files from regulations.gov CSV exports and organizes them in a docket-centric directory hierarchy.
 
 ```bash
-# Generate 5 comments from a CSV input
-python cli.py generate --input input.csv --output results.txt --count 5
+# Download all attachments for a docket
+python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv
 
-# Specify a particular docket
-python cli.py generate --input CMS-2025-0050-0031.csv --count 10
+# Download and convert PDF/DOCX to .txt for downstream processing
+python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
 
-# Use a specific seed document (row number)
-python cli.py generate --input input.csv --seed 3 --count 5
+# Convert already-downloaded files to text
+python downloader/text_converter.py CMS-2025-0050
 ```
 
-### Translate Back to CMS Format
+Output structure:
+```
+CMS-2025-0050/
+└── comment_attachments/
+    ├── CMS-2025-0050-0004/
+    │   └── attachment_1.pdf
+    └── CMS-2025-0050-0005/
+        ├── attachment_1.pdf
+        └── attachment_1.txt   ← converted text version
+```
 
-After generating synthetic comments, convert them back to standard CMS CSV format:
+📖 See [`downloader/README_DOWNLOADER.md`](downloader/README_DOWNLOADER.md) for full documentation.
+
+---
+
+### Stylometry Analyzer (`stylometry/`)
+
+Analyzes writing styles in real docket comments and generates reusable **voice skill** markdown files. These skills are used by the generator to produce synthetic comments that match the actual writing patterns of real commenters in that docket—rather than relying on generic instructions.
 
 ```bash
-# Translate to CMS format
-python translate_to_cms_format.py synthetic_comments.txt output_cms.csv
+# Analyze a docket and generate voice skill files
+python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
+```
+
+Output:
+```
+CMS-2025-0050/
+└── stylometry/
+    ├── index.json
+    ├── individual_consumer-low.md
+    ├── individual_consumer-medium.md
+    ├── individual_consumer-high.md
+    ├── industry-medium-org.md
+    ├── industry-high-org.md
+    ├── advocacy_group-medium-org.md
+    └── ...
+```
+
+Voice groups are defined by archetype × sophistication level (e.g., `individual_consumer-high`, `industry-medium-org`). Each skill file contains empirical statistics (word count ranges, sentence lengths, punctuation frequencies) and AI-avoidance rules tailored to what that specific group of real commenters actually writes.
+
+**Run this before generating comments.** The generator looks for `{docket_id}/stylometry/` automatically.
+
+📖 See [`stylometry/STYLOMETRY_README.md`](stylometry/STYLOMETRY_README.md) for full documentation.
+
+---
+
+### Campaign Planner (`campaign/`)
+
+Translates a natural-language scenario brief into a structured **campaign plan** — a reviewable, editable JSON file that tells the generator how to distribute synthetic comments across argument angles, stakeholder types, and attack vectors.
+
+```
+┌─────────────────┐     ┌──────────────┐     ┌──────────────────┐
+│  Scenario Brief  │────▶│   Planner    │────▶│ campaign_plan.   │
+│  (your words)    │     │  (LLM call)  │     │     json         │
+└─────────────────┘     └──────────────┘     └────────┬─────────┘
+                                                       │
+                                              Human reviews &
+                                              optionally edits
+                                                       │
+                                                       ▼
+                                             ┌─────────────────┐
+                                             │  cli.py         │
+                                             │  --campaign-plan │
+                                             └─────────────────┘
+```
+
+```bash
+# Step 1: Generate a campaign plan from a scenario brief
+python campaign/planner.py \
+    --rule-text  CMS-2025-0050/rule/proposed_rule.txt \
+    --scenario   scenario_brief.txt \
+    --output     campaign_plan.json
+
+# Step 2: Review and edit campaign_plan.json, then generate
+python cli.py \
+    --docket-id     CMS-2025-0050 \
+    --rule-text     CMS-2025-0050/rule/proposed_rule.txt \
+    --campaign-plan campaign_plan.json \
+    --volume        50 \
+    --output        CMS-2025-0050/synthetic_comments/comments.txt
+```
+
+When `--campaign-plan` is provided, `--objective` and `--vector` are read from the plan; comments are automatically distributed across argument angles, stakeholder types, and vectors according to the plan's weights.
+
+📖 See [`campaign/README.md`](campaign/README.md) for full documentation including the plan schema.
+
+---
+
+### syncom — Synthetic Comment Engine (`syncom/`)
+
+The core generation engine. Invoked via `cli.py`.
+
+**Attack Vectors:**
+
+| Vector | Name | Description |
+|---|---|---|
+| 1 | Semantic Variance | Same argument, maximally varied surface forms |
+| 2 | Persona Mimicry | Diverse stakeholders, same underlying position |
+| 3 | Citation Flooding | Comments loaded with plausible-sounding references |
+| 4 | Dilution / Noise | High-volume, low-substance vague agreement |
+
+---
+
+### Shuffler (`shuffler/`)
+
+Translates synthetic comments from the internal ♔-delimited format back to standard CMS CSV format, suitable for analysis alongside real comments.
+
+```bash
+# Translate to CMS CSV format
+python shuffler/translate_to_cms_format.py \
+    CMS-2025-0050/synthetic_comments/comments.txt \
+    CMS-2025-0050/synthetic_comments/comments_cms.csv
 
 # Verify the translation
-python verify_translation.py
+python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_cms.csv
 ```
 
-## Command-Line Options
+📖 See [`shuffler/TRANSLATION_README.md`](shuffler/TRANSLATION_README.md) for full documentation.
+
+---
+
+## Full Workflow
 
 ```
-python cli.py generate [OPTIONS]
+1. Download docket
+   python downloader/download_attachments.py {csv} --convert-text
+   └── {docket_id}/comment_attachments/
 
-Options:
-  --input TEXT          Input CSV file (CMS format)
-  --output TEXT         Output file for synthetic comments
-  --seed INTEGER        Row number to use as seed document
-  --count INTEGER       Number of comments to generate (default: 1)
-  --model TEXT          OpenAI model to use (default: gpt-4)
-  --temperature FLOAT   Temperature for generation (default: 0.8)
-  --help               Show this message and exit
+2. Analyze writing styles
+   python stylometry/stylometry_analyzer.py {csv}
+   └── {docket_id}/stylometry/*.md
+
+3a. Direct generation (simple)
+    python cli.py --docket-id ... --rule-text ... --vector N --objective "..." --volume N --output ...
+
+    OR
+
+3b. Campaign-planned generation (structured)
+    python campaign/planner.py --rule-text ... --scenario ... --output campaign_plan.json
+    # Review and edit campaign_plan.json
+    python cli.py --docket-id ... --rule-text ... --campaign-plan campaign_plan.json --volume N --output ...
+   └── {docket_id}/synthetic_comments/comments.txt
+
+4. Translate to CMS format
+   python shuffler/translate_to_cms_format.py comments.txt comments_cms.csv
+   └── {docket_id}/synthetic_comments/comments_cms.csv
 ```
 
-## Configuration
+## Command-Line Reference
 
-Edit `slop/config.py` to customize:
-
-```python
-# Model settings
-MODEL = "gpt-4-turbo-preview"  # or "gpt-4", "gpt-3.5-turbo"
-TEMPERATURE = 0.8              # Higher = more creative
-MAX_TOKENS = 2000             # Maximum comment length
-
-# Persona settings
-ARCHETYPES = [                # Types of commenters
-    "industry",
-    "individual_consumer", 
-    "academia",
-    "advocacy"
-]
-
-EMOTIONAL_REGISTERS = [       # Emotional tones
-    "concerned",
-    "supportive",
-    "urgent",
-    "pragmatic"
-]
-```
-
-## Examples
-
-### Example 1: Generate Industry Perspectives
-
-```bash
-# Generate 5 healthcare industry comments
-python cli.py generate \
-  --input CMS-2025-0050-0031.csv \
-  --count 5 \
-  --output industry_comments.txt
-```
-
-### Example 2: Stress-Test Analysis Pipeline
-
-```bash
-# Generate 100 diverse comments for testing
-python cli.py generate \
-  --input regulatory_notice.csv \
-  --count 100 \
-  --output test_corpus.txt
-```
-
-### Example 3: Research Different Voices
-
-```bash
-# Generate comments with varying sophistication levels
-# The system automatically varies:
-# - Sophistication (low/medium/high)
-# - Emotional register (concerned/supportive/urgent)
-# - Archetype (industry/consumer/academic/advocacy)
-```
-
-## Output Format
-
-Synthetic comments are saved in ♔-delimited format (same as input but with added metadata):
+### `cli.py` — Main Generator
 
 ```
-Comment ID♔Document ID♔Submitter Name♔Organization♔...♔Comment♔synth_archetype♔synth_sophistication♔...
+python cli.py [OPTIONS]
+
+Required arguments:
+  --docket-id ID        Docket identifier (e.g., 'CMS-2025-0050').
+                        The tool looks for stylometry data in {docket_id}/stylometry/.
+  --rule-text PATH      Path to proposed rule text file (or inline text).
+  --volume N            Number of accepted synthetic comments to produce.
+  --output PATH         Destination file path (.txt for ♔-delimited format).
+
+Direct mode (required unless --campaign-plan is provided):
+  --objective TEXT      The position to advance or oppose.
+  --vector {1,2,3,4}    Attack vector (1=Semantic Variance, 2=Persona Mimicry,
+                        3=Citation Flooding, 4=Dilution/Noise).
+
+Campaign plan mode:
+  --campaign-plan PATH  Path to campaign_plan.json from campaign/planner.py.
+                        Provides --objective and distributes across vectors.
+
+API configuration:
+  --api-base-url URL    Override SLOP_API_BASE_URL
+  --api-key KEY         Override SLOP_API_KEY
+  --chat-model MODEL    Override SLOP_CHAT_MODEL
+
+Quality control:
+  --no-relevance-check  Skip LLM topical-relevance QC
+  --no-argument-check   Skip LLM argument-presence QC
+  --no-embedding-check  Skip embedding-based deduplication
+  --include-failed-qc   Write QC-failed rows to output (flagged)
+  --similarity-threshold FLOAT  Cosine similarity ceiling for dedup (default 0.92)
+  --max-retries N       Retries per comment slot on QC failure (default 3)
+
+Generation options:
+  --seed N              Random seed (default 42)
+  --comment-period-days N  Simulated comment period length in days (default 60)
+  --max-concurrent N    Max concurrent API requests (default 10)
+  --no-async            Disable async parallelization
+
+  --quiet               Suppress progress output
 ```
 
-Key synthetic metadata fields:
-- `synth_is_synthetic`: TRUE (always)
-- `synth_archetype`: industry, individual_consumer, academia, advocacy
-- `synth_sophistication`: low, medium, high
-- `synth_emotional_register`: concerned, supportive, urgent, pragmatic
-- `synth_persona_state`: US state (e.g., "Minnesota", "Ohio")
-- `synth_persona_occupation`: Job title (e.g., "practice manager", "nurse")
-- `synth_core_arguments`: Bullet points of main arguments
-- `synth_qc_passed`: Quality control status
+### `campaign/planner.py` — Campaign Planner
+
+```
+python campaign/planner.py [OPTIONS]
+
+Required:
+  --scenario PATH_OR_TEXT   Scenario brief file or inline text
+  --rule-text PATH_OR_TEXT  Proposed rule text file or inline text
+  --output PATH             Destination for campaign_plan.json
+
+API configuration:
+  --api-base-url URL    Override SLOP_API_BASE_URL
+  --api-key KEY         Override SLOP_API_KEY
+  --chat-model MODEL    Override SLOP_CHAT_MODEL
+
+  --quiet               Suppress progress output
+```
 
 ## Architecture
 
 ### Component Overview
 
 ```
-Input CSV → Pipeline → Personas → Arguments → Generation → QC → Output
-            ↓
-         World Model
+                         ┌─────────────────────────────────────────────────────┐
+                         │                   SLOP Architecture                 │
+                         └─────────────────────────────────────────────────────┘
+
+ ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+ │  Downloader  │    │  Stylometry  │    │   Campaign   │    │   Shuffler   │
+ │              │    │   Analyzer   │    │   Planner    │    │              │
+ │ Download     │    │              │    │              │    │ Convert      │
+ │ attachments  │    │ Extract      │    │ Scenario →   │    │ ♔-delimited  │
+ │ from         │    │ voice skill  │    │ campaign_    │    │ → CMS CSV    │
+ │ regulations  │    │ .md files    │    │ plan.json    │    │              │
+ │ .gov         │    │              │    │              │    │              │
+ └──────┬───────┘    └──────┬───────┘    └──────┬───────┘    └──────▲───────┘
+        │                   │                   │                   │
+        ▼                   ▼                   ▼                   │
+ {docket}/          {docket}/           campaign_plan.json         │
+ comment_           stylometry/                │                   │
+ attachments/       *.md                       │                   │
+                         │                     │                   │
+                         └──────────┬──────────┘                   │
+                                    ▼                               │
+                          ┌─────────────────┐                      │
+                          │     cli.py      │                      │
+                          │                 │                      │
+                          │  --docket-id    │                      │
+                          │  --rule-text    │                      │
+                          │  --vector       │                      │
+                          │  --objective    │──────────────────────┘
+                          │  --volume       │
+                          │  --output       │
+                          └────────┬────────┘
+                                   │
+                                   ▼
+                          ┌─────────────────────────────────────────┐
+                          │              syncom pipeline             │
+                          │                                          │
+                          │  World Model → Persona → Arguments →    │
+                          │  Generator → Quality Control → Export   │
+                          └─────────────────────────────────────────┘
 ```
 
 ### Key Components
 
-1. **World Model** (`slop/world_model.py`)
+1. **World Model** (`syncom/world_model.py`)
    - Extracts themes, stakeholders, and policy context from input documents
    - Builds a knowledge graph of the regulatory issue
 
-2. **Persona Generator** (`slop/persona.py`)
+2. **Persona Generator** (`syncom/persona.py`)
    - Creates realistic commenter profiles
    - Assigns location, occupation, personal hooks, sophistication level
+   - Draws on stylometry voice skills for docket-specific style fidelity
 
-3. **Argument Mapper** (`slop/argument_mapper.py`)
+3. **Argument Mapper** (`syncom/argument_mapper.py`)
    - Maps policy positions to specific stakeholder interests
    - Generates nuanced arguments that fit the persona
+   - Uses campaign plan argument angles when `--campaign-plan` is provided
 
-4. **Generator** (`slop/generator.py`)
-   - Uses GPT-4 to write the actual comment text
-   - Maintains consistency with persona and arguments
+4. **Generator** (`syncom/generator.py`)
+   - Writes the actual comment text using the configured LLM
+   - Maintains consistency with persona, arguments, and voice skill
 
-5. **Quality Control** (`slop/quality_control.py`)
-   - Validates output quality
-   - Checks for coherence, authenticity, and policy relevance
+5. **Quality Control** (`syncom/quality_control.py`)
+   - Validates output quality with parallel async checks
+   - Checks for topical relevance, argument presence, and near-duplicate detection via embeddings
 
-6. **Export** (`slop/export.py`)
-   - Formats output for CMS regulations.gov format
-   - Handles metadata and field mapping
+6. **Export** (`syncom/export.py`)
+   - Formats output in ♔-delimited format with synthetic metadata fields
+
+7. **Campaign Planner** (`campaign/planner.py`)
+   - One-shot LLM call to convert a scenario brief into a structured JSON campaign plan
+   - Plan controls argument angle distribution, archetype mix, and vector weighting
+
+8. **Stylometry Analyzer** (`stylometry/stylometry_analyzer.py`)
+   - Preprocesses real docket comments into per-voice-group skill files
+   - Computes 20+ stylometric metrics; generates empirical AI-avoidance rules
 
 ## How It Works
 
 ### The Generation Process
 
-1. **Analyze Context** - Read the seed document and extract policy themes
-2. **Create Persona** - Generate a realistic commenter profile (e.g., "practice manager in Minnesota")
-3. **Map Arguments** - Identify which policy arguments fit this persona
-4. **Generate Personal Hook** - Create a relatable story or experience
-5. **Write Comment** - Use GPT-4 to compose the full comment
-6. **Quality Check** - Validate authenticity and coherence
-7. **Export** - Format and save the result
+1. **Load Voice Skills** - Read stylometry skill files for this docket (from `{docket_id}/stylometry/`)
+2. **Analyze Context** - Read the rule text and extract policy themes
+3. **Create Persona** - Generate a realistic commenter profile (archetype, location, occupation)
+4. **Map Arguments** - Identify which policy arguments fit this persona (and campaign angle, if set)
+5. **Generate Personal Hook** - Create a relatable story or experience
+6. **Write Comment** - Compose the full comment using the LLM, guided by the voice skill
+7. **Quality Check** - Run parallel async QC: relevance, argument presence, embedding dedup
+8. **Export** - Format and save the result
 
 ### Sophistication Levels
 
@@ -253,61 +444,118 @@ conflicts with interoperability requirements under the 21st Century Cures Act.
 Providers need stable reimbursement to absorb FHIR API implementation costs..."
 ```
 
+## Output Format
+
+Synthetic comments are saved in ♔-delimited format with added metadata:
+
+```
+Comment ID♔Document ID♔Submitter Name♔Organization♔...♔Comment♔synth_archetype♔synth_sophistication♔...
+```
+
+Key synthetic metadata fields:
+- `synth_is_synthetic`: TRUE (always)
+- `synth_archetype`: industry, individual_consumer, academia, advocacy_group, government
+- `synth_sophistication`: low, medium, high
+- `synth_emotional_register`: concerned, supportive, urgent, pragmatic
+- `synth_persona_state`: US state (e.g., "Minnesota", "Ohio")
+- `synth_persona_occupation`: Job title (e.g., "practice manager", "nurse")
+- `synth_core_arguments`: Bullet points of main arguments
+- `synth_qc_passed`: Quality control status
+
+Use `shuffler/translate_to_cms_format.py` to convert this to standard CMS CSV format.
+
 ## Performance
 
-- **Speed**: ~30-60 seconds per comment (using GPT-4)
-- **Cost**: ~$0.05-0.15 per comment (GPT-4 pricing)
+- **Speed**: ~3-6 seconds per comment in async mode (10x parallel, GPT-4o)
+- **Cost**: ~$0.05-0.15 per comment
 - **Quality**: Passes human review in most cases
-- **Diversity**: Generates varied personas, arguments, and writing styles
+- **Diversity**: Varied personas, arguments, writing styles, and argument angles
 
-See `PERFORMANCE.md` for detailed benchmarks.
+Async mode (enabled by default) runs up to 10 comments concurrently. Use `--max-concurrent` to tune. See [`syncom/PERFORMANCE.md`](syncom/PERFORMANCE.md) for detailed benchmarks.
 
-## Advanced Features
+## Code Structure
 
-### Async Generation
-
-For bulk generation, the pipeline supports asynchronous processing:
-
-```python
-from slop.pipeline import Pipeline
-import asyncio
-
-async def generate_bulk():
-    pipeline = Pipeline(input_file="input.csv")
-    results = await pipeline.generate_async(count=100)
-    return results
-
-# Run async
-results = asyncio.run(generate_bulk())
+```
+slop/
+├── cli.py                      # Main command-line interface
+├── config.py                   # API configuration (reads .env / env vars)
+├── shared_models.py            # Shared data models
+├── requirements.txt            # Python dependencies
+│
+├── campaign/                   # Campaign Planner sub-application
+│   ├── planner.py              # LLM-based scenario → campaign plan converter
+│   ├── campaign_models.py      # Pydantic models for campaign plan schema
+│   └── README.md
+│
+├── downloader/                 # Attachment Downloader sub-application
+│   ├── download_attachments.py # Download attachments from regulations.gov
+│   ├── text_converter.py       # Convert PDF/DOCX attachments to .txt
+│   └── README_DOWNLOADER.md
+│
+├── shuffler/                   # Format Translation sub-application
+│   ├── translate_to_cms_format.py  # Convert ♔-delimited → CMS CSV
+│   ├── verify_translation.py       # Verify translation output
+│   └── TRANSLATION_README.md
+│
+├── stylometry/                 # Stylometry Analyzer sub-application
+│   ├── stylometry_analyzer.py  # Analyze docket → generate voice skill files
+│   ├── stylometry_loader.py    # Load voice skills at generation time
+│   ├── stylometry_utils.py     # Shared metrics and utilities
+│   └── STYLOMETRY_README.md
+│
+└── syncom/                     # Core Synthetic Comment Engine
+    ├── pipeline.py             # Orchestrate generation (sync + async + campaign)
+    ├── world_model.py          # Extract policy context from rule text
+    ├── persona.py              # Generate commenter personas
+    ├── argument_mapper.py      # Map arguments to personas
+    ├── generator.py            # Write comments with LLM
+    ├── quality_control.py      # Validate output (relevance, dedup, arguments)
+    ├── export.py               # Format and save results
+    └── ASYNC_IMPLEMENTATION.md
 ```
 
-See `ASYNC_IMPLEMENTATION.md` for details.
+## Testing
 
-### Custom Archetypes
+```bash
+# Test async functionality
+python syncom/test_async.py
 
-Add your own commenter archetypes in `slop/config.py`:
+# Test attachment ingestion
+python test_attachment_ingestion.py
 
-```python
-ARCHETYPE_PROMPTS = {
-    "industry": "healthcare industry representative",
-    "consumer": "individual patient or caregiver",
-    "custom_advocacy": "environmental advocacy group focused on health equity"
-}
+# Test stylometry integration
+python test_stylometry_integration.py
 ```
 
-### Translation Tools
+## Troubleshooting
 
-Convert synthetic comments back to standard CMS CSV format:
+### Common Issues
 
-- `translate_to_cms_format.py` - Main translation script
-- `verify_translation.py` - Verification tool
-- See `TRANSLATION_README.md` for details
+**"SLOP_API_KEY not set" / "API key not found"**
+- Create a `.env` file with `SLOP_API_KEY=your_key_here` and `SLOP_EMBED_API_KEY=your_key_here`
+
+**"No stylometry data found for docket"**
+- Run `python stylometry/stylometry_analyzer.py {csv}` before generating comments
+
+**"Generation too slow"**
+- Async mode is enabled by default (10x concurrency). Use `--max-concurrent 15` for more aggression.
+- Use a faster model by setting `SLOP_CHAT_MODEL=gpt-4o-mini`
+- Reduce QC overhead with `--no-embedding-check` (disables dedup)
+
+**"Output quality is poor"**
+- Use GPT-4o instead of GPT-3.5 class models
+- Run stylometry first for docket-specific voice skills
+- Use a campaign plan for more focused argument angles
+
+**API rate limit errors**
+- Reduce concurrency: `--max-concurrent 5`
+- Or fall back to sync: `--no-async`
 
 ## Theory & Background
 
 ### What is "SLOP"?
 
-SLOP stands for "Synthetic Letter-writing Opposition Platform" - a tongue-in-cheek reference to the potential for AI-generated content to flood regulatory comment systems.
+SLOP stands for "Synthetic Letter-writing Opposition Platform" — a tongue-in-cheek reference to the potential for AI-generated content to flood regulatory comment systems.
 
 ### The Signal vs. Slop Problem
 
@@ -343,93 +591,25 @@ This tool is designed to:
 ### Technology Stack
 
 - **Language**: Python 3.8+
-- **LLM API**: OpenAI GPT-4 (or GPT-3.5-turbo)
-- **Data Format**: CSV (CMS regulations.gov format)
-- **Dependencies**: 
-  - `openai` - GPT API access
+- **LLM API**: Any OpenAI-compatible chat/completions endpoint (GPT-4o recommended)
+- **Embeddings API**: Any OpenAI-compatible embeddings endpoint (for QC deduplication)
+- **Data Format**: CSV (CMS regulations.gov format) + ♔-delimited internal format
+- **Key Dependencies**:
+  - `openai` - LLM API access (sync + async)
   - `pandas` - Data manipulation
+  - `numpy` - Stylometry statistics
   - `python-dotenv` - Environment variables
-  - Standard library: `csv`, `json`, `asyncio`, etc.
-
-### Code Structure
-
-```
-slop/
-├── config.py          # Configuration settings
-├── world_model.py     # Extract policy context
-├── persona.py         # Generate commenter personas
-├── argument_mapper.py # Map arguments to personas
-├── generator.py       # Write comments with GPT-4
-├── quality_control.py # Validate output quality
-├── export.py          # Format and save results
-└── pipeline.py        # Orchestrate the process
-
-cli.py                 # Command-line interface
-translate_to_cms_format.py  # Convert back to CMS format
-verify_translation.py  # Verify translations
-```
-
-### Data Flow
-
-```
-1. Input CSV (CMS format)
-   ↓
-2. World Model extracts themes, stakeholders, policy context
-   ↓
-3. Persona Generator creates commenter profile
-   ↓
-4. Argument Mapper selects relevant arguments
-   ↓
-5. Generator composes comment with GPT-4
-   ↓
-6. Quality Control validates output
-   ↓
-7. Export formats as ♔-delimited file
-```
-
-## Testing
-
-Run the test suite:
-
-```bash
-# Test async functionality
-python test_async.py
-
-# Test translation
-python translate_to_cms_format.py synthetic_comments_3.txt test_output.csv
-python verify_translation.py
-```
-
-## Troubleshooting
-
-### Common Issues
-
-**"OpenAI API key not found"**
-- Create a `.env` file with `OPENAI_API_KEY=your_key_here`
-
-**"Input file not found"**
-- Verify the CSV file path is correct
-- Check that the file uses standard CMS format
-
-**"Generation too slow"**
-- Use GPT-3.5-turbo instead of GPT-4 (faster but lower quality)
-- Reduce `MAX_TOKENS` in config.py
-- Use async generation for bulk processing
-
-**"Output quality is poor"**
-- Increase temperature for more creative output
-- Use GPT-4 instead of GPT-3.5-turbo
-- Adjust sophistication settings in config.py
+  - `pypdf`, `python-docx` - Attachment text extraction (optional)
 
 ## Contributing
 
 Contributions are welcome! Areas for improvement:
 
-- [ ] Add more archetype variations
-- [ ] Implement better quality control metrics
-- [ ] Support for other LLM providers (Anthropic, local models)
+- [ ] Automatic stylometry integration in generator (currently manual reference)
+- [ ] Support for additional LLM providers
 - [ ] Web interface for easier use
 - [ ] Detection tools to identify synthetic comments
+- [ ] Cross-docket stylometry comparison
 - [ ] Multi-language support
 
 ## License

@@ -5,20 +5,21 @@ cli.py — Command-line interface for the slop synthetic comment generator.
 Usage
 -----
     python cli.py \\
-        --docket-csv  CMS-2025-0050-0031.csv \\
-        --rule-text   proposed_rule.txt \\
-        --vector      2   \\ Attack vector: 1=Semantic Variance, 2=Persona Mimicry, 3=Citation Flooding, 4=Dilution/Noise
+        --docket-id   CMS-2025-0050 \\
+        --rule-text   CMS-2025-0050/rule/proposed_rule.txt \\
+        --vector      2 \\
         --objective   "oppose the proposed reduction of Medicare Advantage quality bonus payments" \\
-        --volume      50 \\ Number of accepted synthetic comments to produce.
-        --output      synthetic_comments.txt
+        --volume      50 \\
+        --output      CMS-2025-0050/synthetic_comments/comments.txt
+
+Prerequisites:
+    Run stylometry_analyzer.py first to generate voice profiles for the docket.
+    This creates {docket_id}/stylometry/ with index.json and voice skill .md files.
 
 Environment variables (or .env file):
     SLOP_API_BASE_URL        Base URL for the chat/completion API
     SLOP_API_KEY             API key for chat/completion
     SLOP_CHAT_MODEL          Chat/completion model name
-    SLOP_EMBED_API_BASE_URL  Base URL for the embeddings API
-    SLOP_EMBED_API_KEY       API key for embeddings
-    SLOP_EMBED_MODEL         Embeddings model name
 
 Optional flags let you tune cost vs. quality:
     --no-relevance-check    Skip LLM topical-relevance QC
@@ -32,10 +33,6 @@ Optional flags let you tune cost vs. quality:
     --api-base-url          Override SLOP_API_BASE_URL
     --api-key               Override SLOP_API_KEY
     --chat-model            Override SLOP_CHAT_MODEL
-    --embed-api-base-url    Override SLOP_EMBED_API_BASE_URL
-    --embed-api-key         Override SLOP_EMBED_API_KEY
-    --embed-model           Override SLOP_EMBED_MODEL
-    --docket-id             Override docket ID in output (inferred from CSV name)
     --quiet                 Suppress progress output
 
 Vector descriptions:
@@ -64,10 +61,14 @@ def build_parser() -> argparse.ArgumentParser:
     # Required inputs
     req = p.add_argument_group("required arguments")
     req.add_argument(
-        "--docket-csv",
+        "--docket-id",
         required=True,
-        metavar="PATH",
-        help="Path to a Regulations.gov CSV from a previous (or same-topic) docket.",
+        metavar="ID",
+        help=(
+            "Docket identifier (e.g., 'CMS-2025-0050'). "
+            "The tool looks for stylometry data in {docket_id}/stylometry/. "
+            "Run stylometry_analyzer.py first to generate voice profiles."
+        ),
     )
     req.add_argument(
         "--rule-text",
@@ -80,20 +81,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     req.add_argument(
         "--vector",
-        required=True,
+        required=False,
         type=int,
         choices=[1, 2, 3, 4],
+        default=None,
         metavar="{1,2,3,4}",
         help=(
             "Attack vector: 1=Semantic Variance, 2=Persona Mimicry, "
-            "3=Citation Flooding, 4=Dilution/Noise."
+            "3=Citation Flooding, 4=Dilution/Noise. "
+            "Required unless --campaign-plan is provided (which distributes across vectors)."
         ),
     )
     req.add_argument(
         "--objective",
-        required=True,
+        required=False,
+        default=None,
         metavar="TEXT",
-        help="The position to advance or oppose (free-text string).",
+        help=(
+            "The position to advance or oppose (free-text string). "
+            "Required unless --campaign-plan is provided (which includes the objective)."
+        ),
     )
     req.add_argument(
         "--volume",
@@ -109,6 +116,19 @@ def build_parser() -> argparse.ArgumentParser:
         help="Destination file path (use .txt extension for ♔ delimited format).",
     )
 
+    # Campaign plan
+    campaign = p.add_argument_group("campaign plan")
+    campaign.add_argument(
+        "--campaign-plan",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path to a campaign_plan.json file (produced by campaign/planner.py). "
+            "When provided, --objective and --vector are read from the plan. "
+            "--vector can still be used to override the plan's vector mix."
+        ),
+    )
+
     # API configuration
     api = p.add_argument_group("API configuration")
     api.add_argument("--api-base-url", metavar="URL", default=None,
@@ -117,13 +137,7 @@ def build_parser() -> argparse.ArgumentParser:
                      help="Chat API key (overrides SLOP_API_KEY).")
     api.add_argument("--chat-model", metavar="MODEL", default=None,
                      help="Chat model name (overrides SLOP_CHAT_MODEL).")
-    api.add_argument("--embed-api-base-url", metavar="URL", default=None,
-                     help="Embeddings API base URL (overrides SLOP_EMBED_API_BASE_URL).")
-    api.add_argument("--embed-api-key", metavar="KEY", default=None,
-                     help="Embeddings API key (overrides SLOP_EMBED_API_KEY).")
-    api.add_argument("--embed-model", metavar="MODEL", default=None,
-                     help="Embeddings model name (overrides SLOP_EMBED_MODEL).")
-
+    
     # QC options
     qc = p.add_argument_group("quality control")
     qc.add_argument("--no-relevance-check", action="store_true",
@@ -145,8 +159,6 @@ def build_parser() -> argparse.ArgumentParser:
                      help="Random seed (default 42).")
     gen.add_argument("--comment-period-days", type=int, default=60, metavar="N",
                      help="Simulated comment period length in days (default 60).")
-    gen.add_argument("--docket-id", metavar="ID", default="",
-                     help="Override docket ID in output (inferred from CSV name if omitted).")
     gen.add_argument("--max-concurrent", type=int, default=10, metavar="N",
                      help="Max concurrent API requests (async mode, default 10).")
     gen.add_argument("--no-async", action="store_true",
@@ -183,8 +195,18 @@ def main(argv: list[str] | None = None) -> int:
 
     # Import here so the module is usable without installed deps when just
     # running --help
-    from slop.config import Config
-    from slop.pipeline import run, run_async
+    from config import Config
+    from syncom.pipeline import run, run_async, run_campaign, run_campaign_async
+
+    # Validate argument combinations
+    use_campaign = args.campaign_plan is not None
+    if not use_campaign:
+        if args.objective is None:
+            print("Error: --objective is required unless --campaign-plan is provided.", file=sys.stderr)
+            return 1
+        if args.vector is None:
+            print("Error: --vector is required unless --campaign-plan is provided.", file=sys.stderr)
+            return 1
 
     # Build config — CLI flags take precedence over env vars
     config = Config()
@@ -209,16 +231,16 @@ def main(argv: list[str] | None = None) -> int:
 
     rule_text = resolve_rule_text(args.rule_text)
 
-    # Choose sync or async pipeline
-    run_func = run if args.no_async else run_async
-    
     try:
-        if args.no_async:
-            result = run(
-                docket_csv=args.docket_csv,
+        if use_campaign:
+            # ── Campaign-plan mode ────────────────────────────────────────
+            if not args.quiet:
+                print(f"Using campaign plan: {args.campaign_plan}", file=sys.stderr)
+
+            common_kwargs = dict(
+                docket_id=args.docket_id,
                 rule_text=rule_text,
-                vector=args.vector,
-                objective=args.objective,
+                campaign_plan_path=args.campaign_plan,
                 volume=args.volume,
                 output_path=args.output,
                 config=config,
@@ -230,30 +252,59 @@ def main(argv: list[str] | None = None) -> int:
                 skip_relevance_check=args.no_relevance_check,
                 skip_argument_check=args.no_argument_check,
                 skip_embedding_check=args.no_embedding_check,
-                docket_id=args.docket_id,
                 verbose=not args.quiet,
+                vector_override=args.vector,  # None if not specified → use plan's mix
             )
+
+            if args.no_async:
+                result = run_campaign(**common_kwargs)
+            else:
+                result = run_campaign_async(
+                    **common_kwargs,
+                    max_concurrent=args.max_concurrent,
+                )
+
         else:
-            result = run_async(
-                docket_csv=args.docket_csv,
-                rule_text=rule_text,
-                vector=args.vector,
-                objective=args.objective,
-                volume=args.volume,
-                output_path=args.output,
-                config=config,
-                seed=args.seed,
-                similarity_threshold=args.similarity_threshold,
-                max_retries=args.max_retries,
-                comment_period_days=args.comment_period_days,
-                include_failed_qc=args.include_failed_qc,
-                skip_relevance_check=args.no_relevance_check,
-                skip_argument_check=args.no_argument_check,
-                skip_embedding_check=args.no_embedding_check,
-                docket_id=args.docket_id,
-                verbose=not args.quiet,
-                max_concurrent=args.max_concurrent,
-            )
+            # ── Direct mode (original behavior) ──────────────────────────
+            if args.no_async:
+                result = run(
+                    docket_id=args.docket_id,
+                    rule_text=rule_text,
+                    vector=args.vector,
+                    objective=args.objective,
+                    volume=args.volume,
+                    output_path=args.output,
+                    config=config,
+                    seed=args.seed,
+                    similarity_threshold=args.similarity_threshold,
+                    max_retries=args.max_retries,
+                    comment_period_days=args.comment_period_days,
+                    include_failed_qc=args.include_failed_qc,
+                    skip_relevance_check=args.no_relevance_check,
+                    skip_argument_check=args.no_argument_check,
+                    skip_embedding_check=args.no_embedding_check,
+                    verbose=not args.quiet,
+                )
+            else:
+                result = run_async(
+                    docket_id=args.docket_id,
+                    rule_text=rule_text,
+                    vector=args.vector,
+                    objective=args.objective,
+                    volume=args.volume,
+                    output_path=args.output,
+                    config=config,
+                    seed=args.seed,
+                    similarity_threshold=args.similarity_threshold,
+                    max_retries=args.max_retries,
+                    comment_period_days=args.comment_period_days,
+                    include_failed_qc=args.include_failed_qc,
+                    skip_relevance_check=args.no_relevance_check,
+                    skip_argument_check=args.no_argument_check,
+                    skip_embedding_check=args.no_embedding_check,
+                    verbose=not args.quiet,
+                    max_concurrent=args.max_concurrent,
+                )
     except Exception as exc:
         print(f"Fatal error: {exc}", file=sys.stderr)
         import traceback

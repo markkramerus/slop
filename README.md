@@ -35,6 +35,62 @@ That's it! You'll have 10 synthetic public comments written in the voice styles 
 python cli.py --docket-id CMS-2025-0050 --volume 50
 ```
 
+---
+
+## 🌐 Web Interface (GUI)
+
+SLOP includes a browser-based GUI that wraps the full pipeline in a point-and-click interface — no command-line knowledge required.
+
+### Launch
+
+```bash
+# Install dependencies (includes streamlit)
+pip install -r requirements.txt
+
+# Start the web interface
+python run_gui.py
+
+# Or equivalently:
+streamlit run gui/app.py
+```
+
+This opens a local browser tab at `http://localhost:8501`.
+
+### Pages
+
+| Page | Purpose |
+|---|---|
+| 🏠 **Dashboard** | Pipeline status overview and per-step completion badges |
+| ⚙️ **Configuration** | Enter and save API keys; test connections |
+| 📥 **Download** | Download docket attachments with PDF→text conversion |
+| 🔬 **Stylometry** | Analyze writing styles and preview generated voice skills |
+| 📋 **Campaign Planner** | Write a scenario brief, generate and edit `campaign_plan.json` |
+| ✍️ **Generate** | Configure and run comment generation with real-time log output |
+| 🔀 **Shuffle** | Translate and shuffle synthetic comments into the real CSV |
+| 📄 **Results** | Browse, filter, and download all outputs |
+
+### Architecture
+
+The GUI is implemented as a multi-page **Streamlit** app in `gui/`.  All existing Python backend code (`cli.py`, `config.py`, sub-modules) is **unchanged** — the GUI invokes them via subprocess and streams their output to the browser in real time.
+
+```
+gui/
+├── app.py                      # Entry point — pipeline dashboard
+├── pages/
+│   ├── 1_⚙️_Configuration.py   # API key management
+│   ├── 2_📥_Download.py        # Downloader UI
+│   ├── 3_🔬_Stylometry.py      # Stylometry UI
+│   ├── 4_📋_Campaign.py        # Campaign planner UI
+│   ├── 5_✍️_Generate.py        # Generation UI
+│   ├── 6_🔀_Shuffle.py         # Shuffler UI
+│   └── 7_📄_Results.py         # Output viewer
+└── utils/
+    ├── runner.py               # Subprocess runner with streaming output
+    └── state.py                # Session state helpers & pipeline status
+```
+
+---
+
 ## What Does This Do?
 
 SLOP generates **realistic synthetic public comments** for regulatory dockets. Think of it as creating AI-generated letters that could plausibly have been written by real stakeholders—healthcare providers, patients, advocacy groups, industry representatives, etc.
@@ -571,6 +627,21 @@ slop/
 ├── config.py                   # API configuration (reads .env / env vars)
 ├── shared_models.py            # Shared data models
 ├── requirements.txt            # Python dependencies
+├── run_gui.py                  # Convenience launcher for the web interface
+│
+├── gui/                        # Web Interface (Streamlit)
+│   ├── app.py                  # Entry point — pipeline dashboard
+│   ├── pages/
+│   │   ├── 1_⚙️_Configuration.py
+│   │   ├── 2_📥_Download.py
+│   │   ├── 3_🔬_Stylometry.py
+│   │   ├── 4_📋_Campaign.py
+│   │   ├── 5_✍️_Generate.py
+│   │   ├── 6_🔀_Shuffle.py
+│   │   └── 7_📄_Results.py
+│   └── utils/
+│       ├── runner.py           # Subprocess runner with streaming output
+│       └── state.py            # Session state helpers & pipeline status
 │
 ├── campaign/                   # Campaign Planner sub-application
 │   ├── planner.py              # LLM-based scenario → campaign plan converter

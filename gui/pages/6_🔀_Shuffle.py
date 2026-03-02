@@ -16,11 +16,14 @@ from gui.utils.state import docket_id_widget
 from gui.utils.runner import run_command, build_cli_command
 
 st.set_page_config(page_title="Shuffle — SLOP", page_icon="🔀", layout="wide")
-st.title("🔀 Step 5 — Translate & Shuffle")
+st.title("🔀 Step 6 — Pre-process, Translate & Shuffle")
 st.caption(
-    "Converts the ♔-delimited synthetic output to CMS CSV format, then randomly "
-    "interleaves it with the real comment file.  Produces a `combined.csv` "
-    "and a ground-truth `combined_key.csv`."
+    "**Step 0** — Pre-processes the real comments CSV by substituting attachment text "
+    "where it is longer than the inline comment body.  "
+    "**Step 1** — Converts the ♔-delimited synthetic output to CMS CSV format.  "
+    "**Step 2** — Randomly interleaves synthetic comments with the pre-processed real "
+    "comments and produces `combined.csv` (attachment URLs cleared) and a ground-truth "
+    "`combined_key.csv`."
 )
 st.divider()
 
@@ -34,10 +37,11 @@ if not docket_id:
 # ── Prerequisite checks ────────────────────────────────────────────────────────
 st.subheader("Prerequisites")
 
-synthetic_txt = Path(docket_id, "synthetic_comments", "synthetic.txt")
-real_csv = Path(docket_id, "comments", f"{docket_id}.csv")
+synthetic_txt   = Path(docket_id, "synthetic_comments", "synthetic.txt")
+real_csv        = Path(docket_id, "comments", f"{docket_id}.csv")
+attachments_dir = Path(docket_id, "comment_attachments")
 
-pre_cols = st.columns(2)
+pre_cols = st.columns(3)
 with pre_cols[0]:
     if synthetic_txt.is_file() and synthetic_txt.stat().st_size > 0:
         size_kb = round(synthetic_txt.stat().st_size / 1024, 1)
@@ -55,6 +59,16 @@ with pre_cols[1]:
             f"❌ Real comments CSV not found at `{real_csv}`.  "
             "Place the docket CSV there before shuffling."
         )
+with pre_cols[2]:
+    if attachments_dir.is_dir():
+        att_count = sum(1 for p in attachments_dir.iterdir() if p.is_dir())
+        st.success(f"✅ Attachments directory found ({att_count:,} comment dirs)")
+    else:
+        st.warning(
+            f"⚠️ Attachments directory not found at `{attachments_dir}`.  "
+            "Pre-processing will be skipped — run the **Download** step first "
+            "to get attachment text."
+        )
 
 st.divider()
 
@@ -69,6 +83,14 @@ with opt_cols[0]:
         min_value=0,
         help="Controls the shuffling order.  Use the same seed to reproduce results.",
     )
+    skip_preprocess = st.checkbox(
+        "Skip pre-processing step (use raw real CSV directly)",
+        value=False,
+        help=(
+            "--skip-preprocess.  Skip attachment-text substitution and feed the "
+            "original comments CSV straight into the shuffle."
+        ),
+    )
     skip_translation = st.checkbox(
         "Skip translation step (already translated)",
         value=False,
@@ -80,10 +102,16 @@ with opt_cols[0]:
 
 with opt_cols[1]:
     translated_path = Path(docket_id, "shuffled_comments", "synthetic_cms.csv")
+    preprocessed_path = Path(docket_id, "shuffled_comments", "preprocessed_real.csv")
     if skip_translation and translated_path.is_file():
         st.success(f"✅ Translated CSV found: `{translated_path}`")
     elif skip_translation:
         st.warning(f"⚠️ Translated CSV not found at `{translated_path}`")
+    if skip_preprocess:
+        st.info("ℹ️ Pre-processing skipped — raw real CSV will be used for shuffling.")
+    elif preprocessed_path.is_file():
+        size_kb = round(preprocessed_path.stat().st_size / 1024, 1)
+        st.success(f"✅ Pre-processed CSV already exists: `{preprocessed_path}` ({size_kb} KB)")
 
 with st.expander("Advanced — Explicit path overrides"):
     adv_cols = st.columns(2)
@@ -98,6 +126,11 @@ with st.expander("Advanced — Explicit path overrides"):
             value="",
             placeholder=str(translated_path),
         )
+        attachments_override = st.text_input(
+            "Attachments directory path",
+            value="",
+            placeholder=str(attachments_dir),
+        )
     with adv_cols[1]:
         real_override = st.text_input(
             "Real comments CSV path",
@@ -109,18 +142,29 @@ with st.expander("Advanced — Explicit path overrides"):
             value="",
             placeholder=str(Path(docket_id, "shuffled_comments", "combined.csv")),
         )
+        preprocessed_override = st.text_input(
+            "Pre-processed output path",
+            value="",
+            placeholder=str(preprocessed_path),
+        )
 
 st.divider()
 
 # ── Build command ──────────────────────────────────────────────────────────────
 def build_shuffle_cmd() -> list[str]:
     args = ["shuffle", "--docket-id", docket_id, "--seed", str(seed)]
+    if skip_preprocess:
+        args.append("--skip-preprocess")
     if skip_translation:
         args.append("--skip-translation")
     if syncom_override.strip():
         args += ["--syncom-output", syncom_override.strip()]
     if translated_override.strip():
         args += ["--translated-output", translated_override.strip()]
+    if attachments_override.strip():
+        args += ["--attachments-dir", attachments_override.strip()]
+    if preprocessed_override.strip():
+        args += ["--preprocessed-output", preprocessed_override.strip()]
     if real_override.strip():
         args += ["--real-comments", real_override.strip()]
     if combined_override.strip():
@@ -153,14 +197,16 @@ st.divider()
 # ── Output summary & downloads ─────────────────────────────────────────────────
 st.subheader("Outputs")
 
-shuffled_dir = Path(docket_id, "shuffled_comments")
-combined_csv = Path(combined_override.strip()) if combined_override.strip() else shuffled_dir / "combined.csv"
-combined_key = combined_csv.with_name(combined_csv.stem + "_key.csv")
-synthetic_cms = Path(translated_override.strip()) if translated_override.strip() else shuffled_dir / "synthetic_cms.csv"
+shuffled_dir    = Path(docket_id, "shuffled_comments")
+combined_csv    = Path(combined_override.strip()) if combined_override.strip() else shuffled_dir / "combined.csv"
+combined_key    = combined_csv.with_name(combined_csv.stem + "_key.csv")
+synthetic_cms   = Path(translated_override.strip()) if translated_override.strip() else shuffled_dir / "synthetic_cms.csv"
+preprocessed    = Path(preprocessed_override.strip()) if preprocessed_override.strip() else shuffled_dir / "preprocessed_real.csv"
 
 output_files = [
-    ("Combined CSV", combined_csv),
-    ("Key CSV", combined_key),
+    ("Combined CSV (no attachment hints)", combined_csv),
+    ("Key CSV (real vs. synthetic labels)", combined_key),
+    ("Pre-processed Real CSV (attachment text merged)", preprocessed),
     ("Translated Synthetic CSV", synthetic_cms),
 ]
 
@@ -175,7 +221,7 @@ for label, fpath in output_files:
         with col_dl:
             data = fpath.read_bytes()
             st.download_button(
-                label=f"⬇️ Download",
+                label="⬇️ Download",
                 data=data,
                 file_name=fpath.name,
                 mime="text/csv",
@@ -192,9 +238,9 @@ else:
             key_df = pd.read_csv(combined_key)
             if "type" in key_df.columns:
                 counts = key_df["type"].value_counts()
-                real_count = counts.get("real", 0)
+                real_count  = counts.get("real", 0)
                 synth_count = counts.get("synthetic", 0)
-                total = real_count + synth_count
+                total       = real_count + synth_count
                 stat_cols = st.columns(3)
                 stat_cols[0].metric("Total Rows", total)
                 stat_cols[1].metric("Real Comments", real_count)
@@ -213,7 +259,7 @@ st.caption(
 if st.button("🔄 Translate Only (no shuffle)"):
     from gui.utils.runner import build_script_command
     source = syncom_override.strip() or str(synthetic_txt)
-    dest = translated_override.strip() or str(synthetic_cms)
+    dest   = translated_override.strip() or str(synthetic_cms)
     cmd = build_script_command(
         "shuffler/translate_to_cms_format.py",
         [source, dest],

@@ -53,14 +53,20 @@ def build_shuffle_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="slop shuffle",
         description=(
-            "Shuffler phase: translate synthetic comments to CMS format, then "
-            "randomly interleave them with a real CMS comment file and produce "
-            "a key that labels every row as real or synthetic."
+            "Shuffler phase: (0) pre-process the real CMS CSV by substituting "
+            "attachment text where it is the bulk of the comment, then "
+            "(1) translate synthetic comments to CMS format, then "
+            "(2) randomly interleave them with the pre-processed real comments "
+            "and produce a key that labels every row as real or synthetic.  "
+            "Attachment URLs are cleared in the final combined.csv so no row "
+            "reveals whether it came from a real submission."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Convention-based defaults (when --docket-id is provided)
 ---------------------------------------------------------
+  --attachments-dir   {docket_id}/comment_attachments
+  --preprocessed-output {docket_id}/shuffled_comments/preprocessed_real.csv
   --syncom-output     {docket_id}/synthetic_comments/synthetic.txt
   --translated-output {docket_id}/shuffled_comments/synthetic_cms.csv
   --real-comments     {docket_id}/comments/{docket_id}.csv
@@ -81,11 +87,14 @@ Examples
   # Skip translation (provide an already-translated CMS CSV):
   python cli.py shuffle --docket-id CMS-2025-0050 --skip-translation
 
+  # Skip pre-processing (no attachment substitution):
+  python cli.py shuffle --docket-id CMS-2025-0050 --skip-preprocess
+
 Key file
 --------
   A companion key CSV is written automatically next to the combined output
   (e.g., combined_key.csv).  Use --key-output to override its path.
-  The key has three columns: row_number, document_id, type (real | synthetic).
+  The key has four columns: row_number, uid, original_document_id, type (real | synthetic).
 """,
     )
 
@@ -97,6 +106,33 @@ Key file
             "Docket identifier (e.g., 'CMS-2025-0050'). When provided, all "
             "file paths default to conventional locations inside the docket "
             "directory; any explicit path argument overrides the default."
+        ),
+    )
+    p.add_argument(
+        "--attachments-dir",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path to the directory containing per-comment attachment "
+            "subdirectories (e.g. 'CMS-2025-0050/comment_attachments'). "
+            "Default: {docket_id}/comment_attachments"
+        ),
+    )
+    p.add_argument(
+        "--preprocessed-output",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path where the pre-processed real comments CSV will be saved. "
+            "Default: {docket_id}/shuffled_comments/preprocessed_real.csv"
+        ),
+    )
+    p.add_argument(
+        "--skip-preprocess",
+        action="store_true",
+        help=(
+            "Skip the attachment pre-processing step.  The raw real comments "
+            "CSV will be used directly for shuffling."
         ),
     )
     p.add_argument(
@@ -176,19 +212,27 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     parser = build_shuffle_parser()
     args = parser.parse_args(argv)
 
-    from shuffler.shuffler import translate_syncom_to_cms, shuffle_comments
+    from shuffler.shuffler import preprocess_real_comments, translate_syncom_to_cms, shuffle_comments
 
     verbose = not args.quiet
 
     # ── Resolve defaults from docket-id ────────────────────────────────────
     docket_id = args.docket_id
 
-    syncom_output     = args.syncom_output
-    translated_output = args.translated_output
-    real_comments     = args.real_comments
-    combined_output   = args.combined_output
+    attachments_dir      = args.attachments_dir
+    preprocessed_output  = args.preprocessed_output
+    syncom_output        = args.syncom_output
+    translated_output    = args.translated_output
+    real_comments        = args.real_comments
+    combined_output      = args.combined_output
 
     if docket_id:
+        if attachments_dir is None:
+            attachments_dir = os.path.join(docket_id, "comment_attachments")
+        if preprocessed_output is None:
+            preprocessed_output = os.path.join(
+                docket_id, "shuffled_comments", "preprocessed_real.csv"
+            )
         if syncom_output is None:
             syncom_output = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
         if translated_output is None:
@@ -219,6 +263,43 @@ def run_shuffle(argv: list[str] | None = None) -> int:
         out_dir = os.path.dirname(path)
         if out_dir:
             os.makedirs(out_dir, exist_ok=True)
+
+    # ── Step 0: Pre-process real comments (resolve attachment text) ─────────
+    # The file passed to shuffle_comments() is either the preprocessed CSV
+    # (attachment text substituted) or the original CSV (if --skip-preprocess).
+    if args.skip_preprocess:
+        if verbose:
+            print(f"[shuffler] Skipping pre-processing — using {real_comments} directly")
+        real_cms_for_shuffle = real_comments
+    else:
+        if not os.path.exists(real_comments):
+            print(
+                f"Error: real comments file not found: {real_comments}",
+                file=sys.stderr,
+            )
+            return 1
+        if attachments_dir is None or not os.path.isdir(attachments_dir):
+            # No attachments dir — fall back gracefully
+            if verbose:
+                print(
+                    f"[shuffler] Attachments directory not found "
+                    f"({attachments_dir}); skipping pre-processing."
+                )
+            real_cms_for_shuffle = real_comments
+        else:
+            try:
+                preprocess_real_comments(
+                    real_cms_file=real_comments,
+                    attachments_dir=attachments_dir,
+                    output_file=preprocessed_output,
+                    verbose=verbose,
+                )
+                real_cms_for_shuffle = preprocessed_output
+            except Exception as exc:
+                print(f"Error during pre-processing: {exc}", file=sys.stderr)
+                import traceback
+                traceback.print_exc()
+                return 1
 
     # ── Step 1: Translation ─────────────────────────────────────────────────
     if args.skip_translation:
@@ -258,9 +339,9 @@ def run_shuffle(argv: list[str] | None = None) -> int:
             return 1
 
     # ── Step 2: Shuffle ─────────────────────────────────────────────────────
-    if not os.path.exists(real_comments):
+    if not os.path.exists(real_cms_for_shuffle):
         print(
-            f"Error: real comments file not found: {real_comments}",
+            f"Error: real comments file not found: {real_cms_for_shuffle}",
             file=sys.stderr,
         )
         return 1
@@ -268,7 +349,7 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     try:
         shuffle_comments(
             synthetic_cms_file=translated_output,
-            real_cms_file=real_comments,
+            real_cms_file=real_cms_for_shuffle,
             combined_output=combined_output,
             key_output=args.key_output,
             seed=args.seed,

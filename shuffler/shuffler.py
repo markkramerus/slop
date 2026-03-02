@@ -2,17 +2,126 @@
 shuffler/shuffler.py — Core shuffler logic for the slop pipeline.
 
 This module:
-  1. Translates syncom output (♔-delimited) to CMS CSV format.
-  2. Randomly interleaves the translated synthetic comments with a real
-     CMS comments file.
-  3. Produces a combined CMS CSV and a key CSV that identifies every row
-     as "real" or "synthetic".
+  1. Pre-processes the real CMS comments file, substituting attachment text
+     for the comment body when the attachment contains the bulk of the comment.
+  2. Translates syncom output (♔-delimited) to CMS CSV format.
+  3. Randomly interleaves the translated synthetic comments with the
+     pre-processed real CMS comments file.
+  4. Produces a combined CMS CSV (with attachment URLs cleared) and a key CSV
+     that identifies every row as "real" or "synthetic".
 """
 
 import csv
 import os
 import random
+import sys
 from pathlib import Path
+
+# Some attachment texts are very large; raise the csv field-size limit to match.
+# sys.maxsize overflows the C long on Windows 64-bit, so cap at 2**31 - 1.
+csv.field_size_limit(2**31 - 1)
+
+
+# ── Step 0: Pre-process real comments (resolve attachments) ───────────────────
+
+def preprocess_real_comments(
+    real_cms_file: str,
+    attachments_dir: str,
+    output_file: str,
+    verbose: bool = True,
+) -> dict:
+    """
+    Pre-process the real CMS comments CSV by substituting attachment text when
+    the attachment contains the bulk of the comment.
+
+    For each row in real_cms_file:
+      - Look up the comment's Document ID in attachments_dir/<Document ID>/
+      - Read all *.txt files found there and concatenate their text.
+      - Compare len(attachment_text) vs len(comment_text).
+      - Use whichever is longer as the "Comment" column value.
+
+    The "Attachment Files" column is deliberately left intact here; it will be
+    cleared by shuffle_comments() in the final merged output.
+
+    Args:
+        real_cms_file:   Path to the original real CMS comments CSV.
+        attachments_dir: Path to the directory containing per-comment attachment
+                         subdirectories (e.g. "CMS-2025-0050/comment_attachments").
+        output_file:     Path where the pre-processed CSV will be written.
+        verbose:         Print progress messages.
+
+    Returns:
+        dict with keys: total_rows, rows_with_attachments, rows_substituted.
+    """
+    Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+
+    rows, fieldnames = _load_csv(real_cms_file)
+
+    attachments_root = Path(attachments_dir)
+    rows_with_attachments = 0
+    rows_substituted = 0
+
+    if verbose:
+        print(f"[shuffler] Pre-processing real comments")
+        print(f"           Input       : {real_cms_file}")
+        print(f"           Attachments : {attachments_dir}")
+        print(f"           Output      : {output_file}")
+
+    for row in rows:
+        doc_id = row.get("Document ID", "").strip()
+        if not doc_id:
+            continue
+
+        attachment_subdir = attachments_root / doc_id
+        if not attachment_subdir.is_dir():
+            continue
+
+        # Collect all .txt files in the attachment directory
+        txt_files = sorted(attachment_subdir.glob("*.txt"))
+        if not txt_files:
+            continue
+
+        rows_with_attachments += 1
+
+        # Concatenate text from all attachment .txt files
+        parts = []
+        for txt_path in txt_files:
+            try:
+                parts.append(txt_path.read_text(encoding="utf-8", errors="replace").strip())
+            except OSError:
+                pass
+        attachment_text = "\n\n".join(p for p in parts if p)
+
+        # Compare lengths; use whichever is longer
+        comment_text = row.get("Comment", "") or ""
+        if len(attachment_text) > len(comment_text):
+            row["Comment"] = attachment_text
+            rows_substituted += 1
+            if verbose:
+                print(
+                    f"[shuffler]   {doc_id}: attachment text used "
+                    f"({len(attachment_text):,} chars vs {len(comment_text):,} in body)"
+                )
+
+    # Write pre-processed CSV
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+
+    if verbose:
+        print(
+            f"[shuffler] Pre-processing complete — "
+            f"{rows_substituted:,} of {rows_with_attachments:,} attachment rows substituted "
+            f"(total rows: {len(rows):,})\n"
+        )
+
+    return {
+        "total_rows":             len(rows),
+        "rows_with_attachments":  rows_with_attachments,
+        "rows_substituted":       rows_substituted,
+        "output_file":            output_file,
+    }
 
 
 # ── Step 1: Translation ────────────────────────────────────────────────────────
@@ -121,32 +230,52 @@ def shuffle_comments(
     if verbose:
         print(f"[shuffler] Shuffling with seed={seed}  → {len(combined):,} total rows")
 
+    # ── Assign anonymous UIDs ────────────────────────────────────────────────
+    # Replace every Document ID with a neutral "UID-XXXX" identifier so that
+    # synthetic IDs (e.g. "CMS-2025-0050-SYNTH-0077") are indistinguishable
+    # from real IDs in the combined output.
+    _DOC_ID_COL     = "Document ID"
+    _ATTACHMENT_COL = "Attachment Files"
+
+    for idx, row in enumerate(combined, start=1):
+        row["_original_doc_id"] = row.get(_DOC_ID_COL, "")
+        row[_DOC_ID_COL]        = f"UID-{idx:04d}"
+
     # ── Write combined CSV ───────────────────────────────────────────────────
+    # The "Attachment Files" column is cleared so that no row reveals whether
+    # it originated from a real submission (only real comments have attachments).
+    _INTERNAL_KEYS = {"_type", "_original_doc_id"}
+
     with open(combined_output, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=combined_fieldnames,
-            extrasaction="ignore",   # drops the _type tag
+            extrasaction="ignore",   # drops internal tags
         )
         writer.writeheader()
         for row in combined:
-            # Remove internal tag before writing
-            clean = {k: v for k, v in row.items() if k != "_type"}
+            # Remove internal tags and clear attachment URLs before writing
+            clean = {k: v for k, v in row.items() if k not in _INTERNAL_KEYS}
+            if _ATTACHMENT_COL in clean:
+                clean[_ATTACHMENT_COL] = ""
             writer.writerow(clean)
 
     if verbose:
         print(f"[shuffler] Combined file written      : {combined_output}")
 
     # ── Write key CSV ────────────────────────────────────────────────────────
-    key_headers = ["row_number", "document_id", "type"]
+    # Maps each UID back to its original Document ID so results can be
+    # de-anonymised after analysis.
+    key_headers = ["row_number", "uid", "original_document_id", "type"]
     with open(key_output, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=key_headers)
         writer.writeheader()
         for idx, row in enumerate(combined, start=1):
             writer.writerow({
-                "row_number":  idx,
-                "document_id": row.get("Document ID", ""),
-                "type":        row["_type"],
+                "row_number":          idx,
+                "uid":                 f"UID-{idx:04d}",
+                "original_document_id": row.get("_original_doc_id", ""),
+                "type":                row["_type"],
             })
 
     if verbose:
@@ -173,6 +302,81 @@ def shuffle_comments(
         "combined_output":  combined_output,
         "key_output":       key_output,
     }
+
+
+# ── Full pipeline convenience wrapper ─────────────────────────────────────────
+
+def run_pipeline(
+    real_cms_file: str,
+    attachments_dir: str,
+    syncom_input: str,
+    output_dir: str,
+    seed: int = 42,
+    verbose: bool = True,
+) -> dict:
+    """
+    Run the full shuffler pipeline in one call:
+
+      Step 0  Pre-process the real comments CSV, substituting attachment text
+              where it is longer than the inline comment body.
+              → <output_dir>/preprocessed_real.csv
+
+      Step 1  Translate the syncom ♔-delimited output to CMS CSV format.
+              → <output_dir>/synthetic_cms.csv
+
+      Step 2  Shuffle the pre-processed real comments together with the
+              translated synthetic comments.  Attachment URLs are cleared in
+              the combined output so no row is distinguishable as real.
+              → <output_dir>/combined.csv
+              → <output_dir>/combined_key.csv
+
+    Args:
+        real_cms_file:   Original real CMS comments CSV
+                         (e.g. "CMS-2025-0050/comments/CMS-2025-0050.csv").
+        attachments_dir: Directory of per-comment attachment subdirectories
+                         (e.g. "CMS-2025-0050/comment_attachments").
+        syncom_input:    ♔-delimited syncom output file.
+        output_dir:      Directory for all pipeline outputs
+                         (e.g. "CMS-2025-0050/shuffled_comments").
+        seed:            Random seed for reproducibility.
+        verbose:         Print progress messages.
+
+    Returns:
+        dict with keys from each step merged together.
+    """
+    out = Path(output_dir)
+
+    preprocessed_file  = str(out / "preprocessed_real.csv")
+    synthetic_cms_file = str(out / "synthetic_cms.csv")
+    combined_output    = str(out / "combined.csv")
+    key_output         = str(out / "combined_key.csv")
+
+    # Step 0 – resolve attachments into the real CSV
+    pre_result = preprocess_real_comments(
+        real_cms_file=real_cms_file,
+        attachments_dir=attachments_dir,
+        output_file=preprocessed_file,
+        verbose=verbose,
+    )
+
+    # Step 1 – translate syncom output
+    synth_count = translate_syncom_to_cms(
+        syncom_input=syncom_input,
+        cms_output=synthetic_cms_file,
+        verbose=verbose,
+    )
+
+    # Step 2 – shuffle and merge
+    shuffle_result = shuffle_comments(
+        synthetic_cms_file=synthetic_cms_file,
+        real_cms_file=preprocessed_file,
+        combined_output=combined_output,
+        key_output=key_output,
+        seed=seed,
+        verbose=verbose,
+    )
+
+    return {**pre_result, "synthetic_translated": synth_count, **shuffle_result}
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────

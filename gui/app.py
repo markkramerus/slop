@@ -37,8 +37,8 @@ st.set_page_config(
 # ── Header ─────────────────────────────────────────────────────────────────────
 st.title("🤮 SLOP — Synthetic Letter-writing Opposition Platform")
 st.caption(
-    "Generate realistic synthetic public comments for regulatory docket research."
 )
+    "Generate realistic synthetic public comments for regulatory docket research."
 st.divider()
 
 # ── Docket ID selector ─────────────────────────────────────────────────────────

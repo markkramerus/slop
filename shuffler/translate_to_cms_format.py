@@ -133,7 +133,7 @@ def translate_synthetic_to_cms(input_file, output_file):
                         'Representative\'s City, State & Zip': '',
                         'Government Agency': row.get('Government Agency', ''),
                         'Government Agency Type': row.get('Government Agency Type', ''),
-                        'Comment': row.get('Comment', ''),
+                        'Comment': row.get('Comment', '').replace('<br><br>', '\n\n').replace('<br>', '\n'),
                         'Category': '',
                         'Restrict Reason Type': '',
                         'Restrict Reason': '',

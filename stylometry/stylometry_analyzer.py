@@ -158,10 +158,20 @@ Focus on:
 
 Provide specific examples from the text where possible.
 
+CRITICAL: Your analysis must also include concrete guidance on how to write in this voice WITHOUT sounding like AI.
+Real humans write with personality and imperfection. The voice description you write will be used to instruct
+an LLM to generate synthetic comments, so explicitly flag what this voice AVOIDS and HOW it sounds human.
+Include specific notes on:
+- Whether this voice uses simple sentence structure vs. complex/elaborate phrasing
+- Whether this voice uses hedging, uncertainty, or mixed feelings (human) vs. confident sweeping claims (AI)
+- Whether this voice uses first-person naturally and directly
+- What makes this voice feel grounded and specific vs. generic and abstract
+- Any patterns in this voice that could accidentally trigger AI-sounding writing
+
 SAMPLE COMMENTS:
 {combined_text}
 
-Provide your analysis in 2-3 paragraphs that would help a writer mimic this style."""
+Provide your analysis in 3-4 paragraphs that would help a writer mimic this style while keeping it sounding human, not AI-generated."""
 
     try:
         client = config.openai_client()
@@ -515,6 +525,53 @@ def generate_skill_markdown(voice: VoiceGroup, docket_id: str, llm_analysis: str
         "## Voice Description",
         "",
         llm_analysis,
+        "",
+        "## Human Writing Rules",
+        "",
+        "**Every comment generated from this voice profile must sound like a real human wrote it.**",
+        "These rules apply regardless of archetype or sophistication level.",
+        "",
+        "### Forbidden patterns (will make the output sound AI-generated)",
+        "",
+        "**Em dashes** — never use `—`. Replace with a comma, period, or parentheses.",
+        "",
+        "**Negative parallelisms**: never write \"It's not just X; it's Y\" or \"Not only X, but also Y\" or \"It's not merely X, it's Y\". These are among the most reliable AI tells.",
+        "",
+        "**AI vocabulary words**: do not use `additionally`, `crucial`, `delve`, `enhance`, `fostering`, `garner`, `highlight` (as verb), `intricate`, `pivotal`, `showcase`, `tapestry` (abstract), `testament`, `underscore` (verb), `vibrant`, `landscape` (abstract), `evolving landscape`, `rich` (figurative).",
+        "",
+        "**Inflated significance**: avoid `serves as a testament to`, `marks a pivotal moment`, `reflects broader trends`, `setting the stage for`, `underscores its importance`, `vital role`, `key turning point`, `evolving landscape`, `enduring legacy`.",
+        "",
+        "**Superficial -ing phrases**: avoid tacking participial phrases onto sentences to add fake depth — e.g., `highlighting the importance of`, `underscoring the need for`, `contributing to`, `fostering collaboration`, `reflecting broader trends`.",
+        "",
+        "**Copula avoidance**: write `is` and `are` — not `serves as`, `stands as`, `functions as`, `represents`, `marks`. If you mean \"is\", say \"is\".",
+        "",
+        "**Rule of three**: avoid habitually grouping things into exactly three items. Real people don't think in triads.",
+        "",
+        "**Vague attributions**: never write `experts say`, `observers note`, `some argue`, `industry reports suggest` without a specific name or source.",
+        "",
+        "**Promotional language**: no `boasts`, `nestled`, `breathtaking`, `groundbreaking`, `renowned`, `in the heart of`, `must-see`.",
+        "",
+        "**Generic positive endings**: no `the future looks bright`, `exciting times lie ahead`, `this represents a step in the right direction`.",
+        "",
+        "**Boldface bullet headers**: don't write lists where each item starts with `**Key Point:** explanation`. Write prose or plain bullets.",
+        "",
+        "**Sycophantic openers**: no `Great question!`, `Certainly!`, `Of course!`, `I hope this helps`, `Let me know if you have questions`.",
+        "",
+        "### Required human qualities",
+        "",
+        "**Vary sentence length.** Mix short punchy sentences with longer ones that take their time. Never write a block of sentences all the same length.",
+        "",
+        "**Have opinions.** Real people react to information. \"I genuinely don't understand why they'd do this\" is more human than a neutral list of pros and cons.",
+        "",
+        "**Show uncertainty and mixed feelings.** \"I'm not sure this is the right approach, but...\" or \"This concerns me, even though I see why they proposed it\" signals a real person thinking.",
+        "",
+        "**Use first person naturally.** `I keep coming back to...`, `What gets me is...`, `My experience has been...` — these read as human.",
+        "",
+        "**Be specific.** Real people cite actual numbers, dates, places, names. Generic claims (`many people are affected`) are AI. Specific claims (`my clinic saw 40 patients last month who couldn't afford this`) are human.",
+        "",
+        "**Let some mess in.** A tangent, a repeated point, a slightly incomplete thought — these are human. Perfect logical structure is a red flag.",
+        "",
+        "**Use simple constructions.** `is`, `are`, `has`, `does` — not elaborate substitutes.",
         "",
         "## Statistical Profile (Medians)",
         "",

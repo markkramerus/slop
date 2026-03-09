@@ -122,10 +122,13 @@ def _build_row(
     docket_id = comment.docket_id or "UNKNOWN"
     posted = _posted_date(timing_deciles, comment_period_days, comment_start_date, rng)
 
-    # Replace newlines with <br> for Excel compatibility
+    # Encode newlines as ⏎ (U+23CE RETURN SYMBOL) — the PSV format convention.
+    # Using a rare Unicode character rather than <br> keeps the encoding neutral
+    # and indistinguishable between real and synthetic comments.
+    _NL = "\u23ce"   # ⏎ RETURN SYMBOL
     abstract = (comment.abstract if comment.abstract else comment.comment_text[:250])
-    abstract = abstract.replace("\r\n", "<br>").replace("\n", "<br>").replace("\r", "<br>")
-    comment_text = comment.comment_text.replace("\r\n", "<br>").replace("\n", "<br>").replace("\r", "<br>")
+    abstract = abstract.replace("\r\n", _NL).replace("\r", _NL).replace("\n", _NL)
+    comment_text = comment.comment_text.replace("\r\n", _NL).replace("\r", _NL).replace("\n", _NL)
 
     # Regulations.gov columns
     row: dict[str, str] = {

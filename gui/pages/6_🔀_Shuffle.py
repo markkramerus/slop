@@ -101,17 +101,17 @@ with opt_cols[0]:
     )
 
 with opt_cols[1]:
-    translated_path = Path(docket_id, "shuffled_comments", "synthetic_cms.csv")
-    preprocessed_path = Path(docket_id, "shuffled_comments", "preprocessed_real.csv")
+    translated_path = Path(docket_id, "shuffled_comments", "synthetic_cms.psv")
+    preprocessed_path = Path(docket_id, "shuffled_comments", "preprocessed_real.psv")
     if skip_translation and translated_path.is_file():
-        st.success(f"✅ Translated CSV found: `{translated_path}`")
+        st.success(f"✅ Translated PSV found: `{translated_path}`")
     elif skip_translation:
-        st.warning(f"⚠️ Translated CSV not found at `{translated_path}`")
+        st.warning(f"⚠️ Translated PSV not found at `{translated_path}`")
     if skip_preprocess:
         st.info("ℹ️ Pre-processing skipped — raw real CSV will be used for shuffling.")
     elif preprocessed_path.is_file():
         size_kb = round(preprocessed_path.stat().st_size / 1024, 1)
-        st.success(f"✅ Pre-processed CSV already exists: `{preprocessed_path}` ({size_kb} KB)")
+        st.success(f"✅ Pre-processed PSV already exists: `{preprocessed_path}` ({size_kb} KB)")
 
 with st.expander("Advanced — Explicit path overrides"):
     adv_cols = st.columns(2)
@@ -140,7 +140,7 @@ with st.expander("Advanced — Explicit path overrides"):
         combined_override = st.text_input(
             "Combined output path",
             value="",
-            placeholder=str(Path(docket_id, "shuffled_comments", "combined.csv")),
+            placeholder=str(Path(docket_id, "shuffled_comments", "combined.psv")),
         )
         preprocessed_override = st.text_input(
             "Pre-processed output path",
@@ -198,16 +198,16 @@ st.divider()
 st.subheader("Outputs")
 
 shuffled_dir    = Path(docket_id, "shuffled_comments")
-combined_csv    = Path(combined_override.strip()) if combined_override.strip() else shuffled_dir / "combined.csv"
-combined_key    = combined_csv.with_name(combined_csv.stem + "_key.csv")
-synthetic_cms   = Path(translated_override.strip()) if translated_override.strip() else shuffled_dir / "synthetic_cms.csv"
-preprocessed    = Path(preprocessed_override.strip()) if preprocessed_override.strip() else shuffled_dir / "preprocessed_real.csv"
+combined_csv    = Path(combined_override.strip()) if combined_override.strip() else shuffled_dir / "combined.psv"
+combined_key    = shuffled_dir / "combined_key.csv"
+synthetic_cms   = Path(translated_override.strip()) if translated_override.strip() else shuffled_dir / "synthetic_cms.psv"
+preprocessed    = Path(preprocessed_override.strip()) if preprocessed_override.strip() else shuffled_dir / "preprocessed_real.psv"
 
 output_files = [
-    ("Combined CSV (no attachment hints)", combined_csv),
+    ("Combined PSV (no attachment hints)", combined_csv),
     ("Key CSV (real vs. synthetic labels)", combined_key),
-    ("Pre-processed Real CSV (attachment text merged)", preprocessed),
-    ("Translated Synthetic CSV", synthetic_cms),
+    ("Pre-processed Real PSV (attachment text merged)", preprocessed),
+    ("Translated Synthetic PSV", synthetic_cms),
 ]
 
 any_output = False
@@ -220,11 +220,12 @@ for label, fpath in output_files:
             st.write(f"📄 **{label}**: `{fpath}` ({size_kb} KB)")
         with col_dl:
             data = fpath.read_bytes()
+            mime = "text/csv" if fpath.suffix.lower() == ".csv" else "text/plain"
             st.download_button(
                 label="⬇️ Download",
                 data=data,
                 file_name=fpath.name,
-                mime="text/csv",
+                mime=mime,
                 key=f"dl_{fpath.name}",
             )
 

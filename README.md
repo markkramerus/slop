@@ -48,7 +48,7 @@ SLOP includes a browser-based GUI that wraps the full pipeline in a point-and-cl
 pip install -r requirements.txt
 
 # Start the web interface
-python run_gui.py
+python slop.py
 
 # Or equivalently:
 streamlit run gui/app.py
@@ -62,7 +62,7 @@ This opens a local browser tab at `http://localhost:8501`.
 |---|---|
 | 🏠 **Dashboard** | Pipeline status overview and per-step completion badges |
 | ⚙️ **Configuration** | Enter and save API keys; test connections |
-| 📥 **Download** | Download docket attachments with PDF→text conversion |
+| 📥 **Download Attachments** | Download docket attachments with PDF→text conversion |
 | 🔬 **Stylometry** | Analyze writing styles and preview generated voice skills |
 | 📋 **Campaign Planner** | Write a scenario brief, generate and edit `campaign_plan.json` |
 | ✍️ **Generate** | Configure and run comment generation with real-time log output |
@@ -147,6 +147,9 @@ echo "SLOP_EMBED_API_KEY=your_key_here" >> .env
 | `SLOP_API_BASE_URL` | Chat API base URL (default: `https://api.openai.com/v1`) |
 | `SLOP_API_KEY` | Chat/completion API key (required) |
 | `SLOP_CHAT_MODEL` | Chat model name (default: `gpt-4o`) |
+| `SLOP_EMBED_API_BASE_URL` | Base URL for embed API |
+| `SLOP_EMBED_API_KEY` | API key for embed model |
+| `SLOP_EMBED_MODEL` | Embedding model name |
 
 ## Sub-Applications
 
@@ -627,13 +630,13 @@ slop/
 ├── config.py                   # API configuration (reads .env / env vars)
 ├── shared_models.py            # Shared data models
 ├── requirements.txt            # Python dependencies
-├── run_gui.py                  # Convenience launcher for the web interface
+├── slop.py                  # Convenience launcher for the web interface
 │
 ├── gui/                        # Web Interface (Streamlit)
 │   ├── app.py                  # Entry point — pipeline dashboard
 │   ├── pages/
 │   │   ├── 1_⚙️_Configuration.py
-│   │   ├── 2_📥_Download.py
+│   │   ├── 2_📥_Download Attachments.py
 │   │   ├── 3_🔬_Stylometry.py
 │   │   ├── 4_📋_Campaign.py
 │   │   ├── 5_✍️_Generate.py

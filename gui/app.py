@@ -36,9 +36,7 @@ st.set_page_config(
 
 # ── Header ─────────────────────────────────────────────────────────────────────
 st.title("🤮 SLOP — Synthetic Letter-writing Opposition Platform")
-st.caption(
-)
-    "Generate realistic synthetic public comments for regulatory docket research."
+st.caption("Generate realistic synthetic public comments for regulatory docket research.")
 st.divider()
 
 # ── Docket ID selector ─────────────────────────────────────────────────────────
@@ -59,7 +57,7 @@ else:
     status = pipeline_status(docket_id)
 
     STEPS = [
-        ("📥 Download",         "download",   "2_📥_Download",   "Download attachments from regulations.gov"),
+        ("📥 Download Attachments","download",   "2_📥_Download Attachments", "Download attachments from regulations.gov"),
         ("🔬 Stylometry",       "stylometry", "3_🔬_Stylometry",  "Analyze writing styles in real comments"),
         ("📋 Campaign Planner", "campaign",   "4_📋_Campaign",    "Generate a structured campaign plan (optional)"),
         ("✍️ Generate",          "generate",   "5_✍️_Generate",    "Generate synthetic comments"),
@@ -139,7 +137,7 @@ with st.sidebar:
 Use the pages listed above to work through the pipeline in order:
 
 1. ⚙️ **Configuration** — Set API keys
-2. 📥 **Download** — Fetch attachments
+2. 📥 **Download Attachments** — Fetch attachments
 3. 🔬 **Stylometry** — Analyze writing styles
 4. 📋 **Campaign Planner** — Plan comment strategy
 5. ✍️ **Generate** — Create synthetic comments

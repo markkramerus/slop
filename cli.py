@@ -20,6 +20,9 @@ Environment variables (or .env file):
     SLOP_API_BASE_URL        Base URL for the chat/completion API
     SLOP_API_KEY             API key for chat/completion
     SLOP_CHAT_MODEL          Chat/completion model name
+    SLOP_EMBED_API_BASE_URL  Base URL for embed API
+    SLOP_EMBED_API_KEY       API key for embed model
+    SLOP_EMBED_MODEL         Embedding model name 
 
 Optional flags let you tune cost vs. quality:
     --no-relevance-check    Skip LLM topical-relevance QC
@@ -66,11 +69,11 @@ def build_shuffle_parser() -> argparse.ArgumentParser:
 Convention-based defaults (when --docket-id is provided)
 ---------------------------------------------------------
   --attachments-dir   {docket_id}/comment_attachments
-  --preprocessed-output {docket_id}/shuffled_comments/preprocessed_real.csv
+  --preprocessed-output {docket_id}/shuffled_comments/preprocessed_real.psv
   --syncom-output     {docket_id}/synthetic_comments/synthetic.txt
-  --translated-output {docket_id}/shuffled_comments/synthetic_cms.csv
+  --translated-output {docket_id}/shuffled_comments/synthetic_cms.psv
   --real-comments     {docket_id}/comments/{docket_id}.csv
-  --combined-output   {docket_id}/shuffled_comments/combined.csv
+  --combined-output   {docket_id}/shuffled_comments/combined.psv
 
 Examples
 --------
@@ -80,9 +83,9 @@ Examples
   # Full pipeline (translate + shuffle) with explicit paths:
   python cli.py shuffle \\
       --syncom-output  CMS-2025-0050/synthetic_comments/synthetic.txt \\
-      --translated-output CMS-2025-0050/shuffled_comments/synthetic_cms.csv \\
+      --translated-output CMS-2025-0050/shuffled_comments/synthetic_cms.psv \\
       --real-comments  CMS-2025-0050/comments/CMS-2025-0050.csv \\
-      --combined-output CMS-2025-0050/shuffled_comments/combined.csv
+      --combined-output CMS-2025-0050/shuffled_comments/combined.psv
 
   # Skip translation (provide an already-translated CMS CSV):
   python cli.py shuffle --docket-id CMS-2025-0050 --skip-translation
@@ -231,16 +234,16 @@ def run_shuffle(argv: list[str] | None = None) -> int:
             attachments_dir = os.path.join(docket_id, "comment_attachments")
         if preprocessed_output is None:
             preprocessed_output = os.path.join(
-                docket_id, "shuffled_comments", "preprocessed_real.csv"
+                docket_id, "shuffled_comments", "preprocessed_real.psv"
             )
         if syncom_output is None:
             syncom_output = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
         if translated_output is None:
-            translated_output = os.path.join(docket_id, "shuffled_comments", "synthetic_cms.csv")
+            translated_output = os.path.join(docket_id, "shuffled_comments", "synthetic_cms.psv")
         if real_comments is None:
             real_comments = os.path.join(docket_id, "comments", f"{docket_id}.csv")
         if combined_output is None:
-            combined_output = os.path.join(docket_id, "shuffled_comments", "combined.csv")
+            combined_output = os.path.join(docket_id, "shuffled_comments", "combined.psv")
 
     # Validate that required args are present
     missing = []

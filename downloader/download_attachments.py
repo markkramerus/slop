@@ -20,6 +20,7 @@ Usage:
     python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv -o custom/path
     python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
     python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --force-convert
+    python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text --include-presentations
 """
 
 import argparse
@@ -277,11 +278,12 @@ def print_summary(stats: dict, conversion_stats: dict | None = None) -> None:
         print("=" * 50)
         print("TEXT CONVERSION SUMMARY")
         print("=" * 50)
-        print(f"Documents processed:  {conversion_stats['document_count']}")
-        print(f"Total source files:   {conversion_stats['total_files']}")
-        print(f"Newly converted:      {conversion_stats['converted']}")
-        print(f"Skipped (existed):    {conversion_stats['skipped']}")
-        print(f"Failed:               {conversion_stats['failed']}")
+        print(f"Documents processed:      {conversion_stats['document_count']}")
+        print(f"Total source files:       {conversion_stats['total_files']}")
+        print(f"Newly converted:          {conversion_stats['converted']}")
+        print(f"Presentations skipped:    {conversion_stats.get('presentations_skipped', 0)}")
+        print(f"Skipped (existed):        {conversion_stats['skipped']}")
+        print(f"Failed:                   {conversion_stats['failed']}")
         print("=" * 50)
 
 
@@ -323,6 +325,16 @@ def main():
         '--force-convert',
         action='store_true',
         help='Force reconversion of .txt files even if they already exist (implies --convert-text)'
+    )
+
+    parser.add_argument(
+        '--include-presentations',
+        action='store_true',
+        help=(
+            'Convert PDFs that appear to be presentation slides or other '
+            'graphics-heavy documents (these are skipped by default because '
+            'their text extraction is typically fragmented and incoherent)'
+        ),
     )
     
     parser.add_argument(
@@ -381,6 +393,7 @@ def main():
                 docket_id=docket_id,
                 attachments_dir=args.output,
                 force=args.force_convert,
+                skip_presentations=not args.include_presentations,
             )
         except FileNotFoundError as e:
             logger.error(f"Text conversion failed: {e}")

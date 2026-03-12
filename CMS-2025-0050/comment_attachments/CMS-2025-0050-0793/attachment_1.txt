@@ -1,7 +1,241 @@
- 1 June 16, 2025 Centers for Medicare & Medicaid Services, Department of Health and Human Services Attention: CMS-0042-NC Mail Stop C4-26-05 7500 Security Boulevard Baltimore, MD 21244-1850 RE: Request for Information; Health Technology Ecosystem To Whom It May Concern: We appreciate the opportunity to comment on the Centers for Medicare and Medicaid Services’ (“CMS”) Request for Information regarding the Health Technology Ecosystem. These comments are submitted on behalf of Memoir, Inc. d/b/a Chapter (“Chapter”), a privately-owned, data and technology-enabled advisory that helps older Americans navigate retirement. Chapter offers licensed insurance agency services through its subsidiary, Chapter Medicare, LLC, doing business in most states as Chapter Advisory, LLC and in California as Chapter Insurance Services. Because Chapter is an independent technology company focused on Medicare navigation – not a provider, payer, or patient-advocacy group – many of our comments focus on Section E Technology Vendors, Data Providers, and Networks). Below, we first provide an overview of our organization then share our comments. I. How Chapter Operates Chapter has built a Medicare navigation platform that supports Americans with enrolling in Medicare, choosing the right plan for their needs, activating benefits, and optimizing coverage across every Medicare option in the country, including Medicare Advantage, Medicare Supplement1, Special Needs, and standalone Part D prescription drug plan. Specifically, to support our model, we have built and operate a best-in-class data platform with the specific attributes of every Medicare plan: premiums, cost sharing information, formularies, provider networks, and specific details on the magnitude and type of ancillary benefits offered (e.g., dental, transportation, hearing) as well how to access and easily use each benefit. This information is more granular and more complete than what is available via current government, carrier, and external sources. The Chapter platform includes consumer-facing applications that allow beneficiaries to take control of their Medicare journeys. 1 We use the terms “Medicare Supplement” and “Medigap plan” interchangeably. 
- 2 Our coverage recommendations are completely independent of our relationships with insurance carriers and plans – the compensation of licensed Medicare advisors at Chapter does not vary based on the specific coverage a beneficiary selects, even if that coverage generates no commission for Chapter. We consider dozens of personal factors to provide consumers with the optimal Medicare guidance. And when we make coverage recommendations, we look not only at Medicare Advantage plans, but also Special Needs Plans, Original Medicare with Medicare Supplements, and standalone Part D prescription plans. While we take a technology-driven approach to streamline the enrollment process, we also support consumers throughout the year to help them navigate their Medicare coverage, including by finding specialists who are in-network, determining the most cost-effective way to purchase and fill prescriptions, understanding claims, activating and accessing benefits, and answering the litany of other questions that arise. II. Comments on specific questions TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? CMS can take several steps to improve developer interest and uptake to build products useful for Medicare beneficiaries: (1) CMS should invest in developing clear, usable APIs for companies to build upon. Specifically, it should offer APIs that cover plan information including premiums, cost-sharing amounts, ancillary benefit data (e.g., dental, vision, transportation, hearing, etc.) and formularies. Specifically, ancillary benefit data should include both the type and magnitude of benefit available on each plan. This information is critical for a consumer to choose a plan that has the highest dollar value of comprehensive dental coverage, for example. Binary-level data regarding a plan’s coverage of any benefits of a given category (e.g., dental, hearing, etc.) is not useful for consumers looking to choose a plan that maximizes certain benefits. Similarly, formulary data must include the retail drug price of each prescription. Without the retail drug price, it is not possible to calculate a consumer’s expected cost-sharing for a particular prescription under a Part D plan. Chapter has invested tens of millions of dollars in building data infrastructure and pipelines to ingest and model this information. We believe there is an opportunity for CMS to enable 
- 3 developers building consumer-first tools, instead of serving as a significant impediment to innovation in this domain. (2) CMS should more rigorously enforce its requirement that MA plans publish provider directories via publicly accessible API (as required in the Interoperability and Patient Access Final Rule [CMS-9115-F])2. Chapter has requested provider APIs from many MA plans, and our experience is that many MA plans decline to make these APIs publicly available or have not even built them as required by the rule. Given the breadth of ostensible non-compliance with this rule, we believe that CMS could much more rigorously enforce this rule.3 (3) While CMS’ Interoperability and Prior Authorization Final Rule (CMS-0057-F) takes significant steps to require payers to make prior authorization information available starting in 2026 and 20274, its requirement that MA payers publicly report certain prior authorization metrics on their website is insufficient to support consumer needs when choosing plans.5 Without granular, standardized prior authorization data, organizations like Chapter cannot help consumers to understand which plans have the most appropriate and fair prior authorization processes for their specific needs. While it is laudable that the updated rule requires metrics to be posted at the contract level (vs. the parent organization-level), the actual metrics are neither sufficiently granular nor standardized. Specifically, the disclosure does not appear to require that denial rates or adjudication times be disclosed by service-type (e.g., as outlined in a Summary of Benefits or Evidence of Coverage, or by Diagnosis-Related Group (DRG). Equally problematic, CMS has noted that payers are merely required to post this general data and are not required to submit the information to CMS.6 The lack of submission to CMS will 2 See https://www.cms.gov/newsroom/fact-sheets/interoperability-and-patient-access-fact-sheet and https://www.cms.gov/priorities/key-initiatives/burden-reduction/interoperability/frequently-asked-questions/provider-directory-api. 3 Notably, CMS’ PY2026 proposed MA rule would have required carriers to submit accurate network data for incorporation into CMS’ Plan Finder. This provision, however, was not included in the final rule, so this critical need remains outstanding. 4 See https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-and-prior-authorization-final-rule-cms-0057-f 5 The requirements for the Prior Authorization API will help providers to understand and hopefully expedite requests for their patients, but the data capabilities and availability will not help consumers to understand a plan’s prior authorization practices when choosing coverage. This latter use case is also critically important. 6 See https://www.federalregister.gov/d/2024-00895/p-1467 
- 4 very likely undermine the standardization of this data, impeding useful cross-plan comparisons. (4) Because technology fluency and access among Medicare beneficiaries tends to be limited, CMS should not require consumers to input their Medicare.gov username and password in order to access BlueButton and should instead offer more accessible authentication methods like magic links or one-time-passwords. Furthermore, many beneficiaries either do not have a Medicare.gov account or cannot easily locate their login credentials. These issues create material impediments to broad usage and uptake of BlueButton, and CMS should simplify and streamline its permitted authentication methods to facilitate broader access and use. TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? Several examples include: (1) MA carriers can and do suppress plan availability by requiring enrollment platforms to suppress those plans from visibility by brokers and consumers alike. Over the past year, multiple MA and Part D plans decided to prohibit major quoting and enrollment platforms from showing plans for which carriers wish to compress enrollment.7 In some cases, hundreds of plans for a given carrier were made non-commissionable; they were typically offered by major carriers and were often in major states with significant populations.8 The impact is that plan availability is limited and biased towards the plans that the MA insurers wish to grow, even though they submitted or renewed bids for the plans that have 7 Many MA carriers also made these plans non-commissionable. In effect, carriers force brokers to face a tradeoff between their income and what’s right for a consumer. At Chapter, we decided to put consumers first. Our recommendation engine still includes all plans – including plans suppressed on other platforms and plans that are non-commissionable – and our licensed Medicare Advisors earn identical compensation irrespective of the commissionability status of a given plan. To our knowledge, we are the only Medicare advisory or brokerage organization to operate this way. 8 See, e.g. Richard Eisenberg, Medicare agents might not recommend the best plans this year as profits take priority, fortune.com, (Dec. 2, 2024), available at: https://fortune.com/well/article/medicare-advantage-agent-commission/ (Last visited Jan. 24, 2025). 
- 5 been suppressed. Because MA plans are ultimately taxpayer funded, sponsors should not be permitted to bias plan availability or enrollment by suppressing plans from enrollment platforms or making certain plans non-commissionable. (2) Medicare brokers and technology companies should not be required to receive approval from MA plans before publishing marketing materials or online plan information. The current regulatory regime is gated – the rules require approvals from both MA plans and CMS. We believe that only CMS approval should be required. The current regulatory requirements create a “fox / henhouse” dynamic that should be fixed. MA carriers can decline to review or approve materials – even those with information that is completely factual – if those materials encourage cross-plan comparison that the carriers believe will disadvantage their plans’ positioning in the marketplace. Pursuant to 42 CFR § 422.2261, the current regulatory regime requires all materials that meet the regulatory definition of “marketing” to be approved by both CMS and individual insurance plan sponsors via HPMS (the CMS-operated Health Plan Management System). Independent brokers are required to submit proposed materials to plan sponsors for approval before submitting materials in HPMS.9 And even if CMS has approved a submission, the applicable plan sponsors must still opt-in and approve the content, and the regulations state that all marketing materials, must identify the “marketing name(s) as listed in HPMS of the entities offering the referenced products or plans, benefits, or costs are identified in the marketing material.”10 Marketing materials and plan information displayed online should require approval only from CMS. MA carriers should not be required to review and approve those materials before submission to HPMS – which effectively gives sponsors veto power. Instead, third party submitters – like brokers or technology companies – should be required to attest to the factuality and accuracy of those materials, with penalties imposed on the submitters for any material inaccuracies. (3) Neither CMS nor plans (MAPD or Part D sponsors) make complete formulary data available to consumers or technology partners building tools for consumers. Specifically, as noted above, formulary data is not made available via API and the data that is disclosed still omits the retail price of particular drugs. Without the retail drug price, it is not possible to calculate a consumer’s expected cost sharing for a particular drug at a particular pharmacy. 9 42 CFR § 422.2261(a)(2) (“Materials must be submitted to the HPMS Marketing Module by the MA organization or, where materials have been developed by a Third Party Marketing Organization for multiple MA organizations or plans, by a Third Party Marketing Organization with prior review of each MA organization on whose behalf the materials were created or will be used.” (Emphasis added.) 10 42 CFR § 422.2263(b)(9). 
- 6 (4) As noted above, our experience is that many MA plans choose not to make their Provider Directories accessible via publicly available APIs, or worse, have not yet implemented these APIs as required by CMS-9115-F. PC-1. What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? Many benefits that are available in an MA plan are difficult to access. “Over-the-Counter” items, for example, can be painfully difficult to order due to retail, card network, and item restrictions. Chapter has built the Chapter OTC App, which allows consumers to redeem their OTC benefits with the click of a button. In addition, Medicaid status and eligibility information (which impacts enrollment decisions for dual-eligible Medicare beneficiaries) can be very hard for people to access and the APIs developers could use to develop tools that would help beneficiaries are currently very limited. PC-3. Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? The Chapter OTC App allows Medicare beneficiaries to seamlessly redeem their OTC credits, previously locked up in their Medicare Advantage plans. OTC is one of the most popular MA benefits, yet billions of dollars remain locked up and unused in plans due to consumer access challenges. PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? Medicare beneficiaries have difficulty using username and password as authentication and authorization methods. There should be alternative auth and authz access pathways. 
- 7 PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? a. What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, prices)? (1) Retail drug prices: beneficiaries do not know with confidence what their prescription copays will be on a given Medicare plan at a given pharmacy. This is largely because data on retail prescription prices is not available. (2) Provider network coverage: provider networks are generally not available via API and even when they are, they are materially incorrect. (3) Plan benefit utilization data: Knowing how much of your MOOP you've reached Knowing usage of benefit allowances per month/quarter/period deductible limits, etc. (4) Tools that allow for cost estimation: Make APIs available that would allow for better health care cost estimation and planning. Currently, beneficiaries are forced to guess and check to understand decision implications of different assumptions about variables like health care utilization and prescription consumption. PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? In addition to those mentioned above, Chapter views the following parameters as valuable for including in an API enabling digital products for patients and caretakers: ● Medicaid level and status ● Plan usage / utilization (i.e., deductibles, co-insurance, MOOP, individual benefit usage) *** Thank you for the opportunity to comment and for your consideration of these issues. 
+June 16, 2025
+Centers for Medicare & Medicaid Services, Department of Health and Human Services Attention:
+CMS-0042-NC
+Mail Stop C4-26-05
+7500 Security Boulevard
+Baltimore, MD 21244-1850
+RE: Request for Information; Health Technology Ecosystem
+To Whom It May Concern:
+We appreciate the opportunity to comment on the Centers for Medicare and Medicaid Services’
+(“CMS”) Request for Information regarding the Health Technology Ecosystem.
+These comments are submitted on behalf of Memoir, Inc. d/b/a Chapter (“Chapter”), a privately-
+owned, data and technology-enabled advisory that helps older Americans navigate retirement.
+Chapter offers licensed insurance agency services through its subsidiary, Chapter Medicare, LLC,
+doing business in most states as Chapter Advisory, LLC and in California as Chapter Insurance
+Services.
+Because Chapter is an independent technology company focused on Medicare navigation – not
+a provider, payer, or patient-advocacy group – many of our comments focus on Section E
+Technology Vendors, Data Providers, and Networks).
+Below, we first provide an overview of our organization then share our comments.
+I. How Chapter Operates
+Chapter has built a Medicare navigation platform that supports Americans with enrolling in
+Medicare, choosing the right plan for their needs, activating benefits, and optimizing coverage
+across every Medicare option in the country, including Medicare Advantage, Medicare
+Supplement1, Special Needs, and standalone Part D prescription drug plan. Specifically, to
+support our model, we have built and operate a best-in-class data platform with the specific
+attributes of every Medicare plan: premiums, cost sharing information, formularies, provider
+networks, and specific details on the magnitude and type of ancillary benefits offered (e.g., dental,
+transportation, hearing) as well how to access and easily use each benefit. This information is
+more granular and more complete than what is available via current government, carrier, and
+external sources. The Chapter platform includes consumer-facing applications that allow
+beneficiaries to take control of their Medicare journeys.
+1 We use the terms “Medicare Supplement” and “Medigap plan” interchangeably.
+1
+
+Our coverage recommendations are completely independent of our relationships with insurance
+carriers and plans – the compensation of licensed Medicare advisors at Chapter does not vary
+based on the specific coverage a beneficiary selects, even if that coverage generates no
+commission for Chapter. We consider dozens of personal factors to provide consumers with the
+optimal Medicare guidance. And when we make coverage recommendations, we look not only at
+Medicare Advantage plans, but also Special Needs Plans, Original Medicare with Medicare
+Supplements, and standalone Part D prescription plans.
+While we take a technology-driven approach to streamline the enrollment process, we also
+support consumers throughout the year to help them navigate their Medicare coverage, including
+by finding specialists who are in-network, determining the most cost-effective way to purchase
+and fill prescriptions, understanding claims, activating and accessing benefits, and answering the
+litany of other questions that arise.
+II. Comments on specific questions
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS
+take to stimulate developer interest in building digital health products for
+Medicare beneficiaries and caregivers?
+CMS can take several steps to improve developer interest and uptake to build products useful for
+Medicare beneficiaries:
+(1) CMS should invest in developing clear, usable APIs for companies to build upon.
+Specifically, it should offer APIs that cover plan information including premiums, cost-
+sharing amounts, ancillary benefit data (e.g., dental, vision, transportation, hearing, etc.)
+and formularies.
+Specifically, ancillary benefit data should include both the type and magnitude of benefit
+available on each plan. This information is critical for a consumer to choose a plan that
+has the highest dollar value of comprehensive dental coverage, for example. Binary-level
+data regarding a plan’s coverage of any benefits of a given category (e.g., dental, hearing,
+etc.) is not useful for consumers looking to choose a plan that maximizes certain benefits.
+Similarly, formulary data must include the retail drug price of each prescription. Without
+the retail drug price, it is not possible to calculate a consumer’s expected cost-sharing for
+a particular prescription under a Part D plan.
+Chapter has invested tens of millions of dollars in building data infrastructure and pipelines
+to ingest and model this information. We believe there is an opportunity for CMS to enable
+2
+
+developers building consumer-first tools, instead of serving as a significant impediment to
+innovation in this domain.
+(2) CMS should more rigorously enforce its requirement that MA plans publish provider
+directories via publicly accessible API (as required in the Interoperability and Patient
+Access Final Rule [CMS-9115-F])2.
+Chapter has requested provider APIs from many MA plans, and our experience is that
+many MA plans decline to make these APIs publicly available or have not even built them
+as required by the rule. Given the breadth of ostensible non-compliance with this rule, we
+believe that CMS could much more rigorously enforce this rule.3
+(3) While CMS’ Interoperability and Prior Authorization Final Rule (CMS-0057-F) takes
+significant steps to require payers to make prior authorization information available starting
+in 2026 and 20274, its requirement that MA payers publicly report certain prior
+authorization metrics on their website is insufficient to support consumer needs when
+choosing plans.5
+Without granular, standardized prior authorization data, organizations like Chapter cannot
+help consumers to understand which plans have the most appropriate and fair prior
+authorization processes for their specific needs.
+While it is laudable that the updated rule requires metrics to be posted at the contract level
+(vs. the parent organization-level), the actual metrics are neither sufficiently granular nor
+standardized.
+Specifically, the disclosure does not appear to require that denial rates or
+adjudication times be disclosed by service-type (e.g., as outlined in a Summary of
+Benefits or Evidence of Coverage, or by Diagnosis-Related Group (DRG). Equally
+problematic, CMS has noted that payers are merely required to post this general data and
+are not required to submit the information to CMS.6 The lack of submission to CMS will
+2 See https://www.cms.gov/newsroom/fact-sheets/interoperability-and-patient-access-fact-sheet and
+https://www.cms.gov/priorities/key-initiatives/burden-reduction/interoperability/frequently-asked-
+questions/provider-directory-api.
+3 Notably, CMS’ PY2026 proposed MA rule would have required carriers to submit accurate network data
+for incorporation into CMS’ Plan Finder. This provision, however, was not included in the final rule, so this
+critical need remains outstanding.
+4 See https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-and-prior-authorization-final-rule-
+cms-0057-f
+5 The requirements for the Prior Authorization API will help providers to understand and hopefully
+expedite requests for their patients, but the data capabilities and availability will not help consumers to
+understand a plan’s prior authorization practices when choosing coverage. This latter use case is also
+critically important.
+6 See https://www.federalregister.gov/d/2024-00895/p-1467
+3
+
+very likely undermine the standardization of this data, impeding useful cross-plan
+comparisons.
+(4) Because technology fluency and access among Medicare beneficiaries tends to be
+limited, CMS should not require consumers to input their Medicare.gov username and
+password in order to access BlueButton and should instead offer more accessible
+authentication methods like magic links or one-time-passwords.
+Furthermore, many beneficiaries either do not have a Medicare.gov account or cannot
+easily locate their login credentials. These issues create material impediments to broad
+usage and uptake of BlueButton, and CMS should simplify and streamline its permitted
+authentication methods to facilitate broader access and use.
+TD-18. Information blocking: a. Could you, as a technology vendor, provide
+examples for the types of practices you have experienced that may
+constitute information blocking. Please include both situations of non-
+responsiveness as well as situations that may cause a failure or unusable
+response?
+Several examples include:
+(1) MA carriers can and do suppress plan availability by requiring enrollment platforms to
+suppress those plans from visibility by brokers and consumers alike.
+Over the past year, multiple MA and Part D plans decided to prohibit major quoting and
+enrollment platforms from showing plans for which carriers wish to compress enrollment.7
+In some cases, hundreds of plans for a given carrier were made non-commissionable;
+they were typically offered by major carriers and were often in major states with significant
+populations.8
+The impact is that plan availability is limited and biased towards the plans that the MA
+insurers wish to grow, even though they submitted or renewed bids for the plans that have
+7 Many MA carriers also made these plans non-commissionable. In effect, carriers force brokers to face a
+tradeoff between their income and what’s right for a consumer. At Chapter, we decided to put consumers
+first. Our recommendation engine still includes all plans – including plans suppressed on other platforms
+and plans that are non-commissionable – and our licensed Medicare Advisors earn identical
+compensation irrespective of the commissionability status of a given plan. To our knowledge, we are the
+only Medicare advisory or brokerage organization to operate this way.
+8 See, e.g. Richard Eisenberg, Medicare agents might not recommend the best plans this year as profits
+take priority, fortune.com, (Dec. 2, 2024), available at: https://fortune.com/well/article/medicare-
+advantage-agent-commission/ (Last visited Jan. 24, 2025).
+4
+
+been suppressed. Because MA plans are ultimately taxpayer funded, sponsors should not
+be permitted to bias plan availability or enrollment by suppressing plans from enrollment
+platforms or making certain plans non-commissionable.
+(2) Medicare brokers and technology companies should not be required to receive approval
+from MA plans before publishing marketing materials or online plan information. The
+current regulatory regime is gated – the rules require approvals from both MA plans and
+CMS. We believe that only CMS approval should be required.
+The current regulatory requirements create a “fox / henhouse” dynamic that should be
+fixed. MA carriers can decline to review or approve materials – even those with information
+that is completely factual – if those materials encourage cross-plan comparison that the
+carriers believe will disadvantage their plans’ positioning in the marketplace.
+Pursuant to 42 CFR § 422.2261, the current regulatory regime requires all materials that
+meet the regulatory definition of “marketing” to be approved by both CMS and individual
+insurance plan sponsors via HPMS (the CMS-operated Health Plan Management
+System). Independent brokers are required to submit proposed materials to plan sponsors
+for approval before submitting materials in HPMS.9 And even if CMS has approved a
+submission, the applicable plan sponsors must still opt-in and approve the content, and
+the regulations state that all marketing materials, must identify the “marketing name(s) as
+listed in HPMS of the entities offering the referenced products or plans, benefits, or costs
+are identified in the marketing material.”10
+Marketing materials and plan information displayed online should require approval only
+from CMS. MA carriers should not be required to review and approve those materials
+before submission to HPMS – which effectively gives sponsors veto power. Instead, third
+party submitters – like brokers or technology companies – should be required to attest to
+the factuality and accuracy of those materials, with penalties imposed on the submitters
+for any material inaccuracies.
+(3) Neither CMS nor plans (MAPD or Part D sponsors) make complete formulary data
+available to consumers or technology partners building tools for consumers. Specifically,
+as noted above, formulary data is not made available via API and the data that is disclosed
+still omits the retail price of particular drugs. Without the retail drug price, it is not possible
+to calculate a consumer’s expected cost sharing for a particular drug at a particular
+pharmacy.
+9 42 CFR § 422.2261(a)(2) (“Materials must be submitted to the HPMS Marketing Module by the MA
+organization or, where materials have been developed by a Third Party Marketing Organization for
+multiple MA organizations or plans, by a Third Party Marketing Organization with prior review of each
+MA organization on whose behalf the materials were created or will be used.” (Emphasis added.)
+10 42 CFR § 422.2263(b)(9).
+5
+
+(4) As noted above, our experience is that many MA plans choose not to make their Provider
+Directories accessible via publicly available APIs, or worse, have not yet implemented
+these APIs as required by CMS-9115-F.
+PC-1. What health management or care navigation apps would help you
+understand and manage your (or your loved ones) health needs, as well as
+the actions you should take?
+Many benefits that are available in an MA plan are difficult to access. “Over-the-Counter” items,
+for example, can be painfully difficult to order due to retail, card network, and item restrictions.
+Chapter has built the Chapter OTC App, which allows consumers to redeem their OTC benefits
+with the click of a button.
+In addition, Medicaid status and eligibility information (which impacts enrollment decisions for
+dual-eligible Medicare beneficiaries) can be very hard for people to access and the APIs
+developers could use to develop tools that would help beneficiaries are currently very limited.
+PC-3. Are you aware of health management, care navigation, or personal
+health record apps that would be useful to Medicare beneficiaries and their
+caregivers?
+The Chapter OTC App allows Medicare beneficiaries to seamlessly redeem their OTC credits,
+previously locked up in their Medicare Advantage plans. OTC is one of the most popular MA
+benefits, yet billions of dollars remain locked up and unused in plans due to consumer access
+challenges.
+PC-6. What features are most important to make digital health products
+accessible and easy to use for Medicare beneficiaries and caregivers,
+particularly those with limited prior experience using digital tools and
+services?
+Medicare beneficiaries have difficulty using username and password as authentication and
+authorization methods. There should be alternative auth and authz access pathways.
+6
+
+PC-8. In your experience, what health data is readily available and valuable
+to patients or their caregivers or both?
+a. What data is valuable, but hard for patients and caregivers, or app
+developers and other technical vendors, to access for appropriate
+and valuable use (for example, claims data, clinical data, encounter
+notes, operative reports, appointment schedules, prices)?
+(1) Retail drug prices: beneficiaries do not know with confidence what their prescription
+copays will be on a given Medicare plan at a given pharmacy. This is largely because
+data on retail prescription prices is not available.
+(2) Provider network coverage: provider networks are generally not available via API and
+even when they are, they are materially incorrect.
+(3) Plan benefit utilization data: Knowing how much of your MOOP you've reached
+Knowing usage of benefit allowances per month/quarter/period
+deductible limits, etc.
+(4) Tools that allow for cost estimation: Make APIs available that would allow for better
+health care cost estimation and planning. Currently, beneficiaries are forced to guess
+and check to understand decision implications of different assumptions about variables
+like health care utilization and prescription consumption.
+PC-9. Given that the Blue Button 2.0 API only includes basic patient
+demographic, Medicare coverage, and claims data (Part A, B, D), what
+additional CMS data sources do developers view as most valuable for
+inclusion in the API to enable more useful digital products for patients and
+caretakers?
+In addition to those mentioned above, Chapter views the following parameters as valuable for
+including in an API enabling digital products for patients and caretakers:
+● Medicaid level and status
+● Plan usage / utilization (i.e., deductibles, co-insurance, MOOP, individual benefit usage)
+***
+Thank you for the opportunity to comment and for your consideration of these issues.
+7

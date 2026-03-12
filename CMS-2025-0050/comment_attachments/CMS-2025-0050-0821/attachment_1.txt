@@ -1,4 +1,141 @@
-850 Folsom St. San Francisco, C A 94107 hello@ picniccare.com June 16, 2025 Dr. M ehm et Oz Administrator of the Centers for Medicare & Medicaid Services Dr. Thom as Keane Assistant Secretary for Technology Policy National Coordinator for Health Information Technology Attention: CMS-0042-NC Re: Request for Information: Health Technology Ecosystem To Whom It May Concern, PicnicHealth is a health technology company that empowers patients by transforming their fragmented medical histories into structured, actionable data. For a decade, we have worked directly with patients, starting with the fundamental challenge of helping them aggregate their complete health stories. Our experiences guided our evolution from a service for requesting and digitizing patient records to one that also delivers virtual clinical services. PicnicHealth’s Virtual Clinic arm uses each patient’s rich data to close individual care gaps, order preventive labs or screenings, and coordinate care in support of their existing provider relationships. This work places us at the intersection of patient advocacy, technology, and clinical care delivery. As an organization navigating the complexities of medical record access, national data exchange networks, and virtual care delivery, we have a unique perspective on the real-world impact of digital health policy on patient care. We appreciate the opportunity to share our experience in this RFI. B. Patients and Caregivers PC-2: Obstacles to Accessing and Using Health Information Our platform empowers patients and caregivers by providing them with organized, accessible health information they can use to track their medical history, share it with providers, and better advocate for their care. Two examples illustrate this impact: ● For Caregivers: Parents of children with hemophilia have shared that our service is critical for helping them stay organized and coordinate care. We’ve heard similar experiences from caregivers of children or aging parents alike. picnichealth.com/care 
- ● For Patient Advocacy: We have supported patients with sickle cell disease who, when experiencing a pain crisis away from home, were able to use their records on our platform as proof to receive necessary pain medication and counter accusations of drug-seeking behavior. However, we’ve learned that simply possessing medical records does not make them useful. Medical information is optimized for provider workﬂows and revenue management with payers. Raw data without context or proper organization is confusing for patients and caregivers. 1. Lack of Patient-Friendly Context: Clinical notes are ﬁlled with medical jargon and shorthand that are incomprehensible to the average patient. To address this, PicnicHealth built an AI-powered assistant that uses a patient's personalized medical history to explain clinical terms. However, the underlying need demonstrates a fundamental gap in how clinical data is presented to patients. 2. Difﬁcult to Read Sections: Key sections of the medical record that are intended to provide a quick summary of a patient's health require expertise to decipher. Structured data like meds or problem lists may be outdated and unreconciled. Narrative sections like the "History of Present Illness" may carry forward years of historical data, making it difﬁcult for patients to identify what information is current and relevant. C. Providers PR-3: Importance of Complete Data Accessibility from EHRs As a next-generation provider, we serve modern patients who are more engaged, informed, and involved in their own care. We meet this demand by using accessible tools—like telehealth, at-home diagnostics, and mobile phlebotomy—to bring care directly to them. In our work, it is critically important that all data is stored and accessible within the EHR, regardless of format. Lacking a national patient identiﬁer, the ability to pull a complete record from each provider is the only way to assemble a comprehensive history. We highlight some challenges today: 1. Data Format Challenges: a. DICOM Imaging: Medical imaging, such as MRIs and CT scans, is critical to many diagnostic journeys but remains siloed in separate PACs systems, outside of portals or HIEs. To solve this, PicnicHealth developed our own in-app DICOM viewer, but these tools do not exist universally. b. Wearables : Consumer wearables play a growing role in the average American’s day to day life, but this data exists outside of the healthcare data ecosystem. We’re working to integrate wearable data into our product to give providers more insight into what happens outside of the doctor’s ofﬁce. picnichealth.com/care 
- 2. Barriers to Data Completeness: Our fragmented healthcare system means that longitudinal data is difﬁcult to construct, as provider or insurance changes can meaningfully disrupt where and how data is stored. a. Practice Consolidation: When small practices close or are acquired, their data is often not migrated to interoperable systems. This orphans patient records and disproportionately affects patients in rural settings, placing the burden of retrieval on them. b. Provider Movement: When a provider moves to a new, unafﬁliated practice, their prior patient records do not move with them. The continuity of the patient-provider relationship is not matched by continuity in the patient's data. c. Episodic Care: Records from emergency room visits or urgent care are critical for a patient's primary care team but are often not transmitted back. Years later, patients struggle to recall the details needed to retrieve them, creating permanent gaps in their history. 3. Technical Barriers of Health Information Exchange (HIE) Data: A query for a patient with a complex history can return dozens of C-CDA documents, which the provider or vendor servicing that provider needs to process, de-duplicate, normalize, and render it to make it clinically useful. a. De-duplication and Synthesis: The volume of documents from HIEs often contains immense amounts of information, some of which is redundant. It is a major engineering and data science challenge to de-duplicate this data and synthesize it into a single, clean, and reliable source of truth for clinical decision-making. PR-12: Revising Information Blocking Exceptions Yes, ASTP/ONC should consider revising or clarifying the conditions of the information blocking exceptions to support emerging, patient-centric care models. Our experience reveals an ambiguity in how vetting is performed within the current interoperability framework, speciﬁcally under TEFCA’s XP Vetting SOP. While the current TEFCA deﬁnition of provider allows cash-pay, in practice, it may exclude those that do not bill insurance. Virtual clinics like ours, which operate through both direct-to-patient and payer models, have received questions by interoperability networks because they expect to see traditional payer relationships that generate HIPAA Standard Transactions. This narrow interpretation of a provider, inappropriately blocks data exchange to innovative care models and constitutes a form of information blocking. This is inconsistent with TEFCA's own procedures, which allow for "equivalent encounter information" as a substitute for payer claims. E. Technology Vendors, Data Providers, and Networks picnichealth.com/care 
- TD-3: Digital Identity Implementation While TEFCA has outlined a path for identity veriﬁcation using a single, high-assurance digital identity credential (e.g., NIST IAL2), the real-world outcome does not match the written intent. The current implementation creates a frustrating and duplicative process for patients, who may complete a rigorous identity veriﬁcation process only to be forced to repeatedly authenticate several separate portal passwords for every single provider and health plan. This fragmented system creates two major challenges for technology platforms: 1. Duplicative and Burdensome Workﬂows: Requiring patients to complete an IAL2 veriﬁcation and then manage individual portal passwords defeats the purpose of a uniﬁed credential. This friction leads to patient abandonment and undermines efforts to facilitate seamless data access. 2. Unsynchronized and Unmanageable Permissions: Portal passwords and access tokens expire on inconsistent schedules, forcing patients into an unpredictable process for re-authentication. Making access renewal for a trusted application difﬁcult presents a signiﬁcant barrier to longitudinal care. TD-18. Information Blocking Practices In our work retrieving records manually on behalf of patients, we encounter information blocking from the "long tail" of facilities not yet engaged in digital exchange networks. These practices serve as a major barrier to patient access. ● Prohibitive Fees: We are charged per-patient "search fees" of $20-$50, even when no records are found. We have also received invoices in the thousands of dollars for a single patient's records. These fees are a clear ﬁnancial deterrent to exercising the right of access. ● Outright Refusal to Share: Despite presenting a valid, patient-signed HIPAA release form, some facilities refuse to share records with us as a patient's representative, speciﬁcally barring their employees from communicating with our business. ● Unreasonable Delays: Some facilities engage in passive information blocking through extreme delays, failing to respond to repeated follow-up phone calls for months. We recommend CMS and ONC increase enforcement against these more invisible forms of information blocking. Thank you for the opportunity to respond on this important issue. Sincerely, S arah W eng PicnicHealth, Chief of Staff picnichealth.com/care 
+850 Folsom St.
+San Francisco, CA 94107
+hello@picniccare.com
+June 16, 2025
+Dr. Mehmet Oz
+Administrator of the Centers for Medicare & Medicaid Services
+Dr. Thomas Keane
+Assistant Secretary for Technology Policy
+National Coordinator for Health Information Technology
+Attention: CMS-0042-NC
+Re: Request for Information: Health Technology Ecosystem
+To Whom It May Concern,
+PicnicHealth is a health technology company that empowers patients by transforming their
+fragmented medical histories into structured, actionable data. For a decade, we have worked directly
+with patients, starting with the fundamental challenge of helping them aggregate their complete
+health stories. Our experiences guided our evolution from a service for requesting and digitizing
+patient records to one that also delivers virtual clinical services.
+PicnicHealth’s Virtual Clinic arm uses each patient’s rich data to close individual care gaps, order
+preventive labs or screenings, and coordinate care in support of their existing provider relationships.
+This work places us at the intersection of patient advocacy, technology, and clinical care delivery. As
+an organization navigating the complexities of medical record access, national data exchange
+networks, and virtual care delivery, we have a unique perspective on the real-world impact of digital
+health policy on patient care.
+We appreciate the opportunity to share our experience in this RFI.
+B. Patients and Caregivers
+PC-2: Obstacles to Accessing and Using Health Information
+Our platform empowers patients and caregivers by providing them with organized, accessible health
+information they can use to track their medical history, share it with providers, and better advocate
+for their care. Two examples illustrate this impact:
+● For Caregivers: Parents of children with hemophilia have shared that our service is critical
+for helping them stay organized and coordinate care. We’ve heard similar experiences from
+caregivers of children or aging parents alike.
+picnichealth.com/care
+
+● For Patient Advocacy: We have supported patients with sickle cell disease who, when
+experiencing a pain crisis away from home, were able to use their records on our platform as
+proof to receive necessary pain medication and counter accusations of drug-seeking
+behavior.
+However, we’ve learned that simply possessing medical records does not make them useful. Medical
+information is optimized for provider workflows and revenue management with payers. Raw data
+without context or proper organization is confusing for patients and caregivers.
+1. Lack of Patient-Friendly Context: Clinical notes are filled with medical jargon and
+shorthand that are incomprehensible to the average patient. To address this, PicnicHealth
+built an AI-powered assistant that uses a patient's personalized medical history to explain
+clinical terms. However, the underlying need demonstrates a fundamental gap in how clinical
+data is presented to patients.
+2. Difficult to Read Sections: Key sections of the medical record that are intended to provide a
+quick summary of a patient's health require expertise to decipher. Structured data like meds
+or problem lists may be outdated and unreconciled. Narrative sections like the "History of
+Present Illness" may carry forward years of historical data, making it difficult for patients to
+identify what information is current and relevant.
+C. Providers
+PR-3: Importance of Complete Data Accessibility from EHRs
+As a next-generation provider, we serve modern patients who are more engaged, informed, and
+involved in their own care. We meet this demand by using accessible tools—like telehealth, at-home
+diagnostics, and mobile phlebotomy—to bring care directly to them.
+In our work, it is critically important that all data is stored and accessible within the EHR, regardless
+of format. Lacking a national patient identifier, the ability to pull a complete record from each
+provider is the only way to assemble a comprehensive history. We highlight some challenges today:
+1. Data Format Challenges:
+a. DICOM Imaging: Medical imaging, such as MRIs and CT scans, is critical to many
+diagnostic journeys but remains siloed in separate PACs systems, outside of portals
+or HIEs. To solve this, PicnicHealth developed our own in-app DICOM viewer, but
+these tools do not exist universally.
+b. Wearables: Consumer wearables play a growing role in the average American’s day
+to day life, but this data exists outside of the healthcare data ecosystem. We’re
+working to integrate wearable data into our product to give providers more insight
+into what happens outside of the doctor’s office.
+picnichealth.com/care
+
+2. Barriers to Data Completeness: Our fragmented healthcare system means that longitudinal
+data is difficult to construct, as provider or insurance changes can meaningfully disrupt
+where and how data is stored.
+a. Practice Consolidation: When small practices close or are acquired, their data is
+often not migrated to interoperable systems. This orphans patient records and
+disproportionately affects patients in rural settings, placing the burden of retrieval on
+them.
+b. Provider Movement: When a provider moves to a new, unaffiliated practice, their
+prior patient records do not move with them. The continuity of the patient-provider
+relationship is not matched by continuity in the patient's data.
+c. Episodic Care: Records from emergency room visits or urgent care are critical for a
+patient's primary care team but are often not transmitted back. Years later, patients
+struggle to recall the details needed to retrieve them, creating permanent gaps in
+their history.
+3. Technical Barriers of Health Information Exchange (HIE) Data: A query for a patient with a
+complex history can return dozens of C-CDA documents, which the provider or vendor
+servicing that provider needs to process, de-duplicate, normalize, and render it to make it
+clinically useful.
+a. De-duplication and Synthesis: The volume of documents from HIEs often contains
+immense amounts of information, some of which is redundant. It is a major
+engineering and data science challenge to de-duplicate this data and synthesize it
+into a single, clean, and reliable source of truth for clinical decision-making.
+PR-12: Revising Information Blocking Exceptions
+Yes, ASTP/ONC should consider revising or clarifying the conditions of the information blocking
+exceptions to support emerging, patient-centric care models. Our experience reveals an ambiguity
+in how vetting is performed within the current interoperability framework, specifically under TEFCA’s
+XP Vetting SOP. While the current TEFCA definition of provider allows cash-pay, in practice, it may
+exclude those that do not bill insurance.
+Virtual clinics like ours, which operate through both direct-to-patient and payer models, have
+received questions by interoperability networks because they expect to see traditional payer
+relationships that generate HIPAA Standard Transactions. This narrow interpretation of a provider,
+inappropriately blocks data exchange to innovative care models and constitutes a form of
+information blocking. This is inconsistent with TEFCA's own procedures, which allow for "equivalent
+encounter information" as a substitute for payer claims.
+E. Technology Vendors, Data Providers, and Networks
+picnichealth.com/care
+
+TD-3: Digital Identity Implementation
+While TEFCA has outlined a path for identity verification using a single, high-assurance digital
+identity credential (e.g., NIST IAL2), the real-world outcome does not match the written intent. The
+current implementation creates a frustrating and duplicative process for patients, who may
+complete a rigorous identity verification process only to be forced to repeatedly authenticate
+several separate portal passwords for every single provider and health plan.
+This fragmented system creates two major challenges for technology platforms:
+1. Duplicative and Burdensome Workflows: Requiring patients to complete an IAL2
+verification and then manage individual portal passwords defeats the purpose of a unified
+credential. This friction leads to patient abandonment and undermines efforts to facilitate
+seamless data access.
+2. Unsynchronized and Unmanageable Permissions: Portal passwords and access tokens
+expire on inconsistent schedules, forcing patients into an unpredictable process for
+re-authentication. Making access renewal for a trusted application difficult presents a
+significant barrier to longitudinal care.
+TD-18. Information Blocking Practices
+In our work retrieving records manually on behalf of patients, we encounter information blocking from
+the "long tail" of facilities not yet engaged in digital exchange networks. These practices serve as a
+major barrier to patient access.
+● Prohibitive Fees: We are charged per-patient "search fees" of $20-$50, even when no
+records are found. We have also received invoices in the thousands of dollars for a single
+patient's records. These fees are a clear financial deterrent to exercising the right of access.
+● Outright Refusal to Share: Despite presenting a valid, patient-signed HIPAA release form,
+some facilities refuse to share records with us as a patient's representative, specifically
+barring their employees from communicating with our business.
+● Unreasonable Delays: Some facilities engage in passive information blocking through
+extreme delays, failing to respond to repeated follow-up phone calls for months.
+We recommend CMS and ONC increase enforcement against these more invisible forms of
+information blocking.
+Thank you for the opportunity to respond on this important issue.
+Sincerely,
+Sarah Weng
+PicnicHealth, Chief of Staff
+picnichealth.com/care

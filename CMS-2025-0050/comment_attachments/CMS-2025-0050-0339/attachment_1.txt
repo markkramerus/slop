@@ -1,28 +1,1214 @@
- From: The FHIR Department https://www.linkedin.com/groups/14439457/ Centers for Medicare & Medicaid Services, Department of Health and Human Services, Attention: CMS-0042-NC To whom it may concern, We appreciate the opportunity to contribute to the improvement of patient-centered healthcare in the US via this response to the CMS RFI (CMS-0042-NC). We are excited that CMS is considering the perspectives of patients and technology providers to compliment the voices of payers and providers on these matters. The FHIR Department is a group of 250+ industry experts and leaders specialized in FHIR and/or policies that require FHIR. Our members represent a very diverse and passionate cross section of participants in the health care and health tech industries. Together, the group has prepared comments in response to the request for information from Health and Human Services (HHS) including the Centers for Medicare and Medicaid Services (CMS) and the Office of the National Coordinator (ONC). The breadth of perspectives held by the group allows us to provide a uniquely broad set of feedback that we hope will be valuable in guiding CMS decision making. We agree with CMS leadership that with aggressive, informed and judicious action by the federal government we can reduce barriers to data access and exchange, realize the potential of recent innovations in healthcare that promote better health outcomes, and accelerate progress towards a patient-centric learning health system. The tables that follow represent our direct responses to the questions posed in the RFI. Sincerely, The FHIR Department 1 
- Table of Contents I. Patients and Caregivers ............................................................................................................. 3 Patient Needs (PC-1:PC-7) ..................................................................................................... 3 Data Access and Integration (PC-8:PC-12) ............................................................................. 7 Information Blocking and Digital Identity (PC-13:PC-14) ....................................................... 13 II. Providers .................................................................................................................................. 14 Digital Health Apps (PR-1:PR-3) ........................................................................................... 14 Data Exchange (PR-4:PR-8) ................................................................................................. 14 Digital Identity (PR-9:PR-10) ................................................................................................. 15 Information Blocking (PR-11:PR-14) ...................................................................................... 16 III. Technology Vendors, Data Providers, and Networks .............................................................. 16 Ecosystem (TD-1:TD-2) ......................................................................................................... 16 Digital Identity (TD-3) ............................................................................................................. 17 Technical Standards and Certification (TD-4:TD-11) ............................................................. 18 Data Exchange (TD-12:TD-17) .............................................................................................. 21 Compliance (TD-18:TD-19) ................................................................................................... 23 IV. Payers .................................................................................................................................... 23 Payers (PA-1:PA-7) ................................................................................................................ 23 V. Value-Based Care Organizations ............................................................................................ 26 Digital Health Adoption (VB-1:VB-4) ...................................................................................... 26 Compliance and Certification (VB-5:VB-10) .......................................................................... 27 Technical Standards (VB-11:VB-15) ...................................................................................... 27 Submission Requirements ..................................................................................................... 28 2 
-I. Patients and Caregivers Patient Needs (PC-1:PC-7) Label Question Response PC-1 What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? As a caregiver, apps like PrimaryRecord empower patients to share their health data with their family or caregivers in an organized way. In addition, public access to formulary/preferred drug list is encouraged. The Da Vinci Formulary IG was originally designed as a "shopping" app. CMS-9115 required it to be a secure api, as part of the Patient Access API. CMS should require this to become an open API, like the Provider Directory requirement in CMS-9115. This would enable apps to provide the expected cost of medications when a citizen is searching for a new health plan. As a caregiver and individual, the most impactful apps support key healthcare decisions: choosing a plan or provider, understanding costs, checking in, and accessing health data. These are universal moments in the care journey. These apex use cases depend on robust interoperability and data infrastructure; without it, even well-designed apps fall short. Success in these areas reflects the maturity of the health tech ecosystem and helps patients, providers, and plans make decisions that support high-quality, sustainable care. PC-1a What are the top things you would like to be able to do for your or your loved ones’ health that can be enabled by digital health products? In order to meet their health needs, having a holistic view of the patient's health helps the caregiver in advocating for the patient and communicating to their provider. Combining claim and clinical data offers a holistic view to patients and caregivers. 3 
-PC-1b If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? In your response, please consider tasks that could be supported or facilitated by software solutions in the future. Organization of records and access to resources that the patient qualifies for, such as medication reviews and needs at home that impact their health. I want an assistant that can find the first available in-network provider by checking my health plan’s directory, filtering by availability, specialty, location, and whether they’re accepting new patients—then book the earliest appointment, sync with my calendar, and send check-in instructions, replacing today’s inefficient process of calls and web searches. The assistant should also help me choose the best health plan by reviewing options based on my conditions, medications, and preferred providers, simulating total costs, and highlighting trade-offs like a lower premium vs. keeping my primary care doctor. Lastly, I’d ask it to estimate my out-of-pocket costs for services like MRIs or lab tests, and ideally show cost and quality comparisons so I can make informed decisions. PC-2 Do you have easy access to your own and all your loved ones’ health information in one location (for example, in a single patient portal or another software system)? No. Even current apps on the market still require login/connection to all the health portals. Payers data made accessible for Patient Access APIs in 2021 is still not easily accessible to patients. The process for connecting is not clearly communicated on the payer's websites. PC-2a If so, what are some examples of benefits it has provided? Apps like PrimaryRecord integrate Patient data from all the portals (connected by the patient) into a pdf file for patients to share with their family and providers. There are not many other apps available that adequately make this data accessible. PC-2b If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? Caregivers will need support for families with Alzheimer's and Dementia that are on the rise over the next 5 years, they need resources to see the patient's journey when the patient can't remember. 4 
-PC-2c Were there particular data types, such as x-rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones’ complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? X-rays are not visible, but the radiology review/impression is visible. PC-3 Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? PrimaryRecord is the best I've seen so far, developed by a nurse for patients with real-world needs. PC-4 What features are missing from apps you use or that you are aware of today? Connecting to all the portals with a single sign on. Knowing which portals to connect to for patients with several providers. PC-4a What apps should exist but do not yet? Why do you believe they do not exist yet? While the CMS and Payer APIs are free to access, developers still need to be able to sustain their applications. This requires revenue. Since health consumers are generally reluctant to pay for applications, the consumer becomes the product to be monetized. CMS should consider how consumers could have their choice of digital health apps paid for by their health plan, or through a tax deduction. This would then provide a revenue stream for app developers where the consumer is the customer and not the product. This could encourage new apps to be developed to meet the consumer's needs, rather than the needs proposed by their health plan. 5 
-PC-4b What set of workflows do you believe CMS is uniquely positioned to offer? A centralized repository for apps to better connect patients to the API endpoints that have been implemented since 2021. CMS is uniquely positioned to ensure the availability, accuracy, and usability of core data infrastructure—such as Provider Directory APIs, Price Transparency machine-readable files, and Patient Access APIs—by focusing on certifying these APIs, monitoring data quality, and enforcing compliance rather than building consumer apps. Its greatest impact would come from making standardized, trusted data publicly accessible, enabling third-party developers to build innovative, user-centered tools. If CMS were to build consumer-facing workflows, they should be reference implementations proving that this data is complete, accurate, and ready to power the broader health tech ecosystem. PC-5 What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? Require payers & providers to offer clearer instructions on how patients can connect to APIs implemented in 2021 for Patient Access. Provide a digital insurance card, with links to a member's digital health data. PC-5a What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if there is a review process? What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary communications)? CMS should work with the industry to identify an affordable app certification program for consumer health apps that would enable certified apps to take advantage of automated app registration, as is promised by the adoption of FAST Security and UDAP. CMS should have a clearer process for removing artifacts from the patient record. As more data is exchanged and accessible to patients, false information in the chart is carried with the patient to every provider they visit once Provider Access APIs go live in 2027. 6 
-PC-5b What changes would enable timely access to high quality CMS and provider generated data on patients? Improving data integration and making the implemented APIs more easily accessible to the app developers with a centralized repository of endpoints. PC-6 What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? Having an endpoint directory to be able to find provider and payer APIs is an essential element in enabling timely access to data. PC-7 If CMS were to collect real-world data on digital health products’ impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? That requires increasing app utilization of patients, which is dependent on an improved centralized repository of API endpoints as well as a centralized list of the CMS approved/ HHS certified digital health products. Enabling a digital identity that is portable would reduce the friction of registration and managing multiple user ids and passwords. Data Access and Integration (PC-8:PC-12) Label Question Response PC-8 In your experience, what health data is readily available and valuable to patients or their caregivers or both? Lab results are increasingly more readily available. The data made accessible via Patient Access APIs in 2021 is valuable to patients and caregivers however it seems as if patients are not accessing their data. Patient Access API utilization metrics due March 31, 2026 should be a good reference of how many patients are already accessing their data. 7 
-PC-8a What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, prices)? Formulary data is typically held behind a secure api. This only becomes available to consumers after they become a customer of a health plan. The ExplanationOfBenefit resource adds value to all stakeholders but access to specific details may vary. Claims are great line item 'receipts' to the services billed / performed. The required Implementation Guide standard should be as defined in Carin for Blue Button (C4BB). PC-8b What are specific sources, other than claims and clinical data, that would be of highest value, and why? The Patient resource and understanding FHIR architecture around important operations related to the Patient resource. Visibility to quality and performance data for payers and providers would enable consumers to make informed decisions about plans they subscribe to and providers they obtain services from. The CMS-0057-F rule will force Payers to publish Prior Authorization performance data on their public web site. CMS should require this to be published in a standardized format to enable easy comparison. PC-8c What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? CMS /ASTP/ONC, should require Providers and Payers and other health organizations to enable a member/patient to request that their preferred identity (e.g. email, Drivers License, or other identifier of choice) be registered as a Patient Identifer in their record. This should be required to be exchanged when a patient record is shared. This would enable patients to use an identifier with each provider or service they interact with. Over time this would help with patient matching across systems when data is exchanged. CCD to FHIR, v2 to R4 integrations should be considered with the volume of CCDs already being exchanged at the regional/state level 8 
-PC-9 Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? NPPES/PECOS provider and payer endpoint data should be available openly, through FHIR APIs, to enable applications and services to more easily discover other data apis. PC-9a What difficulties are there in accessing or utilizing these data sources today? Finding data sources is still a major challenge. Gaining access (registering) to use the APIs is challenging and time consuming exercise. PC-9b What suggestions do you have to improve the Blue Button 2.0 API experience? The process is not very clear for connecting to Blue Button. The Medicare CMS portal holds great information of claims but they are not easily accessible within the API PC-9c Is there non-CMS data that should be included in the API? Not if it results in that Non-CMS data being delayed in it's availability to consumers. "non" CMS data should not be required without patient consent. Within the applications used by patients, patients should be empowered to integrate more data for patient access not CMS access. PC-10b What changes would you suggest? Better transparency of operational use cases and defined access controls Expand to new use cases outside of treatment purpose of use. Today the focus is on clinician to clinician exchanges, but to have a truly viable patient data sharing eco-system all stakeholders need to have access to near real time data to make sure decisions are informed by accurate and up to date information. This includes payment, and operations data. Accelerating the IAS use case with consents, to allow for patients to share all data they want to including clinical and payment, with App vendors will allow for an app eco system to evolve on help patients have fully actionable data such as cost, location, copays, vouchers, discounts, prior authorizations etc that can help them understand which treatment options and 9 
-services are best suited to their circumstance. Accelerate sharing of data via FHIR over a trusted exchange and help accelerate the necessary components to ensure that this can scale, such as FAST security IG. Make the location of the data searchable and discoverable via a Nationwide endpoint directory or other mechanism. Ensure claims and coverage data available via FHIR APIs near real time, as it enables innovation, and will help the patient make the right decision for their health circumstance. Where appropriate allow for sharing of data in bulk via the networks to ensure data liquidity for B2B processes that require large data sets, such as those needed for population health and quality metrics. PC-10c What use cases could have a significant impact if implemented through TEFCA? Individual Access Services would be important as this flow enables the patient to participate in a network that shares their data. Patient can become a key source of truth to validate items such as which medications are currently active, ensuring that they are a full participant in the data exchanges. Operation purpose of use becoming mandatory would allow for Payers to be full participants in TEFCA. Payer provide information across the breadth of the patient care, identifying care settings that individual HCOs may not have visibility to. Access to up to date financial and clinical data ensures that the care itself is cost effective and is providing quality outcomes. PC-10d What standards are you aware of that are currently working well to advance access and existing exchange purposes? FAST Security IG (UDAP), Bulk FHIR APIs PC-10e What standards are you aware of that are not currently in wide use, but could improve data access and integration? While Bulk FHIR APIs are theoretically in widespread availability, they are not in widespread use because in many cases developers find it challenging to get access to EMR vendor sandboxes in order to test the operation of those Bulk APIs. 10 
-PC-10f Are there redundant standards, protocols, or channels that should be consolidated? Many of the existing standards that require onerous and manual efforts. For instance to set up a HL7 V2 exchange a VPN is required. This is a manual and laborious process, requiring multiple back and forths to ensure data is flowing correctly. Moving to FHIR subscriptions, expanded write back via FHIR and CDS Hooks would enable these flows to happen via one standard. Event messaging could be replaced by a combination of CDS Hooks and FHIR Subscriptions. PC-10g Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? Any solution that provides the core capabilities of TEFCA could be used; but will require many of the components already designed and worked on, or working in TEFCA - A single security and dynamic registration process, a federated or central patient discovery, endpoint discovery, a trust framework with defined processes to ensure that the network participants understand and abide by rules for participation. A governance process, whether central or collaborative to ensure compliance with network rules to ensure fundamental trust. In addition, a framework to involve patients, with an intuitive and secure consent framework and an identification validation process to ensure that patient data is being shared with the right person.Many of these components are already or have been piloted in TEFCA. PC-11 How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? Some HIEs work with their state Medicaid Agency to make Patient Access Apis available to Medicaid beneficiaries PC-11a How valuable, available, and accurate do you find the data they share to be? Data sharing over HIEs both regional and nationwide has been widely publicized to be inconsistent and lacking consistent data quality. Standardized data quality framework such as piqiframework, is required to ensure that the data is not only available, but usable, integratable and actionable. 11 
-PC-11b What changes would you suggest? Have a standardized framework to report on the data quality, a good example is piqiframework. This would provide transparency to the quality of the data being produced and shared via networks. With required reporting on endpoint data quality metrics such as data completeness and conformance PC-11c Are there particular examples of high-performing HIE models that you believe should be propagated across markets? Maryland and Connecticut partnered with OnyxHealth.io to be an early implementer of Patient Access APIs for Medicaid beneficiaries. PC-11d What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? The HIEs should not be forced to exchange data on TEFCA. Currently the CCD (HL7v2) from an approved HIE are used by payers in Quality and Operational workflows. PC-12 What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? A Digital insurance card and digital identity that enabled the elimination of the clipboard by enabling a patient to provide their health history and medications via a link from their digital insurance card. PC-12a a. Examples may include the following: (1) Binding cost estimates for pre-defined periods. (2) Viewing provider schedule availability. (3) Using third-party apps for appointment management. (4) Accessing patient-facing quality metrics. (5) Finding the right provider for specific healthcare needs. Accessing patient-facing quality metrics would add value to the Ecosystem PC-12b What use cases are possible today? A CARIN specification already exists for a digital insurance card. This has also been shown to enable a link to an Advance Directive. 12 
-PC-12c What should be possible in the near future? With stronger monitoring and enforcement, in-network status and cost estimation could become universally accessible and reliable, resolving common issues in Provider Directory APIs and Price Transparency files that developers have long documented and reported. Standardizing and ensuring the completeness of these files would enable accurate information for patients, laying the groundwork for better care navigation and more effective competition among health plans and providers. PC-12d What would be very valuable but may be very hard to achieve? Accessing all claim and clinical data (including the CCD) from the Payer's API endpoint Information Blocking and Digital Identity (PC-13:PC-14) Label Question Response PC-14 Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 credentialing service providers (CSP)): Those digital identities have to be able to be used at popular web sites and when connecting to your provider's EMR and web site services at the member's health plan. PC-14a What are the challenges today in getting patients/caregivers to sign up and use digital identity credentials? Fewer userids and passwords. Better security. PC-14e What role should CMS/payers, providers, and app developers have in driving adoption? Require support for Tiered Oauth from FAST Security. PC-14f How can CMS encourage patients to get digital identity credentials? Give them more places to use a digital identity. 13 
-II. Providers Digital Health Apps (PR-1:PR-3) Label Question Response PR-2 What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated? CMS needs to make clear their continued support for the adoption of FHIR APIs and Implementation Guides. This should also extend to a clear support for FHIR-based digital quality measurement and exchange. Data Exchange (PR-4:PR-8) Label Question Response PR-4 What changes or improvements to standards or policies might be needed for patients’ third-party digital products to have access to administrative workflows, such as auto-populating intake forms, viewing provider information and schedules, and making and modifying an appointment? Replacing the clipboard with a digital exchange of patient information is a critical step in improving the quality and accuracy of information used across healthcare. To enable seamless patient experiences through third-party digital health applications, critical improvements are needed in both standards and enforcement—particularly stronger monitoring of payer APIs (such as Provider Directory, Patient Access, and Prior Authorization APIs) for availability, standards compliance, queryability, and data quality. PR-8 What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? CMS should accelerate the adiption of digital HEDIS measures. PR-8a What would be the benefits and downsides of using Bulk FHIR data Subscription driven data exchange may be more effective to enable close to realtime 14 
-exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? access to member information when they receive service. PR-8c Are there requirements CMS should consider for data registries to support digital quality measurement in a more efficient manner? Are there requirements CMS should consider for data registries that would support access to real-time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? CMS should have a clearer process defined to reduce burden related to Primary Source Validation when transitioning to dQMs. Digital Identity (PR-9:PR-10) Label Question Response PR-9a What would providers need help with to accelerate the transition to a single set of trusted digital identity credentials for the patient to keep track of, instead of one for each provider? Providers would need help with updating their identity management services to support portable digital identities. PR-9b How might CMS balance patient privacy with convenience and access to digital health products and services that may lead to significant improvements in health? Enabling easier exchange of patient consent preferences could help ensure an organization respects the privacy requirements from a patient. PR-10b b. How would requiring their use improve access to health information? Fewer userids and passwords to remember. PR-10f f. Would combining FHIR addresses and identity improve data flow? FHIR already integrates authentication into secure API implementations. 15 
- Information Blocking (PR-11:PR-14) Label Question Response PR-11 How could members of trust communities3 (for example, QHINs, participants and subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential Service Providers (CSPs)) better support the goals of reduced provider and patient burden while also enhancing identity management and security? Achieving IAL2 verification is a one-time activity for a user. Once obtained, pervasive acceptance of the credential with IAL2 level clearance, ultimately reduces the effort to gain secure access to data. III. Technology Vendors, Data Providers, and Networks Ecosystem (TD-1:TD-2) Label Question Response TD-1 What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? Free API access is not enough to drive development of Apps. Developers need a path to revenue in order to have a sustainable app. Since the vast majority of consumers are reluctant to pay for apps developers resort to advertising, selling data, or earning commission for connecting patients with pharma or research trials. In all these cases the Consumer is the product. Creating a mechanism for consumers to charge the cost of an app subscription to their taxes, or their health benefits would enable app developers to treat the consumer as the customer. It would enable market dynamics to be more aligned with consumers rather than other stakeholders. 16 
-TD-2a a. What additional data would be most valuable if made available through CMS APIs? Patient demographics, Enrollment/ Coverage data, ExplanationOfBenefit and/or Claim, and all the clinical data they receive from the providers. Patient Access API mandates this data be made accessible since 2021, better enforcement is needed. TD-2c c. What obstacles prevent accessing these data sources today? Formulary data is typically held behind a secure api. This only becomes available to consumers after they become a customer of a health plan. TD-2d d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? Give payers and Medicaid agencies the option to NOT mail a physical insurance card to beneficiaries. Let consumers have the option of using a digital insurance card. Digital Identity (TD-3) Label Question Response TD-3 Regarding digital identity implementation: see TD3a-c TD-3a a. What are the challenges and benefits? Helping consumers to become familiar with the technology and understand how and were they can use their digital identity. TD-3b How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? Implementing digital identity can reduce the number of passwords and userids needed y a consumer. It also enables higher level protections, such as biometrics to be used on those accounts. TD-3c What impact would mandatory use of the OpenID Connect identity protocol have? Standardising a connectivity method for authentication between systems simplifies implementation. However, open/id would need to be extended to support personal representative flows. 17 
-Technical Standards and Certification (TD-4:TD-11) Label Question Response TD-4 How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? CMS can drive greater use of standards-based APIs by ensuring the infrastructure it has already mandated is truly available, usable, and trustworthy. This includes enforcing that required APIs (such as Patient Access, Provider Directory, and Prior Authorization APIs) are published, discoverable, standards-conformant, and expose complete, accurate data. CMS can further incentivize trust by establishing a certification program and publicly listing high-performing APIs to guide developers toward reliable data sources. TD-5 How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? Establishing a directory of endpoints is as essential to FHIR/Interoperability as DNS was to making the World Wide Web viable. Users need the ability to locate FHIR endpoints, by community, from a reliable and common location in order to meaningfully interoperate. The information should be published and maintained by CMS or a selected contractor then tested and validated by a third party. Various hosts could be delegates for information lookup. TD-6 What unique interoperability functions does TEFCA perform? TD-6a a. What existing alternatives should be considered? There have been several alternatives offered to TEFCA - existing HIEs from organizations such as CareQuality and eHealthExchange have existed for some time offering ways to obtain data across a national exchange. Organizations like CAQH previously had their Core product that attempted to solve issues of patient matching and coverage history by offering mastered patient data across their participant network, and more recently blockchain vendors such as Avaneer and Velox Metadata have presented alternatives 18 
-that push a "closed network" of participants who can share and exchange data that is mastered via blockchain technology or other federated digital identity models. The theme with each of these options is the cost being a barrier to truly interoperable exchange of data. TD-6b b. Are there redundant standards, protocols or channels or both that should be consolidated? There seems to be a lot of redundancy and crossover between FHIR-based API exchange and the IHE profiles. There is definitely room for consolidation here and I believe the industry would benefit from a consolidation of efforts, particularly related to identity matching and authorization scope for patient data exchange. TD-7d Given improvements in language models, would you prefer a non-proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? Large language models (LLMs) offer great promise for extracting information from less structured data formats, but at this early stage of LLM evolution, we advocate well-defined data structures to ensure patient safety and avoid imposing another processing layer on the solution stack. TD-9a What are the benefits of redefining certification to prioritize API-enabled capabilities over software functionality? APIs provide more clearly defined functionality. These functions can be tested using automated test processes. TD-9e How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? What capabilities are needed to show benefit? What concerns are there with this approach? Bulk APIs also need to be supplemented with subscription APIs that enable data triggers for patient activity to be detected and enable data retrieval. This will enable more real-time, rather than batch-based, data collection and analysis. 19 
-TD-10 For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act’s API condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer’s APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient’s electronic health record to the extent permissible under applicable privacy laws? ASTP/ONC should encourage technology vendors and EHR implementations to support a full complement of US Core profiles. Current (g)(10) certification criteria allow EHR vendors to claim compliance after only testing a few of the profiles. US Core profile(s) not supported should result in the certification exemption(s)/exclusion(s), noting the profile(s) for which the vendor has not demonstrated conformance. "Without special effort", should also include being able to access a synthetic data sandbox to enable testing of API functionality. An exception could be granted if the APIs have been certified by a recognized industry standard to perform as the APIs are specified in recognized standards implementation guides. TD-11 As of January 1, 2024, many health IT developers with products certified through the ONC Health IT Certification Program are required to include the capability to perform an electronic health information export or “EHI export” for a single patient as well as for patient populations (45 CFR 170.315(b)(10)). Such health IT developers are also required to publicly describe the format of the EHI export. Notably, how EHI export was accomplished was left entirely to the health IT developer. Now that this capability has been in production for over a year, CMS and ASTP/ONC seek input on the following: See TD11a-c TD-11a Should this capability be revised to specify standardized API requirements for EHI export? Yes. A lack of standardization is a hindrance to Health IT innovation, and the absence of specificity drives unpredictable results. Standardized EHI export would create a foundational data capability that would be an enabler to multiple interoperability use cases, so guidance from ASTP/ONC and CMS is important for clarifying the baseline technical and functional capabilities of exchanging EHI via interoperable APIs using the FHIR data model. 20 
-TD-11b Are there specific workflow aspects that could be improved? A standardized EHI export would create a workflow enabling EHI data holders to quickly and efficiently respond to EHI export requests (i.e., eliminate the current manual workflow). Ideally, such a process would be self-serve, thus eliminating workflow burden for the EHI holder and wait times for the requestor. TD-11c Should CMS consider policy changes to support this capability’s use? We have all experienced that policy providing regulatory guidance and technical requirements can facilitate implementations and drive adoption. As with previous legislation around interoperability, standards such as USCDI and the recommended FHIR Implementation Guides (IGs) ensured that organizations could conform to the final rule(s) and build dependable conformance testing based on the IGs. EHI-on-FHIR would be no exception, and so policy guidance that clearly articulates regulatory expectations for the technical and functional requirements for this use case would be welcomed Data Exchange (TD-12:TD-17) Label Question Response TD-12 Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? We recommend that CMS carefully evaluate non-CMS networks, and we encourage you to also engage with your federal partners to evaluate the potential benefits to US taxpayers of that participation helping us realize the vision of a truly nationwide health information exchange network. TD-13 What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient’s electronic health information (EHI)? APIs providing the entirety of a patient’s EHI will create new insights for patients, providers, payers and researchers that will improve patient care, claims accuracy and accelerate research breakthroughs. TD-13a What are the primary obstacles to this? Health IT vendor roadmaps are driven by financial incentives and regulatory 21 
-requirements. The absence of these is the primary obstacle. TD-13b What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing capabilities today? With the ongoing emergence of AI tools, the entirety of a patient's EHI will be extracted soon--with, or without, the cooperation of the health IT vendors. Given this, it is in the best interests of all stakeholders, including commercial payers, health IT vendors and CMS, to see official (fully vetted and certified) APIs emerge. TD-15 Regarding bulk FHIR APIs: see TD15a-b TD-15a How would increased use of bulk FHIR improve use cases and data flow? Increasing the use of Bulk FHIR is essential for its adoption and refinement. A good analogy is network effects. The more Bulk FHIR is used, the more valuable it becomes, encouraging additional use cases and refinement, which drives additional adoption and incresing standardization of data flow. TD-15b What are the potential disadvantages of their use? To realize this potential, more work needs to bedone exploring how to best prepare and share data so that the requestor can utilize multiple requests to improve speed and address connectivity and error/recovery conditions. TD-17 Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? Vendors, data providers and networks (along with their stakeholders) react to the rules and incentives created (and enforced) by CMS and ASTP/ONC. In an ideal US healthcare system, all actors would respond to their innate desires to optimize patient outcomes, and most try. However, the health IT community has been trained to respond to rules, incentives and penalties. Turn these dials to achieve the network viability (usage and outcomes) you seek. 22 
-Compliance (TD-18:TD-19) Label Question Response TD-18 Information blocking: See TD18a TD-18a Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? Not all EHR vendors make a sandbox available for testing (g)(10) capabilities, including bulk FHIR. Access to the sandbox may need to be "sponsored" by an existing customer. IV. Payers Payers (PA-1:PA-7) Label Question Response PA-2 How can CMS encourage payers to accelerate the implementation and utilization of APIs for patients, providers, and other payers, similar to the Blue Button 2.0 and Data at the Point of Care APIs released by CMS? Data at the point of care is just for FFS beneficiaries, which CMS is the payer for. Having a similar requirement for Payers is a good start. More broadly, CMS can be a prime adopter and modify their exchanges to utilize any FHIR IGs which would help drive adoption by providers and other actors, thereby driving adoption. CMS can adjust payments that favor FHIR exchanges and FHIR formats. PA-3 How can CMS encourage payers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins? This is a best practice in the commercial world, so it should be an easy sell. Most at-scale platforms use digital identity credentials and/or login tokens. There are many models to choose from; we suggest allowing payers choose from a menu of the top three options, not just one. PA-4 What would be the value to payers of a nationwide provider directory that included FHIR end points and used digital identity credentials? A nationwide provider directory with FHIR endpoints and digital identity credentials would offer transformative value to payers in the following ways: 1. Improved Access to Clinical Data - With 23 
-reliable FHIR endpoints associated with verified digital identities, payers could more efficiently retrieve clinical data from providers for HEDIS quality measurement, risk adjustment, and value-based care initiatives. This reduces reliance on manual chart retrieval or proprietary data exchange channels, improving timeliness, completeness, and lowering administrative costs. 2. Streamlined Credentialing and Reduced Redundancy - If provider credentials, such as licensure, board certifications, and education degrees, were digitally signed by primary sources (e.g., state boards, ABMS, medical schools), and accepted by accreditation bodies such as NCQA and The Joint Commission, payers could: Rely on digitally verified credentials for network participation Reduce redundant verification across Medicare FFS, Medicaid, Medicare Advantage, Medicaid MCOs, and ACA plans Significantly lower credentialing costs and reduce provider abrasion 3. Centralized Source of Accurate Directory Data - By collecting foundational directory data (e.g., provider name, NPI, practice location, phone number, organizational affiliation) in a single authoritative source: Accuracy can be centrally monitored and enforced Duplicative data collection efforts by each payer are avoided Errors, outdated information, and administrative inefficiencies are minimized 24 
-PA-5 What are ways payers can help with simplifying clinical quality data responsibilities of providers? Drive the switch to Digital HEDIS measures. PA-5a How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider-side technology? Bulk Access to EHRs will continue to be constrained while there is no regulated method for exchanging attribution/Group lists. Bulk APIs, including optional parameters such as _since and _until need to be standardized across EHRs. While bulk needs to be able to query for large groups of patients, it also needs to enable finegrained requests for resources, rather than a "give me everything" request. 25 
-PA-5b In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? Support the adoption of DEQM and digital HEDIS measures. PA-7 How can CMS encourage payers to submit information blocking complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? Looking at the Information Blocking Portal, along with ONC's Information Blocking Data about submitted information blocking claims, could lead a payer to assume that such claims are not welcome from them. Modifying the Portal UX to make it clear that claims are welcome from payers would be a good first step. A good second step would be to reach out to payers to provide encouragement to submit those claims. Regardless of who submits a claim, the impact of increased claim volume would illustrate that CMS and ASTP/ONC is actively enforcing Information Blocking rules, and the impact on data exchange would be to discourage would-be "blockers" from engaging in that behavior. V. Value-Based Care Organizations Digital Health Adoption (VB-1:VB-4) Label Question Response VB-3b b. What other health IT capabilities have proven valuable to succeeding in value-based care arrangements? Medication reconciliation apps to help monitor the drugs prescribed, including the time of day they are administered. Tracking symptoms and side effects of those drugs. Immediately raising the red flag for contraindications missed from the provider. Linking patients to coupons for the drugs that are priced too high. Showing the status of the drugs, discounts, and cheaper alternatives to discuss with the provider. 26 
-Compliance and Certification (VB-5:VB-10) Label Question Response VB-6 What specific health information technology capabilities that could benefit APMs are not currently addressed by existing certification criteria and standards that should be included under the ONC Health IT Certification Program? Data exchange of the Explanation of Benefit, or the Claim & ClaimResponse from payer to provider would have several use cases for the Provider including Risk & Quality workflows. Technical Standards (VB-11:VB-15) Label Question Response VB-11 What specific interoperability challenges have you encountered in implementing value-based care programs? Provider only has time in the day to see the patients with appointments, not chasing down the patients that have been attributed to the Provider but does not ever go to the doctor. 27 
- Submission Requirements Comments, including mass comment submissions, must be submitted in one of the following three ways (please choose only one of the ways listed): 1. Electronically . You may submit electronic comments on this regulation to https://www .regulations.gov . Follow the "Submit a comment" instructions. 2. By regular mail . You may mail written comments to the following address ONLY: Centers for Medicare & Medicaid Services, Department of Health and Human Services, Attention: CMS-0042-NC, P.O. Box 8013, Baltimore, MD 21244-8013. Please allow sufficient time for mailed comments to be received before the close of the comment period. 3. By express or overnight mail . You may send written comments to the following address ONLY: Centers for Medicare & Medicaid Services, Department of Health and Human Services, Attention: CMS-0042-NC, Mail Stop C4-26-05, 7500 Security Boulevard, Baltimore, MD 21244-1850 28 
+From:
+The FHIR Department
+https://www.linkedin.com/groups/14439457/
+Centers for Medicare & Medicaid Services,
+Department of Health and Human Services,
+Attention: CMS-0042-NC
+To whom it may concern,
+We appreciate the opportunity to contribute to the improvement of patient-centered healthcare in
+the US via this response to the CMS RFI (CMS-0042-NC). We are excited that CMS is
+considering the perspectives of patients and technology providers to compliment the voices of
+payers and providers on these matters.
+The FHIR Department is a group of 250+ industry experts and leaders specialized in FHIR
+and/or policies that require FHIR. Our members represent a very diverse and passionate cross
+section of participants in the health care and health tech industries. Together, the group has
+prepared comments in response to the request for information from Health and Human Services
+(HHS) including the Centers for Medicare and Medicaid Services (CMS) and the Office of the
+National Coordinator (ONC). The breadth of perspectives held by the group allows us to
+provide a uniquely broad set of feedback that we hope will be valuable in guiding CMS decision
+making.
+We agree with CMS leadership that with aggressive, informed and judicious action by the
+federal government we can reduce barriers to data access and exchange, realize the potential
+of recent innovations in healthcare that promote better health outcomes, and accelerate
+progress towards a patient-centric learning health system. The tables that follow represent our
+direct responses to the questions posed in the RFI.
+Sincerely,
+The FHIR Department
+1
+
+Table of Contents
+I. Patients and Caregivers.............................................................................................................3
+Patient Needs (PC-1:PC-7).....................................................................................................3
+Data Access and Integration (PC-8:PC-12).............................................................................7
+Information Blocking and Digital Identity (PC-13:PC-14).......................................................13
+II. Providers..................................................................................................................................14
+Digital Health Apps (PR-1:PR-3)...........................................................................................14
+Data Exchange (PR-4:PR-8).................................................................................................14
+Digital Identity (PR-9:PR-10).................................................................................................15
+Information Blocking (PR-11:PR-14)......................................................................................16
+III. Technology Vendors, Data Providers, and Networks..............................................................16
+Ecosystem (TD-1:TD-2).........................................................................................................16
+Digital Identity (TD-3).............................................................................................................17
+Technical Standards and Certification (TD-4:TD-11).............................................................18
+Data Exchange (TD-12:TD-17)..............................................................................................21
+Compliance (TD-18:TD-19)...................................................................................................23
+IV. Payers....................................................................................................................................23
+Payers (PA-1:PA-7)................................................................................................................23
+V. Value-Based Care Organizations............................................................................................26
+Digital Health Adoption (VB-1:VB-4)......................................................................................26
+Compliance and Certification (VB-5:VB-10)..........................................................................27
+Technical Standards (VB-11:VB-15)......................................................................................27
+Submission Requirements.....................................................................................................28
+2
+
+I. Patients and Caregivers
+Patient Needs (PC-1:PC-7)
+Label Question Response
+As a caregiver, apps like PrimaryRecord
+empower patients to share their health data
+with their family or caregivers in an
+organized way.
+In addition, public access to
+formulary/preferred drug list is encouraged.
+The Da Vinci Formulary IG was originally
+designed as a "shopping" app. CMS-9115
+required it to be a secure api, as part of the
+Patient Access API. CMS should require
+this to become an open API, like the
+Provider Directory requirement in
+What health management or care CMS-9115. This would enable apps to
+navigation apps would help you understand provide the expected cost of medications
+PC-1 and manage your (or your loved ones) when a citizen is searching for a new health
+health needs, as well as the actions you plan.
+should take?
+As a caregiver and individual, the most
+impactful apps support key healthcare
+decisions: choosing a plan or provider,
+understanding costs, checking in, and
+accessing health data. These are universal
+moments in the care journey. These apex
+use cases depend on robust interoperability
+and data infrastructure; without it, even
+well-designed apps fall short. Success in
+these areas reflects the maturity of the
+health tech ecosystem and helps patients,
+providers, and plans make decisions that
+support high-quality, sustainable care.
+In order to meet their health needs, having
+What are the top things you would like to a holistic view of the patient's health helps
+be able to do for your or your loved ones’ the caregiver in advocating for the patient
+PC-1a
+health that can be enabled by digital health and communicating to their provider.
+products? Combining claim and clinical data offers a
+holistic view to patients and caregivers.
+3
+
+Organization of records and access to
+resources that the patient qualifies for, such
+as medication reviews and needs at home
+that impact their health.
+I want an assistant that can find the first
+available in-network provider by checking
+my health plan’s directory, filtering by
+availability, specialty, location, and whether
+If you had a personal assistant to support they’re accepting new patients—then book
+your health needs, what are the top things the earliest appointment, sync with my
+you would ask them to help with? In your calendar, and send check-in instructions,
+PC-1b
+response, please consider tasks that could replacing today’s inefficient process of calls
+be supported or facilitated by software and web searches. The assistant should
+solutions in the future. also help me choose the best health plan
+by reviewing options based on my
+conditions, medications, and preferred
+providers, simulating total costs, and
+highlighting trade-offs like a lower premium
+vs. keeping my primary care doctor. Lastly,
+I’d ask it to estimate my out-of-pocket costs
+for services like MRIs or lab tests, and
+ideally show cost and quality comparisons
+so I can make informed decisions.
+No. Even current apps on the market still
+require login/connection to all the health
+Do you have easy access to your own and
+portals. Payers data made accessible for
+all your loved ones’ health information in
+PC-2 Patient Access APIs in 2021 is still not
+one location (for example, in a single
+easily accessible to patients. The process
+patient portal or another software system)?
+for connecting is not clearly communicated
+on the payer's websites.
+Apps like PrimaryRecord integrate Patient
+data from all the portals (connected by the
+If so, what are some examples of benefits it patient) into a pdf file for patients to share
+PC-2a
+has provided? with their family and providers. There are
+not many other apps available that
+adequately make this data accessible.
+Caregivers will need support for families
+If not, in what contexts or for what
+with Alzheimer's and Dementia that are on
+workflows would it be most valuable to use
+PC-2b the rise over the next 5 years, they need
+one portal or system to access all such
+resources to see the patient's journey when
+health information?
+the patient can't remember.
+4
+
+Were there particular data types, such as
+x-rays or specific test results, that were
+unavailable? What are the obstacles to
+accessing your own or your loved ones’
+complete health information electronically X-rays are not visible, but the radiology
+PC-2c
+and using it for managing health conditions review/impression is visible.
+or finding the best care (for example,
+limitations in functionality, user friendliness,
+or access to basic technology
+infrastructure)?
+Are you aware of health management, care
+PrimaryRecord is the best I've seen so far,
+navigation, or personal health record apps
+PC-3 developed by a nurse for patients with
+that would be useful to Medicare
+real-world needs.
+beneficiaries and their caregivers?
+Connecting to all the portals with a single
+What features are missing from apps you
+PC-4 sign on. Knowing which portals to connect
+use or that you are aware of today?
+to for patients with several providers.
+While the CMS and Payer APIs are free to
+access, developers still need to be able to
+sustain their applications. This requires
+revenue. Since health consumers are
+generally reluctant to pay for applications,
+the consumer becomes the product to be
+monetized. CMS should consider how
+What apps should exist but do not yet? consumers could have their choice of
+PC-4a
+Why do you believe they do not exist yet? digital health apps paid for by their health
+plan, or through a tax deduction. This
+would then provide a revenue stream for
+app developers where the consumer is the
+customer and not the product. This could
+encourage new apps to be developed to
+meet the consumer's needs, rather than the
+needs proposed by their health plan.
+5
+
+A centralized repository for apps to better
+connect patients to the API endpoints that
+have been implemented since 2021.
+CMS is uniquely positioned to ensure the
+availability, accuracy, and usability of core
+data infrastructure—such as Provider
+Directory APIs, Price Transparency
+machine-readable files, and Patient Access
+APIs—by focusing on certifying these APIs,
+What set of workflows do you believe CMS
+PC-4b monitoring data quality, and enforcing
+is uniquely positioned to offer?
+compliance rather than building consumer
+apps. Its greatest impact would come from
+making standardized, trusted data publicly
+accessible, enabling third-party developers
+to build innovative, user-centered tools. If
+CMS were to build consumer-facing
+workflows, they should be reference
+implementations proving that this data is
+complete, accurate, and ready to power the
+broader health tech ecosystem.
+Require payers & providers to offer clearer
+instructions on how patients can connect to
+What can CMS and its partners do to APIs implemented in 2021 for Patient
+PC-5 encourage patient and caregiver interest in Access.
+these digital health products?
+Provide a digital insurance card, with links
+to a member's digital health data.
+What role, if any, should CMS have in
+CMS should work with the industry to
+reviewing or approving digital health
+identify an affordable app certification
+products
+program for consumer health apps that
+on the basis of their efficacy, quality or
+would enable certified apps to take
+impact or both on health outcomes (not
+advantage of automated app registration,
+approving in the
+as is promised by the adoption of FAST
+sense of a coverage determination)? What
+Security and UDAP.
+criteria should be used if there is a review
+PC-5a
+process?
+CMS should have a clearer process for
+What technology solutions, policy changes,
+removing artifacts from the patient record.
+or program design changes can increase
+As more data is exchanged and accessible
+patient and caregiver adoption of digital
+to patients, false information in the chart is
+health products (for example,
+carried with the patient to every provider
+enhancements to data access,
+they visit once Provider Access APIs go
+reimbursement adjustments, or new
+live in 2027.
+beneficiary communications)?
+6
+
+Improving data integration and making the
+What changes would enable timely access
+implemented APIs more easily accessible
+PC-5b to high quality CMS and provider generated
+to the app developers with a centralized
+data on patients?
+repository of endpoints.
+What features are most important to make
+digital health products accessible and easy
+Having an endpoint directory to be able to
+to use for Medicare beneficiaries and
+PC-6 find provider and payer APIs is an essential
+caregivers, particularly those with limited
+element in enabling timely access to data.
+prior experience using digital tools and
+services?
+That requires increasing app utilization of
+patients, which is dependent on an
+improved centralized repository of API
+If CMS were to collect real-world data on
+endpoints as well as a centralized list of the
+digital health products’ impact on health
+CMS approved/ HHS certified digital health
+PC-7 outcomes and related costs once they are
+products.
+released into the market, what would be the
+best means of doing so?
+Enabling a digital identity that is portable
+would reduce the friction of registration and
+managing multiple user ids and passwords.
+Data Access and Integration (PC-8:PC-12)
+Label Question Response
+Lab results are increasingly more readily
+available.
+The data made accessible via Patient
+Access APIs in 2021 is valuable to patients
+In your experience, what health data is
+and caregivers however it seems as if
+PC-8 readily available and valuable to patients
+patients are not accessing their data.
+or their caregivers or both?
+Patient Access API utilization metrics due
+March 31, 2026 should be a good reference
+of how many patients are already accessing
+their data.
+7
+
+Formulary data is typically held behind a
+secure api. This only becomes available to
+consumers after they become a customer of
+What data is valuable, but hard for patients
+a health plan.
+and caregivers, or app developers and
+other technical vendors, to access for
+The ExplanationOfBenefit resource adds
+PC-8a appropriate and valuable use (for example,
+value to all stakeholders but access to
+claims data, clinical data, encounter notes,
+specific details may vary. Claims are great
+operative reports, appointment schedules,
+line item 'receipts' to the services billed /
+prices)?
+performed. The required Implementation
+Guide standard should be as defined in
+Carin for Blue Button (C4BB).
+The Patient resource and understanding
+FHIR architecture around important
+operations related to the Patient resource.
+Visibility to quality and performance data for
+payers and providers would enable
+What are specific sources, other than
+consumers to make informed decisions
+PC-8b claims and clinical data, that would be of
+about plans they subscribe to and providers
+highest value, and why?
+they obtain services from. The CMS-0057-F
+rule will force Payers to publish Prior
+Authorization performance data on their
+public web site. CMS should require this to
+be published in a standardized format to
+enable easy comparison.
+CMS /ASTP/ONC, should require Providers
+and Payers and other health organizations
+to enable a member/patient to request that
+their preferred identity (e.g. email, Drivers
+License, or other identifier of choice) be
+registered as a Patient Identifer in their
+What specific opportunities and challenges record. This should be required to be
+exist to improve accessibility, exchanged when a patient record is shared.
+interoperability and integration of clinical This would enable patients to use an
+PC-8c
+data from different sources to enable more identifier with each provider or service they
+meaningful clinical research and interact with. Over time this would help with
+generation of actionable evidence? patient matching across systems when data
+is exchanged.
+CCD to FHIR, v2 to R4 integrations should
+be considered with the volume of CCDs
+already being exchanged at the
+regional/state level
+8
+
+Given that the Blue Button 2.0 API only
+includes basic patient demographic,
+Medicare coverage, and claims data (Part NPPES/PECOS provider and payer
+A, B, D), what additional CMS data endpoint data should be available openly,
+PC-9 sources do through FHIR APIs, to enable applications
+developers view as most valuable for and services to more easily discover other
+inclusion in the API to enable more useful data apis.
+digital products for patients and
+caretakers?
+Finding data sources is still a major
+What difficulties are there in accessing or challenge. Gaining access (registering) to
+PC-9a
+utilizing these data sources today? use the APIs is challenging and time
+consuming exercise.
+The process is not very clear for connecting
+What suggestions do you have to improve to Blue Button. The Medicare CMS portal
+PC-9b
+the Blue Button 2.0 API experience? holds great information of claims but they
+are not easily accessible within the API
+Not if it results in that Non-CMS data being
+delayed in it's availability to consumers.
+Is there non-CMS data that should be "non" CMS data should not be required
+PC-9c
+included in the API? without patient consent. Within the
+applications used by patients, patients
+should be empowered to integrate more
+data for patient access not CMS access.
+Better transparency of operational use
+cases and defined access controls
+Expand to new use cases outside of
+treatment purpose of use. Today the focus is
+on clinician to clinician exchanges, but to
+have a truly viable patient data sharing
+eco-system all stakeholders need to have
+access to near real time data to make sure
+decisions are informed by accurate and up
+PC-10b What changes would you suggest? to date information. This includes payment,
+and operations data.
+Accelerating the IAS use case with
+consents, to allow for patients to share all
+data they want to including clinical and
+payment, with App vendors will allow for an
+app eco system to evolve on help patients
+have fully actionable data such as cost,
+location, copays, vouchers, discounts, prior
+authorizations etc that can help them
+understand which treatment options and
+9
+
+services are best suited to their
+circumstance.
+Accelerate sharing of data via FHIR over a
+trusted exchange and help accelerate the
+necessary components to ensure that this
+can scale, such as FAST security IG. Make
+the location of the data searchable and
+discoverable via a Nationwide endpoint
+directory or other mechanism.
+Ensure claims and coverage data available
+via FHIR APIs near real time, as it enables
+innovation, and will help the patient make
+the right decision for their health
+circumstance.
+Where appropriate allow for sharing of data
+in bulk via the networks to ensure data
+liquidity for B2B processes that require large
+data sets, such as those needed for
+population health and quality metrics.
+Individual Access Services would be
+important as this flow enables the patient to
+participate in a network that shares their
+data. Patient can become a key source of
+truth to validate items such as which
+medications are currently active, ensuring
+that they are a full participant in the data
+exchanges.
+What use cases could have a significant
+PC-10c Operation purpose of use becoming
+impact if implemented through TEFCA?
+mandatory would allow for Payers to be full
+participants in TEFCA. Payer provide
+information across the breadth of the patient
+care, identifying care settings that individual
+HCOs may not have visibility to. Access to
+up to date financial and clinical data ensures
+that the care itself is cost effective and is
+providing quality outcomes.
+What standards are you aware of that are
+PC-10d currently working well to advance access FAST Security IG (UDAP), Bulk FHIR APIs
+and existing exchange purposes?
+While Bulk FHIR APIs are theoretically in
+widespread availability, they are not in
+What standards are you aware of that are
+widespread use because in many cases
+PC-10e not currently in wide use, but could
+developers find it challenging to get access
+improve data access and integration?
+to EMR vendor sandboxes in order to test
+the operation of those Bulk APIs.
+10
+
+Many of the existing standards that require
+onerous and manual efforts. For instance to
+set up a HL7 V2 exchange a VPN is
+required. This is a manual and laborious
+process, requiring multiple back and forths
+Are there redundant standards, protocols, to ensure data is flowing correctly. Moving to
+PC-10f
+or channels that should be consolidated? FHIR subscriptions, expanded write back via
+FHIR and CDS Hooks would enable these
+flows to happen via one standard. Event
+messaging could be replaced by a
+combination of CDS Hooks and FHIR
+Subscriptions.
+Any solution that provides the core
+capabilities of TEFCA could be used; but will
+require many of the components already
+designed and worked on, or working in
+TEFCA - A single security and dynamic
+registration process, a federated or central
+patient discovery, endpoint discovery, a trust
+framework with defined processes to ensure
+that the network participants understand
+Are there adequate alternatives outside of
+and abide by rules for participation. A
+PC-10g TEFCA for achieving widespread patient
+governance process, whether central or
+access to their health information?
+collaborative to ensure compliance with
+network rules to ensure fundamental trust.
+In addition, a framework to involve patients,
+with an intuitive and secure consent
+framework and an identification validation
+process to ensure that patient data is being
+shared with the right person.Many of these
+components are already or have been
+piloted in TEFCA.
+How are health information exchanges
+Some HIEs work with their state Medicaid
+(HIEs) currently helping to advance patient
+PC-11 Agency to make Patient Access Apis
+access to health information in the real
+available to Medicaid beneficiaries
+world?
+Data sharing over HIEs both regional and
+nationwide has been widely publicized to be
+inconsistent and lacking consistent data
+How valuable, available, and accurate do
+PC-11a quality. Standardized data quality framework
+you find the data they share to be?
+such as piqiframework, is required to ensure
+that the data is not only available, but
+usable, integratable and actionable.
+11
+
+Have a standardized framework to report on
+the data quality, a good example is
+piqiframework. This would provide
+transparency to the quality of the data being
+PC-11b What changes would you suggest?
+produced and shared via networks. With
+required reporting on endpoint data quality
+metrics such as data completeness and
+conformance
+Are there particular examples of Maryland and Connecticut partnered with
+high-performing HIE models that you OnyxHealth.io to be an early implementer of
+PC-11c
+believe should Patient Access APIs for Medicaid
+be propagated across markets? beneficiaries.
+What is the ongoing role of HIEs amidst
+other entities facilitating data exchange
+The HIEs should not be forced to exchange
+and
+data on TEFCA. Currently the CCD (HL7v2)
+PC-11d broader frameworks for data exchange (for
+from an approved HIE are used by payers in
+example, vendor health information
+Quality and Operational workflows.
+networks, TEFCA, private exchange
+networks, etc.)?
+What are the most valuable operational
+A Digital insurance card and digital identity
+health data use cases for patients and
+that enabled the elimination of the clipboard
+caregivers that, if addressed, would create
+PC-12 by enabling a patient to provide their health
+more efficient care navigation or eliminate
+history and medications via a link from their
+barriers to competition among providers or
+digital insurance card.
+both?
+a. Examples may include the following:
+(1) Binding cost estimates for pre-defined
+periods.
+(2) Viewing provider schedule availability.
+(3) Using third-party apps for appointment Accessing patient-facing quality metrics
+PC-12a
+management. would add value to the Ecosystem
+(4) Accessing patient-facing quality
+metrics.
+(5) Finding the right provider for specific
+healthcare needs.
+A CARIN specification already exists for a
+digital insurance card. This has also been
+PC-12b What use cases are possible today?
+shown to enable a link to an Advance
+Directive.
+12
+
+With stronger monitoring and enforcement,
+in-network status and cost estimation could
+become universally accessible and reliable,
+resolving common issues in Provider
+Directory APIs and Price Transparency files
+What should be possible in the near that developers have long documented and
+PC-12c
+future? reported. Standardizing and ensuring the
+completeness of these files would enable
+accurate information for patients, laying the
+groundwork for better care navigation and
+more effective competition among health
+plans and providers.
+Accessing all claim and clinical data
+What would be very valuable but may be
+PC-12d (including the CCD) from the Payer's API
+very hard to achieve?
+endpoint
+Information Blocking and Digital Identity (PC-13:PC-14)
+Label Question Response
+Regarding digital identity credentials (for Those digital identities have to be able to
+example, CLEAR, Login.gov, ID.me, be used at popular web sites and when
+PC-14
+other NIST 800-63-3 IAL2/AAL2 connecting to your provider's EMR and web
+credentialing service providers (CSP)): site services at the member's health plan.
+What are the challenges today in getting
+Fewer userids and passwords. Better
+PC-14a patients/caregivers to sign up and use
+security.
+digital identity credentials?
+What role should CMS/payers,
+providers, and app developers have in Require support for Tiered Oauth from
+PC-14e
+driving FAST Security.
+adoption?
+How can CMS encourage patients to Give them more places to use a digital
+PC-14f
+get digital identity credentials? identity.
+13
+
+II. Providers
+Digital Health Apps (PR-1:PR-3)
+Label Question Response
+What are obstacles that prevent
+development, deployment, or effective
+utilization CMS needs to make clear their continued
+of the most useful and innovative support for the adoption of FHIR APIs and
+PR-2 applications for physician workflows, Implementation Guides. This should also
+such as quality measurement reporting, extend to a clear support for FHIR-based
+clinical documentation, and billing tasks? digital quality measurement and exchange.
+How could these obstacles be
+mitigated?
+Data Exchange (PR-4:PR-8)
+Label Question Response
+Replacing the clipboard with a digital
+exchange of patient information is a critical
+step in improving the quality and accuracy
+of information used across healthcare.
+What changes or improvements to
+standards or policies might be needed
+To enable seamless patient experiences
+for patients’ third-party digital products to
+through third-party digital health
+have access to administrative workflows,
+PR-4 applications, critical improvements are
+such as auto-populating intake forms,
+needed in both standards and
+viewing provider information and
+enforcement—particularly stronger
+schedules, and making and modifying an
+monitoring of payer APIs (such as Provider
+appointment?
+Directory, Patient Access, and Prior
+Authorization APIs) for availability,
+standards compliance, queryability, and
+data quality.
+What are ways CMS or partners can
+CMS should accelerate the adiption of
+PR-8 help with simplifying clinical quality data
+digital HEDIS measures.
+responsibilities of providers?
+What would be the benefits and Subscription driven data exchange may be
+PR-8a
+downsides of using Bulk FHIR data more effective to enable close to realtime
+14
+
+exports from EHRs to CMS to simplify access to member information when they
+clinical quality data submissions? Can receive service.
+CMS reduce the burden on providers by
+performing quality metrics calculations
+leveraging Bulk FHIR data exports?
+Are there requirements CMS should
+consider for data registries to support
+digital quality measurement in a more
+efficient manner? Are there CMS should have a clearer process
+requirements CMS should consider for defined to reduce burden related to Primary
+PR-8c
+data registries that would support access Source Validation when transitioning to
+to real-time quality data for healthcare dQMs.
+providers to inform clinical care in
+addition to simplifying reporting
+processes?
+Digital Identity (PR-9:PR-10)
+Label Question Response
+What would providers need help with to
+accelerate the transition to a single set of Providers would need help with updating
+PR-9a trusted digital identity credentials for the their identity management services to
+patient to keep track of, instead of one for support portable digital identities.
+each provider?
+How might CMS balance patient privacy
+Enabling easier exchange of patient
+with convenience and access to digital
+consent preferences could help ensure an
+PR-9b health products and services that may
+organization respects the privacy
+lead to significant improvements in
+requirements from a patient.
+health?
+b. How would requiring their use improve Fewer userids and passwords to
+PR-10b
+access to health information? remember.
+f. Would combining FHIR addresses and FHIR already integrates authentication into
+PR-10f
+identity improve data flow? secure API implementations.
+15
+
+Information Blocking (PR-11:PR-14)
+Label Question Response
+How could members of trust
+communities3 (for example, QHINs,
+participants
+Achieving IAL2 verification is a one-time
+and subparticipants in TEFCA, which
+activity for a user. Once obtained, pervasive
+requires Identity Assurance Level 2 (IAL2)
+PR-11 acceptance of the credential with IAL2 level
+via Credential Service Providers (CSPs))
+clearance, ultimately reduces the effort to
+better support the goals of reduced
+gain secure access to data.
+provider and patient burden while also
+enhancing identity management and
+security?
+III. Technology Vendors, Data Providers, and
+Networks
+Ecosystem (TD-1:TD-2)
+Label Question Response
+Free API access is not enough to drive
+development of Apps. Developers need a
+path to revenue in order to have a
+sustainable app. Since the vast majority of
+consumers are reluctant to pay for apps
+developers resort to advertising, selling
+What short term (in the next 2 years) and data, or earning commission for connecting
+longer-term steps can CMS take to patients with pharma or research trials. In
+TD-1 stimulate developer interest in building all these cases the Consumer is the
+digital health products for Medicare product. Creating a mechanism for
+beneficiaries and caregivers? consumers to charge the cost of an app
+subscription to their taxes, or their health
+benefits would enable app developers to
+treat the consumer as the customer. It
+would enable market dynamics to be more
+aligned with consumers rather than other
+stakeholders.
+16
+
+Patient demographics, Enrollment/
+Coverage data, ExplanationOfBenefit
+a. What additional data would be most and/or Claim, and all the clinical data they
+TD-2a valuable if made available through CMS receive from the providers. Patient Access
+APIs? API mandates this data be made
+accessible since 2021, better enforcement
+is needed.
+Formulary data is typically held behind a
+c. What obstacles prevent accessing these secure api. This only becomes available to
+TD-2c
+data sources today? consumers after they become a customer
+of a health plan.
+d. What other APIs should CMS and Give payers and Medicaid agencies the
+ASTP/ONC consider including in program option to NOT mail a physical insurance
+TD-2d
+policies to unleash innovation and support card to beneficiaries. Let consumers have
+patients and providers? the option of using a digital insurance card.
+Digital Identity (TD-3)
+Label Question Response
+TD-3 Regarding digital identity implementation: see TD3a-c
+Helping consumers to become familiar with
+TD-3a a. What are the challenges and benefits? the technology and understand how and
+were they can use their digital identity.
+How would requiring digital identity
+Implementing digital identity can reduce
+credentials (for example, CLEAR,
+the number of passwords and userids
+Login.gov,
+TD-3b needed y a consumer. It also enables
+ID.me, other NIST 800-63-3 IAL2/AAL2
+higher level protections, such as biometrics
+CSPs) impact cybersecurity and data
+to be used on those accounts.
+exchange?
+Standardising a connectivity method for
+authentication between systems simplifies
+What impact would mandatory use of the
+TD-3c implementation. However, open/id would
+OpenID Connect identity protocol have?
+need to be extended to support personal
+representative flows.
+17
+
+Technical Standards and Certification (TD-4:TD-11)
+Label Question Response
+CMS can drive greater use of
+standards-based APIs by ensuring the
+infrastructure it has already mandated is
+truly available, usable, and trustworthy. This
+includes enforcing that required APIs (such
+How can CMS better encourage use of as Patient Access, Provider Directory, and
+TD-4 open, standards-based, publicly available Prior Authorization APIs) are published,
+APIs over proprietary APIs? discoverable, standards-conformant, and
+expose complete, accurate data. CMS can
+further incentivize trust by establishing a
+certification program and publicly listing
+high-performing APIs to guide developers
+toward reliable data sources.
+Establishing a directory of endpoints is as
+essential to FHIR/Interoperability as DNS
+was to making the World Wide Web viable.
+How could a nationwide provider directory Users need the ability to locate FHIR
+of FHIR endpoints improve access to endpoints, by community, from a reliable
+TD-5 health information for patients, providers, and common location in order to
+and payers? Who should publish such a meaningfully interoperate. The information
+directory, and should users bear a cost? should be published and maintained by
+CMS or a selected contractor then tested
+and validated by a third party. Various hosts
+could be delegates for information lookup.
+What unique interoperability functions
+TD-6
+does TEFCA perform?
+There have been several alternatives
+offered to TEFCA - existing HIEs from
+organizations such as CareQuality and
+eHealthExchange have existed for some
+time offering ways to obtain data across a
+national exchange. Organizations like
+a. What existing alternatives should be
+TD-6a CAQH previously had their Core product
+considered?
+that attempted to solve issues of patient
+matching and coverage history by offering
+mastered patient data across their
+participant network, and more recently
+blockchain vendors such as Avaneer and
+Velox Metadata have presented alternatives
+18
+
+that push a "closed network" of participants
+who can share and exchange data that is
+mastered via blockchain technology or other
+federated digital identity models. The theme
+with each of these options is the cost being
+a barrier to truly interoperable exchange of
+data.
+There seems to be a lot of redundancy and
+crossover between FHIR-based API
+exchange and the IHE profiles. There is
+b. Are there redundant standards,
+definitely room for consolidation here and I
+TD-6b protocols or channels or both that should
+believe the industry would benefit from a
+be consolidated?
+consolidation of efforts, particularly related
+to identity matching and authorization scope
+for patient data exchange.
+Large language models (LLMs) offer great
+Given improvements in language models,
+promise for extracting information from less
+would you prefer a non-proprietary but
+structured data formats, but at this early
+less
+TD-7d stage of LLM evolution, we advocate
+structured format that might improve data
+well-defined data structures to ensure
+coverage even if it requires more
+patient safety and avoid imposing another
+processing by the receiver?
+processing layer on the solution stack.
+What are the benefits of redefining APIs provide more clearly defined
+TD-9a certification to prioritize API-enabled functionality. These functions can be tested
+capabilities over software functionality? using automated test processes.
+How could EHRs capable of bulk data
+Bulk APIs also need to be supplemented
+transfer be used to reduce the burden on
+with subscription APIs that enable data
+providers for reporting quality
+triggers for patient activity to be detected
+TD-9e performance data to CMS? What
+and enable data retrieval. This will enable
+capabilities are needed to show benefit?
+more real-time, rather than batch-based,
+What concerns are there with this
+data collection and analysis.
+approach?
+19
+
+ASTP/ONC should encourage technology
+vendors and EHR implementations to
+support a full complement of US Core
+profiles. Current (g)(10) certification criteria
+For EHR and other developers subject to
+allow EHR vendors to claim compliance
+the ONC Health IT Certification Program,
+after only testing a few of the profiles. US
+what further steps should ASTP/ONC
+Core profile(s) not supported should result
+consider to implement the 21st Century
+in the certification
+Cures Act’s API condition of certification
+exemption(s)/exclusion(s), noting the
+(42 U.S.C. 300jj-11(c)(5)(D)(iv)) that
+profile(s) for which the vendor has not
+TD-10 requires a developer’s APIs to allow
+demonstrated conformance.
+health information to be accessed,
+exchanged, and used without special
+"Without special effort", should also include
+effort, including providing access to all
+being able to access a synthetic data
+data elements of a patient’s electronic
+sandbox to enable testing of API
+health record to the extent permissible
+functionality. An exception could be granted
+under applicable privacy laws?
+if the APIs have been certified by a
+recognized industry standard to perform as
+the APIs are specified in recognized
+standards implementation guides.
+As of January 1, 2024, many health IT
+developers with products certified through
+the ONC Health IT Certification Program
+are required to include the capability to
+perform an electronic health information
+export or “EHI export” for a single patient
+as well as for patient populations (45 CFR
+170.315(b)(10)). Such health IT
+TD-11 See TD11a-c
+developers are also required to publicly
+describe the format of the EHI export.
+Notably, how EHI export was
+accomplished was left entirely to the
+health IT developer. Now that this
+capability has been in production for over
+a year, CMS and ASTP/ONC seek input
+on the following:
+Yes. A lack of standardization is a hindrance
+to Health IT innovation, and the absence of
+specificity drives unpredictable results.
+Standardized EHI export would create a
+Should this capability be revised to specify foundational data capability that would be
+TD-11a standardized API requirements for EHI an enabler to multiple interoperability use
+export? cases, so guidance from ASTP/ONC and
+CMS is important for clarifying the baseline
+technical and functional capabilities of
+exchanging EHI via interoperable APIs
+using the FHIR data model.
+20
+
+A standardized EHI export would create a
+workflow enabling EHI data holders to
+quickly and efficiently respond to EHI export
+Are there specific workflow aspects that requests (i.e., eliminate the current manual
+TD-11b
+could be improved? workflow). Ideally, such a process would be
+self-serve, thus eliminating workflow burden
+for the EHI holder and wait times for the
+requestor.
+We have all experienced that policy
+providing regulatory guidance and technical
+requirements can facilitate implementations
+and drive adoption. As with previous
+legislation around interoperability, standards
+such as USCDI and the recommended
+FHIR Implementation Guides (IGs) ensured
+Should CMS consider policy changes to
+TD-11c that organizations could conform to the final
+support this capability’s use?
+rule(s) and build dependable conformance
+testing based on the IGs. EHI-on-FHIR
+would be no exception, and so policy
+guidance that clearly articulates regulatory
+expectations for the technical and functional
+requirements for this use case would be
+welcomed
+Data Exchange (TD-12:TD-17)
+Label Question Response
+We recommend that CMS carefully
+evaluate non-CMS networks, and we
+encourage you to also engage with your
+Should CMS endorse non-CMS data
+federal partners to evaluate the potential
+TD-12 sources and networks, and if so, what
+benefits to US taxpayers of that
+criteria or metrics should CMS consider?
+participation helping us realize the vision of
+a truly nationwide health information
+exchange network.
+What new opportunities and APIs providing the entirety of a patient’s
+advancements could emerge with APIs EHI will create new insights for patients,
+TD-13 providing providers, payers and researchers that will
+access to the entirety of a patient’s improve patient care, claims accuracy and
+electronic health information (EHI)? accelerate research breakthroughs.
+Health IT vendor roadmaps are driven by
+TD-13a What are the primary obstacles to this?
+financial incentives and regulatory
+21
+
+requirements. The absence of these is the
+primary obstacle.
+With the ongoing emergence of AI tools,
+the entirety of a patient's EHI will be
+What are the primary tradeoffs between extracted soon--with, or without, the
+USCDI and full EHI, especially given more cooperation of the health IT vendors. Given
+TD-13b
+flexible data processing capabilities this, it is in the best interests of all
+today? stakeholders, including commercial payers,
+health IT vendors and CMS, to see official
+(fully vetted and certified) APIs emerge.
+TD-15 Regarding bulk FHIR APIs: see TD15a-b
+Increasing the use of Bulk FHIR is essential
+for its adoption and refinement. A good
+analogy is network effects. The more Bulk
+How would increased use of bulk FHIR FHIR is used, the more valuable it
+TD-15a
+improve use cases and data flow? becomes, encouraging additional use
+cases and refinement, which drives
+additional adoption and incresing
+standardization of data flow.
+To realize this potential, more work needs
+to bedone exploring how to best prepare
+What are the potential disadvantages of and share data so that the requestor can
+TD-15b
+their use? utilize multiple requests to improve speed
+and address connectivity and
+error/recovery conditions.
+Vendors, data providers and networks
+(along with their stakeholders) react to the
+rules and incentives created (and enforced)
+Given operational costs, what role should by CMS and ASTP/ONC. In an ideal US
+CMS or ASTP/ONC or both have in healthcare system, all actors would
+ensuring viability of healthcare data respond to their innate desires to optimize
+TD-17
+sharing networks, including enough patient outcomes, and most try. However,
+supply and demand, that results in usage the health IT community has been trained
+and outcomes? to respond to rules, incentives and
+penalties. Turn these dials to achieve the
+network viability (usage and outcomes) you
+seek.
+22
+
+Compliance (TD-18:TD-19)
+Label Question Response
+TD-18 Information blocking: See TD18a
+Could you, as a technology vendor,
+provide examples for the types of
+Not all EHR vendors make a sandbox
+practices you have experienced that may
+available for testing (g)(10) capabilities,
+constitute information blocking. Please
+TD-18a including bulk FHIR. Access to the sandbox
+include both situations of
+may need to be "sponsored" by an existing
+non-responsiveness as well as situations
+customer.
+that may cause a failure or unusable
+response?
+IV. Payers
+Payers (PA-1:PA-7)
+Label Question Response
+Data at the point of care is just for FFS
+beneficiaries, which CMS is the payer for.
+How can CMS encourage payers to Having a similar requirement for Payers is a
+accelerate the implementation and good start. More broadly, CMS can be a
+utilization of APIs for patients, providers, prime adopter and modify their exchanges
+PA-2
+and other payers, similar to the Blue to utilize any FHIR IGs which would help
+Button 2.0 and Data at the Point of Care drive adoption by providers and other
+APIs released by CMS? actors, thereby driving adoption. CMS can
+adjust payments that favor FHIR exchanges
+and FHIR formats.
+This is a best practice in the commercial
+How can CMS encourage payers to world, so it should be an easy sell. Most
+accept digital identity credentials (for at-scale platforms use digital identity
+PA-3 example, CLEAR, ID.me, Login.gov) from credentials and/or login tokens. There are
+patients and their partners instead of many models to choose from; we suggest
+proprietary logins? allowing payers choose from a menu of the
+top three options, not just one.
+A nationwide provider directory with FHIR
+What would be the value to payers of a
+endpoints and digital identity credentials
+nationwide provider directory that
+PA-4 would offer transformative value to payers
+included FHIR end points and used digital
+in the following ways:
+identity credentials?
+1. Improved Access to Clinical Data - With
+23
+
+reliable FHIR endpoints associated with
+verified digital identities, payers could more
+efficiently retrieve clinical data from
+providers for HEDIS quality measurement,
+risk adjustment, and value-based care
+initiatives. This reduces reliance on manual
+chart retrieval or proprietary data exchange
+channels, improving timeliness,
+completeness, and lowering administrative
+costs.
+2. Streamlined Credentialing and Reduced
+Redundancy - If provider credentials, such
+as licensure, board certifications, and
+education degrees, were digitally signed by
+primary sources (e.g., state boards, ABMS,
+medical schools), and accepted by
+accreditation bodies such as NCQA and
+The Joint Commission, payers could:
+Rely on digitally verified credentials for
+network participation
+Reduce redundant verification across
+Medicare FFS, Medicaid, Medicare
+Advantage, Medicaid MCOs, and ACA
+plans
+Significantly lower credentialing costs and
+reduce provider abrasion
+3. Centralized Source of Accurate Directory
+Data - By collecting foundational directory
+data (e.g., provider name, NPI, practice
+location, phone number, organizational
+affiliation) in a single authoritative source:
+Accuracy can be centrally monitored and
+enforced
+Duplicative data collection efforts by each
+payer are avoided
+Errors, outdated information, and
+administrative inefficiencies are minimized
+24
+
+What are ways payers can help with
+PA-5 simplifying clinical quality data Drive the switch to Digital HEDIS measures.
+responsibilities of providers?
+Bulk Access to EHRs will continue to be
+constrained while there is no regulated
+How interested are payers and providers method for exchanging attribution/Group
+in EHR technology advances that enable lists. Bulk APIs, including optional
+bulk extraction of clinical quality data from parameters such as _since and _until need
+PA-5a
+EHRs to payers to allow them to do the to be standardized across EHRs. While bulk
+calculations instead of the provider-side needs to be able to query for large groups
+technology? of patients, it also needs to enable
+finegrained requests for resources, rather
+than a "give me everything" request.
+25
+
+In what ways can the interoperability and
+quality reporting responsibilities of
+providers to both CMS and other payers
+be consolidated so investments can be
+dually purposed? Are there technologies Support the adoption of DEQM and digital
+PA-5b
+payers might leverage that would support HEDIS measures.
+access to real time quality data for
+healthcare providers to inform clinical
+care in addition to simplifying reporting
+processes?
+Looking at the Information Blocking Portal,
+along with ONC's Information Blocking Data
+about submitted information blocking
+claims, could lead a payer to assume that
+such claims are not welcome from them.
+Modifying the Portal UX to make it clear that
+How can CMS encourage payers to
+claims are welcome from payers would be a
+submit information blocking complaints to
+good first step. A good second step would
+ASTP/ONC’s Information Blocking Portal?
+PA-7 be to reach out to payers to provide
+What would be the impact? Would it
+encouragement to submit those claims.
+advance or negatively impact data
+Regardless of who submits a claim, the
+exchange?
+impact of increased claim volume would
+illustrate that CMS and ASTP/ONC is
+actively enforcing Information Blocking
+rules, and the impact on data exchange
+would be to discourage would-be "blockers"
+from engaging in that behavior.
+V. Value-Based Care Organizations
+Digital Health Adoption (VB-1:VB-4)
+Label Question Response
+Medication reconciliation apps to help
+monitor the drugs prescribed, including the
+time of day they are administered. Tracking
+symptoms and side effects of those drugs.
+b. What other health IT capabilities have
+Immediately raising the red flag for
+VB-3b proven valuable to succeeding in
+contraindications missed from the provider.
+value-based care arrangements?
+Linking patients to coupons for the drugs
+that are priced too high. Showing the status
+of the drugs, discounts, and cheaper
+alternatives to discuss with the provider.
+26
+
+Compliance and Certification (VB-5:VB-10)
+Label Question Response
+What specific health information
+technology capabilities that could benefit Data exchange of the Explanation of
+APMs Benefit, or the Claim & ClaimResponse
+VB-6 are not currently addressed by existing from payer to provider would have several
+certification criteria and standards that use cases for the Provider including Risk &
+should be included under the ONC Health Quality workflows.
+IT Certification Program?
+Technical Standards (VB-11:VB-15)
+Label Question Response
+Provider only has time in the day to see
+What specific interoperability challenges the patients with appointments, not
+VB-11 have you encountered in implementing chasing down the patients that have been
+value-based care programs? attributed to the Provider but does not ever
+go to the doctor.
+27
+
+Submission Requirements
+Comments, including mass comment submissions, must be submitted in one of the
+following three ways (please choose only one of the ways listed):
+1. Electronically. You may submit electronic comments on this regulation to
+https://www.regulations.gov. Follow the "Submit a comment" instructions.
+2. By regular mail. You may mail written comments to the following address ONLY:
+Centers for Medicare & Medicaid Services,
+Department of Health and Human Services,
+Attention: CMS-0042-NC,
+P.O. Box 8013,
+Baltimore, MD 21244-8013.
+Please allow sufficient time for mailed comments to be received before the close of the
+comment period.
+3. By express or overnight mail. You may send written comments to the following
+address ONLY:
+Centers for Medicare & Medicaid Services, Department of Health and Human Services,
+Attention: CMS-0042-NC,
+Mail Stop C4-26-05,
+7500 Security Boulevard,
+Baltimore, MD 21244-1850
+28

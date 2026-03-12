@@ -1,4 +1,180 @@
- DEPARTMENT OF HEALTH AND HUMAN SERVICES Centers for Medicare & Medicaid Services 7500 Security Boulevard Baltimore, Maryland 21244 Atropos Health 169 Madison Avenue, Suite 2242 New York, NY 10016 https://www.atroposhealth.com/ Commenting to file code CMS-0042-NC. Atropos Health appreciates the opportunity to comment on the recent CMS RFI on the Health Technology Ecosystem. US Healthcare Current State – Evidence Gap: While healthcare data is now abundant, it remains siloed and difficult to transform into actionable evidence. Today, only 14% of daily medical decisions are based on high-quality evidence—a disconnect known as “The Evidence Gap.” Traditional clinical trials are limited and exclude nearly 70% of real-world patients, including those with comorbidities, as well as underrepresented populations such as minorities, children, and seniors, among others. Generating high-quality insights typically takes months and significant resources, confining the process to expensive, academic research settings. The current system places significant strain on U.S. healthcare: many patients do not receive evidence-based care, leading to avoidable adverse outcomes, under or delayed treatments, and increased costs. About Atropos Health: Atropos Health is on a mission to make personalized evidence available to every patient. We achieve this mission starting with our GENEVA OS™ platform that automates the generation of publication-grade, observational research studies for physicians, researchers, and patients, closing the evidence gap from bench to bedside. We partner with leading health systems, life sciences organizations, pharmaceutical companies, and insurers to improve healthcare across 40+ specialties in the USA. The Atropos Evidence™ Network, is the largest federated data network in healthcare with over 300 million patient records spanning electronic medical record, claims, lab, and specialty data. As CMS continues to drive policy and standards to enhance data infrastructure and interoperability, Atropos Health's capabilities are a prime example of how data can be used to create actionable insights and improve decision making at both the point of care and lead to life saving drug discoveries with speed and accuracy. Response to Select Comments: Real-World Data on Digital Products (PC-7). If CMS were to collect real-world data on digital health products’ impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? 1. Having a longitudinal patient record with all of the elements of patient care - care from a healthcare setting and outside - is critical in the practice of precision medicine. One possible way to track the use of digital would be to allow EHRs to intake data from a patient’s phone via 1 
- HealthKit as a standard part of patient intake and consent and require pushing out certain core metrics such as A1c, lipid panel, CBC, routine chemistries. As the universe of digital health products is large and growing as well as the smart phone being the primary modality of patient consumptions, this bilateral information exchange creates a fruitful venue for more complete patient health tracking. Improvements in key health outcomes out of the core metrics can then be analyzed with relations to increased and compliance with certain digital products. PC-8 I n your experience, what health data is readily available and valuable to patients or their caregivers or both? - For patients and caregivers to get the most value out of their health data, having a longitudinal record inclusive of open and closed claims, EMR data, labs, vitals, registries, and both inpatient and outpatient encounters is critical for a full picture of a patient's health and care needs. These datasets are available, including rich clinical and administrative coding—spanning RxNorm, CPT, ICD-9/10 - however, very few providers have access to these insights in an actionable format today at the point-of-care. - Laboratory data such as hemoglobin, A1c, lipid profile, blood pressure is readily available and has high value to patients and caregivers. PC-8-A What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, prices)? - Impactful health data tracked outside of EHRs from wearables/implanted devices such as continuous glucose monitor, daily step account, active or move minutes, sleep duration and quality, nutrition information including alcohol use. These health metrics have a profound impact on a patient's overall health beyond medications/visits and are sparsely represented into health models. - Clinical scales in a variety of conditions such as PHQ2/9 for depression to global functioning and disease activity scores in dementia, rheumatoid arthritis, or ulcerative colitis are non-discrete and present in notes. - Oncology data in pathology, radiology, and oncology reports such as mutation/biomarker status and tumor size, stage and response to therapy. PC-B. What are specific sources, other than claims and clinical data, that would be of highest value, and why? - Data from patient wearables such as continuous glucose monitor to Apple & Samsung watches, Oura rings, Fitbits etc. Data from wearables includes a number of parameters such as activity (total step count, move minutes), heart rate, respiratory rate, estimated oxygen saturation, abnormal heart rhythms, glucose levels, potential fall (from accelerometers). While wearable devices do lack their hospital/clinic grade device in some metrics, they have been validated for use in a variety of important outpatient monitoring scenarios and often give a more complete and accurate picture of the patient in their usual home setting rather than a point view in a clinic or during an inpatient stay. - Data from pathology (biopsies and complex labs outside of complete blood count & routine chemistries) and radiology reports are part of the clinical record but often present in a format that is poorly accessible. 2 
- PC-12. What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? - Prior authorization is one of the largest burdens providers, patients, and caregivers face. It leads to administrative waste, adverse outcomes for patients, and hinders provider competition and willingness to participate in CMS value-based programs. Objective high quality evidence could eliminate the friction in approvals and payments. By using real-world evidence to identify where therapies deliver both clinical and cost-of-care value, every decision can be supported by personalized evidence—improving the experience for both patients and physicians, and increasing adherence to appropriate care. Access to such evidence would improve shared decision making between payers and providers and motivate providers to compete and participate in more value-based programs. PR-7. What strategies can CMS implement to support providers in making high-quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? 1. From an engineering and analytics viewpoint, the following actions would help ensure easier sharing of de-identified healthcare data for RWE/D purposes, while retaining protection of privacy through valid de-identification. a. Outline a commonly accepted mathematical formula or definition for actors in the healthcare system to follow to achieve a “very small” risk of re-identification, and especially one that could be implemented programmatically and automatically instead of requiring cumbersome processes of manual assessment. b. Provide clarity to ecosystem actors that once a set of data has been certified as de-identified by expert determination, then all subsets or ‘cuts’ of that data are also considered to be de-identified and do not require recertification or re-analysis. c. Provide guidance that the addition of derived, non-patient-related fields based on a lookup to a de-identified dataset should not trigger a recertification or re-analysis. - For example, if a de-identified dataset contains ZIP-3 information, then the addition of the fields for State and US Census Region associated with each ZIP-3 should not require a re-analysis of the entire dataset. These fields 1) are of a higher grain than ZIP-3 2) do not pertain to patients directly and could not contain PII and 3) are a mechanical lookup based on another field and are not derived from additional data about patients. d. Publish or identify an existing free, open-source, and validated PII redaction NLP model that, if used, should be considered to reduce the amount of PII in free text fields to a level that it is guaranteed to constitute a “very small” risk of re-identification. - This would remove the need for very time consuming and expensive validation of the results of scattered NLP models that are used for this purpose. - This model could be validated in clinical text taken from a wide variety of datasets once, and the results published. - This could act as a “Safe Harbor” method of PII redaction in clinical text. e. Publishing a validated prompt and a list of accepted LLM models and versions that achieve the same ends would also work to achieve the same results. f. Take steps to provide as much reassurance and clarity to healthcare providers that their good faith attempts to share de-identified data for the purposes of collecting RWE/D do 3 
- not constitute legal and financial risks, but instead constitute an investment in Americans’ health and the vibrancy and vitality of our healthcare system. g. Incentivize and facilitate the creation of an “Easy Button” for exporting a de-identified copy of the same identified data that is required to be shared under the Cures Act rules for all patients in a particular EHR instance. TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? c. Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? Information blocking remains a persistent challenge across healthcare technology, with several patterns emerging that impede legitimate data access and research efforts. Technology vendors frequently encounter situations where large healthcare IT systems create artificial barriers to data sharing, often through overly restrictive interpretation of privacy regulations, unreasonable technical requirements, or deliberate system design choices that make interoperability difficult. These practices become particularly problematic when dominant market players use their position to control data flows in ways that serve their business interests rather than advancing healthcare outcomes or supporting critical research initiatives. Key examples of information blocking practices include: ● Selective API limitations - Implementing application programming interfaces that provide only partial data sets or impose restrictive rate limits that make comprehensive data access impractical, particularly affecting smaller research organizations that lack the resources to navigate complex technical barriers. ● Proprietary format requirements - Mandating data exports in vendor-specific formats that require expensive licensing or specialized software to access, creating unnecessary financial barriers for healthcare providers and researchers seeking to use their own data. ● Excessive security protocols - Implementing authentication and authorization processes that go beyond reasonable security requirements, creating administrative burdens that effectively discourage legitimate data sharing while providing legal cover for restrictive practices. ● Non-responsive technical support - Systematically delaying or providing inadequate responses to interoperability requests, particularly from smaller organizations or those seeking data for research purposes rather than direct patient care. ● Contractual restrictions - Including terms in licensing agreements that limit how healthcare data can be used, shared, or analyzed, even when such restrictions exceed regulatory requirements and impede legitimate research activities. To address these challenges, ASTP/ONC and CMS should consider developing comprehensive guidelines that clearly define acceptable interoperability practices, establish standardized response timeframes for technical support requests, and provide detailed frameworks for what constitutes reasonable data sharing requirements. Additionally, guidance should explicitly address situations where market-dominant vendors use their position to restrict data access in ways that limit competition and innovation in healthcare research and analytics, offering clear pathways for organizations to navigate these complex relationships while maintaining compliance with legitimate privacy and security requirements. 4 
+DEPARTMENT OF HEALTH AND HUMAN SERVICES
+Centers for Medicare & Medicaid Services
+7500 Security Boulevard
+Baltimore, Maryland 21244
+Atropos Health
+169 Madison Avenue, Suite 2242
+New York, NY 10016
+https://www.atroposhealth.com/
+Commenting to file code CMS-0042-NC.
+Atropos Health appreciates the opportunity to comment on the recent CMS RFI on the Health Technology
+Ecosystem.
+US Healthcare Current State – Evidence Gap:
+While healthcare data is now abundant, it remains siloed and difficult to transform into actionable
+evidence. Today, only 14% of daily medical decisions are based on high-quality evidence—a disconnect
+known as “The Evidence Gap.” Traditional clinical trials are limited and exclude nearly 70% of real-world
+patients, including those with comorbidities, as well as underrepresented populations such as minorities,
+children, and seniors, among others.
+Generating high-quality insights typically takes months and significant resources, confining the process to
+expensive, academic research settings. The current system places significant strain on U.S. healthcare:
+many patients do not receive evidence-based care, leading to avoidable adverse outcomes, under or
+delayed treatments, and increased costs.
+About Atropos Health:
+Atropos Health is on a mission to make personalized evidence available to every patient. We achieve this
+mission starting with our GENEVA OS™ platform that automates the generation of publication-grade,
+observational research studies for physicians, researchers, and patients, closing the evidence gap from
+bench to bedside. We partner with leading health systems, life sciences organizations, pharmaceutical
+companies, and insurers to improve healthcare across 40+ specialties in the USA.
+The Atropos Evidence™ Network, is the largest federated data network in healthcare with over 300
+million patient records spanning electronic medical record, claims, lab, and specialty data. As CMS
+continues to drive policy and standards to enhance data infrastructure and interoperability, Atropos
+Health's capabilities are a prime example of how data can be used to create actionable insights and
+improve decision making at both the point of care and lead to life saving drug discoveries with speed and
+accuracy.
+Response to Select Comments:
+Real-World Data on Digital Products (PC-7). If CMS were to collect real-world data on digital health
+products’ impact on health outcomes and related costs once they are released into the market,
+what would be the best means of doing so?
+1. Having a longitudinal patient record with all of the elements of patient care - care from a
+healthcare setting and outside - is critical in the practice of precision medicine. One possible way
+to track the use of digital would be to allow EHRs to intake data from a patient’s phone via
+1
+
+HealthKit as a standard part of patient intake and consent and require pushing out certain core
+metrics such as A1c, lipid panel, CBC, routine chemistries. As the universe of digital health
+products is large and growing as well as the smart phone being the primary modality of patient
+consumptions, this bilateral information exchange creates a fruitful venue for more complete
+patient health tracking. Improvements in key health outcomes out of the core metrics can then be
+analyzed with relations to increased and compliance with certain digital products.
+PC-8 I n your experience, what health data is readily available and valuable to patients or their
+caregivers or both?
+- For patients and caregivers to get the most value out of their health data, having a longitudinal
+record inclusive of open and closed claims, EMR data, labs, vitals, registries, and both inpatient
+and outpatient encounters is critical for a full picture of a patient's health and care needs. These
+datasets are available, including rich clinical and administrative coding—spanning RxNorm, CPT,
+ICD-9/10 - however, very few providers have access to these insights in an actionable format
+today at the point-of-care.
+- Laboratory data such as hemoglobin, A1c, lipid profile, blood pressure is readily available and
+has high value to patients and caregivers.
+PC-8-A What data is valuable, but hard for patients and caregivers, or app developers and other
+technical vendors, to access for appropriate and valuable use (for example, claims data, clinical
+data, encounter notes, operative reports, appointment schedules, prices)?
+- Impactful health data tracked outside of EHRs from wearables/implanted devices such as
+continuous glucose monitor, daily step account, active or move minutes, sleep duration and
+quality, nutrition information including alcohol use. These health metrics have a profound impact
+on a patient's overall health beyond medications/visits and are sparsely represented into health
+models.
+- Clinical scales in a variety of conditions such as PHQ2/9 for depression to global functioning and
+disease activity scores in dementia, rheumatoid arthritis, or ulcerative colitis are non-discrete and
+present in notes.
+- Oncology data in pathology, radiology, and oncology reports such as mutation/biomarker status
+and tumor size, stage and response to therapy.
+PC-B. What are specific sources, other than claims and clinical data, that would be of highest
+value, and why?
+- Data from patient wearables such as continuous glucose monitor to Apple & Samsung watches,
+Oura rings, Fitbits etc. Data from wearables includes a number of parameters such as activity
+(total step count, move minutes), heart rate, respiratory rate, estimated oxygen saturation,
+abnormal heart rhythms, glucose levels, potential fall (from accelerometers). While wearable
+devices do lack their hospital/clinic grade device in some metrics, they have been validated for
+use in a variety of important outpatient monitoring scenarios and often give a more complete and
+accurate picture of the patient in their usual home setting rather than a point view in a clinic or
+during an inpatient stay.
+- Data from pathology (biopsies and complex labs outside of complete blood count & routine
+chemistries) and radiology reports are part of the clinical record but often present in a format that
+is poorly accessible.
+2
+
+PC-12. What are the most valuable operational health data use cases for patients and caregivers
+that, if addressed, would create more efficient care navigation or eliminate barriers to competition
+among providers or both?
+- Prior authorization is one of the largest burdens providers, patients, and caregivers face. It leads
+to administrative waste, adverse outcomes for patients, and hinders provider competition and
+willingness to participate in CMS value-based programs. Objective high quality evidence could
+eliminate the friction in approvals and payments. By using real-world evidence to identify where
+therapies deliver both clinical and cost-of-care value, every decision can be supported by
+personalized evidence—improving the experience for both patients and physicians, and
+increasing adherence to appropriate care. Access to such evidence would improve shared
+decision making between payers and providers and motivate providers to compete and
+participate in more value-based programs.
+PR-7. What strategies can CMS implement to support providers in making high-quality, timely, and
+comprehensive healthcare data available for interoperability in the digital product ecosystem?
+How can the burden of increasing data availability and sharing be mitigated for providers? Are
+there ways that workflows or metrics that providers are already motivated to optimize for that
+could be reused for, or combined with, efforts needed to support interoperability?
+1. From an engineering and analytics viewpoint, the following actions would help ensure easier
+sharing of de-identified healthcare data for RWE/D purposes, while retaining protection of privacy
+through valid de-identification.
+a. Outline a commonly accepted mathematical formula or definition for actors in the
+healthcare system to follow to achieve a “very small” risk of re-identification, and
+especially one that could be implemented programmatically and automatically instead of
+requiring cumbersome processes of manual assessment.
+b. Provide clarity to ecosystem actors that once a set of data has been certified as
+de-identified by expert determination, then all subsets or ‘cuts’ of that data are also
+considered to be de-identified and do not require recertification or re-analysis.
+c. Provide guidance that the addition of derived, non-patient-related fields based on a
+lookup to a de-identified dataset should not trigger a recertification or re-analysis.
+- For example, if a de-identified dataset contains ZIP-3 information, then the
+addition of the fields for State and US Census Region associated with each ZIP-3
+should not require a re-analysis of the entire dataset. These fields 1) are of a
+higher grain than ZIP-3 2) do not pertain to patients directly and could not contain
+PII and 3) are a mechanical lookup based on another field and are not derived
+from additional data about patients.
+d. Publish or identify an existing free, open-source, and validated PII redaction NLP model
+that, if used, should be considered to reduce the amount of PII in free text fields to a level
+that it is guaranteed to constitute a “very small” risk of re-identification.
+- This would remove the need for very time consuming and expensive validation of
+the results of scattered NLP models that are used for this purpose.
+- This model could be validated in clinical text taken from a wide variety of
+datasets once, and the results published.
+- This could act as a “Safe Harbor” method of PII redaction in clinical text.
+e. Publishing a validated prompt and a list of accepted LLM models and versions that
+achieve the same ends would also work to achieve the same results.
+f. Take steps to provide as much reassurance and clarity to healthcare providers that their
+good faith attempts to share de-identified data for the purposes of collecting RWE/D do
+3
+
+not constitute legal and financial risks, but instead constitute an investment in Americans’
+health and the vibrancy and vitality of our healthcare system.
+g. Incentivize and facilitate the creation of an “Easy Button” for exporting a de-identified
+copy of the same identified data that is required to be shared under the Cures Act rules
+for all patients in a particular EHR instance.
+TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types
+of practices you have experienced that may constitute information blocking. Please include both
+situations of non-responsiveness as well as situations that may cause a failure or unusable
+response? b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices? c. Are there specific
+categories of healthcare actors covered under the definition of information blocking in section
+3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives?
+Information blocking remains a persistent challenge across healthcare technology, with several patterns
+emerging that impede legitimate data access and research efforts. Technology vendors frequently
+encounter situations where large healthcare IT systems create artificial barriers to data sharing, often
+through overly restrictive interpretation of privacy regulations, unreasonable technical requirements, or
+deliberate system design choices that make interoperability difficult. These practices become particularly
+problematic when dominant market players use their position to control data flows in ways that serve their
+business interests rather than advancing healthcare outcomes or supporting critical research initiatives.
+Key examples of information blocking practices include:
+● Selective API limitations - Implementing application programming interfaces that provide only
+partial data sets or impose restrictive rate limits that make comprehensive data access
+impractical, particularly affecting smaller research organizations that lack the resources to
+navigate complex technical barriers.
+● Proprietary format requirements - Mandating data exports in vendor-specific formats that
+require expensive licensing or specialized software to access, creating unnecessary financial
+barriers for healthcare providers and researchers seeking to use their own data.
+● Excessive security protocols - Implementing authentication and authorization processes that
+go beyond reasonable security requirements, creating administrative burdens that effectively
+discourage legitimate data sharing while providing legal cover for restrictive practices.
+● Non-responsive technical support - Systematically delaying or providing inadequate responses
+to interoperability requests, particularly from smaller organizations or those seeking data for
+research purposes rather than direct patient care.
+● Contractual restrictions - Including terms in licensing agreements that limit how healthcare data
+can be used, shared, or analyzed, even when such restrictions exceed regulatory requirements
+and impede legitimate research activities.
+To address these challenges, ASTP/ONC and CMS should consider developing comprehensive
+guidelines that clearly define acceptable interoperability practices, establish standardized response
+timeframes for technical support requests, and provide detailed frameworks for what constitutes
+reasonable data sharing requirements. Additionally, guidance should explicitly address situations where
+market-dominant vendors use their position to restrict data access in ways that limit competition and
+innovation in healthcare research and analytics, offering clear pathways for organizations to navigate
+these complex relationships while maintaining compliance with legitimate privacy and security
+requirements.
+4

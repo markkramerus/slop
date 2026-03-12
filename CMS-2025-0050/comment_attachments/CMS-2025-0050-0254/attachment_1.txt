@@ -1,39 +1,1093 @@
-David Rocha drocha3408@outlook.com This is the second part of comments. The first part (part 1) comments posted earlier ID: CMS- 2025-0050-0050). Summary of recommendations/trend throughout this comment: •CMS, ASTP/ONC should create a formal ontology for the national provider directory •TEFCA exchange sending Empty CDAs and CDAs without validation •TEFCA exchange should enforce validation for CDA/CCDAs and FHIR exchange •Adopting the Risk Adjustment FHIR IG will reduce clinician and administrative burden for risk adjustment (diagnoses attestation process) •AUCDI with chronic disease management plan in FHIR for Sparked FHIR accelerator- implement US realm •Autism USCDI+ data elements •Dementia and alzheimers complications KPIs •openEHR Archetype query language should be adopted •The American medical specialties (American Academy of ____) should create respective FHIR IGs for specialty care •Engage medical equipment companies, referral mgmt. vendors and third party administrators to use FHIR •PIQI certification program •Partner Sequoia project and NLM for terminology services in TEFCA •Provide Education credit hours via CMS and healthcare professional associations •Expand CMS 0057 to include prescription drugs for FHIR exchange •Include DME pharmacy benefit for FHIR exchange •Promote IHE profiles like sIPS, SVCM •Use IPS sharing for emergency care, rural health, disaster response •Free Intellectual property issues to use assessment scales nationally •Enable FHIR based advance directive forms with the National Association for Home Care and Hospice •ASTP/ONC should enforce Sequoia Project’s Data Usability Implementation Guide •Bonus incentives for cross HIE FHIR exchange •Create SNOMED CT extensions for HCPCS/CPT to SNOMED CT maps among SNOMED International, AMA, CMS •Spearhead FHIR adoption among hospitals/large health systems •Include digital payments vendors in FHIR exchange •Eliminate duplicate testing under TEFCA with LOINC+SNOMED CT for lab, imaging, procedures orders and results 
-•CMS, ASTP/ONC, NLM should sign a collaborative agreement with openEHR International •CMS should promote and adopt openEHR archetypes and templates •Integrate and FHIRize the CDC NORS form for public health data exchange •Create a FHIR based Outbreak report •Promote the electronic case reporting FHIR IG •SNOMED CT ECL to query outbreak metadata •Adopt DS4P profiles for TEFCA sensitive data •CMS should engage the AHA, AMA, ACHE and the related state chapters to spearhead FHIR adoption among the health systems/hospital systems/providers. •Unified digital health platforms •CMS should sign a collaborative agreement with Global Alliance for Genomics and Health (GA4GH) to improve interoperable genomics data sharing and enable a “single- sign on for genomics” across repositories. •Scale genomics data sharing across API CEHRT •ASTP/ONC should add Abnormal Physical Findings in USCDI to capture abnormal (positive) findings from physical exams National Provider Directory Ontology CMS should develop a formal ontology for the CMS National Provider Directory. This ontology should define: •Legal Entities (TIN/EIN), including their DBA (Doing Business As) names and registered jurisdictions. •Provider Organizations and Individuals with National Provider Identifiers (NPIs). •Relationships over time, such as hasPriorAffiliation, wasPracticingAt, hadDBAAlias, and wasOwnedBy. •Enrollment and credentialing events (from PECOS), including Medicare revalidation dates, status changes, and program participation. •Ownership chains and network affiliation, to allow transparent tracing of parent companies, private equity ownership, and vertical integration across healthcare delivery organizations. •Temporal metadata, allowing systems to reason over the history of provider activities and validate historical network adequacy or fraud risk. By aligning this ontology with existing standards such as: •HL7 FHIR (Practitioner, Organization, HealthcareService, Location),
-•the W3C Organization Ontology (org:), •and vocabularies such as the NUCC taxonomy or SNOMED CT, CMS can provide a canonical, computable source of truth for provider identity, program eligibility, and affiliation status. This would significantly improve identity matching, fraud detection, workforce planning, network adequacy validation, and interoperability between Medicare, Medicaid, QHPs, and other health plans. Additionally, this ontology could be versioned, published, and integrated with CMS’s existing terminologies and the National Directory framework to support both public-facing applications and advanced analytics. CMS should collaborate with ASTP/ONC, HL7, GAO, OBO Foundry, AMIA, and academic experts to accelerate this effort, and to consider providing a governance mechanism for updating and expanding the ontology over time — including community participation and support for state Medicaid programs and Qualified Health Information Networks (QHINs). Core Ontology Elements to Potentially include: •LegalEntity •Organization •HealthcareProvider •EnrollmentEvent •Affiliation •DBAAlias •OwnershipRelationship •Location •ProgramParticipation •CareDeliveryOrganization •AccountableCareOrganization Ontology Relationships to Potentially Include: •hasSpecialty •hasPrimarySpecialty •hasPracticingSpecialty specialty the provider practices/focuses on •hasBoardCertification •hasLicenseIn •hasGender •hasTelehealthScope
-•hasNetworkParticipation •hasFacilityPrivilegesAt •wasRevokedOn •isRural •isAffiliatedWithPayer •isContractedWithPayer •isPartOfHealthSystem •hasCredentialingStatus Ontology Attributes to Potentially Include: •riskContractType (shared savings, full capitation, partial capitation) Then in the provider directory, an ontology would help with deeper queries: “Which CDOs share risk with managed Medicaid organizations in state ____” “Query list of providers participating in both ACO and MA in the same year” “Query list of providers with primary specialty of rheumatology” Care Delivery Organizations FHIR, CDA, EHR tracking More accountability could be done for the care delivery organizations working on behalf of the payers and/or provider organizations engaged in managed care models. One way to do such accountability is to post and publicly share FHIR compliance. Some of the listed columns (so-to-speak) could relate to: Current FHIR release Implementation Guides (Risk Adjustment IG, PDex, CDex) with the latest releases Current EHR version Latest EHR version Current CDA release Current CDA validator
-The reasoning for this is to show whether care delivery organizations, accountable care organizations, and even EHRs are using the latest FHIR IGs, etc. in its health information systems. For the TEFCA question, TEFCA is not requiring strict conformance validation for CDA/C-CDA, which is a serious concern. Implementers are sending nonconformant CDA or C-CDA documents, such as: •Empty or nearly empty CDA and/or C-CDA documents oCorrect structure but no clinical content (no problems, no medications, no allergies, no immunizations) •Missing required sections or entries •Incorrect usage of templates or codes oDeprecated or incorrect template IDs oInvalid or missing LOINC codes from section headers oUsing free text instead of coded entries (for example writing “high blood pressure” instead of the SNOMED CT code for high blood pressure) •Improper document types oMislabeling a Progress Note or Care Plan as a Discharge Summary oMixing document types •Lack of linkage between entries and metadata oProblems not linked to encounters oMedications missing rxnorm codes oAllergies without reaction descriptions Reasons for this happening: •Vendors are cutting corners to meet interoperability requirements •Lack of enforcement ovendors can send valid XML but the XML is a nonconformant CDA and/or nonconformant C-CDA •No penalties or feedback loops oReceiver mostly does not report the issue, so the sender never fixes it •TEFCA is not mandating C-CDA conformance validation 
-C-CDA and CDA Validators need to be adopted and required for those exchanging any CDA and C-CDA documents. CMS, ASTP/ONC, the RCE need to enforce conformance C-CDAs and CDAs. If participants, subparticipants in TEFCA are sending nonconformant C-CDAs and CDAs, CMS and the ASTP/ONC have the opportunity to offer penalties or recoup a percentage of bonus incentives given to provider organizations and health information exchanges. HIEs need to prove data quality and completeness. One way to do this is to tie to PIQI Framework compliance, FHIR terminology services APIs and in this case CDA and C-CDA validation for any CDA and C-CDA shared. Some of the same issues of validation also apply to FHIR. FHIR validation could also work for bonus recoupment for provider organizations not compliant with API CEHRT. •CMS could audit and recoup bonus incentives oExample would be if an organization sends FHIR payloads but sends invalid FHIR data (such as invalid US core profiles) •CMS could require periodic reporting on FHIR validation for TEFCA, ACO models, Medicare advantage and Managed Medicaid models. •A bonus point multiplier could be part of the FHIR validated submission (like 98% + the pass rate). •Use APIs from CMS-0057 to spot invalid payloads to hence deny bonus or score adjustment. FHIR Risk Adjustment IG
-When I wrote the FHIR Risk Adjustment IG in the first comment, I need to clarify and correct what I put in the first comment: implementing the FHIR Risk Adjustment IG will help to reduce the burden, reduce administrative burden, and reduce clinician burden. When providers in the care delivery organizations/managed care organizations were given paper attestation forms and attestation forms on portals to accept, deny, or pend a risk adjustment diagnosis, the use of the FHIR Risk Adjustment IG will be a lot better to FHIR-ize the risk adjustment process: when the provider confirms or denies the dx, when a provider sends the risk adjustment to the correct provider, when the care delivery organization sends the information to the payer, and when the payer sends the information to CMS. Managed care organizations should not be using portals to complete attestation forms with the PDF uploads of the progress notes when there is FHIR technology available to do the risk adjustment process with the FHIR Risk Adjustment IG. AUCDI Australia Common Data Model for Interoperability The Sparked FHIR Accelerator wrote about this exact issue with “Chronic Disease Management” with the Sparked AUCDI R2 Chronic Condition Management Draft. https://sparked.csiro.au/wp-content/uploads/2025/03/Sparked-AUCDI-R2-Chronic-Condition- Management-Draft-for-Community-Comment-V1.0-1.pdf The Sparked FHIR accelerator (including CSIRO) in Australia is working on a digital Chronic disease Management Plan using FHIR. Inside the Sparked FHIR accelerator, there is a focus group called the Sparked Chronic Condition Management Clinical Focus Group. https://sparked.csiro.au/index.php/ccm-cfg/chronic-condition-management-clinical-focus-group- online-meeting-2-2-may2025/
-The below is taken from the clinical focus group: https://sparked.csiro.au/index.php/ccm-cfg/ Objectives and Responsibilities of the CCM CFG The role of the Sparked CCM CFG is to provide targeted clinical support to enable the development of Chronic Condition Management priorities within the Sparked FHIR Accelerator, this includes but is not limited to: •Create example clinical workflows and/or scenarios related to management of a chronic condition to help development of the AUCDI and FHIR Implementation Guides, and support the progress of the Sparked CDG and the wider Sparked FHIR Accelerator program •Creation of journey(s) highlighting the complexities of chronic condition management.  •Identifying considerations regarding chronic condition management template(s) which supports team care/shared care. •Provide clinical input and insight to relevant FHIR IGs and/or Technical Design Group(s) as required •Support AUCDI development as required by the Sparked CDG •Assist in developing test data or materials to support clinical education and understanding of CCM (if required) For the US, it would be beneficial to see what this subgroup does with chronic disease management in FHIR since this work seems to overlap with what the US wants to pursue. CMS should evaluate international frameworks such as Australia's National Digital Health Strategy and NCTS (mandating SNOMED CT); New Zealand’s HISO 10040.1 clinical terminology standard; and the Netherlands’ MedMij and VIPP programs, which operationalize SNOMED CT adoption through financial incentives. All three countries demonstrate how policy levers and architecture strategies can drive clinical terminology standardization and structured data adoption, including openEHR, even without statutory mandates.
-I know that the ASTP/ONC have people in several FHIR working groups with HL7 International. However, I think it would be helpful if the ASTP/ONC and CMS attended a few of the Sparked FHIR accelerator meetings to see what is going on specifically with the Chronic Condition management clinical focus group. https://sparked.csiro.au/index.php/ccm-cfg/ Chronic Condition Management wheels in the consumer journey 
-Autism (Hyman et al., 2020) Table 1 from Hyman et. al, 2020 with the full reference on the last page. The examples column would be interesting information to analyze: •Reduced sharing of interests 
-•Failure to initiate/respond to social interactions •Deficits in understanding and use of gestures •Lack of facial expressions •Distress at small changes •Difficulties with transitions •Preoccupation with unusual objects •Indifference to pain/temperature •Adverse response to specific sounds or textures •Excessive smelling •Excessive touching of objects •Visual fascination with lights/movement Having these concepts above encoded to SNOMED CT for findings and/or observable entities to count # of episodes per month of the above Dementia and Alzheimer’s Dementia CMS has been aggressive on the screening of dementia, but not aggressive on the management of the complications of dementia. KPIs to analyze # of agitation episodes per month # of delirium episodes per month # of combativeness episodes per month
-% of patients with combativeness Average severity of delusions This would be helpful intel to have the post acute facilities to report OMOP: •FHIR to OMOP pathway for public health and research •Encourage the QHINS to support OMOP extraction (in addition to the FHIR Bulk export) CMS should consider encouraging optional support for OMOP extraction and OMOP-to-FHIR transformation across TEFCA-participating networks. The OMOP Common Data Model (CDM), used by the global OHDSI community and supported by AMIA members, underpins regulatory science, public health, and outcomes research. By enabling optional OMOP extraction from TEFCA-connected clinical data sources, CMS can help create a research-ready data pipeline while maintaining flexibility for implementers. This could support real-world evidence generation, post-market surveillance, and analytics for value-based care. CMS and ASTP/ONC could coordinate with the Vulcan FHIR Accelerator and AMIA to pilot FHIR-based federated queries on OMOP CDMs and explore mappings that support scalable, privacy-preserving research. Aligning TEFCA infrastructure with OMOP use cases advances the learning health system vision and strengthens the bridge between clinical care, research, and health policy evaluation. openEHR is the internal clinical modeling layer SNOMED CT and LOINC for semantic interoperability Archetype Query Language:
-CMS should consider adopting Archetype query language (AQL) to query against the structured data. AQL is useful to query independently regardless of the EHR vendor’s implementation. AQL would also be helpful to query against thousands of EHRs using the same archetype for the hemoglobin A1C. This graphic and text was taken from a presentation at TEHIK 2025 in Estonia OpenEHR and FHIR: Competing or Complementary Standards? (Hanna Pohjonen), Health Data in Motion 2025 openEHR data persistence in a coherent format CMS, ASTP/ONC, NLM should sign a collaborative agreement with openEHR International to advance open platform architectures that give consumers persistent access to their health data, prevent vendor lock-in by decoupling data from applications, and enable long-term reuse of computable data across care settings, research, and innovation. Such collaborative agreement could help to establish a vendor-neutral, computable data layer that separates data from application, laying the foundation for a thriving U.S. healthcare app economy over the next decade with the hopes to: 
-•Enable faster, safer development of consumer and clinical apps using shared data models •Empower patients with persistent, longitudinal access to their structured health data •Prevent vendor lock-in by promoting true data portability across platforms •Complement FHIR APIs by serving as a clinical-grade backend for data quality and reuse •Support U.S. competitiveness in global digital health markets through open standards openEHR is clinically led: data should be separated from the applications some vendors lock data, yet ultimately it is the patients’ data ASTP/ONC should enforce Sequoia Project’s Data Usability IG The Assistant Secretary for Technology and Policy (ASTP) and ONC should enforce implementation of The Sequoia Project’s Data Usability Implementation Guide (IG) across TEFCA-designated entities and certified health IT, including both C-CDA and FHIR exchange environments. This would standardize the structure, completeness, and usability of clinical data aligned with USCDI, ensuring data exchanged via C-CDA is upgrade-ready for FHIR-based apps. By improving data quality across formats, this approach supports TEFCA’s goals, enables patient and provider-facing app development, and ensures a smoother transition to full FHIR adoption. Dental, Behavioral and Specialty EHRs, and Telehealth Vendors The dental EHRs need to be involved with HL7, SNOMED and LOINC to improve the data exchange and data capture of health information. The leading dental EHRs should be part of the HL7 Dental working group (future FHIR accelerator). The same should apply for the behavioral health EHR vendors. The top behavioral health EHR vendors should join the working groups at HL7 International, SNOMED International, and openEHR International. The leading dental EHRs, behavioral health EHRs, and specialty health EHRs should be involved in the HL7 FHIR connectathons and the HL7 CDA Implementation-a-Thons.
-This a longer term goal, but the American Academy representing each medical specialty should take a leading role in defining and endorsing the clinical guidelines and care plans incorporated into specialty-specific FHIR Implementation Guides. Specialty organizations such as the American Academy of Dermatology, American Academy of Orthopedic Surgeons, American Academy of Neurology, and counterparts in Neurosurgery, Immunology, Urology, Pulmonology, Rheumatology, Vascular Medicine, Podiatry, Endocrinology, Infectious Disease, Neonatology, and Wound Care, among others, have the clinical expertise and authority necessary to ensure that FHIR IGs accurately reflect evidence-based practices within their domains. Their involvement will help promote consistency, improve interoperability, and ultimately enhance patient care and outcomes across healthcare settings. CMS, the AMA, the specialty boards and SDOs like HL7 International, SNOMED International, openEHR International, could promote such initiative. If the American Academy representing each medical specialty were to take the lead in defining and endorsing the clinical guidelines and care plans used in specialty-specific FHIR Implementation Guides, it would significantly enhance the clinical validity, usability, and impact of health IT systems. Such leadership would ensure that FHIR-based data exchange aligns with evidence-based specialty practices, reducing variability in care delivery and improving patient outcomes. Standardized care plans authored by specialty societies would support more accurate interoperability, facilitate value-based care models, and enable high-quality real-world data for research and clinical decision support. This would also empower specialty societies to maintain stewardship over their clinical domains in the digital health ecosystem, helping to ensure that the digitization of medicine reflects the nuanced needs of each field. If specialty societies defined their care plans and clinical workflows in openEHR, these models could be directly mapped to FHIR resources in the corresponding Implementation Guides. This approach would ensure semantic consistency, reduce redundancy, and enable alignment between EHR vendors, registries, payers, and regulators. Integrating openEHR with FHIR offers a powerful pathway to rapidly FHIR-ize specialty EHRs with clinically validated, interoperable data models. Interoperability Stack that is Clinically Driven •Specialty societies define the gold standard •SNOMED CT encodes clinical concepts for understanding •openEHR models with semantic rigor •FHIR for nationwide data exchange •Specialty EHRs adopt it natively CMS and ASTP/ONC could convene a task force with 
-•American academy representatives •SNOMED CT SMEs •openEHR SMEs •FHIR SMEs •specialty EHR vendors and QHINs The EHDS does not have this type of clinical governance by including the medical societies and specialties. No country has fully engaged all medical specialty societies in such a coordinated, formalized way. CMS has the opportunity to pioneer a leading national initiative not implemented anywhere else in the world. CMS should support a dedicated initiative to scale behavioral health, dental, telehealth vendors and specialty EHR vendors for interoperability by adopting API CEHRT. These sectors have historically lagged in adopting CDA and FHIR due to limited incentives and niche workflows. CMS could help close this gap through targeted funding, certification alignment, and partnership with QHINs and state Medicaid programs. Without such intervention, these critical providers risk exclusion from national exchange infrastructure and from value-based care models that increasingly rely on modern data standards. CMS should support the use of the International Patient Summary (IPS) to enable streamlined clinical data exchange in rural settings, where infrastructure limitations, fragmented systems, and staffing shortages make full C-CDA or US Core-based exchange difficult. IPS offers a practical, standards-aligned option for exchanging essential clinical information in referral networks, telehealth, emergency medicine and urgent care coordination, and behavioral health visits across state lines. PULSE with IPS for API exchange in disaster response CMS should support the modernization of emergency health information systems, such as the Patient Unified Lookup System for Emergencies (PULSE), by transitioning from C-CDA/CCD documents to the FHIR-based International Patient Summary (IPS). IPS offers a constrained, standards-aligned clinical summary optimized for unplanned care, disaster response, and cross-organizational access. Shifting to IPS would reduce data complexity, improve usability during emergencies, and enable faster, API-driven exchange, particularly valuable in rural and resource-limited settings. CMS could fund pilot projects or FHIR hackathons to demonstrate IPS integration into emergency workflows and statewide health information networks.
-Medical Equipment Companies The leading medical equipment companies should do FHIR-to-FHIR exchange. One of the companies in this space that is not engaged is Henry Schein. If Henry Schein did FHIR exchange with APIs and EHRs, this would help with adding the medical equipment and inventory without having to ask licensed nurses to manually enter inventory on delivery. Third Party Administrators The third party administrators should be part of FHIR exchange. Currently, the third party administrators are not in the HL7 DaVinci FHIR accelerator. Referral Management Vendors The leading referral management vendors have an opportunity to use more FHIR exchange. Currently the referral management software vendors are using CDA with the 360X standard (which is helpful), but with the transition to FHIR, more assistance can be done for CDA to FHIR to go fully FHIR in the future. Terminology Services The NLM's FHIR terminology server for VSAC is a critical resource, but it's limited in scope— it primarily supports Value Sets, not full terminology services for systems like SNOMED CT, LOINC, RxNorm. The U.S. still lacks a comprehensive, nationwide FHIR terminology server that: •Supports $expand, $lookup, $validate-code across all terminologies, •Enables versioning, subsumption testing, and multilingual support, •And allows live integration into EHRs, payers, and public health systems. Other countries like Australia (via Ontoserver), Netherlands (via Nictiz), and Canada (via Canada Health Infoway) already provide this as national infrastructure. The U.S. needs to catch up—especially as FHIR adoption scales under TEFCA and USCDI+. Without it, implementers are stuck building ad-hoc terminology tooling, which leads to inconsistent implementations, data quality issues, and barriers to interoperability.
-Ontoserver, for example, supports full SNOMED CT concept hierarchies, dynamic ValueSet expansion, and FHIR R5 features like $translate for mapping codes. These services are vital for clinical decision support, public health surveillance, and AI/ML readiness in healthcare systems. Lead agency could be ASTP/ONC Technical host could be the NLM (with support from CSIRO, SNOMED International, Regenstrief) Governance admin: the RCE Policy and incentive driver: CMS In addition, TEFCA terminology conformance dashboard would be useful to compare QHIN’s terminology usage that align with the PIQI framework: valid vs. deprecated codes, preferred code usage, USCDI+ support. CMS, ONC, and NLM should jointly establish a PIQI Certification program for health IT vendors and QHIN participants. This certification would validate proper use of standard terminologies (via the national FHIR terminology server), alignment to USCDI+ value sets, and readiness to support semantically interoperable patient data for quality improvement, health equity, and safety. An example of five PIQI Certification components could be: 1.Terminology Maturity – Uses standard, up-to-date terminologies (e.g., SNOMED CT, LOINC, RxNorm) via a national FHIR terminology server like Ontoserver. 2.Semantic Integrity – Correct and consistent use of standardized coded elements and value sets (whether CDA, FHIR, OMOP). 3.Cross-Domain Readiness – Supports USCDI+ domains such as behavioral health, oncology maternal health, and public health. 4.Quality Measure Enablement – Aligns with CMS value sets and enables Clinical Quality Language (CQL) based eCQMs, HEDIS, and VBC reporting. 5.Patient Data Reusability – Ensures data is complete, interoperable, and usable across analytics, referrals, and care coordination.
-Improve relationship with NLM and the RCE for terminology services API under TEFCA Currently, there is limited formal coordination between the Sequoia Project and NLM, despite the increasing need for aligned governance around terminology, FHIR value sets, and conformance tools under TEFCA. Given their complementary role with the Sequoia Project as TEFCA’s interoperability infrastructure steward and the NLM as the nation’s terminology authority, it would be important to have stronger collaboration which would fill critical infrastructure gaps. Education Credit Hours In addition to CMS and/or the ASTP/ONC/NLM having the opportunity to offer CME hours, CEU hours for continuing education for licensed medical professionals, CMS and the affiliated organizations could offer continuing education credits for other disciplines. SNOMED International offers its own e-learning education to learn SNOMED CT. HL7 International offers its own education to learn FHIR, CDA, Da Vinci, etc. Regenstrief Institute will offer more education to learn LOINC. The following organizations could offer continuing education hours for FHIR, LOINC, SNOMED (whether internally or in collaboration with the 3 above orgs): •American College of Healthcare Executives (ACHE) •American Association of Nurse Practitioners (AANP) •American Association of Colleges of Nursings (AACN) •American Pharmacists Association (APhA) •Healthcare Financial Management Association (HFMA) •NAHQ •AHIMA •AMIA •HIMSS •CAHIIM •Association of State and Territorial Health Officials •National Association of County and City Health Officials •American Psychological Association •National Association of Community Health Centers
-•NCQA •National Association of EMS Physicians •Association of Public Health Laboratories ePA CMS-0057 should Include Prescription Drugs in ePA •Expand CMS-0057 to cover prescription drugs — particularly specialty medications — as part of future rulemaking to align with clinical and operational workflows in outpatient and specialty care. •Harmonize pharmacy benefit prior authorization with existing FHIR-based ePA infrastructure, including integration with: oDa Vinci Coverage Requirements Discovery (CRD) oDocument Templates and Rules (DTR) oPrior Authorization Support (PAS) •Incorporate pharmacy ePA into USCDI+ and TEFCA-aligned use cases, leveraging: oNCPDP SCRIPT standard (e.g., ePA transactions) oFHIR-R4 APIs with SMART on FHIR apps and CDS Hooks oSNOMED CT/LOINC coding for clinical criteria •Create a joint roadmap between CMS, ASTP/ONC, NCPDP, and HL7 International to: oAlign FHIR IGs with pharmacy ePA workflows oMap FHIR resources to NCPDP transaction standards oEnsure consistency across payers and PBMs •Require payer-facing Prior Authorization APIs to include medications covered under pharmacy benefit when feasible, especially for: oInjectable biologics oGene/cell therapies oHigh-cost medications requiring strict utilization review •Promote pilot projects between EHR vendors, PBMs, and FHIR implementers to demonstrate interoperability for medication ePA under the same regulatory and technical umbrella as medical services. •Encourage integration of FHIR-based ePA with electronic prescribing (eRx) tools so prior auth requirements and responses are visible to clinicians before ordering the medication. •Reduce clinician burden and improve care timeliness by eliminating the need for fax- and portal-based prior auth systems for medications, especially in oncology, rheumatology, neurology, and immunology. CMS should encourage or require that pharmacy benefit prior authorization systems to implement the same HL7 FHIR APIs (e.g., CRD, DTR, PAS) used in CMS-0057 for medical 
-benefit ePA, to ensure full EHR integration, standards alignment, and reduced burden across medical and pharmacy workflows to do electronic prior authorizations for prescription drugs. Types of DME Pharmacy Benefit that could be part of CMS 0057 for FHIR exchange 1. Diabetes-Related Supplies •Continuous glucose monitors (CGMs) and sensors (if billed via pharmacy) •Insulin pumps (if billed through pharmacy) •Blood glucose meters and test strips •Lancets 2. Home Infusion and Related Supplies •Infusion pumps dispensed via specialty pharmacies •Supplies for infusion therapy (e.g., tubing, needles) 3. Respiratory Equipment & Supplies •CPAP/BiPAP machines and masks (sometimes under pharmacy benefit) •Oxygen concentrator accessories or smaller portable devices dispensed via pharmacy 4. Wound Care Supplies •Specialized dressings or bandages dispensed through pharmacies or specialty suppliers 5. Ostomy Supplies •When dispensed via pharmacy channels, including pouches, wafers, adhesive removers 6. Urological Supplies •Catheters, leg bags, insertion kits dispensed via pharmacy benefit managers 7. Mobility Aids •Some smaller aids like canes, braces, or supports when billed through pharmacy Home medical supply companies (such as Byram Healthcare, Lincare, Medline, Edgepark, and Apria Healthcare) play a critical role in delivering essential DME and disposable supplies directly to patients’ homes.
-These companies manage high volumes of prior authorizations for durable medical equipment and related disposable supplies (e.g., ostomy, urology, wound care, diabetes, respiratory products). Many home medical supplies are billed through pharmacy benefits and are currently excluded from CMS-0057’s FHIR-based electronic prior authorization requirements, causing fragmented and inefficient PA processes. Expanding CMS ePA requirements or issuing complementary guidance to include home medical supply companies and pharmacy-billed DME would reduce administrative burden and improve patient access. CMS should assess the feasibility of xtending electronic prior authorization requirements — and FHIR-based interoperability — to critical yet excluded services such as dental, vision, behavioral health, and DME dispensed under the pharmacy benefit. These domains frequently impact patient access and disproportionately affect Medicaid and CHIP populations. This would help in scaling ePA for prescription drugs nationwide. Integrating the Healthcare Enterprise (IHE) CMS should promote adoption of underutilized but impactful IHE profiles that align with FHIR, TEFCA, and ASTP/ONC’s modern interoperability goals. These include: •Privacy Consent on FHIR (PCF): FHIR native consent •Mobile Health Document Sharing (MHDS): FHIR alternative to XDS and XCA •Mobile Cross-Enterprise Document Data Element Extraction (mXDE): FHIR access to structured data from documents •Document Subscription for Mobile (DSUBm) •Patient Master Identity Registry (PMIR) •Sharing of IPS (sIPS) •Sharing Valuesets, Codes, and Maps (SVCM): enhances terminology interoperability These profiles fill critical gaps in consent, real-time data access, cross-network identity resolution, and terminology alignment—areas central to program integrity, health equity, and patient access. IHE Profiles link for ITI https://profiles.ihe.net/ITI/index.html Sharing of IPS 
-https://profiles.ihe.net/ITI/sIPS/volume-1.html CMS should support the transition from bulky, narrative-heavy CCDs to FHIR-based IPS documents. IPS improves data quality, reduces ingestion complexity, and supports structured data exchange needed for quality measurement, patient access, and program integrity. Integration of IHE sIPS and FHIR APIs such as MHD should be prioritized to accelerate this transition across provider networks and QHINs. IPS fits well with TEFCA "Treatment" use cases and USCDI+ pilots, especially for: •Emergency medicine •Longitudinal care •Federally qualified health centers (FQHCs) •Rural or disaster response CMS should encourage TEFCA-designated QHINs to adopt IHE’s MHDS profile as the foundation for FHIR-native document exchange. MHDS provides a modern, scalable alternative to XDS/XCA, improves performance, and supports advanced use cases like event-driven care coordination, quality measurement, and consent-aware data sharing. Pairing MHDS with profiles like MHD, mXDE, and sIPS would accelerate transition from CDA-based exchange and enable TEFCA’s full potential. PIQI Framework With the PIQI framework, CMS, ASTP/ONC, the RCE, HL7, SNOMED International, and Regenstrief Institute (LOINC) could co-sponsor hackathons on PIQI framework adoption. Assessment Scales One of the biggest issues with the data exchange of assessment scales is the intellectual property, meaning that every standards organization would need to get IP approval to share the questions and answers of an assessment scale.
-SNOMED International wrote a document related to this entitled “Principles for managing Assessment Scales in SNOMED CT.” As one can imagine, if an EHR vendor or healthcare application vendor obtains IP approval from every organization to do an assessment scale, that could be very expensive. One recommendation is that CMS could: •Negotiate blanket licenses for common tools (e.g., MoCA, Barthel Index, Neuropsychiatric Inventory, Lawton IADL, COPD Assessment Test, Asthma Control Test, Autism Diagnostic Observation Schedule, Gilliam Autism Rating Scale, Autism Spectrum Quotient) across providers. •Require IP holders to publish digital, interoperable versions as a condition of endorsement. •Fund development of open-access alternatives to reduce dependency on restricted tools if licensing is prohibitive. •Include FHIR-compatible versions of assessment tools in standard rulemaking (e.g., QPP, MVPs). •Explore multi-stakeholder partnerships (tool owners, standards bodies, federal agencies) to create a licensed digital content clearinghouse. •Issue grants or contracts to buy rights for common tools, common assessment scales and facilitate inclusion in SNOMED CT and LOINC. •Promote use of these licensed digital assets in regulations, programs, and certification criteria. Some of these assessment scales and questionnaires are prevalent in the common chronic illnesses such as assessment scales for: •Dementia oMini Mental State Exam oMontreal Cognitive Assessment oNeuropsychiatric Inventory oFunctional Activities Questionnaire •Alzheimer’s •Asthma oAsthma Control Test oAsthma Control Questionnaire oAsthma Quality of Life Questionnaire 
-•Autism oAutism Diagnostic Observation Schedule oGilliam Autism Rating Scale oAutism Diagnostic Interview- Revised Link below: https://confluence.ihtsdotools.org/download/attachments/236027963/Principles%20for%20mana ging%20Assessment%20Scales%20in%20SNOMED%20CT%2020240430%20v0.1.docx.pdf?v ersion=1&modificationDate=1716224860000&api=v2 Enabling FHIR-Based Advance Directive Forms Through IP Clearance Background: The National Association for Home Care & Hospice (NAHC) stewards widely used advance directive forms across states. These forms often have IP restrictions limiting their digital, interoperable use. CMS can play a pivotal role in negotiating IP clearance and fostering adoption of standardized, FHIR-enabled advance directive forms to improve care coordination and patient empowerment. Link to the forms that you can click on by state: https://www.aarp.org/caregiving/financial-legal/free-printable-advance-directives/ Recommendation: CMS should establish a multi-stakeholder initiative with NAHC, CaringInfo, state health agencies, EHR vendors, and standards organizations (HL7 International, ASTP/ONC, SNOMED International, Regenstrief Institute) to: 1.Negotiate IP licensing agreements with NAHC and states to permit the use of advance directive forms in interoperable digital formats (FHIR resources). 2.Support development and publication of FHIR Implementation Guides for advance directive forms aligned with state legal requirements. 3.Incentivize adoption through Medicare/Medicaid quality programs and EHR and API CEHRT certification criteria requiring support for FHIR-based advance directives. 4.Encourage state alignment to harmonize legal and policy frameworks facilitating cross- state interoperability.
-5.Fund education and outreach for healthcare providers and IT implementers on the use of standardized digital advance directives. Expected Outcome: This approach will reduce IP barriers, enable interoperable advance directive data exchange nationwide, enhance patient-centered care, and improve clinical decision-making at transitions of care. •Digitize advance directives (move from PDFs/paper to structured digital forms) •FHIR-enable advance directives for nationwide interoperability •Resolve IP barriers with NAHC/CaringInfo/state forms •Support state-specific legal requirements in a standardized FHIR framework •Empower patients and families to view, update, and share directives digitally •Make directives available at point of care (ERs, hospitals, EMS, LTC, etc.) •Improve care coordination and decision-making across settings HIEs The state HIEs and regional HIEs need support to move dominantly towards APIs. CMS, ASTP/ONC and the RCE should lead the charge and roadmap when the state HIEs and regional HIEs should move more to FHIR. CMS, ASTP/ONC, the RCE, HL7, and possibly Civitas should help with V2 to FHIR conversion and CDA to FHIR conversion for the HIEs. It would be fun to do FHIR hackathons of state versus state HIEs (with 1 track specifically among CDA dominant state HIEs). I know from a policy standpoint that a majority of the states have not required that the state HIEs expose FHIR APIs for facilitated FHIR exchange. At the state level, some of the regional HIEs in a particular state are not required to exchange data between the other regional HIEs. This may be due to competitive or financial issues. This begs to question whether some of the regional HIEs in a particular state are behaving somewhat as competitors versus collaborators. There are no financial incentives among the states to do data sharing among the regional HIEs. There are no financial incentives for the statewide HIEs and regional HIEs to move towards more of FHIR. CMS and ASTP/ONC can encourage FHIR hackathons or pilot projects focused on IPS implementation, such as state to state FHIR exchange, in rural clinics, critical access hospitals, and behavioral health networks to demonstrate how simplified summaries can improve care continuity in under-resourced areas.
-HIEs that successfully implement cross-HIE FHIR exchange for care coordination, public health reporting, or patient access should be eligible for bonus incentives or demonstration project funding. SNOMED CT extensions with CMS and the AMA An alternative to the HCPCS level II to SNOMED CT map that I mentioned in the first public comment would be to create two SNOMED CT extensions of: •CMS related content of HCPCS level II Codes to SNOMED CT •AMA related content of CPT and HCPCS level I codes to SNOMED CT CPT is not publicly accessible, which has created friction in: •Open APIs •Public pricing transparency (including hospital pricing transparency) •Research use •FHIR implementation (especially with terminology servers) To meet national semantic interoperability, price transparency, and patient empowerment goals using FHIR, CPT must be accessible via a nationally supported FHIR terminology server/services APIs. Limiting CPT access to private licensees hampers innovation, public health, and equity. The pursuit of a federal license would help to enable read-only, standardized, API-based access—no redistribution, no commercial misuse CPT must be accessible on the terminology server for: •Patient-facing APIs (via CARIN Alliance, Da Vinci) •Provider directory validation •Advance Explanation of Benefits (AEOB) •Digital quality measures (dQMs) A previous commitment was given by the AMA and SNOMED International to work on a CPT to SNOMED CT map. Not sure if that is 100% operational. CMS could promote and ask the NLM to assist in the SNOMED CT extensions given above, now that this could help with hospital price transparency and the PIQI framework. 
-Providers The larger health systems (large hospital systems) are dependent on the EHR vendors and/or 3rd party vendors to implement and use FHIR. Only a handful of the large hospital systems are either HL7 members or in HL7 accelerators. CMS should engage the AHA, AMA, ACHE and the related state chapters to spearhead FHIR adoption among the health systems/hospital systems/providers. Payments Vendors (Digital Payments Providers) The payment vendors (digital payments providers) which are involved in healthcare financial transactions should be adopting FHIR with the FHIR based resources related to the HL7 Financial Management workgroup manages: •Invoice •Payment •PaymentReconciliation Duplicate Testing and TEFCA Duplicate diagnostic testing such as lab panels, imaging studies, and cardiology procedure, remains a widespread and costly issue across the U.S. healthcare system. Patients with chronic conditions who transition between facilities, even within the same city, are frequently subjected to repeat procedures due to fragmented access to prior results. The most commonly duplicated tests include: •Basic labs (CBC, CMP, BMP) •Chest X-rays and CT scans •Pathology reports and biopsies •Echocardiograms (TTE and TEE) •Cardiac catheterizations and stress tests •Urinalysis, D-dimer, and troponin •COVID-19, flu, and RSV tests during transitions of care These duplications are not solely the result of clinical necessity, but rather stem from the lack of timely, structured, and trustworthy data exchange across health systems. While TEFCA is a foundational step toward nationwide interoperability, it alone will not solve this problem unless paired with the following:
-1. Widespread adoption of FHIR-based APIs for real-time, structured clinical data exchange—especially for lab results, imaging metadata, and procedural reports. 2.Standardized terminology adoption (e.g., LOINC, SNOMED CT) for test types, enabling automated duplicate detection and clinical decision support. 3. Expanded use of IHE imaging profiles and DICOMweb to enable access to imaging results and actual files across TEFCA participants. 4.Integration of clinical decision support (CDS) to alert clinicians to recent tests during ordering workflows. 5.Improved patient matching infrastructure, particularly across QHINs and among high-utilizer populations. CMS should consider incentivizing or requiring TEFCA participants to adopt FHIR and imaging exchange standards, and to surface duplicate test warnings directly within EHR workflows. These steps will support care quality, reduce unnecessary patient risk, and lower healthcare costs associated with redundant testing. To effectively reduce duplicate imaging and procedural testing across care settings, CMS should promote and require the use of correct SNOMED CT codes within TEFCA-participating networks for: •all imaging, laboratory and procedure orders •all imaging, laboratory and procedure results that align with SNOMED CT’s Fully specified name (FSN) and/or synonyms. Standardized SNOMED CT coding enables: •Accurate identification of prior equivalent tests or procedures across disparate EHRs and health information networks. •The implementation of real-time clinical decision support (CDS) tools that alert ordering clinicians to recent duplicate tests or interventions, improving patient safety and reducing unnecessary costs. •Consistent data exchange and semantic interoperability across Qualified Health Information Networks (QHINs), supporting TEFCA’s vision for nationwide data sharing. •Enhanced quality measurement and utilization management by payors and regulatory bodies. CMS should incentivize TEFCA participants to adopt SNOMED CT for: •imaging, laboratory and procedure order coding •imaging, laboratory and procedure results coding 
-and ensure that these codes are transmitted via FHIR resources (e.g., ServiceRequest, ProcedureRequest). This will facilitate scalable duplicate test tracking, reduce healthcare waste, reduce unnecessary costs, align with the PIQI framework, and improve patient outcomes. If the US stakeholders prefer LOINC for laboratory orders and results, then CMS could incentivize TEFCA participants to adopt: •LOINC + SNOMED CT for laboratory orders and results coding •LOINC + SNOMED CT for imaging and procedures orders coding •LOINC + SNOMED CT for imaging and procedures results coding (Historically LOINC has been used for imaging results at the document level, but not at the image itself or the procedure itself). CMS should consider promoting the adoption of openEHR archetypes and templates as a foundation for structured, interoperable clinical data that can prevent unnecessary duplicate testing. openEHR’s semantically consistent data models, particularly when linked to SNOMED CT and LOINC codes, support advanced querying and decision support across care settings. This enables systems to detect recent imaging, procedures, or labs, improving care quality, reducing cost, and avoiding patient harm from redundant interventions. Public Health The NORS form from the CDC should be FHIR-ized or represented in openEHR and shared via the QHINs The conversion of NORS elements into FHIR profiles (or openEHR archetypes/templates) would improve machine readable and structured reporting from health departments, EHRs and labs. NORS reports are siloed within the state and local departments. During public health outbreaks, clinical care teams are often unaware of real-time outbreak investigations affecting their patients, especially in long-term care facilities, dialysis centers, correctional institutions, schools, or group homes. EHR systems should be able to consume structured outbreak data (based on the NORS form) in order to inform patient care decisions, infection control, and follow-up treatment.
-A FHIR-based “Outbreak Report” profile should be developed and aligned with the CDC NORS form and mapped to USCDI+ Public Health. This would allow: •EHR vendors to pull in relevant outbreak context for patients exposed in a defined facility or region. •Facilities to document patients’ clinical course and response in the context of the outbreak. •QHINs to exchange outbreak investigation summaries with participating health systems and public health agencies, while respecting data sharing restrictions and access control. This approach does not require the full NORS dataset to be public—it simply ensures outbreak metadata is structured, interoperable, and context-aware to support both public health and clinical care in real time. Electronic Case Reporting FHIR IG https://build.fhir.org/ig/HL7/case-reporting/ CMS should promote more adoption of the Electronic case reporting FHIR IG to scale nationally. Since a lot of the reporting is still being done in CDA/CCDA, the need for CDA to FHIR mapping is relevant and needed. In addition, the SANER FHIR IG Situational Awareness for Novel Epidemic Response FHIR IG is applicable and useful for public health emergency response. https://build.fhir.org/ig/HL7/fhir-saner/index.html Using SNOMED CT Expression constraint language (ECL) would be useful here to do queries on the structured outbreak metadata. e.g. query all the blood borne transmissions within the last 7 days e.g. query the outbreak cases with a causative agent of salmonella 
- Mode of transmission values (qualifier value) SCTID: 414753003 Children (15) • Animal to animal transmission (qualifier value) • Animal to human transmission (qualifier value) • Body fluid contact transmission (qualifier value) o Blood borne transmission (qualifier value) o Lactation transmission (qualifier value) • Environmental exposure transmission (qualifier value) o Airborne transmission (qualifier value) • Fecal-oral transmission (qualifier value) • Fomite transmission (qualifier value) • Food-borne transmission (qualifier value) • Human to human transmission (qualifier value) • Indeterminate disease transmission mode (qualifier value) • Nosocomial transmission (qualifier value) • Parenteral transmission (qualifier value) o Transdermal transmission (qualifier value) o Transfusion transmission (qualifier value) • Sexual transmission (qualifier value) • Vector-borne transmission (qualifier value) • Vertical transmission (qualifier value) o Lactation transmission (qualifier value) o Transplacental transmission (qualifier value) • Water-borne transmission (qualifier value) Sensitive Data
-CMS should encourage or require QHINs handling sensitive health information—such as behavioral health, substance use disorder (SUD), infectious disease, and social services data—to adopt HL7 FHIR standards that support granular consent and data segmentation. The Data Segmentation for Privacy Profiles enable layered, revocable, and purpose-specific consent aligned with 42 CFR Part 2 and other federal and state privacy regulations. This would help with multi-layered consents to determine who can access sensitive data, which reasons, and the duration. Adoption of these standards, coupled with SMART on FHIR authorization scopes, would improve patient trust, reduce data leakage risk, and ensure ethical interoperability as TEFCA expands to include more sensitive domains. CMS could further incentivize this through certification programs, pilot funding, and technical guidance. CMS should strongly encourage or require all API CEHRT vendors who query sensitive data, such as behavioral health and infectious disease data, as well as QHINs handling sensitive data, to implement HL7 FHIR Data Segmentation for Privacy (DS4P) profiles. These profiles enable tagging and segmenting of protected health information—such as substance use disorder treatment records and HIV status—at a granular level, supporting multi-layered, revocable consent. Genomics To strengthen national precision medicine infrastructure and support data interoperability, CMS should encourage NIH—particularly ClinGen and the National Center for Biotechnology Information (NCBI)—to adopt key APIs and technical standards developed by the Global Alliance for Genomics and Health (GA4GH). Standards such as the Beacon API (for federated variant discovery), the Data Repository Service (DRS) (for standardized cloud data access), and the Variant Representation Specification (VRS) (for computable, consistent variant definitions) can enhance how genomic and phenotypic information is shared across research and clinical systems. Additionally, the GA4GH Phenopackets standard offers a structured way to represent patient phenotypes, which would improve disease-gene correlation, support rare disease diagnosis, and help align NIH resources like ClinVar, ClinGen, and dbGaP with international efforts in phenotype-driven research. Integration of the GA4GH Passport and Authentication & Authorization Infrastructure (AAI) would enable secure, federated identity management and controlled access to sensitive genomic datasets across NIH platforms, including AnVIL, BioData Catalyst, and dbGaP. If ClinGen and NCBI adopted Beacon, Phenopackets, and Passport/AAI together, researchers and clinical systems could securely discover and access relevant variant and phenotype data in real time, using privacy-respecting protocols. CMS should support adoption of these APIs as part of future USCDI+ genomics efforts, and align them with broader TEFCA implementation. This would significantly improve data harmonization, reproducibility, and equitable access to genomics resources across the U.S. health system.
-CMS and NIH could adopt these APIs from Global Alliance for Genomics and Health (GA4GH) ￿ Beacon API – for federated variant discovery across trusted databases ￿ Data Repository Service (DRS) – for standardized, cloud-native access to genomic data ￿ Variant Representation Specification (VRS) – for computable, harmonized variant definitions ￿ Phenopackets – for structured representation of patient phenotypes to support rare disease diagnostics and gene-disease correlation ￿ GA4GH Passport & Authentication and Authorization Infrastructure (AAI) – for secure, federated identity management and access control CMS, ASTP/ONC, and NLM should sign a collaborative agreement with the Global Alliance for Genomics and Health (GA4GH). Benefits of CMS and GA4GH collaboration: •Establish CMS as a leader in genomic interoperability by recognizing GA4GH standards such as Beacon, Phenopackets, VRS, DRS, and Passport/AAI. •Support standards-based genomic and phenotypic data submission for evidence-based reimbursement and coverage decisions. •Integrate clinical genomics research with CMS payment and quality programs to enable real-world evidence and coverage with evidence development (CED). •Advance national privacy and data governance via GA4GH Passport & AAI for secure genomic data access. •Accelerate USCDI+ genomics and TEFCA adoption by piloting GA4GH APIs in CMS innovation programs. •Signal to providers and vendors the importance of GA4GH standards for CMS program compliance and drive genomic interoperability. Scaling genomics integration across API-enabled Certified Electronic Health Record Technology (CEHRT) platforms would be transformative for precision medicine and patient care nationwide. By embedding GA4GH standards—such as Beacon, Phenopackets, Variant Representation Specification, and Passport/AAI—into CEHRT APIs, providers could access real-time, structured genomic and phenotypic data directly within clinical workflows. This interoperability would enable seamless exchange between labs, EHRs, payers, and research systems, supporting evidence-based reimbursement, clinical decision support, and population health management. Furthermore, integrating secure, privacy-preserving identity and consent frameworks through GA4GH’s Authentication and Authorization Infrastructure would ensure patient data is protected 
-while enabling scalable, federated genomic data sharing. CMS should champion this effort as part of future USCDI+ genomics and TEFCA implementation to accelerate adoption, improve outcomes, and increase federated access in genomic medicine. FMLA and ADA forms on FHIR To improve the efficiency, consistency, and interoperability of medical certifications under the Family and Medical Leave Act (FMLA), CMS should work with the Department of Labor (DOL), ONC, and standards organizations to digitize the FMLA process using open health data standards such as FHIR and openEHR. FMLA certification forms (e.g., WH-380 series) currently rely on manual, paper-based workflows that burden clinicians, delay patients' access to job-protected leave, and create administrative overhead for employers. By leveraging HL7 FHIR resources such as Condition, CarePlan, Practitioner, and DocumentReference, the clinical portions of the forms can be automated and exchanged directly from certified EHRs. Additionally, openEHR’s archetype- based approach offers a robust model for long-term storage, computability, and data validation, particularly for complex use cases such as intermittent leave or chronic conditions. FHIR can support real-time generation and sharing of required certification data through SMART on FHIR apps, while openEHR templates can serve as durable, version-controlled clinical models aligned with existing documentation standards. Integrating these approaches would reduce clinician burnout, speed up patient access to leave, and improve data quality for oversight and policy analysis. CMS should consider pilot programs or interagency collaborations to: •Define a standardized FMLA Questionnaire/QuestionnaireResponse using FHIR •Promote the use of openEHR templates for clinical certification of medical necessity •Engage EHR vendors and employers to implement interoperable, standards-based workflows •Ensure patient and employee data rights are preserved during electronic exchange CMS should engage leave management vendors stakeholders such as Sedgwick, ReedGroup, Unum, AbsenceSoft, and Matrix Absence Management. These vendors process millions of FMLA and ADA claims each year on behalf of employers and already interact with healthcare providers. Supporting their adoption of FHIR APIs for intake of clinical certification data would align with CMS’s goals of reducing burden and improving coordination across sectors. The ASTP/ONC and HL7 International should also engage leave management vendors as stakeholders to do FHIR API based exchange. Such a regulatory approach would require engagement from employers, leave management vendors, third-party administrators, insurance carriers, healthcare providers, and EHR vendors to enable secure, real-time electronic exchange of clinical and administrative data supporting these 
-forms. Leveraging existing infrastructure such as TEFCA and trusted exchange networks will facilitate this collaboration and reduce duplication, speed approvals, and improve patient and employee experience. Ultimately, this initiative will significantly reduce administrative burden and help integrate health data exchange across clinical, administrative, and social domains, marking an important step forward in comprehensive healthcare interoperability. This would modernize FMLA administration and align with federal priorities around reducing provider burden, advancing patient-centered care, and increasing public-private interoperability through open standards. Hence, a new regulatory framework for employer based administrative forms such as ADA, FMLA, Workers Compensation, that mandates standardized, interoperable exchange to ensure the alignment of policies, collaboration, and the avoidance of conflicting requirements. Abnormal Physical Findings ASTP/ONC should add a data element for Abnormal Physical Findings in USCDI (under Observations). One of the biggest issues of information exchange has been with the sharing of abnormal findings on the physical exams of progress note templates. The abnormal (positive) physical exam findings have not been captured well nor have been shared well for information exchange between EHRs or disparate systems. Examples of abnormal physical exam findings: •Wheezing •Heart Murmur •Hyperreflexia •Clubbing of fingers •Papilledema •Rhonchi •Rales •Tachypnea •Disoriented to time/place/person •Apraxia •Hallucinations •Shuffling gait ASTP/ONC should add "Abnormal Physical Findings" as a new data element under the Clinical Observations class in USCDI. This element would capture clinically observed signs — 
-distinct from diagnoses (ICD-10) or symptoms — that are essential for documenting severity, progression, or underlying pathology. Examples include wheezing, murmur, JVD, disorientation, or clubbing of fingers. These findings are often captured in unstructured text, making them unavailable for exchange or analysis. Structured representation using SNOMED CT within FHIR Observations would improve clinical decision-making, referral quality, AI/NLP use, and care continuity. Unified Digital Health Platforms In terms of where will the health IT ecosystem move in the next 10 years, the transformation will move towards UDHPs. The below 2 references explain DHPs/UDHPs in amazing detail: Platforming Healthcare the Long View https://e-caremanagement.com/series/platforming-healthcare-the-long-view/ and this article from Gartner: Innovation Insight: Digital Health Platforms Accelerate Transformation https://www.gartner.com/doc/reprints?id=1-2JEA7CCN&ct=241119&st=sb CMS should encourage the development of Unified Digital Health Platforms (UDHPs) that integrate patient-facing tools, provider workflows, and modular apps into a cohesive experience. These platforms would serve as the digital front door for both patients and clinicians, combining scheduling, communication, care navigation, longitudinal records, and FHIR-native plug-ins in one place. Unlike fragmented EHR portals or third-party apps, a UDHP offers a seamless, standards-based interface that can be customized for different populations—such as individuals with chronic conditions, behavioral health needs, or those in rural areas. CMS could support this model through demonstration projects, technical assistance, or by aligning value-based payment programs with UDHP capabilities that improve engagement, equity, and care outcomes. A CMS-endorsed UDHP framework paired with app certification pathways and performance based incentives would help shift the market toward a more open, innovation-friendly, and outcomes-driven digital health ecosystem. Further info on UDHPs or DHPs:
-Webinar on unified digital health platforms (UDHPs). https://www.youtube.com/watch?v=oCBdUKJoH8A&t=2579s First Ernst and Young report “How Will You Design Information Architecture to Unlock the Power of Data?” https://www.ey.com/en_gl/insights/health/how-will-you-design-information-architecture-to- unlock-the-power https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/insights/health/documents/ey- global-health-tech.pdf Second Ernst and Young report “How Innovative Infostructure Can Power the Purpose of Integrated Care Systems” https://www.ey.com/en_gl/insights/health/how-innovative-infostructure-can-power-the-purpose- of-integrated-care-systems https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/insights/health/documents/how- innovative-infostructure-can-power-the-purpose-of-integrated-care-systems.pdf References: Hyman, S. L., Levy, S. E., Myers, S. M., COUNCIL ON CHILDREN WITH DISABILITIES, SECTION ON DEVELOPMENTAL AND BEHAVIORAL PEDIATRICS, Kuo, D. Z., 
-Apkon, S., Davidson, L. F., Ellerbeck, K. A., Foster, J. E. A., Noritz, G. H., Leppert, M. O., Saunders, B. S., Stille, C., Yin, L., Weitzman, C. C., Childers, D. O., Levine, J. M., Peralta-Carcelen, A. M., Poon, J. K., … Bridgemohan, C. (2020). Identification, Evaluation, and Management of Children With Autism Spectrum Disorder. Pediatrics, 145(1), e20193447. https://doi.org/10.1542/peds.2019-3447 McBride, A., Vermuelen, E., Dunscombe, R., Coughlin, S., & Benjwal, A. (2022, September 18). How innovative infostructure can power the purpose of integrated care systems. How Innovative Infostructure Can Power the Purpose of Integrated Care Systems. https://www.ey.com/en_gl/insights/health/how-innovative-infostructure-can-power-the- purpose-of-integrated-care-systems Roberts, D., McBride, A., Dunscombe, R., Coughlin, S., Pagani, J., & Mailes, E. (n.d.). How will you design information architecture to unlock the power of data? Retrieved June 6, 2025, from https://www.ey.com/en_gl/insights/health/how-will-you-design-information- architecture-to-unlock-the-power
+David Rocha drocha3408@outlook.com
+This is the second part of comments. The first part (part 1) comments posted earlier ID: CMS-
+2025-0050-0050).
+Summary of recommendations/trend throughout this comment:
+• CMS, ASTP/ONC should create a formal ontology for the national provider directory
+• TEFCA exchange sending Empty CDAs and CDAs without validation
+• TEFCA exchange should enforce validation for CDA/CCDAs and FHIR exchange
+• Adopting the Risk Adjustment FHIR IG will reduce clinician and administrative burden
+for risk adjustment (diagnoses attestation process)
+• AUCDI with chronic disease management plan in FHIR for Sparked FHIR accelerator-
+implement US realm
+• Autism USCDI+ data elements
+• Dementia and alzheimers complications KPIs
+• openEHR Archetype query language should be adopted
+• The American medical specialties (American Academy of ____) should create respective
+FHIR IGs for specialty care
+• Engage medical equipment companies, referral mgmt. vendors and third party
+administrators to use FHIR
+• PIQI certification program
+• Partner Sequoia project and NLM for terminology services in TEFCA
+• Provide Education credit hours via CMS and healthcare professional associations
+• Expand CMS 0057 to include prescription drugs for FHIR exchange
+• Include DME pharmacy benefit for FHIR exchange
+• Promote IHE profiles like sIPS, SVCM
+• Use IPS sharing for emergency care, rural health, disaster response
+• Free Intellectual property issues to use assessment scales nationally
+• Enable FHIR based advance directive forms with the National Association for Home
+Care and Hospice
+• ASTP/ONC should enforce Sequoia Project’s Data Usability Implementation Guide
+• Bonus incentives for cross HIE FHIR exchange
+• Create SNOMED CT extensions for HCPCS/CPT to SNOMED CT maps among
+SNOMED International, AMA, CMS
+• Spearhead FHIR adoption among hospitals/large health systems
+• Include digital payments vendors in FHIR exchange
+• Eliminate duplicate testing under TEFCA with LOINC+SNOMED CT for lab, imaging,
+procedures orders and results
+
+• CMS, ASTP/ONC, NLM should sign a collaborative agreement with openEHR
+International
+• CMS should promote and adopt openEHR archetypes and templates
+• Integrate and FHIRize the CDC NORS form for public health data exchange
+• Create a FHIR based Outbreak report
+• Promote the electronic case reporting FHIR IG
+• SNOMED CT ECL to query outbreak metadata
+• Adopt DS4P profiles for TEFCA sensitive data
+• CMS should engage the AHA, AMA, ACHE and the related state chapters to spearhead
+FHIR adoption among the health systems/hospital systems/providers.
+• Unified digital health platforms
+• CMS should sign a collaborative agreement with Global Alliance for Genomics and
+Health (GA4GH) to improve interoperable genomics data sharing and enable a “single-
+sign on for genomics” across repositories.
+• Scale genomics data sharing across API CEHRT
+• ASTP/ONC should add Abnormal Physical Findings in USCDI to capture abnormal
+(positive) findings from physical exams
+National Provider Directory Ontology
+CMS should develop a formal ontology for the CMS National Provider Directory.
+This ontology should define:
+• Legal Entities (TIN/EIN), including their DBA (Doing Business As) names and
+registered jurisdictions.
+• Provider Organizations and Individuals with National Provider Identifiers (NPIs).
+• Relationships over time, such as hasPriorAffiliation, wasPracticingAt, hadDBAAlias,
+and wasOwnedBy.
+• Enrollment and credentialing events (from PECOS), including Medicare revalidation
+dates, status changes, and program participation.
+• Ownership chains and network affiliation, to allow transparent tracing of parent
+companies, private equity ownership, and vertical integration across healthcare delivery
+organizations.
+• Temporal metadata, allowing systems to reason over the history of provider activities
+and validate historical network adequacy or fraud risk.
+By aligning this ontology with existing standards such as:
+• HL7 FHIR (Practitioner, Organization, HealthcareService, Location),
+
+• the W3C Organization Ontology (org:),
+• and vocabularies such as the NUCC taxonomy or SNOMED CT,
+CMS can provide a canonical, computable source of truth for provider identity, program
+eligibility, and affiliation status. This would significantly improve identity matching, fraud
+detection, workforce planning, network adequacy validation, and interoperability between
+Medicare, Medicaid, QHPs, and other health plans.
+Additionally, this ontology could be versioned, published, and integrated with CMS’s existing
+terminologies and the National Directory framework to support both public-facing applications
+and advanced analytics.
+CMS should collaborate with ASTP/ONC, HL7, GAO, OBO Foundry, AMIA, and academic
+experts to accelerate this effort, and to consider providing a governance mechanism for updating
+and expanding the ontology over time — including community participation and support for
+state Medicaid programs and Qualified Health Information Networks (QHINs).
+Core Ontology Elements to Potentially include:
+• LegalEntity
+• Organization
+• HealthcareProvider
+• EnrollmentEvent
+• Affiliation
+• DBAAlias
+• OwnershipRelationship
+• Location
+• ProgramParticipation
+• CareDeliveryOrganization
+• AccountableCareOrganization
+Ontology Relationships to Potentially Include:
+• hasSpecialty
+• hasPrimarySpecialty
+• hasPracticingSpecialty specialty the provider practices/focuses on
+• hasBoardCertification
+• hasLicenseIn
+• hasGender
+• hasTelehealthScope
+
+• hasNetworkParticipation
+• hasFacilityPrivilegesAt
+• wasRevokedOn
+• isRural
+• isAffiliatedWithPayer
+• isContractedWithPayer
+• isPartOfHealthSystem
+• hasCredentialingStatus
+Ontology Attributes to Potentially Include:
+• riskContractType (shared savings, full capitation, partial capitation)
+Then in the provider directory, an ontology would help with deeper queries:
+“Which CDOs share risk with managed Medicaid organizations in state ____”
+“Query list of providers participating in both ACO and MA in the same year”
+“Query list of providers with primary specialty of rheumatology”
+Care Delivery Organizations FHIR, CDA, EHR tracking
+More accountability could be done for the care delivery organizations working on behalf of the
+payers and/or provider organizations engaged in managed care models.
+One way to do such accountability is to post and publicly share FHIR compliance.
+Some of the listed columns (so-to-speak) could relate to:
+Current FHIR release
+Implementation Guides (Risk Adjustment IG, PDex, CDex) with the latest releases
+Current EHR version
+Latest EHR version
+Current CDA release
+Current CDA validator
+
+The reasoning for this is to show whether care delivery organizations, accountable care
+organizations, and even EHRs are using the latest FHIR IGs, etc. in its health information
+systems.
+For the TEFCA question, TEFCA is not requiring strict conformance validation for
+CDA/C-CDA, which is a serious concern.
+Implementers are sending nonconformant CDA or C-CDA documents, such as:
+• Empty or nearly empty CDA and/or C-CDA documents
+o Correct structure but no clinical content (no problems, no medications, no
+allergies, no immunizations)
+• Missing required sections or entries
+• Incorrect usage of templates or codes
+o Deprecated or incorrect template IDs
+o Invalid or missing LOINC codes from section headers
+o Using free text instead of coded entries (for example writing “high blood
+pressure” instead of the SNOMED CT code for high blood pressure)
+• Improper document types
+o Mislabeling a Progress Note or Care Plan as a Discharge Summary
+o Mixing document types
+• Lack of linkage between entries and metadata
+o Problems not linked to encounters
+o Medications missing rxnorm codes
+o Allergies without reaction descriptions
+Reasons for this happening:
+• Vendors are cutting corners to meet interoperability requirements
+• Lack of enforcement
+o vendors can send valid XML but the XML is a nonconformant CDA and/or
+nonconformant C-CDA
+• No penalties or feedback loops
+o Receiver mostly does not report the issue, so the sender never fixes it
+• TEFCA is not mandating C-CDA conformance validation
+
+C-CDA and CDA Validators need to be adopted and required for those exchanging any CDA
+and C-CDA documents.
+CMS, ASTP/ONC, the RCE need to enforce conformance C-CDAs and CDAs.
+If participants, subparticipants in TEFCA are sending nonconformant C-CDAs and CDAs, CMS
+and the ASTP/ONC have the opportunity to offer penalties or recoup a percentage of bonus
+incentives given to provider organizations and health information exchanges.
+HIEs need to prove data quality and completeness.
+One way to do this is to tie to PIQI Framework compliance, FHIR terminology services APIs
+and in this case CDA and C-CDA validation for any CDA and C-CDA shared.
+Some of the same issues of validation also apply to FHIR.
+FHIR validation could also work for bonus recoupment for provider organizations not compliant
+with API CEHRT.
+• CMS could audit and recoup bonus incentives
+o Example would be if an organization sends FHIR payloads but sends invalid
+FHIR data (such as invalid US core profiles)
+• CMS could require periodic reporting on FHIR validation for TEFCA, ACO models,
+Medicare advantage and Managed Medicaid models.
+• A bonus point multiplier could be part of the FHIR validated submission (like 98% + the
+pass rate).
+• Use APIs from CMS-0057 to spot invalid payloads to hence deny bonus or score
+adjustment.
+FHIR Risk Adjustment IG
+
+When I wrote the FHIR Risk Adjustment IG in the first comment, I need to clarify and correct
+what I put in the first comment: implementing the FHIR Risk Adjustment IG will help to reduce
+the burden, reduce administrative burden, and reduce clinician burden.
+When providers in the care delivery organizations/managed care organizations were given paper
+attestation forms and attestation forms on portals to accept, deny, or pend a risk adjustment
+diagnosis, the use of the FHIR Risk Adjustment IG will be a lot better to FHIR-ize the risk
+adjustment process: when the provider confirms or denies the dx, when a provider sends the risk
+adjustment to the correct provider, when the care delivery organization sends the information to
+the payer, and when the payer sends the information to CMS.
+Managed care organizations should not be using portals to complete attestation forms with the
+PDF uploads of the progress notes when there is FHIR technology available to do the risk
+adjustment process with the FHIR Risk Adjustment IG.
+AUCDI
+Australia Common Data Model for Interoperability
+The Sparked FHIR Accelerator wrote about this exact issue with “Chronic Disease
+Management” with the Sparked AUCDI R2 Chronic Condition Management Draft.
+https://sparked.csiro.au/wp-content/uploads/2025/03/Sparked-AUCDI-R2-Chronic-Condition-
+Management-Draft-for-Community-Comment-V1.0-1.pdf
+The Sparked FHIR accelerator (including CSIRO) in Australia is working on a digital Chronic
+disease Management Plan using FHIR.
+Inside the Sparked FHIR accelerator, there is a focus group called the Sparked Chronic
+Condition Management Clinical Focus Group.
+https://sparked.csiro.au/index.php/ccm-cfg/chronic-condition-management-clinical-focus-group-
+online-meeting-2-2-may2025/
+
+The below is taken from the clinical focus group:
+https://sparked.csiro.au/index.php/ccm-cfg/
+Objectives and Responsibilities of the CCM CFG
+The role of the Sparked CCM CFG is to provide targeted clinical support to enable the
+development of Chronic Condition Management priorities within the Sparked FHIR Accelerator,
+this includes but is not limited to:
+• Create example clinical workflows and/or scenarios related to management of a chronic
+condition to help development of the AUCDI and FHIR Implementation Guides, and
+support the progress of the Sparked CDG and the wider Sparked FHIR Accelerator
+program
+• Creation of journey(s) highlighting the complexities of chronic condition management.
+• Identifying considerations regarding chronic condition management template(s) which
+supports team care/shared care.
+• Provide clinical input and insight to relevant FHIR IGs and/or Technical Design Group(s)
+as required
+• Support AUCDI development as required by the Sparked CDG
+• Assist in developing test data or materials to support clinical education and understanding
+of CCM (if required)
+For the US, it would be beneficial to see what this subgroup does with chronic disease
+management in FHIR since this work seems to overlap with what the US wants to pursue.
+CMS should evaluate international frameworks such as Australia's National Digital Health
+Strategy and NCTS (mandating SNOMED CT); New Zealand’s HISO 10040.1 clinical
+terminology standard; and the Netherlands’ MedMij and VIPP programs, which operationalize
+SNOMED CT adoption through financial incentives. All three countries demonstrate how policy
+levers and architecture strategies can drive clinical terminology standardization and structured
+data adoption, including openEHR, even without statutory mandates.
+
+I know that the ASTP/ONC have people in several FHIR working groups with HL7
+International. However, I think it would be helpful if the ASTP/ONC and CMS attended a few of
+the Sparked FHIR accelerator meetings to see what is going on specifically with the Chronic
+Condition management clinical focus group.
+https://sparked.csiro.au/index.php/ccm-cfg/
+Chronic Condition Management wheels in the consumer journey
+
+Autism
+(Hyman et al., 2020)
+Table 1 from Hyman et. al, 2020 with the full reference on the last page.
+The examples column would be interesting information to analyze:
+• Reduced sharing of interests
+
+• Failure to initiate/respond to social interactions
+• Deficits in understanding and use of gestures
+• Lack of facial expressions
+• Distress at small changes
+• Difficulties with transitions
+• Preoccupation with unusual objects
+• Indifference to pain/temperature
+• Adverse response to specific sounds or textures
+• Excessive smelling
+• Excessive touching of objects
+• Visual fascination with lights/movement
+Having these concepts above encoded to SNOMED CT for findings and/or observable entities to
+count
+# of episodes per month of the above
+Dementia and Alzheimer’s
+Dementia
+CMS has been aggressive on the screening of dementia, but not aggressive on the management
+of the complications of dementia.
+KPIs to analyze
+# of agitation episodes per month
+# of delirium episodes per month
+# of combativeness episodes per month
+
+% of patients with combativeness
+Average severity of delusions
+This would be helpful intel to have the post acute facilities to report
+OMOP:
+• FHIR to OMOP pathway for public health and research
+• Encourage the QHINS to support OMOP extraction (in addition to the FHIR Bulk export)
+CMS should consider encouraging optional support for OMOP extraction and OMOP-to-FHIR
+transformation across TEFCA-participating networks. The OMOP Common Data Model (CDM),
+used by the global OHDSI community and supported by AMIA members, underpins regulatory
+science, public health, and outcomes research. By enabling optional OMOP extraction from
+TEFCA-connected clinical data sources, CMS can help create a research-ready data pipeline
+while maintaining flexibility for implementers. This could support real-world evidence
+generation, post-market surveillance, and analytics for value-based care. CMS and ASTP/ONC
+could coordinate with the Vulcan FHIR Accelerator and AMIA to pilot FHIR-based federated
+queries on OMOP CDMs and explore mappings that support scalable, privacy-preserving
+research. Aligning TEFCA infrastructure with OMOP use cases advances the learning health
+system vision and strengthens the bridge between clinical care, research, and health policy
+evaluation.
+openEHR is the internal clinical modeling layer
+SNOMED CT and LOINC for semantic interoperability
+Archetype Query Language:
+
+CMS should consider adopting Archetype query language (AQL) to query against the structured
+data.
+AQL is useful to query independently regardless of the EHR vendor’s implementation.
+AQL would also be helpful to query against thousands of EHRs using the same archetype for the
+hemoglobin A1C.
+This graphic and text was taken from a presentation at TEHIK 2025 in Estonia
+OpenEHR and FHIR: Competing or Complementary Standards? (Hanna Pohjonen), Health Data
+in Motion 2025
+openEHR data persistence in a coherent format
+CMS, ASTP/ONC, NLM should sign a collaborative agreement with openEHR International
+to advance open platform architectures that give consumers persistent access to their health data,
+prevent vendor lock-in by decoupling data from applications, and enable long-term reuse of
+computable data across care settings, research, and innovation.
+Such collaborative agreement could help to establish a vendor-neutral, computable data layer
+that separates data from application, laying the foundation for a thriving U.S. healthcare app
+economy over the next decade with the hopes to:
+
+• Enable faster, safer development of consumer and clinical apps using shared data models
+• Empower patients with persistent, longitudinal access to their structured health data
+• Prevent vendor lock-in by promoting true data portability across platforms
+• Complement FHIR APIs by serving as a clinical-grade backend for data quality and reuse
+• Support U.S. competitiveness in global digital health markets through open standards
+openEHR is clinically led: data should be separated from the applications
+some vendors lock data, yet ultimately it is the patients’ data
+ASTP/ONC should enforce Sequoia Project’s Data Usability IG
+The Assistant Secretary for Technology and Policy (ASTP) and ONC should enforce
+implementation of The Sequoia Project’s Data Usability Implementation Guide (IG) across
+TEFCA-designated entities and certified health IT, including both C-CDA and FHIR exchange
+environments. This would standardize the structure, completeness, and usability of clinical data
+aligned with USCDI, ensuring data exchanged via C-CDA is upgrade-ready for FHIR-based
+apps. By improving data quality across formats, this approach supports TEFCA’s goals, enables
+patient and provider-facing app development, and ensures a smoother transition to full FHIR
+adoption.
+Dental, Behavioral and Specialty EHRs, and Telehealth Vendors
+The dental EHRs need to be involved with HL7, SNOMED and LOINC to improve the data
+exchange and data capture of health information.
+The leading dental EHRs should be part of the HL7 Dental working group (future FHIR
+accelerator).
+The same should apply for the behavioral health EHR vendors. The top behavioral health EHR
+vendors should join the working groups at HL7 International, SNOMED International, and
+openEHR International.
+The leading dental EHRs, behavioral health EHRs, and specialty health EHRs should be
+involved in the HL7 FHIR connectathons and the HL7 CDA Implementation-a-Thons.
+
+This a longer term goal, but the American Academy representing each medical specialty should
+take a leading role in defining and endorsing the clinical guidelines and care plans incorporated
+into specialty-specific FHIR Implementation Guides. Specialty organizations such as the
+American Academy of Dermatology, American Academy of Orthopedic Surgeons, American
+Academy of Neurology, and counterparts in Neurosurgery, Immunology, Urology, Pulmonology,
+Rheumatology, Vascular Medicine, Podiatry, Endocrinology, Infectious Disease, Neonatology,
+and Wound Care, among others, have the clinical expertise and authority necessary to ensure that
+FHIR IGs accurately reflect evidence-based practices within their domains. Their involvement
+will help promote consistency, improve interoperability, and ultimately enhance patient care and
+outcomes across healthcare settings. CMS, the AMA, the specialty boards and SDOs like HL7
+International, SNOMED International, openEHR International, could promote such initiative.
+If the American Academy representing each medical specialty were to take the lead in defining
+and endorsing the clinical guidelines and care plans used in specialty-specific FHIR
+Implementation Guides, it would significantly enhance the clinical validity, usability, and impact
+of health IT systems. Such leadership would ensure that FHIR-based data exchange aligns with
+evidence-based specialty practices, reducing variability in care delivery and improving patient
+outcomes. Standardized care plans authored by specialty societies would support more accurate
+interoperability, facilitate value-based care models, and enable high-quality real-world data for
+research and clinical decision support. This would also empower specialty societies to maintain
+stewardship over their clinical domains in the digital health ecosystem, helping to ensure that the
+digitization of medicine reflects the nuanced needs of each field.
+If specialty societies defined their care plans and clinical workflows in openEHR, these models
+could be directly mapped to FHIR resources in the corresponding Implementation Guides. This
+approach would ensure semantic consistency, reduce redundancy, and enable alignment between
+EHR vendors, registries, payers, and regulators. Integrating openEHR with FHIR offers a
+powerful pathway to rapidly FHIR-ize specialty EHRs with clinically validated, interoperable
+data models.
+Interoperability Stack that is Clinically Driven
+• Specialty societies define the gold standard
+• SNOMED CT encodes clinical concepts for understanding
+• openEHR models with semantic rigor
+• FHIR for nationwide data exchange
+• Specialty EHRs adopt it natively
+CMS and ASTP/ONC could convene a task force with
+
+• American academy representatives
+• SNOMED CT SMEs
+• openEHR SMEs
+• FHIR SMEs
+• specialty EHR vendors and QHINs
+The EHDS does not have this type of clinical governance by including the medical societies and
+specialties. No country has fully engaged all medical specialty societies in such a coordinated,
+formalized way.
+CMS has the opportunity to pioneer a leading national initiative not implemented anywhere
+else in the world.
+CMS should support a dedicated initiative to scale behavioral health, dental, telehealth vendors
+and specialty EHR vendors for interoperability by adopting API CEHRT. These sectors have
+historically lagged in adopting CDA and FHIR due to limited incentives and niche workflows.
+CMS could help close this gap through targeted funding, certification alignment, and partnership
+with QHINs and state Medicaid programs. Without such intervention, these critical providers
+risk exclusion from national exchange infrastructure and from value-based care models that
+increasingly rely on modern data standards.
+CMS should support the use of the International Patient Summary (IPS) to enable streamlined
+clinical data exchange in rural settings, where infrastructure limitations, fragmented systems, and
+staffing shortages make full C-CDA or US Core-based exchange difficult. IPS offers a practical,
+standards-aligned option for exchanging essential clinical information in referral networks,
+telehealth, emergency medicine and urgent care coordination, and behavioral health visits across
+state lines.
+PULSE with IPS for API exchange in disaster response
+CMS should support the modernization of emergency health information systems, such as the
+Patient Unified Lookup System for Emergencies (PULSE), by transitioning from C-CDA/CCD
+documents to the FHIR-based International Patient Summary (IPS). IPS offers a constrained,
+standards-aligned clinical summary optimized for unplanned care, disaster response, and
+cross-organizational access. Shifting to IPS would reduce data complexity, improve usability
+during emergencies, and enable faster, API-driven exchange, particularly valuable in rural and
+resource-limited settings. CMS could fund pilot projects or FHIR hackathons to demonstrate IPS
+integration into emergency workflows and statewide health information networks.
+
+Medical Equipment Companies
+The leading medical equipment companies should do FHIR-to-FHIR exchange.
+One of the companies in this space that is not engaged is Henry Schein. If Henry Schein did
+FHIR exchange with APIs and EHRs, this would help with adding the medical equipment and
+inventory without having to ask licensed nurses to manually enter inventory on delivery.
+Third Party Administrators
+The third party administrators should be part of FHIR exchange. Currently, the third party
+administrators are not in the HL7 DaVinci FHIR accelerator.
+Referral Management Vendors
+The leading referral management vendors have an opportunity to use more FHIR exchange.
+Currently the referral management software vendors are using CDA with the 360X standard
+(which is helpful), but with the transition to FHIR, more assistance can be done for CDA to
+FHIR to go fully FHIR in the future.
+Terminology Services
+The NLM's FHIR terminology server for VSAC is a critical resource, but it's limited in scope—
+it primarily supports Value Sets, not full terminology services for systems like SNOMED CT,
+LOINC, RxNorm.
+The U.S. still lacks a comprehensive, nationwide FHIR terminology server that:
+• Supports $expand, $lookup, $validate-code across all terminologies,
+• Enables versioning, subsumption testing, and multilingual support,
+• And allows live integration into EHRs, payers, and public health systems.
+Other countries like Australia (via Ontoserver), Netherlands (via Nictiz), and Canada (via
+Canada Health Infoway) already provide this as national infrastructure. The U.S. needs to
+catch up—especially as FHIR adoption scales under TEFCA and USCDI+.
+Without it, implementers are stuck building ad-hoc terminology tooling, which leads to
+inconsistent implementations, data quality issues, and barriers to interoperability.
+
+Ontoserver, for example, supports full SNOMED CT concept hierarchies, dynamic ValueSet
+expansion, and FHIR R5 features like $translate for mapping codes. These services are vital for
+clinical decision support, public health surveillance, and AI/ML readiness in healthcare systems.
+Lead agency could be ASTP/ONC
+Technical host could be the NLM (with support from CSIRO, SNOMED International,
+Regenstrief)
+Governance admin: the RCE
+Policy and incentive driver: CMS
+In addition, TEFCA terminology conformance dashboard would be useful to compare QHIN’s
+terminology usage that align with the PIQI framework: valid vs. deprecated codes, preferred
+code usage, USCDI+ support.
+CMS, ONC, and NLM should jointly establish a PIQI Certification program for health IT
+vendors and QHIN participants.
+This certification would validate proper use of standard terminologies (via the national FHIR
+terminology server), alignment to USCDI+ value sets, and readiness to support semantically
+interoperable patient data for quality improvement, health equity, and safety.
+An example of five PIQI Certification components could be:
+1. Terminology Maturity – Uses standard, up-to-date terminologies (e.g., SNOMED CT,
+LOINC, RxNorm) via a national FHIR terminology server like Ontoserver.
+2. Semantic Integrity – Correct and consistent use of standardized coded elements and
+value sets (whether CDA, FHIR, OMOP).
+3. Cross-Domain Readiness – Supports USCDI+ domains such as behavioral health,
+oncology maternal health, and public health.
+4. Quality Measure Enablement – Aligns with CMS value sets and enables Clinical
+Quality Language (CQL) based eCQMs, HEDIS, and VBC reporting.
+5. Patient Data Reusability – Ensures data is complete, interoperable, and usable across
+analytics, referrals, and care coordination.
+
+Improve relationship with NLM and the RCE for terminology services API under TEFCA
+Currently, there is limited formal coordination between the Sequoia Project and NLM, despite
+the increasing need for aligned governance around terminology, FHIR value sets, and
+conformance tools under TEFCA. Given their complementary role with the Sequoia Project as
+TEFCA’s interoperability infrastructure steward and the NLM as the nation’s terminology
+authority, it would be important to have stronger collaboration which would fill critical
+infrastructure gaps.
+Education Credit Hours
+In addition to CMS and/or the ASTP/ONC/NLM having the opportunity to offer CME hours,
+CEU hours for continuing education for licensed medical professionals, CMS and the affiliated
+organizations could offer continuing education credits for other disciplines.
+SNOMED International offers its own e-learning education to learn SNOMED CT.
+HL7 International offers its own education to learn FHIR, CDA, Da Vinci, etc.
+Regenstrief Institute will offer more education to learn LOINC.
+The following organizations could offer continuing education hours for FHIR, LOINC,
+SNOMED (whether internally or in collaboration with the 3 above orgs):
+• American College of Healthcare Executives (ACHE)
+• American Association of Nurse Practitioners (AANP)
+• American Association of Colleges of Nursings (AACN)
+• American Pharmacists Association (APhA)
+• Healthcare Financial Management Association (HFMA)
+• NAHQ
+• AHIMA
+• AMIA
+• HIMSS
+• CAHIIM
+• Association of State and Territorial Health Officials
+• National Association of County and City Health Officials
+• American Psychological Association
+• National Association of Community Health Centers
+
+• NCQA
+• National Association of EMS Physicians
+• Association of Public Health Laboratories
+ePA
+CMS-0057 should Include Prescription Drugs in ePA
+• Expand CMS-0057 to cover prescription drugs — particularly specialty medications
+— as part of future rulemaking to align with clinical and operational workflows in
+outpatient and specialty care.
+• Harmonize pharmacy benefit prior authorization with existing FHIR-based ePA
+infrastructure, including integration with:
+o Da Vinci Coverage Requirements Discovery (CRD)
+o Document Templates and Rules (DTR)
+o Prior Authorization Support (PAS)
+• Incorporate pharmacy ePA into USCDI+ and TEFCA-aligned use cases, leveraging:
+o NCPDP SCRIPT standard (e.g., ePA transactions)
+o FHIR-R4 APIs with SMART on FHIR apps and CDS Hooks
+o SNOMED CT/LOINC coding for clinical criteria
+• Create a joint roadmap between CMS, ASTP/ONC, NCPDP, and HL7 International
+to:
+o Align FHIR IGs with pharmacy ePA workflows
+o Map FHIR resources to NCPDP transaction standards
+o Ensure consistency across payers and PBMs
+• Require payer-facing Prior Authorization APIs to include medications covered under
+pharmacy benefit when feasible, especially for:
+o Injectable biologics
+o Gene/cell therapies
+o High-cost medications requiring strict utilization review
+• Promote pilot projects between EHR vendors, PBMs, and FHIR implementers to
+demonstrate interoperability for medication ePA under the same regulatory and technical
+umbrella as medical services.
+• Encourage integration of FHIR-based ePA with electronic prescribing (eRx) tools so
+prior auth requirements and responses are visible to clinicians before ordering the
+medication.
+• Reduce clinician burden and improve care timeliness by eliminating the need for fax-
+and portal-based prior auth systems for medications, especially in oncology,
+rheumatology, neurology, and immunology.
+CMS should encourage or require that pharmacy benefit prior authorization systems to
+implement the same HL7 FHIR APIs (e.g., CRD, DTR, PAS) used in CMS-0057 for medical
+
+benefit ePA, to ensure full EHR integration, standards alignment, and reduced burden across
+medical and pharmacy workflows to do electronic prior authorizations for prescription drugs.
+Types of DME Pharmacy Benefit that could be part of CMS 0057 for FHIR exchange
+1. Diabetes-Related Supplies
+• Continuous glucose monitors (CGMs) and sensors (if billed via pharmacy)
+• Insulin pumps (if billed through pharmacy)
+• Blood glucose meters and test strips
+• Lancets
+2. Home Infusion and Related Supplies
+• Infusion pumps dispensed via specialty pharmacies
+• Supplies for infusion therapy (e.g., tubing, needles)
+3. Respiratory Equipment & Supplies
+• CPAP/BiPAP machines and masks (sometimes under pharmacy benefit)
+• Oxygen concentrator accessories or smaller portable devices dispensed via pharmacy
+4. Wound Care Supplies
+• Specialized dressings or bandages dispensed through pharmacies or specialty suppliers
+5. Ostomy Supplies
+• When dispensed via pharmacy channels, including pouches, wafers, adhesive removers
+6. Urological Supplies
+• Catheters, leg bags, insertion kits dispensed via pharmacy benefit managers
+7. Mobility Aids
+• Some smaller aids like canes, braces, or supports when billed through pharmacy
+Home medical supply companies (such as Byram Healthcare, Lincare, Medline, Edgepark,
+and Apria Healthcare) play a critical role in delivering essential DME and disposable
+supplies directly to patients’ homes.
+
+These companies manage high volumes of prior authorizations for durable medical
+equipment and related disposable supplies (e.g., ostomy, urology, wound care, diabetes,
+respiratory products).
+Many home medical supplies are billed through pharmacy benefits and are currently
+excluded from CMS-0057’s FHIR-based electronic prior authorization requirements, causing
+fragmented and inefficient PA processes.
+Expanding CMS ePA requirements or issuing complementary guidance to include home
+medical supply companies and pharmacy-billed DME would reduce administrative
+burden and improve patient access.
+CMS should assess the feasibility of xtending electronic prior authorization requirements — and
+FHIR-based interoperability — to critical yet excluded services such as dental, vision, behavioral
+health, and DME dispensed under the pharmacy benefit. These domains frequently impact
+patient access and disproportionately affect Medicaid and CHIP populations.
+This would help in scaling ePA for prescription drugs nationwide.
+Integrating the Healthcare Enterprise (IHE)
+CMS should promote adoption of underutilized but impactful IHE profiles that align with FHIR,
+TEFCA, and ASTP/ONC’s modern interoperability goals. These include:
+• Privacy Consent on FHIR (PCF): FHIR native consent
+• Mobile Health Document Sharing (MHDS): FHIR alternative to XDS and XCA
+• Mobile Cross-Enterprise Document Data Element Extraction (mXDE): FHIR access to
+structured data from documents
+• Document Subscription for Mobile (DSUBm)
+• Patient Master Identity Registry (PMIR)
+• Sharing of IPS (sIPS)
+• Sharing Valuesets, Codes, and Maps (SVCM): enhances terminology interoperability
+These profiles fill critical gaps in consent, real-time data access, cross-network identity
+resolution, and terminology alignment—areas central to program integrity, health equity, and
+patient access.
+IHE Profiles link for ITI
+https://profiles.ihe.net/ITI/index.html
+Sharing of IPS
+
+https://profiles.ihe.net/ITI/sIPS/volume-1.html
+CMS should support the transition from bulky, narrative-heavy CCDs to FHIR-based IPS
+documents. IPS improves data quality, reduces ingestion complexity, and supports structured
+data exchange needed for quality measurement, patient access, and program integrity. Integration
+of IHE sIPS and FHIR APIs such as MHD should be prioritized to accelerate this transition
+across provider networks and QHINs.
+IPS fits well with TEFCA "Treatment" use cases and USCDI+ pilots, especially for:
+• Emergency medicine
+• Longitudinal care
+• Federally qualified health centers (FQHCs)
+• Rural or disaster response
+CMS should encourage TEFCA-designated QHINs to adopt IHE’s MHDS profile as the
+foundation for FHIR-native document exchange. MHDS provides a modern, scalable alternative
+to XDS/XCA, improves performance, and supports advanced use cases like event-driven care
+coordination, quality measurement, and consent-aware data sharing. Pairing MHDS with profiles
+like MHD, mXDE, and sIPS would accelerate transition from CDA-based exchange and enable
+TEFCA’s full potential.
+PIQI Framework
+With the PIQI framework, CMS, ASTP/ONC, the RCE, HL7, SNOMED International, and
+Regenstrief Institute (LOINC) could co-sponsor hackathons on PIQI framework adoption.
+Assessment Scales
+One of the biggest issues with the data exchange of assessment scales is the intellectual property,
+meaning that every standards organization would need to get IP approval to share the questions
+and answers of an assessment scale.
+
+SNOMED International wrote a document related to this entitled “Principles for managing
+Assessment Scales in SNOMED CT.”
+As one can imagine, if an EHR vendor or healthcare application vendor obtains IP approval from
+every organization to do an assessment scale, that could be very expensive.
+One recommendation is that CMS could:
+• Negotiate blanket licenses for common tools (e.g., MoCA, Barthel Index,
+Neuropsychiatric Inventory, Lawton IADL, COPD Assessment Test, Asthma Control
+Test, Autism Diagnostic Observation Schedule, Gilliam Autism Rating Scale, Autism
+Spectrum Quotient) across providers.
+• Require IP holders to publish digital, interoperable versions as a condition of
+endorsement.
+• Fund development of open-access alternatives to reduce dependency on restricted tools
+if licensing is prohibitive.
+• Include FHIR-compatible versions of assessment tools in standard rulemaking (e.g.,
+QPP, MVPs).
+• Explore multi-stakeholder partnerships (tool owners, standards bodies, federal
+agencies) to create a licensed digital content clearinghouse.
+• Issue grants or contracts to buy rights for common tools, common assessment scales
+and facilitate inclusion in SNOMED CT and LOINC.
+• Promote use of these licensed digital assets in regulations, programs, and certification
+criteria.
+Some of these assessment scales and questionnaires are prevalent in the common chronic
+illnesses such as assessment scales for:
+• Dementia
+o Mini Mental State Exam
+o Montreal Cognitive Assessment
+o Neuropsychiatric Inventory
+o Functional Activities Questionnaire
+• Alzheimer’s
+• Asthma
+o Asthma Control Test
+o Asthma Control Questionnaire
+o Asthma Quality of Life Questionnaire
+
+• Autism
+o Autism Diagnostic Observation Schedule
+o Gilliam Autism Rating Scale
+o Autism Diagnostic Interview- Revised
+Link below:
+https://confluence.ihtsdotools.org/download/attachments/236027963/Principles%20for%20mana
+ging%20Assessment%20Scales%20in%20SNOMED%20CT%2020240430%20v0.1.docx.pdf?v
+ersion=1&modificationDate=1716224860000&api=v2
+Enabling FHIR-Based Advance Directive Forms Through IP Clearance
+Background:
+The National Association for Home Care & Hospice (NAHC) stewards widely used advance
+directive forms across states. These forms often have IP restrictions limiting their digital,
+interoperable use. CMS can play a pivotal role in negotiating IP clearance and fostering adoption
+of standardized, FHIR-enabled advance directive forms to improve care coordination and patient
+empowerment.
+Link to the forms that you can click on by state:
+https://www.aarp.org/caregiving/financial-legal/free-printable-advance-directives/
+Recommendation:
+CMS should establish a multi-stakeholder initiative with NAHC, CaringInfo, state health
+agencies, EHR vendors, and standards organizations (HL7 International, ASTP/ONC, SNOMED
+International, Regenstrief Institute) to:
+1. Negotiate IP licensing agreements with NAHC and states to permit the use of advance
+directive forms in interoperable digital formats (FHIR resources).
+2. Support development and publication of FHIR Implementation Guides for advance
+directive forms aligned with state legal requirements.
+3. Incentivize adoption through Medicare/Medicaid quality programs and EHR and API
+CEHRT certification criteria requiring support for FHIR-based advance directives.
+4. Encourage state alignment to harmonize legal and policy frameworks facilitating cross-
+state interoperability.
+
+5. Fund education and outreach for healthcare providers and IT implementers on the use
+of standardized digital advance directives.
+Expected Outcome:
+This approach will reduce IP barriers, enable interoperable advance directive data exchange
+nationwide, enhance patient-centered care, and improve clinical decision-making at transitions of
+care.
+• Digitize advance directives (move from PDFs/paper to structured digital forms)
+• FHIR-enable advance directives for nationwide interoperability
+• Resolve IP barriers with NAHC/CaringInfo/state forms
+• Support state-specific legal requirements in a standardized FHIR framework
+• Empower patients and families to view, update, and share directives digitally
+• Make directives available at point of care (ERs, hospitals, EMS, LTC, etc.)
+• Improve care coordination and decision-making across settings
+HIEs
+The state HIEs and regional HIEs need support to move dominantly towards APIs.
+CMS, ASTP/ONC and the RCE should lead the charge and roadmap when the state HIEs and
+regional HIEs should move more to FHIR.
+CMS, ASTP/ONC, the RCE, HL7, and possibly Civitas should help with V2 to FHIR conversion
+and CDA to FHIR conversion for the HIEs.
+It would be fun to do FHIR hackathons of state versus state HIEs (with 1 track specifically
+among CDA dominant state HIEs).
+I know from a policy standpoint that a majority of the states have not required that the state HIEs
+expose FHIR APIs for facilitated FHIR exchange.
+At the state level, some of the regional HIEs in a particular state are not required to exchange
+data between the other regional HIEs. This may be due to competitive or financial issues. This
+begs to question whether some of the regional HIEs in a particular state are behaving somewhat
+as competitors versus collaborators.
+There are no financial incentives among the states to do data sharing among the regional HIEs.
+There are no financial incentives for the statewide HIEs and regional HIEs to move towards
+more of FHIR.
+CMS and ASTP/ONC can encourage FHIR hackathons or pilot projects focused on IPS
+implementation, such as state to state FHIR exchange, in rural clinics, critical access hospitals,
+and behavioral health networks to demonstrate how simplified summaries can improve care
+continuity in under-resourced areas.
+
+HIEs that successfully implement cross-HIE FHIR exchange for care coordination, public health
+reporting, or patient access should be eligible for bonus incentives or demonstration project
+funding.
+SNOMED CT extensions with CMS and the AMA
+An alternative to the HCPCS level II to SNOMED CT map that I mentioned in the first public
+comment would be to create two SNOMED CT extensions of:
+• CMS related content of HCPCS level II Codes to SNOMED CT
+• AMA related content of CPT and HCPCS level I codes to SNOMED CT
+CPT is not publicly accessible, which has created friction in:
+• Open APIs
+• Public pricing transparency (including hospital pricing transparency)
+• Research use
+• FHIR implementation (especially with terminology servers)
+To meet national semantic interoperability, price transparency, and patient empowerment goals
+using FHIR, CPT must be accessible via a nationally supported FHIR terminology
+server/services APIs. Limiting CPT access to private licensees hampers innovation, public
+health, and equity. The pursuit of a federal license would help to enable read-only, standardized,
+API-based access—no redistribution, no commercial misuse
+CPT must be accessible on the terminology server for:
+• Patient-facing APIs (via CARIN Alliance, Da Vinci)
+• Provider directory validation
+• Advance Explanation of Benefits (AEOB)
+• Digital quality measures (dQMs)
+A previous commitment was given by the AMA and SNOMED International to work on a CPT
+to SNOMED CT map. Not sure if that is 100% operational. CMS could promote and ask the
+NLM to assist in the SNOMED CT extensions given above, now that this could help with
+hospital price transparency and the PIQI framework.
+
+Providers
+The larger health systems (large hospital systems) are dependent on the EHR vendors and/or 3rd
+party vendors to implement and use FHIR. Only a handful of the large hospital systems are either
+HL7 members or in HL7 accelerators.
+CMS should engage the AHA, AMA, ACHE and the related state chapters to spearhead FHIR
+adoption among the health systems/hospital systems/providers.
+Payments Vendors (Digital Payments Providers)
+The payment vendors (digital payments providers) which are involved in healthcare financial
+transactions should be adopting FHIR with the FHIR based resources related to the HL7
+Financial Management workgroup manages:
+• Invoice
+• Payment
+• PaymentReconciliation
+Duplicate Testing and TEFCA
+Duplicate diagnostic testing such as lab panels, imaging studies, and cardiology procedure,
+remains a widespread and costly issue across the U.S. healthcare system. Patients with chronic
+conditions who transition between facilities, even within the same city, are frequently subjected
+to repeat procedures due to fragmented access to prior results.
+The most commonly duplicated tests include:
+• Basic labs (CBC, CMP, BMP)
+• Chest X-rays and CT scans
+• Pathology reports and biopsies
+• Echocardiograms (TTE and TEE)
+• Cardiac catheterizations and stress tests
+• Urinalysis, D-dimer, and troponin
+• COVID-19, flu, and RSV tests during transitions of care
+These duplications are not solely the result of clinical necessity, but rather stem from the lack of
+timely, structured, and trustworthy data exchange across health systems. While TEFCA is a
+foundational step toward nationwide interoperability, it alone will not solve this problem unless
+paired with the following:
+
+1. Widespread adoption of FHIR-based APIs for real-time, structured clinical data
+exchange—especially for lab results, imaging metadata, and procedural reports.
+2. Standardized terminology adoption (e.g., LOINC, SNOMED CT) for test types,
+enabling automated duplicate detection and clinical decision support.
+3. Expanded use of IHE imaging profiles and DICOMweb to enable access to imaging
+results and actual files across TEFCA participants.
+4. Integration of clinical decision support (CDS) to alert clinicians to recent tests during
+ordering workflows.
+5. Improved patient matching infrastructure, particularly across QHINs and among
+high-utilizer populations.
+CMS should consider incentivizing or requiring TEFCA participants to adopt FHIR and imaging
+exchange standards, and to surface duplicate test warnings directly within EHR workflows.
+These steps will support care quality, reduce unnecessary patient risk, and lower healthcare costs
+associated with redundant testing.
+To effectively reduce duplicate imaging and procedural testing across care settings, CMS should
+promote and require the use of correct SNOMED CT codes within TEFCA-participating
+networks for:
+• all imaging, laboratory and procedure orders
+• all imaging, laboratory and procedure results
+that align with SNOMED CT’s Fully specified name (FSN) and/or synonyms.
+Standardized SNOMED CT coding enables:
+• Accurate identification of prior equivalent tests or procedures across disparate EHRs
+and health information networks.
+• The implementation of real-time clinical decision support (CDS) tools that alert
+ordering clinicians to recent duplicate tests or interventions, improving patient safety and
+reducing unnecessary costs.
+• Consistent data exchange and semantic interoperability across Qualified Health
+Information Networks (QHINs), supporting TEFCA’s vision for nationwide data sharing.
+• Enhanced quality measurement and utilization management by payors and regulatory
+bodies.
+CMS should incentivize TEFCA participants to adopt SNOMED CT for:
+• imaging, laboratory and procedure order coding
+• imaging, laboratory and procedure results coding
+
+and ensure that these codes are transmitted via FHIR resources (e.g., ServiceRequest,
+ProcedureRequest). This will facilitate scalable duplicate test tracking, reduce healthcare waste,
+reduce unnecessary costs, align with the PIQI framework, and improve patient outcomes.
+If the US stakeholders prefer LOINC for laboratory orders and results, then CMS could
+incentivize TEFCA participants to adopt:
+• LOINC + SNOMED CT for laboratory orders and results coding
+• LOINC + SNOMED CT for imaging and procedures orders coding
+• LOINC + SNOMED CT for imaging and procedures results coding
+(Historically LOINC has been used for imaging results at the document level, but not at the
+image itself or the procedure itself).
+CMS should consider promoting the adoption of openEHR archetypes and templates as a
+foundation for structured, interoperable clinical data that can prevent unnecessary duplicate
+testing. openEHR’s semantically consistent data models, particularly when linked to SNOMED
+CT and LOINC codes, support advanced querying and decision support across care settings. This
+enables systems to detect recent imaging, procedures, or labs, improving care quality, reducing
+cost, and avoiding patient harm from redundant interventions.
+Public Health
+The NORS form from the CDC should be FHIR-ized or represented in openEHR and shared via
+the QHINs
+The conversion of NORS elements into FHIR profiles (or openEHR archetypes/templates) would
+improve machine readable and structured reporting from health departments, EHRs and labs.
+NORS reports are siloed within the state and local departments.
+During public health outbreaks, clinical care teams are often unaware of real-time outbreak
+investigations affecting their patients, especially in long-term care facilities, dialysis centers,
+correctional institutions, schools, or group homes.
+EHR systems should be able to consume structured outbreak data (based on the NORS form)
+in order to inform patient care decisions, infection control, and follow-up treatment.
+
+A FHIR-based “Outbreak Report” profile should be developed and aligned with the CDC NORS
+form and mapped to USCDI+ Public Health.
+This would allow:
+• EHR vendors to pull in relevant outbreak context for patients exposed in a defined
+facility or region.
+• Facilities to document patients’ clinical course and response in the context of the
+outbreak.
+• QHINs to exchange outbreak investigation summaries with participating health
+systems and public health agencies, while respecting data sharing restrictions and access
+control.
+This approach does not require the full NORS dataset to be public—it simply ensures outbreak
+metadata is structured, interoperable, and context-aware to support both public health and
+clinical care in real time.
+Electronic Case Reporting FHIR IG
+https://build.fhir.org/ig/HL7/case-reporting/
+CMS should promote more adoption of the Electronic case reporting FHIR IG to scale
+nationally. Since a lot of the reporting is still being done in CDA/CCDA, the need for CDA to
+FHIR mapping is relevant and needed.
+In addition, the SANER FHIR IG Situational Awareness for Novel Epidemic Response FHIR IG
+is applicable and useful for public health emergency response.
+https://build.fhir.org/ig/HL7/fhir-saner/index.html
+Using SNOMED CT Expression constraint language (ECL) would be useful here to do queries
+on the structured outbreak metadata.
+e.g. query all the blood borne transmissions within the last 7 days
+e.g. query the outbreak cases with a causative agent of salmonella
+
+Mode of transmission values (qualifier value)
+SCTID: 414753003
+Children (15)
+• Animal to animal transmission (qualifier value)
+• Animal to human transmission (qualifier value)
+• Body fluid contact transmission (qualifier value)
+o Blood borne transmission (qualifier value)
+o Lactation transmission (qualifier value)
+• Environmental exposure transmission (qualifier value)
+o Airborne transmission (qualifier value)
+• Fecal-oral transmission (qualifier value)
+• Fomite transmission (qualifier value)
+• Food-borne transmission (qualifier value)
+• Human to human transmission (qualifier value)
+• Indeterminate disease transmission mode (qualifier value)
+• Nosocomial transmission (qualifier value)
+• Parenteral transmission (qualifier value)
+o Transdermal transmission (qualifier value)
+o Transfusion transmission (qualifier value)
+• Sexual transmission (qualifier value)
+• Vector-borne transmission (qualifier value)
+• Vertical transmission (qualifier value)
+o Lactation transmission (qualifier value)
+o Transplacental transmission (qualifier value)
+• Water-borne transmission (qualifier value)
+Sensitive Data
+
+CMS should encourage or require QHINs handling sensitive health information—such as
+behavioral health, substance use disorder (SUD), infectious disease, and social services data—to
+adopt HL7 FHIR standards that support granular consent and data segmentation.
+The Data Segmentation for Privacy Profiles enable layered, revocable, and purpose-specific
+consent aligned with 42 CFR Part 2 and other federal and state privacy regulations. This would
+help with multi-layered consents to determine who can access sensitive data, which reasons, and
+the duration. Adoption of these standards, coupled with SMART on FHIR authorization scopes,
+would improve patient trust, reduce data leakage risk, and ensure ethical interoperability as
+TEFCA expands to include more sensitive domains. CMS could further incentivize this through
+certification programs, pilot funding, and technical guidance.
+CMS should strongly encourage or require all API CEHRT vendors who query sensitive data,
+such as behavioral health and infectious disease data, as well as QHINs handling sensitive data,
+to implement HL7 FHIR Data Segmentation for Privacy (DS4P) profiles. These profiles enable
+tagging and segmenting of protected health information—such as substance use disorder
+treatment records and HIV status—at a granular level, supporting multi-layered, revocable
+consent.
+Genomics
+To strengthen national precision medicine infrastructure and support data interoperability, CMS
+should encourage NIH—particularly ClinGen and the National Center for Biotechnology
+Information (NCBI)—to adopt key APIs and technical standards developed by the Global
+Alliance for Genomics and Health (GA4GH). Standards such as the Beacon API (for federated
+variant discovery), the Data Repository Service (DRS) (for standardized cloud data access), and
+the Variant Representation Specification (VRS) (for computable, consistent variant
+definitions) can enhance how genomic and phenotypic information is shared across research and
+clinical systems. Additionally, the GA4GH Phenopackets standard offers a structured way to
+represent patient phenotypes, which would improve disease-gene correlation, support rare
+disease diagnosis, and help align NIH resources like ClinVar, ClinGen, and dbGaP with
+international efforts in phenotype-driven research.
+Integration of the GA4GH Passport and Authentication & Authorization Infrastructure
+(AAI) would enable secure, federated identity management and controlled access to sensitive
+genomic datasets across NIH platforms, including AnVIL, BioData Catalyst, and dbGaP. If
+ClinGen and NCBI adopted Beacon, Phenopackets, and Passport/AAI together, researchers and
+clinical systems could securely discover and access relevant variant and phenotype data in real
+time, using privacy-respecting protocols. CMS should support adoption of these APIs as part of
+future USCDI+ genomics efforts, and align them with broader TEFCA implementation. This
+would significantly improve data harmonization, reproducibility, and equitable access to
+genomics resources across the U.S. health system.
+
+CMS and NIH could adopt these APIs from Global Alliance for Genomics and Health (GA4GH)
+￿ Beacon API – for federated variant discovery across trusted databases
+￿ Data Repository Service (DRS) – for standardized, cloud-native access to genomic data
+￿ Variant Representation Specification (VRS) – for computable, harmonized variant
+definitions
+￿ Phenopackets – for structured representation of patient phenotypes to support rare disease
+diagnostics and gene-disease correlation
+￿ GA4GH Passport & Authentication and Authorization Infrastructure (AAI) – for
+secure, federated identity management and access control
+CMS, ASTP/ONC, and NLM should sign a collaborative agreement with the Global Alliance for
+Genomics and Health (GA4GH).
+Benefits of CMS and GA4GH collaboration:
+• Establish CMS as a leader in genomic interoperability by recognizing GA4GH
+standards such as Beacon, Phenopackets, VRS, DRS, and Passport/AAI.
+• Support standards-based genomic and phenotypic data submission for evidence-based
+reimbursement and coverage decisions.
+• Integrate clinical genomics research with CMS payment and quality programs to enable
+real-world evidence and coverage with evidence development (CED).
+• Advance national privacy and data governance via GA4GH Passport & AAI for secure
+genomic data access.
+• Accelerate USCDI+ genomics and TEFCA adoption by piloting GA4GH APIs in CMS
+innovation programs.
+• Signal to providers and vendors the importance of GA4GH standards for CMS program
+compliance and drive genomic interoperability.
+Scaling genomics integration across API-enabled Certified Electronic Health Record Technology
+(CEHRT) platforms would be transformative for precision medicine and patient care nationwide.
+By embedding GA4GH standards—such as Beacon, Phenopackets, Variant Representation
+Specification, and Passport/AAI—into CEHRT APIs, providers could access real-time,
+structured genomic and phenotypic data directly within clinical workflows. This interoperability
+would enable seamless exchange between labs, EHRs, payers, and research systems, supporting
+evidence-based reimbursement, clinical decision support, and population health management.
+Furthermore, integrating secure, privacy-preserving identity and consent frameworks through
+GA4GH’s Authentication and Authorization Infrastructure would ensure patient data is protected
+
+while enabling scalable, federated genomic data sharing. CMS should champion this effort as
+part of future USCDI+ genomics and TEFCA implementation to accelerate adoption, improve
+outcomes, and increase federated access in genomic medicine.
+FMLA and ADA forms on FHIR
+To improve the efficiency, consistency, and interoperability of medical certifications under the
+Family and Medical Leave Act (FMLA), CMS should work with the Department of Labor
+(DOL), ONC, and standards organizations to digitize the FMLA process using open health data
+standards such as FHIR and openEHR.
+FMLA certification forms (e.g., WH-380 series) currently rely on manual, paper-based
+workflows that burden clinicians, delay patients' access to job-protected leave, and create
+administrative overhead for employers. By leveraging HL7 FHIR resources such as Condition,
+CarePlan, Practitioner, and DocumentReference, the clinical portions of the forms can be
+automated and exchanged directly from certified EHRs. Additionally, openEHR’s archetype-
+based approach offers a robust model for long-term storage, computability, and data validation,
+particularly for complex use cases such as intermittent leave or chronic conditions.
+FHIR can support real-time generation and sharing of required certification data through
+SMART on FHIR apps, while openEHR templates can serve as durable, version-controlled
+clinical models aligned with existing documentation standards. Integrating these approaches
+would reduce clinician burnout, speed up patient access to leave, and improve data quality for
+oversight and policy analysis.
+CMS should consider pilot programs or interagency collaborations to:
+• Define a standardized FMLA Questionnaire/QuestionnaireResponse using FHIR
+• Promote the use of openEHR templates for clinical certification of medical necessity
+• Engage EHR vendors and employers to implement interoperable, standards-based
+workflows
+• Ensure patient and employee data rights are preserved during electronic exchange
+CMS should engage leave management vendors stakeholders such as Sedgwick, ReedGroup,
+Unum, AbsenceSoft, and Matrix Absence Management. These vendors process millions of
+FMLA and ADA claims each year on behalf of employers and already interact with healthcare
+providers. Supporting their adoption of FHIR APIs for intake of clinical certification data
+would align with CMS’s goals of reducing burden and improving coordination across sectors.
+The ASTP/ONC and HL7 International should also engage leave management vendors as
+stakeholders to do FHIR API based exchange.
+Such a regulatory approach would require engagement from employers, leave management
+vendors, third-party administrators, insurance carriers, healthcare providers, and EHR vendors to
+enable secure, real-time electronic exchange of clinical and administrative data supporting these
+
+forms. Leveraging existing infrastructure such as TEFCA and trusted exchange networks will
+facilitate this collaboration and reduce duplication, speed approvals, and improve patient and
+employee experience. Ultimately, this initiative will significantly reduce administrative burden
+and help integrate health data exchange across clinical, administrative, and social domains,
+marking an important step forward in comprehensive healthcare interoperability.
+This would modernize FMLA administration and align with federal priorities around reducing
+provider burden, advancing patient-centered care, and increasing public-private interoperability
+through open standards.
+Hence, a new regulatory framework for employer based administrative forms such as ADA,
+FMLA, Workers Compensation, that mandates standardized, interoperable exchange to ensure
+the alignment of policies, collaboration, and the avoidance of conflicting requirements.
+Abnormal Physical Findings
+ASTP/ONC should add a data element for Abnormal Physical Findings in USCDI (under
+Observations).
+One of the biggest issues of information exchange has been with the sharing of abnormal
+findings on the physical exams of progress note templates. The abnormal (positive) physical
+exam findings have not been captured well nor have been shared well for information exchange
+between EHRs or disparate systems.
+Examples of abnormal physical exam findings:
+• Wheezing
+• Heart Murmur
+• Hyperreflexia
+• Clubbing of fingers
+• Papilledema
+• Rhonchi
+• Rales
+• Tachypnea
+• Disoriented to time/place/person
+• Apraxia
+• Hallucinations
+• Shuffling gait
+ASTP/ONC should add "Abnormal Physical Findings" as a new data element under the
+Clinical Observations class in USCDI. This element would capture clinically observed signs —
+
+distinct from diagnoses (ICD-10) or symptoms — that are essential for documenting severity,
+progression, or underlying pathology. Examples include wheezing, murmur, JVD, disorientation,
+or clubbing of fingers. These findings are often captured in unstructured text, making them
+unavailable for exchange or analysis. Structured representation using SNOMED CT within FHIR
+Observations would improve clinical decision-making, referral quality, AI/NLP use, and care
+continuity.
+Unified Digital Health Platforms
+In terms of where will the health IT ecosystem move in the next 10 years, the transformation will
+move towards UDHPs.
+The below 2 references explain DHPs/UDHPs in amazing detail:
+Platforming Healthcare the Long View
+https://e-caremanagement.com/series/platforming-healthcare-the-long-view/
+and this article from Gartner:
+Innovation Insight: Digital Health Platforms Accelerate Transformation
+https://www.gartner.com/doc/reprints?id=1-2JEA7CCN&ct=241119&st=sb
+CMS should encourage the development of Unified Digital Health Platforms (UDHPs) that
+integrate patient-facing tools, provider workflows, and modular apps into a cohesive experience.
+These platforms would serve as the digital front door for both patients and clinicians, combining
+scheduling, communication, care navigation, longitudinal records, and FHIR-native plug-ins in
+one place. Unlike fragmented EHR portals or third-party apps, a UDHP offers a seamless,
+standards-based interface that can be customized for different populations—such as individuals
+with chronic conditions, behavioral health needs, or those in rural areas. CMS could support this
+model through demonstration projects, technical assistance, or by aligning value-based payment
+programs with UDHP capabilities that improve engagement, equity, and care outcomes.
+A CMS-endorsed UDHP framework paired with app certification pathways and performance
+based incentives would help shift the market toward a more open, innovation-friendly, and
+outcomes-driven digital health ecosystem.
+Further info on UDHPs or DHPs:
+
+Webinar on unified digital health platforms (UDHPs).
+https://www.youtube.com/watch?v=oCBdUKJoH8A&t=2579s
+First Ernst and Young report
+“How Will You Design Information Architecture to Unlock the Power of Data?”
+https://www.ey.com/en_gl/insights/health/how-will-you-design-information-architecture-to-
+unlock-the-power
+https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/insights/health/documents/ey-
+global-health-tech.pdf
+Second Ernst and Young report
+“How Innovative Infostructure Can Power the Purpose of Integrated Care Systems”
+https://www.ey.com/en_gl/insights/health/how-innovative-infostructure-can-power-the-purpose-
+of-integrated-care-systems
+https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/insights/health/documents/how-
+innovative-infostructure-can-power-the-purpose-of-integrated-care-systems.pdf
+References:
+Hyman, S. L., Levy, S. E., Myers, S. M., COUNCIL ON CHILDREN WITH DISABILITIES,
+SECTION ON DEVELOPMENTAL AND BEHAVIORAL PEDIATRICS, Kuo, D. Z.,
+
+Apkon, S., Davidson, L. F., Ellerbeck, K. A., Foster, J. E. A., Noritz, G. H., Leppert, M.
+O., Saunders, B. S., Stille, C., Yin, L., Weitzman, C. C., Childers, D. O., Levine, J. M.,
+Peralta-Carcelen, A. M., Poon, J. K., … Bridgemohan, C. (2020). Identification,
+Evaluation, and Management of Children With Autism Spectrum Disorder. Pediatrics,
+145(1), e20193447. https://doi.org/10.1542/peds.2019-3447
+McBride, A., Vermuelen, E., Dunscombe, R., Coughlin, S., & Benjwal, A. (2022, September
+18). How innovative infostructure can power the purpose of integrated care systems.
+How Innovative Infostructure Can Power the Purpose of Integrated Care Systems.
+https://www.ey.com/en_gl/insights/health/how-innovative-infostructure-can-power-the-
+purpose-of-integrated-care-systems
+Roberts, D., McBride, A., Dunscombe, R., Coughlin, S., Pagani, J., & Mailes, E. (n.d.). How will
+you design information architecture to unlock the power of data? Retrieved June 6, 2025,
+from https://www.ey.com/en_gl/insights/health/how-will-you-design-information-
+architecture-to-unlock-the-power

@@ -1,104 +1,264 @@
 ---
 name: individual_consumer-high
-docket: CMS-2025-0050-0031
+docket: CMS-2025-0050
 archetype: individual_consumer
 sophistication: high
-sample_size: 369
+sample_size: 94
 ---
 
 # Voice Profile: Individual_Consumer High
 
 ## Voice Description
 
-# Writing Style Analysis: "Individual_Consumer-High" Voice Group
+# Writing Style Analysis: "individual_consumer-high" Voice
 
-## Tone and Formality with Argument Structure
+## Tone and Formality: Bifurcated Authenticity
 
-This voice group operates at the intersection of **professional advocacy and stakeholder expertise**, employing a measured yet assertive tone that balances formal regulatory language with direct, experience-based claims. The comments begin with organizational credentials and positioning ("On behalf of [Organization]," "we are pleased to submit"), immediately establishing authority and legitimacy. Rather than personal emotion, these writers deploy **credibility through specificity**—they ground arguments in concrete operational experience, regulatory citations (F-627, F-628, OASIS), and quantified problems ("110 questions and only a handful are truly descriptive"). The argument structure follows a **problem-solution-recommendation arc**: identify a gap or inefficiency in current policy, explain its real-world impact with evidence, then propose specific, actionable remedies with clear regulatory references (e.g., "CMS should establish targeted financial incentives, such as per-member-per-month (PMPM) payments"). This creates a persuasive narrative that feels both data-driven and grounded in practitioner knowledge.
+This voice operates across a spectrum, but consistently maintains **personal investment without losing credibility**. The first comment (Mark Kapengut) is emotionally direct—"significant betrayal," "wrong objective" repeated like a refrain—yet grounded in specific policy concerns rather than venting. The third comment (audit logs) shifts to professional-technical language but opens with personal vulnerability: "In my own experience, despite being the subject of the record, I was denied meaningful access." This is the key pattern: **these writers earn the right to sound authoritative by admitting what they don't know or what happened to them personally first**. They're not detached experts; they're stakeholders who've done homework. The second comment (blockchain proposal) is the outlier—more formal and proposal-like—but even it uses "we" and grounds itself in patent ownership and direct advocacy. Avoid sweeping, confident proclamations without personal grounding. Avoid the clinical neutrality of pure policy analysis. Instead, anchor technical arguments in lived experience or specific observations.
 
-## Language Characteristics and Distinctive Features
+## Opening Patterns and Argument Structure: Specificity Before Abstraction
 
-The vocabulary is **technical yet accessible**, avoiding unnecessary jargon while freely employing industry-specific terminology (APIs, FHIR, concurrent review, DMHT devices, OASIS) without definition—signaling an audience of regulatory insiders. Sentence structure varies strategically: complex sentences carry substantive arguments, while shorter declarative statements emphasize key points ("Robust, real-time care coordination platforms are foundational"). A distinctive feature is the **systematic use of bullet points and numbered lists** to organize recommendations, making dense regulatory feedback scannable and actionable. The voice also employs **rhetorical restraint**—rather than emotional appeals, writers use phrases like "we strongly encourage," "we urge," and "we ask," positioning themselves as collaborative problem-solvers rather than adversaries. Recurring patterns include: direct addresses to CMS's stated goals ("directly supporting CMS's goals"), explicit acknowledgment of implementation barriers ("adoption has been slow and challenging"), and forward-looking framing ("To address these types of challenges for future digital technologies"). This creates a voice that sounds simultaneously authoritative, pragmatic, and invested in regulatory success.
+These comments almost never begin with abstract principles. They start with **what's wrong, who it affects, or what the writer experienced**. Mark's comment opens with a direct political claim tied to a constituency ("Robert F Kennedy MAHA and health freedom voters"). The audit log comment opens with a professional identity statement ("As a healthcare consumer, technologist, and patient advocate") followed immediately by a personal anecdote. The blockchain comment opens by naming the problem (fragmentation, costs, inefficiencies) before proposing solutions. The argument structure is **problem → stakeholder impact → specific proposal → measurement/accountability**. Critically, these writers use **repetition of key phrases** ("wrong objective," "clinical rework," "fragmented") to build emphasis without sounding rhetorical. They also **enumerate concerns** (PC-1a, PC-2, PC-4, etc.) to show they've read the source material carefully. To avoid sounding AI: don't lead with your solution; lead with what you've observed or experienced. Use short, declarative sentences mixed with longer explanatory ones. Repeat key terms naturally, as if you're circling back to something that bothers you.
+
+## Language Characteristics: Technical Literacy Without Jargon Gatekeeping
+
+This voice code-switches fluidly. Mark uses plain language ("picky in their choices," "siloed level of access") alongside regulatory terminology ("PHI," "HIE," "VBC models"). The audit log writer deploys technical specifications (FHIR, HL7, AuditEvent resource) but **always explains them in parentheses or plain English first**: "Fast Healthcare Interoperability Resources," "the identity of the user, the action taken, the timestamp." Sentence complexity varies deliberately—short punchy statements ("Wrong objective. Blocking of patient information protects them.") alternate with longer, subordinate-clause-heavy explanations. Vocabulary is **educated but not pretentious**; these writers use domain-specific terms because they belong in the domain, not to impress. Notably absent: hedging language like "arguably," "it could be said," or "one might consider." Present instead: **direct claims tempered by specificity** ("There is little to no value" vs. "In my experience, the value is limited to..."). To avoid AI patterns: mix sentence lengths aggressively. Use contractions naturally ("it's," "doesn't"). Avoid phrases like "it is important to note" or "stakeholders should consider." Instead, use "I've seen," "the problem is," "this doesn't work because." Include parenthetical asides and clarifications—humans interrupt themselves to be clearer.
+
+## Distinctive Features: Grounded Specificity and Measured Skepticism
+
+What makes this voice unmistakably human is the **combination of conviction with admission of limitation**. Mark doesn't claim to speak for all health freedom voters; he says "our voters" and "our people," acknowledging a constituency he's part of. The audit log writer admits "I was denied meaningful access" and "I have also personally witnessed"—these are observations, not universal claims. The blockchain writer includes a patent reference, grounding the proposal in actual intellectual property, not theoretical musing. Recurring patterns include: **numbered or lettered references to specific policy points** (showing close reading), **concrete examples** ("similar to
+
+## Human Writing Rules
+
+**Every comment generated from this voice profile must sound like a real human wrote it.**
+These rules apply regardless of archetype or sophistication level.
+
+### Forbidden patterns (will make the output sound AI-generated)
+
+**Em dashes** — never use `—`. Replace with a comma, period, or parentheses.
+
+**Negative parallelisms**: never write "It's not just X; it's Y" or "Not only X, but also Y" or "It's not merely X, it's Y". These are among the most reliable AI tells.
+
+**AI vocabulary words**: do not use `additionally`, `crucial`, `delve`, `enhance`, `fostering`, `garner`, `highlight` (as verb), `intricate`, `pivotal`, `showcase`, `tapestry` (abstract), `testament`, `underscore` (verb), `vibrant`, `landscape` (abstract), `evolving landscape`, `rich` (figurative).
+
+**Inflated significance**: avoid `serves as a testament to`, `marks a pivotal moment`, `reflects broader trends`, `setting the stage for`, `underscores its importance`, `vital role`, `key turning point`, `evolving landscape`, `enduring legacy`.
+
+**Superficial -ing phrases**: avoid tacking participial phrases onto sentences to add fake depth — e.g., `highlighting the importance of`, `underscoring the need for`, `contributing to`, `fostering collaboration`, `reflecting broader trends`.
+
+**Copula avoidance**: write `is` and `are` — not `serves as`, `stands as`, `functions as`, `represents`, `marks`. If you mean "is", say "is".
+
+**Rule of three**: avoid habitually grouping things into exactly three items. Real people don't think in triads.
+
+**Vague attributions**: never write `experts say`, `observers note`, `some argue`, `industry reports suggest` without a specific name or source.
+
+**Promotional language**: no `boasts`, `nestled`, `breathtaking`, `groundbreaking`, `renowned`, `in the heart of`, `must-see`.
+
+**Generic positive endings**: no `the future looks bright`, `exciting times lie ahead`, `this represents a step in the right direction`.
+
+**Boldface bullet headers**: don't write lists where each item starts with `**Key Point:** explanation`. Write prose or plain bullets.
+
+**Sycophantic openers**: no `Great question!`, `Certainly!`, `Of course!`, `I hope this helps`, `Let me know if you have questions`.
+
+### Required human qualities
+
+**Vary sentence length.** Mix short punchy sentences with longer ones that take their time. Never write a block of sentences all the same length.
+
+**Have opinions.** Real people react to information. "I genuinely don't understand why they'd do this" is more human than a neutral list of pros and cons.
+
+**Show uncertainty and mixed feelings.** "I'm not sure this is the right approach, but..." or "This concerns me, even though I see why they proposed it" signals a real person thinking.
+
+**Use first person naturally.** `I keep coming back to...`, `What gets me is...`, `My experience has been...` — these read as human.
+
+**Be specific.** Real people cite actual numbers, dates, places, names. Generic claims (`many people are affected`) are AI. Specific claims (`my clinic saw 40 patients last month who couldn't afford this`) are human.
+
+**Let some mess in.** A tangent, a repeated point, a slightly incomplete thought — these are human. Perfect logical structure is a red flag.
+
+**Use simple constructions.** `is`, `are`, `has`, `does` — not elaborate substitutes.
 
 ## Statistical Profile (Medians)
 
 ### Length and Structure
-- **Word count**: 2929 words (range: 658-10003)
-- **Paragraphs**: 2
-- **Words per sentence**: 22.2 ± 14.3
+- **Word count**: 1175 words (range: 485-7201)
+- **Paragraphs**: 8
+- **Words per sentence**: 20.8 ± 13.5
 - **Letters per word**: 5.9
 
 ### Voice Characteristics
-- **First-person usage**: 0.7% of words (I, me, my, we, our, us)
+- **First-person usage**: 0.8% of words (I, me, my, we, our, us)
 - **Emotional markers**: 0.0 exclamations per 100 words
-- **Rhetorical questions**: 0.2 per 100 words
-- **Citation frequency**: 8.0 regulatory citations per comment
+- **Rhetorical questions**: 0.0 per 100 words
+- **Citation frequency**: 2.5 regulatory citations per comment
 
 ### Structural Patterns
-- **Uses bullet points**: 30% of comments
-- **Uses headings**: 20% of comments
-- **Uses formal structure**: 38% of comments
+- **Uses bullet points**: 74% of comments
+- **Uses headings**: 72% of comments
+- **Uses formal structure**: 83% of comments
 
 ### Emphasis and Style
-- **ALL CAPS usage**: 1.53% of words
-- **Em dash frequency**: 0.06 per 100 words
+- **ALL CAPS usage**: 1.30% of words
+- **Em dash frequency**: 0.01 per 100 words
 
 ### Quality Indicators
-- **AI vocabulary frequency**: 0.2% (lower is more human-like)
-- **Contains AI markers**: 73% of comments
+- **AI vocabulary frequency**: 0.0% (lower is more human-like)
+- **Contains AI markers**: 38% of comments
 
 ## Geographic Distribution
 
 Top states represented in this voice group:
 
-- **TX**: 8 comments (2.2%)
-- **MD**: 7 comments (1.9%)
-- **CA**: 7 comments (1.9%)
-- **NY**: 5 comments (1.4%)
-- **FL**: 4 comments (1.1%)
-- **MO**: 3 comments (0.8%)
-- **IL**: 3 comments (0.8%)
-- **MA**: 3 comments (0.8%)
-- **AZ**: 3 comments (0.8%)
-- **NJ**: 3 comments (0.8%)
+- **TX**: 8 comments (8.5%)
+- **CA**: 8 comments (8.5%)
+- **MD**: 7 comments (7.4%)
+- **NY**: 5 comments (5.3%)
+- **FL**: 4 comments (4.3%)
+- **MA**: 4 comments (4.3%)
+- **MO**: 3 comments (3.2%)
+- **IN**: 3 comments (3.2%)
+- **AZ**: 3 comments (3.2%)
+- **NC**: 3 comments (3.2%)
 
 ## Example Excerpts
 
 Real examples from this voice group (cleaned):
 
-### Example 1 (Source: CMS-2025-0050-0273)
-> On behalf of Olio Health, thank you for the opportunity to submit comments on the CMS and ASTP/ONC Request for Information regarding the Health Technology Ecosystem.
-Executive Summary Olio Health strongly supports CMS’s vision to accelerate digital health innovation, strengthen data security, and reduce administrative burden across Medicare, Medicaid, and managed care programs. Robust, real -time care coordination platforms are foundational to achieving the goals outlined in this RFI—including improved patient outcomes, seamless data exchange, and equitable access to digital health tools for all providers, payers, and beneficiaries. Our recommendations are informed by direct experience supporting providers in alternative payment mode ls (APMs), MCOs modernizing concurrent review, SNFs navigating new regulatory requirements, and behavioral health organizations integrating whole -person care. Who We Serve Olio Health’s platform is deployed across a wide range of care settings and payer types, including: ● Health systems and hospitals ● Primary care providers ● Behavioral health providers ● Accountable Care Organizations (ACOs) and risk -bearing entities ● Managed Care Organizations (MCOs) and health plans ● Skilled Nursing Facilities (SNFs), Home Health Agencies (HHAs), and hospice providers Our recent launch of Olio for SNF empowers facilities to modernize referrals to HHAs and hospice companies, streamline compliance with CMS regulations (F -627 and F -628), and ensure saf...
+### Example 1 (Source: CMS-2025-0050-0913)
+> Comment on RFI CMS-0042-NC
+By Mark Kapengut. Mark18spring@gmail.com
+This proposal represents significant betrayal of Robert F Kennedy MAHA and health freedom voters. Many objectives as presented are pointing in the wrong direction. CMS and HHS should go back to the drawing board.
+Our voters are very picky in their choices of applications they may use. They place extra value on individual health choice and control of their data. Attempts on one-size-fits-all solutions wouldn’t work for our people, whether VBC models or single PHI data location.
+PC-1a.
+This objective is undesirable. Patients PHI should not be exchanged without explicit patients consent. Everyone should be able to know everyone who may have access to my PHI. I would like to be able to ascertain that control, which is now missing. To that event, every entity in possession of PHI must be required to report to the person whose data it is their status on an annual basis. A patient should have ability to withdraw consent and assured deletion of such records.
+PC-2.
+There is little to no value of having all my PHI data in a single online location. I would like to be able to download all data about myself on a USB and share it with other providers in a way that ensures my control.
+PC-4.
+Pricing information is currently missing or is hard to obtain. If would also be helpful for HHS to facilitate a provider review and rating system, similar to yelp or healthgrades. The benefit of such USG service would be in scale.
+PC5.
+CMS should not put a finger on this scale and force this direction, and let market adopt solutions with proven value.
+PC-11
+Wrong objective. I prefer to exclude my information from HIE. In the rare events when I need outside care, the siloed level of access to PHI has proved sufficient to support adequate care.
+PC-12.
+We encourage CMS and HHS to loosen EHR requirements. Costs of EHR has proven to induce provider consolidation, reduced competition and healthcare availability.
+PC-14a.
+Wrong objective. There is no need for patients to use centralized identity credentials. It provides merely marginal benefit, and a major inconvenience when something in the digital credentialing chain doesn’t work right on the back end, and it’s very difficult to trace and fix.
+PR-3
+Wrong objective. We encourage CMS and HHS instead to loosen EHR requirements and expanding paper records. Costs of EHR has proven to induce provider consolidation, reduced competition and healthcare availability.
+PR-10.
+Wrong objective. Adoption of DigitalID is contrary to views of most MAGA and MAHA voters.
+PR-10b. TD-2
+Use of DIC would reduce access to healthcare of many of us, because patient would be reluctant to use them.
+PR-12.
+Wrong objective. Blocking of patient information protects them. HHS should not enforce any anti-blocking provisions beyond required and expand rather than limit the exceptions.
 
-### Example 2 (Source: CMS-2025-0050-0058)
-> 1. Digital Health Apps
-PR-1. What can CMS and its partners do to encourage providers, including those in rural areas, to leverage approved (see description in PC-5) digital health products for their patients?
-So many people in rural areas do not have access to PCs, many do not even have cell coverage and do not use cell phones. Home health should be empowered to be able to make skilled visits to these patients; empowering them to provide timely and quality care by reducing the amount of paperwork that CMS currently requires in the OASIS documentation.
-What are the current obstacles?
-Lack of technology in the home or surrounding area, as mentioned above.
-PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? Please address all of the following:
-Current challenges in accessing different data formats.
-Providers using different EHRs that do not interface with one another. For example, we have limited access or not access to some of the hospital/health care systems that provide us referrals.
-Impact on patient care quality.
-The medical history of a patient is not accessible and continuity of care is compromised.
-d. Cost or privacy implications of making all data formats interoperable.
-Potential HIPAA violation if patient has not given consent
-PR-4. Wh...
+### Example 2 (Source: CMS-2025-0050-0133)
+> Response to CMS RFI May 16, 2025
+This document, prepared in response to the Request for Information dated May 16,
+2025, serves to address the various problems, costs, inefficiencies, and wasteful
+spending, associated with current electronic healthcare records systems, and proposes
+a new and improved federally organized system for healthcare records keeping which
+will ensure efficient, cost-effective, high-quality healthcare.
+The RFI seeks feedback on stimulating innovation, improving API standards, and
+addressing substantial historic interoperability challenges.
+Currently, the stakeholder groups identified by the RFI face significant operational
+challenges.
+Health Care Technology Vendors and Networks evolved historically from a paper record
+system into a multiplicity of fragmented medical record instances. As a result, the
+current interoperability efforts dating from 2009 have not identified a common set of
+APIs for complete EHR access or a common set of data field definitions to deliver on
+the promise of interoperability in the current EHR ecosystem.
+As a result, Patients and Caregivers face significant barriers to accessing their health
+care data where they are receiving care in one place easily and promptly so that it can
+be shared with their clinical care teams. The negative consequences of these barriers
+are both emotional and financial.
+Provider success is significantly hampered by incomplete critical patient data, resulting
+in remarkably expensive clinical rework, unnecessary delays in accessing needed care,
+and incomplete quality reporting and care coordination across a patient’s team of
+caregivers.
+Payers lack uniform patient identifying information leading to fraud and abuse, while
+incomplete clinical information hampers the accurate determination of covered benefits,
+wasting time and delaying care. Needed improvements such as real time prior
+authorization, real time payment methods, and systematic monitoring and reduction in
+fraud waste and abuse cannot be supported effectively in the current fragmented digital
+ecosystem.
+Value based care organizations are also hampered in the current environment by
+fragmented clinical information sources along with substantial rework and barriers to
+information sharing and consistent quality measurement that could help drive ongoing
+delivery of improved value-based care.
+Current state and history
+The present CMS RFI aims to gather feedback to inform future policies and
+initiatives that will enhance patient access to health data, promote innovation in digital
+health products, and support value- based care (VBC) programs.
+As background, the 21st Century Cures Act (2016) and subsequent regulations have laid
+the foundation for a digital health ecosystem, enabling patients to access and share
+their health information securely. CMS initiatives like Blue Button 2.0 and Data at the
+Point of Care APIs have improved data access for patients and providers and in
+addition, recent rules have advanced interopera...
 
-### Example 3 (Source: CMS-2025-0050-0476)
-> On behalf of Big Health, we are pleased to submit these comments in response to the above-captioned RFI.
-- 2 - DM_HC 1783708- 1.111336.0613 second-line (risky) drugs, therapies that may be inconsistent with clinical guidelines, and a significant portion of beneficiaries went completely untreated (no psychotherapy and no medications) While the establishment of this pathway is a critical first step, adoption of the technology has been slow and challenging as providers have faced a number of obstacles (detailed below) since January 1, 2025. (1) No national payment rate or inadequate payment rate established for the DMHT device. While CMS established a code for reporting the furnishing of the device to the Medicare beneficiary (G0552) , the Agency did not establish a national price. Rather, it deferred to the local Medicare Administrative Contractors (MAC) to set the payment rate. Unfortunately, more than 5 months after the services became eligible for reimbursement, the majority of MAC s have not yet established or published a payment rate. For the MACs who did establish a rate, the provider reimbursement rate is less than 20% of the cost incurred by the practice for the device. (2) Lack of understanding about these devices and actions taken by CMS . Engagement with the MACs by providers has shown that many of the MACs do not fully comprehend what CMS did in the final rule and why. As such, their communications with the providers seeking to access these devices when clinicall...
+### Example 3 (Source: CMS-2025-0050-0041)
+> As a healthcare consumer, technologist, and patient advocate, I am writing in strong support of regulatory action that would require healthcare systems to provide patients with transparent, real-time access to audit logs showing who has accessed their electronic health records (EHRs), when, and for what purpose. This request is not only ethically urgent—it is technically feasible and fully aligned with the capabilities of the FHIR (Fast Healthcare Interoperability Resources) standard already adopted across the U.S. healthcare ecosystem.
+Under the HL7 FHIR specification, the AuditEvent resource is explicitly designed to capture detailed information about access to protected health information (PHI), including the identity of the user, the action taken, the timestamp, and the purpose of access. This functionality is already a required component of internal logging for most health systems. However, while FHIR-compliant APIs are mandated under the 21st Century Cures Act and the ONC’s 2020 Cures Act Final Rule for patient-facing access to clinical data, no such requirement exists for exposing AuditEvent resources to patients themselves.
+This is a critical shortcoming. In my own experience, despite being the subject of the record, I was denied meaningful access to audit logs when I requested information about who had viewed my file. I have also personally witnessed healthcare professionals—family members and friends—speak casually about accessing patient records out of curiosity, social interest, or personal bias, with no expectation of consequences. The lack of transparency makes such behavior difficult to detect, let alone deter or penalize.
+The infrastructure exists. The FHIR AuditEvent standard provides a structured, interoperable format that could be exposed to patients through the same APIs currently used to access clinical notes, medications, and test results. What is missing is the regulatory requirement and enforcement mechanism to do so.
+I therefore urge CMS and ONC to go further than current policy by explicitly requiring:
+1. Patient-facing access to FHIR AuditEvent logs via the same API and portal systems used for accessing USCDI data elements.
+2.Standardized labeling of access reasons (e.g., treatment, billing, quality review) using the AuditEvent.purposeOfEvent field, with defaults defined for national consistency.
+3. Notification systems that alert patients to unusual or high-risk access, modeled after tools used in the financial services industry.
+4. Time-bound response mandates for health systems to respond to audit log requests, just as they must with record requests under HIPAA.
+These reforms would not only bring EHR systems into full compliance with the spirit of the Cures Act—they would also operationalize patient-centered care, strengthen data integrity, and rebuild public trust in healthcare institutions. HIPAA grants patients the right to access their health information; it is time to extend that principle to the metadata tha...
 
-### Example 4 (Source: CMS-2025-0050-0447)
-> June 16, 2025
-Centers for Medicare and Medicaid Services
+### Example 4 (Source: CMS-2025-0050-0356)
+> Imaging
+TEFCA with Imaging
+TEFCA should prioritize the inclusion of imaging exchange use cases, leveraging existing IHE profiles such as XDS-I.b, MHD, and AIR. While imaging has historically been excluded from TEFCA’s initial document-focused design, national imaging interoperability is critical for AI workflows, diagnostics, and care coordination.
+CMS and ASTP/ONC should partner with organizations like IHE, RSNA, and vendors with FHIR/DICOMweb experience to advance TEFCA-aligned imaging pilots. TEFCA must eventually support imaging for it to be a comprehensive national framework.
+Imaging with FHIR
+CMS should promote the adoption of HL7 FHIR for radiology to improve the interoperability, accessibility, and computability of imaging data across care settings. Today, imaging reports are often exchanged in narrative form via CDA or as unstructured PDFs, which limits their usefulness in clinical decision support, care coordination, and patient access.
+FHIR resources like ImagingStudy and DiagnosticReport, when integrated with DICOMweb, enable rich, structured, standards-based radiology data exchange. This is essential for emergency response, telehealth, value-based care, and post-acute care.
+I recommend CMS encourage the use of FHIR-based APIs for radiology in CEHRT certification, promote the use of DICOM-FHIR mappings, and prioritize structured radiology data in USCDI expansion. Including radiology interoperability in CMS and ASTP/ONC’s regulatory frameworks will unlock substantial clinical and operational value.
+openEHR with radiology
+openEHR provides a rich modeling environment for structured radiology results and imaging-related clinical observations. CMS and ASTP/ONC should explore integration patterns where openEHR-based structured reports can feed into FHIR-based APIs or TEFCA networks, especially for longitudinal imaging follow-up in oncology, neurology, or population health use cases. While DICOM and FHIR handle transport, openEHR supports semantic persistence and querying of imaging context over time.
+SNOMED CT
+SNOMED CT is useful for imaging with the clinical concepts for the radiology findings, like the imaging observable entities, such as
+<<Imaging finding (finding): 365853002
+<<Imaging interpretation (observable entity): 282290005
+<<Imaging observable (observable entity): 399060005
+To support high-value radiology use cases such as AI-driven decision support, precision medicine, and longitudinal imaging follow-up, CMS and ONC should promote consistent use of SNOMED CT for three distinct but interrelated components:
+1.	Imaging Procedures – Representing what was done (e.g., 169069000 |CT of chest|,
+Computed tomography of chest (procedure): 169069000
+Magnetic resonance imaging of brain with contrast (procedure): 16327691000119101
+using SNOMED CT ensures standardization of imaging modalities, body regions, and intent (diagnostic, screening, follow-up).
+2.	Observable Entities – Capturing structured measurements and characteristics such as s...
+
+### Example 5 (Source: CMS-2025-0050-0333)
+> Intro:
+Thank you for the opportunity to respond to the provided questions on how CMS and HHS can make healthcare access and technology more effective. Years of rulemaking and incentives for open access to healthcare information have not solved the problem of patients lacking consistent and easy access to their records. Confusing hurdles force many patients to give up.
+Despite the poor progress on open access technology, the overall digitization of healthcare has sped up with providers and payors spending records amounts of money on digital services that don’t follow open standards, create data silos, and create waste and friction. This has also resulted in patients losing control of their data and how it’s used.
+CMS and HHS must ensure open documentation and free availability of foundational healthcare frameworks and give patients and their families control over their records.
+See the full response attached and thank you for your attention.
 Department of Health and Human Services
-RE: Comments on CMS–3432–NC, Request for Information: Health Technology Ecosystem
-Breakthrough T1D, formerly JDRF, is pleased to submit comments to the Centers for Medicare and Medicaid Services regarding the Request for Information, “Health Technology Ecosystem” which appeared in the Federal Register on May 16, 2025.
-ABOUT TYPE 1 DIABETES (T1D)
-Type 1 diabetes (T1D) is a chronic autoimmune disease that can strike suddenly and, without proper management, can be life-threatening. It occurs when the immune system attacks and destroys insulin-producing beta cells in the pancreas, leading to lifelong dependence on externally administered insulin. It is estimated that 9.5 million people live today with T1D throughout the globe. A recent study estimated that nearly 2 million Americans currently live with T1D - nearly 600,000 enrolled in Medicare.
-People with T1D rely on insulin therapy, delivered through multiple daily injections or insulin pumps to survive. However, insulin is not a cure as it is demanding and allows for little margin for error to avoid imprecise treatment. Too much insulin can cause hypoglycemia, leading to confusion, seizures, unconsciousness, or even death. Too little insulin, especially over time, can result in serious complications such as kidney failure, vision loss, cardiovascular disease, nerve damage, and life-threatening diabetic ketoacidosis (DKA). Despit...
-
-### Example 5 (Source: CMS-2025-0050-0423)
-> Comment Attached as PDF
-5 At the same time, we must address the growing burden on clinicians created by uncompensated portal messaging. Without sustainable payment models, we risk further exacerbating clinician burnout. CMS has a critical opportunity to lead in both areas—supporting innovation that enhances patient comprehension while advancing reimbursement models that reflect the reality of modern digital care delivery. We appreciate the opportunity to provide feedback on this critical issue and appreciate CMS’ efforts to identify challenges and explore ways to ensure that seniors and families have access to digital tools. We welcome the opportunity to engage further or provide additional data as needed. Should you have any questions about our comments, please contact me at ateev_mehrotra@brown.edu or Jared Perkins, Director of Health Policy Strategy, at jared_perkins@brown.edu . Ateev Mehrotra, MD
+Centers for Medicare & Medicaid Services
+Thank you for the opportunity to respond to the provided questions on how CMS and HHS
+can make healthcare access and technology more eAective. Years of rulemaking and
+incentives for open access to healthcare information have not solved the problem of
+patients lacking consistent and easy access to their records. Confusing hurdles force many
+patients to give up.
+Despite the poor progress on open access technology, the overall digitization of healthcare
+has sped up with providers and payors spending records amounts of money on digital
+services that don’t follow open standards, create data silos, and create waste and friction.
+This has also resulted in patients losing control of their data and how it’s used.
+CMS and HHS must ensure open documentation and free availability of foundational
+healthcare frameworks and give patients and their families control over their records.
+PC-1. Health management or care navigation apps
+The best option here is also the most American option, provide an open network (like the
+interstate highway system did for travel and trade) and make it easy for many apps to exist
+with the same access to data to supply consumers. A consumer can use Apple Health,
+MyChart Mobile, Samsung Health, or many health insight apps; and all those apps should
+have access to the same underlying data, access to APIs to allow consumers to take the
+same actions, and security and privacy controls so they can leave and remove their data
+entirely from those platforms at any time.
+PC-2. Ease of access
+Today, the only central records I have for my health, as I believe is true for most healthcare
+consumers, are my own copies of records I’ve copied and scanned. Because of moves,
+changing providers, those providers changing records systems, and frequent provider data
+entry errors, there is no central portal where all my records are complete and correct.
+PC-2c. Types of records
+Specifically, my vaccine records are incomplete; I only have p...

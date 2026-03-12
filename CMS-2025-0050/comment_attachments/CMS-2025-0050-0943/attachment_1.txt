@@ -1,4 +1,134 @@
- Health Technology Ecosystem RFI Transforming HHS Data Through a Modern Data Mesh Architecture Questions Addressed: (1) TD–12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? (2) TD-15 a. How would increased use of bulk FHIR improve use cases and data ﬂow? b. What are the potential disadvantages of their use? (3) TD–16. What are the tradeoﬀs of maintaining point-to-point models vs. shared network infrastructure? a. Do current rules encourage scalable network participation? b. What changes would improve alignment (for example, API uniﬁcation, reciprocal access)? Understanding the Opportunity: Healthcare data in America ﬂows through an incredibly complex ecosystem. CMS sits at the intersection of federal programs, ﬁfty state Medicaid implementations, thousands of health plans, and millions of providers—each with their own systems, requirements, and timelines. This complexity has traditionally led to centralized approaches that struggle with scale and timeliness. For example, state Medicaid data often arrives 3-6 months delayed because the current system attempts to force uniformity across fundamentally diﬀerent state implementations, creating bottlenecks that impact care coordination for beneﬁciaries and prevent reliable insight into how the entire healthcare system is performing today. Today's point-to-point integrations, while solving immediate needs, have created a web of custom connections that are expensive and diﬃcult to maintain. Each new data sharing requirement means months of custom development, security reviews, and testing. Meanwhile, the healthcare industry is changing toward real-time decision support, price transparency, and value-based care models that require fresh, reliable data. The gap between what beneﬁciaries need and what our current architecture can deliver continues to widen. Ad Hoc sees this as an opportunity to bring modern data architecture patterns successfully used by leading technology companies to be adapted for government. By embracing a data mesh approach—where data ownership is distributed to those who know it best while maintaining common standards—CMS can unlock the agility needed to serve beneﬁciaries in real-time while actually improving security and compliance. Exploring a Data Mesh Approach: A data mesh treats each major data domain in Federal healthcare as a product with dedicated ownership and clear quality standards. Instead of funneling all provider information through a central warehouse, imagine if the teams who manage NPPES owned and continuously improved a "Provider Identity" data product, while PECOS teams maintained "Provider Enrollment Status," and Care Compare delivered "Provider Quality Metrics." Each team retains their deep domain expertise while making their data easily discoverable and usable by others through standardized interfaces. This approach particularly shines when handling the diverse requirements of federal healthcare. State Medicaid programs could maintain their unique data products reﬂecting local policies and populations, while still contributing to national insights. The VA's successful domain-based API https:// adhoc.team 
- structure (health, beneﬁts, facilities) demonstrates how federated approaches can work in government. A data mesh for HHS and/or CMS would provide the underlying data foundation to power both the VA Lighthouse-style API platform (we discuss in another comment) and next-generation analytics. A key best practice within a data mesh is the standardized creation of de-identiﬁed datasets labeled with cryptographically secure one-way hashes. This allows CMS to securely “reconnect” health data to individuals and makes it much safer and simpler to respect federal security requirements for the dataset. This framework for creating data products that are more safely shared; the mesh enables broad access for population health analytics and research while maintaining strict privacy controls. Researchers studying treatment patterns could immediately access de-identiﬁed datasets, while care coordinators requiring patient-speciﬁc information would go through additional authentication. This separation dramatically reduces risk while increasing data utility. Critically, business logic in a platform implementing the data mesh approach should be treated like engineering code but live separately from infrastructure, maintained in standard languages like SQL that healthcare analysts already understand. When Medicare payment policies change or new quality measures emerge, program experts overseen by engineering-minded data architects can update the logic directly without waiting for IT development cycles while retaining reliability and transparency. This democratization of data management puts control back in the hands of those who understand the healthcare domain best. Potential Beneﬁts and Positive Outcomes: The transformation to a data mesh architecture promises both immediate wins and long-term strategic advantages. Based on private sector implementations, agencies can expect a 50-75% reduction in time required for new data integrations. What currently takes months could happen in weeks or even days. More importantly, data freshness improves dramatically—instead of claims data that's 60-90 days old, imagine prior authorization decisions based on information from yesterday. For beneﬁciaries, this means their healthcare providers have current, complete information when making care decisions. The 12 million dual-eligible Americans would particularly beneﬁt as Medicare and Medicaid data products could seamlessly connect, eliminating the current fragmentation that often leads to duplicated services or missed care opportunities. Price transparency initiatives would gain access to modular, current pricing data products that can be combined in new ways to help consumers make informed choices. The architecture also positions CMS for emerging technologies. Clean, well-documented data products provide the foundation necessary for responsible AI and machine learning applications. Predictive models for identifying care gaps, detecting fraud, or preventing hospital readmissions all require high-quality, timely data—exactly what a mesh delivers. Furthermore, by using vendor-neutral standards and interfaces, CMS avoids lock-in and can evolve with technological advances. From a security and compliance perspective, the mesh approach actually reduces risk. By maintaining de-identiﬁed analytical datasets separately from identiﬁed data, CMS can enable broader access for research and quality improvement while maintaining HIPAA compliance. The https:// adhoc.team 
- modular nature also means security updates and compliance changes can be implemented incrementally rather than requiring massive system-wide overhauls. Dependencies and Constraints: Success requires recognizing that technical architecture alone isn't suﬃcient—this is fundamentally about organizational change. Participating teams would need to shift from thinking of themselves as primarily responsible for the use of data within their own organization’s applications and dashboards to seeing their externally-facing data oﬀerings as products for which they manage quality, documentation, and user satisfaction. This cultural evolution aligns with federal initiatives around customer experience and evidence-based policymaking. The approach requires investment in building a shared data platform providing common tools and patterns that teams can use to build their data products. This platform would be ﬂexible enough to work across diﬀerent cloud environments and strict enough to ensure security and interoperability. Fortunately, CMS can leverage existing cloud contracts and tools to do this. Governance structures should balance autonomy with standardization. While each domain team owns their data products, common standards for privacy, security, and interoperability must be maintained. This federated governance model—similar to how the internet itself operates—provides the ﬂexibility needed for innovation but ensures system-wide coherence. Suggested Next Steps: Ad Hoc would like to help CMS identify a willing partner domain that has both clear ownership and pressing data sharing needs. The Provider Directory stands out as an ideal candidate—it touches multiple systems (NPPES, PECOS, Care Compare), has clear beneﬁciary value, and would immediately beneﬁt other initiatives like the API platform strategy. Initial conversations should bring together data owners, technical teams, and business stakeholders to design the ﬁrst few data products. These early implementations will establish patterns, identify governance needs, and demonstrate value. As success stories emerge, other domains will naturally want to participate, creating organic adoption rather than forced compliance. The data mesh approach complements and accelerates other modernization eﬀorts. The VA Lighthouse-style API platform (discussed in another comment) would have richer, fresher data products to expose. Prior authorization automation becomes feasible when eligibility, clinical guidelines, and provider data products can be combined in real-time. Most importantly, this approach acknowledges the reality of healthcare's complexity while providing a path forward. Rather than trying to force all healthcare data into a single model, the mesh is designed for the real world of highly diverse data organizations and accepts diversity while encouraging interoperability. Our Experience and Vision: Ad Hoc has seen how treating data as a product with clear ownership transforms organizations' ability to serve their missions. We envision a future where healthcare data ﬂows as smoothly as packages through a modern logistics network. Each participant—whether a state Medicaid agency, a Medicare Advantage plan, or a clinical lab—maintains their piece of the network while contributing to the whole. Beneﬁciaries https:// adhoc.team 
- experience this as seamless care coordination, accurate provider directories, and real-time beneﬁt information. Providers see it as reduced administrative burden and better clinical decision support. Policymakers gain access to timely insights that inform program improvements. This future is achievable. By following digital practices at CMS that Ad Hoc helped pioneer a decade ago - starting small, proving value, and building incrementally - we would love the opportunity to steward this transformation that improves healthcare for all Americans while respecting the federated nature of our healthcare system. The data mesh approach oﬀers a realistic path from today's challenges to tomorrow's possibilities. https:// adhoc.team 
+Health Technology Ecosystem RFI
+Transforming HHS Data Through a Modern Data Mesh
+Architecture
+Questions Addressed: (1) TD–12. Should CMS endorse non-CMS data sources and networks,
+and if so, what criteria or metrics should CMS consider? (2) TD-15 a. How would increased use of
+bulk FHIR improve use cases and data flow? b. What are the potential disadvantages of their use?
+(3) TD–16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure? a. Do current rules encourage scalable network participation? b. What changes
+would improve alignment (for example, API unification, reciprocal access)?
+Understanding the Opportunity: Healthcare data in America flows through an incredibly
+complex ecosystem. CMS sits at the intersection of federal programs, fifty state Medicaid
+implementations, thousands of health plans, and millions of providers—each with their own
+systems, requirements, and timelines. This complexity has traditionally led to centralized
+approaches that struggle with scale and timeliness. For example, state Medicaid data often
+arrives 3-6 months delayed because the current system attempts to force uniformity across
+fundamentally different state implementations, creating bottlenecks that impact care coordination
+for beneficiaries and prevent reliable insight into how the entire healthcare system is performing
+today.
+Today's point-to-point integrations, while solving immediate needs, have created a web of custom
+connections that are expensive and difficult to maintain. Each new data sharing requirement
+means months of custom development, security reviews, and testing. Meanwhile, the healthcare
+industry is changing toward real-time decision support, price transparency, and value-based care
+models that require fresh, reliable data. The gap between what beneficiaries need and what our
+current architecture can deliver continues to widen.
+Ad Hoc sees this as an opportunity to bring modern data architecture patterns successfully used
+by leading technology companies to be adapted for government. By embracing a data mesh
+approach—where data ownership is distributed to those who know it best while maintaining
+common standards—CMS can unlock the agility needed to serve beneficiaries in real-time while
+actually improving security and compliance.
+Exploring a Data Mesh Approach: A data mesh treats each major data domain in Federal
+healthcare as a product with dedicated ownership and clear quality standards. Instead of
+funneling all provider information through a central warehouse, imagine if the teams who manage
+NPPES owned and continuously improved a "Provider Identity" data product, while PECOS teams
+maintained "Provider Enrollment Status," and Care Compare delivered "Provider Quality Metrics."
+Each team retains their deep domain expertise while making their data easily discoverable and
+usable by others through standardized interfaces.
+This approach particularly shines when handling the diverse requirements of federal healthcare.
+State Medicaid programs could maintain their unique data products reflecting local policies and
+populations, while still contributing to national insights. The VA's successful domain-based API
+https://adhoc.team
+
+structure (health, benefits, facilities) demonstrates how federated approaches can work in
+government. A data mesh for HHS and/or CMS would provide the underlying data foundation to
+power both the VA Lighthouse-style API platform (we discuss in another comment) and
+next-generation analytics.
+A key best practice within a data mesh is the standardized creation of de-identified datasets
+labeled with cryptographically secure one-way hashes. This allows CMS to securely “reconnect”
+health data to individuals and makes it much safer and simpler to respect federal security
+requirements for the dataset. This framework for creating data products that are more safely
+shared; the mesh enables broad access for population health analytics and research while
+maintaining strict privacy controls. Researchers studying treatment patterns could immediately
+access de-identified datasets, while care coordinators requiring patient-specific information
+would go through additional authentication. This separation dramatically reduces risk while
+increasing data utility.
+Critically, business logic in a platform implementing the data mesh approach should be treated
+like engineering code but live separately from infrastructure, maintained in standard languages
+like SQL that healthcare analysts already understand. When Medicare payment policies change
+or new quality measures emerge, program experts overseen by engineering-minded data
+architects can update the logic directly without waiting for IT development cycles while retaining
+reliability and transparency. This democratization of data management puts control back in the
+hands of those who understand the healthcare domain best.
+Potential Benefits and Positive Outcomes: The transformation to a data mesh architecture
+promises both immediate wins and long-term strategic advantages. Based on private sector
+implementations, agencies can expect a 50-75% reduction in time required for new data
+integrations. What currently takes months could happen in weeks or even days. More importantly,
+data freshness improves dramatically—instead of claims data that's 60-90 days old, imagine prior
+authorization decisions based on information from yesterday.
+For beneficiaries, this means their healthcare providers have current, complete information when
+making care decisions. The 12 million dual-eligible Americans would particularly benefit as
+Medicare and Medicaid data products could seamlessly connect, eliminating the current
+fragmentation that often leads to duplicated services or missed care opportunities. Price
+transparency initiatives would gain access to modular, current pricing data products that can be
+combined in new ways to help consumers make informed choices.
+The architecture also positions CMS for emerging technologies. Clean, well-documented data
+products provide the foundation necessary for responsible AI and machine learning applications.
+Predictive models for identifying care gaps, detecting fraud, or preventing hospital readmissions
+all require high-quality, timely data—exactly what a mesh delivers. Furthermore, by using
+vendor-neutral standards and interfaces, CMS avoids lock-in and can evolve with technological
+advances.
+From a security and compliance perspective, the mesh approach actually reduces risk. By
+maintaining de-identified analytical datasets separately from identified data, CMS can enable
+broader access for research and quality improvement while maintaining HIPAA compliance. The
+https://adhoc.team
+
+modular nature also means security updates and compliance changes can be implemented
+incrementally rather than requiring massive system-wide overhauls.
+Dependencies and Constraints: Success requires recognizing that technical architecture alone
+isn't sufficient—this is fundamentally about organizational change. Participating teams would
+need to shift from thinking of themselves as primarily responsible for the use of data within their
+own organization’s applications and dashboards to seeing their externally-facing data offerings
+as products for which they manage quality, documentation, and user satisfaction. This cultural
+evolution aligns with federal initiatives around customer experience and evidence-based
+policymaking.
+The approach requires investment in building a shared data platform providing common tools
+and patterns that teams can use to build their data products. This platform would be flexible
+enough to work across different cloud environments and strict enough to ensure security and
+interoperability. Fortunately, CMS can leverage existing cloud contracts and tools to do this.
+Governance structures should balance autonomy with standardization. While each domain team
+owns their data products, common standards for privacy, security, and interoperability must be
+maintained. This federated governance model—similar to how the internet itself
+operates—provides the flexibility needed for innovation but ensures system-wide coherence.
+Suggested Next Steps: Ad Hoc would like to help CMS identify a willing partner domain that has
+both clear ownership and pressing data sharing needs. The Provider Directory stands out as an
+ideal candidate—it touches multiple systems (NPPES, PECOS, Care Compare), has clear
+beneficiary value, and would immediately benefit other initiatives like the API platform strategy.
+Initial conversations should bring together data owners, technical teams, and business
+stakeholders to design the first few data products. These early implementations will establish
+patterns, identify governance needs, and demonstrate value. As success stories emerge, other
+domains will naturally want to participate, creating organic adoption rather than forced
+compliance.
+The data mesh approach complements and accelerates other modernization efforts. The VA
+Lighthouse-style API platform (discussed in another comment) would have richer, fresher data
+products to expose. Prior authorization automation becomes feasible when eligibility, clinical
+guidelines, and provider data products can be combined in real-time.
+Most importantly, this approach acknowledges the reality of healthcare's complexity while
+providing a path forward. Rather than trying to force all healthcare data into a single model, the
+mesh is designed for the real world of highly diverse data organizations and accepts diversity
+while encouraging interoperability.
+Our Experience and Vision: Ad Hoc has seen how treating data as a product with clear
+ownership transforms organizations' ability to serve their missions. We envision a future where
+healthcare data flows as smoothly as packages through a modern logistics network. Each
+participant—whether a state Medicaid agency, a Medicare Advantage plan, or a clinical
+lab—maintains their piece of the network while contributing to the whole. Beneficiaries
+https://adhoc.team
+
+experience this as seamless care coordination, accurate provider directories, and real-time
+benefit information. Providers see it as reduced administrative burden and better clinical decision
+support. Policymakers gain access to timely insights that inform program improvements.
+This future is achievable. By following digital practices at CMS that Ad Hoc helped pioneer a
+decade ago - starting small, proving value, and building incrementally - we would love the
+opportunity to steward this transformation that improves healthcare for all Americans while
+respecting the federated nature of our healthcare system. The data mesh approach offers a
+realistic path from today's challenges to tomorrow's possibilities.
+https://adhoc.team

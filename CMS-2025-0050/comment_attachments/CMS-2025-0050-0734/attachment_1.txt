@@ -1,4 +1,103 @@
-June 16, 2025 Centers for Medicare & Medicaid Services (CMS) Office of Health Care Experience & Interoperability RE: RFI — Improving Technology to Empower Medicare Beneficiaries Dear Administrator Oz and ASTP ‑ ONC Colleagues, Bayesian Health is a U.S. ‑ founded clinical ‑ AI company spun out of Johns Hopkins in 2018 and backed by mission ‑ driven investors (a16z, Obvious Ventures, LifeForce Capital). Our adaptive AI platform already helps frontline clinicians spot high ‑ risk patients earlier across sepsis, escalation of care, pressure injury and readmissions, reducing risk ‑ adjusted sepsis mortality 18.7 % in a 750,000 patient, multi ‑ site study¹ while shortening length ‑ of ‑ stay and ICU utilization. Yet the promise of AI is throttled by a chokepoint: large EHR vendors who were entrenched under the HITECH Act and now act as data and innovation gatekeepers. Their market power lets them: ● Enable standards that lead to 6 ‑ to ‑ 18 ‑ month queues for standard integrations — stalling deployments that could save Medicare lives and cost now. ● Bypass FDA oversight for their own AI “apps” by classifying them as ONC ‑ certified modules, while requiring outside innovators to run the full regulatory gauntlet—an uneven playing field that suppresses competition and choice. ● Lock data behind proprietary formats and deny modern streaming or webhook access, keeping hospitals on brittle nightly batch feeds and costly interface ‑ engineer labor. The result is de ‑ facto regulatory capture : rules written to digitize records now inhibit innovation and increase total cost of care. Medicare beneficiaries pay the price in missed early treatments, longer stays, and avoidable mortality. Executive Summary of Recommendations CMS Objective Policy Action Relevant Evidence Unlock innovation & reduce burden 1. Mandate open, streaming APIs (FHIR R5 + CDCIS event streams) and endorse reference architecture built on Kafka/Kinesis; 2. Require EHR vendors to offer web ‑ hooks and zero ‑ fee sandbox access to third parties within 90 days of request; • 24 % of clinical staff plan to exit within a year—workflow friction fuels burnout² • Real ‑ time streams eliminate data loss and six ‑ figure HL7 backlog costs³ not including the 
-bloat of it creates in the staffing of Hospitals’ IT groups Accelerate value ‑ based care (VBC) 3. Add quality ‑ linked payment (NTAP ‑ like) for AI CDS with peer ‑ reviewed outcome data Machine ‑ learning sepsis alerts cut LOS −2.7 days and halved ICU mortality in a prospective RCT. ⁴ Standardize and simplify regulatory requirements 4. Standardize regulatory Software as a Medical Device (SaMD) pathways (whether EHR-company developed or external) so innovators and incumbents are on a level playing field. FDA has rigorous requirements for SaMD – additionally external innovators have to comply with ONC and state-based regulations that make compliance hard for developers. Democratize data for ML & equity 5. Fund a national, de ‑ identified federated data lake with common schemas and secure enclaves to power bias testing and small ‑ vendor innovation Unified schemas unlock collective intelligence without moving PHI; supports equity goals ⁵ Context: Why Action Is Urgent ● Sepsis is the #1 inpatient cause of death and most expensive condition. Earlier AI ‑ triggered care saves thousands of Medicare lives ⁶ . ● Workforce shortages will add $170 B in costs by 2027; nurses are the least experienced on record ⁷ . Automation and timely decision ‑ support are critical. ● Evidence is mature. Multi ‑ site Bayesian deployment cut sepsis mortality 18.7 %; ICU RCT showed −20 % LOS and −58 % mortality vs usual care ⁴ ; for patients with septic shock, every hour of delayed antibiotic administration increases mortality by **8 %** ⁹ . 
-Detailed Policy Requests I. Provider & Technology/Data ‑ Vendor Lane ● PR ‑ 1 — Quality ‑ Linked Payment for Validated AI Ask: Create an NTAP ‑ style add ‑ on tied to peer ‑ reviewed outcome data. Evidence: Bayesian reduced sepsis mortality by 18.7% while reducing total cost of care (Nature Medicine 2022)¹. ● PR ‑ 2 — Interoperability Guardrails to Break Regulatory Capture Ask: Condition future ONC certification on: (a) streaming FHIR APIs; (b) zero ‑ cost access to synthetic ‑ data sandboxes; (c) non ‑ discriminatory pricing for production APIs. Rationale: Restores competitive neutrality and accelerates Medicare ‑ benefiting tools. ● PR ‑ 3 — Modern Web ‑ Based EMR & Web ‑ Hooks Standard Ask: Endorse React/Vue ‑ based EMRs exposing REST/GraphQL APIs and outbound web ‑ hooks for CDS. Rationale: Aligns with CI/CD best practices, slashes manual test cycles. II. Value ‑ Based Care Lane ● VB ‑ 1 — AI Response Metrics in HVBP Ask: Add “risk ‑ adjusted sepsis mortality” and “AI ‑ verified time ‑ to ‑ treatment < 1 hr” as quality measures. Evidence: ML alerts cut LOS −2.7 days and mortality −58 % ⁴ ; each hour of antibiotic delay increases mortality 8 % in septic shock ⁹ . Conclusion Accelerating responsible AI adoption is no longer optional — it is essential to sustain access, quality, and equity for Medicare beneficiaries while increasing the return on our tax dollars, however, regulatory capture of the HITECH act is stymieing growth in this important area. Bayesian Health welcomes further dialogue to demonstrate our platform and/or partner on next ‑ generation standards. Respectfully submitted, Suchi Saria, PhD Chief Executive Officer, Bayesian Health, Inc. 
- References 1. Adams J et al. Nature Medicine  2022. 2. McKnight’s Senior Living Staff Survey 2024. 3. Bayesian analysis of HL7 backlog 2025. 4. Calvert JS et al. Crit Care Med  2023. 5. ONC HTI ‑ 1 Proposed Rule 2024. 6. Mass General Brigham Sepsis Report 2024; Cleveland Clinic 2024. 7. McKinsey “Outlook for Nurse Staffing” 2025; ECRI Top 10 Patient ‑ Safety Concerns 2025. 8. Kumar A et al. Critical Care Medicine 2006;34(6):1589-96. "Duration of hypotension before initiation of effective antimicrobial therapy is the critical determinant of survival in human septic shock." 
+June 16, 2025
+Centers for Medicare & Medicaid Services (CMS)
+Office of Health Care Experience & Interoperability
+RE: RFI — Improving Technology to Empower Medicare Beneficiaries
+Dear Administrator Oz and ASTP‑ONC Colleagues,
+Bayesian Health is a U.S.‑founded clinical‑AI company spun out of Johns Hopkins in 2018 and backed by
+mission‑driven investors (a16z, Obvious Ventures, LifeForce Capital). Our adaptive AI platform already
+helps frontline clinicians spot high‑risk patients earlier across sepsis, escalation of care, pressure injury
+and readmissions, reducing risk‑adjusted sepsis mortality 18.7 % in a 750,000 patient, multi‑site study¹
+while shortening length‑of‑stay and ICU utilization.
+Yet the promise of AI is throttled by a chokepoint: large EHR vendors who were entrenched under the
+HITECH Act and now act as data and innovation gatekeepers. Their market power lets them:
+● Enable standards that lead to 6‑to‑18‑month queues for standard integrations — stalling
+deployments that could save Medicare lives and cost now.
+● Bypass FDA oversight for their own AI “apps” by classifying them as ONC‑certified modules,
+while requiring outside innovators to run the full regulatory gauntlet—an uneven playing field that
+suppresses competition and choice.
+● Lock data behind proprietary formats and deny modern streaming or webhook access, keeping
+hospitals on brittle nightly batch feeds and costly interface‑engineer labor.
+The result is de‑facto regulatory capture: rules written to digitize records now inhibit innovation and
+increase total cost of care. Medicare beneficiaries pay the price in missed early treatments, longer stays,
+and avoidable mortality.
+Executive Summary of Recommendations
+CMS Objective Policy Action Relevant Evidence
+Unlock innovation & 1. Mandate open, streaming APIs (FHIR R5 + • 24 % of clinical staff plan
+reduce burden CDCIS event streams) and endorse reference to exit within a
+architecture built on Kafka/Kinesis; 2. Require year—workflow friction
+EHR vendors to offer web‑hooks and zero‑fee fuels burnout² • Real‑time
+sandbox access to third parties within 90 days streams eliminate data loss
+of request; and six‑figure HL7 backlog
+costs³ not including the
+
+bloat of it creates in the
+staffing of Hospitals’ IT
+groups
+Accelerate 3. Add quality‑linked payment Machine‑learning
+value‑based (NTAP‑like) for AI CDS with sepsis alerts cut
+care (VBC) peer‑reviewed outcome data LOS −2.7 days and
+halved ICU mortality
+in a prospective
+RCT.⁴
+Standardize and 4. Standardize regulatory Software as a
+simplify regulatory Medical Device (SaMD) pathways (whether
+requirements EHR-company developed or external) so
+innovators and incumbents are on a level
+playing field. FDA has rigorous requirements for
+SaMD – additionally external innovators have to
+comply with ONC and state-based regulations
+that make compliance hard for developers.
+Democratize data for 5. Fund a national, de‑identified federated data Unified schemas unlock
+ML & equity lake with common schemas and secure collective intelligence
+enclaves to power bias testing and without moving PHI;
+small‑vendor innovation supports equity goals⁵
+Context: Why Action Is Urgent
+● Sepsis is the #1 inpatient cause of death and most expensive condition. Earlier AI‑triggered
+care saves thousands of Medicare lives⁶.
+● Workforce shortages will add $170 B in costs by 2027; nurses are the least experienced on
+record⁷. Automation and timely decision‑support are critical.
+● Evidence is mature. Multi‑site Bayesian deployment cut sepsis mortality 18.7 %; ICU RCT
+showed −20 % LOS and −58 % mortality vs usual care⁴; for patients with septic shock, every hour
+of delayed antibiotic administration increases mortality by **8 %**⁹.
+
+Detailed Policy Requests
+I. Provider & Technology/Data‑Vendor Lane
+● PR‑1 — Quality‑Linked Payment for Validated AI
+Ask: Create an NTAP‑style add‑on tied to peer‑reviewed outcome data.
+Evidence: Bayesian reduced sepsis mortality by 18.7% while reducing total cost of care
+(Nature Medicine 2022)¹.
+● PR‑2 — Interoperability Guardrails to Break Regulatory Capture
+Ask: Condition future ONC certification on: (a) streaming FHIR APIs; (b) zero‑cost access to
+synthetic‑data sandboxes; (c) non‑discriminatory pricing for production APIs.
+Rationale: Restores competitive neutrality and accelerates Medicare‑benefiting tools.
+● PR‑3 — Modern Web‑Based EMR & Web‑Hooks Standard
+Ask: Endorse React/Vue‑based EMRs exposing REST/GraphQL APIs and outbound web‑hooks
+for CDS.
+Rationale: Aligns with CI/CD best practices, slashes manual test cycles.
+II. Value‑Based Care Lane
+● VB‑1 — AI Response Metrics in HVBP
+Ask: Add “risk‑adjusted sepsis mortality” and “AI‑verified time‑to‑treatment < 1 hr” as
+quality measures.
+Evidence: ML alerts cut LOS −2.7 days and mortality −58 %⁴; each hour of antibiotic delay
+increases mortality 8 % in septic shock⁹.
+Conclusion
+Accelerating responsible AI adoption is no longer optional — it is essential to sustain access, quality, and
+equity for Medicare beneficiaries while increasing the return on our tax dollars, however, regulatory
+capture of the HITECH act is stymieing growth in this important area.
+Bayesian Health welcomes further dialogue to demonstrate our platform and/or partner on
+next‑generation standards.
+Respectfully submitted,
+Suchi Saria, PhD
+Chief Executive Officer, Bayesian Health, Inc.
+
+References
+1. Adams J et al. Nature Medicine 2022.
+2. McKnight’s Senior Living Staff Survey 2024.
+3. Bayesian analysis of HL7 backlog 2025.
+4. Calvert JS et al. Crit Care Med 2023.
+5. ONC HTI‑1 Proposed Rule 2024.
+6. Mass General Brigham Sepsis Report 2024; Cleveland Clinic 2024.
+7. McKinsey “Outlook for Nurse Staffing” 2025; ECRI Top 10 Patient‑Safety Concerns 2025.
+8. Kumar A et al. Critical Care Medicine 2006;34(6):1589-96. "Duration of hypotension before
+initiation of effective antimicrobial therapy is the critical determinant of survival in human septic
+shock."

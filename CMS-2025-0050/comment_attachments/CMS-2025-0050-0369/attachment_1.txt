@@ -1,5 +1,172 @@
- F r o m : CareMessage Integrations Team T o : Centers for Medicare & Medicaid Services CMS, Assistant Secretary for Technology Policy ASTP, Department of Health and Human Services HHS. A t t e n t i o n : Request for Information; Health Technology Ecosystem Introduction CareMessage is a nonprofit leveraging technology to improve health outcomes for low-income patient populations. At CareMessage, we commend CMS and ASTP/ONC for issuing this RFI with the shared goals of improving chronic disease prevention/management, expanding access to care, and supporting the transition to value-based care. We at CareMessage rely on interoperability and standards-based technologies to develop solutions that improve patient outcomes at a population level. Requirements such as USCDI and FHIR Bulk Data Export are critical to making our technology available to patients and providers in a simple, cost-effective way. As an example, please consider our Automated Gaps-in-Care Journeys for Safety-Net Organizations[0, which automates SMS outreach to at-risk patients on behalf of providers. This solution relies on FHIR and Bulk FHIR to trigger targeted outreach to patients, providing education on chronic conditions and increasing access to care. As we expand our support for additional CEHRT FHIR platforms and support additional care gap use cases, reliable access to standardized data will be critical for us and others aiming to keep patients healthier. Unfortunately, only one out of several CEHRT Bulk FHIR implementations we have tested has met our requirements in data availability and reliability. Despite the huge potential of FHIR Bulk Data Export to be a transformative technology for population health use cases, the current reality is that most implementations are saddled with limitations, preventing widespread adoption. We therefore urge CMS and ASPT/ONC to strengthen guidance and enforcement so FHIR Bulk Export can become the efficient, high-impact data platform patients and providers need to achieve better health outcomes. CareM essage | integrations@ carem essage.org 
- Responses to select RFI Q uestions VB-13. W hat im provem ents to existing criteria and standards w ould better support value-based care capabilities w hile reducing provider burden? / TD-4. How can CM S better encourage use of open, standards-based, publicly available APIs over proprietary APIs? Require CEHRT to always support Bulk FHIR “All Patients” export Currently, if a provider wants to share their full patient population with a technology vendor to identify and support at-risk patients, there is no standard, certified way to do so using FHIR Bulk Data Export. Most CEHRT implementations require providers to manually create and manage “groupsˮ of patients before initiating an export—adding unnecessary administrative burden and creating friction in workflows that should be streamlined. A certified “All Patientsˮ export capability would remove this burden and enable technology vendors to perform patient discovery—identifying patients they were not previously aware of but who exist in the providerʼs EHR system. This is essential for delivering preventive outreach, addressing gaps in care, and scaling population health efforts effectively. We strongly urge ASPT and ONC to require that all certified Bulk FHIR implementations support “All Patientsˮ export by default . Without it, the process remains overly manual and fragmented, increasing implementation costs and limiting the ability of providers and vendors to collaborate on value-based care initiatives. Set baseline requirements for all bulk FHIR implementations that are subject to information blocking penalties Lack of performance and reliability is a fundamental barrier for providers and technology vendors attempting to use FHIR Bulk Data Export to support value-based care use cases. The two most common issues we encounter are: ● Exports jobs never completing (i.e “getting stuckˮ at a certain Progress % ● Exports jobs failing before completion ● Exports complete, but data is corrupted/missing We urge ASTP/ONC to publish clear guidance stating that Certified Health IT products with Bulk FHIR Export functionality that repeatedly fail or do not complete within a reasonable timeframe may constitute Information Blocking and be subject to applicable penalties. As a recommendation, we suggest adding a Maintenance of Certification requirement that all bulk export jobs must complete within one month of being initiated, regardless of data volume. Additionally, exports should never fail outright—they should either complete successfully, without missing or be explicitly cancelled by the client. CareM essage | integrationsteam @ carem essage.org 
- Require reporting for data monitoring of real-world Bulk FHIR implementation performance For export jobs that do complete, they can take days to finish for a modest amount of resources exported. Not only does this lag time prevent many use cases from being possible, but it adds confusion and uncertainty when combined with the fact that jobs can become “stuckˮ or fail eventually. That uncertainty is leading to wasted efforts of many engineers across the industry as well as providers who are burdened with escalating issues with bulk FHIR implementers. Providers are sitting on calls with other stakeholders to assist with debugging issues with CEHRT Bulk FHIR technology, painstakingly investigating problems that should have been prevented by the certification process. Inferno is a good start for certifying data presence and security features. However, for FHIR Bulk Data Export it is too easy to achieve certification without the software system working across the board in a production context. As such, we strongly urge the ASTP/ONC to monitor and regulate the real world performance of Bulk FHIR to ensure population health apps can deliver value for healthcare providers and their patients. Collect data on the job timings with a program similar to that created for the Insights Condition and Maintenance of Certification. This will allow ASTP/ONC to enforce compliance with 1, and to collect data to inform Phase 2. Data that we recommend the ASTP/ONC collect for each export: ○ Number of records of each FHIR Resource type exported ○ Number and size of DocumentReference and DiagnosticReport attachments (e.g PDFs, images, html, etc) ○ Duration of export since initial job kickoff time ○ Duration of export, including waiting time in queue ○ Job status (in-progress, successful, failed) ○ The parameters used in the export We recommend that ASTP/ONC use the data collected to set more specific requirements for completing Bulk API export. A reasonable starting place would be 1 hour per 100,000 records without image attachments. Require Bulk FHIR implementations adhere to a specific implementation of rate-limiting Every FHIR Bulk Data server is a shared resource: patients, providers, technology vendors, and other stakeholders may all depend on it. Safeguards are therefore needed so that one clientʼs behavior cannot degrade service for everyone else. Because a serverʼs internal job queue is invisible to clients, we recommend explicit rate-limiting rules that prevent clients from losing track of queued jobs or experiencing unexpected delays that require manual CEHRT intervention. Recommended baseline behavior: CareM essage | integrationsteam @ carem essage.org 
- 1 A certified Bulk FHIR server must allow only a single active or queued export job per client_id/site combo. If the same client requests another export for that same site before the first completes, the server must immediately return HTTP 429 Too Many Requests) with a Retry-After header. 2 When a client polls a jobʼs status more frequently than permitted, the server must likewise return HTTP 429 + Retry-After, encouraging exponential back-off. These rules follow existing FHIR standards 1 and would prevent any one client from flooding the queue for a particular site with long exports or from hammering the status endpoint, while still letting other authenticated apps run and poll their own jobs in parallel. Because both limits are enforced through standard HTTP responses, ASTP/ONC can test compliance entirely from the outside—without prescribing how CEHRT vendors build their internal job queues. The caveat is that this alone will not prevent the shared resource of a siteʼs FHIR Bulk Data Export server from being used past capacity. If the overall queue length continues to grow due to job request volume, it may become increasingly difficult for clients to receive the results of their jobs in a reasonable time. However, combined with the performance monitoring and collection of data, this will be a great starting point to assess real world conditions and understand if further provisions need to be added. Require reduction in unnecessary provider involvement in Bulk FHIR setup Once a provider agrees to share their patient population via Bulk FHIR with a tech vendor, the steps required to enable seamless data flow should be minimal and low-burden for the provider. Certified Health IT CEHRT systems should be required to have FHIR Bulk Data Export capabilities enabled by default. CEHRT should not be allowed to: ● Require providers to install additional software ● Require providers to contact the EHR vendor to initiate installation ● Require providers to manage the lifecycle or runtime of any supporting systems In addition, CEHRT should not require providers to manually configure patient groups before export is possible, nor should they require a manual backfill process to access historical data. All USCDI resources for all patients should be available by default, without manual intervention from the provider or the CEHRT vendor. Require more explicit documentation for certified APIs Certified Health IT should be required to clearly label optional enhancements and API features that are n o t mandated by ONC regulation as “uncertifiedˮ or “pre-certification,ˮ even if those features appear in the HL7 specification or a future/draft version of USCDI. This distinction is critical for ensuring implementers understand which parts of an API are governed by certification requirements and which are provided on a best-effort basis. CareM essage | integrationsteam @ carem essage.org 
- For example, if a CEHRT vendor exposes FHIR APIs outside of USCDI—such as the Communication resource—those should be explicitly marked as uncertified. The Communication resource is not currently included in any version of USCDI nor is it required by the US Core Implementation Guide, so it qualifies as an optional enhancement. If a client begins to rely on that resource (e.g., to retrieve patient-facing messages or care coordination notes) and the API is later removed or breaks, there is no regulatory recourse. This stands in contrast to required resources like Observation, where certified systems are expected to ensure reliable access and vendors are held accountable under ASTP/ONC certification criteria. Developers and providers should not be expected to interpret regulatory frameworks just to determine which FHIR endpoints can be safely relied upon. Documentation should clearly distinguish between “certifiedˮ and “uncertifiedˮ APIs, allowing implementers to immediately understand which resources are covered under certification and which are not. This transparency reduces integration risk, avoids confusion, and helps maintain trust between health IT developers and implementers. Additionally, CEHRT should be prohibited from implementing hidden or undocumented features in their FHIR or Bulk FHIR servers, even if those features conform to future versions of the HL7 specification. If such features are implemented, they should be explicitly documented and clearly labeled as uncertified. As described by Hyrumʼs Law 2, “ W i t h a s u f f i c i e n t n u m b e r o f u s e r s o f a n A P I , i t d o e s n o t m a t t e r w h a t y o u p r o m i s e i n t h e c o n t r a c t : a l l o b s e r v a b l e b e h a v i o r s o f y o u r s y s t e m w i l l b e d e p e n d e d u p o n b y s o m e b o d y . ˮ In other words, once functionality is exposed—even unofficially—users will come to rely on it. If that functionality degrades or is removed without warning, it creates significant disruption and erodes trust. Transparent labeling of uncertified or experimental features is necessary to prevent these issues and ensure predictable behavior across certified health IT systems. References 0 h t t p s : / / w w w . c a r e m e s s a g e . o r g / c a r e m e s s a g e - i n t r o d u c e s - a u t o m a t e d - g a p s - i n - c a r e - j o u r n e y s - f o r - s a f e t y - n e t - o r g a n i z a t i o n s / 1 h t t p s : / / b u i l d . f h i r . o r g / i g / H L 7 / b u l k - d a t a / e x p o r t . h t m l # b u l k - d a t a - s t a t u s - r e q u e s t 2 h t t p s : / / w w w . h y r u m s l a w . c o m / CareM essage | integrationsteam @ carem essage.org 
+From: CareMessage Integrations Team
+To: Centers for Medicare & Medicaid Services CMS, Assistant Secretary for Technology Policy
+ASTP, Department of Health and Human Services HHS.
+Attention: Request for Information; Health Technology Ecosystem
+Introduction
+CareMessage is a nonprofit leveraging technology to improve health outcomes for low-income
+patient populations. At CareMessage, we commend CMS and ASTP/ONC for issuing this RFI with
+the shared goals of improving chronic disease prevention/management, expanding access to care,
+and supporting the transition to value-based care.
+We at CareMessage rely on interoperability and standards-based technologies to develop
+solutions that improve patient outcomes at a population level. Requirements such as USCDI and
+FHIR Bulk Data Export are critical to making our technology available to patients and providers in a
+simple, cost-effective way. As an example, please consider our Automated Gaps-in-Care Journeys
+for Safety-Net Organizations[0, which automates SMS outreach to at-risk patients on behalf of
+providers. This solution relies on FHIR and Bulk FHIR to trigger targeted outreach to patients,
+providing education on chronic conditions and increasing access to care.
+As we expand our support for additional CEHRT FHIR platforms and support additional care gap
+use cases, reliable access to standardized data will be critical for us and others aiming to keep
+patients healthier. Unfortunately, only one out of several CEHRT Bulk FHIR implementations we
+have tested has met our requirements in data availability and reliability.
+Despite the huge potential of FHIR Bulk Data Export to be a transformative technology for
+population health use cases, the current reality is that most implementations are saddled with
+limitations, preventing widespread adoption. We therefore urge CMS and ASPT/ONC to strengthen
+guidance and enforcement so FHIR Bulk Export can become the efficient, high-impact data
+platform patients and providers need to achieve better health outcomes.
+CareMessage | integrations@caremessage.org
+
+Responses to select RFI Questions
+VB-13. What improvements to existing criteria and standards would better
+support value-based care capabilities while reducing provider burden? /
+TD-4. How can CMS better encourage use of open, standards-based,
+publicly available APIs over proprietary APIs?
+Require CEHRT to always support Bulk FHIR “All Patients” export
+Currently, if a provider wants to share their full patient population with a technology vendor to
+identify and support at-risk patients, there is no standard, certified way to do so using FHIR Bulk
+Data Export. Most CEHRT implementations require providers to manually create and manage
+“groupsˮ of patients before initiating an export—adding unnecessary administrative burden and
+creating friction in workflows that should be streamlined.
+A certified “All Patientsˮ export capability would remove this burden and enable technology
+vendors to perform patient discovery—identifying patients they were not previously aware of but
+who exist in the providerʼs EHR system. This is essential for delivering preventive outreach,
+addressing gaps in care, and scaling population health efforts effectively.
+We strongly urge ASPT and ONC to require that all certified Bulk FHIR implementations support “All
+Patientsˮ export by default. Without it, the process remains overly manual and fragmented,
+increasing implementation costs and limiting the ability of providers and vendors to collaborate on
+value-based care initiatives.
+Set baseline requirements for all bulk FHIR implementations that are subject to
+information blocking penalties
+Lack of performance and reliability is a fundamental barrier for providers and technology vendors
+attempting to use FHIR Bulk Data Export to support value-based care use cases. The two most
+common issues we encounter are:
+● Exports jobs never completing (i.e “getting stuckˮ at a certain Progress %
+● Exports jobs failing before completion
+● Exports complete, but data is corrupted/missing
+We urge ASTP/ONC to publish clear guidance stating that Certified Health IT products with Bulk
+FHIR Export functionality that repeatedly fail or do not complete within a reasonable timeframe may
+constitute Information Blocking and be subject to applicable penalties.
+As a recommendation, we suggest adding a Maintenance of Certification requirement that all bulk
+export jobs must complete within one month of being initiated, regardless of data volume.
+Additionally, exports should never fail outright—they should either complete successfully, without
+missing or be explicitly cancelled by the client.
+CareMessage | integrationsteam@caremessage.org
+
+Require reporting for data monitoring of real-world Bulk FHIR implementation
+performance
+For export jobs that do complete, they can take days to finish for a modest amount of resources
+exported. Not only does this lag time prevent many use cases from being possible, but it adds
+confusion and uncertainty when combined with the fact that jobs can become “stuckˮ or fail
+eventually. That uncertainty is leading to wasted efforts of many engineers across the industry as
+well as providers who are burdened with escalating issues with bulk FHIR implementers. Providers
+are sitting on calls with other stakeholders to assist with debugging issues with CEHRT Bulk FHIR
+technology, painstakingly investigating problems that should have been prevented by the
+certification process.
+Inferno is a good start for certifying data presence and security features. However, for FHIR Bulk
+Data Export it is too easy to achieve certification without the software system working across the
+board in a production context.
+As such, we strongly urge the ASTP/ONC to monitor and regulate the real world performance of
+Bulk FHIR to ensure population health apps can deliver value for healthcare providers and their
+patients.
+Collect data on the job timings with a program similar to that created for the Insights Condition and
+Maintenance of Certification. This will allow ASTP/ONC to enforce compliance with 1, and to
+collect data to inform Phase 2. Data that we recommend the ASTP/ONC collect for each export:
+○ Number of records of each FHIR Resource type exported
+○ Number and size of DocumentReference and DiagnosticReport attachments (e.g PDFs,
+images, html, etc)
+○ Duration of export since initial job kickoff time
+○ Duration of export, including waiting time in queue
+○ Job status (in-progress, successful, failed)
+○ The parameters used in the export
+We recommend that ASTP/ONC use the data collected to set more specific requirements for
+completing Bulk API export. A reasonable starting place would be 1 hour per 100,000 records
+without image attachments.
+Require Bulk FHIR implementations adhere to a specific implementation of
+rate-limiting
+Every FHIR Bulk Data server is a shared resource: patients, providers, technology vendors, and
+other stakeholders may all depend on it. Safeguards are therefore needed so that one clientʼs
+behavior cannot degrade service for everyone else. Because a serverʼs internal job queue is
+invisible to clients, we recommend explicit rate-limiting rules that prevent clients from losing track
+of queued jobs or experiencing unexpected delays that require manual CEHRT intervention.
+Recommended baseline behavior:
+CareMessage | integrationsteam@caremessage.org
+
+1 A certified Bulk FHIR server must allow only a single active or queued export job per
+client_id/site combo. If the same client requests another export for that same site before
+the first completes, the server must immediately return HTTP 429 Too Many Requests)
+with a Retry-After header.
+2 When a client polls a jobʼs status more frequently than permitted, the server must likewise
+return HTTP 429 + Retry-After, encouraging exponential back-off.
+These rules follow existing FHIR standards 1 and would prevent any one client from flooding the
+queue for a particular site with long exports or from hammering the status endpoint, while still
+letting other authenticated apps run and poll their own jobs in parallel.
+Because both limits are enforced through standard HTTP responses, ASTP/ONC can test
+compliance entirely from the outside—without prescribing how CEHRT vendors build their internal
+job queues.
+The caveat is that this alone will not prevent the shared resource of a siteʼs FHIR Bulk Data Export
+server from being used past capacity. If the overall queue length continues to grow due to job
+request volume, it may become increasingly difficult for clients to receive the results of their jobs in
+a reasonable time. However, combined with the performance monitoring and collection of data,
+this will be a great starting point to assess real world conditions and understand if further
+provisions need to be added.
+Require reduction in unnecessary provider involvement in Bulk FHIR setup
+Once a provider agrees to share their patient population via Bulk FHIR with a tech vendor, the steps
+required to enable seamless data flow should be minimal and low-burden for the provider.
+Certified Health IT CEHRT systems should be required to have FHIR Bulk Data Export capabilities
+enabled by default. CEHRT should not be allowed to:
+● Require providers to install additional software
+● Require providers to contact the EHR vendor to initiate installation
+● Require providers to manage the lifecycle or runtime of any supporting systems
+In addition, CEHRT should not require providers to manually configure patient groups before export
+is possible, nor should they require a manual backfill process to access historical data. All USCDI
+resources for all patients should be available by default, without manual intervention from the
+provider or the CEHRT vendor.
+Require more explicit documentation for certified APIs
+Certified Health IT should be required to clearly label optional enhancements and API features that
+are not mandated by ONC regulation as “uncertifiedˮ or “pre-certification,ˮ even if those features
+appear in the HL7 specification or a future/draft version of USCDI. This distinction is critical for
+ensuring implementers understand which parts of an API are governed by certification
+requirements and which are provided on a best-effort basis.
+CareMessage | integrationsteam@caremessage.org
+
+For example, if a CEHRT vendor exposes FHIR APIs outside of USCDI—such as the Communication
+resource—those should be explicitly marked as uncertified. The Communication resource is not
+currently included in any version of USCDI nor is it required by the US Core Implementation Guide,
+so it qualifies as an optional enhancement. If a client begins to rely on that resource (e.g., to
+retrieve patient-facing messages or care coordination notes) and the API is later removed or
+breaks, there is no regulatory recourse. This stands in contrast to required resources like
+Observation, where certified systems are expected to ensure reliable access and vendors are held
+accountable under ASTP/ONC certification criteria.
+Developers and providers should not be expected to interpret regulatory frameworks just to
+determine which FHIR endpoints can be safely relied upon. Documentation should clearly
+distinguish between “certifiedˮ and “uncertifiedˮ APIs, allowing implementers to immediately
+understand which resources are covered under certification and which are not. This transparency
+reduces integration risk, avoids confusion, and helps maintain trust between health IT developers
+and implementers.
+Additionally, CEHRT should be prohibited from implementing hidden or undocumented features in
+their FHIR or Bulk FHIR servers, even if those features conform to future versions of the HL7
+specification. If such features are implemented, they should be explicitly documented and clearly
+labeled as uncertified.
+As described by Hyrumʼs Law 2, “With a sufficient number of users of an API, it does not matter
+what you promise in the contract: all observable behaviors of your system will be depended upon
+by somebody.ˮ In other words, once functionality is exposed—even unofficially—users will come to
+rely on it. If that functionality degrades or is removed without warning, it creates significant
+disruption and erodes trust. Transparent labeling of uncertified or experimental features is
+necessary to prevent these issues and ensure predictable behavior across certified health IT
+systems.
+References
+0
+https://www.caremessage.org/caremessage-introduces-automated-gaps-in-care-journeys-for-saf
+ety-net-organizations/
+1 https://build.fhir.org/ig/HL7/bulk-data/export.html#bulk-data-status-request
+2 https://www.hyrumslaw.com/
+CareMessage | integrationsteam@caremessage.org

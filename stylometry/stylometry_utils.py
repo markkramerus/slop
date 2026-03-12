@@ -10,23 +10,8 @@ from __future__ import annotations
 import logging
 import re
 from pathlib import Path
-from typing import Any
-
 import numpy as np
 import pandas as pd
-
-# Text extraction libraries
-try:
-    from pypdf import PdfReader
-    HAS_PDF = True
-except ImportError:
-    HAS_PDF = False
-
-try:
-    from docx import Document
-    HAS_DOCX = True
-except ImportError:
-    HAS_DOCX = False
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -122,130 +107,174 @@ def fingerprint(text: str) -> dict[str, float]:
     }
 
 
+# ── Attachment classification helpers ─────────────────────────────────────────
+
+_classification_cache: dict[str, pd.DataFrame] = {}
+
+
+def load_attachment_classification(attachments_dir: str) -> pd.DataFrame | None:
+    """
+    Load and cache the attachment_classification.csv for a given attachments directory.
+
+    Returns a DataFrame with columns including document_id, attachment_filename,
+    and ai_label, or None if the file doesn't exist.
+    """
+    cache_key = str(attachments_dir)
+    if cache_key in _classification_cache:
+        return _classification_cache[cache_key]
+
+    csv_path = Path(attachments_dir) / "attachment_classification.csv"
+    if not csv_path.exists():
+        logger.warning(
+            f"attachment_classification.csv not found at {csv_path}. "
+            "Falling back to reading all .txt attachments."
+        )
+        _classification_cache[cache_key] = None
+        return None
+
+    try:
+        df = pd.read_csv(csv_path, dtype=str, low_memory=False).fillna("")
+        # Normalise key columns
+        df.columns = [c.strip().lower() for c in df.columns]
+        logger.info(
+            f"Loaded attachment classification: {len(df)} entries from {csv_path}"
+        )
+        _classification_cache[cache_key] = df
+        return df
+    except Exception as e:
+        logger.warning(f"Failed to load attachment_classification.csv: {e}")
+        _classification_cache[cache_key] = None
+        return None
+
+
+def _get_comment_attachment_filenames(
+    document_id: str, classification_df: pd.DataFrame
+) -> list[str]:
+    """
+    Return the list of attachment filenames (e.g. 'attachment_1.pdf') that are
+    classified as 'comment' for the given document_id.
+
+    Results are sorted by attachment number so attachment_1 comes first.
+    """
+    mask = (
+        (classification_df["document_id"] == document_id)
+        & (classification_df["ai_label"].str.strip().str.lower() == "comment")
+    )
+    rows = classification_df.loc[mask, "attachment_filename"].tolist()
+
+    # Sort by attachment number
+    att_re = re.compile(r"attachment_(\d+)", re.IGNORECASE)
+
+    def sort_key(fname: str) -> int:
+        m = att_re.search(fname)
+        return int(m.group(1)) if m else 999
+
+    return sorted(rows, key=sort_key)
+
+
 # ── Text extraction from attachments ──────────────────────────────────────────
-
-def extract_text_from_pdf(filepath: Path) -> str:
-    """Extract text from a PDF file."""
-    if not HAS_PDF:
-        logger.warning(f"pypdf not available, skipping PDF extraction: {filepath}")
-        return ""
-    
-    try:
-        reader = PdfReader(str(filepath))
-        text_parts = []
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                # Fix: Collapse single newlines within paragraphs into spaces
-                # This handles PDFs where each word is on its own line
-                # Replace single newlines (not followed by another newline) with spaces
-                text = re.sub(r'(?<!\n)\n(?!\n)', ' ', text)
-                # Collapse multiple spaces
-                text = re.sub(r' +', ' ', text)
-                # Preserve paragraph breaks (double newlines)
-                text = re.sub(r'\n\n+', '\n\n', text)
-                text_parts.append(text)
-        return "\n".join(text_parts)
-    except Exception as e:
-        logger.warning(f"Failed to extract text from PDF {filepath}: {e}")
-        return ""
-
-
-def extract_text_from_docx(filepath: Path) -> str:
-    """Extract text from a DOCX file."""
-    if not HAS_DOCX:
-        logger.warning(f"python-docx not available, skipping DOCX extraction: {filepath}")
-        return ""
-    
-    try:
-        doc = Document(str(filepath))
-        text_parts = []
-        for paragraph in doc.paragraphs:
-            if paragraph.text.strip():
-                text_parts.append(paragraph.text)
-        return "\n".join(text_parts)
-    except Exception as e:
-        logger.warning(f"Failed to extract text from DOCX {filepath}: {e}")
-        return ""
-
-
-def extract_text_from_file(filepath: Path) -> str:
-    """Extract text from a file based on its extension."""
-    suffix = filepath.suffix.lower()
-    
-    if suffix == ".pdf":
-        return extract_text_from_pdf(filepath)
-    elif suffix in (".docx", ".doc"):
-        return extract_text_from_docx(filepath)
-    else:
-        logger.debug(f"Unsupported file type for text extraction: {filepath}")
-        return ""
-
 
 def get_attachment_text(document_id: str, docket_id: str, attachments_dir: str | None = None) -> str:
     """
-    Extract and combine text from all attachments for a given document.
-    
-    Looks for attachments in: {docket_id}/comment_attachments/{document_id}/*.{pdf,docx}
-    
+    Load pre-converted text from attachments classified as **comments** for a
+    given document.
+
+    This function reads the ``attachment_classification.csv`` in the
+    *attachments_dir* to decide which attachments are substantive comments
+    (``ai_label == "comment"``).  Only those attachments are included.  When
+    a single submission has multiple comment-classified attachments their text
+    is concatenated (separated by a blank line).
+
+    PDF and DOCX conversion is handled upstream by the text_downloader
+    (downloader/text_converter.py), which writes attachment_N.txt files
+    alongside the originals.  This function reads those pre-converted files.
+
     The attachments_dir parameter can override the default path. When provided,
     attachments are looked up at: {attachments_dir}/{document_id}/
     When not provided, the default path is: {docket_id}/comment_attachments/{document_id}/
-    
-    If a .txt file exists for a source file, it will be used instead of converting.
-    For example, if attachment_1.txt exists, it will be used instead of extracting
-    from attachment_1.pdf.
+
+    Fallback (no classification CSV):
+      - If attachment_classification.csv is missing, falls back to using the
+        lowest-numbered attachment_N.txt (legacy behaviour).
     """
     if attachments_dir:
-        attachment_dir = Path(attachments_dir) / document_id
+        att_base = Path(attachments_dir)
     else:
-        attachment_dir = Path(docket_id) / "comment_attachments" / document_id
-    
+        att_base = Path(docket_id) / "comment_attachments"
+
+    attachment_dir = att_base / document_id
+
     if not attachment_dir.exists():
         logger.debug(f"Attachment directory not found: {attachment_dir} (doc_id={document_id}, docket={docket_id})")
         return ""
-    
-    text_parts = []
-    attachment_files = sorted(attachment_dir.glob("*"))
-    
-    # Track which files we've already processed to avoid duplicates
-    # (e.g., don't process both attachment_1.pdf and attachment_1.txt)
-    processed_basenames = set()
-    
-    for filepath in attachment_files:
-        if not filepath.is_file():
-            continue
-        
-        # Get the base name without extension
-        basename = filepath.stem
-        
-        # Skip if we've already processed this file
-        if basename in processed_basenames:
-            continue
-        
-        # Check if a .txt version exists
-        txt_file = filepath.with_suffix(".txt")
-        
-        if txt_file.exists() and txt_file != filepath:
-            # Use the pre-converted .txt file
+
+    # ── Try classification-based selection first ──────────────────────────
+    classification_df = load_attachment_classification(str(att_base))
+
+    if classification_df is not None:
+        comment_filenames = _get_comment_attachment_filenames(document_id, classification_df)
+
+        if not comment_filenames:
+            logger.debug(
+                f"No attachments classified as 'comment' for {document_id}. Skipping."
+            )
+            return ""
+
+        # Read the .txt version of each comment-classified attachment
+        collected_texts: list[str] = []
+        for fname in comment_filenames:
+            # Derive .txt filename from the original (e.g. attachment_1.pdf → attachment_1.txt)
+            stem = Path(fname).stem  # e.g. "attachment_1"
+            txt_path = attachment_dir / f"{stem}.txt"
+            if not txt_path.exists():
+                logger.debug(
+                    f"Pre-converted text not found for {fname} ({txt_path}). "
+                    "Run downloader/text_converter.py first."
+                )
+                continue
             try:
-                text = txt_file.read_text(encoding="utf-8")
-                if text.strip():
-                    text_parts.append(text)
-                    processed_basenames.add(basename)
-                    logger.debug(f"Using pre-converted text from {txt_file.name} for {document_id}")
+                text = txt_path.read_text(encoding="utf-8", errors="replace").strip()
+                if text:
+                    logger.info(
+                        f"Loaded comment attachment text: {txt_path.name} for {document_id}"
+                    )
+                    collected_texts.append(text)
             except Exception as e:
-                logger.warning(f"Failed to read {txt_file}: {e}")
-                # Fall through to try extracting from source file
-        
-        # If no .txt file was successfully loaded, extract from source
-        if basename not in processed_basenames:
-            text = extract_text_from_file(filepath)
-            if text.strip():
-                text_parts.append(text)
-                processed_basenames.add(basename)
-    
-    if text_parts:
-        logger.info(f"Loaded text from {len(text_parts)} attachment(s) for {document_id}")
-    
-    return "\n\n".join(text_parts)
+                logger.warning(f"Failed to read {txt_path}: {e}")
+
+        if collected_texts:
+            return "\n\n".join(collected_texts)
+        return ""
+
+    # ── Fallback: no classification CSV → legacy behaviour (lowest N) ─────
+    logger.debug(
+        f"No classification CSV available; falling back to lowest-N attachment for {document_id}"
+    )
+    attachment_re = re.compile(r"^attachment_(\d+)$", re.IGNORECASE)
+
+    txt_candidates: list[tuple[int, Path]] = []
+    for p in attachment_dir.glob("*.txt"):
+        m = attachment_re.match(p.stem)
+        if m:
+            try:
+                txt_candidates.append((int(m.group(1)), p))
+            except ValueError:
+                pass
+
+    if not txt_candidates:
+        logger.debug(
+            f"No pre-converted .txt attachment found for {document_id}. "
+            "Run downloader/text_converter.py to convert attachments first."
+        )
+        return ""
+
+    chosen_txt = min(txt_candidates, key=lambda t: t[0])[1]
+    try:
+        text = chosen_txt.read_text(encoding="utf-8", errors="replace")
+        if text.strip():
+            logger.info(f"Loaded text from primary attachment {chosen_txt.name} for {document_id}")
+            return text
+    except Exception as e:
+        logger.warning(f"Failed to read {chosen_txt}: {e}")
+
+    return ""

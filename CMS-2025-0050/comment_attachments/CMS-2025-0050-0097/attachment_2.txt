@@ -1,22 +1,104 @@
-Pr oprietar y Models:RaeLM™T ennr's flagship document r easoning model, RaeLM™, is designed t o e xtr act comple x medical data fr om messy or ders, r ef err als, and writt en not es.
+Tennr Proprietary Models 
+2024 - 2025
 
-RaeLM is a chorus of models: (1) a checkbo x identification and classification model, (2) a vision model f or f act oring in page, table and char t la y out, and (3) a language model built t o decode all t he inf ormation int o simple, human-r eadable, structur ed data.
+Proprietary Models:
+RaeLM™
+Tennr's flagship document reasoning model, RaeLM™, is designed to extract complex medical data from messy orders,
+referrals, and written notes.
 
-RaeLM is ar chit ect ed not only t o int erpr et and answ er questions based on t he language it pr ocesses but also considers t he visual f ormat it has been tr ained on. This is wh y it's called a vision-language model (VLM). 
 
-RaeLM is also specializ ed t o e xtr act specific data point s fr om lar ge bodies of t e xt in a document. Compar ed wit h tr aditional lar ge language models t hat oper at e b y r eading an entir e document t o e xtr act a single field of data i.e. r eading an entir e r ef err al pack et t o e xtr act a single patient's first name, if y ou t hen ask ed f or t he last name, it w ould ha v e t o r epeat t his time-consuming pr ocess. This is kno wn as embedding t he entir e document f or each quer y .   RaeLM's efficiency shines when e xtr acting numer ous data fields is r equir ed—oft en 50 t o 100—fr om a single document. Inst ead of pr ocessing and caching t he document again f or each quer y , RaeLM pr ocesses it once and can t hen quickly answ er multiple questions. A s a r esult, wit h t his no v el appr oach cir cum v enting t he caching pr oblem, RaeLM is not only mor e cost -competitiv e t han competit ors using lar ge language models such as OpenAI but also significant ly f ast er . T riage Vision Language Model (T riage VLM™)T riage VLM™ classifies and tags each page wit hin a giv en set of document s. T riage aut omatically separ at es non- tar get document s fr om impor tant document s and inf orms what document s should be sent t o which w orkflo ws.
+RaeLM is a chorus of models: (1) a checkbox identification and classification model, (2) a vision model for factoring in
+page, table and chart layout, and (3) a language model built to decode all the information into simple, human-readable,
+structured data.
 
-T riage VLM is a pr oprietar y , self -learning Vision-Language model (VLM). VLM le v er ages tr aining t echniques populariz ed in lat e 2023 t o r eason not only on t he language of a document, but also on t he visual la y out of a document. This enables int erpr etation of document s t hat ar e cat egoriz ed using visual indicat ors lik e r epor t s, tables, char t s, and signatur es. 
 
-Because each pr actice classifies document s diff er ent ly based on per -compan y ruleset s, T riage VLM self -learns f or each T ennr cust omer . Each cust omer runs separ at e model w eight s t hat quickly learn, which driv es accur acy t o >91% aft er t he first 100 document s and t o >96% aft er t he first fiv e hundr ed. T ennr Multi-P atient™T ennr Multi P atient™ is a highly specializ ed language model built t o identify ho w man y patient s ar e pr esent in a document and on which pages each patient sho ws up so t he document can be split b y patient. Because so man y document s come in t hat ha v e inf ormation f or man y patient s, it ’ s crucial t hat y ou can ‘split ’ a document up patient b y patient. Doing t his acr oss e v er y single pack et coming t hr ough a business has r equir ed an incr edibly specializ ed and lightw eight model tr ained solely on identifying unique individual patient identifiers.www .t ennr .com T ennr Pr oprietar y Models  202 4 - 2025 
-Qualification Model (QLM™)T ennr ’ s Healt h Code Extr act or™ identifies patient narr ativ e descriptions and maps t hem t o healt hcar e codes such as ICDs, HCPCS, and CPT s. Kno wing what description or what narr ativ e corr esponds t o which code is an int egr al par t of T ennr ’ s Healt h Code Extr act ors design.
+RaeLM is architected not only to interpret and answer questions based on the language it processes but also
+considers the visual format it has been trained on. This is why it's called a vision-language model (VLM).
+RaeLM is also specialized to extract specific data points from large bodies of text in a document. Compared with
+traditional large language models that operate by reading an entire document to extract a single field of data i.e.
+reading an entire referral packet to extract a single patient's first name, if you then asked for the last name, it would
+have to repeat this time-consuming process. This is known as embedding the entire document for each query.
 
-The Qualifications Model (QLM™), uses data e xtr act ed b y RaeLM and pa y or guidelines acr oss t housands of CPT & HCPCS codes. QLM assesses t he adher ence t o crit eria acr oss all document s per taining t o t he patient. This model pairs unstructur ed inf ormation fr om medical document s and an y structur ed ruleset t hat needs t o be e v aluat ed and act s as similar t o ot her gener ativ e output models.Document De-Identification:Maintaining patient priv acy is critical when building machine learning models t hat pr ocess medical document s. In accor dance wit h HIP AA r egulations, our appr oach ensur es t hat no patient ’ s pr ot ect ed healt h inf ormation (PHI) is used in our model tr aining pipeline. W e achie v e t his b y de-identifying document s—r emo ving or tr ansf orming all identifiable fields, including names, dat es, addr esses, and ot her sensitiv e inf ormation, while pr eser ving t he document ’ s structur e and int egrity . Our de-identification met hod is conduct ed in accor dance wit h t he Saf e Harbor Pr o vision out lined in t he HHS ‘Guidance on Satisfying t he Saf e Harbor Met hod’
+RaeLM's efficiency shines when extracting numerous data fields is required—often 50 to 100—from a single
+document. Instead of processing and caching the document again for each query, RaeLM processes it once and can
+then quickly answer multiple questions. As a result, with this novel approach circumventing the caching problem,
+RaeLM is not only more cost-competitive than competitors using large language models such as OpenAI but also
+significantly faster.
 
-Our de-identification pr ocess is a cornerst one of our appr oach, t his ensur es t hat our models learn fr om aut hentic document structur es and clinically r ele v ant data fields but does not mak e an y use of PHI-laden tr aining data. A dditionally , t his de-identification is ho w w e can use div erse document s such as cust omer document s t hat cust omers can use in collabor ation wit h our t eam t o r emo v e PHI and fine tune our models f or t hat par ticular pr o vider . Model Impr o v ement:Curr ent ly , our models demonstr at es 9 7 . 5% accur acy acr oss k e y data fields t hat our cust omers r ely on most, r eaching 99 . 9% in standar d fields while maintaining ar ound 91% accur acy f or mor e comple x data point s. This is significant ly higher t han an y commer cially a v ailable model f or br oad application t o healt hcar e documentation on t he mark et. When int egr ating document s fr om ne w cust omers wit h unique data pr ofiles, fine-tuning and or r e-tr aining e xisting models is sometimes r equir ed t o corr ect ly attribut e inf ormation in t he cont e xt of t he cust omer ’ s w orkflo ws or medical specialty .
+Triage Vision Language Model (Triage VLM™)
+Triage VLM™ classifies and tags each page within a given set of documents. Triage automatically separates non-
+target documents from important documents and informs what documents should be sent to which workflows.
 
-In t hese scenarios, model adjustment s ar e applied br oadly but yield immediat e benefit s f or t he nuanced cust omer cont e xt. Ov er all, t he RaeLM model under goes ongoing bulk impr o v ement s. T agged pages enable T ennr cust omers t o contribut e t o t heir o wn model impr o v ement s o v er time, making t he e xtr action pr ocess pr ogr essiv ely mor e accur at e on a per -cust omer basis. T o complement t hese model-driv en impr o v ement s, w e continually r efine our ruleset in collabor ation wit h cust omers use-cases. These rules ar e not r ele v ant t o model per f ormance or tr aining pipelines but do enhance accur acy b y r eflecting r eal-time input on data v alidation r equir ement s.
 
-F or handwriting r ecognition, pr ogr ess is constr ained b y leading OCR t echnology adv ancement s, which ha v e seen minimal impr o v ement in r ecent y ears in t he ar ea of r eading medical document s. T ennr is continuously making inno v ations in t his space. F or e x ample, t he application of optical char act er r ecognition t o t he identification and accur at e classification of check ed and uncheck ed checkbo x data fields has hist orically been benchmark ed at 64% accur acy acr oss r andomly sampled healt hcar e data. T ennr maintains t he w orld’ s lar gest dataset of labeled medical checkbo x data pairs driving benchmark accur acy of 98% and do wnstr eam aut omation based on checkbo x data e xtr action.
+Triage VLM is a proprietary, self-learning Vision-Language model (VLM). VLM leverages training techniques
+popularized in late 2023 to reason not only on the language of a document, but also on the visual layout of a
+document. This enables interpretation of documents that are categorized using visual indicators like reports, tables,
+charts, and signatures.
+Because each practice classifies documents differently based on per-company rulesets, Triage VLM self-learns for
+each Tennr customer. Each customer runs separate model weights that quickly learn, which drives accuracy to >91%
+after the first 100 documents and to >96% after the first five hundred.
 
-The T ennr platf orm is built on t he highest per f orming document r eading and r easoning models in healt hcar e. The pr oprietar y natur e of t hese models means t hat T ennr is capable of optimizing, it er ating, augmenting and impr o ving on model per f ormance f ast er and mor e efficient ly t han most ot her aut omation solutions making use of gener aliz ed or open sour ce lar ge language models. T ennr is putting t hese models t o w ork f or healt hcar e impacting t he document flo w and pr e-visit patient pr ocesses f or hundr eds of pr actices and pr o viders. www .t ennr .com
+Tennr Multi-Patient™
+Tennr Multi Patient™ is a highly specialized language model built to identify how many patients are present in a
+document and on which pages each patient shows up so the document can be split by patient. Because so many
+documents come in that have information for many patients, it’s crucial that you can ‘split’ a document up patient by
+patient. Doing this across every single packet coming through a business has required an incredibly specialized and
+lightweight model trained solely on identifying unique individual patient identifiers.
+www.tennr.com
+
+Qualification Model (QLM™)
+Tennr’s Health Code Extractor™ identifies patient narrative descriptions and maps them to healthcare codes such as
+ICDs, HCPCS, and CPTs. Knowing what description or what narrative corresponds to which code is an integral part of
+Tennr’s Health Code Extractors design.
+
+
+The Qualifications Model (QLM™), uses data extracted by RaeLM and payor guidelines across thousands of CPT &
+HCPCS codes. QLM assesses the adherence to criteria across all documents pertaining to the patient. This model
+pairs unstructured information from medical documents and any structured ruleset that needs to be evaluated and
+acts as similar to other generative output models.
+Document De-Identification:
+Maintaining patient privacy is critical when building machine learning models that process medical documents. In
+accordance with HIPAA regulations, our approach ensures that no patient’s protected health information (PHI) is used
+in our model training pipeline. We achieve this by de-identifying documents—removing or transforming all identifiable
+fields, including names, dates, addresses, and other sensitive information, while preserving the document’s structure
+and integrity. Our de-identification method is conducted in accordance with the Safe Harbor Provision outlined in the
+HHS ‘Guidance on Satisfying the Safe Harbor Method’
+
+
+Our de-identification process is a cornerstone of our approach, this ensures that our models learn from authentic
+document structures and clinically relevant data fields but does not make any use of PHI-laden training data.
+Additionally, this de-identification is how we can use diverse documents such as customer documents that customers
+can use in collaboration with our team to remove PHI and fine tune our models for that particular provider.
+
+Model Improvement:
+Currently, our models demonstrates 97.5% accuracy across key data fields that our customers rely on most, reaching
+99.9% in standard fields while maintaining around 91% accuracy for more complex data points. This is significantly
+higher than any commercially available model for broad application to healthcare documentation on the market. When
+integrating documents from new customers with unique data profiles, fine-tuning and or re-training existing models is
+sometimes required to correctly attribute information in the context of the customer’s workflows or medical specialty.
+
+
+In these scenarios, model adjustments are applied broadly but yield immediate benefits for the nuanced customer
+context. Overall, the RaeLM model undergoes ongoing bulk improvements. Tagged pages enable Tennr customers to
+contribute to their own model improvements over time, making the extraction process progressively more accurate on
+a per-customer basis.To complement these model-driven improvements, we continually refine our ruleset in
+collaboration with customers use-cases. These rules are not relevant to model performance or training pipelines but
+do enhance accuracy by reflecting real-time input on data validation requirements.
+
+
+For handwriting recognition, progress is constrained by leading OCR technology advancements, which have seen
+minimal improvement in recent years in the area of reading medical documents. Tennr is continuously making
+innovations in this space. For example, the application of optical character recognition to the identification and
+accurate classification of checked and unchecked checkbox data fields has historically been benchmarked at 64%
+accuracy across randomly sampled healthcare data. Tennr maintains the world’s largest dataset of labeled medical
+checkbox data pairs driving benchmark accuracy of 98% and downstream automation based on checkbox data
+extraction.
+
+
+The Tennr platform is built on the highest performing document reading and reasoning models in healthcare. The
+proprietary nature of these models means that Tennr is capable of optimizing, iterating, augmenting and improving on
+model performance faster and more efficiently than most other automation solutions making use of generalized or
+open source large language models. Tennr is putting these models to work for healthcare impacting the document
+flow and pre-visit patient processes for hundreds of practices and providers.
+
+www.tennr.com

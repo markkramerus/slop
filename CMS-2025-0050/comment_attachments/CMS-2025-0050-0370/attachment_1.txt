@@ -1,22 +1,666 @@
-1 J u n e 1 5 , 2 0 2 5 R e: R equest f or Inf or mation; He al t h T echnology Ecosyst em: CMS 202500500031 Public Comment Summary Circle Engage appreciates the opportunity to respond to CMSʼs RFI on the digital health technology ecosystem. Circle Engage, a leader in healthcare technology innovation, supports Medicare, Medicaid, and Marketplace segments through robust digital solutions aimed at improving consumer engagement, enrollment, and plan selection processes by empowering technology vendors to better serve the industry. In response to this CMS Request for Information RFI, we propose targeted, technology-driven recommendations to improve consumer experience and enhance coordination between CMS, health plans, technology providers, and field brokers. We focus on the following actions: ● Create a two‑tier “Certified Developer Access Track.ˮ ● Require open standards FHIR, SMART on FHIR, OAuth/OIDC across all new CMS APIs. ● Public RFP disclosure with security pre‑screening (e.g., HITRUST/SOC 2. ● Expand and enrich priority CMS APIs. ● Streamline beneficiary credentialing. ● National, FHIR‑based provider‑directory standard. These actions, taken together, lower entry barriers for innovators, guarantee richer real‑time data for decision support, and create a transparent, standards‑driven ecosystem that ultimately benefits beneficiaries, caregivers, and the broader Medicare market. We respectfully submit our full recommendations as an attachment to this comment. 
-2 Public Comment Summar y 1 T echnology V endors, Dat a Pr o viders, and Net w or ks 3 1. Ecosyst em 3 TD1. Question 3 Data & API Access 3 BEQ API 3 Provider Directory API 3 Patient Access API 4 Payer-to-Pa yer API 4 Prior Author ization API 4 Proposal: Certified Developer Access Track for Plan and Eligibilit y Data HPMS + MARx/BEQ 4 Tier 1 Structur ed Plan Data Access from HPMS 5 Tier 2 Read-Onl y Eligibilit y Access via MARx/BEQ APIs 5 Benefit s of This Model 6 Proposal: A CMSCer tified Enrollment API for Third-Par ty Technology Platforms 6 Shor t-Term Recommendation: Launch a CMSCer tified Enrollment API Track 7 Key Features of the API 7 Developer Certification Requir ement s: 8 Collaborativ e Cont ent Oversight: Plan-De veloper Co-R eview Model 8 Data & API Access Conclusion 8 RFP Access 9 TD2. Regar ding CMS Data, to stimulat e developer interest— 9 a. What additional data would be most valuable if made available through CMS APIs? 9 Blue Butt on 2.0 API – Proposed Data Expansions: 10 BEQ API – Proposed Enhancement s: 10 b. What data sour ces are most valuable alongside the data available through the Blue Butt on 2.0 API? 10 1. Expanded Access to BEQ API 12 2. Standar dized Enrollment API for Certified Developers 13 3. Blue Butt on API Enhancement s 14 2. Digit al Identit y 15 TD3. Regar ding digit al identit y implement ation: 15 3. Technic al Standar ds and Certification 16 TD4 . How can CMS better encourage use of open, standar ds-b ased, publicl y available APIs over proprietary APIs? 16 TD5 . How could a nationwide provider directory of FHIR endpoint s impr ove access to health information for patient s, providers, and payers? Who should publish such a directory, and should users bear a cost? 17 4. Data Exchange 18 TD12. Should CMS endorse non-CMS data sour ces and networks, and if so, what criteria or metr ics should CMS consider? 18 TD13 . What new oppor tunities and advancement s could emer ge with APIs providing access to the entir ety of a patient's electr onic health information EHI? 19 a. What are current shortcomings in content, format, delivery , and timeliness? 20 b. Which workflows would benefit most from functional price transparency? 20 c. What improvements would be most valuable for patients, providers, or payers, including CMS? 21 d. What would further motivate solution development? 21 CMS Strategic Role 22 
-3 Technology Vendors, Data Providers, and Networks 1. Ecosystem TD-1. Question What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? There are two core things that block technology companies from being able to innovate for Medicare beneficiaries and caregivers ● Data & API Access ● RFP Access Data & API Access BEQ API The problem: It is challenging for brokers to determine who is eligible for a DSNP plan. If we want more members in MA plans we need to solve this. One way to do this is to improve the BEQ API to include levels of Medicaid coverage. Our recommendations for the BEQ API are numerous and we believe it is a very underutilized API that seems to be off of peopleʼs radar. It has huge potential to help people assisting members (health plans, brokers, SHIP counselors). Specific short-term recommendations: Remove the plan sponsor requirement so that licensed brokers and approved third-party entities can independently use the tool for real-time eligibility checks. Provider Directory API Require real-time or near-real-time updates from plans. Include provider availability status (e.g., accepting new patients), appointment wait times if available, and digital contact options (e.g., telehealth links). Expand metadata to include languages spoken, accessibility for people with disabilities, and plan-specific tiering information. Enable filtering by CSNP/DSNP networks. Provide detailed, real-time information about provider acceptance of new patients, specialties, and network affiliations, reducing consumer confusion. .Ensuring provider directory accuracy through real-time updates will build consumer trust. CMS should enable healthcare providers to support consumers directly in selecting and enrolling in appropriate in-network plans through integrated CMS APIs, maintaining compliance with anti-kickback regulations. 
-4 Patient Access API Improve documentation and encourage interoperability with third-party data aggregators to help consumers view a holistic picture of their health data. Support consumer consent workflows across multiple carriers and allow delegated access to caregivers. Include encounter history, prior authorizations, and benefits summaries. Enhance real-time comprehensive data availability to empower consumer decision-making. Payer-to-Payer API Mandate a standardized payload and schema for beneficiary enrollment and coverage history. Support continuity of care by ensuring the API can handle pre-existing authorizations and medication coverage continuity. Document versioning protocols and make testing environments available to plans and their vendors. Standardize data interoperability to streamline consumer transitions and reduce confusion. Prior Authorization API Ensure support for batch queries and real-time responses. Require standard codes for common services (e.g., DME, therapies, specialist referrals), with documented criteria for auto-approvals. Allow status updates to be tracked and surfaced through consumer-facing tools. Include turnaround time benchmarks in metadata for transparency and accountability. Proposal: Certified Developer Access Track for Plan and Eligibility Data (HPMS + MARx/BEQ) To meaningfully stimulate innovation in digital health products for Medicare beneficiaries, CMS should establish a Certified Developer Access Track — a structured framework that enables compliant third-party developers to access critical CMS plan and eligibility data, with guardrails to ensure accuracy, security, and consumer protection. Currently, the most valuable CMS datasets — including HPMS plan benefit packages and MARx-based eligibility indicators — are only accessible to a limited set of entities under plan sponsor agreements. This restricts the ability of independent technology vendors to power accurate, compliant, and scalable digital tools that can improve plan choice, cost transparency, and health decision-making for beneficiaries and their caregivers. We propose CMS develop a two-tiered access program : Tier 1: Structured Plan Data Access from HPMS CMS would publish a developer-facing version of plan benefit data, matching what is displayed on Plan Finder. This structured dataset would include: 
-5 ● Plan premiums, benefit structures, and cost-sharing details ● Supplemental benefits ● Service areas and eligibility rules ● Provider and pharmacy directories ● Star ratings and key metadata This data would be made available via API or downloadable flat files in a standardized schema. Importantly, it would be aligned with HPMS submissions and updated on a CMS-defined schedule (e.g., September 15 for AEP readiness). To qualify, developers would need to: ● Obtain HITRUST CSF or SOC 2 Type II certification ● Disclose intended use cases ● Agree to CMS rules around display accuracy and benefit description standards ● Submit to periodic CMS audits or UI/UX reviews Tier 2: Read-Only Eligibility Access via MARx/BEQ APIs To complement plan data, developers should also have limited access to real-time eligibility indicators drawn from MARx or the BEQ system. This would include: ● Medicare Part A/B status ● Dual eligibility and Medicaid level (e.g., QMB, SLMB ● Low-Income Subsidy LIS flags ● Current plan enrollment and SEP triggers ● Enrollment effective dates and disenrollment lookbacks Access would be read-only and scoped strictly to pre-enrollment decision support — ensuring developers cannot directly initiate or modify enrollments without being contracted or certified under other programs (e.g., EDE. 
-6 As with Tier 1, access would be gated by certification and subject to CMS review. Benefits of This Model Stakeholder Benefits CMS Retains strong compliance posture, increases ecosystem engagement Plans See greater parity in plan representation, consistent consumer experiences Developers Can build compliant tools that improve plan navigation, eligibility visibility Brokers Reduce data-entry errors and SEP-related rejections Consumers Gain access to clearer, more actionable decision support tools This approach would unlock innovation while preserving CMSʼs responsibility to protect Medicare beneficiaries from misinformation or noncompliant tools. S e e a l s o o u r r e s p o n s e t o T D  2 ( d ) f o r t e c h n i c a l s u g g e s t i o n s o n e x p a n d i n g e l i g i b i l i t y - r e l a t e d A P I s . Proposal: A CMS-Certified Enrollment API for Third-Party Technology Platforms To unlock meaningful innovation in digital plan navigation and enrollment, CMS should create a Standardized Enrollment API that allows certified third-party developers to submit enrollments on behalf of brokers and consumers in a secure, compliant, and auditable manner. 
-7 Currently, most broker-assisted enrollments in Medicare Advantage or Part D plans are funneled through a limited set of proprietary platforms. These middleware systems: ● Support only a subset of plans based on commercial arrangements ● Introduce licensing and transaction-based fees for both plans and brokers ● Constrain the ability of smaller or regional plans to gain visibility ● Prevent technology developers from building alternative tools that improve broker efficiency or consumer experience ● Limit CMSʼs visibility into the broker ecosystem and real-time Agent of Record tracking This dynamic restricts choice, raises costs, and disincentivizes innovation in enrollment tooling — especially for startups and regional health plans seeking to modernize consumer experiences. Short-Term Recommendation: Launch a CMS-Certified Enrollment API Track CMS should create a certification pathway , similar to the Enhanced Direct Enrollment EDE process used in the ACA Marketplace, that allows third-party technology vendors to build compliant enrollment experiences powered by a CMS-maintained API. Key Features of the API: ● Submission of enrollment applications directly to CMS or plan sponsor systems ● Enrollment status and error code reporting (modeled after MARx Transaction Reply Codes) ● Eligibility window validation and SEP flagging ● Secure Agent of Record tracking ● Support for application save-and-resume workflows and real-time plan selection 
-8 Developer Certification Requirements: ● HITRUST CSF or SOC 2 Type II security certification ● CMS-approved display logic, disclaimers, and plan parity rules ● UI/UX review of the end-user experience to prevent plan steering or deceptive enrollment ● Logging and audit support for CMS and MA plan oversight Collaborative Content Oversight: Plan-Developer Co-Review Model To further reduce the operational burden on CMS, we recommend introducing a plan-developer co-review model . Under this model: ● Certified developers work directly with participating MA/PDP plans to validate content accuracy and compliance (e.g., benefits display, disclaimers, suppression rules). ● CMS provides a standardized validation checklist and metadata schema to ensure consistency. ● Each validation session is logged and attested to by both the plan and developer, with artifacts made available for CMS spot-audits. ● A CMS-hosted Developer & Plan Portal could manage certification artifacts, checklist uploads, and dispute resolution. This shared responsibility model enables faster iteration, encourages accountability, and allows CMS to focus on structural oversight rather than every planʼs front-end rendering details. Data & API Access Conclusion By empowering developers to build secure, compliant enrollment pathways via CMS-certified APIs, this proposal lowers barriers to entry, fosters competition, and reduces consumer reliance on opaque or commercially exclusive enrollment platforms — while keeping CMS in control of the compliance framework. 
-9 S e e a l s o o u r r e s p o n s e t o T D  2 ( d ) r e g a r d i n g A P I i m p l e m e n t a t i o n r e c o m m e n d a t i o n s , a n d T D  1 8 f o r c o m m e n t a r y o n h o w t h e c u r r e n t e n r o l l m e n t s t r u c t u r e m a y f u n c t i o n a l l y b l o c k i n n o v a t i o n a n d c h o i c e . RFP Access Vendors who are trying to improve the member experience, reduce fraud,waste and abuse, or to streamline workflows are met with a core challenge that is almost impossible to overcome. Despite being publicly funded RFPs are typically released to a very small subset of technology companies. There is no standardized approach for technology vendors to become aware of opportunities in the industry. This lack of clarity also encourages health plans to release RFPs entirely to obtain information on the market and often when there is no defined budget. We recommend that CMS make it a requirement for RFPs to be released publicly. To prevent an overwhelming number of responses we recommend that the plans are able to set in place some strict guidelines to be able to submit. For example, a requirement that each company is able to produce a recent certification on HITRUST or SOC2 Type 2 in order to submit the RFP. Standardization in this area will encourage health plans to look beyond the names they know and will also encourage technology vendors to build based on areas where health plans are experiencing real pain. Create an audit process with CMS to be included in a database of technology providers which meet certain standards of efficacy. TD-2. Regarding CMS Data, to stimulate developer interest— a. What additional data would be most valuable if made available through CMS APIs? 1. Complete picture of provider and network status. Include status at different locations where service is offered. 2. Make sure that the issue with “ghost networksˮ is removed by requiring providers to indicate if they are accepting new patients. 3. This would be a stretch but would greatly improve consumer experience: Average time to book an appointment with the doctor. 4. Price at the point of sale of pharmaceuticals. Consumers want to know how drug pricing affects them. CMS should expand the scope of data available through its APIs to better support Medicare beneficiaries, brokers, caregivers, and digital health platforms. In particular, we recommend enhancements to both the Blue Button 2.0 API and the Beneficiary Eligibility Query BEQ API , as well as the development of a developer-accessible enrollment API . 
-10 Blue Button 2.0 API – Proposed Data Expansions: ● Medicare Advantage MA encounter data ● Current and historical coverage elections (e.g., MA, PDP, Medigap) ● Out-of-pocket status (e.g., donut hole, deductible status) ● Digital identifiers for care team members (e.g., NPIs) ● Social risk indicators (with beneficiary consent) BEQ API – Proposed Enhancements: ● Medicaid eligibility levels (e.g., QMB, SLMB, FBDE ● Concurrent eligibility for Medicare and Medicaid ● SEP trigger indicators and enrollment window data ● Human-readable error codes and status messages These data points are vital to enabling personalized plan comparison, eligibility validation, and care navigation workflows that beneficiaries and their support systems increasingly rely on. b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? 1. Caregiver status 2. Clear indication of current PCP 3. Does the individual have any of the chronic conditions which make them eligible for SSBCI benefits or a CSNP. 4. Any recorded SDOH 5. Agent of record 6. Fix the provider encounter data: a. If the person has been hospitalized there should be some indicator so that all of the doctors an individual sees within that hospitalization are grouped together. Otherwise the provider data is useless because there is no way of knowing which are doctors they want to see regularly and which are just doctors they happen to have seen. 7. All MA encounter data 8. If known, current address, email, and preferences around contact channels. The biggest barrier to realizing the value of Blue Button is not the underlying claims data — itʼs the lack of seamless access to credentials for most beneficiaries. 
-11 Currently, users must manually create a MyMedicare.gov account and complete identity verification before they can authorize data sharing with third-party applications. Many beneficiaries — especially older adults — never create accounts in the first place, which makes Blue Button inaccessible despite its technical availability. We recommend CMS ● Pre-issue Medicare.gov credentials or secure access codes during the initial enrollment process and include them in the Medicare card welcome packet ● Enable third-party apps to validate identity using these codes or by scanning the Medicare card (with appropriate safeguards) ● Support federated identity systems like Login.gov and ID.me to provide alternate access paths ● Provide a developer SDK and design pattern for building user-friendly onboarding into applications Reducing this friction will materially increase adoption of Blue Button-powered tools and improve consumer access to their health data. c. What obstacles prevent accessing these data sources today? 1. MA plans do not divulge all of the information that companies need to be able to truly assist a member. It prevents innovation in the market. 2. Third-party companies have some of this information but it is piecemeal and not centralized. d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? a. Standardized Enrollment API & Broker Access to Medicare.gov i. We strongly recommend that CMS grant approved technology companies access to a standardized enrollment API and complete plan benefit files that match what is presented on a planʼs website. CMS should require that the publicly available benefit data aligns exactly with what appears on approved plan websites, eliminating discrepancies that confuse consumers. ii. In addition, CMS should allow technology companies that meet rigorous audit standards—such as those applied in the Enhanced Direct Enrollment EDE model—to present all plans directly to consumers, including those not tied to any broker or FMO. This would empower consumers to compare all available plans transparently, rather than being limited to those a broker is licensed and contracted to sell. These enhancements would establish a more equitable, consumer-driven enrollment ecosystem while preserving appropriate compliance oversight. 
-12 iii. CMS should restore broker capabilities within Medicare.gov, enabling them to save beneficiary data, submit enrollments directly, and confirm their ready-to-sell status. This change would significantly reduce the operational costs currently borne by brokers and eliminate the extensive reliance on third-party tools, consequently reducing the financial burden on health plans and FMOs. b. Marketing Materials API & AI review process i. The process to get marketing materials reviewed is broken, cumbersome, time-consuming and doesnʼt get the job done. ii. We recommend that CMS creates a process for TPMOs to submit marketing materials and develop an AI initial review which flags for any problems. We recommend that TPMOs be able to do this directly with CMS provided they are authenticated. We propose the following APIs be prioritized or enhanced to promote a more open, secure, and innovation-friendly environment for Medicare digital tools: 1. Expanded Access to BEQ API The Beneficiary Eligibility Query BEQ API is underutilized and overly restricted, despite its potential to support real-time eligibility validation for brokers, SHIP counselors, and third-party tools. We recommend: ● Expanding access to certified third-party developers, brokers, and other authorized entities under a CMS-audited compliance model Enhancing API output to include: ○ Medicaid eligibility level QMB, SLMB, FBDE, etc.) ○ Concurrent program eligibility (e.g., Medicare + Medicaid) ○ Special Enrollment Period SEP triggers and effective dates ○ Clear, human-readable rejection and error codes Providing a robust developer experience that includes: ○ Developer onboarding portal and sandbox ○ Sample request/response payloads and error conditions ○ Rate limits, authentication tokens, and activity logging 
-13 ○ CMS-issued guidance on consent workflows and permitted use cases This BEQ enhancement could serve as the operational foundation for the Certified Developer Eligibility API we proposed in TD1 and TD2(a). Leveraging the existing BEQ infrastructure—with improvements to usability, access, and security—offers CMS a fast path to enabling eligibility-aware tools without needing to build a new system from scratch. 2. Standardized Enrollment API for Certified Developers CMS should implement a Standardized Enrollment API that allows certified technology platforms to submit enrollment applications directly to CMS and/or plan sponsors. This would remove the current reliance on proprietary middleware platforms and open up plan-neutral, innovation-friendly enrollment tools. Key features of the Enrollment API should include: ● Secure enrollment submission and status retrieval ● Real-time SEP validation logic and eligibility checks ● Agent of Record AOR tracking and verification ● Save-and-resume functionality with auditability ● CMS-managed plan suppression logic and compliance constraints As proposed in TD1, certified developers should: ● Meet HITRUST CSF or SOC 2 Type II security standards ● Undergo UI/UX certification by CMS to prevent steering and ensure accessibility ● Log enrollment attempts, errors, and resolutions for audit by CMS ● Display plan data using CMS-approved schemas and disclaimers ● Collaborate with plans to validate content via a structured co-review and attestation process CMS should also provide a centralized portal for managing developer certification, monitoring logs, and uploading attestations tied to plan and enrollment data usage. 3. Blue Button API Enhancements As noted in TD2(a), CMS should expand Blue Button API data fields to include: 
-14 ● Medicare Advantage encounter data ● Plan coverage elections and transitions ● Out-of-pocket tracking and benefit accumulators ● Care team metadata (e.g., provider NPIs) ● Social risk indicators (if authorized) In parallel, CMS should improve onboarding by: ● Issuing Blue Button credentials (or a secure access code) during initial Medicare card issuance ● Allowing credential activation via Medicare card scanning or access code entry ● Supporting identity federation via Login.gov, ID.me, or other credentialing frameworks ● Providing OAuth-based SDKs and UI patterns for compliant integration These improvements would materially lower barriers to adoption for Medicare beneficiaries, while making Blue Button more useful and actionable in the broader API ecosystem. A federally standardized Provider Directory API should be a high priority for CMS policy modernization. Inaccurate, incomplete, or inconsistent provider directory data undermines beneficiary decision-making and erodes trust in the plan selection process. While CMS operates the National Plan and Provider Enumeration System NPPES , it is not a comprehensive provider directory solution . NPPES includes basic provider metadata such as NPI, taxonomy, and practice locations, but does not indicate health plan network participation , tiering status, or real-time availability for new patients. It also lacks many consumer-relevant attributes such as accessibility accommodations, telehealth access, or scheduling pathways. We recommend CMS ● Define and mandate a national provider directory schema , building on HL7 FHIR standards already adopted in CMS Interoperability rules ● Require MA and Part D plans to expose their provider network directories via this API, updated on an attested quarterly basis 
-15 ● Include structured fields such as: ○ New patient acceptance status ○ Plan-specific network tiering (e.g., preferred vs. standard) ○ Languages spoken ○ ADA/accessibility designations ○ Digital access endpoints (e.g., telehealth URLs, scheduling portals) ● Provide technical infrastructure to support: ○ A public CMS-managed registry of plan-specific provider directories ○ Conformance testing tools and sample payloads for developers ○ Change monitoring or versioning of API responses for auditability To ease the burden on health plans, CMS should also explore enabling provider self-attestation tools that feed into plan submissions. In the longer term, TEFCA-aligned actors and certified technology developers could help validate and maintain this data. We also encourage CMS to authorize read-only API access for healthcare providers and SHIP counselors to assist Medicare beneficiaries with plan comparisons using accurate, up-to-date provider network data — provided this access complies with anti-kickback protections and CMS-approved guidelines. 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and benefits? Members are really challenged remembering all of the various logins they need with the various places they intersect with SSA, Medicare, their health plan, and provider portals. b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800633 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? If we could have a confirmed single login that can be integrated into health plan websites, takes the place of setting up a Medicare.gov account, and could be integrated by other 
-16 government agencies, we think this would reduce friction for members and would help all groups involved to finally have the same information. c. What impact would mandatory use of the OpenID Connect identity protocol have? Members would not have to reenter information in multiple locations. We could have more assurance of the membersʼ data being held securely. CMS already uses OpenID Connect OIDC and OAuth 2.0 as part of the Blue Button 2.0 API ecosystem, but this approach is not yet consistently implemented across other CMS systems like BEQ, HPMS, or enrollment workflows. We recommend CMS expand the use of OIDC-compliant identity standards to all APIs and consumer-facing systems. Doing so would enable a unified, secure login experience for beneficiaries, reduce friction in third-party tool adoption, and enhance traceability of data access events. 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? CMS has made strides in releasing public APIs like Blue Button 2.0 and BEQ, but adoption remains limited because these APIs are often fragmented, narrowly scoped, or tied to proprietary or plan-specific access requirements. To encourage adoption of open, standards-based APIs, CMS should commit to a core technical stack across all beneficiary data systems: ● HL7 FHIR for structured health data and plan directories ● OpenID Connect and OAuth 2.0 for identity and access management ● SMART on FHIR profiles for secure, app-based workflows These standards are already in use within portions of CMS (e.g., Blue Button), but should be extended to other key APIs like BEQ, MARx, HPMS, and enrollment. In addition, CMS should: ● Publish transparent onboarding requirements and schemas for each API 
-17 ● Offer sandbox environments and test harnesses to speed up development ● Reduce reliance on non-public access rules that require plan sponsorships or opaque approvals ● Clearly distinguish clinical use cases from plan selection, navigation, and eligibility APIs , which have distinct value propositions and user workflows Aligning across these open standards will reduce the cost of integration for developers, increase innovation, and help CMS better monitor and govern data access consistently. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? A standardized, nationwide directory of FHIR endpoints would meaningfully improve access to health information by supporting automated, secure connectivity across stakeholders . Today, endpoint discovery is fragmented, incomplete, and often manual — limiting the effectiveness of patient-facing apps, data aggregators, and provider tools. We recommend that CMS — potentially through ONC or in partnership with TEFCA-designated entities — maintain a federally published directory of FHIR endpoints , accessible via API and updated through attestation or certification channels. Such a directory would support: ● Patients , by allowing consumer-facing apps to discover the correct endpoint to retrieve or share their data across providers, plans, and health systems ● Brokers and counselors , by integrating accurate data sources into plan navigation tools — especially for identifying in-network providers who are actively accepting patients ● Payers , by enabling better data interoperability across systems and reducing ambiguity in data sharing responsibilities Importantly, this endpoint directory should complement — not replace — other provider directory efforts, such as those proposed in TD2(d), which focus on network participation, availability, and accessibility attributes. 
-18 We believe such a national directory should be publicly maintained and free to access , at least for read-only operations. CMS could explore cost recovery models for advanced search features or analytics dashboards, but baseline directory access should be openly available to enable innovation and patient choice. 4. Data Exchange TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? Yes, CMS should endorse certain non-CMS data sources and networks — particularly those that provide high-value data not currently available through federal APIs. This includes: ● Health plan-sponsored APIs (e.g., provider directories, supplemental benefits, real-time formulary tools) ● Data aggregators with verified provider affiliation, appointment availability, or facility access metadata ● SDOH networks that compile community-based support services ● Pharmacy benefit platforms with real-time pricing and inventory signals Rather than CMS “certifyingˮ these sources outright, we recommend a federated trust model based on: ● Annual third-party audit or attestation of data accuracy and update frequency ● Transparent metadata standards , including when the data was last refreshed and how it was collected ● CMS-published criteria for acceptable sources , including interoperability formats (e.g., HL7 FHIR, NCPDP SCRIPT ● Inclusion in a CMS-maintained interoperability registry , which developers and plans can reference when selecting compliant data sources Endorsement should not create liability for CMS but rather set a high bar for participation in the digital Medicare ecosystem , while allowing innovation to flourish around CMS infrastructure. 
-19 TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? Access to a patientʼs complete electronic health information EHI via standardized APIs — as supported by the 21st Century Cures Act — would create substantial innovation opportunities across plan navigation, care management, and consumer support. Key advancements could include: ● Personalized plan selection : Using structured clinical data (e.g., diagnoses, conditions, medications) to help match beneficiaries to Special Needs Plans SNPs, SSBCI-qualified benefits, or provider networks aligned with their care. ● Seamless onboarding and guided workflows : Auto-populating plan comparison tools, health risk assessments, or supplemental benefit eligibility forms. ● Care coordination and outreach automation : Triggering care transitions, medication adherence prompts, or targeted outreach based on discharges, referrals, or risk signals. ● Outcome benchmarking : Enabling developers and plans to assess whether health outcomes align with program intent or benefit design. ● Data portability and health equity : Supporting community-based organizations and caregivers in delivering context-aware support for underserved or high-risk individuals — assuming consent is captured. These use cases are powerful even outside clinical settings, provided access is secure and beneficiary-directed. a. What are the primary obstacles to this? Several barriers limit the potential of EHI-based APIs for innovation: ● Access restrictions : Many EHI systems restrict access to clinical actors or organizations with NPIs, excluding digital tools focused on navigation, enrollment, or care planning. ● Ambiguity in permitted use : Non-HIPAA-covered apps face unclear guidance about what they can or cannot do with EHI — especially for plan-related features. ● Fragmented implementation : EHR vendors vary widely in how they implement USCDI-based APIs, making integration inconsistent. 
-20 ● Authentication complexity : Consumers must often manage credentials for multiple portals (e.g., MyChart, MyMedicare, Login.gov), hindering consent and OAuth-based access. TD-19. Regarding price transparency implementation: a. What are current shortcomings in content, format, delivery, and timeliness? Despite recent regulatory progress, price transparency data remains fragmented, inconsistent, and often unusable for consumers and third-party tools. Specific shortcomings include: ● Inconsistent file formats : Hospitals and payers use varying schemas and naming conventions, making machine-readable file ingestion unreliable. ● Lack of standardization across pharmacies and provider types — especially in how negotiated rates are expressed and which CPT/HCPCS codes are included. ● Limited real-time pricing : Most price files reflect static, scheduled pricing and donʼt account for formulary tiers, step edits, or pharmacy-level pricing fluctuations. ● Poor discoverability : Many transparency files are buried on hospital websites or payer portals, often without an index or metadata. ● Missing consumer context : Files rarely include cost-sharing implications (e.g., deductible status, drug tier level), which makes them less actionable. b. Which workflows would benefit most from functional price transparency? ● Medication pricing and pharmacy shopping : Consumers would benefit from knowing which pharmacy offers the lowest out-of-pocket cost for a given drug at the point of sale. ● Procedure-based care comparison : Price-aware consumers could compare imaging centers, outpatient surgeries, or labs across providers and facilities. ● Plan selection support : Accurate, location-specific cost estimates could be used by brokers and tech platforms to guide consumers toward financially suitable plans. 
-21 ● Provider referrals : PCPs and care navigators could select higher-value referral targets when equipped with local pricing insights. c. What improvements would be most valuable for patients, providers, or payers, including CMS? ● Standardized schema : Mandate a CMS-defined JSON or FHIR-based schema for hospital and payer machine-readable files. ● Provider-level calculators : Require payers to offer a tool that allows consumers to estimate costs by procedure a n d provider. ● Real-time prescription pricing : Establish a minimum standard for pharmacy benefit managers PBMs to publish real-time formulary-based pricing for covered drugs. ● Consumer-level integration : Allow third-party developers to access these tools via API to embed pricing transparency directly in plan comparison, provider lookup, or care navigation platforms. For CMS, these improvements would: ● Support more accurate plan comparisons ● Increase public accountability ● Lower beneficiary confusion and downstream call volume d. What would further motivate solution development? ● RFP transparency reform : As noted in our TD1 and TD2 responses, many technology vendors are unable to participate in CMS-related innovation because RFPs are not publicly released or are narrowly distributed. ● Public incentives for integration : CMS could reward plans or vendors that implement transparency APIs aligned to patient choice workflows (e.g., point-of-sale Rx pricing tools). ● Data quality certification : Establish a “CMS Verifiedˮ seal or audit process for vendors that consistently deliver accurate, up-to-date pricing data in approved formats. 
-22 Innovation is currently hampered not by a lack of interest, but by inconsistent access, unclear incentives, and limited integration opportunities. Clarifying expectations and making pricing data interoperable would unlock the next generation of cost-aware consumer tools. CMS Strategic Role CMS should standardize and expand data sets available to consumers, particularly concerning supplemental benefits, dental coverage, and drug pricing. Facilitating stronger collaboration between CMS and external health data providers will enhance consumer experience. CMS should also promote robust API access and interoperability standards, simplifying processes and reducing consumer friction. Implementation of direct enrollment APIs will significantly enhance consumer convenience, supported by provider-assisted, compliant plan selection integrations. Expected Consumer Impact and Outcomes Proposed innovations will shorten sales cycles, simplify enrollment processes, and enhance consumer satisfaction through improved clarity and ease of plan selection. Broker productivity will increase with better technological support, positively impacting consumer navigation. Provider-assisted tools will improve consumer-provider interactions, fostering better healthcare outcomes. Metrics will clearly demonstrate improvements in consumer engagement, broker efficiency, and market effectiveness. 
+1
+June 15, 2025
+Re: Request for Information; Health Technology Ecosystem:
+CMS202500500031
+Public Comment Summary
+Circle Engage appreciates the opportunity to respond to CMSʼs RFI on the digital health
+technology ecosystem.
+Circle Engage, a leader in healthcare technology innovation, supports Medicare, Medicaid,
+and Marketplace segments through robust digital solutions aimed at improving consumer
+engagement, enrollment, and plan selection processes by empowering technology vendors
+to better serve the industry.
+In response to this CMS Request for Information RFI, we propose targeted,
+technology-driven recommendations to improve consumer experience and enhance
+coordination between CMS, health plans, technology providers, and field brokers. We
+focus on the following actions:
+● Create a two‑tier “Certified Developer Access Track.ˮ
+● Require open standards FHIR, SMART on FHIR, OAuth/OIDC across all new CMS
+APIs.
+● Public RFP disclosure with security pre‑screening (e.g., HITRUST/SOC 2.
+● Expand and enrich priority CMS APIs.
+● Streamline beneficiary credentialing.
+● National, FHIR‑based provider‑directory standard.
+These actions, taken together, lower entry barriers for innovators, guarantee richer
+real‑time data for decision support, and create a transparent, standards‑driven ecosystem
+that ultimately benefits beneficiaries, caregivers, and the broader Medicare market.
+We respectfully submit our full recommendations as an attachment to this comment.
+
+2
+Public Comment Summary 1
+Technology Vendors, Data Providers, and Networks 3
+1. Ecosystem 3
+TD1. Question 3
+Data & API Access 3
+BEQ API 3
+Provider Directory API 3
+Patient Access API 4
+Payer-to-Payer API 4
+Prior Authorization API 4
+Proposal: Certified Developer Access Track for Plan and Eligibility Data HPMS + MARx/BEQ 4
+Tier 1 Structured Plan Data Access from HPMS 5
+Tier 2 Read-Only Eligibility Access via MARx/BEQ APIs 5
+Benefits of This Model 6
+Proposal: A CMSCertified Enrollment API for Third-Party Technology Platforms 6
+Short-Term Recommendation: Launch a CMSCertified Enrollment API Track 7
+Key Features of the API 7
+Developer Certification Requirements: 8
+Collaborative Content Oversight: Plan-Developer Co-Review Model 8
+Data & API Access Conclusion 8
+RFP Access 9
+TD2. Regarding CMS Data, to stimulate developer interest— 9
+a. What additional data would be most valuable if made available through CMS APIs? 9
+Blue Button 2.0 API – Proposed Data Expansions: 10
+BEQ API – Proposed Enhancements: 10
+b. What data sources are most valuable alongside the data available through the Blue Button 2.0
+API? 10
+1. Expanded Access to BEQ API 12
+2. Standardized Enrollment API for Certified Developers 13
+3. Blue Button API Enhancements 14
+2. Digital Identity 15
+TD3. Regarding digital identity implementation: 15
+3. Technical Standards and Certification 16
+TD4. How can CMS better encourage use of open, standards-based, publicly available APIs over
+proprietary APIs? 16
+TD5. How could a nationwide provider directory of FHIR endpoints improve access to health
+information for patients, providers, and payers? Who should publish such a directory, and should
+users bear a cost? 17
+4. Data Exchange 18
+TD12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics
+should CMS consider? 18
+TD13. What new opportunities and advancements could emerge with APIs providing access to the
+entirety of a patient's electronic health information EHI? 19
+a. What are current shortcomings in content, format, delivery, and timeliness? 20
+b. Which workflows would benefit most from functional price transparency? 20
+c. What improvements would be most valuable for patients, providers, or payers, including CMS? 21
+d. What would further motivate solution development? 21
+CMS Strategic Role 22
+
+3
+Technology Vendors, Data Providers, and Networks
+1. Ecosystem
+TD-1. Question
+What short term (in the next 2 years) and longer-term steps can CMS take to stimulate
+developer interest in building digital health products for Medicare beneficiaries and
+caregivers?
+There are two core things that block technology companies from being able to innovate for
+Medicare beneficiaries and caregivers
+● Data & API Access
+● RFP Access
+Data & API Access
+BEQ API
+The problem: It is challenging for brokers to determine who is eligible for a DSNP plan. If
+we want more members in MA plans we need to solve this. One way to do this is to improve
+the BEQ API to include levels of Medicaid coverage.
+Our recommendations for the BEQ API are numerous and we believe it is a very
+underutilized API that seems to be off of peopleʼs radar. It has huge potential to help people
+assisting members (health plans, brokers, SHIP counselors).
+Specific short-term recommendations: Remove the plan sponsor requirement so that
+licensed brokers and approved third-party entities can independently use the tool for
+real-time eligibility checks.
+Provider Directory API
+Require real-time or near-real-time updates from plans. Include provider availability status
+(e.g., accepting new patients), appointment wait times if available, and digital contact
+options (e.g., telehealth links). Expand metadata to include languages spoken, accessibility
+for people with disabilities, and plan-specific tiering information. Enable filtering by
+CSNP/DSNP networks. Provide detailed, real-time information about provider acceptance
+of new patients, specialties, and network affiliations, reducing consumer confusion.
+.Ensuring provider directory accuracy through real-time updates will build consumer trust.
+CMS should enable healthcare providers to support consumers directly in selecting and
+enrolling in appropriate in-network plans through integrated CMS APIs, maintaining
+compliance with anti-kickback regulations.
+
+4
+Patient Access API
+Improve documentation and encourage interoperability with third-party data aggregators to
+help consumers view a holistic picture of their health data. Support consumer consent
+workflows across multiple carriers and allow delegated access to caregivers. Include
+encounter history, prior authorizations, and benefits summaries. Enhance real-time
+comprehensive data availability to empower consumer decision-making.
+Payer-to-Payer API
+Mandate a standardized payload and schema for beneficiary enrollment and coverage
+history. Support continuity of care by ensuring the API can handle pre-existing
+authorizations and medication coverage continuity. Document versioning protocols and
+make testing environments available to plans and their vendors. Standardize data
+interoperability to streamline consumer transitions and reduce confusion.
+Prior Authorization API
+Ensure support for batch queries and real-time responses. Require standard codes for
+common services (e.g., DME, therapies, specialist referrals), with documented criteria for
+auto-approvals. Allow status updates to be tracked and surfaced through consumer-facing
+tools. Include turnaround time benchmarks in metadata for transparency and
+accountability.
+Proposal: Certified Developer Access Track for Plan and Eligibility Data
+(HPMS + MARx/BEQ)
+To meaningfully stimulate innovation in digital health products for Medicare beneficiaries,
+CMS should establish a Certified Developer Access Track — a structured framework that
+enables compliant third-party developers to access critical CMS plan and eligibility data,
+with guardrails to ensure accuracy, security, and consumer protection.
+Currently, the most valuable CMS datasets — including HPMS plan benefit packages and
+MARx-based eligibility indicators — are only accessible to a limited set of entities under
+plan sponsor agreements. This restricts the ability of independent technology vendors to
+power accurate, compliant, and scalable digital tools that can improve plan choice, cost
+transparency, and health decision-making for beneficiaries and their caregivers.
+We propose CMS develop a two-tiered access program:
+Tier 1: Structured Plan Data Access from HPMS
+CMS would publish a developer-facing version of plan benefit data, matching what is
+displayed on Plan Finder. This structured dataset would include:
+
+5
+● Plan premiums, benefit structures, and cost-sharing details
+● Supplemental benefits
+● Service areas and eligibility rules
+● Provider and pharmacy directories
+● Star ratings and key metadata
+This data would be made available via API or downloadable flat files in a standardized
+schema. Importantly, it would be aligned with HPMS submissions and updated on a
+CMS-defined schedule (e.g., September 15 for AEP readiness).
+To qualify, developers would need to:
+● Obtain HITRUST CSF or SOC 2 Type II certification
+● Disclose intended use cases
+● Agree to CMS rules around display accuracy and benefit description standards
+● Submit to periodic CMS audits or UI/UX reviews
+Tier 2: Read-Only Eligibility Access via MARx/BEQ APIs
+To complement plan data, developers should also have limited access to real-time eligibility
+indicators drawn from MARx or the BEQ system. This would include:
+● Medicare Part A/B status
+● Dual eligibility and Medicaid level (e.g., QMB, SLMB
+● Low-Income Subsidy LIS flags
+● Current plan enrollment and SEP triggers
+● Enrollment effective dates and disenrollment lookbacks
+Access would be read-only and scoped strictly to pre-enrollment decision support —
+ensuring developers cannot directly initiate or modify enrollments without being contracted
+or certified under other programs (e.g., EDE.
+
+6
+As with Tier 1, access would be gated by certification and subject to CMS review.
+Benefits of This Model
+Stakeholder Benefits
+CMS Retains strong compliance posture, increases ecosystem
+engagement
+Plans See greater parity in plan representation, consistent consumer
+experiences
+Developers Can build compliant tools that improve plan navigation, eligibility
+visibility
+Brokers Reduce data-entry errors and SEP-related rejections
+Consumers Gain access to clearer, more actionable decision support tools
+This approach would unlock innovation while preserving CMSʼs responsibility to protect
+Medicare beneficiaries from misinformation or noncompliant tools.
+See also our response to TD2(d) for technical suggestions on expanding eligibility-related
+APIs.
+Proposal: A CMS-Certified Enrollment API for Third-Party Technology
+Platforms
+To unlock meaningful innovation in digital plan navigation and enrollment, CMS should
+create a Standardized Enrollment API that allows certified third-party developers to submit
+enrollments on behalf of brokers and consumers in a secure, compliant, and auditable
+manner.
+
+7
+Currently, most broker-assisted enrollments in Medicare Advantage or Part D plans are
+funneled through a limited set of proprietary platforms. These middleware systems:
+● Support only a subset of plans based on commercial arrangements
+● Introduce licensing and transaction-based fees for both plans and brokers
+● Constrain the ability of smaller or regional plans to gain visibility
+● Prevent technology developers from building alternative tools that improve broker
+efficiency or consumer experience
+● Limit CMSʼs visibility into the broker ecosystem and real-time Agent of Record
+tracking
+This dynamic restricts choice, raises costs, and disincentivizes innovation in enrollment
+tooling — especially for startups and regional health plans seeking to modernize consumer
+experiences.
+Short-Term Recommendation: Launch a CMS-Certified Enrollment API
+Track
+CMS should create a certification pathway, similar to the Enhanced Direct Enrollment
+EDE process used in the ACA Marketplace, that allows third-party technology vendors to
+build compliant enrollment experiences powered by a CMS-maintained API.
+Key Features of the API:
+● Submission of enrollment applications directly to CMS or plan sponsor systems
+● Enrollment status and error code reporting (modeled after MARx Transaction Reply
+Codes)
+● Eligibility window validation and SEP flagging
+● Secure Agent of Record tracking
+● Support for application save-and-resume workflows and real-time plan selection
+
+8
+Developer Certification Requirements:
+● HITRUST CSF or SOC 2 Type II security certification
+● CMS-approved display logic, disclaimers, and plan parity rules
+● UI/UX review of the end-user experience to prevent plan steering or deceptive
+enrollment
+● Logging and audit support for CMS and MA plan oversight
+Collaborative Content Oversight: Plan-Developer Co-Review Model
+To further reduce the operational burden on CMS, we recommend introducing a
+plan-developer co-review model. Under this model:
+● Certified developers work directly with participating MA/PDP plans to validate
+content accuracy and compliance (e.g., benefits display, disclaimers, suppression rules).
+● CMS provides a standardized validation checklist and metadata schema to ensure
+consistency.
+● Each validation session is logged and attested to by both the plan and developer,
+with artifacts made available for CMS spot-audits.
+● A CMS-hosted Developer & Plan Portal could manage certification artifacts,
+checklist uploads, and dispute resolution.
+This shared responsibility model enables faster iteration, encourages accountability, and
+allows CMS to focus on structural oversight rather than every planʼs front-end rendering
+details.
+Data & API Access Conclusion
+By empowering developers to build secure, compliant enrollment pathways via
+CMS-certified APIs, this proposal lowers barriers to entry, fosters competition, and reduces
+consumer reliance on opaque or commercially exclusive enrollment platforms — while
+keeping CMS in control of the compliance framework.
+
+9
+See also our response to TD2(d) regarding API implementation recommendations, and
+TD18 for commentary on how the current enrollment structure may functionally block
+innovation and choice.
+RFP Access
+Vendors who are trying to improve the member experience, reduce fraud,waste and abuse,
+or to streamline workflows are met with a core challenge that is almost impossible to
+overcome.
+Despite being publicly funded RFPs are typically released to a very small subset of
+technology companies. There is no standardized approach for technology vendors to
+become aware of opportunities in the industry. This lack of clarity also encourages health
+plans to release RFPs entirely to obtain information on the market and often when there is
+no defined budget.
+We recommend that CMS make it a requirement for RFPs to be released publicly. To
+prevent an overwhelming number of responses we recommend that the plans are able to
+set in place some strict guidelines to be able to submit. For example, a requirement that
+each company is able to produce a recent certification on HITRUST or SOC2 Type 2 in
+order to submit the RFP. Standardization in this area will encourage health plans to look
+beyond the names they know and will also encourage technology vendors to build based
+on areas where health plans are experiencing real pain.
+Create an audit process with CMS to be included in a database of technology providers
+which meet certain standards of efficacy.
+TD-2. Regarding CMS Data, to stimulate developer interest—
+a. What additional data would be most valuable if made available
+through CMS APIs?
+1. Complete picture of provider and network status. Include status at different locations
+where service is offered.
+2. Make sure that the issue with “ghost networksˮ is removed by requiring providers to
+indicate if they are accepting new patients.
+3. This would be a stretch but would greatly improve consumer experience: Average time to
+book an appointment with the doctor.
+4. Price at the point of sale of pharmaceuticals. Consumers want to know how drug pricing
+affects them.
+CMS should expand the scope of data available through its APIs to better support Medicare
+beneficiaries, brokers, caregivers, and digital health platforms. In particular, we recommend
+enhancements to both the Blue Button 2.0 API and the Beneficiary Eligibility Query BEQ
+API, as well as the development of a developer-accessible enrollment API.
+
+10
+Blue Button 2.0 API – Proposed Data Expansions:
+● Medicare Advantage MA encounter data
+● Current and historical coverage elections (e.g., MA, PDP, Medigap)
+● Out-of-pocket status (e.g., donut hole, deductible status)
+● Digital identifiers for care team members (e.g., NPIs)
+● Social risk indicators (with beneficiary consent)
+BEQ API – Proposed Enhancements:
+● Medicaid eligibility levels (e.g., QMB, SLMB, FBDE
+● Concurrent eligibility for Medicare and Medicaid
+● SEP trigger indicators and enrollment window data
+● Human-readable error codes and status messages
+These data points are vital to enabling personalized plan comparison, eligibility validation,
+and care navigation workflows that beneficiaries and their support systems increasingly
+rely on.
+b. What data sources are most valuable alongside the data available through the Blue
+Button 2.0 API?
+1. Caregiver status
+2. Clear indication of current PCP
+3. Does the individual have any of the chronic conditions which make them eligible for
+SSBCI benefits or a CSNP.
+4. Any recorded SDOH
+5. Agent of record
+6. Fix the provider encounter data:
+a. If the person has been hospitalized there should be some indicator so that all of the
+doctors an individual sees within that hospitalization are grouped together. Otherwise the
+provider data is useless because there is no way of knowing which are doctors they want
+to see regularly and which are just doctors they happen to have seen.
+7. All MA encounter data
+8. If known, current address, email, and preferences around contact channels.
+The biggest barrier to realizing the value of Blue Button is not the underlying claims data —
+itʼs the lack of seamless access to credentials for most beneficiaries.
+
+11
+Currently, users must manually create a MyMedicare.gov account and complete identity
+verification before they can authorize data sharing with third-party applications. Many
+beneficiaries — especially older adults — never create accounts in the first place, which
+makes Blue Button inaccessible despite its technical availability.
+We recommend CMS
+● Pre-issue Medicare.gov credentials or secure access codes during the initial
+enrollment process and include them in the Medicare card welcome packet
+● Enable third-party apps to validate identity using these codes or by scanning the
+Medicare card (with appropriate safeguards)
+● Support federated identity systems like Login.gov and ID.me to provide alternate
+access paths
+● Provide a developer SDK and design pattern for building user-friendly onboarding
+into applications
+Reducing this friction will materially increase adoption of Blue Button-powered tools and
+improve consumer access to their health data.
+c. What obstacles prevent accessing these data sources today?
+1. MA plans do not divulge all of the information that companies need to be able to
+truly assist a member. It prevents innovation in the market.
+2. Third-party companies have some of this information but it is piecemeal and not
+centralized.
+d. What other APIs should CMS and ASTP/ONC consider including in program policies to
+unleash innovation and support patients and providers?
+a. Standardized Enrollment API & Broker Access to Medicare.gov
+i. We strongly recommend that CMS grant approved technology companies access to a
+standardized enrollment API and complete plan benefit files that match what is presented
+on a planʼs website. CMS should require that the publicly available benefit data aligns
+exactly with what appears on approved plan websites, eliminating discrepancies that
+confuse consumers.
+ii. In addition, CMS should allow technology companies that meet rigorous audit
+standards—such as those applied in the Enhanced Direct Enrollment EDE model—to
+present all plans directly to consumers, including those not tied to any broker or FMO. This
+would empower consumers to compare all available plans transparently, rather than being
+limited to those a broker is licensed and contracted to sell. These enhancements would
+establish a more equitable, consumer-driven enrollment ecosystem while preserving
+appropriate compliance oversight.
+
+12
+iii. CMS should restore broker capabilities within Medicare.gov, enabling them to save
+beneficiary data, submit enrollments directly, and confirm their ready-to-sell status. This
+change would significantly reduce the operational costs currently borne by brokers and
+eliminate the extensive reliance on third-party tools, consequently reducing the financial
+burden on health plans and FMOs.
+b. Marketing Materials API & AI review process
+i. The process to get marketing materials reviewed is broken, cumbersome, time-consuming
+and doesnʼt get the job done.
+ii. We recommend that CMS creates a process for TPMOs to submit marketing materials and
+develop an AI initial review which flags for any problems. We recommend that TPMOs be
+able to do this directly with CMS provided they are authenticated.
+We propose the following APIs be prioritized or enhanced to promote a more open, secure,
+and innovation-friendly environment for Medicare digital tools:
+1. Expanded Access to BEQ API
+The Beneficiary Eligibility Query BEQ API is underutilized and overly restricted, despite its
+potential to support real-time eligibility validation for brokers, SHIP counselors, and
+third-party tools. We recommend:
+● Expanding access to certified third-party developers, brokers, and other authorized
+entities under a CMS-audited compliance model
+Enhancing API output to include:
+○ Medicaid eligibility level QMB, SLMB, FBDE, etc.)
+○ Concurrent program eligibility (e.g., Medicare + Medicaid)
+○ Special Enrollment Period SEP triggers and effective dates
+○ Clear, human-readable rejection and error codes
+Providing a robust developer experience that includes:
+○ Developer onboarding portal and sandbox
+○ Sample request/response payloads and error conditions
+○ Rate limits, authentication tokens, and activity logging
+
+13
+○ CMS-issued guidance on consent workflows and permitted use cases
+This BEQ enhancement could serve as the operational foundation for the Certified
+Developer Eligibility API we proposed in TD1 and TD2(a). Leveraging the existing BEQ
+infrastructure—with improvements to usability, access, and security—offers CMS a fast
+path to enabling eligibility-aware tools without needing to build a new system from scratch.
+2. Standardized Enrollment API for Certified Developers
+CMS should implement a Standardized Enrollment API that allows certified technology
+platforms to submit enrollment applications directly to CMS and/or plan sponsors. This
+would remove the current reliance on proprietary middleware platforms and open up
+plan-neutral, innovation-friendly enrollment tools.
+Key features of the Enrollment API should include:
+● Secure enrollment submission and status retrieval
+● Real-time SEP validation logic and eligibility checks
+● Agent of Record AOR tracking and verification
+● Save-and-resume functionality with auditability
+● CMS-managed plan suppression logic and compliance constraints
+As proposed in TD1, certified developers should:
+● Meet HITRUST CSF or SOC 2 Type II security standards
+● Undergo UI/UX certification by CMS to prevent steering and ensure accessibility
+● Log enrollment attempts, errors, and resolutions for audit by CMS
+● Display plan data using CMS-approved schemas and disclaimers
+● Collaborate with plans to validate content via a structured co-review and attestation
+process
+CMS should also provide a centralized portal for managing developer certification,
+monitoring logs, and uploading attestations tied to plan and enrollment data usage.
+3. Blue Button API Enhancements
+As noted in TD2(a), CMS should expand Blue Button API data fields to include:
+
+14
+● Medicare Advantage encounter data
+● Plan coverage elections and transitions
+● Out-of-pocket tracking and benefit accumulators
+● Care team metadata (e.g., provider NPIs)
+● Social risk indicators (if authorized)
+In parallel, CMS should improve onboarding by:
+● Issuing Blue Button credentials (or a secure access code) during initial Medicare
+card issuance
+● Allowing credential activation via Medicare card scanning or access code entry
+● Supporting identity federation via Login.gov, ID.me, or other credentialing
+frameworks
+● Providing OAuth-based SDKs and UI patterns for compliant integration
+These improvements would materially lower barriers to adoption for Medicare
+beneficiaries, while making Blue Button more useful and actionable in the broader API
+ecosystem.
+A federally standardized Provider Directory API should be a high priority for CMS policy
+modernization. Inaccurate, incomplete, or inconsistent provider directory data undermines
+beneficiary decision-making and erodes trust in the plan selection process.
+While CMS operates the National Plan and Provider Enumeration System NPPES, it is
+not a comprehensive provider directory solution. NPPES includes basic provider
+metadata such as NPI, taxonomy, and practice locations, but does not indicate health plan
+network participation, tiering status, or real-time availability for new patients. It also lacks
+many consumer-relevant attributes such as accessibility accommodations, telehealth
+access, or scheduling pathways.
+We recommend CMS
+● Define and mandate a national provider directory schema, building on HL7 FHIR
+standards already adopted in CMS Interoperability rules
+● Require MA and Part D plans to expose their provider network directories via this API,
+updated on an attested quarterly basis
+
+15
+● Include structured fields such as:
+○ New patient acceptance status
+○ Plan-specific network tiering (e.g., preferred vs. standard)
+○ Languages spoken
+○ ADA/accessibility designations
+○ Digital access endpoints (e.g., telehealth URLs, scheduling portals)
+● Provide technical infrastructure to support:
+○ A public CMS-managed registry of plan-specific provider directories
+○ Conformance testing tools and sample payloads for developers
+○ Change monitoring or versioning of API responses for auditability
+To ease the burden on health plans, CMS should also explore enabling provider
+self-attestation tools that feed into plan submissions. In the longer term, TEFCA-aligned
+actors and certified technology developers could help validate and maintain this data.
+We also encourage CMS to authorize read-only API access for healthcare providers and
+SHIP counselors to assist Medicare beneficiaries with plan comparisons using accurate,
+up-to-date provider network data — provided this access complies with anti-kickback
+protections and CMS-approved guidelines.
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits? Members are really challenged remembering all
+of the various logins they need with the various places they intersect with SSA, Medicare,
+their health plan, and provider portals.
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov,
+ID.me, other NIST 800633 IAL2/AAL2 CSPs) impact cybersecurity and data exchange?
+If we could have a confirmed single login that can be integrated into health plan websites,
+takes the place of setting up a Medicare.gov account, and could be integrated by other
+
+16
+government agencies, we think this would reduce friction for members and would help all
+groups involved to finally have the same information.
+c. What impact would mandatory use of the OpenID Connect identity protocol have?
+Members would not have to reenter information in multiple locations. We could have more
+assurance of the membersʼ data being held securely.
+CMS already uses OpenID Connect OIDC and OAuth 2.0 as part of the Blue Button 2.0
+API ecosystem, but this approach is not yet consistently implemented across other CMS
+systems like BEQ, HPMS, or enrollment workflows. We recommend CMS expand the use
+of OIDC-compliant identity standards to all APIs and consumer-facing systems. Doing so
+would enable a unified, secure login experience for beneficiaries, reduce friction in
+third-party tool adoption, and enhance traceability of data access events.
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open,
+standards-based, publicly available APIs over proprietary
+APIs?
+CMS has made strides in releasing public APIs like Blue Button 2.0 and BEQ, but adoption remains
+limited because these APIs are often fragmented, narrowly scoped, or tied to proprietary or
+plan-specific access requirements.
+To encourage adoption of open, standards-based APIs, CMS should commit to a core technical
+stack across all beneficiary data systems:
+● HL7 FHIR for structured health data and plan directories
+● OpenID Connect and OAuth 2.0 for identity and access management
+● SMART on FHIR profiles for secure, app-based workflows
+These standards are already in use within portions of CMS (e.g., Blue Button), but should be
+extended to other key APIs like BEQ, MARx, HPMS, and enrollment.
+In addition, CMS should:
+● Publish transparent onboarding requirements and schemas for each API
+
+17
+● Offer sandbox environments and test harnesses to speed up development
+● Reduce reliance on non-public access rules that require plan sponsorships or opaque
+approvals
+● Clearly distinguish clinical use cases from plan selection, navigation, and eligibility APIs,
+which have distinct value propositions and user workflows
+Aligning across these open standards will reduce the cost of integration for developers, increase
+innovation, and help CMS better monitor and govern data access consistently.
+TD-5. How could a nationwide provider directory of FHIR
+endpoints improve access to health information for
+patients, providers, and payers? Who should publish such a
+directory, and should users bear a cost?
+A standardized, nationwide directory of FHIR endpoints would meaningfully improve
+access to health information by supporting automated, secure connectivity across
+stakeholders. Today, endpoint discovery is fragmented, incomplete, and often manual —
+limiting the effectiveness of patient-facing apps, data aggregators, and provider tools.
+We recommend that CMS — potentially through ONC or in partnership with
+TEFCA-designated entities — maintain a federally published directory of FHIR endpoints,
+accessible via API and updated through attestation or certification channels.
+Such a directory would support:
+● Patients, by allowing consumer-facing apps to discover the correct endpoint to
+retrieve or share their data across providers, plans, and health systems
+● Brokers and counselors, by integrating accurate data sources into plan navigation
+tools — especially for identifying in-network providers who are actively accepting patients
+● Payers, by enabling better data interoperability across systems and reducing
+ambiguity in data sharing responsibilities
+Importantly, this endpoint directory should complement — not replace — other provider
+directory efforts, such as those proposed in TD2(d), which focus on network participation,
+availability, and accessibility attributes.
+
+18
+We believe such a national directory should be publicly maintained and free to access, at
+least for read-only operations. CMS could explore cost recovery models for advanced
+search features or analytics dashboards, but baseline directory access should be openly
+available to enable innovation and patient choice.
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and
+networks, and if so, what criteria or metrics should CMS
+consider?
+Yes, CMS should endorse certain non-CMS data sources and networks — particularly those that
+provide high-value data not currently available through federal APIs. This includes:
+● Health plan-sponsored APIs (e.g., provider directories, supplemental benefits, real-time
+formulary tools)
+● Data aggregators with verified provider affiliation, appointment availability, or facility
+access metadata
+● SDOH networks that compile community-based support services
+● Pharmacy benefit platforms with real-time pricing and inventory signals
+Rather than CMS “certifyingˮ these sources outright, we recommend a federated trust model
+based on:
+● Annual third-party audit or attestation of data accuracy and update frequency
+● Transparent metadata standards, including when the data was last refreshed and how it
+was collected
+● CMS-published criteria for acceptable sources, including interoperability formats (e.g.,
+HL7 FHIR, NCPDP SCRIPT
+● Inclusion in a CMS-maintained interoperability registry, which developers and plans can
+reference when selecting compliant data sources
+Endorsement should not create liability for CMS but rather set a high bar for participation in the
+digital Medicare ecosystem, while allowing innovation to flourish around CMS infrastructure.
+
+19
+TD-13. What new opportunities and advancements could
+emerge with APIs providing access to the entirety of a
+patient's electronic health information (EHI)?
+Access to a patientʼs complete electronic health information EHI via standardized APIs — as
+supported by the 21st Century Cures Act — would create substantial innovation opportunities
+across plan navigation, care management, and consumer support. Key advancements could
+include:
+● Personalized plan selection: Using structured clinical data (e.g., diagnoses, conditions,
+medications) to help match beneficiaries to Special Needs Plans SNPs, SSBCI-qualified
+benefits, or provider networks aligned with their care.
+● Seamless onboarding and guided workflows: Auto-populating plan comparison tools,
+health risk assessments, or supplemental benefit eligibility forms.
+● Care coordination and outreach automation: Triggering care transitions, medication
+adherence prompts, or targeted outreach based on discharges, referrals, or risk signals.
+● Outcome benchmarking: Enabling developers and plans to assess whether health
+outcomes align with program intent or benefit design.
+● Data portability and health equity: Supporting community-based organizations and
+caregivers in delivering context-aware support for underserved or high-risk individuals —
+assuming consent is captured.
+These use cases are powerful even outside clinical settings, provided access is secure and
+beneficiary-directed.
+a. What are the primary obstacles to this?
+Several barriers limit the potential of EHI-based APIs for innovation:
+● Access restrictions: Many EHI systems restrict access to clinical actors or organizations
+with NPIs, excluding digital tools focused on navigation, enrollment, or care planning.
+● Ambiguity in permitted use: Non-HIPAA-covered apps face unclear guidance about what
+they can or cannot do with EHI — especially for plan-related features.
+● Fragmented implementation: EHR vendors vary widely in how they implement
+USCDI-based APIs, making integration inconsistent.
+
+20
+● Authentication complexity: Consumers must often manage credentials for multiple portals
+(e.g., MyChart, MyMedicare, Login.gov), hindering consent and OAuth-based access.
+TD-19. Regarding price transparency implementation:
+a. What are current shortcomings in content, format, delivery, and
+timeliness?
+Despite recent regulatory progress, price transparency data remains fragmented, inconsistent, and
+often unusable for consumers and third-party tools. Specific shortcomings include:
+● Inconsistent file formats: Hospitals and payers use varying schemas and naming
+conventions, making machine-readable file ingestion unreliable.
+● Lack of standardization across pharmacies and provider types — especially in how
+negotiated rates are expressed and which CPT/HCPCS codes are included.
+● Limited real-time pricing: Most price files reflect static, scheduled pricing and donʼt
+account for formulary tiers, step edits, or pharmacy-level pricing fluctuations.
+● Poor discoverability: Many transparency files are buried on hospital websites or payer
+portals, often without an index or metadata.
+● Missing consumer context: Files rarely include cost-sharing implications (e.g., deductible
+status, drug tier level), which makes them less actionable.
+b. Which workflows would benefit most from functional price
+transparency?
+● Medication pricing and pharmacy shopping: Consumers would benefit from knowing
+which pharmacy offers the lowest out-of-pocket cost for a given drug at the point of sale.
+● Procedure-based care comparison: Price-aware consumers could compare imaging
+centers, outpatient surgeries, or labs across providers and facilities.
+● Plan selection support: Accurate, location-specific cost estimates could be used by
+brokers and tech platforms to guide consumers toward financially suitable plans.
+
+21
+● Provider referrals: PCPs and care navigators could select higher-value referral targets
+when equipped with local pricing insights.
+c. What improvements would be most valuable for patients,
+providers, or payers, including CMS?
+● Standardized schema: Mandate a CMS-defined JSON or FHIR-based schema for hospital
+and payer machine-readable files.
+● Provider-level calculators: Require payers to offer a tool that allows consumers to estimate
+costs by procedure and provider.
+● Real-time prescription pricing: Establish a minimum standard for pharmacy benefit
+managers PBMs to publish real-time formulary-based pricing for covered drugs.
+● Consumer-level integration: Allow third-party developers to access these tools via API to
+embed pricing transparency directly in plan comparison, provider lookup, or care
+navigation platforms.
+For CMS, these improvements would:
+● Support more accurate plan comparisons
+● Increase public accountability
+● Lower beneficiary confusion and downstream call volume
+d. What would further motivate solution development?
+● RFP transparency reform: As noted in our TD1 and TD2 responses, many technology
+vendors are unable to participate in CMS-related innovation because RFPs are not publicly
+released or are narrowly distributed.
+● Public incentives for integration: CMS could reward plans or vendors that implement
+transparency APIs aligned to patient choice workflows (e.g., point-of-sale Rx pricing tools).
+● Data quality certification: Establish a “CMS Verifiedˮ seal or audit process for vendors that
+consistently deliver accurate, up-to-date pricing data in approved formats.
+
+22
+Innovation is currently hampered not by a lack of interest, but by inconsistent access, unclear
+incentives, and limited integration opportunities. Clarifying expectations and making pricing data
+interoperable would unlock the next generation of cost-aware consumer tools.
+CMS Strategic Role
+CMS should standardize and expand data sets available to consumers, particularly
+concerning supplemental benefits, dental coverage, and drug pricing. Facilitating stronger
+collaboration between CMS and external health data providers will enhance consumer
+experience. CMS should also promote robust API access and interoperability standards,
+simplifying processes and reducing consumer friction. Implementation of direct enrollment
+APIs will significantly enhance consumer convenience, supported by provider-assisted,
+compliant plan selection integrations.
+Expected Consumer Impact and Outcomes
+Proposed innovations will shorten sales cycles, simplify enrollment processes, and
+enhance consumer satisfaction through improved clarity and ease of plan selection. Broker
+productivity will increase with better technological support, positively impacting consumer
+navigation. Provider-assisted tools will improve consumer-provider interactions, fostering
+better healthcare outcomes. Metrics will clearly demonstrate improvements in consumer
+engagement, broker efficiency, and market effectiveness.

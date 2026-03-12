@@ -1,3 +1,109 @@
- Health Technology Ecosystem RFI Creating a Secure Digital Front Door for America’s Beneﬁts Programs Questions addressed: ● PR–9. How might CMS encourage providers to accept digital identity credentials (for example, CLEAR, ID.me , Login.gov) from patients and their partners instead of proprietary logins that need to be tracked for each provider relationship? ● PR–10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800–63–3 IAL2/AAL2 CSPs): ○ a. What are the challenges and beneﬁts for providers? ○ b. How would requiring their use improve access to health information? ○ c. What are the potential downsides? ○ d. What impact would mandatory credentials have on a nationwide provider directory? ○ e. How could digital identity implementation improve provider data ﬂow? ○ f. Would combining FHIR addresses and identity improve data ﬂow? ● TD–3. Regarding digital identity implementation: ○ a. What are the challenges and beneﬁts? ○ b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800–63–3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? ○ c. What impact would mandatory use of the OpenID Connect identity protocol have? Understanding of the problem space: Enrollment across multiple federal assistance programs is a fragmented, frustrating experience. Let’s pick a persona, Maria, a working mother who just lost her job. She needs healthcare coverage, food assistance, and childcare support. Today, she must create separate accounts for Healthcare.gov, her state Medicaid site, the SNAP portal, and the childcare assistance program. Each requires diﬀerent usernames, passwords, and identity veriﬁcation processes. By the time she navigates the fourth system—after uploading the same documents repeatedly—she's exhausted and confused. Many give up before accessing the help they desperately need. This fragmentation is frustrating at the micro scale, and when scaled to the nation, is a public health crisis. Millions of Americans qualify for multiple assistance programs but never enroll because the digital maze is too complex to navigate. A family eligible for both Medicaid and SNAP has only a 60% chance of enrolling in both programs. The 40% who fall through the cracks often end up in emergency rooms or food banks, costing the system more than preventive assistance would have. https:// adhoc.team 
- Meanwhile, the technology to solve this exists today. Private companies routinely oﬀer single sign-on across multiple services. The VA demonstrates how uniﬁed digital experiences transform government service delivery. We believe it is time for HHS to create one digital front door that treats people as whole human beings, not fragments scattered across bureaucratic silos. Solution(s): A Uniﬁed HHS Login & Eligibility Platform: One secure portal, using Login.gov or similar trusted credentials, starts with single sign-on across HHS programs. Using modern identity standards (NIST 800-63-3 IAL2), beneﬁciaries would create one secure account that works everywhere—CMS, Medicaid, Marketplace, SNAP, TANF, and childcare programs. This improves both security and adoption. Fewer passwords mean fewer breaches, and centralized identity veriﬁcation reduces fraud while improving access for legitimate users. Once logged in, users would see their personalized "MyHHS Dashboard"—a single view of their beneﬁt landscape. Real-time eligibility checks would show not just what they currently receive, but what they could qualify for. Expired beneﬁts would trigger renewal reminders. Life changes—like having a baby or losing income—would automatically surface relevant programs. This could be a TurboTax-like experience guiding users through complexity with smart, simple questions. Behind this simple interface, a sophisticated eligibility engine could be built to work across agency boundaries. Using FHIR APIs and shared data standards, the system would check eligibility for multiple programs simultaneously. When someone applies for Medicaid, the system would automatically assess their qualiﬁcation for SNAP, WIC, or heating assistance. With proper consent, information entered once could populate multiple applications, eliminating redundant paperwork. The platform would also transform how agencies work together. Caseworkers could see a complete picture of a family's needs and beneﬁts, enabling holistic support rather than fragmented interventions. Automated alerts would notify workers when clients in one program become eligible for others. This "no wrong door" approach ensures people get all the help they qualify for, regardless of which agency they contact ﬁrst. Dependencies and Constraints: Building this vision requires careful orchestration across technical, policy, and organizational boundaries. Federal agencies must align on common identity standards, with Login.gov emerging as the natural backbone for secure, veriﬁed identities. State systems—particularly for Medicaid—need modernization to support real-time APIs rather than batch processing. This work can leverage the 90/10 enhanced federal funding for systems meeting modularity and interoperability requirements. Privacy and consent management demand special attention. The platform must give users granular control over data sharing while complying with HIPAA, 42 CFR Part 2, and state privacy laws. Smart consent design—explaining beneﬁts clearly and remembering preferences—will be crucial for user trust and adoption. Technical standards already exist through FHIR, USCDI, and the National Human Services Interoperability Architecture (NHSIA). The challenge is implementation across diverse legacy systems. A phased approach, starting with willing agencies and modern systems, can demonstrate value while building toward comprehensive coverage. https:// adhoc.team 
- Beneﬁts and Outcomes: For beneﬁciaries, one login eliminates the exhausting maze of passwords and portals. Families discover beneﬁts they didn't know existed, potentially accessing thousands of dollars in additional support. Simpliﬁed renewals prevent coverage gaps that lead to medical crises or food insecurity. Most importantly, people are treated with dignity—as humans needing help, not numbers in disconnected systems. Agencies gain unprecedented eﬃciency. Duplicate applications drop dramatically when data ﬂows seamlessly between programs. Caseworkers spend less time on paperwork and more time helping families. Program integrity improves as centralized identity veriﬁcation reduces fraud while ensuring legitimate beneﬁciaries aren't wrongly denied. Cross-program analytics reveal how interventions in one area—like nutrition assistance—improve outcomes in others—like healthcare utilization. The broader impact could transform America's social safety net. By making beneﬁts accessible to all who qualify, we prevent costly crises—emergency room visits, homelessness, child welfare interventions—that occur when people can't access preventive help. The economic beneﬁts ripple outward as families stabilize, children thrive, and communities strengthen. Our Experience and Next Steps: Ad Hoc has deep expertise building uniﬁed digital experiences across complex government programs. We've seen how modern identity systems, API-ﬁrst architectures, and human-centered design can transform service delivery. CMS should consider starting with ﬁve concrete actions that build momentum without requiring sweeping changes. First, create a pilot for federated identity with a few willing programs, proving that single sign-on works in government. Second, create an eligibility navigation sandbox where developers can test cross-program integration ideas. Third, issue guidance making interoperability a requirement for enhanced funding, creating incentives for modernization. Fourth, launch demonstration grants for states or localities to build "digital front door" prototypes, learning what works before scaling nationally. Fifth, advance a national eligibility API framework, establishing the technical standards for cross-program data sharing. These steps can begin immediately while building toward the larger vision. https:// adhoc.team 
+Health Technology Ecosystem RFI
+Creating a Secure Digital Front Door for America’s Benefits
+Programs
+Questions addressed:
+● PR–9. How might CMS encourage providers to accept digital identity credentials (for
+example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary
+logins that need to be tracked for each provider relationship?
+● PR–10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800–63–3 IAL2/AAL2 CSPs):
+○ a. What are the challenges and benefits for providers?
+○ b. How would requiring their use improve access to health information?
+○ c. What are the potential downsides?
+○ d. What impact would mandatory credentials have on a nationwide provider
+directory?
+○ e. How could digital identity implementation improve provider data flow?
+○ f. Would combining FHIR addresses and identity improve data flow?
+● TD–3. Regarding digital identity implementation:
+○ a. What are the challenges and benefits?
+○ b. How would requiring digital identity credentials (for example, CLEAR, Login.gov,
+ID.me, other NIST 800–63–3 IAL2/AAL2 CSPs) impact cybersecurity and data
+exchange?
+○ c. What impact would mandatory use of the OpenID Connect identity protocol
+have?
+Understanding of the problem space: Enrollment across multiple federal assistance programs is
+a fragmented, frustrating experience. Let’s pick a persona, Maria, a working mother who just lost
+her job. She needs healthcare coverage, food assistance, and childcare support. Today, she must
+create separate accounts for Healthcare.gov, her state Medicaid site, the SNAP portal, and the
+childcare assistance program. Each requires different usernames, passwords, and identity
+verification processes. By the time she navigates the fourth system—after uploading the same
+documents repeatedly—she's exhausted and confused. Many give up before accessing the help
+they desperately need.
+This fragmentation is frustrating at the micro scale, and when scaled to the nation, is a public
+health crisis. Millions of Americans qualify for multiple assistance programs but never enroll
+because the digital maze is too complex to navigate. A family eligible for both Medicaid and
+SNAP has only a 60% chance of enrolling in both programs. The 40% who fall through the cracks
+often end up in emergency rooms or food banks, costing the system more than preventive
+assistance would have.
+https://adhoc.team
+
+Meanwhile, the technology to solve this exists today. Private companies routinely offer single
+sign-on across multiple services. The VA demonstrates how unified digital experiences transform
+government service delivery. We believe it is time for HHS to create one digital front door that
+treats people as whole human beings, not fragments scattered across bureaucratic silos.
+Solution(s): A Unified HHS Login & Eligibility Platform: One secure portal, using Login.gov or
+similar trusted credentials, starts with single sign-on across HHS programs. Using modern identity
+standards (NIST 800-63-3 IAL2), beneficiaries would create one secure account that works
+everywhere—CMS, Medicaid, Marketplace, SNAP, TANF, and childcare programs. This improves
+both security and adoption. Fewer passwords mean fewer breaches, and centralized identity
+verification reduces fraud while improving access for legitimate users.
+Once logged in, users would see their personalized "MyHHS Dashboard"—a single view of their
+benefit landscape. Real-time eligibility checks would show not just what they currently receive,
+but what they could qualify for. Expired benefits would trigger renewal reminders. Life
+changes—like having a baby or losing income—would automatically surface relevant programs.
+This could be a TurboTax-like experience guiding users through complexity with smart, simple
+questions.
+Behind this simple interface, a sophisticated eligibility engine could be built to work across
+agency boundaries. Using FHIR APIs and shared data standards, the system would check
+eligibility for multiple programs simultaneously. When someone applies for Medicaid, the system
+would automatically assess their qualification for SNAP, WIC, or heating assistance. With proper
+consent, information entered once could populate multiple applications, eliminating redundant
+paperwork. The platform would also transform how agencies work together. Caseworkers could
+see a complete picture of a family's needs and benefits, enabling holistic support rather than
+fragmented interventions. Automated alerts would notify workers when clients in one program
+become eligible for others. This "no wrong door" approach ensures people get all the help they
+qualify for, regardless of which agency they contact first.
+Dependencies and Constraints: Building this vision requires careful orchestration across
+technical, policy, and organizational boundaries. Federal agencies must align on common identity
+standards, with Login.gov emerging as the natural backbone for secure, verified identities. State
+systems—particularly for Medicaid—need modernization to support real-time APIs rather than
+batch processing. This work can leverage the 90/10 enhanced federal funding for systems
+meeting modularity and interoperability requirements.
+Privacy and consent management demand special attention. The platform must give users
+granular control over data sharing while complying with HIPAA, 42 CFR Part 2, and state privacy
+laws. Smart consent design—explaining benefits clearly and remembering preferences—will be
+crucial for user trust and adoption.
+Technical standards already exist through FHIR, USCDI, and the National Human Services
+Interoperability Architecture (NHSIA). The challenge is implementation across diverse legacy
+systems. A phased approach, starting with willing agencies and modern systems, can
+demonstrate value while building toward comprehensive coverage.
+https://adhoc.team
+
+Benefits and Outcomes: For beneficiaries, one login eliminates the exhausting maze of
+passwords and portals. Families discover benefits they didn't know existed, potentially accessing
+thousands of dollars in additional support. Simplified renewals prevent coverage gaps that lead
+to medical crises or food insecurity. Most importantly, people are treated with dignity—as humans
+needing help, not numbers in disconnected systems.
+Agencies gain unprecedented efficiency. Duplicate applications drop dramatically when data
+flows seamlessly between programs. Caseworkers spend less time on paperwork and more time
+helping families. Program integrity improves as centralized identity verification reduces fraud
+while ensuring legitimate beneficiaries aren't wrongly denied. Cross-program analytics reveal
+how interventions in one area—like nutrition assistance—improve outcomes in others—like
+healthcare utilization.
+The broader impact could transform America's social safety net. By making benefits accessible to
+all who qualify, we prevent costly crises—emergency room visits, homelessness, child welfare
+interventions—that occur when people can't access preventive help. The economic benefits
+ripple outward as families stabilize, children thrive, and communities strengthen.
+Our Experience and Next Steps: Ad Hoc has deep expertise building unified digital experiences
+across complex government programs. We've seen how modern identity systems, API-first
+architectures, and human-centered design can transform service delivery.
+CMS should consider starting with five concrete actions that build momentum without requiring
+sweeping changes. First, create a pilot for federated identity with a few willing programs, proving
+that single sign-on works in government. Second, create an eligibility navigation sandbox where
+developers can test cross-program integration ideas. Third, issue guidance making
+interoperability a requirement for enhanced funding, creating incentives for modernization.
+Fourth, launch demonstration grants for states or localities to build "digital front door" prototypes,
+learning what works before scaling nationally. Fifth, advance a national eligibility API framework,
+establishing the technical standards for cross-program data sharing. These steps can begin
+immediately while building toward the larger vision.
+https://adhoc.team

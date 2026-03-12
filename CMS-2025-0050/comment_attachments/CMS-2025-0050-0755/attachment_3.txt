@@ -1,11 +1,582 @@
-Citation: Weller, G.B.; Mault, J.; Ventura, M.E.; Adams, J.; Campbell, F.J.; Tremper, K.K. A Retrospective Observational Study of Continuous Wireless Vital Sign Monitoring via a Medical Grade Wearable Device on Hospitalized Floor Patients. J. Clin. Med. 2024 ,13, 4747. https:// doi.org/10.3390/jcm13164747 Academic Editor: Timothy E. Albertson Received: 11 July 2024 Revised: 1 August 2024 Accepted: 8 August 2024 Published: 13 August 2024 Copyright: ©2024 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license (https:// creativecommons.org/licenses/by/ 4.0/). Journal of Clinical Medicine Article A Retrospective Observational Study of Continuous Wireless Vital Sign Monitoring via a Medical Grade Wearable Device on Hospitalized Floor Patients Grant B. Weller1,*, James Mault1, Maria Eloisa Ventura1 , Justin Adams1, Frank J. Campbell2 and Kevin K. Tremper3 1BioIntelliSense, Inc., Golden, CO 80401, USA 2Ardent Health Services, Nashville, TN 37027, USA 3Department of Anesthesiology, University of Michigan, Ann Arbor, MI 48109, USA; ktremper@med.umich.edu *Correspondence: gweller@biointellisense.com Abstract: Background: Continuous vital sign monitoring via wearable technology, combined with algorithm-based notifications, has been utilized for early detection of patient deterioration. In this retrospective observational study, we summarize a large-scale implementation of a continuous monitoring system in medical–surgical units of two hospitals over the course of fifteen (15) months. Methods : An FDA-cleared wireless monitoring device (BioButton®, BioIntelliSense Inc., Golden, CO, USA), was placed on each patient upon admission. The wearable device measures heart rate and respiratory rate at rest, skin temperature, and patient activity levels. High-frequency data (up to 1440 measurements per day) are transmitted to display in exception management software (BioDashboard ™, version 2.9, BioIntelliSense Inc.). Algorithmic and rules-based notifications are triggered based on clinical and statistical trending criteria. We present (i) agreement of device readings with bedside charted measurements, (ii) the frequency of notifications, (iii) the occurrence of notifications prior to clinical deterioration events, and (iv) impact on clinical management, including early data on length of stay (LOS). Results : In total, 11,977 patient encounters were monitored at two sites. Bias ±95% limits of agreement were 1.8 ±12.5 for HR and 0.4 ±8.0 for RR. The rates of notifications were 0.97 and 0.65 per patient-day at Sites 1 and 2, respectively. Among clinical deteriorations, 73% (66%) had at least one notification within 24 h prior at Site 1 (Site 2). At Site 1, there were 114 cases for which a notification led to a new or changed physician’s order. LOS in the first unit monitored by the system exhibited a decreasing trend from 3.07 days to 2.75 days over 12 months. Conclusions : Wearable continuous vital sign monitoring with the BioIntelliSense BioButton®system enables early detection of clinical deterioration. Keywords: physiologic monitoring; vital signs; wearable electronic devices; clinical decision support systems; wireless technology 1. Introduction Patients in intensive care units (ICUs) are closely monitored with both electronic devices and one-on-one highly trained nurses. Once patients are discharged to the floor, they receive intermittent, 4-to-8-hour vital sign checks and nurse-to-patient ratios of 1:4 or 1:5 for medical and surgical patients [ 1]. The traditional practices of disturbing patients for nighttime vitals have been questioned due to the adverse effects on healing due to disruption of sleep [ 2,3]. On the other hand, modified early warning scores (MEWSs), which are recommended to identify patients who are at risk of deterioration, require frequent assessment of vital signs [ 4,5]. For many patients, it may be best to skip nighttime vital signs and allow the bedside nurse to use their clinical judgement to decide who needs nighttime vitals [ 3]. Unfortunately, due to the variability of patients’ comorbidities, failure-to-rescue J. Clin. Med. 2024 ,13, 4747. https://doi.org/10.3390/jcm13164747 https://www.mdpi.com/journal/jcm
-J. Clin. Med. 2024 ,13, 4747 2 of 11 events continue to occur, leading to the consensus that floor patients need more frequent monitoring of vital signs [ 5]. It has also been documented that despite respiratory rate (RR) being an important predictor of deterioration, included in MEWSs and qSOFA, it is the most frequently missed and inaccurately recorded vital sign [6,7]. Recently, new wearable technologies have become available to passively monitor vital signs remotely and continuously. A comprehensive review of the literature evaluating the available devices concluded that to date the studies mostly involve validation and feasibility and are under-powered to assess clinical utility [ 4]. A recent retrospective, propensity-matched study found promising results utilizing remote monitoring on hospital floor patients [8]. The purpose of this report is to present our findings utilizing the FDA-cleared BioButton®, a coin-sized wireless continuous monitoring wearable device (BioButton®, BioIntelliSense, Inc., Golden, CO, USA) as part of standard care in a large clinical inpatient population. The primary objective of our analysis is to assess the agreement of BioButton-recorded vital sign readings (HR and RR) with concurrent manually charted bedside readings in the inpatient setting. The BioButton system is FDA-cleared (https://www.accessdata.fda.gov/cdrh_docs/ pdf21/K212957.pdf, accessed on 10 July 2024) with a clinical accuracy specification of root mean square error (RMSE) of less than 5 beats per minute for resting heart rate in the range of 40–150 beats per minute and less than 3 respirations per minute for respiratory rate in the range of 5–35 respirations per minute. Additionally , we assess the following aspects of the BioButton system as secondary objectives: 1. The frequency of physiologic notifications triggered by the data generated by the BioButton®wearable device. 2. The correspondence and timing of BioButton notifications relative to the occurrence prior to clinical deterioration events (CDEs). 3. The impact of the BioIntelliSense system, BioButton wearable device, and centralized nurse monitoring on the clinical management of patients and length of stay (LOS) since the start of implementation. 2. Materials and Methods Institutional Review Board exemption was obtained for this retrospective study. On 1 September 2022, we initiated a floor patient monitoring project at a rural community hospital in Texas (Site 1). The project was expanded to a second site, an urban community hospital in Oklahoma (Site 2) on 11 July 2023. The monitoring utilized the BioButton® wearable medical device (BioButton®, BioIntelliSense, Inc., Golden, CO, USA). The initial implementation was conducted on one medical unit of 30 beds at Site 1 and expanded to additional units at Site 1 and, subsequently, Site 2 over time. As of 20 September 2023, BioButton monitoring had expanded to 119 non-ICU beds in 3 units at Site 1 and 250 non-ICU beds in 10 units at Site 2. The BioButton wearable device was placed in the left subclavicular area, Figure 1, at the time of patient admission to the floor. The device transmits the following data: heart rate at rest (HR), respiratory rate at rest (RR), skin temperature (T), and patient activity level (low/medium/high) for up to seven days. HR, RR, and T values are captured once per minute, with HR and RR being reported only while the patient is at rest. The data are continuously transmitted via a Bluetooth gateway (the BioHub ™, BioIntelliSense, Inc., Golden, CO, USA) which is configured and connected to the hospital Wi-Fi network. The data are processed on cloud-based software (BioCloud ™, version 2, BioIntelliSense, Inc., Golden, CO, USA), which evaluates the data for clinical notifications in the clinical intelligence system (BioDashboard ™, BioIntelliSense, Inc., Golden, CO, USA) and hourly median values are generated which are utilized for clinical documentation. Minute-by- minute data were not visible on the device or otherwise directly to staff at bedside. The RR and HR were securely transmitted to BioDashboard and the median values (for each hour of monitoring) were recorded in the electronic medical record (EMR, Epic systems, Verona,
-J. Clin. Med. 2024 ,13, 4747 3 of 11 Wisconsin) within the vital sign flowsheet rows, alongside other sources of these same data types, without nursing validation. J. Clin. Med. 2024 , 13, x FOR PEER REVIEW 3 of 11 minute data were not visible on the device or otherwise directly to sta ﬀ at bedside. The RR and HR were securely transmi tted to BioDashboard and the median values (for each hour of monitoring) were recorded in the electronic medical record (EMR, Epic systems, Verona, Wisconsin) within the vital sign ﬂowsheet rows, alongside other sources of these same data types, without nursing validation. Figure 1. Placement of the BioBu tton monitoring device. Minute-by-minute data and notifications are displayed and reviewed through a clinician user interface (BioDashboard™, BioIntelliSense, Golden, CO, USA) that provides both census-level and individual patient-level views of the data. Clinical notifications based on the BioBu tton data were generated using BioC loud software and displayed to end users in the BioDashboard. Vital sign notifications were generated for the following conditions: high/low HR; high/low RR; double (simultaneous) high HR and RR; triple (simultaneous) high HR, RR, and T; and trending increases of at least 30% (over 2 h or 4 h) for HR/RR, Table 1. Notifications for high and low vital signs were based on hourly median values of these parameters. Table 1. BioButton vital sign notifications. Notiﬁcation Name Description HR Trending Increase Notiﬁes when the mean heart rate measured over the past 2 h exceeds the mean heart rate of the previous 4 h by more than 30% or the mean over the past 4 h exceeds the mean of the previous 24 h by more than 30%. RR Trending Increase Notiﬁes when the mean heart rate measured over the past 2 h exceeds the mean heart rate of the previous 4 h by more than 30% or the mean over the past 4 h exceeds the mean of the previous 24 h by more than 30%. Median HR Noti ﬁcation Notiﬁes when the median heart rate over the most recent 60 min of data is either >115 bpm (high noti ﬁcation) or <50 bpm (low noti ﬁcation). Median RR Noti ﬁcation Notiﬁes when the median respiratory rate over the most recent 60 min of data is either >28 rpm (high noti ﬁcation) or <8 rpm (low noti ﬁcation). Double High Notiﬁes when the median heart rate over the past 60 min is >100 bpm and the median respiratory rate over the past 60 min is >24 rpm. Triple High Notiﬁes when the median heart rate over the past 60 min is >100 bpm and the median respiratory rate over the past 60 min is >24 rpm and the median skin temperature over the past 60 min is >36 °C. Figure 1. Placement of the BioButton monitoring device. Minute-by-minute data and notifications are displayed and reviewed through a clini- cian user interface (BioDashboard ™, BioIntelliSense, Golden, CO, USA) that provides both census-level and individual patient-level views of the data. Clinical notifications based on the BioButton data were generated using BioCloud software and displayed to end users in the BioDashboard. Vital sign notifications were generated for the following conditions: high/low HR; high/low RR; double (simultaneous) high HR and RR; triple (simultaneous) high HR, RR, and T; and trending increases of at least 30% (over 2 h or 4 h) for HR/RR, Table 1. Notifications for high and low vital signs were based on hourly median values of these parameters. Table 1. BioButton vital sign notifications. Notification Name Description HR Trending IncreaseNotifies when the mean heart rate measured over the past 2 h exceeds the mean heart rate of the previous 4 h by more than 30% or the mean over the past 4 h exceeds the mean of the previous 24 h by more than 30%. RR Trending IncreaseNotifies when the mean heart rate measured over the past 2 h exceeds the mean heart rate of the previous 4 h by more than 30% or the mean over the past 4 h exceeds the mean of the previous 24 h by more than 30%. Median HR NotificationNotifies when the median heart rate over the most recent 60 min of data is either >115 bpm (high notification) or <50 bpm (low notification). Median RR NotificationNotifies when the median respiratory rate over the most recent 60 min of data is either >28 rpm (high notification) or <8 rpm (low notification). Double HighNotifies when the median heart rate over the past 60 min is >100 bpm and the median respiratory rate over the past 60 min is >24 rpm. Triple HighNotifies when the median heart rate over the past 60 min is >100 bpm and the median respiratory rate over the past 60 min is >24 rpm and the median skin temperature over the past 60 min is >36◦C. Patients were monitored using the BioDashboard from a central nursing station, from 8:00 a.m. to 5:00 p.m., Monday through Friday, in general care areas of the hospital facility, allowing the surveillance nurse to notify and collaborate with the bedside nursing teams. At Site 1, a single dedicated nurse monitored multiple units (119 beds). An additional centralized nursing station at Site 2 monitored up to 250 beds. By applying both algo- rithmic and rules-based exception management, these medical and surgical patients were monitored by a single nurse. This centralized monitoring workflow was not previously used at either site and was enabled by the introduction of the BioIntelliSense technology. When a notification triggers inside the clinical dashboard, it displays a red exclamation point icon, which indicates an active notification, and a red checkmark icon, which indicates a notification review is incomplete. The centralized monitoring nurse then reviews the
-J. Clin. Med. 2024 ,13, 4747 4 of 11 notification, which typically includes a review of the patient chart in the EHR and a call or EHR-based message to the bedside provider. Previous reviews and documentation are saved so other staff can review the assessments. When the notification review is complete, the red checkmark disappears although the notification icon remains illuminated until the physiologic abnormality has resolved. To illustrate the potential of continuous monitoring in comparison with intermittent spot checking of vital signs, Figure 2 shows three time-series plots of BioButton-captured vital signs alongside spot-check readings obtained from the bedside. In the first case (2a), a new diagnosis of atrial fibrillation was found after the BioButton identified heart rate readings of over 120 bpm approximately five hours prior to the first bedside reading of tachycardia. In the second case (2b), tachycardia was detected by the BioButton despite be- ing missed by a bedside check, and the patient was initiated on a beta blocking medication. In the third case (2c), the patient’s respiratory rates were recorded by the BioButton in the range of 25–35 respirations per minute despite a bedside reading of 22. The corresponding notifications for high respiratory rates led to follow-up testing for COVID-19 and influenza on this patient. On 30 May 2023, the BioButton wearable device firmware was updated to accommo- date an extended measurement range on both heart rate and respiratory rate at rest. Prior to this update, BioButton reported heart rates in the range of 40–125 beats per minute; this was expanded to 40–150 beats per minute. The respiratory rate at rest reporting range expanded from 10–30 to 5–35 respirations per minute. On 15 October 2023, a second, minor update to the device was implemented to increase vital sign accuracy. Clinical deterioration events (CDEs) were defined by the incidence of a rapid response team (RRT) call, ICU transfer, or patient expiration. Events that occurred within 12 h of each other (e.g., an RRT call followed by an ICU transfer 2 h later) were analyzed as a single deterioration event. Manual chart review was conducted on these events to exclude RRT calls or ICU transfers that were unrelated to physiologic deterioration (e.g., ICU transfer for a planned procedure) as well as to exclude expiration of patients placed on hospice care. Clinical impact was assessed by identifying changes to physician orders documented by the central monitoring team at Site 1 and by examining hospital length of stay (LOS) of monitored patients over time. The BioButton wearable device and BioIntelliSense System, along with supporting software tools, were implemented as part of standard patient care at both sites. De- identified data for this analysis were captured retrospectively from the BioIntelliSense BioCloud data system and the electronic health record (EHR) data of monitored patients. J. Clin. Med. 2024 , 13, x FOR PEER REVIEW 4 of 11 Patients were monitored using the BioDashboard from a central nursing station, from 8:00 a.m. to 5:00 p.m., Monday through Friday, in general care areas of the hospital facility, allowing the surveillance nurse to notify and collaborate with the bedside nursing teams. At Site 1, a single dedicated nurse monitored multiple units (119 beds). An additional centralized nursing station at Site 2 monitored up to 250 beds. By applying both algorithmic and rules-based exception manage ment, these medical and surgical patients were monitored by a single nurse. This centralized monitoring work ﬂow was not previously used at either site and was enabled by the introduction of the BioIntelliSense technology. When a noti ﬁcation triggers inside the clinic al dashboard, it displays a red exclamation point icon, which indicates an active noti ﬁcation, and a red checkmark icon, which indicates a noti ﬁcation review is incomplete. The centralized monitoring nurse then reviews the noti ﬁcation, which typically includes a review of the patient chart in the EHR and a call or EHR-based message to the bedside provider. Previous reviews and documentation are saved so other sta ﬀ can review the assessments. When the noti ﬁcation review is complete, the red checkmark disappears although the noti ﬁcation icon remains illuminated until the physiologic abnormality has resolved. To illustrate the potential of continuous monitoring in comparison with intermi ttent spot checking of vital signs, Figure 2 shows three time-series plots of BioBu tton-captured vital signs alongside spot-check readings obtained from the bedside. In the ﬁrst case (2a), a new diagnosis of atrial ﬁbrillation was found after the BioBu tton identi ﬁed heart rate readings of over 120 bpm approximately ﬁve hours prior to the ﬁrst bedside reading of tachycardia. In the second case (2b) , tachycardia was detected by the BioBu tton despite being missed by a bedside check, and the patient was initiated on a beta blocking medication. In the third case (2c), the patien t’s respiratory rates were recorded by the BioButton in the range of 25–35 respirations pe r minute despite a bedside reading of 22. The corresponding noti ﬁcations for high respiratory rates led to follow-up testing for COVID-19 and in ﬂuenza on this patient. (a) Figure 2. Cont .
-J. Clin. Med. 2024 ,13, 4747 5 of 11 J. Clin. Med. 2024 , 13, x FOR PEER REVIEW 5 of 11 (b) (c) Figure 2. Time-series plots of vital signs of three di ﬀerent patients (each of sub ﬁgures ( a–c) correspond to each individual patient) as measured by BioBu tton (blue points) and bedside charting (orange points). Each sub ﬁgure shows heart rate ( top), respiratory rate ( middle ), and temperature (bottom; BioButton skin temperature and bedside body temperature). The timing of BioBu tton vital sign noti ﬁcations for each of HR and RR are annotated on each plot (note that “double high” and “triple high” noti ﬁcations are annotated on both HR and RR plots in dark green and light green, respectively). Date and local time are shown on x-axis. On 30 May 2023, the BioBu tton wearable device ﬁrmware was updated to accommodate an extended measurement range on both heart rate and respiratory rate at rest. Prior to this update, BioBu tton reported heart rates in the range of 40–125 beats per minute; this was expanded to 40–150 beats per minute. The respiratory rate at rest reporting range expanded from 10–30 to 5–35 respirations per minute. On 15 October 2023, a second, minor update to the device was implemented to increase vital sign accuracy. Clinical deterioration events (CDEs) were de ﬁned by the incidence of a rapid response team (RRT) call, ICU transfer, or patient expiration. Events that occurred within 12 h of each other (e.g., an RRT call followed by an ICU transfer 2 h later) were analyzed as a single deterioration event. Manual char t review was conducted on these events to exclude RRT calls or ICU transfers that were unrelated to physiologic deterioration (e.g., ICU transfer for a planned procedure) as well as to exclude expiration of patients placed on hospice care. Clinical impact was assessed by identifying changes to physician orders documented by the central monitoring team at Site 1 and by examining hospital length of stay (LOS) of monitored patients over time. Figure 2. Time-series plots of vital signs of three different patients (each of subfigures ( a–c) correspond to each individual patient) as measured by BioButton (blue points) and bedside charting (orange points). Each subfigure shows heart rate ( top), respiratory rate ( middle ), and temperature ( bottom ; BioButton skin temperature and bedside body temperature). The timing of BioButton vital sign notifications for each of HR and RR are annotated on each plot (note that “double high” and “triple high” notifications are annotated on both HR and RR plots in dark green and light green, respectively). Date and local time are shown on x-axis. Summary statistics describing patient encounters, vital sign readings, and notification rates were calculated for each site. Agreement between BioButton-measured HR/RR and corresponding bedside charted values recorded for the same minute was assessed via Bland–Altman limit of agreement analysis using data obtained since 15 October 2023, when the most recent update to device firmware was completed. All clinical deterioration (CD) events were reviewed to determine if, and when, notifications triggered in advance of the event. For notifications that preceded CD events the mean and median times of the first notification, and times of all notifications, were determined. In reporting on notification rates and clinical deterioration events, only data after 30 May 2023 were analyzed (the date of range extension updates to the wearable device firmware). 3. Results A combined total of 11,977 patient encounters (7872 at Site 1 and 4105 at Site 2) were monitored at the two hospital sites from 1 September 2022 through 24 November 2023. The first unit at Site 1 was monitored for six months before expanding into additional
-J. Clin. Med. 2024 ,13, 4747 6 of 11 units; at Site 2, monitoring was implemented in all medical–surgical units of the hospital within three months from installation of the first unit. A chart showing the growth of total activated wearable devices at each site is shown in Figure 3 below. J. Clin. Med. 2024 , 13, x FOR PEER REVIEW 6 of 11 The BioBu tton wearable device and BioIntelliSense System, along with supporting software tools, were implemen ted as part of standard patient care at both sites. De- identi ﬁed data for this analysis were captured retrospectively from the BioIntelliSense BioCloud data system and the electronic health record (EHR) data of monitored patients. Summary statistics describing patient encounters, vital sign readings, and notiﬁcation rates were calculated for each site. Agreement between BioBu tton-measured HR/RR and corresponding bedside charted values recorded for the same minute was assessed via Bland–Altman limit of agreemen t analysis using data obtained since 15 October 2023, when the most recent update to device ﬁrmware was completed. All clinical deterioration (CD) events were reviewed to determine if, and when, noti ﬁcations triggered in advance of the event. For noti ﬁcations that preceded CD events the mean and median times of the ﬁrst noti ﬁcation, and times of all noti ﬁcations, were determined. In reporting on noti ﬁcation rates and clinical deterioration events, only data after 30 May 2023 were analyzed (the date of range extension updates to the wearable device ﬁrmware). 3. Results A combined total of 11,977 patient encounters (7872 at Site 1 and 4105 at Site 2) were monitored at the two hospital sites from 1 September 2022 through 24 November 2023. The ﬁrst unit at Site 1 was monitored for six months before expanding into additional units; at Site 2, monitoring was implemented in all medical–surgical units of the hospital within three months from installation of the ﬁrst unit. A chart showing the growth of total activated wearable devices at each site is shown in Figure 3 below. Figure 3. Cumulative use of BioBu tton wearable devices at Site 1 (blue) and Site 2 (orange). A total of 651,505 patient-hours of vital sign monitoring data was obtained. The mean (median) of monitored hours per admission was 69.6 (47.6) h at Site 1 and 78.2 (50.2) h at Site 2. Bland–Altman analyses of vital signs recorded by the BioBu tton wearable device matched to the same minute timestamp as a charted value are shown for HR and RR at each site in Figure 4. Analysis for Site 1 included 1449 simultaneous observations of HR and 1081 observations of RR from 479 admissions; at Site 2, there were 8113 HR pairs and 6172 RR pairs obtained from 1156 admissions. Mean di ﬀerences (clinical bias) were within 2 beats per minute for heart rate and 0.5 respirations per minute for respiratory rate for both sites, Figure 4. Heart rate limits of agreement were similar between sites, with approximately 95% of ±12 (Site 1) and ±13 (Site 2). Respiratory rate analysis limits of agreement of ±7.5 were also similar at both sites. Figure 3. Cumulative use of BioButton wearable devices at Site 1 (blue) and Site 2 (orange). A total of 651,505 patient-hours of vital sign monitoring data was obtained. The mean (median) of monitored hours per admission was 69.6 (47.6) h at Site 1 and 78.2 (50.2) h at Site 2. Bland–Altman analyses of vital signs recorded by the BioButton wearable device matched to the same minute timestamp as a charted value are shown for HR and RR at each site in Figure 4. Analysis for Site 1 included 1449 simultaneous observations of HR and 1081 observations of RR from 479 admissions; at Site 2, there were 8113 HR pairs and 6172 RR pairs obtained from 1156 admissions. Mean differences (clinical bias) were within 2 beats per minute for heart rate and 0.5 respirations per minute for respiratory rate for both sites, Figure 4. Heart rate limits of agreement were similar between sites, with approximately 95% of ±12 (Site 1) and ±13 (Site 2). Respiratory rate analysis limits of agreement of ±7.5 were also similar at both sites. An average of 0.97 and 0.65 vital sign notifications per patient per day were generated at Site 1 and Site 2, respectively. The frequency of the six types of notifications, for each site, is presented in Table 2. The most common notification was for high RR, with 0.24 and 0.23 notifications per patient per day at Site 1 and Site 2, respectively. Forty percent (4816) of patients did not trigger any notifications for their entire stay; this includes 39% of encounters at Site 1 and 43% at Site 2. Table 2. BioButton vital sign notification rates. Notification TypeNotification Rate (per Patient per Day) Site 1 Site 2 HR Trending Increase 0.06 0.06 RR Trending Increase 0.12 0.12 Median HR Notification 0.16 0.06 Median RR Notification 0.52 0.35 Double High 0.10 0.04 Triple High 0.02 0.01 Total 0.97 0.65 At Site 1, after the device firmware update on 30 May 2023, there were 124 CD events that occurred during BioButton monitoring; at Site 2, there were 71. Of the 124 patients who experienced CD events at Site 1, 90 (72.6%) were preceded by at least one notification within a 24 h period prior to the event; at Site 2, 47 (66.2%) were preceded by a notification.
-J. Clin. Med. 2024 ,13, 4747 7 of 11 J. Clin. Med. 2024 , 13, x FOR PEER REVIEW 7 of 11 (a) ( b) (c) ( d) Figure 4. Bland–Altman plots of wearable-device-meas ured vital signs compared to same-minute charted readings: ( a) HR, Site 1; ( b) HR, Site 2; ( c) RR, Site 1; ( d) RR, Site 2. An average of 0.97 and 0.65 vital sign noti ﬁcations per patient per day were generated at Site 1 and Site 2, respectively. The frequency of the six types of noti ﬁcations, for each site, is presented in Table 2. The most common noti ﬁcation was for high RR, with 0.24 and 0.23 noti ﬁcations per patient per day at Site 1 and Site 2, respectively. Forty percent (4816) of patients did not trigger any noti ﬁcations for their entire stay; this includes 39% of encounters at Site 1 and 43% at Site 2. Table 2. BioButton vital sign noti ﬁcation rates. Notiﬁcation Type Notiﬁcation Rate (per Patient per Day) Site 1 Site 2 HR Trending Increase 0.06 0.06 RR Trending Increase 0.12 0.12 Median HR Noti ﬁcation 0.16 0.06 Median RR Noti ﬁcation 0.52 0.35 Double High 0.10 0.04 Triple High 0.02 0.01 Total 0.97 0.65 Figure 4. Bland–Altman plots of wearable-device-measured vital signs compared to same-minute charted readings: ( a) HR, Site 1; ( b) HR, Site 2; ( c) RR, Site 1; ( d) RR, Site 2. Of all vital sign notification types, the high respiratory rate notification showed the highest sensitivity for deterioration events, with 37.1% (46 events with preceding noti- fication) and 40.1% (28 events) at Site 1 and Site 2, respectively. This was followed by notifications for double high HR and RR, with 21.8% (27 events) and 19.7% (14 events), and high HR, with 21.0% (26 events) and 12.7% (9 events). Finally, low RR was notified in advance of 16.9% of events at each site (21 and 12 events, respectively). Examining false positive rates, high RR (11.3% and 10.7%) and low RR notifications (9.8% and 9.0%) were the highest among notification types. There were 16,318 monitored patient-days at Site 1 and 16,354 at Site 2 during which no subsequent patient deterioration was detected. The overall patient-day false positive rates (i.e., the proportion of patient-days without a deterioration event that also generated a notification) were 33.8% and 28.3% at Site 1 and Site 2, respectively. When notifications were generated in the 24 h period prior to incidence of deterioration events at Site 1, the first notification was triggered an average (median) of 14.8 (16.9) hours prior to the event. At Site 2, the first notification was generated 14.8 (16.1) hours prior to the event. Considering all notifications occurring in a 24 h period prior to deterioration events, notifications occurred most frequently in the period 4 to 18 h prior to the event, Figure 5. At Site 2, a spike in notification frequency in the two hours prior to event incidence is also observed.
-J. Clin. Med. 2024 ,13, 4747 8 of 11 J. Clin. Med. 2024 , 13, x FOR PEER REVIEW 8 of 11 At Site 1, after the device ﬁrmware update on 30 May 2023, there were 124 CD events that occurred during BioBu tton monitoring; at Site 2, there were 71. Of the 124 patients who experienced CD events at Site 1, 90 (72.6%) were preceded by at least one noti ﬁcation within a 24 h period prior to the event; at Site 2, 47 (66.2%) were preceded by a noti ﬁcation. Of all vital sign noti ﬁcation types, the high respiratory rate noti ﬁcation showed the highest sensitivity for deterioration events , with 37.1% (46 events with preceding notiﬁcation) and 40.1% (28 events) at Site 1 and Site 2, respectively. This was followed by notiﬁcations for double high HR and RR, with 21.8% (27 events) and 19.7% (14 events), and high HR, with 21.0% (26 events) and 12 .7% (9 events). Finally, low RR was noti ﬁed in advance of 16.9% of events at each site (21 and 12 events, respectively). Examining false positive rates, high RR (11.3% and 10.7%) and low RR noti ﬁcations (9.8% and 9.0%) were the highest among noti ﬁcation types. There were 16,318 mo nitored patient-days at Site 1 and 16,354 at Site 2 during which no subseq uent patient deterioration was detected. The overall patient-day false positive rates (i.e., the proportion of patient-days without a deterioration event that also generated a noti ﬁcation) were 33.8% and 28.3% at Site 1 and Site 2, respectively. When noti ﬁcations were generated in the 24 h period prior to incidence of deterioration events at Site 1, the ﬁrst noti ﬁcation was triggered an average (median) of 14.8 (16.9) hours prior to the event. At Site 2, the ﬁrst noti ﬁcation was generated 14.8 (16.1) hours prior to the event. Considering all noti ﬁcations occurring in a 24 h period prior to deterioration events, noti ﬁcations occurred most frequently in the period 4 to 18 h prior to the event, Figure 5. At Site 2, a spike in noti ﬁcation frequency in the two hours prior to event incidence is also observed. (a) ( b) Figure 5. Timing of vital sign noti ﬁcations relative to clinic al deterioration events: ( a) Site 1; ( b) Site 2. Event time is aligned to time 0. Chart review of the 34 (27.4%) and 24 (33.8%), at Site 1 and Site 2, events that were not preceded by a BioIntelliSense BioBu tton system noti ﬁcation for HR or RR found that most were ICU transfers associated with a concern for low blood oxygenation (SpO2) or hypotension, occurring in the absence of signi ﬁcant observed derangement in resting heart rate or respiratory rate. Additional events were a ttributable to patient self-report of pain or concerning laboratory values. While vital sign noti ﬁcations occur in the absence of subsequent deterioration events, many of these noti ﬁcations were in fact clinically useful and actionable. In addition to bedside nursing actions taken because of BioBu tton vital sign noti ﬁcations, from May through November 2023, central monitoring sta ﬀ at Site 1 documented 114 patient encounters during which there was a vital sign noti ﬁcation that ultimately led to a new or changed physician order or diagnosis. Among the new diagnoses were atrial ﬁbrillation, Figure 5. Timing of vital sign notifications relative to clinical deterioration events: ( a) Site 1; ( b) Site 2. Event time is aligned to time 0. Chart review of the 34 (27.4%) and 24 (33.8%), at Site 1 and Site 2, events that were not preceded by a BioIntelliSense BioButton system notification for HR or RR found that most were ICU transfers associated with a concern for low blood oxygenation (SpO2) or hypotension, occurring in the absence of significant observed derangement in resting heart rate or respiratory rate. Additional events were attributable to patient self-report of pain or concerning laboratory values. While vital sign notifications occur in the absence of subsequent deterioration events, many of these notifications were in fact clinically useful and actionable. In addition to bed- side nursing actions taken because of BioButton vital sign notifications, from May through November 2023, central monitoring staff at Site 1 documented 114 patient encounters during which there was a vital sign notification that ultimately led to a new or changed physician order or diagnosis. Among the new diagnoses were atrial fibrillation, sepsis, and a medication allergy. New or adjusted dosages of beta blocking medications were the most common medication-related orders resulting from BioIntelliSense notifications. Table 3 shows the monthly trends in length of stay (median and geometric mean, GMLOS) of patients monitored in each of the three units at Site 1 since the start of monitoring patients with the BioButton device. In the first unit to implement monitoring, GMLOS decreased from 3.07 days in October 2022 to 2.75 in October 2023. Similar decreasing trends were observed in two other units monitored at this site. Monitoring at Site 2 in this study covered fewer than four months, and it was too early to identify sustained trends in length of stay. Table 3. Discharge count (N) and length of stay (median and geometric mean, GMLOS) of patients monitored with BioButton in Site 1 medical–surgical units, by month. Month of DischargeUnit 1 Unit 2 Unit 3 N Median GMLOS N Median GMLOS N Median GMLOS Oct 2022 255 3.12 3.07 - - - - - - Nov 2022 241 3.01 3.23 - - - - - - Dec 2022 259 2.83 3.04 - - - - - - Jan 2023 241 3.15 3.25 - - - - - - Feb 2023 227 2.91 3.18 - - - - - - Mar 2023 242 3 3.09 242 3.11 2.91 - - - Apr 2023 282 2.75 2.88 305 3.13 3.09 - - - May 2023 219 2.61 2.91 257 3.3 3.12 - - - June 2023 246 2.75 2.9 313 3.05 3.04 - - - Jul 2023 250 2.57 2.72 311 2.83 2.83 309 2.95 2.94 Aug 2023 248 2.42 2.55 253 3.11 3.07 292 2.59 2.75 Sept 2023 227 2.83 2.79 304 2.78 2.76 312 2.38 2.48 Oct 2023 245 2.59 2.75 310 2.97 2.95 342 2.4 2.48
-J. Clin. Med. 2024 ,13, 4747 9 of 11 4. Discussion It has been documented that respiratory rate is the most skipped and least accurately measured vital at night, despite RR being an essential component of determining a pa- tient’s cardiopulmonary status [ 6]. There is also concern that once a patient leaves a highly monitored area, such as an ICU or post-anesthesia care unit (PACU), the assessment of the patient’s condition is reduced to every four hours or less. These assessments themselves can be extremely variable given the experience of the provider and the complexity and variability of the patients [ 7]. To assist the clinical providers on the patient floors scoring systems have been proposed to facilitate the early detection of patients whose condition may be deteriorating [ 5]. The modified early warning score (MEWS) is the most validated assessment tool [ 9]. But it requires accurate and timely determination of vital signs in- cluding RR. To resolve this dilemma of allowing patients much needed sleep, while at the same time having a higher frequency of vital signs assessment, it has been suggested that new wireless technologies be employed to provide this much needed surveillance to detect deteriorating patients [4]. A variety of wireless technologies have become available [ 4], and several of them have been studied for their performance in hospital settings. In all cases, real-world comparison of vital sign readings to bedside references shows deviation from results reported in highly controlled performance testing. Our findings comparing the BioButton vital sign readings to bedside measurements are similar to findings reported in a recent systematic review of inpatient studies [ 10], wherein the reported Bland–Altman limits of agreement (LoA) for heart rate measurement were ( −8.8, 6.5) for HealthPatch (VitalConnect, San Jose, CA, USA), ( −11.1, 10.7) for Visi Mobile (Sotera Digital Health, Carlsbad, CA, USA), and ( −12.6, 9.5) for Visi Mobile in a separate study. For respiratory rate, reported Bland–Altman LoAs were ( −15.8, 11.2) and ( −10.3, 9.0) for HealthPatch and ( −5.5, 7.9) for Visi Mobile. For effective remote patient monitoring, the optimal device would be minimally intrusive to the patient while providing high-quality vitals at a frequency greater than once every 4 hrs and it would have a battery life longer than the patient’s average length of stay. In this study we present the results of our experience utilizing a small wireless wearable device which provides vital signs every hour and has a battery life of seven days for inpatient monitoring. In this retrospective review of a progressive rollout of this system there is no parallel control group, but its utility was assessed by noting the types and frequency of notifications which preceded CD events, modifications in care, and reductions in LOS. As might have been predicted, high RR was the most frequent notification. Since RR is a primary component of minute ventilation and arterial CO 2, an increase in RR in a patient at rest may signify either a decrease in tidal volume associated with decreasing pulmonary compliance or an increase in metabolic rate associated with sepsis. An increase in RR alone warrants a patient assessment for it has been associated with impending cardiopulmonary arrest [ 11]. Following this physiology, it is not surprising that the next most frequent notification is RR trending increase followed by a double high of RR and HR, Table 2. Because of the difficulty of accurately measuring RR in floor patients, especially at night, it has therefore been referred to as the “neglected vital sign” [ 6]. Respiratory rate as manually charted has been consistently shown to exhibit bias and multiplication artifacts (e.g., counting breaths for 30 s and multiplying by two) [ 12]. It is therefore not surprising that our analysis of RR showed wide limits of agreement with bedside-measured RR, 95% of±7.5. On the other hand, the fact that the RR (like HR) is measured continuously enables the possibility of using the device to reduce the frequency of interruptions for vital sign measurements in some patients. This study presents some promising results with respect to detecting early signs of patient decompensation and allowing for intervention prior to more serious events. Additionally, direct evidence of patient impact was captured through documented changes to physician orders resulting from follow-up on vital sign notifications generated by the wearable device. Although as stated above, there was no control group for the assessment of improved safety or
-J. Clin. Med. 2024 ,13, 4747 10 of 11 decrease in cost, there was, however, a trend in decreasing LOS which implies both improved care and decrease in cost. Additional studies are needed to demonstrate these promising improvements in outcomes through statistically controlled analyses. There are limitations of this report in addition to issues associated with any obser- vational study. First, there was no formal assessment of nursing staff acceptance and its possible effects on staff workload such as the potential effects of false positive notifications, impact on clinical workflow, and general provider satisfaction with the BioButton. Second, a significant limitation in this initial rollout was that the centralized nurse monitoring station was only staffed weekdays on the day shift. This decision was made for reasons of cost. One would expect a faster response to BioButton notifications if the monitoring station was staffed 24 h, 7 days per week. It is likely that more of the events with preceding notifications may have been acted upon earlier, especially over the weekends. Despite these limitations, the findings of this preliminary report are very promising in improving care by early detection of patient deterioration on medical and surgical floors. To our knowledge, this is the first report of such a medical grade wearable and system in this large a number of hospitalized patients. Author Contributions: Conceptualization, G.B.W., J.M. and K.K.T.; methodology, G.B.W. and K.K.T.; formal analysis, G.B.W. and M.E.V .; investigation, J.A. and K.K.T.; resources, J.M.; data curation, M.E.V .; writing—original draft preparation, G.B.W., J.A. and K.K.T.; writing—review and editing, J.M. and F.J.C. All authors have read and agreed to the published version of the manuscript. Funding: This research received no external funding. Institutional Review Board Statement: Advarra IRB (#00000971) determined that this study is exempt from IRB oversight (approved 4 March 2024). Informed Consent Statement: Patient consent was waived due to IRB exemption. Data Availability Statement: The datasets presented in this article are not readily available due to data privacy restrictions. Acknowledgments: The authors thank Lisa Deere and Lisa Crawford from Ardent Health for technical support. Conflicts of Interest: G.B.W., J.M., M.E.V ., and J.A. are employees of BioIntelliSense, Inc. K.K.T. is a consultant to an equity holder in BioIntelliSense, Inc. F.J.C. declares no conflicts of interest. References 1. Lasater, K.B.; Aiken, L.H.; Sloane, D.; French, R.; Martin, B.; Alexander, M.; McHugh, M.D. Patient Outcomes and Cost Savings Associated with Hospital Safe Nurse Staffing Legislation: An Observational Study . BMJ Open 2021 ,11, e052899. [CrossRef] [PubMed] 2. Orlov, N.M.; Arora, V .M. Things we do for no reason: Routine overnight vital sign checks. J. Hosp. Med. 2020 ,15, 272–274. [CrossRef] [PubMed] 3. Tóth, V .; Meytlis, M.; Barnaby, D.P .; Bock, K.R.; Oppenheim, M.I.; Al-Abed, Y.; McGinn, T.; Davidson, K.W.; Becker, L.B.; Hirsch, J.S.; et al. Let sleeping patients lie, avoiding unnecessary overnight vitals monitoring using a clinically based deep-learning model. NPJ Digit. Med. 2020 ,3, 149. [CrossRef] [PubMed] 4. Leenen, J.P .; Leerentveld, C.; van Dijk, J.D.; van Westreenen, H.L.; Schoonhoven, L.; Patijn, G.A. Current evidence for continuous vital signs monitoring by wearable wireless devices in hospitalized adults: Systemic review. J. Med. Internet Res. 2020 ,22, e18636. [CrossRef] 5. Vincent, J.L.; Einav, S.; Pearse, R.; Jaber, S.; Kranke, P .; Overdyk, F.J.; Whitaker, D.K.; Gordo, F.; Dahan, A.; Hoeft, A. Improving detection of patient deterioration in the general hospital ward environment. Eur. J. Anaesthesiol. 2018 ,35, 325–333. [CrossRef] 6. Cretikos, M.A.; Bellomo, R.; Hillman, K.; Chen, J.; Finfer, S.; Flabouris, A. Respiratory rate: The neglected vital sign. Med. J. Aust. 2008 ,188, 657–659. [CrossRef] 7. Leuvan, C.H.V .; Mitchell, I. Missed opportunities? An observational study of vital sign measurements. Crit. Care Resusc. 2008 ,10, 111–115. [CrossRef] [PubMed] 8. Rowland, B.A.; Motamedi, V .; Michard, F.; Saha, A.K.; Khanna, A.K. Impact of continuous and wireless monitoring of vital signs on clinical outcomes: A propensity-matched observational study of surgical ward patients. Br. J. Anaesth. 2024 ,132, 519–527. [CrossRef] [PubMed] 9. Gardner-Thorpe, J.; Love, N.; Wrightson, J.; Walsh, S.; Keeling, N. The value of Modified Early warning Score (MEWS) in surgical in-patients: A prospective observational study. Ann. R. Coll. Surg. Engl. 2006 ,88, 571–575. [CrossRef] [PubMed]
-J. Clin. Med. 2024 ,13, 4747 11 of 11 10. Patel, V .; Orchanian-Cheff, A.; Wu, R. Evaluating the validity and utility of wearable technology for continuously monitoring patients in a hospital setting: Systematic review. JMIR Mhealth Uhealth 2021 ,9, e17411. [CrossRef] [PubMed] 11. Fieselmann, J.F.; Hendryx, M.S.; Helms, C.M.; Wakefield, D.S. Respiratory rate predicts cardiopulmonary arrest for internal medicine inpatients. J. Gen. Intern. Med. 1993 ,8, 354–360. [CrossRef] [PubMed] 12. Loughlin, P .C.; Sebat, F.; Kellett, J.G. Respiratory rate: The forgotten vital sign—Make it count! Jt. Comm. J. Qual. Patient Saf. 2018 , 44, 494–499. [CrossRef] [PubMed] Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to people or property resulting from any ideas, methods, instructions or products referred to in the content.
+Journal of
+Clinical Medicine
+Article
+A Retrospective Observational Study of Continuous Wireless
+Vital Sign Monitoring via a Medical Grade Wearable Device
+on Hospitalized Floor Patients
+GrantB.Weller1,*,JamesMault1,MariaEloisaVentura1 ,JustinAdams1,FrankJ.Campbell2
+andKevinK.Tremper3
+1 BioIntelliSense,Inc.,Golden,CO80401,USA
+2 ArdentHealthServices,Nashville,TN37027,USA
+3 DepartmentofAnesthesiology,UniversityofMichigan,AnnArbor,MI48109,USA;
+ktremper@med.umich.edu
+* Correspondence:gweller@biointellisense.com
+Abstract:Background:Continuousvitalsignmonitoringviawearabletechnology,combinedwith
+algorithm-basednotifications,hasbeenutilizedforearlydetectionofpatientdeterioration.Inthis
+retrospective observational study, we summarize a large-scale implementation of a continuous
+monitoringsysteminmedical–surgicalunitsoftwohospitalsoverthecourseoffifteen(15)months.
+Methods: AnFDA-clearedwirelessmonitoringdevice(BioButton®,BioIntelliSenseInc.,Golden,
+CO,USA),wasplacedoneachpatientuponadmission. Thewearabledevicemeasuresheartrate
+and respiratory rate at rest, skin temperature, and patient activity levels. High-frequency data
+(upto1440measurementsperday)aretransmittedtodisplayinexceptionmanagementsoftware
+(BioDashboard™,version2.9,BioIntelliSenseInc.). Algorithmicandrules-basednotificationsare
+triggered based on clinical and statistical trending criteria. We present (i) agreement of device
+readingswithbedsidechartedmeasurements,(ii)thefrequencyofnotifications,(iii)theoccurrenceof
+notificationspriortoclinicaldeteriorationevents,and(iv)impactonclinicalmanagement,including
+Citation:Weller,G.B.;Mault,J.; earlydataonlengthofstay(LOS).Results: Intotal,11,977patientencountersweremonitoredat
+Ventura,M.E.;Adams,J.;Campbell, twosites. Bias±95%limitsofagreementwere1.8±12.5forHRand0.4±8.0forRR.Therates
+F.J.;Tremper,K.K.ARetrospective
+ofnotificationswere0.97and0.65perpatient-dayatSites1and2, respectively. Amongclinical
+ObservationalStudyofContinuous
+deteriorations,73%(66%)hadatleastonenotificationwithin24hprioratSite1(Site2). AtSite
+WirelessVitalSignMonitoringviaa
+1, therewere114casesforwhichanotificationledtoaneworchangedphysician’sorder. LOS
+MedicalGradeWearableDeviceon
+inthefirstunitmonitoredbythesystemexhibitedadecreasingtrendfrom3.07daysto2.75days
+HospitalizedFloorPatients.J.Clin.
+over12months.Conclusions:WearablecontinuousvitalsignmonitoringwiththeBioIntelliSense
+Med.2024,13,4747. https://
+doi.org/10.3390/jcm13164747
+BioButton®systemenablesearlydetectionofclinicaldeterioration.
+AcademicEditor:Timothy
+Keywords:physiologicmonitoring;vitalsigns;wearableelectronicdevices;clinicaldecisionsupport
+E.Albertson
+systems;wirelesstechnology
+Received:11July2024
+Revised:1August2024
+Accepted:8August2024
+Published:13August2024 1. Introduction
+Patients in intensive care units (ICUs) are closely monitored with both electronic
+devicesandone-on-onehighlytrainednurses. Oncepatientsaredischargedtothefloor,
+theyreceiveintermittent,4-to-8-hourvitalsignchecksandnurse-to-patientratiosof1:4or
+Copyright: © 2024 by the authors.
+1:5formedicalandsurgicalpatients[1]. Thetraditionalpracticesofdisturbingpatients
+Licensee MDPI, Basel, Switzerland.
+for nighttime vitals have been questioned due to the adverse effects on healing due to
+Thisarticleisanopenaccessarticle
+disruptionofsleep[2,3].Ontheotherhand,modifiedearlywarningscores(MEWSs),which
+distributed under the terms and
+arerecommendedtoidentifypatientswhoareatriskofdeterioration, requirefrequent
+conditionsoftheCreativeCommons
+Attribution(CCBY)license(https:// assessmentofvitalsigns[4,5].Formanypatients,itmaybebesttoskipnighttimevitalsigns
+creativecommons.org/licenses/by/ andallowthebedsidenursetousetheirclinicaljudgementtodecidewhoneedsnighttime
+4.0/). vitals[3]. Unfortunately,duetothevariabilityofpatients’comorbidities,failure-to-rescue
+J.Clin.Med.2024,13,4747.https://doi.org/10.3390/jcm13164747 https://www.mdpi.com/journal/jcm
+
+J.Clin.Med.2024,13,4747 2of11
+eventscontinuetooccur,leadingtotheconsensusthatfloorpatientsneedmorefrequent
+monitoringofvitalsigns[5]. Ithasalsobeendocumentedthatdespiterespiratoryrate(RR)
+beinganimportantpredictorofdeterioration,includedinMEWSsandqSOFA,itisthe
+mostfrequentlymissedandinaccuratelyrecordedvitalsign[6,7].
+Recently,newwearabletechnologieshavebecomeavailabletopassivelymonitorvital
+signs remotely and continuously. A comprehensive review of the literature evaluating
+the available devices concluded that to date the studies mostly involve validation and
+feasibility and are under-powered to assess clinical utility [4]. A recent retrospective,
+propensity-matchedstudyfoundpromisingresultsutilizingremotemonitoringonhospital
+floorpatients[8].
+ThepurposeofthisreportistopresentourfindingsutilizingtheFDA-clearedBioButton®,
+acoin-sizedwirelesscontinuousmonitoringwearabledevice(BioButton®,BioIntelliSense,
+Inc.,Golden,CO,USA)aspartofstandardcareinalargeclinicalinpatientpopulation.The
+primaryobjectiveofouranalysisistoassesstheagreementofBioButton-recordedvitalsign
+readings(HRandRR)withconcurrentmanuallychartedbedsidereadingsintheinpatient
+setting.TheBioButtonsystemisFDA-cleared(https://www.accessdata.fda.gov/cdrh_docs/
+pdf21/K212957.pdf,accessedon10July2024)withaclinicalaccuracyspecificationofroot
+meansquareerror(RMSE)oflessthan5beatsperminuteforrestingheartrateintherange
+of40–150beatsperminuteandlessthan3respirationsperminuteforrespiratoryrateinthe
+rangeof5–35respirationsperminute.
+Additionally,weassessthefollowingaspectsoftheBioButtonsystemassecondaryobjectives:
+1. The frequency of physiologic notifications triggered by the data generated by the
+BioButton®wearabledevice.
+2. ThecorrespondenceandtimingofBioButtonnotificationsrelativetotheoccurrence
+priortoclinicaldeteriorationevents(CDEs).
+3. TheimpactoftheBioIntelliSensesystem,BioButtonwearabledevice,andcentralized
+nursemonitoringontheclinicalmanagementofpatientsandlengthofstay(LOS)
+sincethestartofimplementation.
+2. MaterialsandMethods
+InstitutionalReviewBoardexemptionwasobtainedforthisretrospectivestudy. On
+1 September 2022, we initiated a floor patient monitoring project at a rural community
+hospitalinTexas(Site1). Theprojectwasexpandedtoasecondsite,anurbancommunity
+hospital in Oklahoma (Site 2) on 11 July 2023. The monitoring utilized the BioButton®
+wearablemedicaldevice(BioButton®,BioIntelliSense,Inc.,Golden,CO,USA).Theinitial
+implementation was conducted on one medical unit of 30 beds at Site 1 and expanded
+to additional units at Site 1 and, subsequently, Site 2 over time. As of 20 September
+2023, BioButtonmonitoringhadexpandedto119non-ICUbedsin3unitsatSite1and
+250non-ICUbedsin10unitsatSite2.
+The BioButton wearable device was placed in the left subclavicular area, Figure 1,
+at the time of patient admission to the floor. The device transmits the following data:
+heart rate at rest (HR), respiratory rate at rest (RR), skin temperature (T), and patient
+activitylevel(low/medium/high)foruptosevendays. HR,RR,andTvaluesarecaptured
+onceperminute, withHRandRRbeingreportedonlywhilethepatientisatrest. The
+dataarecontinuouslytransmittedviaaBluetoothgateway(theBioHub™,BioIntelliSense,
+Inc.,Golden,CO,USA)whichisconfiguredandconnectedtothehospitalWi-Finetwork.
+Thedataareprocessedoncloud-basedsoftware(BioCloud™,version2,BioIntelliSense,
+Inc.,Golden,CO,USA),whichevaluatesthedataforclinicalnotificationsintheclinical
+intelligencesystem(BioDashboard™,BioIntelliSense,Inc.,Golden,CO,USA)andhourly
+medianvaluesaregeneratedwhichareutilizedforclinicaldocumentation. Minute-by-
+minutedatawerenotvisibleonthedeviceorotherwisedirectlytostaffatbedside. TheRR
+andHRweresecurelytransmittedtoBioDashboardandthemedianvalues(foreachhour
+ofmonitoring)wererecordedintheelectronicmedicalrecord(EMR,Epicsystems,Verona,
+
+J. Clin. Med. 2024, 13, x FOR PEER REVIEW 3 of 11
+J.Clin.Med.2024,13,4747 minute data were not visible on the device or otherwise directly to staff at bedside3.o Tf1h1e
+RR and HR were securely transmitted to BioDashboard and the median values (for each
+hour of monitoring) were recorded in the electronic medical record (EMR, Epic systems,
+Wisconsin)withinthevitalsignflowsheetrows,alongsideothersourcesofthesesamedata
+Verona, Wisconsin) within the vital sign flowsheet rows, alongside other sources of these
+types,withoutnursingvalidation.
+same data types, without nursing validation.
+Figure 1. Placement of the BioButton monitoring device.
+Figure1.PlacementoftheBioButtonmonitoringdevice.
+MMininuutete-b-byy-m-mininuuteted adtaataa nadnndo tnifioctiafitcioantisonarse adries pdlaisypeldayaendd arenvdi ewreevdietwherodu gthhroaucglihn i-a
+ccialinniucsiearn iunsteerrf iancteer(BfaioceD (aBsihobDoaasrhdb™o,aBrdio™In, tBeilloiISnetnesleli,SGenoslde,e Gn,oCldOe,nU, CSAO), UthSaAtp) rthovati dpersobvoidthes
+cbenosthu sc-leenvseulsa-nledveinl dainvdid uinadlipvaidtiuenatl -lpeavteilenvtie-lwevseol fvthieewdsa toaf. Cthlein dicaatlan. oCtilfiinciactaiol nnsobtiafisceadtioonns
+thbeasBeido Bount ttohne dBaiotaBuwtteorne gdeantae rwateerde ugseinnegraBtieodC ulosuindgs BofiotwCaloreuda nsdofdtwisaprlea yaendd tdoiesnpdlayuesder tso
+inenthde uBsieorDs ains htbhoea Brdio.DVaitsahlbsoigarndn. oVtiitfiacla stiigonn snwoteifriecagteionnersa wteedref ogretnheerafotelldo wfoirn gthceo fnodlliotiwoninsg:
+hcigohn/dliotiwonHs:R h;ihgihg/hlo/wlo wHRRR; ;hdigohu/blolew( sRimRu; ldtaonuebolue s()shimiguhltHanReaonuds)R hRi;gthri pHleR( sainmdu RltaRn; etoriupsl)e
+h(isgihmHulRta,nReRou,as)n hdigTh; aHnRd,t RreRn,d ainndg iTn; carneads terseonfdaintgle iansctr3ea0s%es( oovf eart 2lehasot r340%h )(ofovrerH 2R h/ RoRr ,4
+Thab) lfeo1r .HNRo/tRifiRc,a Ttiaobnlse f1o.r Nhiogthifiacnatdiolnosw fovrit ahligsihg nasndw elorewb avsiteadl osingnhso uwrleyrem beadsieadn ovnal uheosuorlfy
+thmeesdeipaanr vamalueteesr so.f these parameters.
+TTabablele1 .1.B BioioBBuuttttoonnv vitiatalls isgignnn nootitfiifciacatitoionnss..
+NNotoifiticfiatciaontiNonam Neame DDesecrsipcrtiiopntion
+NotNifieostiwfiheesn wthehmenea tnhhee amrteraatne hmeeaasrut rreadtoev merethaespuarsetd2 hoevxecre etdhset hpeamste a2n h
+HRTrendingIncrease hearetxrcaeteeodfst htehper emvieoauns 4hheabyrtm roarteet hoafn th30e% porretvhieomuesa n4 ohv ebryth mepoarset 4thhan
+HR Trending Increasee xceedsthemeanoftheprevious24hbymorethan30%.
+30% or the mean over the past 4 h exceeds the mean of the
+Notifieswhenthemeanheartratemeasuredoverthepast2hexceedsthemean
+previous 24 h by more than 30%.
+RRTrendingIncrease heartrateoftheprevious4hbymorethan30%orthemeanoverthepast4h
+exceNedosttihfieems ewanhoefnt htehper emvieoauns 2h4ehabryt rmaotree mthaenas30u%re.d over the past 2 h
+Noteifixecsewehdesn tthhee mmedeiaann hheeaartrrta rteaotev eorft htehme opsrterevcieonut6s0 4m hin boyfd mataorisee tithhaern
+MRedRia TnrHeRndNiontigfi cIanticornease>
+115bpm(highnotification)or<50bpm(lownotification).
+30% or the mean over the past 4 h exceeds the mean of the
+Notifieswhenthemedianrespiratoryrateoverthemostrecent60minofdatais
+MedianRRNotification previous 24 h by more than 30%.
+either>28rpm(highnotification)or<8rpm(lownotification).
+Notifies when the median heart rate over the most recent 60
+Notifieswhenthemedianheartrateoverthepast60minis>100bpmandthe
+MedDiaonu bHleRH iNghotificatiomne dmiainnr eosfp idraattoary isra eteitohveerr t>h1e1p5a sbtp60mm (ihniigsh>2 n4orptmifi.cation) or <50 bpm
+(low notification).
+Notifieswhenthemedianheartrateoverthepast60minis>100bpmandthe
+TripleHigh medNiaontriefisepsir awtohryenra ttehoev merethdeipaans tr6e0spmiirnaitso>r2y4 rrpamtea onvdethr ethmee dmiaonsstk in
+temperatureoverthepast60minis>36◦C.
+Median RR Notification recent 60 min of data is either >28 rpm (high notification) or
+<8 rpm (low notification).
+PatientsweremonitoredusingtheBioDashboardfromacentralnursingstation,from
+Notifies when the median heart rate over the past 60 min is
+8:00a.m. to5:00p.m.,MondaythroughFriday,ingeneralcareareasofthehospitalfacility,
+Double High >100 bpm and the median respiratory rate over the past 60
+allowingthesurveillancenursetonotifyandcollaboratewiththebedsidenursingteams.
+min is >24 rpm.
+At Site 1, a single dedicated nurse monitored multiple units (119 beds). An additional
+Notifies when the median heart rate over the past 60 min is
+centralized nursing station at Site 2 monitored up to 250 beds. By applying both algo-
+>100 bpm and the median respiratory rate over the past 60
+rithmicaTnrdiprlue lHesi-gbha sedexceptionmanagement,thesemedicalandsurgicalpatientswere
+min is >24 rpm and the median skin temperature over the
+monitoredbyasinglenurse. Thiscentralizedmonitoringworkflowwasnotpreviously
+usedateithersiteandwasepnaasbt l6e0d mbyint hise >in36tr o°Cd.u ctionoftheBioIntelliSensetechnology.
+Whenanotificationtriggersinsidetheclinicaldashboard,itdisplaysaredexclamation
+pointicon,whichindicatesanactivenotification,andaredcheckmarkicon,whichindicates
+anotificationreviewisincomplete. Thecentralizedmonitoringnursethenreviewsthe
+
+J.Clin.Med.2024,13,4747 4of11
+notification,whichtypicallyincludesareviewofthepatientchartintheEHRandacall
+orEHR-basedmessagetothebedsideprovider. Previousreviewsanddocumentationare
+savedsootherstaffcanreviewtheassessments. Whenthenotificationreviewiscomplete,
+J. Clin. Med. 2024, 13, x FOR PEER REtVhIeEWre dcheckmarkdisappearsalthoughthenotificationiconremainsilluminatedun4t iolft h1e1
+physiologicabnormalityhasresolved.
+Toillustratethepotentialofcontinuousmonitoringincomparisonwithintermittent
+spotPchaeticeknitnsg woefrve imtaolnsiigtonrse,dF uigsuinreg 2thseh BoiwoDstahsrhebeotaimrde f-rsoemrie as cpelnottrsaol fnBuirosBinugt tsotnat-icoanp,t furroemd
+v8:i0ta0l as.imgn. tsoa 5lo:0n0g ps.imde., sMpootn-cdhaeyc tkhrreoaudgihn gFsriodbatya,i inne gdefnreormal tchaereb aedresaids eo.f Itnhet hheosfiprsittacl afsaeci(l2itay),,
+aallnoewwindgi atghne ossuirsvoefilalatnricael nfiubrrsilel attoi onnotwifays afnodu ncodllaafbtoerratthee wBiitohB tuhtet obnedidsiednet infiuerdsihnega tretarmatse.
+Areta dSiitneg 1s, oaf osivnegrle1 2d0ebdpicmateadp pnruorxsiem matoenlyitfiorveedh mouurlstipplreio urntoitst h(e11fi9r sbtebdesd).s iAdne raedaddiitniognoafl
+ctaecnhtryaclairzdeida .nInurtshiengse csotantdiocna seat( 2Sbi)t,et a2c hmycoanrditioarweda sudpe tetoct e2d50b ybtehdesB. ioBByu tatpopnldyiensgp itbeobteh-
+ainlggomriitshsmedicb aynadb reudlseisd-beacsheedc ke,xacnedpttihoen pmatainenagtewmaesnint,i ttihaetesde monedaibceatla abnldo cskuirnggicmale dpiactaietinotns.
+Inthethirdcase(2c),thepatient’srespiratoryrateswererecordedbytheBioButtoninthe
+were monitored by a single nurse. This centralized monitoring workflow was not
+rangeof25–35respirationsperminutedespiteabedsidereadingof22. Thecorresponding
+previously used at either site and was enabled by the introduction of the BioIntelliSense
+notificationsforhighrespiratoryratesledtofollow-uptestingforCOVID-19andinfluenza
+technology.
+onthispatient.
+When a notification triggers inside the clinical dashboard, it displays a red
+On30May2023,theBioButtonwearabledevicefirmwarewasupdatedtoaccommo-
+exclamation point icon, which indicates an active notification, and a red checkmark icon,
+dateanextendedmeasurementrangeonbothheartrateandrespiratoryrateatrest. Prior
+which indicates a notification review is incomplete. The centralized monitoring nurse then
+tothisupdate,BioButtonreportedheartratesintherangeof40–125beatsperminute;this
+reviews the notification, which typically includes a review of the patient chart in the EHR
+was expanded to 40–150 beats per minute. The respiratory rate at rest reporting range
+and a call or EHR-based message to the bedside provider. Previous reviews and
+expandedfrom10–30to5–35respirationsperminute. On15October2023,asecond,minor
+documentation are saved so other staff can review the assessments. When the notification
+updatetothedevicewasimplementedtoincreasevitalsignaccuracy.
+review is complete, the red checkmark disappears although the notification icon remains
+Clinicaldeteriorationevents(CDEs)weredefinedbytheincidenceofarapidresponse
+illuminated until the physiologic abnormality has resolved.
+team(RRT)call,ICUtransfer,orpatientexpiration. Eventsthatoccurredwithin12hof
+To illustrate the potential of continuous monitoring in comparison with intermittent
+eachother(e.g.,anRRTcallfollowedbyanICUtransfer2hlater)wereanalyzedasasingle
+spot checking of vital signs, Figure 2 shows three time-series plots of BioButton-captured
+deteriorationevent. ManualchartreviewwasconductedontheseeventstoexcludeRRT
+vital signs alongside spot-check readings obtained from the bedside. In the first case (2a),
+callsorICUtransfersthatwereunrelatedtophysiologicdeterioration(e.g.,ICUtransfer
+a new diagnosis of atrial fibrillation was found after the BioButton identified heart rate
+foraplannedprocedure)aswellastoexcludeexpirationofpatientsplacedonhospicecare.
+readings of over 120 bpm approximately five hours prior to the first bedside reading of
+Clinicalimpactwasassessedbyidentifyingchangestophysicianordersdocumentedby
+tachycardia. In the second case (2b), tachycardia was detected by the BioButton despite
+thecentralmonitoringteamatSite1andbyexamininghospitallengthofstay(LOS)of
+being missed by a bedside check, and the patient was initiated on a beta blocking
+monitoredpatientsovertime.
+medication. In the third case (2c), the patient’s respiratory rates were recorded by the
+TheBioButtonwearabledeviceandBioIntelliSenseSystem,alongwithsupporting
+BioButton in the range of 25–35 respirations per minute despite a bedside reading of 22.
+software tools, were implemented as part of standard patient care at both sites. De-
+The corresponding notifications for high respiratory rates led to follow-up testing for
+identified data for this analysis were captured retrospectively from the BioIntelliSense
+COVID-19 and influenza on this patient.
+BioClouddatasystemandtheelectronichealthrecord(EHR)dataofmonitoredpatients.
+(a)
+Figure2.Cont.
+
+J J.. CClliinn.. MMeedd.. 22002244,, 1133,, x4 7F4O7R PEER REVIEW 5 5o of f1 11
+1
+(b)
+(c)
+Figure 2. Time-series plots of vital signs of three different patients (each of subfigures (a–c)
+Figure2.Time-seriesplotsofvitalsignsofthreedifferentpatients(eachofsubfigures(a–c)correspond
+correspond to each individual patient) as measured by BioButton (blue points) and bedside charting
+toeachindividualpatient)asmeasuredbyBioButton(bluepoints)andbedsidecharting(orange
+(orange points). Each subfigure shows heart rate (top), respiratory rate (middle), and temperature
+points).Eachsubfigureshowsheartrate(top),respiratoryrate(middle),andtemperature(bottom;
+(bottom; BioButton skin temperature and bedside body temperature). The timing of BioButton vital
+sBiigonB unotttoifincsaktiionntse mforp eeraacthu roef aHnRd abnedd sRidRe abreo daynntoemtatpeedr aotnu reea)c.hT phleott i(mnointeg tohfatB “iodBouutbtolen hvigitha”l saingdn
+“ntortiipfilcea htiiognhs” fnoorteiaficchatoiofnHsR araen danRnRotaarteeda nonno tbaotethd HonRe aanchd pRlRot p(nloottse itnh adta“rdk ogurbeleenh aignhd” liagnhdt “gtrreipenle,
+rheisgphe”cntiovteifilyc)a. tDioantse aarneda nloncoatla ttiemdeo narbeo sthhoHwRna onnd xR-aRxpisl.o tsindarkgreenandlightgreen,respectively).
+Dateandlocaltimeareshownonx-axis.
+On 30 May 2023, the BioButton wearable device firmware was updated to
+accomSummomdaatrey asnta etixstteicnsddeeds mcriebaisnugrepmateiennt treanncgoeu onnte brso,tvhi thaelasritg rnarteea adnindg rse,sapnirdantoortyifi rcaattei oant
+rreastet.s Pwrieorre tcoa ltchuisla utepddafoter,e BaicohBsuittteo.nA rgerpeoemrteedn thbeeatrwt reaetnesB iinoB tuhett orann-mgee aosfu 4r0e–d1H25R b/eRaRts apnedr
+mcoirnruestep;o tnhdisin wgabse desxipdaencdheadr tetod 4v0a–lu15e0s rbeecaotrsd epderf omritnhuetes.a mTheem riensuptierawtoarsy arsastees saetd rveisat
+rBelpanodrt–inAglt mraannglei mexitpoafnadgerdee fmroemnt a1n0–al3y0s itsou 5s–in3g5 draetsapoirbattaioinnesd pseinr cme1in5uOtec.t oObenr 1250 2O3,cwtohbeenr
+themostrecentupdatetodevicefirmwarewascompleted. Allclinicaldeterioration(CD)
+2023, a second, minor update to the device was implemented to increase vital sign
+eventswerereviewedtodetermineif,andwhen,notificationstriggeredinadvanceofthe
+accuracy.
+event. FornotificationsthatprecededCDeventsthemeanandmediantimesofthefirst
+Clinical deterioration events (CDEs) were defined by the incidence of a rapid
+notification,andtimesofallnotifications,weredetermined. Inreportingonnotification
+response team (RRT) call, ICU transfer, or patient expiration. Events that occurred within
+ratesandclinicaldeteriorationevents,onlydataafter30May2023wereanalyzed(thedate
+12 h of each other (e.g., an RRT call followed by an ICU transfer 2 h later) were analyzed
+ofrangeextensionupdatestothewearabledevicefirmware).
+as a single deterioration event. Manual chart review was conducted on these events to
+exclude RRT calls or ICU transfers that were unrelated to physiologic deterioration (e.g.,
+3. Results
+ICU transfer for a planned procedure) as well as to exclude expiration of patients placed
+Acombinedtotalof11,977patientencounters(7872atSite1and4105atSite2)were
+on hospice care. Clinical impact was assessed by identifying changes to physician orders
+monitored at the two hospital sites from 1 September 2022 through 24 November 2023.
+documented by the central monitoring team at Site 1 and by examining hospital length of
+The first unit at Site 1 was monitored for six months before expanding into additional
+stay (LOS) of monitored patients over time.
+
+J. Clin. Med. 2024, 13, x FOR PEER REVIEW 6 of 11
+The BioButton wearable device and BioIntelliSense System, along with supporting
+software tools, were implemented as part of standard patient care at both sites. De-
+identified data for this analysis were captured retrospectively from the BioIntelliSense
+BioCloud data system and the electronic health record (EHR) data of monitored patients.
+Summary statistics describing patient encounters, vital sign readings, and
+notification rates were calculated for each site. Agreement between BioButton-measured
+HR/RR and corresponding bedside charted values recorded for the same minute was
+assessed via Bland–Altman limit of agreement analysis using data obtained since 15
+October 2023, when the most recent update to device firmware was completed. All clinical
+deterioration (CD) events were reviewed to determine if, and when, notifications
+triggered in advance of the event. For notifications that preceded CD events the mean and
+median times of the first notification, and times of all notifications, were determined. In
+reporting on notification rates and clinical deterioration events, only data after 30 May
+2023 were analyzed (the date of range extension updates to the wearable device firmware).
+3. Results
+J.Clin.Med.2024,13,4747 A combined total of 11,977 patient encounters (7872 at Site 1 and 4105 at Site 2) 6w oe fr 1e 1
+monitored at the two hospital sites from 1 September 2022 through 24 November 2023.
+The first unit at Site 1 was monitored for six months before expanding into additional
+uunniittss;; aatt SSiittee 22,, mmoonniittoorriinngg wwaass iimmpplleemmeenntteedd iinn aallll mmeeddiiccaall––ssuurrggiiccaall uunniittss ooff tthhee hhoossppiittaall
+wwiitthhiinn tthhrreeee mmoonntthhss ffrroomm iinnssttaallllaattiioonn ooff tthhee fifirrsstt uunniitt.. AA cchhaarrtt sshhoowwiinngg tthhee ggrroowwtthh ooff ttoottaall
+aaccttiivvaatteedd wweeaarraabbllee ddeevviicceess aatt eeaacchh ssiittee iiss sshhoowwnn iinn FFiigguurree 33 bbeellooww..
+FFiigguurree 33.. CCuummuullaattiivvee uussee ooff BBiiooBBuuttttoonn wweeaarraabbllee ddeevviicceess aatt SSiittee 11 ((bblluuee)) aanndd SSiittee 22 ((oorraannggee))..
+Atotalof651,505patient-hoursofvitalsignmonitoringdatawasobtained. Themean
+A total of 651,505 patient-hours of vital sign monitoring data was obtained. The mean
+(median)ofmonitoredhoursperadmissionwas69.6(47.6)hatSite1and78.2(50.2)hatSite2.
+(median) of monitored hours per admission was 69.6 (47.6) h at Site 1 and 78.2 (50.2) h at
+Bland–Altman analyses of vital signs recorded by the BioButton wearable device
+Site 2.
+matchedtothesameminutetimestampasachartedvalueareshownforHRandRRateach
+Bland–Altman analyses of vital signs recorded by the BioButton wearable device
+siteinFigure4.AnalysisforSite1included1449simultaneousobservationsofHRand1081
+matched to the same minute timestamp as a charted value are shown for HR and RR at
+observationsofRRfrom479admissions;atSite2,therewere8113HRpairsand6172RR
+each site in Figure 4. Analysis for Site 1 included 1449 simultaneous observations of HR
+pairsobtainedfrom1156admissions. Meandifferences(clinicalbias)werewithin2beats
+and 1081 observations of RR from 479 admissions; at Site 2, there were 8113 HR pairs and
+perminuteforheartrateand0.5respirationsperminuteforrespiratoryrateforbothsites,
+6172 RR pairs obtained from 1156 admissions. Mean differences (clinical bias) were within
+Figure4. Heartratelimitsofagreementweresimilarbetweensites,withapproximately
+2 beats per minute for heart rate and 0.5 respirations per minute for respiratory rate for
+95%of±12(Site1)and±13(Site2). Respiratoryrateanalysislimitsofagreementof±7.5
+both sites, Figure 4. Heart rate limits of agreement were similar between sites, with
+werealsosimilaratbothsites.
+approximately 95% of ±12 (Site 1) and ±13 (Site 2). Respiratory rate analysis limits of
+Anaverageof0.97and0.65vitalsignnotificationsperpatientperdayweregenerated
+agreement of ±7.5 were also similar at both sites.
+atSite1andSite2,respectively. Thefrequencyofthesixtypesofnotifications,foreach
+site, is presented in Table 2. The most common notification was for high RR, with 0.24
+and0.23notificationsperpatientperdayatSite1andSite2,respectively. Fortypercent
+(4816)ofpatientsdidnottriggeranynotificationsfortheirentirestay;thisincludes39%of
+encountersatSite1and43%atSite2.
+Table2.BioButtonvitalsignnotificationrates.
+NotificationRate(perPatientperDay)
+NotificationType
+Site1 Site2
+HRTrendingIncrease 0.06 0.06
+RRTrendingIncrease 0.12 0.12
+MedianHRNotification 0.16 0.06
+MedianRRNotification 0.52 0.35
+DoubleHigh 0.10 0.04
+TripleHigh 0.02 0.01
+Total 0.97 0.65
+AtSite1,afterthedevicefirmwareupdateon30May2023,therewere124CDevents
+thatoccurredduringBioButtonmonitoring;atSite2,therewere71. Ofthe124patients
+whoexperiencedCDeventsatSite1,90(72.6%)wereprecededbyatleastonenotification
+withina24hperiodpriortotheevent;atSite2,47(66.2%)wereprecededbyanotification.
+
+JJ.. CClliinn.. MMeedd.. 22002244,, 1133,, 4x7 F4O7R PEER REVIEW 7 7ooff 1111
+(a) (b)
+(c) (d)
+Figure 4. Bland–Altman plots of wearable-device-measured vital signs compared to same-minute
+Figure4.Bland–Altmanplotsofwearable-device-measuredvitalsignscomparedtosame-minute
+charted readings: (a) HR, Site 1; (b) HR, Site 2; (c) RR, Site 1; (d) RR, Site 2.
+chartedreadings:(a)HR,Site1;(b)HR,Site2;(c)RR,Site1;(d)RR,Site2.
+An average of 0.97 and 0.65 vital sign notifications per patient per day were generated
+Ofallvitalsignnotificationtypes,thehighrespiratoryratenotificationshowedthe
+at Site 1 and Site 2, respectively. The frequency of the six types of notifications, for each
+highest sensitivity for deterioration events, with 37.1% (46 events with preceding noti-
+site, is presented in Table 2. The most common notification was for high RR, with 0.24 and
+fication) and 40.1% (28 events) at Site 1 and Site 2, respectively. This was followed by
+0.23 notifications per patient per day at Site 1 and Site 2, respectively. Forty percent (4816)
+notificationsfordoublehighHRandRR,with21.8%(27events)and19.7%(14events),
+aonf dpahtiigehntHs Rd,idw nitoht 2t1r.i0g%ge(r2 6aneyv ennottsi)fiacnatdio1n2s. 7f%or( 9theevire netnst)i.rFe instaalyly; ,tlhoiws iRnRcluwdaess n3o9t%ifi eodf
+ienncaoduvnatnecrse aotf S1i6te.9 1% anodf e4v3e%n tast aStitee a2c.h site (21 and 12 events, respectively). Examining
+falsepositiverates,highRR(11.3%and10.7%)andlowRRnotifications(9.8%and9.0%)
+Table 2. BioButton vital sign notification rates.
+werethehighestamongnotificationtypes. Therewere16,318monitoredpatient-daysat
+Site1and16,354atSite2duringwhichnosubsequentpatientdeteriorationwasdetected.
+Notification Rate (per Patient per Day)
+TheoverallpNatoietinfitc-dataiyonfa Tlsyeppeo sitiverates(i.e.,theproportionofpatient-dayswithouta
+Site 1 Site 2
+deteriorationeventthatalsogeneratedanotification)were33.8%and28.3%atSite1and
+HR Trending Increase 0.06 0.06
+Site2,respectively.
+RR Trending Increase 0.12 0.12
+Whennotificationsweregeneratedinthe24hperiodpriortoincidenceofdeterioration
+Median HR Notification 0.16 0.06
+eventsatSite1,thefirstnotificationwastriggeredanaverage(median)of14.8(16.9)hours
+Median RR Notification 0.52 0.35
+priortotheevent. AtSite2,thefirstnotificationwasgenerated14.8(16.1)hourspriortothe
+event. ConsiderDinoguablllen Hotiigfihc ationsoccurringina24h0p.1e0ri odpriortodeterio0ra.0ti4o nevents,
+notificationsoccuTrrreidplme oHsitgfhre quentlyintheperiod4to108.h02p riortotheevent,Fig0u.0r1e 5.AtSite
+2,aspikeinnotificatTioontafrl equencyinthetwohoursprior0t.9o7e ventincidenceisals0o.6o5b served.
+
+J. Clin. Med. 2024, 13, x FOR PEER REVIEW 8 of 11
+At Site 1, after the device firmware update on 30 May 2023, there were 124 CD events
+that occurred during BioButton monitoring; at Site 2, there were 71. Of the 124 patients
+who experienced CD events at Site 1, 90 (72.6%) were preceded by at least one notification
+within a 24 h period prior to the event; at Site 2, 47 (66.2%) were preceded by a notification.
+Of all vital sign notification types, the high respiratory rate notification showed the
+highest sensitivity for deterioration events, with 37.1% (46 events with preceding
+notification) and 40.1% (28 events) at Site 1 and Site 2, respectively. This was followed by
+notifications for double high HR and RR, with 21.8% (27 events) and 19.7% (14 events),
+and high HR, with 21.0% (26 events) and 12.7% (9 events). Finally, low RR was notified in
+advance of 16.9% of events at each site (21 and 12 events, respectively). Examining false
+positive rates, high RR (11.3% and 10.7%) and low RR notifications (9.8% and 9.0%) were
+the highest among notification types. There were 16,318 monitored patient-days at Site 1
+and 16,354 at Site 2 during which no subsequent patient deterioration was detected. The
+overall patient-day false positive rates (i.e., the proportion of patient-days without a
+deterioration event that also generated a notification) were 33.8% and 28.3% at Site 1 and
+Site 2, respectively.
+When notifications were generated in the 24 h period prior to incidence of
+deterioration events at Site 1, the first notification was triggered an average (median) of
+14.8 (16.9) hours prior to the event. At Site 2, the first notification was generated 14.8 (16.1)
+hours prior to the event. Considering all notifications occurring in a 24 h period prior to
+deterioration events, notifications occurred most frequently in the period 4 to 18 h prior
+J.Clin.Med.2024,13,4747 to the event, Figure 5. At Site 2, a spike in notification frequency in the two hours pri 8o or f t 1o 1
+event incidence is also observed.
+(a) (b)
+Figure 5. Timing of vital sign notifications relative to clinical deterioration events: (a) Site 1; (b) Site
+Figure5.Timingofvitalsignnotificationsrelativetoclinicaldeteriorationevents:(a)Site1;(b)Site2.
+2. Event time is aligned to time 0.
+Eventtimeisalignedtotime0.
+Chart review of the 34 (27.4%) and 24 (33.8%), at Site 1 and Site 2, events that were
+Chartreviewofthe34(27.4%)and24(33.8%),atSite1andSite2,eventsthatwere
+not preceded by a BioIntelliSense BioButton system notification for HR or RR found that
+notprecededbyaBioIntelliSenseBioButtonsystemnotificationforHRorRRfoundthat
+most were ICU transfers associated with a concern for low blood oxygenation (SpO2) or
+mostwereICUtransfersassociatedwithaconcernforlowbloodoxygenation(SpO2)or
+hypotension, occurring in the absence of significant observed derangement in resting
+hypotension,occurringintheabsenceofsignificantobservedderangementinrestingheart
+rhaetaerot rraretes poirr arteosrpyirraattoer.yA rdadteit. iAondadlietivoennatls ewveernetsa twtreibreu taattbrliebtuotapbalteie tnot psealtfi-ernetp soerltfo-rfeppaoirnt oorf
+cpoanince orrn icnognclaebrnoirnagto lraybovraalutoersy. values.
+WWhhiillee vviittaall ssiiggnn nnoottiifificcaattiioonnss ooccccuurr iinn tthhee aabbsseennccee ooff ssuubbsseeqquueenntt ddeetteerriioorraattiioonn eevveennttss,,
+mmaannyy ooff ththeesseen nootitfiificactaitoinonssw wereerien ifna cftacctli ncliicnailclyalulys eufuselfaunld aancdt ioanctaibolnea.bInle.a dInd iatidodnittioobne tdo-
+sbieddesniduer sninugrsaicntgio ancsttioaknesn tabkeecanu bseecoafuBsieo Bouf tBtoionBvuitttaolns igvnitanlo stiifigcna tnioontisfi,cfarotimonMs, afyrotmhr oMugahy
+Nthorovuemghb eNro2v0e2m3,bceern t2r0a2l3m, ocennittorariln mgostnaiftforaitnSgi tseta1ffd oatc uSmiteen 1te ddo1c1u4mpeanttieendt 1e1n4c opuanttieenrst
+denucroinugntwerhsi cdhurthinegr ewwhaicsha thveitrael wsiagsn an voittiafil csaigtino nnothtiafitcuatlitoimn athtealty ulletdimtaotealyn elewd otor cah naenwg eodr
+pchhaynsigceiadn pohrydseircioarnd oiargdnero soirs .dAiamgonnogsisth. Aenmeowngd itahgen noseews wdieargenaotsrieasl wfiberriel laattrioianl, fisebprislilsa,taionnd,
+amedicationallergy. Neworadjusteddosagesofbetablockingmedicationswerethemost
+commonmedication-relatedordersresultingfromBioIntelliSensenotifications. Table3
+shows the monthly trends in length of stay (median and geometric mean, GMLOS) of
+patientsmonitoredineachofthethreeunitsatSite1sincethestartofmonitoringpatients
+withtheBioButtondevice. Inthefirstunittoimplementmonitoring,GMLOSdecreased
+from3.07daysinOctober2022to2.75inOctober2023. Similardecreasingtrendswere
+observedintwootherunitsmonitoredatthissite.MonitoringatSite2inthisstudycovered
+fewerthanfourmonths,anditwastooearlytoidentifysustainedtrendsinlengthofstay.
+Table3.Dischargecount(N)andlengthofstay(medianandgeometricmean,GMLOS)ofpatients
+monitoredwithBioButtoninSite1medical–surgicalunits,bymonth.
+Unit1 Unit2 Unit3
+MonthofDischarge
+N Median GMLOS N Median GMLOS N Median GMLOS
+Oct2022 255 3.12 3.07 - - - - - -
+Nov2022 241 3.01 3.23 - - - - - -
+Dec2022 259 2.83 3.04 - - - - - -
+Jan2023 241 3.15 3.25 - - - - - -
+Feb2023 227 2.91 3.18 - - - - - -
+Mar2023 242 3 3.09 242 3.11 2.91 - - -
+Apr2023 282 2.75 2.88 305 3.13 3.09 - - -
+May2023 219 2.61 2.91 257 3.3 3.12 - - -
+June2023 246 2.75 2.9 313 3.05 3.04 - - -
+Jul2023 250 2.57 2.72 311 2.83 2.83 309 2.95 2.94
+Aug2023 248 2.42 2.55 253 3.11 3.07 292 2.59 2.75
+Sept2023 227 2.83 2.79 304 2.78 2.76 312 2.38 2.48
+Oct2023 245 2.59 2.75 310 2.97 2.95 342 2.4 2.48
+
+J.Clin.Med.2024,13,4747 9of11
+4. Discussion
+Ithasbeendocumentedthatrespiratoryrateisthemostskippedandleastaccurately
+measured vital at night, despite RR being an essential component of determining a pa-
+tient’scardiopulmonarystatus[6]. Thereisalsoconcernthatonceapatientleavesahighly
+monitoredarea,suchasanICUorpost-anesthesiacareunit(PACU),theassessmentofthe
+patient’sconditionisreducedtoeveryfourhoursorless. Theseassessmentsthemselves
+canbeextremelyvariablegiventheexperienceoftheproviderandthecomplexityand
+variabilityofthepatients[7]. Toassisttheclinicalprovidersonthepatientfloorsscoring
+systemshavebeenproposedtofacilitatetheearlydetectionofpatientswhosecondition
+maybedeteriorating[5]. Themodifiedearlywarningscore(MEWS)isthemostvalidated
+assessment tool [9]. But it requires accurate and timely determination of vital signs in-
+cludingRR.Toresolvethisdilemmaofallowingpatientsmuchneededsleep,whileatthe
+sametimehavingahigherfrequencyofvitalsignsassessment,ithasbeensuggestedthat
+newwirelesstechnologiesbeemployedtoprovidethismuchneededsurveillancetodetect
+deterioratingpatients[4].
+Avarietyofwirelesstechnologieshavebecomeavailable[4],andseveralofthemhave
+beenstudiedfortheirperformanceinhospitalsettings. Inallcases,real-worldcomparison
+ofvitalsignreadingstobedsidereferencesshowsdeviationfromresultsreportedinhighly
+controlledperformancetesting. OurfindingscomparingtheBioButtonvitalsignreadings
+tobedsidemeasurementsaresimilartofindingsreportedinarecentsystematicreview
+ofinpatientstudies[10],whereinthereportedBland–Altmanlimitsofagreement(LoA)
+forheartratemeasurementwere(−8.8,6.5)forHealthPatch(VitalConnect,SanJose,CA,
+USA),(−11.1,10.7)forVisiMobile(SoteraDigitalHealth,Carlsbad,CA,USA),and(−12.6,
+9.5)forVisiMobileinaseparatestudy. Forrespiratoryrate,reportedBland–AltmanLoAs
+were(−15.8,11.2)and(−10.3,9.0)forHealthPatchand(−5.5,7.9)forVisiMobile.
+For effective remote patient monitoring, the optimal device would be minimally
+intrusive to the patient while providing high-quality vitals at a frequency greater than
+onceevery4hrsanditwouldhaveabatterylifelongerthanthepatient’saveragelength
+ofstay. Inthisstudywepresenttheresultsofourexperienceutilizingasmallwireless
+wearabledevicewhichprovidesvitalsignseveryhourandhasabatterylifeofsevendays
+forinpatientmonitoring. Inthisretrospectivereviewofaprogressiverolloutofthissystem
+there is no parallel control group, but its utility was assessed by noting the types and
+frequencyofnotificationswhichprecededCDevents,modificationsincare,andreductions
+inLOS.Asmighthavebeenpredicted,highRRwasthemostfrequentnotification. Since
+RRisaprimarycomponentofminuteventilationandarterialCO ,anincreaseinRRin
+2
+apatientatrestmaysignifyeitheradecreaseintidalvolumeassociatedwithdecreasing
+pulmonarycomplianceoranincreaseinmetabolicrateassociatedwithsepsis.
+AnincreaseinRRalonewarrantsapatientassessmentforithasbeenassociatedwith
+impendingcardiopulmonaryarrest[11]. Followingthisphysiology,itisnotsurprisingthat
+thenextmostfrequentnotificationisRRtrendingincreasefollowedbyadoublehighofRR
+andHR,Table2.
+BecauseofthedifficultyofaccuratelymeasuringRRinfloorpatients,especiallyat
+night,ithasthereforebeenreferredtoasthe“neglectedvitalsign”[6]. Respiratoryrateas
+manuallychartedhasbeenconsistentlyshowntoexhibitbiasandmultiplicationartifacts
+(e.g.,countingbreathsfor30sandmultiplyingbytwo)[12]. Itisthereforenotsurprising
+thatouranalysisofRRshowedwidelimitsofagreementwithbedside-measuredRR,95%
+of±7.5. Ontheotherhand,thefactthattheRR(likeHR)ismeasuredcontinuouslyenables
+thepossibilityofusingthedevicetoreducethefrequencyofinterruptionsforvitalsign
+measurementsinsomepatients.
+Thisstudypresentssomepromisingresultswithrespecttodetectingearlysignsofpatient
+decompensationandallowingforinterventionpriortomoreseriousevents. Additionally,
+directevidenceofpatientimpactwascapturedthroughdocumentedchangestophysician
+ordersresultingfromfollow-uponvitalsignnotificationsgeneratedbythewearabledevice.
+Althoughasstatedabove,therewasnocontrolgroupfortheassessmentofimprovedsafetyor
+
+J.Clin.Med.2024,13,4747 10of11
+decreaseincost,therewas,however,atrendindecreasingLOSwhichimpliesbothimproved
+careanddecreaseincost. Additionalstudiesareneededtodemonstratethesepromising
+improvementsinoutcomesthroughstatisticallycontrolledanalyses.
+Therearelimitationsofthisreportinadditiontoissuesassociatedwithanyobser-
+vationalstudy. First,therewasnoformalassessmentofnursingstaffacceptanceandits
+possibleeffectsonstaffworkloadsuchasthepotentialeffectsoffalsepositivenotifications,
+impactonclinicalworkflow,andgeneralprovidersatisfactionwiththeBioButton. Second,
+a significant limitation in this initial rollout was that the centralized nurse monitoring
+stationwasonlystaffedweekdaysonthedayshift. Thisdecisionwasmadeforreasons
+ofcost. OnewouldexpectafasterresponsetoBioButtonnotificationsifthemonitoring
+stationwasstaffed24h,7daysperweek. Itislikelythatmoreoftheeventswithpreceding
+notificationsmayhavebeenacteduponearlier,especiallyovertheweekends. Despitethese
+limitations,thefindingsofthispreliminaryreportareverypromisinginimprovingcareby
+earlydetectionofpatientdeteriorationonmedicalandsurgicalfloors. Toourknowledge,
+thisisthefirstreportofsuchamedicalgradewearableandsysteminthislargeanumber
+ofhospitalizedpatients.
+AuthorContributions:Conceptualization,G.B.W.,J.M.andK.K.T.;methodology,G.B.W.andK.K.T.;
+formalanalysis,G.B.W.andM.E.V.; investigation,J.A.andK.K.T.; resources,J.M.; datacuration,
+M.E.V.;writing—originaldraftpreparation,G.B.W.,J.A.andK.K.T.;writing—reviewandediting,
+J.M.andF.J.C.Allauthorshavereadandagreedtothepublishedversionofthemanuscript.
+Funding:Thisresearchreceivednoexternalfunding.
+Institutional Review Board Statement: Advarra IRB (#00000971) determined that this study is
+exemptfromIRBoversight(approved4March2024).
+InformedConsentStatement:PatientconsentwaswaivedduetoIRBexemption.
+DataAvailabilityStatement:Thedatasetspresentedinthisarticlearenotreadilyavailabledueto
+dataprivacyrestrictions.
+Acknowledgments: The authors thank Lisa Deere and Lisa Crawford from Ardent Health for
+technicalsupport.
+ConflictsofInterest:G.B.W.,J.M.,M.E.V.,andJ.A.areemployeesofBioIntelliSense,Inc.K.K.T.isa
+consultanttoanequityholderinBioIntelliSense,Inc.F.J.C.declaresnoconflictsofinterest.
+References
+1. Lasater,K.B.;Aiken,L.H.;Sloane,D.;French,R.;Martin,B.;Alexander,M.;McHugh,M.D.PatientOutcomesandCostSavings
+AssociatedwithHospitalSafeNurseStaffingLegislation:AnObservationalStudy.BMJOpen2021,11,e052899.[CrossRef][PubMed]
+2. Orlov,N.M.; Arora,V.M.Thingswedofornoreason: Routineovernightvitalsignchecks. J.Hosp. Med. 2020,15,272–274.
+[CrossRef][PubMed]
+3. Tóth,V.;Meytlis,M.;Barnaby,D.P.;Bock,K.R.;Oppenheim,M.I.;Al-Abed,Y.;McGinn,T.;Davidson,K.W.;Becker,L.B.;Hirsch,
+J.S.;etal. Letsleepingpatientslie,avoidingunnecessaryovernightvitalsmonitoringusingaclinicallybaseddeep-learning
+model.NPJDigit.Med.2020,3,149.[CrossRef][PubMed]
+4. Leenen,J.P.;Leerentveld,C.;vanDijk,J.D.;vanWestreenen,H.L.;Schoonhoven,L.;Patijn,G.A.Currentevidenceforcontinuousvital
+signsmonitoringbywearablewirelessdevicesinhospitalizedadults:Systemicreview.J.Med.InternetRes.2020,22,e18636.[CrossRef]
+5. Vincent,J.L.;Einav,S.;Pearse,R.;Jaber,S.;Kranke,P.;Overdyk,F.J.;Whitaker,D.K.;Gordo,F.;Dahan,A.;Hoeft,A.Improving
+detectionofpatientdeteriorationinthegeneralhospitalwardenvironment.Eur.J.Anaesthesiol.2018,35,325–333.[CrossRef]
+6. Cretikos,M.A.;Bellomo,R.;Hillman,K.;Chen,J.;Finfer,S.;Flabouris,A.Respiratoryrate:Theneglectedvitalsign.Med.J.Aust.
+2008,188,657–659.[CrossRef]
+7. Leuvan,C.H.V.;Mitchell,I.Missedopportunities?Anobservationalstudyofvitalsignmeasurements.Crit.CareResusc.2008,10,
+111–115.[CrossRef][PubMed]
+8. Rowland,B.A.;Motamedi,V.;Michard,F.;Saha,A.K.;Khanna,A.K.Impactofcontinuousandwirelessmonitoringofvitalsigns
+onclinicaloutcomes: Apropensity-matchedobservationalstudyofsurgicalwardpatients. Br. J.Anaesth. 2024,132,519–527.
+[CrossRef][PubMed]
+9. Gardner-Thorpe,J.;Love,N.;Wrightson,J.;Walsh,S.;Keeling,N.ThevalueofModifiedEarlywarningScore(MEWS)insurgical
+in-patients:Aprospectiveobservationalstudy.Ann.R.Coll.Surg.Engl.2006,88,571–575.[CrossRef][PubMed]
+
+J.Clin.Med.2024,13,4747 11of11
+10. Patel,V.;Orchanian-Cheff,A.;Wu,R.Evaluatingthevalidityandutilityofwearabletechnologyforcontinuouslymonitoring
+patientsinahospitalsetting:Systematicreview.JMIRMhealthUhealth2021,9,e17411.[CrossRef][PubMed]
+11. Fieselmann,J.F.;Hendryx,M.S.;Helms,C.M.;Wakefield,D.S.Respiratoryratepredictscardiopulmonaryarrestforinternal
+medicineinpatients.J.Gen.Intern.Med.1993,8,354–360.[CrossRef][PubMed]
+12. Loughlin,P.C.;Sebat,F.;Kellett,J.G.Respiratoryrate:Theforgottenvitalsign—Makeitcount!Jt.Comm.J.Qual.PatientSaf.2018,
+44,494–499.[CrossRef][PubMed]
+Disclaimer/Publisher’sNote: Thestatements, opinionsanddatacontainedinallpublicationsaresolelythoseoftheindividual
+author(s)andcontributor(s)andnotofMDPIand/ortheeditor(s).MDPIand/ortheeditor(s)disclaimresponsibilityforanyinjuryto
+peopleorpropertyresultingfromanyideas,methods,instructionsorproductsreferredtointhecontent.

@@ -112,6 +112,90 @@ View all available options:
 python downloader/download_attachments.py --help
 ```
 
+## AI Attachment Classification (comment vs not-comment)
+
+Downloader includes an **AI-based classifier** that walks a docket's
+`comment_attachments/` tree and labels each **PDF attachment** as:
+
+- `comment` — the PDF itself is the substantive response / regulatory comment
+- `not_comment` — the PDF is supporting material (academic paper), a slide deck,
+  brochure/product sheet, or a cover/transmittal letter that primarily says
+  "see attached"
+
+The classifier output drives the text conversion step: **only PDFs classified as
+`comment` are converted to text**, minimizing wasted conversions.
+
+### Recommended Workflow
+
+```
+1. Download attachments          → download_attachments.py
+2. AI-classify each PDF          → classify_attachments_ai.py  → attachment_classification.csv
+3. Convert comment PDFs to text  → text_converter.py  (reads attachment_classification.csv)
+```
+
+### Configuration
+
+Set these environment variables (in `.env` or your shell):
+
+- `SLOP_CLASSIFER_API_BASE_URL`
+- `SLOP_CLASSIFER_API_KEY`
+- `SLOP_CLASSIFER_MODEL`
+
+### Run classification
+
+```bash
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv \
+  --limit 25
+```
+
+Notes:
+- Output is a **per-attachment CSV** (one row per PDF) with AI-only columns.
+- The classifier is independent of text conversion — it sends rendered page
+  images to the AI endpoint and does not need `.txt` files.
+
+### Resume / re-run
+
+Re-running will skip PDFs already present in the output CSV. To force
+reclassification:
+
+```bash
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv \
+  --force
+```
+
+### Convert only comment PDFs to text
+
+After classification, convert only the files the AI labeled `comment`:
+
+```bash
+python downloader/text_converter.py CMS-2025-0050
+# reads CMS-2025-0050/attachment_classification.csv by default
+```
+
+### If your endpoint expects a different PDF upload format
+
+The default request format sends the PDF by **rendering the first pages to images**
+and including them as OpenAI-style `messages[].content` `image_url` parts. This is
+generally the most compatible approach for OpenAI-compatible endpoints.
+
+Some gateways may require a different shape; try:
+
+```bash
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv \
+  --request-format attachments_field
+```
+
+or (less standard, for multipart-upload gateways):
+
+```bash
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv \
+  --request-format multipart_form
+```
+
 ## Features
 
 - **Automatic directory creation**: Creates nested directories based on regulation and document IDs

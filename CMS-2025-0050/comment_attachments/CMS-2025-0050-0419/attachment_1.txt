@@ -1,35 +1,1164 @@
-DEPARTMENT OF HEALTH AND HUMAN SERVICES Centers for Medicare & Medicaid Services [CMS–0042–NC] RIN 0938–AV68 Request for Information; Health Technology Ecosystem Chris Kreis, MD, 6/15/25 --------------------------------------------------------------------------------------------------------------------- Figure 1 - ChatGPT Queried June 15, 2025 I’m a 56 year old MD. I completed an NLM sponsored post doc in Medical Informatics at the Mass General Hospital Laboratory of Computer Science in 2001, and thereafter I founded an EHR company, which I have been running for 24 years. I have extensive knowledge of EHR, information technology, healthcare operations, and federal healthcare technology initiatives, including ONC goals, regulations, and certification requirements. I’m an experienced coder as well. Before answering your questions below, I want to give a general perspective on my thoughts on the federal healthcare IT initiative. 
-The ONC had 2 main goals. One was to get everyone on EHR. The second to make everything “interoperable”. In the first goal, they have to some degree succeeded, although I think that the evolution to EHR would have anyway happened naturally. The governmental acceleration forced many providers on to systems they didn’t want to be on, and which they are now stuck on. And it accelerated the growth of Epic toward being a monopoly and cemented it there. On the second goal, “interoperability”, the government has so far failed. In fact, the “interoperability” initiative, in my mind, grew out of a failure of what the real movement should have been, which is “consolidated EHR”. I’m not the first one to say this, but everyone should have one, single, centralized, consolidated medical record, or a solution which approximates this exactly. By achieving goal one (multiple EHRs), without achieving goal two (one EHR), the government has moved the problem (chaos) we had on paper, into the electronic world. And they’ve amplified it in the way that only technology can. They missed an enormous opportunity. But, realizing that they would not be able to consolidate to a single, central system, they scaled back to the next goal, connecting all the disparate systems. There is a potential savior for the federal efforts, however, and that is, of course, AI. Interestingly, ‘artificial intelligence’ is mentioned only once in this entire RFI. The government is behind the curve, because this entire RFI should probably be about AI. AI has the potential to, and will probably one day, approximate consolidation. Almost all healthcare software systems (not just EHR, but practice management, billing, scheduling, etc), are based on a back end database, connected to a front end user interface. And these (database and interface) are really 2 separate applications. So, if the government had had the foresight to set up a single back end database, which could be connected to by multiple front end user interfaces (think of these as front end applications, or, just applications), then, we could have the best of both worlds; a single, consolidated chart on the back end, with infinite variety of tailored user interfaces and applications and experiences on the front end. The front end interfaces could even be connected by an API much like FHIR. The benefits of a centralized data repository are as positive as the disadvantages of distributed data are negative. A centralized database not only forgoes the current slow approach of polling every system out there, with the inevitable risk of missing some, and trying to consolidate and somehow reconcile the gathered information, but it also allows for the rapid querying of patient data across all practices and care settings, and it allows for the rapid querying of population 
-data as well. These sorts of queries are virtually impossible with the current approach to interoperability. I can envision at least 2 ways the government could have (and still could) accomplish this. One, is that Medicare sets up a single centralized database and lets every EHR or other application connect to it. The other is that the ONC declares that the patients primary care record database, in whatever system it is currently held, is THE record database. Then, all the other systems or applications would connect to that. This eliminates the ability to query across all patients, but, at the least, it allows for query against all data for a single patient. A third option is that the ONC utilizes a non profit contractor to maintain a central database. The problem with this is that these non profit endeavors always seem to turn in to for profit ones, and sometimes government granted monopolies at that… Regardless, since this didn’t happen, the government, probably through some combination of lack of knowledge and probably more significantly politics (they found out the healthcare systems are more powerful than they are), failed to implement a centralized record. Instead, they scaled back to connecting all the systems together. This is an awkward solution. Because it means right now, and for the foreseeable future, if a doctor (or a patient) wants to see all their information, they will have to query it from potentially many disparate sources, and then try to somehow reconcile or make sense of what they get back. Additionally, if they make an update the their chart, this update doesn’t get distributed to all the other ones. So, immediately, everything is out of date. With a single database, everyone connected, all changes update the central repository immediately. Additionally, everyone contributes to keeping the information up to date. This means problems removed from the problem list when they should be, medications discontinued when they should be, and much more overall awareness of what’s going on with your patients outside of your practice. Naturally there can be such a thing as too many cooks in the kitchen, and there will be occasional contention about what and who is the source of truth, but I don’t think these disagreements will happen often. For the most part, I think a consolidated chart will allow the entire care team to coordinate much more effectively. It just must be well designed for that. And of course, it would be much easier for the patient, who can now log in to a single portal to see everything. Short of actually implementing a single central repository like this, how can we get there? AI is the obvious contender. AI is already very good at synthesizing information from disparate sources (consider for example when you ask a question, and, it pauses while you can see it searching the internet for your 
-answer, and then it comes up with, in general, a well reasoned and well phrased one [which, ha ha, has a reasonably good chance of being correct]). So, the hope will be that an AI engine can connect to all of the disparate sources provided by FHIR APIs, presumably utilizing TEFCA, and reconcile the information into a passable record (optionally, all of the information pulled from the records can be assembled algorithmically, with AI used to resolve discrepancies as best possible). Of note, AI is certainly neither foolproof nor even consistent. We use AI in our EHR to generate visit summaries and chart analyses, and each one is different every time. In fact, variability of responses is built into AI (although purely deterministic responses can be requested). AI definitely makes things up, and I expect it will be longer than anticipated until we solve that problem. It is not currently a reasoning engine. It just looks like one. One approach to the problem might still be to build a central patient data repository (I think it can be secure enough if you encrypt the contents 100%), and then build toward working off that. Another idea might be to funnel all queries through AI. Instead of connecting to all the other EHR’s via TEFCA, connect to an intermediary AI which does the querying for you. -- Another thing I noticed about federal efforts, is that in the past there was more talk of connecting EHRs for sharing patient data between EHRs and providers. But the conversation seems to have shifted, and now everyone is just talking primarily about giving patients access to their data. I suspect this is in response to the political landscape, with vendors and healthcare systems screaming that they don’t want to share their data. They say it’s for security reasons, which has some validity, but the real reason of course is competitive ones. Practices or systems want to own their patients, and they DON’T want to make it easy for patients to go elsewhere (even though it benefits them when patients can easily come to them). Giving patients access to their charts has limited value, however. Because believe it or not, patients don’t actually want access to their charts. That’s right. Patients really only do very few things in their portals. They book appointments. They pay bills. They message their doctor. They request refill requests. And they check for test results. They do practically nothing else, nor do most of them strongly desire to. What patients really DO want is for their doctors to have access to their charts. Patients, but for some small, educated fraction, don’t really care about what’s in their charts. But, they are continuously frustrated that every time they go to the doctor, they are repeating the same information, telling the 
-doctor about an appointment they had elsewhere, or a hospitalization. They are asking why their doctor doesn’t already HAVE their information. And doctors are asking this too. And they don’t just want their information; they want it consolidated and organized. And 20 years and 56+ billion dollars later, they still don’t have this. Now, some patients in this country DO have a single consolidated chart! And every provider has access to all of it! These are the patients who reside in a single healthcare system which has taken over an area and employs every doctor, and they’ve all gone on to Epic or some other system. This is fine, until the patient goes to another system (for example “snow birds” who migrate every year from Florida to Cape Cod and back…) But, one approach might simply be to give up the fight, let the giant healthcare systems and the giant EHR vendor whose name shall not be spoken dominate, and, be done with it. In many ways, it feels like this is what is anyway happening. But short of this, there is a better option, and, your next objective should be finding it. -- From the small vendor perspective, I will tell you this. Federal regulations are extremely onerous. We feel like we are stuck in a non stop loop of endless certifications. Certifications are extraordinarily expensive for a small business. Roughly $35,000 to get certified, $1,000/hr for additional hours as necessary, 3- 5,000 / year for maintenance, and ongoing certifications. Every time we make a change to the system which affects a certified section beyond cosmetics, we must re-certify. This leaves us afraid to make updates and improvements. We sometimes additionally must perform a “usability study” after even the smallest changes. This costs minimum another 3,000, takes more time, and is utterly worthless. Even if we determine that something could be improved, we already have a list of improvements we know we want to make that’s a mile long, on top of client requests. Finally, there is the required “real world testing”- who even came up with this idea- to make sure that providers are using the system in the mandated manners and that the necessary functionality (which we already certified on!) is there. Of course it’s there- we certified on it! As to whether or not providers are using – well, some they are, but some they aren’t, because, once again, worthless. In these cases we just use test scenarios to “real world” test functionality that is never used in the “real world”. Finally, we are also subject to a host of other certifications as well- Surescripts certifications, Laboratory certifications, DEA certifications, PCI compliance certifications, etc. And many of these certifications are redundant. We’ve already been sending prescriptions through Surescripts for 5 years using NCPDP script standard. Then we have to certify on it. Same thing with labs and HL7 messaging. So, we’re repeating the 
-same lengthy tedious process we already did, just to certify on a test system, meanwhile our functional eRx and lab order/results systems hum along in the background. And of course there are differences (as they say in the industry, the beauty of standards is that everyone can have their own), so, we don’t even use exactly what we certify on. If you want to know if you are hindering innovation (this question is answered somewhere below), yes, you are. Additionally, you are helping industry giants to monopolize, while crushing small businesses that might compete with them. For them, I’m sure you’re a gift from heaven. What the federal government should be doing at this point, is developing the standards for data exchange, and enforcing the requirements that EHR vendors provide data exchange (i.e. enforcing the information blocking requirements). In my experience this hasn’t happened. What has happened is this- we spend months and tens of thousands of dollars to develop HIE functionality and FHIR apis. Then, we reach out to other healthcare systems so that we can connect to their FHIR API, and they refuse. They say that the fhir api is only for patient facing apps. Not true. So, we file information blocking requests, and nothing happens. We filed in 2022. Nothing has happened. The ONC says “thanks for letting us know- we’re deciding what we’re going to do”. What do they do? They shift toward agreeing that fhir is really only about getting patients access to their charts and apps they can run. Which has little value. Certification requirements are also needlessly complex. Federal regulations state that QRDA I, a ridiculously complex specification, must be adopted by hospital EHR systems. We are ambulatory- but, we are also required to certify on the QRDA I. So, I bring this up with the ONC. They say “sorry- that’s the way it is” (clearly because they did the wrong thing in the first place). Even more aggravating is that the responses to support requests come in unsigned emails. No names, no titles, no contact information. You don’t know who you are talking to, or who you might escalate to. I suspect that I’m talking to someone at MITRE, which is making $100,000,000 designing and supporting these needlessly complex systems. As an example, let’s say a patient has a diagnosis of hypertension, ICD code I10. Here is the data
-Name=Essential (primary) hypertension. ICD10=I10 Added=6/5/2025 10:30 AddedBy=2435678987 Status=Active Here is how it is represented in the QRDA I (and roughly in the CDA); <entry> <act classCode="ACT" moodCode="EVN"> <!-- Problem Concern Act template --> <templateId root="2.16.840.1.113883.10.20.22.4.3"/> <templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2015-08-01"/> <id root="2.16.840.1.113883.3.3856.2.0" extension="7fc48bde-ab26-45a7-8dfa- 113cca705428"/> <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/> <statusCode code="active"/> <effectiveTime> <low value="20160617"/> <high nullFlavor="UNK"/> </effectiveTime> <author typeCode="AUT"> <templateId root="2.16.840.1.113883.10.20.22.4.119"/> <time value="20160617"/> <assignedAuthor> <id extension="106987" root="2.16.840.1.113883.3.3856.2.3"/> <code codeSystem="2.16.840.1.113883.6.101" codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/> </assignedAuthor> </author> <entryRelationship typeCode="SUBJ">
-<observation classCode="OBS" moodCode="EVN"> <!-- Problem observation template --> <templateId root="2.16.840.1.113883.10.20.22.4.4"/> <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08- 01"/> <id root="2.16.840.1.113883.3.3856.2.0" extension="bc8dc8a4-02d0- 4177-8f2e-9e97931d0747"/> <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"> <translation code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/> </code> <statusCode code="completed"/> <effectiveTime> <low value="20160617"/> </effectiveTime> <value xsi:type="CD" nullFlavor="OTH"> <originalText> <reference value="#ProbID-2350037"/> </originalText> <translation xsi:type="CD" displayName="Essential (primary) hypertension" code="I10" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM"/> </value> <author typeCode="AUT"> <templateId root="2.16.840.1.113883.10.20.22.4.119"/> <time value="20160617"/> <assignedAuthor> <id extension="106987" root="2.16.840.1.113883.3.3856.2.3"/> <code codeSystem="2.16.840.1.113883.6.101" codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/> </assignedAuthor> </author>
-</observation> </entryRelationship> </act> </entry> <entry> <act classCode="ACT" moodCode="EVN"> <!-- Problem Concern Act template --> <templateId root="2.16.840.1.113883.10.20.22.4.3"/> <templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2015-08-01"/> <id root="2.16.840.1.113883.3.3856.2.0" extension="7fc48bde-ab26-45a7-8dfa- 113cca705428"/> <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/> <statusCode code="active"/> <effectiveTime> <low value="20160617"/> <high nullFlavor="UNK"/> </effectiveTime> <author typeCode="AUT"> <templateId root="2.16.840.1.113883.10.20.22.4.119"/> <time value="20160617"/> <assignedAuthor> <id extension="106987" root="2.16.840.1.113883.3.3856.2.3"/> <code codeSystem="2.16.840.1.113883.6.101" codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/> </assignedAuthor> </author> <entryRelationship typeCode="SUBJ"> <observation classCode="OBS" moodCode="EVN"> <!-- Problem observation template --> <templateId root="2.16.840.1.113883.10.20.22.4.4"/> <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08- 01"/>
-<id root="2.16.840.1.113883.3.3856.2.0" extension="bc8dc8a4-02d0- 4177-8f2e-9e97931d0747"/> <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"> <translation code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/> </code> <statusCode code="completed"/> <effectiveTime> <low value="20160617"/> </effectiveTime> <value xsi:type="CD" nullFlavor="OTH"> <originalText> <reference value="#ProbID-2350037"/> </originalText> <translation xsi:type="CD" displayName="Essential (primary) hypertension" code="I10" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM"/> </value> <author typeCode="AUT"> <templateId root="2.16.840.1.113883.10.20.22.4.119"/> <time value="20160617"/> <assignedAuthor> <id extension="106987" root="2.16.840.1.113883.3.3856.2.3"/> <code codeSystem="2.16.840.1.113883.6.101" codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/> </assignedAuthor> </author> </observation> </entryRelationship> </act> </entry>
-Are you kidding me? And, this specification is used to extract quality data and send it to another system, when this isn’t something that needs to be done in the ambulatory world. Just calculate the results of the measure, and send that to another system. I challenge anyone to find any ambulatory EHR in the entire country, after we’ve all been required to certify on this ridiculous specification in an equally ridiculous manner using very bad software developed by a giant consulting firm at I can’t imagine what cost, that actually uses it. And if they are using it, well, there’s a much better way! Is anyone really understanding and paying attention to what’s going on? Or have things spun out of control? Some years ago, I responded to an RFI from the VA about putting in a scheduling system. I don’t recall the exact numbers, but I do recall then when I divided the overall cost (17 billion, I believe), by the number of people who would actually use the system, it came out to about $135,000 per user. For a scheduling system. How much should a scheduling system cost? I would say about $35 per user. And that’s not at scale. I got a call from someone at VA (who incidentally didn’t give their last name!), who asked if I minded if they presented my response to other parties at the VA. Presumably, my politics aligned with theirs. When I see numbers like these, and technology like that above, I don’t wonder why the government thinks it’s going to cost that much. You’re getting taken for a ride. -- Finally, if you really want to improve healthcare and decrease the costs, the solution isn’t just technological. You need to make systemic changes, starting with standing up to huge monied interests so that you can, for example, have technicians do common surgeries, treat common conditions, deliver babies, etc. (and soon enough, AI diagnose and create the plan, etc). -- Please see below (in blue) some of my more specific responses to your questions. A. Definitions for Terms Used in This RFI •Digital tools: web, mobile or other software applications, potentially leveraging sensors, wearables or other hardware. •Digital health products: defined as digital tools that support individual health needs. •Health management applications: Digital tools that leverage patients' data and other information to support patients with health decision-making. 
-•Care navigation applications: Digital tools that help patients identify, select, and access providers or auxiliary care services. •Personal health record apps: Software applications that collect and organize an individual's health records and provider encounter data for viewing, sharing, and usage in digital health products. B. Patients and Caregivers This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve patients and caregivers. While we certainly want patients and caregivers to answer questions in this section (and in other sections) from the patient/caregiver point of view, we also invite all stakeholders to provide their viewpoints on the patient/caregiver workflows. 1. Patient Needs PC-1. What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? First, the basics. Obviously, every patient should be able to go online, schedule an appointment, communicate with the office, register on line, fill in questionnaires, get reminders, cancel/rebook appointments, pay bills, etc. It would also be good to have a process that makes sure up front that if a patient needs a referral or a prior auth, it happens, so the provider gets paid and the patient DOESN’T get billed… So, better integration between payer and portal could be useful, there’s very little of that today. Second, yes, it’s time to get AI involved. So that patients can be triaged by AI, THEN referred for testing they might need, then given treatment or referred to a specialist as necessary. Third, it would be great to have better apps for home management. When my mother was living at home in her 90s, I put in cameras and it was a huge help. I even tried a camera which was supposed to be able to detect falls using AI, but, it didn’t work. Finally, as she moved to assisted living, I put cameras in her assisted living unit. Atria then said this was not allowed (it was pretty obvious why, it was easy to see the poor job they were doing that we were paying $20,000/month for). Cameras should not just be allowed in assisted living. They should be mandatory. a. What are the top things you would like to be able to do for your or your loved ones' health that can be enabled by digital health products?
-Better ability for children (generally) to monitor / understand their parents care (and frankly we’re going to need something other than children for the generation of childless now maturing). And apps to automatically monitor elderly and infirm. b. If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? In your response, please consider tasks that could be supported or facilitated by software solutions in the future. I’m hoping that by the time I’m 90, there will be a robot in my house that can bathe me, assist me with toilet, notice when I’m suddenly confused, pick me up off the floor, and call for help as necessary! And maybe push me down the stairs when the time comes… PC-2. Do you have easy access to your own and all your loved ones' health information in one location (for example, in a single patient portal or another software system)? If so, the only way is because someone is in an integrated healthcare system that is using Epic. If there is but one provider on an independent system, then, no, they don’t have a single patient portal. They might have, for example, have Apple health attempting to reconcile their data, but, they won’t have access to each office for communications, etc. a. If so, what are some examples of benefits it has provided? The benefits would be convenience and ease of use and better healthcare and lower costs and saved time. b. If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? In every context. c. Were there particular data types, such as x-rays or specific test results, that were unavailable? Yup. It’s very common that you can’t access your imaging studies (although again, you don’t need to – but your SPECIALIST / SURGEON does). What are the obstacles to accessing your own or your loved ones' complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? Long and short, 90 year olds can’t do it, 50 year olds can. So, 50 year olds do it for their parents, sometimes. Bear in mind that a lot of kids don’t want to get that involved. The system is supposed to be caring for their parents- that’s what it’s there for. Others want to get very involved. When I signed up for my mom’s portal it was like I was a 
-peculiarity. Why else would I be getting connected directly to the tech people? Btw, of course I had to lie and say that I was helping my mom sign up and of course I had to have control of her email to finish off the process, which fortunately I had set up years ago. PC-3. Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? The more centralized, accurate, easy to use online information you have, the better. PC-4. What features are missing from apps you use or that you are aware of today? Ha ha, the app itself is missing… a. What apps should exist but do not yet? Why do you believe they do not exist yet? Single centralized EHR should exist. Government failure is the reason it does not. Also, living in a competitive system (that wants to monopolize patient information for competitive reasons and to control / own the patient). b. What set of workflows do you believe CMS is uniquely positioned to offer? PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? I think capitalism works very well for disseminating products. Everything in America is 10% product and 90% marketing and sales. Let the industry go. They’ll find the needs, they’ll make the products, and they’ll get them out there. a. What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if there is a review process? What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary communications)? I don’t think CMS needs to intervene too much. Enough to make sure apps are safe and their makers aren’t criminals or spies, but, otherwise I say let the market decide. For the most part, it knows what contributes value. b. What changes would enable timely access to high quality CMS and provider generated data on patients? What do you know… a single record!
-PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? What can I say? Some people know how to make a good computer system, some don’t. The federal government certainly doesn’t. And all the “usability assessments” in the world aren’t going to help that. So, I say, let things evolve. PC-7. If CMS were to collect real-world data on digital health products' impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? Doesn’t make too much sense to me. People are so focused on “data driven” healthcare, that now they want data to prove that the software systems are making a difference. In general, they are making a difference, because if they weren’t, no one would be buying them. So, let the market decide on software. For the most part, the more you have, the better. For all my friends saying that we need to look at studies because they can disprove common sense conclusions, I’ve said that someone should do a study to see what percent of common sense decisions, especially when it comes to software, are actually correct. If it’s 80%, we can stop trying to analyze everything and charge on. 2. Data Access and Integration PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? Most of what patients need- not enough of what providers need! a. What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, prices)? Most of the above is hard for developers to get access to. By the way, when app vendors want access to claims data, it’s often BEFORE billing it, not after… b. What are specific sources, other than claims and clinical data, that would be of highest value, and why? Again, consolidated data from all sources. c. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? Technical, operational, regulatory, enforcement…
-PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? a. What difficulties are there in accessing or utilizing these data sources today? Why are we using oAuth? Just give the client a username and password, and have the host check every time, or, give a token as oauth does now, but, not a ridiculously complex token with all sorts of useless nonsense embedded in it. Just a long random number. You don’t need to have the scope included in the request every time. The host has to know and enforce the scope for each client anyway- so, why does the client send the scope with the request? It actually just confuses things, and eventually you’ll have some developers accidentally use the requested scope as the allowed scope. 99% of all healthcare interfaces: First party: Hello- we need this (something) from you. Second party: Ok, here’s an api we set up so you can get it. First party: Ok great, thanks, I’m getting it now. This is done routinely, and it’s not that hard. b. What suggestions do you have to improve the Blue Button 2.0 API experience? c. Is there non-CMS data that should be included in the API? PC-10. How is the Trusted Exchange Framework and Common AgreementTM (TEFCATM) currently helping to advance patient access to health information in the real world? a. Please provide specific examples. b. What changes would you suggest? c. What use cases could have a significant impact if implemented through TEFCA? d. What standards are you aware of that are currently working well to advance access and existing exchange purposes? e. What standards are you aware of that are not currently in wide use, but could improve data access and integration? f. Are there redundant standards, protocols, or channels that should be consolidated? g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information?
-If every EHR had a FHIR api, and actually allowed others to access it, we’d be largely there, at least more than sufficient for round one. PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? Not that valuable. They aren’t used that much in the small practice world. a. How valuable, available, and accurate do you find the data they share to be? b. What changes would you suggest? Move to the APIs. c. Are there particular examples of high-performing HIE models that you believe should be propagated across markets? d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? PC-12. What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? a. Examples may include the following: (1) Binding cost estimates for pre-defined periods. (2) Viewing provider schedule availability. (3) Using third-party apps for appointment management. (4) Accessing patient-facing quality metrics. (5) Finding the right provider for specific healthcare needs. b. What use cases are possible today? c. What should be possible in the near future? d. What would be very valuable but may be very hard to achieve? 3. Information Blocking and Digital Identity PC-13. How can CMS encourage patients and caregivers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would increasing reporting of complaints advance or negatively impact data exchange?
-Well, one thing that might help is that you actually do something when someone reports blocking. PC-14. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 credentialing service providers (CSP)): a. What are the challenges today in getting patients/caregivers to sign up and use digital identity credentials? This is a global problem (i.e. extending beyond healthcare). But, it would be nice to have digital verifiable credentials. For now, the best option is probably just your cell is your unique identifier… (all this concern about interception of text messages is mostly mitigated in 5G and above). I’m not sure how to tackle it. People want their anonymity, and, there are reasons for that. For the time being, the best solution might just be “your cell number is your identity”. b. What could be the benefits to patients/caregivers if digital identity credentials were more widely used? Faster check in, and, more importantly, the ability to reliably map records across domains instead of relying on very sketchy matching algorithms followed by manual intervention. c. What are the potential downsides? Loss of privacy or anonymity when desired? d. How would encouraging the use of CSPs improve access to health information? Again I think reliable matching would be the biggest impact. Speeding check in is good, but, check in doesn’t take that long. e. What role should CMS/payers, providers, and app developers have in driving adoption? Again I would say let the market handle it. f. How can CMS encourage patients to get digital identity credentials? Require them? Only don’t… C. Providers This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve providers. While we certainly want providers to answer questions in this section (and in other sections) from the provider point of view, we also invite all stakeholders to provide their viewpoints on the provider workflows as appropriate. 
-1. Digital Health Apps PR-1. What can CMS and its partners do to encourage providers, including those in rural areas, to leverage approved (see description in PC-5) digital health products for their patients? Honestly, there aren’t that many apps that make a huge difference for patients. Maybe some basic home monitoring (asthma (spirometry), bp, temp, heartbeat regularity, 02 sat to some degree. Pain.). Remember, people want to keep things simple. And the healthcare system should too. a. What are the current obstacles? b. What information should providers share with patients when using digital products in the provision of their care? c. What responsibilities do providers have when recommending use of a digital product by a patient? Not taking kickbacks? PR-2. What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated? PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? Please address all of the following: a. Current challenges in accessing different data formats. There should not be any. b. Impact on patient care quality. Important c. Technical barriers to full data accessibility. Just the usual interoperability barriers. d. Cost or privacy implications of making all data formats interoperable. Documents have a lot of value, but, there aren’t that many formats commonly used in healthcare… text, html, word/rtf, excel, pdf, tiff cover the majority of those used, outside 
-of actual images, which interestingly aren’t mentioned above. The privacy implications aren’t any different than the privacy implications of anything else in healthcare. They are important, because often documents carry very important information (we have thousands of faxed and scanned referrals in our system, millions of labs). Asking about the cost implications is indicative to me of how out of touch the government is; it’s extremely easy, and cheap, to securely manage any quantity of documents. Today, radiological images are the only type of image/document which take any significant quantity of storage. And, typically, there is no need to exchange these images. In almost all cases, only their interpretation, a tiny text document, is shared. If one does need to view the image, it would be nice to have a link to the image; and again, even large studies are easily transferred and managed on an individual basis today. e. Priority level compared to other interoperability needs. Same priority. PR-4. What changes or improvements to standards or policies might be needed for patients' third-party digital products to have access to administrative workflows, such as auto-populating intake forms, viewing provider information and schedules, and making and modifying an appointment? All this should be done in the patient portal. And most of it already is. 2. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization's systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: a. Patient Access API. Supported not utilized. b. Standardized API for Patient and Population Services. Supported not utilized. c. Provider Directory API. No support. d. Provider Access API. No support e. Payer-to-Payer API.
-No support f. Prior Authorization API. Supported, infrequently utilized. Medications only. g. Bulk FHIR—Do you support Group ID-based access filtering for population-specific queries? Supported not utilized. h. SMART on FHIR—Do you support both EHR-launched and standalone app access? What does the process for application deployment entail? Supported, minimally utilized. Launch is seamless. i. CDS Hooks (for clinical decision support integrations). Supported, selectively utilized. PR-6. Is TEFCA currently helping to advance provider access to health information? Good in theory, not used by us yet. We are getting ready to use it. It’s expensive. It would be nice if we could easily certify as a QHIN ourselves, instead of such a complex process. Or skip the QHIN and go straight peer to peer via fhir + directory. We typically don’t need to access that many peers. a. Please provide specific examples. b. What changes would you suggest? Open, easier to certify, free. c. What other options are available outside of TEFCA? Careequality, Commonwell, eHealth Exchange, HIEs, Direct d. Are there redundant standards, protocols or channels or both that could be consolidated? Direct messaging is too difficult to use. Too much certificate swapping, complex server. Many providers still are not aware of direct, and continue to fax. But fax is all electronic now anyway, so, it’s not that big of a deal, just slow and more expensive. Overall, it would be good to just have distributed peer to peer connectivity but with a central directory (i.e. TEFCA) and automation (something to find the patient data wherever it is, pull it, centralize it, display it). Again, this is all in the face of the no centralized record in the first place shortcoming.
-PR-7. What strategies can CMS implement to support providers in making high-quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? Well, again, a single centralized database would solve all these problems and facilitate real time exchange. Short of that, just keep doing what you’re doing… PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? Consolidate the measures so they are all treated the same way under the same programs. There are several different measure sources, and one department has no idea what the other is doing. Electronic measure definitions for EVERY measure so they can easily be imported to EHRs for calculating. Simplify certification and submission for vendors. More measures that really apply to the specialties. Right now I have dermatologists asking about depression… ridiculous… a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? The problem is that if you centralize the data, you won’t have real time feedback on the providers side while they are working. That being said, you could potentially do that with an API to the centralized data. If you start doing bulk exports, then you’re starting the build the centralized repository I’m talking about anyway. Security better be pretty good, because government systems get hacked all the time. The nice thing about centralized is that you can check if the measure is met across the spectrum. For example, if a patient got a vaccine elsewhere, the primary (and the patient!) might not know about it and therefore not get credit for the patient being vaccinated. b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? One thing that CMS could do is go after the low hanging fruit FIRST. For example, Medicare already has CPTs and ICDs (i.e. patient diagnosis). Pull med data from Surescripts, and then you can join diagnoses on that to see if patients are on the best meds. Then, pull lab data so that you can do quality measures against labs. These measures alone would be enough to get you started. You want to automate quality measure tracking and calculation and submission, so providers don’t have to deal with it. Just notify them when there’s a problem.
-It would be great to a have a “healthcare central command and control” that data comes in to, and recommendations come out of (and fraud is more easily tracked). Don’t do it wrong, though, or you’ll have a justified rebellion. c. Are there requirements CMS should consider for data registries to support digital quality measurement in a more efficient manner? Are there requirements CMS should consider for data registries that would support access to real-time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? I’m not sure why registries need to be involved. Just run the measures against the data in the providers EHR. It’s relatively simple. We’ve been doing it for 15+ years. We were also involved in the registry program for a number of years until it because possible to submit directly via the CMS API. Tedious program, and not well run. 3. Digital Identity PR-9. How might CMS encourage providers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins that need to be tracked for each provider relationship? Every time something like this gets implemented, some company tries to monopolize the process. Then, next thing you know, you’re paying “only” $1 per login to some company, as mandated by the fed, with no recourse until they finally figure out how corrupt and expensive it is 20 years later and change it. a. What would providers need help with to accelerate the transition to a single set of trusted digital identity credentials for the patient to keep track of, instead of one for each provider? b. How might CMS balance patient privacy with convenience and access to digital health products and services that may lead to significant improvements in health? PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs): a. What are the challenges and benefits for providers? b. How would requiring their use improve access to health information? c. What are the potential downsides? d. What impact would mandatory credentials have on a nationwide provider directory? e. How could digital identity implementation improve provider data flow? f. Would combining FHIR addresses and identity improve data flow?
-PR-11. How could members of trust communities [3] (for example, QHINs, participants and subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential Service Providers (CSPs)) better support the goals of reduced provider and patient burden while also enhancing identity management and security? 4. Information Blocking PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions or conditions within the exceptions ( 45 CFR part 171, subparts B through D) to further the access, exchange, and use of electronic health information (EHI) and to promote market competition? Long and short, if EHR A wants to connect to EHR B because B has records on A, then, A and B should be required to permit and establish this connectivity. PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3)), without a current information blocking disincentive established by CMS, what would be the most effective disincentive for that category of provider? Significant fines? PR-14. How can CMS encourage providers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? By actually doing something when someone does submit, rather than nothing for 3 years. Speaking from experience here… D. Payers PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to address those limitations? To what degree do you expect these limitations to hinder participation in TEFCA? PA-2. How can CMS encourage payers to accelerate the implementation and utilization of APIs for patients, providers, and other payers, similar to the Blue Button 2.0 and Data at the Point of Care APIs released by CMS? PA-3. How can CMS encourage payers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins? PA-4. What would be the value to payers of a nationwide provider directory that included FHIR end points and used digital identity credentials? PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of providers?
-a. How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider-side technology? b. In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? PA-7. How can CMS encourage payers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? E. Technology Vendors, Data Providers, and Networks This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve technology vendors, data providers, and networks. While we certainly want technology vendors, data providers, and networks to answer questions in this section (and in other sections) from their point of view, we also invite all stakeholders to provide their viewpoints on the technology vendor, data provider, and network use cases as appropriate. 1. Ecosystem TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? Why are you just focused on Medicare? I get it, that’s what you pay for. But, every commercial patient eventually becomes a Medicare one (with any luck!). So, think about how you can encourage development / adoption for everyone. Then, to encourage, DON’T require ridiculous certifications. Please. I’m not saying some regulation isn’t necessary, it is. Just not overregulation. Can something be done about risk? TD-2. Regarding CMS Data, to stimulate developer interest— a. What additional data would be most valuable if made available through CMS APIs? Did I mention how nice a centralized, consolidated data set would be? Perhaps make it an option first, something developers can use if they want to. Like, you can keep all your patient data in your own database, but you can also use ours, free! If you use ours, then, you’ll be part of an interactive charting experiment, where numerous parties update the same chart. I bet it could take off.
-b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? Do you mean non CMS sources? Surescripts med history, lab data. Complete chart… c. What obstacles prevent accessing these data sources today? Former 2 easy, complete chart is information blocked. d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and benefits? b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? c. What impact would mandatory use of the OpenID Connect identity protocol have? 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? Make the standards less ridiculous (I think FHIR is already a bit better than CCDA and QRDA, so, getting there). Require the use of the standards for exchange (but, people will use them- everyone adopted HL7 easily enough (although I don’t know what it took to get there, because that was before even my time!). But there was no government involvement. The industry did it themselves. If you develop a good standard, it will be used. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? Yes, it would be useful- if FHIR endpoints didn’t refuse to connect, and government takes action when they do… Fed should publish. Cost should be much less than MITRE tells you… If you had such a nationwide directory, TEFCA/QHINs might not even be necessary. In general, we know what other systems we need to connect to. It’s not all of them. We just do it as we go along. It would be nice to be able to query every system for each patient- but, you’d almost need some sort of intermediary branching approach to 
-properly do that. It’s probably not necessary. Overkill. Ask the patient in their portal what doctors they’ve seen or hospitals been to, check a directory to see what the EHR is for those providers / hospitals, query them. Something like that. TD-6. What unique interoperability functions does TEFCA perform? Do you not know this? Are you asking to see if a. What existing alternatives should be considered? b. Are there redundant standards, protocols or channels or both that should be consolidated? TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? a. Does it contain the full extent of data elements you need? No- but you can have a very functional subset that meets most needs. Remember- low hanging fruit first. Don’t build an aircraft carrier when all you need is a drone. b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized? Limitations c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such challenges be addressed? Add more. Just don’t require everyone to certify on them. There if you need them. That’s how standards are supposed to work. d. Given improvements in language models, would you prefer a non-proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? No TD-8. What are the most effective certification criteria and standards under the ONC Health IT Certification Program? None of them. TD-9. Regarding certification of health IT: a. What are the benefits of redefining certification to prioritize API-enabled capabilities over software functionality?
-Good idea. Software is and has been ahead of the requirements for a long time. So the requirements have been redundant, expensive, time consuming. b. What would be the drawbacks? None. Except removing the competitive walls that we all had to clear for new competitors. c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient's chart (for example, faxed records, free text, discrete data)? For certain things (problems, meds, allergies, labs) you are requesting discrete coded data (although many labs are still in faxes; probably good to eliminate that problem at the root level and require labs to provide hl7 interfaces which most of them support but don’t mandate). For documents, it’s easy. Just query for list of available documents, then, if you want to see one, pull it and view it. This is a very simple problem to solve. d. What policy changes could CMS make so providers are motivated to respond to API-based data requests with best possible coverage and quality of data? FORCE THEM TO RESPOND. After that, just let the receiver complain if what they need isn’t there. Then enforce including that if it’s part of the spec. And btw, yes, insurance IS part of the requirement. I’m not sure if Epic still does this, but they probably do. They used to obfuscate part of the claim numbers. e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? What capabilities are needed to show benefit? What concerns are there with this approach? See comments above. I have mixed feelings about this. Part of me says calculate in the local EHR, submit the numbers only. This way it is easy to see if your system is really capturing what it should be and can provide real time notifications for providers. Probably the better option. Dumping everything to Medicare is another approach, but I can only imagine the headaches there. An auditing nightmare. Especially once you’re mixing data across parties. Maybe make it an option? And better make it experimental at first… TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certification ( 42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable privacy laws?
-Again I think this is an enforcement issue, of which there is currently 0. One thing that would be nice is if EHR vendors could become certified parties. Then if we have that certificate, we can connect to outside APIs without further certification with the other vendor. I will say that the idea of having a kazillion records connected to ours and making requests constantly makes me a little nervous (i.e. system slowdowns, endless support requests). And sooner or later someone is going to get into the mix who doesn’t belong in there. People could start lobbing support requests just as a competitive measure… Right now as mentioned, we typically know who we need to connect to. It would be nice if we could just contact those parties and request a connection and get it; but NOT query a QHIN or TEFCA to search a thousand installations to locate a patient… All the multiplicative permutations or connections are another reason a single, centralized, consolidated record is a much better solution. TD-11. As of January 1, 2024, many health IT developers with products certified through the ONC Health IT Certification Program are required to include the capability to perform an electronic health information export or “EHI export” for a single patient as well as for patient populations ( 45 CFR 170.315(b)(10)). Such health IT developers are also required to publicly describe the format of the EHI export. Notably, how EHI export was accomplished was left entirely to the health IT developer. Now that this capability has been in production for over a year, CMS and ASTP/ONC seek input on the following: a. Should this capability be revised to specify standardized API requirements for EHI export? Aren’t most people actually already using the CCDA format requested? I even think I recall that it’s required for certification even though it’s theoretically not… (yes, there are things like this as part of the certification process). b. Are there specific workflow aspects that could be improved? Not really. I think scheduled export is fine. c. Should CMS consider policy changes to support this capability's use? No 4. Data Exchange TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider?
-TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? Just further progress toward a totally integrated, smooth healthcare experience. a. What are the primary obstacles to this? The information is still all over the place, unreconciled, so it has to be gathered and reconciled, which is an impossible expectation… no one has the time (or the knowledge) to do it. I’m not calling another doctor to verify a diagnosis in question. I don’t have time, they don’t have time. AI might solve, it might not. Also, obviously, security. How do you trust the party you are connecting to? Businesses are going to want access to the data too, some for “good” purposes, many just for marketing, and some for even worse reasons (insurance denial, extortion, etc). b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing capabilities today? I think almost all the chart can be represented in USCDI, possibly with some custom extensions as necessary. TD-14. Regarding networks' use of FHIR APIs: a. How many endpoints is your network connected to for patient data sharing? What types, categories, geographies of endpoints do you cover? Are they searchable by National Provider Identifier (NPI) or organizational ID? We share patient data with a few 3rd parties via HL7 interfaces or direct messaging, but all of the FHIR API requests we have made have been denied. I don’t know that the endpoints are searchable; I think that would need to be in the directory before connecting. b. How are these connections established (for example, FHIR (g)(10) endpoints, TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)? Direct messaging + Proprietary only atm. c. Do you interconnect with other networks? Under what frameworks (for example, TEFCA, private agreements)? Minimally. Private agreements only. TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data flow? Not much for us. We’re not a data analysis company.
-b. What are the potential disadvantages of their use? Slowing source system, theft of data. TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network infrastructure? P2p initially easier but gets more complex as you scale. Shared is nice, but people aren’t playing by the rules. a. Do current rules encourage scalable network participation? Yes, but the current rules are being ignored. b. What changes would improve alignment (for example, API unification, reciprocal access)? TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? I think they should mandate the standard, and mandate/enforce the response to requests, but not a lot more. Parties can work among themselves to implement the interfaces. 5. Compliance TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? 1) Refusals to swap certificates for direct message exchange! 2) Refusals to download app identifier to Epic so that we can connect to their FHIR apis. b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? Fines? A friendly call from the ONC? Not necessarily in that order… c. Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? There’s no enforcement. The big guys don’t care. They are all stalling by doing wait and see.
-TD-19. Regarding price transparency implementation: a. What are current shortcomings in content, format, delivery, and timeliness? b. Which workflows would benefit most from functional price transparency? c. What improvements would be most valuable for patients, providers, or payers, including CMS? d. What would further motivate solution development? F. Value-Based Care Organizations This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve value-based care organizations. While we certainly want value-based care organizations to answer questions in this section (and in other sections) from the value-based care provider point of view, we also invite all stakeholders to provide their viewpoints on the value-based care workflows as appropriate. 1. Digital Health Adoption VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital health management and care navigation products more often and more effectively with their patients? What are the current obstacles preventing broader digital product adoption for patients in ACOs? VB-2. How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? VB-3. What are essential health IT capabilities for value-based care arrangements? a. Examples (not comprehensive) may include: care planning, patient event notification, data extraction/normalization, quality performance measurement, access to claims data, attribution and patient ID matching, remote device interoperability, or other patient empowerment tools. b. What other health IT capabilities have proven valuable to succeeding in value-based care arrangements? VB-4. What are the essential data types needed for successful participation in value- based care arrangements? 2. Compliance and Certification
-VB-5. In your experience, how do current certification criteria and standards incorporated into the ONC Health IT Certification Program support value-based care delivery? VB-6. What specific health information technology capabilities that could benefit APMs are not currently addressed by existing certification criteria and standards that should be included under the ONC Health IT Certification Program? VB-7. How can technology requirements for APMs, established through CEHRT or other pathways, reduce complexity while preserving necessary flexibility? VB-8. How can other HHS policies supplement CEHRT requirements to better optimize the use of digital health products in APMs? As an example, requirements under the Conditions of Participation for hospitals ( 42 CFR 482.24(d)) require hospitals to transmit electronic patient event notifications to community providers. What barriers are in place preventing APM participants from receiving the same notifications? VB-9. What technology requirements should be different for APM organizations when comparing to non-APM organizations (for example, quality reporting, and interoperability)? VB-10. In the Calendar Year (CY) 2024 Physician Fee Schedule final rule ( 88 FR 79413), CMS established that CEHRT requirements for Advanced APMs beyond those in the “Base EHR” definition should be flexible based on what is applicable to the APM that year based on the area of clinical practice. What certification criteria should CMS identify under this flexibility for specific Advanced APMs, or for Advanced APMs in general? Are there specific flexibilities or alternatives to consider for smaller or resource-constrained (such as rural) providers in meeting CEHRT requirements without compromising quality of care or availability of performance data? 3. Technical Standards VB-11. What specific interoperability challenges have you encountered in implementing value-based care programs? VB-12. What technology standardization would preserve program-specific flexibility while promoting innovation in APM technology implementation? VB-13. What improvements to existing criteria and standards would better support value-based care capabilities while reducing provider burden? VB-14. How could implementing digital identity credentials improve value-based care delivery and outcomes? VB-15. How could a nationwide provider directory of FHIR endpoints help improve access to patient data and understanding of claims data sources? What key data 
-elements would be necessary in a nationwide FHIR endpoints directory to maximize its effectiveness? III. Collection of Information Requirements Please note, this is a request for information (RFI) only. In accordance with the implementing regulations of the Paperwork Reduction Act of 1995 (PRA), specifically 5 CFR 1320.3(h)(4), this general solicitation is exempt from the PRA. Facts or opinions submitted in response to general solicitations of comments from the public, published in the Federal Register or other publications, regardless of the form or format thereof, provided that no person is required to supply specific information pertaining to the commenter, other than that necessary for self-identification, as a condition of the agency's full consideration, are not generally considered information collections and therefore not subject to the PRA. This RFI is issued solely for information and planning purposes; it does not constitute a Request for Proposal (RFP), applications, proposal abstracts, or quotations. This RFI does not commit the U.S. Government to contract for any supplies or services or make a grant award. Further, CMS and ASTP/ONC are not seeking proposals through this RFI and will not accept unsolicited proposals. Responders are advised that the U.S. Government will not pay for any information or administrative costs incurred in response to this RFI; all costs associated with responding to this RFI will be solely at the interested party's expense. CMS and ASTP/ONC note that not responding to this RFI does not preclude participation in any future procurement, if conducted. It is the responsibility of the potential responders to monitor this RFI announcement for additional information pertaining to this request. In addition, CMS and ASTP/ONC note that we will not respond to questions about potential policy issues raised in this RFI. CMS and ASTP/ONC will actively consider input as we develop future regulatory proposals or future subregulatory policy guidance. We may or may not choose to contact individual responders. Such communications would be for the sole purpose of clarifying statements in the responders' written responses. Contractor support personnel may be used to review responses to this RFI. Responses to this notice are not offers and cannot be accepted by the Government to form a binding contract or issue a grant. Information obtained as a result of this RFI may be used by the Government for program planning on a non-attribution basis. Respondents should not include any information that might be considered proprietary or confidential. This RFI should not be construed as a commitment or authorization to incur cost for which reimbursement would be required or sought. All submissions become U.S. Government property and will not be returned. In addition, we may publicly post the public comments received or a summary of those public comments.
-Stephanie Carlton, Deputy Administrator of the Centers for Medicare & Medicaid Services, approved this document on May 9, 2025. Steven Posnack, Acting Assistant Secretary for Technology Policy, Acting National Coordinator for Health Information Technology, approved this document on May 6, 2025. Robert F. Kennedy, Jr., Secretary, Department of Health and Human Services. Thanks for considering!
+DEPARTMENT OF HEALTH AND HUMAN SERVICES
+Centers for Medicare & Medicaid Services
+[CMS–0042–NC]
+RIN 0938–AV68
+Request for Information; Health Technology Ecosystem
+Chris Kreis, MD, 6/15/25
+---------------------------------------------------------------------------------------------------------------------
+Figure 1 - ChatGPT Queried June 15, 2025
+I’m a 56 year old MD. I completed an NLM sponsored post doc in Medical
+Informatics at the Mass General Hospital Laboratory of Computer Science in
+2001, and thereafter I founded an EHR company, which I have been running for 24
+years. I have extensive knowledge of EHR, information technology, healthcare
+operations, and federal healthcare technology initiatives, including ONC goals,
+regulations, and certification requirements. I’m an experienced coder as well.
+Before answering your questions below, I want to give a general perspective on
+my thoughts on the federal healthcare IT initiative.
+
+The ONC had 2 main goals. One was to get everyone on EHR. The second to
+make everything “interoperable”. In the first goal, they have to some degree
+succeeded, although I think that the evolution to EHR would have anyway
+happened naturally. The governmental acceleration forced many providers on to
+systems they didn’t want to be on, and which they are now stuck on. And it
+accelerated the growth of Epic toward being a monopoly and cemented it there.
+On the second goal, “interoperability”, the government has so far failed. In fact,
+the “interoperability” initiative, in my mind, grew out of a failure of what the real
+movement should have been, which is “consolidated EHR”.
+I’m not the first one to say this, but everyone should have one, single, centralized,
+consolidated medical record, or a solution which approximates this exactly. By
+achieving goal one (multiple EHRs), without achieving goal two (one EHR), the
+government has moved the problem (chaos) we had on paper, into the electronic
+world. And they’ve amplified it in the way that only technology can. They missed
+an enormous opportunity. But, realizing that they would not be able to
+consolidate to a single, central system, they scaled back to the next goal,
+connecting all the disparate systems.
+There is a potential savior for the federal efforts, however, and that is, of course,
+AI. Interestingly, ‘artificial intelligence’ is mentioned only once in this entire RFI.
+The government is behind the curve, because this entire RFI should probably be
+about AI. AI has the potential to, and will probably one day, approximate
+consolidation.
+Almost all healthcare software systems (not just EHR, but practice management,
+billing, scheduling, etc), are based on a back end database, connected to a front
+end user interface. And these (database and interface) are really 2 separate
+applications. So, if the government had had the foresight to set up a single back
+end database, which could be connected to by multiple front end user interfaces
+(think of these as front end applications, or, just applications), then, we could
+have the best of both worlds; a single, consolidated chart on the back end, with
+infinite variety of tailored user interfaces and applications and experiences on the
+front end. The front end interfaces could even be connected by an API much like
+FHIR.
+The benefits of a centralized data repository are as positive as the disadvantages
+of distributed data are negative. A centralized database not only forgoes the
+current slow approach of polling every system out there, with the inevitable risk
+of missing some, and trying to consolidate and somehow reconcile the gathered
+information, but it also allows for the rapid querying of patient data across all
+practices and care settings, and it allows for the rapid querying of population
+
+data as well. These sorts of queries are virtually impossible with the current
+approach to interoperability.
+I can envision at least 2 ways the government could have (and still could)
+accomplish this. One, is that Medicare sets up a single centralized database and
+lets every EHR or other application connect to it. The other is that the ONC
+declares that the patients primary care record database, in whatever system it is
+currently held, is THE record database. Then, all the other systems or
+applications would connect to that. This eliminates the ability to query across all
+patients, but, at the least, it allows for query against all data for a single patient. A
+third option is that the ONC utilizes a non profit contractor to maintain a central
+database. The problem with this is that these non profit endeavors always seem
+to turn in to for profit ones, and sometimes government granted monopolies at
+that…
+Regardless, since this didn’t happen, the government, probably through some
+combination of lack of knowledge and probably more significantly politics (they
+found out the healthcare systems are more powerful than they are), failed to
+implement a centralized record. Instead, they scaled back to connecting all the
+systems together. This is an awkward solution. Because it means right now, and
+for the foreseeable future, if a doctor (or a patient) wants to see all their
+information, they will have to query it from potentially many disparate sources,
+and then try to somehow reconcile or make sense of what they get back.
+Additionally, if they make an update the their chart, this update doesn’t get
+distributed to all the other ones. So, immediately, everything is out of date.
+With a single database, everyone connected, all changes update the central
+repository immediately. Additionally, everyone contributes to keeping the
+information up to date. This means problems removed from the problem list when
+they should be, medications discontinued when they should be, and much more
+overall awareness of what’s going on with your patients outside of your practice.
+Naturally there can be such a thing as too many cooks in the kitchen, and there
+will be occasional contention about what and who is the source of truth, but I
+don’t think these disagreements will happen often. For the most part, I think a
+consolidated chart will allow the entire care team to coordinate much more
+effectively. It just must be well designed for that. And of course, it would be much
+easier for the patient, who can now log in to a single portal to see everything.
+Short of actually implementing a single central repository like this, how can we
+get there? AI is the obvious contender. AI is already very good at synthesizing
+information from disparate sources (consider for example when you ask a
+question, and, it pauses while you can see it searching the internet for your
+
+answer, and then it comes up with, in general, a well reasoned and well phrased
+one [which, ha ha, has a reasonably good chance of being correct]). So, the hope
+will be that an AI engine can connect to all of the disparate sources provided by
+FHIR APIs, presumably utilizing TEFCA, and reconcile the information into a
+passable record (optionally, all of the information pulled from the records can be
+assembled algorithmically, with AI used to resolve discrepancies as best
+possible).
+Of note, AI is certainly neither foolproof nor even consistent. We use AI in our
+EHR to generate visit summaries and chart analyses, and each one is different
+every time. In fact, variability of responses is built into AI (although purely
+deterministic responses can be requested). AI definitely makes things up, and I
+expect it will be longer than anticipated until we solve that problem. It is not
+currently a reasoning engine. It just looks like one.
+One approach to the problem might still be to build a central patient data
+repository (I think it can be secure enough if you encrypt the contents 100%), and
+then build toward working off that. Another idea might be to funnel all queries
+through AI. Instead of connecting to all the other EHR’s via TEFCA, connect to an
+intermediary AI which does the querying for you.
+--
+Another thing I noticed about federal efforts, is that in the past there was more
+talk of connecting EHRs for sharing patient data between EHRs and providers.
+But the conversation seems to have shifted, and now everyone is just talking
+primarily about giving patients access to their data. I suspect this is in response
+to the political landscape, with vendors and healthcare systems screaming that
+they don’t want to share their data. They say it’s for security reasons, which has
+some validity, but the real reason of course is competitive ones. Practices or
+systems want to own their patients, and they DON’T want to make it easy for
+patients to go elsewhere (even though it benefits them when patients can easily
+come to them).
+Giving patients access to their charts has limited value, however. Because
+believe it or not, patients don’t actually want access to their charts. That’s right.
+Patients really only do very few things in their portals. They book appointments.
+They pay bills. They message their doctor. They request refill requests. And they
+check for test results. They do practically nothing else, nor do most of them
+strongly desire to. What patients really DO want is for their doctors to have
+access to their charts. Patients, but for some small, educated fraction, don’t really
+care about what’s in their charts. But, they are continuously frustrated that every
+time they go to the doctor, they are repeating the same information, telling the
+
+doctor about an appointment they had elsewhere, or a hospitalization. They are
+asking why their doctor doesn’t already HAVE their information. And doctors are
+asking this too. And they don’t just want their information; they want it
+consolidated and organized. And 20 years and 56+ billion dollars later, they still
+don’t have this.
+Now, some patients in this country DO have a single consolidated chart! And
+every provider has access to all of it! These are the patients who reside in a
+single healthcare system which has taken over an area and employs every
+doctor, and they’ve all gone on to Epic or some other system. This is fine, until
+the patient goes to another system (for example “snow birds” who migrate every
+year from Florida to Cape Cod and back…) But, one approach might simply be to
+give up the fight, let the giant healthcare systems and the giant EHR vendor
+whose name shall not be spoken dominate, and, be done with it. In many ways, it
+feels like this is what is anyway happening. But short of this, there is a better
+option, and, your next objective should be finding it.
+--
+From the small vendor perspective, I will tell you this. Federal regulations are
+extremely onerous. We feel like we are stuck in a non stop loop of endless
+certifications. Certifications are extraordinarily expensive for a small business.
+Roughly $35,000 to get certified, $1,000/hr for additional hours as necessary, 3-
+5,000 / year for maintenance, and ongoing certifications. Every time we make a
+change to the system which affects a certified section beyond cosmetics, we
+must re-certify. This leaves us afraid to make updates and improvements. We
+sometimes additionally must perform a “usability study” after even the smallest
+changes. This costs minimum another 3,000, takes more time, and is utterly
+worthless. Even if we determine that something could be improved, we already
+have a list of improvements we know we want to make that’s a mile long, on top
+of client requests. Finally, there is the required “real world testing”- who even
+came up with this idea- to make sure that providers are using the system in the
+mandated manners and that the necessary functionality (which we already
+certified on!) is there. Of course it’s there- we certified on it! As to whether or not
+providers are using – well, some they are, but some they aren’t, because, once
+again, worthless. In these cases we just use test scenarios to “real world” test
+functionality that is never used in the “real world”. Finally, we are also subject to
+a host of other certifications as well- Surescripts certifications, Laboratory
+certifications, DEA certifications, PCI compliance certifications, etc. And many of
+these certifications are redundant. We’ve already been sending prescriptions
+through Surescripts for 5 years using NCPDP script standard. Then we have to
+certify on it. Same thing with labs and HL7 messaging. So, we’re repeating the
+
+same lengthy tedious process we already did, just to certify on a test system,
+meanwhile our functional eRx and lab order/results systems hum along in the
+background. And of course there are differences (as they say in the industry, the
+beauty of standards is that everyone can have their own), so, we don’t even use
+exactly what we certify on.
+If you want to know if you are hindering innovation (this question is answered
+somewhere below), yes, you are. Additionally, you are helping industry giants to
+monopolize, while crushing small businesses that might compete with them. For
+them, I’m sure you’re a gift from heaven.
+What the federal government should be doing at this point, is developing the
+standards for data exchange, and enforcing the requirements that EHR vendors
+provide data exchange (i.e. enforcing the information blocking requirements). In
+my experience this hasn’t happened. What has happened is this- we spend
+months and tens of thousands of dollars to develop HIE functionality and FHIR
+apis. Then, we reach out to other healthcare systems so that we can connect to
+their FHIR API, and they refuse. They say that the fhir api is only for patient facing
+apps. Not true. So, we file information blocking requests, and nothing happens.
+We filed in 2022. Nothing has happened. The ONC says “thanks for letting us
+know- we’re deciding what we’re going to do”. What do they do? They shift
+toward agreeing that fhir is really only about getting patients access to their
+charts and apps they can run. Which has little value.
+Certification requirements are also needlessly complex. Federal regulations state
+that QRDA I, a ridiculously complex specification, must be adopted by hospital
+EHR systems. We are ambulatory- but, we are also required to certify on the
+QRDA I. So, I bring this up with the ONC. They say “sorry- that’s the way it is”
+(clearly because they did the wrong thing in the first place). Even more
+aggravating is that the responses to support requests come in unsigned emails.
+No names, no titles, no contact information. You don’t know who you are talking
+to, or who you might escalate to. I suspect that I’m talking to someone at MITRE,
+which is making $100,000,000 designing and supporting these needlessly
+complex systems.
+As an example, let’s say a patient has a diagnosis of hypertension, ICD code I10.
+Here is the data
+
+Name=Essential (primary) hypertension.
+ICD10=I10
+Added=6/5/2025 10:30
+AddedBy=2435678987
+Status=Active
+Here is how it is represented in the QRDA I (and roughly in the CDA);
+<entry>
+<act classCode="ACT" moodCode="EVN">
+<!-- Problem Concern Act template -->
+<templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+<templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2015-08-01"/>
+<id root="2.16.840.1.113883.3.3856.2.0" extension="7fc48bde-ab26-45a7-8dfa-
+113cca705428"/>
+<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+<statusCode code="active"/>
+<effectiveTime>
+<low value="20160617"/>
+<high nullFlavor="UNK"/>
+</effectiveTime>
+<author typeCode="AUT">
+<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+<time value="20160617"/>
+<assignedAuthor>
+<id extension="106987" root="2.16.840.1.113883.3.3856.2.3"/>
+<code codeSystem="2.16.840.1.113883.6.101"
+codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/>
+</assignedAuthor>
+</author>
+<entryRelationship typeCode="SUBJ">
+
+<observation classCode="OBS" moodCode="EVN">
+<!-- Problem observation template -->
+<templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-
+01"/>
+<id root="2.16.840.1.113883.3.3856.2.0" extension="bc8dc8a4-02d0-
+4177-8f2e-9e97931d0747"/>
+<code code="55607006" displayName="Problem"
+codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+<translation code="75326-9"
+codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
+</code>
+<statusCode code="completed"/>
+<effectiveTime>
+<low value="20160617"/>
+</effectiveTime>
+<value xsi:type="CD" nullFlavor="OTH">
+<originalText>
+<reference value="#ProbID-2350037"/>
+</originalText>
+<translation xsi:type="CD" displayName="Essential (primary)
+hypertension" code="I10" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM"/>
+</value>
+<author typeCode="AUT">
+<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+<time value="20160617"/>
+<assignedAuthor>
+<id extension="106987"
+root="2.16.840.1.113883.3.3856.2.3"/>
+<code codeSystem="2.16.840.1.113883.6.101"
+codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/>
+</assignedAuthor>
+</author>
+
+</observation>
+</entryRelationship>
+</act>
+</entry>
+<entry>
+<act classCode="ACT" moodCode="EVN">
+<!-- Problem Concern Act template -->
+<templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+<templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2015-08-01"/>
+<id root="2.16.840.1.113883.3.3856.2.0" extension="7fc48bde-ab26-45a7-8dfa-
+113cca705428"/>
+<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+<statusCode code="active"/>
+<effectiveTime>
+<low value="20160617"/>
+<high nullFlavor="UNK"/>
+</effectiveTime>
+<author typeCode="AUT">
+<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+<time value="20160617"/>
+<assignedAuthor>
+<id extension="106987" root="2.16.840.1.113883.3.3856.2.3"/>
+<code codeSystem="2.16.840.1.113883.6.101"
+codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/>
+</assignedAuthor>
+</author>
+<entryRelationship typeCode="SUBJ">
+<observation classCode="OBS" moodCode="EVN">
+<!-- Problem observation template -->
+<templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-
+01"/>
+
+<id root="2.16.840.1.113883.3.3856.2.0" extension="bc8dc8a4-02d0-
+4177-8f2e-9e97931d0747"/>
+<code code="55607006" displayName="Problem"
+codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+<translation code="75326-9"
+codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
+</code>
+<statusCode code="completed"/>
+<effectiveTime>
+<low value="20160617"/>
+</effectiveTime>
+<value xsi:type="CD" nullFlavor="OTH">
+<originalText>
+<reference value="#ProbID-2350037"/>
+</originalText>
+<translation xsi:type="CD" displayName="Essential (primary)
+hypertension" code="I10" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-CM"/>
+</value>
+<author typeCode="AUT">
+<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+<time value="20160617"/>
+<assignedAuthor>
+<id extension="106987"
+root="2.16.840.1.113883.3.3856.2.3"/>
+<code codeSystem="2.16.840.1.113883.6.101"
+codeSystemName="Health Care Provider Taxonomy" nullFlavor="UNK"/>
+</assignedAuthor>
+</author>
+</observation>
+</entryRelationship>
+</act>
+</entry>
+
+Are you kidding me? And, this specification is used to extract quality data and
+send it to another system, when this isn’t something that needs to be done in the
+ambulatory world. Just calculate the results of the measure, and send that to
+another system. I challenge anyone to find any ambulatory EHR in the entire
+country, after we’ve all been required to certify on this ridiculous specification in
+an equally ridiculous manner using very bad software developed by a giant
+consulting firm at I can’t imagine what cost, that actually uses it. And if they are
+using it, well, there’s a much better way! Is anyone really understanding and
+paying attention to what’s going on? Or have things spun out of control?
+Some years ago, I responded to an RFI from the VA about putting in a scheduling
+system. I don’t recall the exact numbers, but I do recall then when I divided the
+overall cost (17 billion, I believe), by the number of people who would actually use
+the system, it came out to about $135,000 per user. For a scheduling system. How
+much should a scheduling system cost? I would say about $35 per user. And
+that’s not at scale. I got a call from someone at VA (who incidentally didn’t give
+their last name!), who asked if I minded if they presented my response to other
+parties at the VA. Presumably, my politics aligned with theirs. When I see
+numbers like these, and technology like that above, I don’t wonder why the
+government thinks it’s going to cost that much. You’re getting taken for a ride.
+--
+Finally, if you really want to improve healthcare and decrease the costs, the
+solution isn’t just technological. You need to make systemic changes, starting
+with standing up to huge monied interests so that you can, for example, have
+technicians do common surgeries, treat common conditions, deliver babies, etc.
+(and soon enough, AI diagnose and create the plan, etc).
+--
+Please see below (in blue) some of my more specific responses to your
+questions.
+A. Definitions for Terms Used in This RFI
+• Digital tools: web, mobile or other software applications, potentially leveraging
+sensors, wearables or other hardware.
+• Digital health products: defined as digital tools that support individual health
+needs.
+• Health management applications: Digital tools that leverage patients' data and
+other information to support patients with health decision-making.
+
+• Care navigation applications: Digital tools that help patients identify, select, and
+access providers or auxiliary care services.
+• Personal health record apps: Software applications that collect and organize an
+individual's health records and provider encounter data for viewing, sharing, and
+usage in digital health products.
+B. Patients and Caregivers
+This section is intended for all stakeholders to provide input on questions as they relate
+to use cases and workflows that involve patients and caregivers. While we certainly
+want patients and caregivers to answer questions in this section (and in other sections)
+from the patient/caregiver point of view, we also invite all stakeholders to provide their
+viewpoints on the patient/caregiver workflows.
+1. Patient Needs
+PC-1. What health management or care navigation apps would help you understand
+and manage your (or your loved ones) health needs, as well as the actions you should
+take?
+First, the basics. Obviously, every patient should be able to go online, schedule an
+appointment, communicate with the office, register on line, fill in questionnaires, get
+reminders, cancel/rebook appointments, pay bills, etc. It would also be good to have a
+process that makes sure up front that if a patient needs a referral or a prior auth, it
+happens, so the provider gets paid and the patient DOESN’T get billed… So, better
+integration between payer and portal could be useful, there’s very little of that today.
+Second, yes, it’s time to get AI involved. So that patients can be triaged by AI, THEN
+referred for testing they might need, then given treatment or referred to a specialist as
+necessary.
+Third, it would be great to have better apps for home management. When my mother
+was living at home in her 90s, I put in cameras and it was a huge help. I even tried a
+camera which was supposed to be able to detect falls using AI, but, it didn’t work.
+Finally, as she moved to assisted living, I put cameras in her assisted living unit. Atria
+then said this was not allowed (it was pretty obvious why, it was easy to see the poor
+job they were doing that we were paying $20,000/month for). Cameras should not just
+be allowed in assisted living. They should be mandatory.
+a. What are the top things you would like to be able to do for your or your loved ones'
+health that can be enabled by digital health products?
+
+Better ability for children (generally) to monitor / understand their parents care (and
+frankly we’re going to need something other than children for the generation of childless
+now maturing). And apps to automatically monitor elderly and infirm.
+b. If you had a personal assistant to support your health needs, what are the top things
+you would ask them to help with? In your response, please consider tasks that could be
+supported or facilitated by software solutions in the future.
+I’m hoping that by the time I’m 90, there will be a robot in my house that can bathe me,
+assist me with toilet, notice when I’m suddenly confused, pick me up off the floor, and
+call for help as necessary! And maybe push me down the stairs when the time comes…
+PC-2. Do you have easy access to your own and all your loved ones' health information
+in one location (for example, in a single patient portal or another software system)?
+If so, the only way is because someone is in an integrated healthcare system that is
+using Epic. If there is but one provider on an independent system, then, no, they don’t
+have a single patient portal. They might have, for example, have Apple health
+attempting to reconcile their data, but, they won’t have access to each office for
+communications, etc.
+a. If so, what are some examples of benefits it has provided?
+The benefits would be convenience and ease of use and better healthcare and lower
+costs and saved time.
+b. If not, in what contexts or for what workflows would it be most valuable to use one
+portal or system to access all such health information?
+In every context.
+c. Were there particular data types, such as x-rays or specific test results, that were
+unavailable?
+Yup. It’s very common that you can’t access your imaging studies (although again, you
+don’t need to – but your SPECIALIST / SURGEON does).
+What are the obstacles to accessing your own or your loved ones' complete health
+information electronically and using it for managing health conditions or finding the best
+care (for example, limitations in functionality, user friendliness, or access to basic
+technology infrastructure)?
+Long and short, 90 year olds can’t do it, 50 year olds can. So, 50 year olds do it for their
+parents, sometimes. Bear in mind that a lot of kids don’t want to get that involved. The
+system is supposed to be caring for their parents- that’s what it’s there for. Others want
+to get very involved. When I signed up for my mom’s portal it was like I was a
+
+peculiarity. Why else would I be getting connected directly to the tech people? Btw, of
+course I had to lie and say that I was helping my mom sign up and of course I had to
+have control of her email to finish off the process, which fortunately I had set up years
+ago.
+PC-3. Are you aware of health management, care navigation, or personal health record
+apps that would be useful to Medicare beneficiaries and their caregivers?
+The more centralized, accurate, easy to use online information you have, the better.
+PC-4. What features are missing from apps you use or that you are aware of today?
+Ha ha, the app itself is missing…
+a. What apps should exist but do not yet? Why do you believe they do not exist yet?
+Single centralized EHR should exist. Government failure is the reason it does not. Also,
+living in a competitive system (that wants to monopolize patient information for
+competitive reasons and to control / own the patient).
+b. What set of workflows do you believe CMS is uniquely positioned to offer?
+PC-5. What can CMS and its partners do to encourage patient and caregiver interest in
+these digital health products?
+I think capitalism works very well for disseminating products. Everything in America is
+10% product and 90% marketing and sales. Let the industry go. They’ll find the needs,
+they’ll make the products, and they’ll get them out there.
+a. What role, if any, should CMS have in reviewing or approving digital health products
+on the basis of their efficacy, quality or impact or both on health outcomes (not
+approving in the sense of a coverage determination)? What criteria should be used if
+there is a review process? What technology solutions, policy changes, or program
+design changes can increase patient and caregiver adoption of digital health products
+(for example, enhancements to data access, reimbursement adjustments, or new
+beneficiary communications)?
+I don’t think CMS needs to intervene too much. Enough to make sure apps are safe and
+their makers aren’t criminals or spies, but, otherwise I say let the market decide. For the
+most part, it knows what contributes value.
+b. What changes would enable timely access to high quality CMS and provider
+generated data on patients?
+What do you know… a single record!
+
+PC-6. What features are most important to make digital health products accessible and
+easy to use for Medicare beneficiaries and caregivers, particularly those with limited
+prior experience using digital tools and services?
+What can I say? Some people know how to make a good computer system, some don’t.
+The federal government certainly doesn’t. And all the “usability assessments” in the
+world aren’t going to help that. So, I say, let things evolve.
+PC-7. If CMS were to collect real-world data on digital health products' impact on health
+outcomes and related costs once they are released into the market, what would be the
+best means of doing so?
+Doesn’t make too much sense to me. People are so focused on “data driven”
+healthcare, that now they want data to prove that the software systems are making a
+difference. In general, they are making a difference, because if they weren’t, no one
+would be buying them. So, let the market decide on software. For the most part, the
+more you have, the better. For all my friends saying that we need to look at studies
+because they can disprove common sense conclusions, I’ve said that someone should
+do a study to see what percent of common sense decisions, especially when it comes to
+software, are actually correct. If it’s 80%, we can stop trying to analyze everything and
+charge on.
+2. Data Access and Integration
+PC-8. In your experience, what health data is readily available and valuable to patients
+or their caregivers or both?
+Most of what patients need- not enough of what providers need!
+a. What data is valuable, but hard for patients and caregivers, or app developers and
+other technical vendors, to access for appropriate and valuable use (for example, claims
+data, clinical data, encounter notes, operative reports, appointment schedules, prices)?
+Most of the above is hard for developers to get access to. By the way, when app
+vendors want access to claims data, it’s often BEFORE billing it, not after…
+b. What are specific sources, other than claims and clinical data, that would be of
+highest value, and why?
+Again, consolidated data from all sources.
+c. What specific opportunities and challenges exist to improve accessibility,
+interoperability and integration of clinical data from different sources to enable more
+meaningful clinical research and generation of actionable evidence?
+Technical, operational, regulatory, enforcement…
+
+PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic,
+Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources
+do developers view as most valuable for inclusion in the API to enable more useful
+digital products for patients and caretakers?
+a. What difficulties are there in accessing or utilizing these data sources today?
+Why are we using oAuth? Just give the client a username and password, and have the
+host check every time, or, give a token as oauth does now, but, not a ridiculously
+complex token with all sorts of useless nonsense embedded in it. Just a long random
+number. You don’t need to have the scope included in the request every time. The host
+has to know and enforce the scope for each client anyway- so, why does the client send
+the scope with the request? It actually just confuses things, and eventually you’ll have
+some developers accidentally use the requested scope as the allowed scope.
+99% of all healthcare interfaces:
+First party: Hello- we need this (something) from you.
+Second party: Ok, here’s an api we set up so you can get it.
+First party: Ok great, thanks, I’m getting it now.
+This is done routinely, and it’s not that hard.
+b. What suggestions do you have to improve the Blue Button 2.0 API experience?
+c. Is there non-CMS data that should be included in the API?
+PC-10. How is the Trusted Exchange Framework and Common AgreementTM
+(TEFCATM) currently helping to advance patient access to health information in the real
+world?
+a. Please provide specific examples.
+b. What changes would you suggest?
+c. What use cases could have a significant impact if implemented through TEFCA?
+d. What standards are you aware of that are currently working well to advance access
+and existing exchange purposes?
+e. What standards are you aware of that are not currently in wide use, but could
+improve data access and integration?
+f. Are there redundant standards, protocols, or channels that should be consolidated?
+g. Are there adequate alternatives outside of TEFCA for achieving widespread patient
+access to their health information?
+
+If every EHR had a FHIR api, and actually allowed others to access it, we’d be largely
+there, at least more than sufficient for round one.
+PC-11. How are health information exchanges (HIEs) currently helping to advance
+patient access to health information in the real world?
+Not that valuable. They aren’t used that much in the small practice world.
+a. How valuable, available, and accurate do you find the data they share to be?
+b. What changes would you suggest?
+Move to the APIs.
+c. Are there particular examples of high-performing HIE models that you believe should
+be propagated across markets?
+d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and
+broader frameworks for data exchange (for example, vendor health information
+networks, TEFCA, private exchange networks, etc.)?
+PC-12. What are the most valuable operational health data use cases for patients and
+caregivers that, if addressed, would create more efficient care navigation or eliminate
+barriers to competition among providers or both?
+a. Examples may include the following:
+(1) Binding cost estimates for pre-defined periods.
+(2) Viewing provider schedule availability.
+(3) Using third-party apps for appointment management.
+(4) Accessing patient-facing quality metrics.
+(5) Finding the right provider for specific healthcare needs.
+b. What use cases are possible today?
+c. What should be possible in the near future?
+d. What would be very valuable but may be very hard to achieve?
+3. Information Blocking and Digital Identity
+PC-13. How can CMS encourage patients and caregivers to submit information blocking
+complaints to ASTP/ONC's Information Blocking Portal? What would be the impact?
+Would increasing reporting of complaints advance or negatively impact data exchange?
+
+Well, one thing that might help is that you actually do something when someone reports
+blocking.
+PC-14. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me,
+other NIST 800-63-3 IAL2/AAL2 credentialing service providers (CSP)):
+a. What are the challenges today in getting patients/caregivers to sign up and use digital
+identity credentials?
+This is a global problem (i.e. extending beyond healthcare). But, it would be nice to
+have digital verifiable credentials. For now, the best option is probably just your cell is
+your unique identifier… (all this concern about interception of text messages is mostly
+mitigated in 5G and above). I’m not sure how to tackle it. People want their anonymity,
+and, there are reasons for that. For the time being, the best solution might just be “your
+cell number is your identity”.
+b. What could be the benefits to patients/caregivers if digital identity credentials were
+more widely used?
+Faster check in, and, more importantly, the ability to reliably map records across
+domains instead of relying on very sketchy matching algorithms followed by manual
+intervention.
+c. What are the potential downsides?
+Loss of privacy or anonymity when desired?
+d. How would encouraging the use of CSPs improve access to health information?
+Again I think reliable matching would be the biggest impact. Speeding check in is good,
+but, check in doesn’t take that long.
+e. What role should CMS/payers, providers, and app developers have in driving
+adoption?
+Again I would say let the market handle it.
+f. How can CMS encourage patients to get digital identity credentials?
+Require them? Only don’t…
+C. Providers
+This section is intended for all stakeholders to provide input on questions as they relate
+to use cases and workflows that involve providers. While we certainly want providers to
+answer questions in this section (and in other sections) from the provider point of view,
+we also invite all stakeholders to provide their viewpoints on the provider workflows as
+appropriate.
+
+1. Digital Health Apps
+PR-1. What can CMS and its partners do to encourage providers, including those in
+rural areas, to leverage approved (see description in PC-5) digital health products for
+their patients?
+Honestly, there aren’t that many apps that make a huge difference for patients. Maybe
+some basic home monitoring (asthma (spirometry), bp, temp, heartbeat regularity, 02
+sat to some degree. Pain.). Remember, people want to keep things simple. And the
+healthcare system should too.
+a. What are the current obstacles?
+b. What information should providers share with patients when using digital products in
+the provision of their care?
+c. What responsibilities do providers have when recommending use of a digital product
+by a patient?
+Not taking kickbacks?
+PR-2. What are obstacles that prevent development, deployment, or effective utilization
+of the most useful and innovative applications for physician workflows, such as quality
+measurement reporting, clinical documentation, and billing tasks? How could these
+obstacles be mitigated?
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural
+areas that all data in an EHR system be accessible for exchange, regardless of storage
+format (for example, scanned documents, faxed records, lab results, free text notes,
+structured data fields)? Please address all of the following:
+a. Current challenges in accessing different data formats.
+There should not be any.
+b. Impact on patient care quality.
+Important
+c. Technical barriers to full data accessibility.
+Just the usual interoperability barriers.
+d. Cost or privacy implications of making all data formats interoperable.
+Documents have a lot of value, but, there aren’t that many formats commonly used in
+healthcare… text, html, word/rtf, excel, pdf, tiff cover the majority of those used, outside
+
+of actual images, which interestingly aren’t mentioned above. The privacy implications
+aren’t any different than the privacy implications of anything else in healthcare. They
+are important, because often documents carry very important information (we have
+thousands of faxed and scanned referrals in our system, millions of labs). Asking about
+the cost implications is indicative to me of how out of touch the government is; it’s
+extremely easy, and cheap, to securely manage any quantity of documents. Today,
+radiological images are the only type of image/document which take any significant
+quantity of storage. And, typically, there is no need to exchange these images. In almost
+all cases, only their interpretation, a tiny text document, is shared. If one does need to
+view the image, it would be nice to have a link to the image; and again, even large
+studies are easily transferred and managed on an individual basis today.
+e. Priority level compared to other interoperability needs.
+Same priority.
+PR-4. What changes or improvements to standards or policies might be needed for
+patients' third-party digital products to have access to administrative workflows, such as
+auto-populating intake forms, viewing provider information and schedules, and making
+and modifying an appointment?
+All this should be done in the patient portal. And most of it already is.
+2. Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or
+utilize in your provider organization's systems, directly or through an intermediary? For
+each, describe the transaction model, use case, whether you use individual queries or
+bulk transactions, and any constraints:
+a. Patient Access API.
+Supported not utilized.
+b. Standardized API for Patient and Population Services.
+Supported not utilized.
+c. Provider Directory API.
+No support.
+d. Provider Access API.
+No support
+e. Payer-to-Payer API.
+
+No support
+f. Prior Authorization API.
+Supported, infrequently utilized. Medications only.
+g. Bulk FHIR—Do you support Group ID-based access filtering for population-specific
+queries?
+Supported not utilized.
+h. SMART on FHIR—Do you support both EHR-launched and standalone app access?
+What does the process for application deployment entail?
+Supported, minimally utilized. Launch is seamless.
+i. CDS Hooks (for clinical decision support integrations).
+Supported, selectively utilized.
+PR-6. Is TEFCA currently helping to advance provider access to health information?
+Good in theory, not used by us yet. We are getting ready to use it. It’s expensive. It
+would be nice if we could easily certify as a QHIN ourselves, instead of such a complex
+process. Or skip the QHIN and go straight peer to peer via fhir + directory. We typically
+don’t need to access that many peers.
+a. Please provide specific examples.
+b. What changes would you suggest?
+Open, easier to certify, free.
+c. What other options are available outside of TEFCA?
+Careequality, Commonwell, eHealth Exchange, HIEs, Direct
+d. Are there redundant standards, protocols or channels or both that could be
+consolidated?
+Direct messaging is too difficult to use. Too much certificate swapping, complex server.
+Many providers still are not aware of direct, and continue to fax. But fax is all electronic
+now anyway, so, it’s not that big of a deal, just slow and more expensive.
+Overall, it would be good to just have distributed peer to peer connectivity but with a
+central directory (i.e. TEFCA) and automation (something to find the patient data
+wherever it is, pull it, centralize it, display it). Again, this is all in the face of the no
+centralized record in the first place shortcoming.
+
+PR-7. What strategies can CMS implement to support providers in making high-quality,
+timely, and comprehensive healthcare data available for interoperability in the digital
+product ecosystem? How can the burden of increasing data availability and sharing be
+mitigated for providers? Are there ways that workflows or metrics that providers are
+already motivated to optimize for that could be reused for, or combined with, efforts
+needed to support interoperability?
+Well, again, a single centralized database would solve all these problems and facilitate
+real time exchange. Short of that, just keep doing what you’re doing…
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers?
+Consolidate the measures so they are all treated the same way under the same
+programs. There are several different measure sources, and one department has no
+idea what the other is doing. Electronic measure definitions for EVERY measure so they
+can easily be imported to EHRs for calculating. Simplify certification and submission for
+vendors. More measures that really apply to the specialties. Right now I have
+dermatologists asking about depression… ridiculous…
+a. What would be the benefits and downsides of using Bulk FHIR data exports from
+EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden
+on providers by performing quality metrics calculations leveraging Bulk FHIR data
+exports?
+The problem is that if you centralize the data, you won’t have real time feedback on the
+providers side while they are working. That being said, you could potentially do that with
+an API to the centralized data. If you start doing bulk exports, then you’re starting the
+build the centralized repository I’m talking about anyway. Security better be pretty good,
+because government systems get hacked all the time. The nice thing about centralized
+is that you can check if the measure is met across the spectrum. For example, if a
+patient got a vaccine elsewhere, the primary (and the patient!) might not know about it
+and therefore not get credit for the patient being vaccinated.
+b. In what ways can the interoperability and quality reporting responsibilities of providers
+be consolidated so investments can be dually purposed?
+One thing that CMS could do is go after the low hanging fruit FIRST. For example,
+Medicare already has CPTs and ICDs (i.e. patient diagnosis). Pull med data from
+Surescripts, and then you can join diagnoses on that to see if patients are on the best
+meds. Then, pull lab data so that you can do quality measures against labs. These
+measures alone would be enough to get you started. You want to automate quality
+measure tracking and calculation and submission, so providers don’t have to deal with
+it. Just notify them when there’s a problem.
+
+It would be great to a have a “healthcare central command and control” that data comes
+in to, and recommendations come out of (and fraud is more easily tracked). Don’t do it
+wrong, though, or you’ll have a justified rebellion.
+c. Are there requirements CMS should consider for data registries to support digital
+quality measurement in a more efficient manner? Are there requirements CMS should
+consider for data registries that would support access to real-time quality data for
+healthcare providers to inform clinical care in addition to simplifying reporting
+processes?
+I’m not sure why registries need to be involved. Just run the measures against the data
+in the providers EHR. It’s relatively simple. We’ve been doing it for 15+ years. We were
+also involved in the registry program for a number of years until it because possible to
+submit directly via the CMS API. Tedious program, and not well run.
+3. Digital Identity
+PR-9. How might CMS encourage providers to accept digital identity credentials (for
+example, CLEAR, ID.me, Login.gov) from patients and their partners instead of
+proprietary logins that need to be tracked for each provider relationship?
+Every time something like this gets implemented, some company tries to monopolize
+the process. Then, next thing you know, you’re paying “only” $1 per login to some
+company, as mandated by the fed, with no recourse until they finally figure out how
+corrupt and expensive it is 20 years later and change it.
+a. What would providers need help with to accelerate the transition to a single set of
+trusted digital identity credentials for the patient to keep track of, instead of one for each
+provider?
+b. How might CMS balance patient privacy with convenience and access to digital
+health products and services that may lead to significant improvements in health?
+PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me,
+other NIST 800-63-3 IAL2/AAL2 CSPs):
+a. What are the challenges and benefits for providers?
+b. How would requiring their use improve access to health information?
+c. What are the potential downsides?
+d. What impact would mandatory credentials have on a nationwide provider directory?
+e. How could digital identity implementation improve provider data flow?
+f. Would combining FHIR addresses and identity improve data flow?
+
+PR-11. How could members of trust communities [3] (for example, QHINs, participants
+and subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via
+Credential Service Providers (CSPs)) better support the goals of reduced provider and
+patient burden while also enhancing identity management and security?
+4. Information Blocking
+PR-12. Should ASTP/ONC consider removing or revising any of the information
+blocking exceptions or conditions within the exceptions (45 CFR part 171, subparts B
+through D) to further the access, exchange, and use of electronic health information
+(EHI) and to promote market competition?
+Long and short, if EHR A wants to connect to EHR B because B has records on A, then,
+A and B should be required to permit and establish this connectivity.
+PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3)),
+without a current information blocking disincentive established by CMS, what would be
+the most effective disincentive for that category of provider?
+Significant fines?
+PR-14. How can CMS encourage providers to submit information blocking complaints to
+ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance
+or negatively impact data exchange?
+By actually doing something when someone does submit, rather than nothing for 3
+years. Speaking from experience here…
+D. Payers
+PA-1. What policy or technical limitations do you see in TEFCA? What changes would
+you suggest to address those limitations? To what degree do you expect these
+limitations to hinder participation in TEFCA?
+PA-2. How can CMS encourage payers to accelerate the implementation and utilization
+of APIs for patients, providers, and other payers, similar to the Blue Button 2.0 and Data
+at the Point of Care APIs released by CMS?
+PA-3. How can CMS encourage payers to accept digital identity credentials (for
+example, CLEAR, ID.me, Login.gov) from patients and their partners instead of
+proprietary logins?
+PA-4. What would be the value to payers of a nationwide provider directory that
+included FHIR end points and used digital identity credentials?
+PA-5. What are ways payers can help with simplifying clinical quality data
+responsibilities of providers?
+
+a. How interested are payers and providers in EHR technology advances that enable
+bulk extraction of clinical quality data from EHRs to payers to allow them to do the
+calculations instead of the provider-side technology?
+b. In what ways can the interoperability and quality reporting responsibilities of providers
+to both CMS and other payers be consolidated so investments can be dually purposed?
+Are there technologies payers might leverage that would support access to real time
+quality data for healthcare providers to inform clinical care in addition to simplifying
+reporting processes?
+PA-7. How can CMS encourage payers to submit information blocking complaints to
+ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance
+or negatively impact data exchange?
+E. Technology Vendors, Data Providers, and Networks
+This section is intended for all stakeholders to provide input on questions as they relate
+to use cases and workflows that involve technology vendors, data providers, and
+networks. While we certainly want technology vendors, data providers, and networks to
+answer questions in this section (and in other sections) from their point of view, we also
+invite all stakeholders to provide their viewpoints on the technology vendor, data
+provider, and network use cases as appropriate.
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to
+stimulate developer interest in building digital health products for Medicare beneficiaries
+and caregivers?
+Why are you just focused on Medicare? I get it, that’s what you pay for. But, every
+commercial patient eventually becomes a Medicare one (with any luck!). So, think about
+how you can encourage development / adoption for everyone. Then, to encourage,
+DON’T require ridiculous certifications. Please. I’m not saying some regulation isn’t
+necessary, it is. Just not overregulation.
+Can something be done about risk?
+TD-2. Regarding CMS Data, to stimulate developer interest—
+a. What additional data would be most valuable if made available through CMS APIs?
+Did I mention how nice a centralized, consolidated data set would be? Perhaps make it
+an option first, something developers can use if they want to. Like, you can keep all your
+patient data in your own database, but you can also use ours, free! If you use ours,
+then, you’ll be part of an interactive charting experiment, where numerous parties
+update the same chart. I bet it could take off.
+
+b. What data sources are most valuable alongside the data available through the Blue
+Button 2.0 API?
+Do you mean non CMS sources? Surescripts med history, lab data. Complete chart…
+c. What obstacles prevent accessing these data sources today?
+Former 2 easy, complete chart is information blocked.
+d. What other APIs should CMS and ASTP/ONC consider including in program policies
+to unleash innovation and support patients and providers?
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits?
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov,
+ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data
+exchange?
+c. What impact would mandatory use of the OpenID Connect identity protocol have?
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+Make the standards less ridiculous (I think FHIR is already a bit better than CCDA and
+QRDA, so, getting there). Require the use of the standards for exchange (but, people
+will use them- everyone adopted HL7 easily enough (although I don’t know what it took
+to get there, because that was before even my time!). But there was no government
+involvement. The industry did it themselves. If you develop a good standard, it will be
+used.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to
+health information for patients, providers, and payers? Who should publish such a
+directory, and should users bear a cost?
+Yes, it would be useful- if FHIR endpoints didn’t refuse to connect, and government
+takes action when they do… Fed should publish. Cost should be much less than MITRE
+tells you…
+If you had such a nationwide directory, TEFCA/QHINs might not even be necessary. In
+general, we know what other systems we need to connect to. It’s not all of them. We
+just do it as we go along. It would be nice to be able to query every system for each
+patient- but, you’d almost need some sort of intermediary branching approach to
+
+properly do that. It’s probably not necessary. Overkill. Ask the patient in their portal what
+doctors they’ve seen or hospitals been to, check a directory to see what the EHR is for
+those providers / hospitals, query them. Something like that.
+TD-6. What unique interoperability functions does TEFCA perform?
+Do you not know this? Are you asking to see if
+a. What existing alternatives should be considered?
+b. Are there redundant standards, protocols or channels or both that should be
+consolidated?
+TD-7. To what degree has USCDI improved interoperability and exchange and what are
+its limitations?
+a. Does it contain the full extent of data elements you need?
+No- but you can have a very functional subset that meets most needs. Remember- low
+hanging fruit first. Don’t build an aircraft carrier when all you need is a drone.
+b. If not, is it because of limitations in the definition of the USCDI format or the way
+it is utilized?
+Limitations
+c. If so, would adding more data elements to USCDI add value or create scoping
+challenges? How could such challenges be addressed?
+Add more. Just don’t require everyone to certify on them. There if you need them.
+That’s how standards are supposed to work.
+d. Given improvements in language models, would you prefer a non-proprietary but
+less structured format that might improve data coverage even if it requires more
+processing by the receiver?
+No
+TD-8. What are the most effective certification criteria and standards under the ONC
+Health IT Certification Program?
+None of them.
+TD-9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled
+capabilities over software functionality?
+
+Good idea. Software is and has been ahead of the requirements for a long time. So the
+requirements have been redundant, expensive, time consuming.
+b. What would be the drawbacks?
+None. Except removing the competitive walls that we all had to clear for new
+competitors.
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to
+consistently support exchanging data from all aspects of the patient's chart (for
+example, faxed records, free text, discrete data)?
+For certain things (problems, meds, allergies, labs) you are requesting discrete coded
+data (although many labs are still in faxes; probably good to eliminate that problem at
+the root level and require labs to provide hl7 interfaces which most of them support but
+don’t mandate). For documents, it’s easy. Just query for list of available documents,
+then, if you want to see one, pull it and view it. This is a very simple problem to solve.
+d. What policy changes could CMS make so providers are motivated to respond to
+API-based data requests with best possible coverage and quality of data?
+FORCE THEM TO RESPOND. After that, just let the receiver complain if what they
+need isn’t there. Then enforce including that if it’s part of the spec. And btw, yes,
+insurance IS part of the requirement. I’m not sure if Epic still does this, but they probably
+do. They used to obfuscate part of the claim numbers.
+e. How could EHRs capable of bulk data transfer be used to reduce the burden on
+providers for reporting quality performance data to CMS? What capabilities are
+needed to show benefit? What concerns are there with this approach?
+See comments above. I have mixed feelings about this. Part of me says calculate in the
+local EHR, submit the numbers only. This way it is easy to see if your system is really
+capturing what it should be and can provide real time notifications for providers.
+Probably the better option. Dumping everything to Medicare is another approach, but I
+can only imagine the headaches there. An auditing nightmare. Especially once you’re
+mixing data across parties. Maybe make it an option? And better make it experimental
+at first…
+TD-10. For EHR and other developers subject to the ONC Health IT Certification
+Program, what further steps should ASTP/ONC consider to implement the 21st Century
+Cures Act's API condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a
+developer's APIs to allow health information to be accessed, exchanged, and used
+without special effort, including providing access to all data elements of a patient's
+electronic health record to the extent permissible under applicable privacy laws?
+
+Again I think this is an enforcement issue, of which there is currently 0. One thing that
+would be nice is if EHR vendors could become certified parties. Then if we have that
+certificate, we can connect to outside APIs without further certification with the other
+vendor. I will say that the idea of having a kazillion records connected to ours and
+making requests constantly makes me a little nervous (i.e. system slowdowns, endless
+support requests). And sooner or later someone is going to get into the mix who doesn’t
+belong in there. People could start lobbing support requests just as a competitive
+measure…
+Right now as mentioned, we typically know who we need to connect to. It would be nice
+if we could just contact those parties and request a connection and get it; but NOT
+query a QHIN or TEFCA to search a thousand installations to locate a patient…
+All the multiplicative permutations or connections are another reason a single,
+centralized, consolidated record is a much better solution.
+TD-11. As of January 1, 2024, many health IT developers with products certified
+through the ONC Health IT Certification Program are required to include the capability
+to perform an electronic health information export or “EHI export” for a single patient as
+well as for patient populations (45 CFR 170.315(b)(10)). Such health IT developers are
+also required to publicly describe the format of the EHI export. Notably, how EHI export
+was accomplished was left entirely to the health IT developer. Now that this capability
+has been in production for over a year, CMS and ASTP/ONC seek input on the
+following:
+a. Should this capability be revised to specify standardized API requirements for
+EHI export?
+Aren’t most people actually already using the CCDA format requested? I even think I
+recall that it’s required for certification even though it’s theoretically not… (yes, there are
+things like this as part of the certification process).
+b. Are there specific workflow aspects that could be improved?
+Not really. I think scheduled export is fine.
+c. Should CMS consider policy changes to support this capability's use?
+No
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what
+criteria or metrics should CMS consider?
+
+TD-13. What new opportunities and advancements could emerge with APIs providing
+access to the entirety of a patient's electronic health information (EHI)?
+Just further progress toward a totally integrated, smooth healthcare experience.
+a. What are the primary obstacles to this?
+The information is still all over the place, unreconciled, so it has to be gathered and
+reconciled, which is an impossible expectation… no one has the time (or the
+knowledge) to do it. I’m not calling another doctor to verify a diagnosis in question. I
+don’t have time, they don’t have time. AI might solve, it might not.
+Also, obviously, security. How do you trust the party you are connecting to? Businesses
+are going to want access to the data too, some for “good” purposes, many just for
+marketing, and some for even worse reasons (insurance denial, extortion, etc).
+b. What are the primary tradeoffs between USCDI and full EHI, especially given
+more flexible data processing capabilities today?
+I think almost all the chart can be represented in USCDI, possibly with some custom
+extensions as necessary.
+TD-14. Regarding networks' use of FHIR APIs:
+a. How many endpoints is your network connected to for patient data sharing?
+What types, categories, geographies of endpoints do you cover? Are they
+searchable by National Provider Identifier (NPI) or organizational ID?
+We share patient data with a few 3rd parties via HL7 interfaces or direct messaging, but
+all of the FHIR API requests we have made have been denied. I don’t know that the
+endpoints are searchable; I think that would need to be in the directory before
+connecting.
+b. How are these connections established (for example, FHIR (g)(10) endpoints,
+TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)?
+Direct messaging + Proprietary only atm.
+c. Do you interconnect with other networks? Under what frameworks (for example,
+TEFCA, private agreements)?
+Minimally. Private agreements only.
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+Not much for us. We’re not a data analysis company.
+
+b. What are the potential disadvantages of their use?
+Slowing source system, theft of data.
+TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure?
+P2p initially easier but gets more complex as you scale. Shared is nice, but people
+aren’t playing by the rules.
+a. Do current rules encourage scalable network participation?
+Yes, but the current rules are being ignored.
+b. What changes would improve alignment (for example, API unification, reciprocal
+access)?
+TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in
+ensuring viability of healthcare data sharing networks, including enough supply and
+demand, that results in usage and outcomes?
+I think they should mandate the standard, and mandate/enforce the response to
+requests, but not a lot more. Parties can work among themselves to implement the
+interfaces.
+5. Compliance
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices
+you have experienced that may constitute information blocking. Please include
+both situations of non-responsiveness as well as situations that may cause a
+failure or unusable response?
+1) Refusals to swap certificates for direct message exchange!
+2) Refusals to download app identifier to Epic so that we can connect to their FHIR
+apis.
+b. What additional policies could ASTP/ONC and CMS implement to further
+discourage healthcare providers from engaging in information blocking practices?
+Fines? A friendly call from the ONC? Not necessarily in that order…
+c. Are there specific categories of healthcare actors covered under the definition of
+information blocking in section 3022(a)(1) of the Public Health Service Act
+(PHSA) that lack information blocking disincentives?
+There’s no enforcement. The big guys don’t care. They are all stalling by doing wait and
+see.
+
+TD-19. Regarding price transparency implementation:
+a. What are current shortcomings in content, format, delivery, and timeliness?
+b. Which workflows would benefit most from functional price transparency?
+c. What improvements would be most valuable for patients, providers, or payers,
+including CMS?
+d. What would further motivate solution development?
+F. Value-Based Care Organizations
+This section is intended for all stakeholders to provide input on questions as they relate
+to use cases and workflows that involve value-based care organizations. While we
+certainly want value-based care organizations to answer questions in this section (and
+in other sections) from the value-based care provider point of view, we also invite all
+stakeholders to provide their viewpoints on the value-based care workflows as
+appropriate.
+1. Digital Health Adoption
+VB-1. What incentives could encourage APMs such as accountable care organizations
+(ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital
+health management and care navigation products more often and more effectively with
+their patients? What are the current obstacles preventing broader digital product
+adoption for patients in ACOs?
+VB-2. How can key themes and technologies such as artificial intelligence, population
+health analytics, risk stratification, care coordination, usability, quality measurement,
+and patient engagement be better integrated into APM requirements?
+VB-3. What are essential health IT capabilities for value-based care arrangements?
+a. Examples (not comprehensive) may include: care planning, patient event notification,
+data extraction/normalization, quality performance measurement, access to claims data,
+attribution and patient ID matching, remote device interoperability, or other patient
+empowerment tools.
+b. What other health IT capabilities have proven valuable to succeeding in value-based
+care arrangements?
+VB-4. What are the essential data types needed for successful participation in value-
+based care arrangements?
+2. Compliance and Certification
+
+VB-5. In your experience, how do current certification criteria and standards
+incorporated into the ONC Health IT Certification Program support value-based care
+delivery?
+VB-6. What specific health information technology capabilities that could benefit APMs
+are not currently addressed by existing certification criteria and standards that should be
+included under the ONC Health IT Certification Program?
+VB-7. How can technology requirements for APMs, established through CEHRT or
+other pathways, reduce complexity while preserving necessary flexibility?
+VB-8. How can other HHS policies supplement CEHRT requirements to better optimize
+the use of digital health products in APMs? As an example, requirements under the
+Conditions of Participation for hospitals (42 CFR 482.24(d)) require hospitals to transmit
+electronic patient event notifications to community providers. What barriers are in place
+preventing APM participants from receiving the same notifications?
+VB-9. What technology requirements should be different for APM organizations when
+comparing to non-APM organizations (for example, quality reporting, and
+interoperability)?
+VB-10. In the Calendar Year (CY) 2024 Physician Fee Schedule final rule (88 FR
+79413), CMS established that CEHRT requirements for Advanced APMs beyond those
+in the “Base EHR” definition should be flexible based on what is applicable to the APM
+that year based on the area of clinical practice. What certification criteria should CMS
+identify under this flexibility for specific Advanced APMs, or for Advanced APMs in
+general? Are there specific flexibilities or alternatives to consider for smaller or
+resource-constrained (such as rural) providers in meeting CEHRT requirements without
+compromising quality of care or availability of performance data?
+3. Technical Standards
+VB-11. What specific interoperability challenges have you encountered in implementing
+value-based care programs?
+VB-12. What technology standardization would preserve program-specific flexibility
+while promoting innovation in APM technology implementation?
+VB-13. What improvements to existing criteria and standards would better support
+value-based care capabilities while reducing provider burden?
+VB-14. How could implementing digital identity credentials improve value-based care
+delivery and outcomes?
+VB-15. How could a nationwide provider directory of FHIR endpoints help improve
+access to patient data and understanding of claims data sources? What key data
+
+elements would be necessary in a nationwide FHIR endpoints directory to maximize its
+effectiveness?
+III. Collection of Information Requirements
+Please note, this is a request for information (RFI) only. In accordance with the
+implementing regulations of the Paperwork Reduction Act of 1995 (PRA), specifically 5
+CFR 1320.3(h)(4), this general solicitation is exempt from the PRA. Facts or opinions
+submitted in response to general solicitations of comments from the public, published in
+the Federal Register or other publications, regardless of the form or format thereof,
+provided that no person is required to supply specific information pertaining to the
+commenter, other than that necessary for self-identification, as a condition of the
+agency's full consideration, are not generally considered information collections and
+therefore not subject to the PRA.
+This RFI is issued solely for information and planning purposes; it does not constitute a
+Request for Proposal (RFP), applications, proposal abstracts, or quotations. This RFI
+does not commit the U.S. Government to contract for any supplies or services or make
+a grant award. Further, CMS and ASTP/ONC are not seeking proposals through this
+RFI and will not accept unsolicited proposals. Responders are advised that the U.S.
+Government will not pay for any information or administrative costs incurred in response
+to this RFI; all costs associated with responding to this RFI will be solely at the
+interested party's expense. CMS and ASTP/ONC note that not responding to this RFI
+does not preclude participation in any future procurement, if conducted. It is the
+responsibility of the potential responders to monitor this RFI announcement for
+additional information pertaining to this request. In addition, CMS and ASTP/ONC note
+that we will not respond to questions about potential policy issues raised in this RFI.
+CMS and ASTP/ONC will actively consider input as we develop future regulatory
+proposals or future subregulatory policy guidance. We may or may not choose to
+contact individual responders. Such communications would be for the sole purpose of
+clarifying statements in the responders' written responses. Contractor support personnel
+may be used to review responses to this RFI. Responses to this notice are not offers
+and cannot be accepted by the Government to form a binding contract or issue a grant.
+Information obtained as a result of this RFI may be used by the Government for
+program planning on a non-attribution basis. Respondents should not include any
+information that might be considered proprietary or confidential. This RFI should not be
+construed as a commitment or authorization to incur cost for which reimbursement
+would be required or sought. All submissions become U.S. Government property and
+will not be returned. In addition, we may publicly post the public comments received or a
+summary of those public comments.
+
+Stephanie Carlton, Deputy Administrator of the Centers for Medicare & Medicaid
+Services, approved this document on May 9, 2025.
+Steven Posnack, Acting Assistant Secretary for Technology Policy, Acting National
+Coordinator for Health Information Technology, approved this document on May 6,
+2025.
+Robert F. Kennedy, Jr.,
+Secretary, Department of Health and Human Services.
+Thanks for considering!

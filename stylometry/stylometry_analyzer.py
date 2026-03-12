@@ -45,6 +45,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from config import Config
 from stylometry.stylometry_utils import (
     classify_archetype,
+    find_col,
     fingerprint,
     get_attachment_text,
     normalise_columns

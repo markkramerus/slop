@@ -5,7 +5,7 @@ The generator assembles a rich prompt from:
   - The persona (backstory, hook, style instructions)
   - The expression frame (argument, framing, evidence types, citations)
   - The world model (rule context, key terms)
-  - Vector-specific structural instructions
+  - Voice-specific structural instructions
 
 The prompt is designed to produce a comment that:
   1. Advances the objective through the persona's voice
@@ -23,6 +23,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from .argument_mapper import ExpressionFrame
+from .comment_directives import CommentDirectives
 from config import Config
 from .persona import Persona
 from .world_model import WorldModel
@@ -71,8 +72,8 @@ Their framing: {framing}
 Style instructions — follow these carefully:
 {style_instructions}
 
-Vector-specific instructions:
-{vector_instructions}
+Voice-specific instructions:
+{voice_instructions}
 
 {citation_block}
 
@@ -234,7 +235,6 @@ Abstract:"""
     )
     
     abstract = (response.choices[0].message.content or "").strip()
-    # Limit to roughly 250 characters
     if len(abstract) > 250:
         abstract = abstract[:247] + "..."
     
@@ -242,10 +242,7 @@ Abstract:"""
 
 
 async def _generate_abstract_async(comment_text: str, config: Config) -> str:
-    """
-    Async version of _generate_abstract.
-    Generate a concise abstract (1-2 sentences) summarizing the comment.
-    """
+    """Async version of _generate_abstract."""
     client = config.async_openai_client()
     
     prompt = f"""Write a brief 1-2 sentence abstract summarizing the key point of this public comment. The abstract should capture the commenter's main position or concern. Do NOT include preambles like "This comment..." - write it as a direct summary.
@@ -265,7 +262,6 @@ Abstract:"""
     )
     
     abstract = (response.choices[0].message.content or "").strip()
-    # Limit to roughly 250 characters
     if len(abstract) > 250:
         abstract = abstract[:247] + "..."
     
@@ -279,7 +275,7 @@ class GeneratedComment:
     comment_text: str
     persona: Persona
     frame: ExpressionFrame
-    vector: int
+    vector: int                  # 0 for campaign mode, 1-4 for direct mode
     objective: str
     rule_title: str
     docket_id: str
@@ -287,6 +283,8 @@ class GeneratedComment:
     abstract: str = ""
     # Campaign plan argument angle (if generated via campaign plan)
     argument_angle: str = ""
+    # Voice ID from campaign plan (empty in direct mode)
+    voice_id: str = ""
     # Embedding — populated by quality_control
     embedding: list[float] = field(default_factory=list)
     # QC results
@@ -301,9 +299,11 @@ class GeneratedComment:
             "comment_text": self.comment_text,
             "word_count": self.word_count(),
             "vector": self.vector,
+            "voice_id": self.voice_id,
             "objective": self.objective,
             "rule_title": self.rule_title,
             "docket_id": self.docket_id,
+            "argument_angle": self.argument_angle,
             "qc_passed": self.qc_passed,
             "qc_notes": self.qc_notes,
             **{f"persona_{k}": v for k, v in self.persona.to_dict().items()},
@@ -312,6 +312,130 @@ class GeneratedComment:
 
 
 # ── Main generation function ──────────────────────────────────────────────────
+
+def _build_and_call(
+    persona: Persona,
+    frame: ExpressionFrame,
+    world_model: WorldModel,
+    config: Config,
+) -> str:
+    """Build the prompt and call the LLM. Returns the comment text."""
+    client = config.openai_client()
+
+    core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
+    rfi_block = _build_rfi_block(frame)
+    citation_block = _build_citation_block(frame)
+    examples_block = _build_examples_block(persona)
+
+    # Use directives' structural block if available, else fall back to stats
+    if frame.directives is not None:
+        voice_stats_block = frame.directives.structural_prompt_block()
+    else:
+        voice_stats_block = _build_voice_stats_block(persona)
+
+    # Dynamic max_tokens from directives (Phase 5)
+    effective_max_tokens = (
+        frame.directives.max_tokens if frame.directives is not None
+        else config.max_tokens
+    )
+
+    prompt = _USER_PROMPT_TEMPLATE.format(
+        name=persona.full_name,
+        age=persona.age,
+        state=persona.state,
+        occupation=persona.occupation,
+        org_name=persona.org_name if persona.org_name else "None",
+        personal_hook=persona.personal_hook,
+        personal_stake=persona.personal_stake,
+        core_arguments=core_args_block,
+        framing=frame.framing,
+        rfi_block=rfi_block,
+        style_instructions=persona.style_instructions(),
+        voice_instructions=frame.voice_instructions,
+        citation_block=citation_block,
+        word_count=frame.target_word_count,
+        voice_stats_block=voice_stats_block,
+        examples_block=examples_block,
+        rule_title=world_model.rule_title,
+        agency=world_model.agency,
+        core_change=world_model.core_change,
+        regulatory_domain=world_model.regulatory_domain,
+    )
+
+    response = client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=frame.temperature,
+        max_tokens=effective_max_tokens,
+    )
+
+    return (response.choices[0].message.content or "").strip()
+
+
+async def _build_and_call_async(
+    persona: Persona,
+    frame: ExpressionFrame,
+    world_model: WorldModel,
+    config: Config,
+) -> str:
+    """Async version: build prompt and call LLM. Returns comment text."""
+    client = config.async_openai_client()
+
+    core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
+    rfi_block = _build_rfi_block(frame)
+    citation_block = _build_citation_block(frame)
+    examples_block = _build_examples_block(persona)
+
+    # Use directives' structural block if available, else fall back to stats
+    if frame.directives is not None:
+        voice_stats_block = frame.directives.structural_prompt_block()
+    else:
+        voice_stats_block = _build_voice_stats_block(persona)
+
+    # Dynamic max_tokens from directives (Phase 5)
+    effective_max_tokens = (
+        frame.directives.max_tokens if frame.directives is not None
+        else config.max_tokens
+    )
+
+    prompt = _USER_PROMPT_TEMPLATE.format(
+        name=persona.full_name,
+        age=persona.age,
+        state=persona.state,
+        occupation=persona.occupation,
+        org_name=persona.org_name if persona.org_name else "None",
+        personal_hook=persona.personal_hook,
+        personal_stake=persona.personal_stake,
+        core_arguments=core_args_block,
+        framing=frame.framing,
+        rfi_block=rfi_block,
+        style_instructions=persona.style_instructions(),
+        voice_instructions=frame.voice_instructions,
+        citation_block=citation_block,
+        word_count=frame.target_word_count,
+        voice_stats_block=voice_stats_block,
+        examples_block=examples_block,
+        rule_title=world_model.rule_title,
+        agency=world_model.agency,
+        core_change=world_model.core_change,
+        regulatory_domain=world_model.regulatory_domain,
+    )
+
+    response = await client.chat.completions.create(
+        model=config.chat_model,
+        messages=[
+            {"role": "system", "content": _SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=frame.temperature,
+        max_tokens=effective_max_tokens,
+    )
+
+    return (response.choices[0].message.content or "").strip()
+
 
 def generate_comment(
     persona: Persona,
@@ -333,57 +457,14 @@ def generate_comment(
     world_model:
         Rule world model.
     vector:
-        Attack vector (1–4), used for metadata only at this stage.
+        Attack vector (1–4 for direct mode, 0 for campaign mode).
     objective:
         The attack objective string.
     config:
         API config.
     """
     config.validate()
-    client = config.openai_client()
-
-    core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
-    rfi_block = _build_rfi_block(frame)
-    citation_block = _build_citation_block(frame)
-    examples_block = _build_examples_block(persona)
-    voice_stats_block = _build_voice_stats_block(persona)
-
-    prompt = _USER_PROMPT_TEMPLATE.format(
-        name=persona.full_name,
-        age=persona.age,
-        state=persona.state,
-        occupation=persona.occupation,
-        org_name=persona.org_name if persona.org_name else "None",
-        personal_hook=persona.personal_hook,
-        personal_stake=persona.personal_stake,
-        core_arguments=core_args_block,
-        framing=frame.framing,
-        rfi_block=rfi_block,
-        style_instructions=persona.style_instructions(),
-        vector_instructions=frame.vector_instructions,
-        citation_block=citation_block,
-        word_count=frame.target_word_count,
-        voice_stats_block=voice_stats_block,
-        examples_block=examples_block,
-        rule_title=world_model.rule_title,
-        agency=world_model.agency,
-        core_change=world_model.core_change,
-        regulatory_domain=world_model.regulatory_domain,
-    )
-
-    response = client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=frame.temperature,
-        max_tokens=config.max_tokens,
-    )
-
-    comment_text = (response.choices[0].message.content or "").strip()
-    
-    # Generate abstract
+    comment_text = _build_and_call(persona, frame, world_model, config)
     abstract = _generate_abstract(comment_text, config)
 
     return GeneratedComment(
@@ -395,6 +476,7 @@ def generate_comment(
         rule_title=world_model.rule_title,
         docket_id=world_model.docket_id,
         abstract=abstract,
+        voice_id=persona.voice_id,
     )
 
 
@@ -408,7 +490,6 @@ async def generate_comment_async(
 ) -> GeneratedComment:
     """
     Async version of generate_comment.
-    Generate a single synthetic comment using async API calls.
 
     Parameters
     ----------
@@ -419,57 +500,14 @@ async def generate_comment_async(
     world_model:
         Rule world model.
     vector:
-        Attack vector (1–4), used for metadata only at this stage.
+        Attack vector (1–4 for direct mode, 0 for campaign mode).
     objective:
         The attack objective string.
     config:
         API config.
     """
     config.validate()
-    client = config.async_openai_client()
-
-    core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
-    rfi_block = _build_rfi_block(frame)
-    citation_block = _build_citation_block(frame)
-    examples_block = _build_examples_block(persona)
-    voice_stats_block = _build_voice_stats_block(persona)
-
-    prompt = _USER_PROMPT_TEMPLATE.format(
-        name=persona.full_name,
-        age=persona.age,
-        state=persona.state,
-        occupation=persona.occupation,
-        org_name=persona.org_name if persona.org_name else "None",
-        personal_hook=persona.personal_hook,
-        personal_stake=persona.personal_stake,
-        core_arguments=core_args_block,
-        framing=frame.framing,
-        rfi_block=rfi_block,
-        style_instructions=persona.style_instructions(),
-        vector_instructions=frame.vector_instructions,
-        citation_block=citation_block,
-        word_count=frame.target_word_count,
-        voice_stats_block=voice_stats_block,
-        examples_block=examples_block,
-        rule_title=world_model.rule_title,
-        agency=world_model.agency,
-        core_change=world_model.core_change,
-        regulatory_domain=world_model.regulatory_domain,
-    )
-
-    response = await client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=frame.temperature,
-        max_tokens=config.max_tokens,
-    )
-
-    comment_text = (response.choices[0].message.content or "").strip()
-    
-    # Generate abstract asynchronously
+    comment_text = await _build_and_call_async(persona, frame, world_model, config)
     abstract = await _generate_abstract_async(comment_text, config)
 
     return GeneratedComment(
@@ -481,4 +519,5 @@ async def generate_comment_async(
         rule_title=world_model.rule_title,
         docket_id=world_model.docket_id,
         abstract=abstract,
+        voice_id=persona.voice_id,
     )

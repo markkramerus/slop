@@ -28,7 +28,7 @@ if not docket_id:
 
 # ── Tabs ───────────────────────────────────────────────────────────────────────
 tab_comments, tab_combined, tab_key, tab_skills = st.tabs(
-    ["✍️ Synthetic Comments", "📊 Combined CSV", "🔑 Key File", "🎨 Voice Skills"]
+    ["✍️ Synthetic Comments", "📊 Combined PSV", "🔑 Key File", "🎨 Voice Skills"]
 )
 
 
@@ -146,28 +146,30 @@ with tab_comments:
 # Tab 2 — Combined CSV
 # ─────────────────────────────────────────────────────────────────────────────
 with tab_combined:
-    st.subheader("Combined CSV (Real + Synthetic)")
+    st.subheader("Combined PSV (Real + Synthetic)")
 
-    combined_path = Path(docket_id, "shuffled_comments", "combined.csv")
+    combined_path = Path(docket_id, "shuffled_comments", "combined.psv")
     if not combined_path.is_file():
-        st.info(f"No combined CSV found at `{combined_path}`.  Run the Shuffle step first.")
+        st.info(f"No combined PSV found at `{combined_path}`.  Run the Shuffle step first.")
     else:
         try:
             import pandas as pd
-            df = pd.read_csv(combined_path, on_bad_lines="skip")
+            from shuffler.psv_io import read_psv
+            rows_data, fieldnames = read_psv(str(combined_path))
+            df = pd.DataFrame(rows_data, columns=fieldnames)
             size_kb = round(combined_path.stat().st_size / 1024, 1)
             st.write(f"**{len(df):,}** rows · {len(df.columns)} columns · {size_kb} KB")
 
             st.download_button(
-                "⬇️ Download combined.csv",
+                "⬇️ Download combined.psv",
                 data=combined_path.read_bytes(),
-                file_name="combined.csv",
-                mime="text/csv",
+                file_name="combined.psv",
+                mime="text/plain",
             )
 
             st.dataframe(df, use_container_width=True, height=500)
         except Exception as exc:
-            st.error(f"Could not read combined CSV: {exc}")
+            st.error(f"Could not read combined PSV: {exc}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -176,7 +178,7 @@ with tab_combined:
 with tab_key:
     st.subheader("Key File — Ground Truth Labels")
     st.caption(
-        "Each row records whether the corresponding row in `combined.csv` "
+        "Each row records whether the corresponding row in `combined.psv` "
         "is `real` or `synthetic`."
     )
 

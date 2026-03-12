@@ -643,7 +643,6 @@ def main(argv: list[str] | None = None) -> int:
                 skip_argument_check=args.no_argument_check,
                 skip_embedding_check=args.no_embedding_check,
                 verbose=not args.quiet,
-                vector_override=args.vector,  # None if not specified → use plan's mix
             )
 
             if args.no_async:

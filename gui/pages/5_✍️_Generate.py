@@ -144,7 +144,7 @@ with common_cols[0]:
         "Volume (# comments) *",
         min_value=1,
         max_value=10000,
-        value=10,
+        value=100,
         step=1,
         help="Number of accepted synthetic comments to produce.",
     )

@@ -1,7 +1,246 @@
-Combs-Dyer Consulting’s Response to CMS and ONC/ASTP’s RFI on the Health Technology Ecosystem Executive Summary Combs-Dyer Consulting, LLC—founded by former CMS official and registered nurse Melanie Combs-Dyer—submits this response to file code CMS-0042-NC, offering targeted recommendations to strengthen the health technology ecosystem and protect the Medicare Trust Fund from improper payments. Drawing on over 30 years of experience in the Medicare Fee- for-Service (FFS) program, Combs-Dyer Consulting proposes modernizing data exchange infrastructure, expanding FHIR-based transactions, and refocusing policy levers to reduce fraud, waste, and abuse while also lowering provider burden. Key Recommendations: •Modernize Medicare Documentation Submission Replace outdated esMD systems with a FHIR submission of Medical Documentation (fsMD) ecosystem. CMS should establish a new Health Information Handler (HIH) program for fsMD to enable scalable, cost-effective adoption. •Enforce Broader API Adoption CMS and ONC/ASTP should require EHR vendors to support CRD, DTR, PAS, CDex, and CDSO APIs without special effort through updates to the CEHRT program. These APIs remain underused due to lack of EHR integration mandates. •Reform Promoting Interoperability Program Refocus the program away from quality measure reporting and toward adoption and use of FHIR-based tools that prevent improper payments, such as Clinical Documentation Supporting Orders (CDSO) and prior authorization APIs. •Develop CDSO Standards and Infrastructure Fund and finalize an HL7 Clinical Documentation Supporting an Order (CDSO) Implementation Guide. Require CDSO capabilities in EHRs and integrate CDSO exchange into DMEPOS competitive bidding processes and Medicare claims review workflows. •Support Nationwide FHIR Directories and fsMD Training Launch a national directory of FHIR endpoints for instant medical documentation 
-access. Establish fsMD vendor workshops to scale a network of certified, standards- compliant vendors. •Revitalize TEFCA Participation CMS should rejoin eHealth Exchange and pilot the use of TEFCA/QHINs to accelerate scalable medical record exchange for integrity reviews. •Leverage Pilot Programs and Extrapolated Review Incentives Run multi-stakeholder pilot tests of CRD/DTR/CDex/CDSO transactions, and use extrapolated audits as incentives for ordering clinicians who fail to adopt API-based documentation exchange. Strategic Impact. These policy and technical changes would allow Medicare FFS to dramatically increase claim reviews without expanding workforce, enhance provider compliance with documentation standards, and protect billions in taxpayer funds by enabling real-time, structured documentation exchange. Combs-Dyer Consulting urges CMS and ONC/ASTP to prioritize implementation of these changes in forthcoming rulemaking and technical frameworks. Background. These comments contain recommendations for CMS and ONC/ASTP to help the Medicare FFS1 program reduce the estimated $31 billion dollars in improper payments while simultaneously reducing provider burden. Today’s process of reviewing medical record documentation against the Medicare fee for service NCDs2 and LCDs3 is a very labor-intensive process. Fewer than 3/10 of 1% of all claims submitted to Medicare each year are subjected to medical documentation review. Even to double the number of reviews conducted would require significant increases in funding while still not reaching 1% of the medical documentation associated with all claims being reviewed. Medicare FFS could increase the number of medical documentation reviews it conducts by shifting from a medical documentation submission ecosystem full of web portals, PDFs, fax machines, and human medical record reviewers to a FHIR submission of medical documentation (fsMD) ecosystem. Over 20 years ago, CMS stood up the electronic submission of Medical Documentation (esMD) program. It was based on the then- lastest ONC standard called “CONNECT.” Because the Connect gateways were very expensive and no funding was provided to doctors, hospitals, DME suppliers, etc. most providers could not afford to build their own CONNECT gateway. CMS created an esMD health information handler 1 FFS = fee-for-service (note that “Medicare FFS” is synonymous with “Original Medicare” 2 NCDs = National Coverage Determinations 3 LCDs = Local Coverage Determinations 
-(HIH) program. Private sector, health information handlers, who met CMS’ esMD HIH criteria, were listed on a CMS website for providers use when choosing an intermediary so they could be assured that their choice would work in the Medicare fee for service ecosystem. This focus on the intermediary helped providers adopt the latest technology in a cost efficient manner. CMS should consider establishing a similar FHIR Submission of Medical Documentation (fsMD) HIH program to identify, educate, and provide technical assistance to those FHIR-based intermediaries who can help providers submit medical documentation to Medicare fee for service. The RFI asks which elements of today's health technology ecosystem are working, which are not working, and which are impeding progress. Below are our thoughts in each category. Working. One element of today’s holds great promise are the burden reduction APIs required under CMS final rule 0057. The CRD, DTR and PAS APIs will go a great way to helping reduce provider Burden. However, the full potential of these APIs cannot be fully recognized without adding some requirements to the CEHRT vendors. The Medicare fee for service CRD/DTR/PAS APIs went into effect in December 2020. Kudos to Medicare FFS for leading the way! Not Working. However, to date, not a single provider has submitted a CRD, DTR, or PAS transaction to the Medicare FFS system. One reason provider adoption is so low: Today, EHR vendors are not required to provide CRD, DTR, PAS, CDex and CDSO4 APIs, within the EHR with no special effort. ONC/ASTP should add to the CEHRT technology program a requirement for EHR vendors to offer CRD/DTR/PAS and CDex/CDSO transactions and APIs without special effort. In addition, the CMS promoting interoperability program should be improved. Today’s program is very focused on providers submitting quality measures. CMS should consider putting less emphasis on incentivizing providers to report quality measures and put more emphasis on providers adopting technology that can help Medicare FFS protect the Trust Fund from waste, fraud and abuse (improper payments). Rather than rewarding providers who attest to have submitted one prior authorization request in FHIR format per year, CMS should encourage or require providers to obtain CRD, DTR, and PAS capabilities and use it every time they submit a Prior Authorization Request or order an item/service for which the payer has developed a documentation template. Impeding Progress. One area of today’s health technology ecosystem that is impeding rapid progress is the lack of a FHIR standard and interoperable procedures for an ordering clinician to use when sending the clinical documentation that supports an order (CDSO) to the rendering provider, such as a DME supplier, imaging facility, etc. CMS should consider funding the development of an HL7 CDSO implementation guide (IG). CMS and ONC/ASTPR’s RFI seeks input for possible consideration in future rulemaking and policies to ease health data exchange. Once the CDSO IG has been finalized, team CGS suggests that, in order to enable the rendering provider to receive the structured 4 CDSO = Clinical Documentation Supporting Orders 
-documentation, needed to support their claim for items and services to Medicare patients,: •ONC/ASTP should add to the CEHRT technology program a requirement for EHR vendors to offer CDSO transactions and APIs with no special effort. •CMS should encourage or require providers to obtain CDSO capabilities and use it every time they order an item/service for which the payer has developed a documentation template. •CMS could create a competitive bid program for every item of durable medical equipment for which the Medicare FFS service program has created a documentation template. The competitive bid program should require that to qualify for a contract, the winning bidder must have the ability to receive a CDSO transaction from an ordering clinician, comply with the other requirements listed in the soon to be created CDSO implementation guide, and once authorized by the DME supplier, allow the MAC to instantly fetch the CDSO from the supplier’s secure CDSO repository. PC-10.e. What standards are you aware of that are not currently in wide use, but could improve data access and integration? Response: CMS lists on its website https://www.cms.gov/data-research/computer-data- systems/emdi/post-acute-fhir-order-and-referrals a draft IG called Post-Acute Orders on FHIR (https://build.fhir.org/ig/HL7/dme-orders/). We recommend that the Medicare FFS rename and further develop this draft IG, to focus primarily on CDSOs and how they can move from ordering clinician to DME supplier and on to the requesting payer for review. PR-2. What are obstacles that prevent the development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as … clinical documentation…? How could these obstacles be mitigated Response: The current gold standard app that allows physicians to interact with a payer’s CRD, DTR, and PAS APIs is the “PayEx” SMART-on-FHIR app developed by Mettle Solutions. This app is currently being licensed by Medicare FFS for providers to use free of charge when interacting with the Medicare FFS CRD/DTR and PAS APIs. Several obstacles are preventing PayEx and other physician workflow apps that could help improve clinical documentation exchange and reduce improper payments in the Medicare fee for service program: 1) No FHIR IG exists for an ordering clinician to use when sending the clinical documentation that supports an order (CDSO) to the rendering provider, such as a DME supplier, imaging facility, etc. CMS should fund the development of an HL7 CDSO implementation guide (IG).
-2) EHR vendors are not required to provide CRD, DTR, PAS, CDex and CDSO5 APIs, within the EHR with no special effort. Without this requirement, it is unlikely that EHR vendors on their own accord will choose to offer these features. ONC/ASTP should add to the CEHRT technology program a requirement for EHR vendors to offer CRD/DTR/PAS and CDex/CDSO transactions and APIs without special effort. 3) CMS’ promoting interoperability program is lacking in terms of preventing improper payments (including fraud, waste, and abuse). CMS should consider moving the promoting interoperability program into the Center for Program Integrity to signal to the public a new focus on providers adopting technology that can help Medicare FFS protect the Trust Fund from waste, fraud and abuse (improper payments). Rather than rewarding providers who attest to have submitted one prior authorization request in FHIR format per year, CMS should encourage or require providers to obtain CRD, DTR, and PAS capabilities and use it every time they submit a Prior Authorization Request or order an item/service for which the payer requires prior authorization. In addition, CMS should encourage or require providers to CDex and CDSO capabilities and use it every time they order an item/service for which the payer has developed a documentation template. PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to address those limitations? To what degree do you expect those limitations to hinder participation in TEFCA? Response: The benefits of Medicare FFS participation in TEFCA outweigh any technical limitations in the agreement framework. Without QHINs it will be unlikely that Medicare FFS can quickly scale to the ability to request and receive the medical records needed to identify and prevent improper payments. The Medicare FFS program’s past agreement with eHealthExchange has expired and as of 6/16/2025 has not been re-signed. Medicare FFS should immediately re-join eHealth Exchange and launch a pilot to test exchanging with providers the clinical documentation needed to identify and prevent improper payments in the Medicare Trust Fund. PA-4. What would be the value to payers of a nationwide provider directory that included FHIR endpoints…? Response: It would be extremely beneficial for Medicare fee for service to have access to a nationwide provider directory that included the FHIR end points to which providers want FHIR- based medical documentation requests to go. Once such an ecosystem is established, Medicare FFS improper payment review contractor can request and immediately receive the medical records they need to protect the Medicare Trust Fund. Other payers would likely experience a similar benefit. Medicare FFS should immediately initiate a pilot to test the exchange of CDSO6 and related transactions and include in the pilot a feature where participating 5 CDSO = Clinical Documentation Supporting Orders 6 CDSO = Clinical Documentation Supporting Orders
-providers list their FHIR endpoints for “instant CDSO access” in the CMS-created national directory of healthcare providers and services. TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? Response: Medicare FFS could create a series of education and training workshops for vendors who wish to offer FHIR submission of medical documentation (fsMD) services. By doing so, CMS would encourage the use of open standards-based publicly available APIs. These fsMD workshops would be essential in building a data superhighway of capable IT vendors who understand how to exchange machine readable, FHIR-bundles of medical documentation, securely, with consent, and in compliance with CMS rules. These workshops could equip vendors with the technical and operational knowledge required to shift from static PDFs to dynamic structured FHIR-bundles. The workshops would foster a competitive and innovative vendor marketplace that is future proof and scalable. The workshops would also empower vendors to support durable medical equipment (DME) suppliers, enabling faster more accurate prior authorization and post-claim reviews of medical documentation. Those IT vendors who graduate from the workshop program and onboard to the Medicare FFS FHIR Server could receive a fsMD certification, indicating that they are ready to onboard to other payers as well. TD-9.d. What policy changes could CMS make so providers are motivated to respond to API – based data requests…?? Response: CMS could encourage eligible physicians to obtain CDSO7 capabilities and use it every time they order an item/service for which the payer has developed a documentation template. CMS could encourage the Recovery Audit Contractors to conduct extrapolated E&M8 incorrect coding reviews of those ordering clinicians who choose not to send CDSO transactions to DMEPOS9 suppliers every time they order such an item. In addition, CMS could create a competitive bid program for every item of durable medical equipment for which the Medicare FFS service program has created a documentation template. The competitive bid program should require that to qualify for a contract, the winning bidder must have the ability to receive a CDSO transaction from an ordering clinician, comply with the other requirements listed in the soon to be created CDSO implementation guide, and once authorized by the DME supplier, allow the MAC to instantly fetch the CDSO from the supplier’s secure CDSO repository. 7 CDSO = Clinical Documentation Supporting Orders 8 E&M = Evaluation and Management 9 DMEPOS = Durable Medical Equipment, Prosthetics, Orthotics and Supplies
-TD-10. What further steps should a ASTP/ONC consider to implement the 21st Century Cures Act’s API condition of certification…? Response: ONC/ASTP should add to the CEHRT technology program a requirement for EHR vendors to offer CDex and CDSO transactions and APIs with no special effort. TD-17. What role should CMS… have in ensuring viability of healthcare data sharing networks…? Response: The Medicare FFS program should sponsor 3 year pilot test of CRD/DTR and CDex/CDSO. The pilot should involve: •Several ordering clinicians sending CDSO transactions to the FHIR endpoints of DME Suppliers, •Several DME suppliers submitting claims with the CDSO ID number listed on the claim, •One or more MACs sending a FHIR medical documentation request transaction (including the CDSO ID number) to the DME Supplier’s CDSO instant access API Combs-Dyer Consulting, LLC was founded by Melanie Combs-Dyer, who served in HCFA/CMS from 1989 – 2020, in the Medicare FFS program. Melanie, a nurse by training, consults with providers, provider associations, IT vendors and others on interoperability and the broader health technology infrastructure as it relates to protecting the Medicare Trust Fund from improper payments, including waste fraud and abuse. 
+Combs-Dyer Consulting’s Response to CMS and ONC/ASTP’s
+RFI on the Health Technology Ecosystem
+Executive Summary
+Combs-Dyer Consulting, LLC—founded by former CMS official and registered nurse Melanie
+Combs-Dyer—submits this response to file code CMS-0042-NC, offering targeted
+recommendations to strengthen the health technology ecosystem and protect the Medicare Trust
+Fund from improper payments. Drawing on over 30 years of experience in the Medicare Fee-
+for-Service (FFS) program, Combs-Dyer Consulting proposes modernizing data exchange
+infrastructure, expanding FHIR-based transactions, and refocusing policy levers to reduce fraud,
+waste, and abuse while also lowering provider burden.
+Key Recommendations:
+• Modernize Medicare Documentation Submission
+Replace outdated esMD systems with a FHIR submission of Medical Documentation
+(fsMD) ecosystem. CMS should establish a new Health Information Handler (HIH)
+program for fsMD to enable scalable, cost-effective adoption.
+• Enforce Broader API Adoption
+CMS and ONC/ASTP should require EHR vendors to support CRD, DTR, PAS,
+CDex, and CDSO APIs without special effort through updates to the CEHRT program.
+These APIs remain underused due to lack of EHR integration mandates.
+• Reform Promoting Interoperability Program
+Refocus the program away from quality measure reporting and toward adoption and use
+of FHIR-based tools that prevent improper payments, such as Clinical Documentation
+Supporting Orders (CDSO) and prior authorization APIs.
+• Develop CDSO Standards and Infrastructure
+Fund and finalize an HL7 Clinical Documentation Supporting an Order
+(CDSO) Implementation Guide. Require CDSO capabilities in EHRs and integrate
+CDSO exchange into DMEPOS competitive bidding processes and Medicare claims
+review workflows.
+• Support Nationwide FHIR Directories and fsMD Training
+Launch a national directory of FHIR endpoints for instant medical documentation
+
+access. Establish fsMD vendor workshops to scale a network of certified, standards-
+compliant vendors.
+• Revitalize TEFCA Participation
+CMS should rejoin eHealth Exchange and pilot the use of TEFCA/QHINs to accelerate
+scalable medical record exchange for integrity reviews.
+• Leverage Pilot Programs and Extrapolated Review Incentives
+Run multi-stakeholder pilot tests of CRD/DTR/CDex/CDSO transactions, and
+use extrapolated audits as incentives for ordering clinicians who fail to adopt API-based
+documentation exchange.
+Strategic Impact. These policy and technical changes would allow Medicare FFS
+to dramatically increase claim reviews without expanding workforce, enhance provider
+compliance with documentation standards, and protect billions in taxpayer funds by enabling
+real-time, structured documentation exchange. Combs-Dyer Consulting urges CMS and
+ONC/ASTP to prioritize implementation of these changes in forthcoming rulemaking and
+technical frameworks.
+Background. These comments contain recommendations for CMS and ONC/ASTP to help the
+Medicare FFS1 program reduce the estimated $31 billion dollars in improper payments while
+simultaneously reducing provider burden. Today’s process of reviewing medical record
+documentation against the Medicare fee for service NCDs2 and LCDs3 is a very labor-intensive
+process. Fewer than 3/10 of 1% of all claims submitted to Medicare each year are subjected to
+medical documentation review. Even to double the number of reviews conducted would require
+significant increases in funding while still not reaching 1% of the medical documentation
+associated with all claims being reviewed.
+Medicare FFS could increase the
+number of medical documentation
+reviews it conducts by shifting from
+a medical documentation
+submission ecosystem full of web
+portals, PDFs, fax machines, and
+human medical record reviewers to
+a FHIR submission of medical
+documentation (fsMD) ecosystem.
+Over 20 years ago, CMS stood up
+the electronic submission of
+Medical Documentation (esMD)
+program. It was based on the then-
+lastest ONC standard called “CONNECT.” Because the Connect gateways were very expensive
+and no funding was provided to doctors, hospitals, DME suppliers, etc. most providers could not
+afford to build their own CONNECT gateway. CMS created an esMD health information handler
+1 FFS = fee-for-service (note that “Medicare FFS” is synonymous with “Original Medicare”
+2 NCDs = National Coverage Determinations
+3 LCDs = Local Coverage Determinations
+
+(HIH) program. Private sector, health information handlers, who met CMS’ esMD HIH criteria,
+were listed on a CMS website for providers use when choosing an intermediary so they could be
+assured that their choice would work in the Medicare fee for service ecosystem. This focus on
+the intermediary helped providers adopt the latest technology in a cost efficient manner. CMS
+should consider establishing a similar FHIR Submission of Medical Documentation (fsMD)
+HIH program to identify, educate, and provide technical assistance to those FHIR-based
+intermediaries who can help providers submit medical documentation to Medicare fee for
+service.
+The RFI asks which elements of today's health technology ecosystem are working, which are not
+working, and which are impeding progress. Below are our thoughts in each category.
+Working. One element of today’s holds great promise are the burden reduction APIs
+required under CMS final rule 0057. The CRD, DTR and PAS APIs will go a great way
+to helping reduce provider Burden. However, the full potential of these APIs cannot be
+fully recognized without adding some requirements to the CEHRT vendors. The
+Medicare fee for service CRD/DTR/PAS APIs went into effect in December 2020. Kudos
+to Medicare FFS for leading the way!
+Not Working. However, to date, not a single provider has submitted a CRD, DTR, or
+PAS transaction to the Medicare FFS system. One reason provider adoption is so low:
+Today, EHR vendors are not required to provide CRD, DTR, PAS, CDex and CDSO4
+APIs, within the EHR with no special effort. ONC/ASTP should add to the CEHRT
+technology program a requirement for EHR vendors to offer CRD/DTR/PAS and
+CDex/CDSO transactions and APIs without special effort.
+In addition, the CMS promoting interoperability program should be improved. Today’s
+program is very focused on providers submitting quality measures. CMS should consider
+putting less emphasis on incentivizing providers to report quality measures and put more
+emphasis on providers adopting technology that can help Medicare FFS protect the Trust
+Fund from waste, fraud and abuse (improper payments). Rather than rewarding providers
+who attest to have submitted one prior authorization request in FHIR format per year,
+CMS should encourage or require providers to obtain CRD, DTR, and PAS capabilities
+and use it every time they submit a Prior Authorization Request or order an
+item/service for which the payer has developed a documentation template.
+Impeding Progress. One area of today’s health technology ecosystem that is impeding
+rapid progress is the lack of a FHIR standard and interoperable procedures for an
+ordering clinician to use when sending the clinical documentation that supports an order
+(CDSO) to the rendering provider, such as a DME supplier, imaging facility, etc. CMS
+should consider funding the development of an HL7 CDSO implementation guide (IG).
+CMS and ONC/ASTPR’s RFI seeks input for possible consideration in future rulemaking
+and policies to ease health data exchange. Once the CDSO IG has been finalized, team
+CGS suggests that, in order to enable the rendering provider to receive the structured
+4 CDSO = Clinical Documentation Supporting Orders
+
+documentation, needed to support their claim for items and services to Medicare
+patients,:
+• ONC/ASTP should add to the CEHRT technology program a requirement for
+EHR vendors to offer CDSO transactions and APIs with no special effort.
+• CMS should encourage or require providers to obtain CDSO capabilities and use
+it every time they order an item/service for which the payer has developed a
+documentation template.
+• CMS could create a competitive bid program for every item of durable medical
+equipment for which the Medicare FFS service program has created a
+documentation template. The competitive bid program should require that to
+qualify for a contract, the winning bidder must have the ability to receive a
+CDSO transaction from an ordering clinician, comply with the other
+requirements listed in the soon to be created CDSO implementation guide, and
+once authorized by the DME supplier, allow the MAC to instantly fetch the
+CDSO from the supplier’s secure CDSO repository.
+PC-10.e. What standards are you aware of that are not currently in wide use, but could
+improve data access and integration?
+Response: CMS lists on its website https://www.cms.gov/data-research/computer-data-
+systems/emdi/post-acute-fhir-order-and-referrals a draft IG called Post-Acute Orders on FHIR
+(https://build.fhir.org/ig/HL7/dme-orders/). We recommend that the Medicare FFS rename and
+further develop this draft IG, to focus primarily on CDSOs and how they can move from
+ordering clinician to DME supplier and on to the requesting payer for review.
+PR-2. What are obstacles that prevent the development, deployment, or effective
+utilization of the most useful and innovative applications for physician workflows, such as
+… clinical documentation…? How could these obstacles be mitigated
+Response: The current gold standard app that allows physicians to interact with a payer’s CRD,
+DTR, and PAS APIs is the “PayEx” SMART-on-FHIR app developed by Mettle Solutions. This
+app is currently being licensed by Medicare FFS for providers to use free of charge when
+interacting with the Medicare FFS CRD/DTR and PAS APIs.
+Several obstacles are preventing PayEx and other physician workflow apps that could help
+improve clinical documentation exchange and reduce improper payments in the Medicare fee for
+service program:
+1) No FHIR IG exists for an ordering clinician to use when sending the clinical
+documentation that supports an order (CDSO) to the rendering provider, such as a DME
+supplier, imaging facility, etc. CMS should fund the development of an HL7 CDSO
+implementation guide (IG).
+
+2) EHR vendors are not required to provide CRD, DTR, PAS, CDex and CDSO5 APIs, within
+the EHR with no special effort. Without this requirement, it is unlikely that EHR vendors
+on their own accord will choose to offer these features. ONC/ASTP should add to the
+CEHRT technology program a requirement for EHR vendors to offer CRD/DTR/PAS
+and CDex/CDSO transactions and APIs without special effort.
+3) CMS’ promoting interoperability program is lacking in terms of preventing improper
+payments (including fraud, waste, and abuse). CMS should consider moving the
+promoting interoperability program into the Center for Program Integrity to signal to the
+public a new focus on providers adopting technology that can help Medicare FFS protect
+the Trust Fund from waste, fraud and abuse (improper payments). Rather than
+rewarding providers who attest to have submitted one prior authorization request in FHIR
+format per year, CMS should encourage or require providers to obtain CRD, DTR, and
+PAS capabilities and use it every time they submit a Prior Authorization Request or order
+an item/service for which the payer requires prior authorization. In addition, CMS should
+encourage or require providers to CDex and CDSO capabilities and use it every time they
+order an item/service for which the payer has developed a documentation template.
+PA-1. What policy or technical limitations do you see in TEFCA? What changes would
+you suggest to address those limitations? To what degree do you expect those limitations to
+hinder participation in TEFCA?
+Response: The benefits of Medicare FFS participation in TEFCA outweigh any technical
+limitations in the agreement framework. Without QHINs it will be unlikely that Medicare FFS
+can quickly scale to the ability to request and receive the medical records needed to identify and
+prevent improper payments. The Medicare FFS program’s past agreement with
+eHealthExchange has expired and as of 6/16/2025 has not been re-signed. Medicare FFS
+should immediately re-join eHealth Exchange and launch a pilot to test exchanging with
+providers the clinical documentation needed to identify and prevent improper payments in the
+Medicare Trust Fund.
+PA-4. What would be the value to payers of a nationwide provider directory that included
+FHIR endpoints…?
+Response: It would be extremely beneficial for Medicare fee for service to have access to a
+nationwide provider directory that included the FHIR end points to which providers want FHIR-
+based medical documentation requests to go. Once such an ecosystem is established, Medicare
+FFS improper payment review contractor can request and immediately receive the medical
+records they need to protect the Medicare Trust Fund. Other payers would likely experience a
+similar benefit. Medicare FFS should immediately initiate a pilot to test the exchange of
+CDSO6 and related transactions and include in the pilot a feature where participating
+5 CDSO = Clinical Documentation Supporting Orders
+6 CDSO = Clinical Documentation Supporting Orders
+
+providers list their FHIR endpoints for “instant CDSO access” in the CMS-created national
+directory of healthcare providers and services.
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+Response: Medicare FFS could create a series of education and training workshops for
+vendors who wish to offer FHIR submission of medical documentation (fsMD) services. By
+doing so, CMS would encourage the use of open standards-based publicly available APIs. These
+fsMD workshops would be essential in building a data superhighway of capable IT vendors who
+understand how to exchange machine readable, FHIR-bundles of medical documentation,
+securely, with consent, and in compliance with CMS rules. These workshops could equip
+vendors with the technical and operational knowledge required to shift from static PDFs to
+dynamic structured FHIR-bundles. The workshops would foster a competitive and innovative
+vendor marketplace that is future proof and scalable. The workshops would also empower
+vendors to support durable medical equipment (DME) suppliers, enabling faster more accurate
+prior authorization and post-claim reviews of medical documentation. Those IT vendors who
+graduate from the workshop program and onboard to the Medicare FFS FHIR Server could
+receive a fsMD certification, indicating that they are ready to onboard to other payers as well.
+TD-9.d. What policy changes could CMS make so providers are motivated to respond to
+API – based data requests…??
+Response: CMS could encourage eligible physicians to obtain CDSO7 capabilities and
+use it every time they order an item/service for which the payer has developed a documentation
+template. CMS could encourage the Recovery Audit Contractors to conduct extrapolated E&M8
+incorrect coding reviews of those ordering clinicians who choose not to send CDSO transactions
+to DMEPOS9 suppliers every time they order such an item.
+In addition, CMS could create a competitive bid program for every item of durable medical
+equipment for which the Medicare FFS service program has created a documentation template.
+The competitive bid program should require that to qualify for a contract, the winning bidder
+must have the ability to receive a CDSO transaction from an ordering clinician, comply with
+the other requirements listed in the soon to be created CDSO implementation guide, and once
+authorized by the DME supplier, allow the MAC to instantly fetch the CDSO from the
+supplier’s secure CDSO repository.
+7 CDSO = Clinical Documentation Supporting Orders
+8 E&M = Evaluation and Management
+9 DMEPOS = Durable Medical Equipment, Prosthetics, Orthotics and Supplies
+
+TD-10. What further steps should a ASTP/ONC consider to implement the 21st Century
+Cures Act’s API condition of certification…?
+Response: ONC/ASTP should add to the CEHRT technology program a requirement
+for EHR vendors to offer CDex and CDSO transactions and APIs with no special effort.
+TD-17. What role should CMS… have in ensuring viability of healthcare data sharing
+networks…?
+Response: The Medicare FFS program should sponsor 3 year pilot test of CRD/DTR
+and CDex/CDSO. The pilot should involve:
+• Several ordering clinicians sending CDSO transactions to the FHIR endpoints
+of DME Suppliers,
+• Several DME suppliers submitting claims with the CDSO ID number listed on
+the claim,
+• One or more MACs sending a FHIR medical documentation request
+transaction (including the CDSO ID number) to the DME Supplier’s CDSO
+instant access API
+Combs-Dyer Consulting, LLC was founded by Melanie Combs-Dyer, who served in
+HCFA/CMS from 1989 – 2020, in the Medicare FFS program. Melanie, a nurse by training,
+consults with providers, provider associations, IT vendors and others on interoperability and
+the broader health technology infrastructure as it relates to protecting the Medicare Trust Fund
+from improper payments, including waste fraud and abuse.

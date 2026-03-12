@@ -56,9 +56,12 @@ def run_command(
     import os
 
     effective_cwd = cwd or REPO_ROOT
-    effective_env = None
+    # Always ensure the subprocess uses UTF-8 for stdout/stderr so that
+    # Unicode characters (♔, →, —, etc.) in print() calls don't crash
+    # with UnicodeEncodeError on Windows when stdout is a pipe.
+    effective_env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
     if env:
-        effective_env = {**os.environ, **env}
+        effective_env.update(env)
 
     # Use sys.executable so the subprocess uses the same Python / venv
     effective_cmd = [sys.executable if cmd[0] == "python" else cmd[0]] + list(cmd[1:])

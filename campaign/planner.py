@@ -7,21 +7,25 @@ This is a standalone CLI application. It takes:
   - A scenario brief (text file or inline string) describing the user's
     position, rationale, and the stakeholder types who would share it
   - The proposed rule text (for grounding the argument angles in real policy)
+  - The docket's stylometry index (for voice group awareness)
 
 And produces:
-  - A campaign_plan.json file that can be reviewed, edited, and then passed
-    to syncom's pipeline via --campaign-plan
+  - A campaign_plan.json (v2.0) file that can be reviewed, edited, and then
+    passed to syncom's pipeline via --campaign-plan
+
+The v2.0 plan uses a Bayesian allocation framework:
+    P(V, A) = P(V) × P(A|V)
+    P(A|V) ∝ w(A) × f(A,V)
+    f(A,V) = affinity_boost if V ∈ best_voices(A), else 1.0
 
 Usage
 -----
-    python campaign/planner.py \\
-        --rule-text HTI-5-Proposed-2025-23896.txt \\
-        --scenario scenario_brief.txt \\
-        --output campaign_plan.json
+    python campaign/planner.py --docket-id CMS-2025-0050
 
     python campaign/planner.py \\
+        --docket-id CMS-2025-0050 \\
         --rule-text HTI-5-Proposed-2025-23896.txt \\
-        --scenario "I oppose HTI-5's removal of AI model card requirements..." \\
+        --scenario scenario_brief.txt \\
         --output campaign_plan.json
 
 Environment variables (or .env file):
@@ -36,6 +40,7 @@ import argparse
 import json
 import os
 import sys
+from pathlib import Path
 
 # Add the project root to the path so we can import config
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -44,19 +49,115 @@ from config import Config
 from campaign.campaign_models import CampaignPlan, ArgumentAngle
 
 
+# ── Stylometry loading ────────────────────────────────────────────────────────
+
+def _load_stylometry_summary(docket_id: str) -> tuple[dict[str, dict], dict[str, float]]:
+    """
+    Load the stylometry index.json and build a summary of voice groups
+    with their base population rates.
+
+    Returns
+    -------
+    voice_info : dict[str, dict]
+        voice_id → {archetype, sophistication, sample_size, description}
+    base_population : dict[str, float]
+        voice_id → proportion of total comments (excluding 'unknown' archetypes)
+    """
+    index_path = Path(docket_id) / "stylometry" / "index.json"
+    if not index_path.exists():
+        return {}, {}
+
+    with open(index_path, "r", encoding="utf-8") as f:
+        index = json.load(f)
+
+    voice_info: dict[str, dict] = {}
+    total_known = 0
+
+    for vg in index.get("voice_groups", []):
+        archetype = vg["archetype"]
+        # Exclude 'unknown' archetypes from campaign allocation
+        if archetype == "unknown":
+            continue
+        voice_id = vg["voice_id"]
+        sample_size = vg["sample_size"]
+        total_known += sample_size
+
+        # Build a short description for the LLM
+        soph = vg.get("sophistication", "medium")
+        is_org = voice_id.endswith("-org")
+        if archetype == "individual_consumer":
+            desc = f"Individual commenters, {soph} sophistication"
+        elif archetype == "advocacy_group":
+            desc = f"Advocacy/nonprofit organizations, {soph} sophistication"
+        elif archetype == "industry":
+            desc = f"Industry/corporate organizations, {soph} sophistication"
+        elif archetype == "academic":
+            desc = f"Academic/research institutions, {soph} sophistication"
+        elif archetype == "government":
+            desc = f"State/local government entities, {soph} sophistication"
+        else:
+            desc = f"{archetype}, {soph} sophistication"
+
+        voice_info[voice_id] = {
+            "archetype": archetype,
+            "sophistication": soph,
+            "sample_size": sample_size,
+            "is_org": is_org,
+            "description": desc,
+        }
+
+    # Compute base population proportions (among known voices only)
+    base_population: dict[str, float] = {}
+    if total_known > 0:
+        for vid, info in voice_info.items():
+            base_population[vid] = info["sample_size"] / total_known
+
+    return voice_info, base_population
+
+
+def _format_voice_summary_for_prompt(
+    voice_info: dict[str, dict],
+    base_population: dict[str, float],
+    total_comments: int | None = None,
+) -> str:
+    """Format the voice group summary for inclusion in the LLM prompt."""
+    if not voice_info:
+        return "(No stylometry data available)"
+
+    lines = []
+    total_known = sum(info["sample_size"] for info in voice_info.values())
+    if total_comments:
+        lines.append(
+            f"This docket received {total_comments} total comments. "
+            f"Of the {total_known} that were classified into known archetypes:"
+        )
+    else:
+        lines.append(f"Of {total_known} classified comments:")
+
+    for vid in sorted(voice_info.keys()):
+        info = voice_info[vid]
+        pct = base_population.get(vid, 0.0)
+        lines.append(
+            f"  {vid:35s}  {info['sample_size']:>4d} ({pct:5.1%})  — {info['description']}"
+        )
+
+    return "\n".join(lines)
+
+
 # ── LLM prompts ──────────────────────────────────────────────────────────────
 
 _PLANNER_SYSTEM = """\
 You are a regulatory comment campaign strategist for a research project on
 detecting synthetic public comments. Given a user's scenario (their position
-on a proposed rule, why they hold it, and who would agree with them) plus the
-actual rule text, you decompose the scenario into a structured campaign plan.
+on a proposed rule, why they hold it, and who would agree with them), the
+actual rule text, and the existing voice distribution from a real docket,
+you decompose the scenario into a structured campaign plan.
 
 The campaign plan specifies:
 1. A refined objective statement
 2. Distinct argument angles (each a different lens on the position)
-3. Which stakeholder archetypes should be emphasized
-4. What mix of comment styles (attack vectors) to use
+3. A campaign voice distribution — how to shift emphasis across voice groups
+4. Which voices are best suited for each argument angle
 
 You must output ONLY valid JSON — no prose, no markdown fences, no explanation.
 """
@@ -67,6 +168,13 @@ _PLANNER_USER_TEMPLATE = """\
 
 === PROPOSED RULE TEXT (first 8000 chars for context) ===
 {rule_text}
+
+=== EXISTING COMMENT POPULATION (from stylometry analysis) ===
+{voice_summary}
+
+The voice IDs above are the EXACT identifiers you must use in your output.
+Each voice has a distinct writing style, sophistication level, and perspective
+that was learned from analyzing real comments in this docket.
 
 === INSTRUCTIONS ===
 Decompose this scenario into a campaign plan. Produce a JSON object with
@@ -81,43 +189,51 @@ this exact schema:
     {{
       "id": "<short_snake_case_id>",
       "angle": "<one sentence describing this specific argument angle>",
-      "weight": <float 0.05-0.40, relative importance of this angle>,
-      "best_archetypes": ["<archetype1>", "<archetype2>"]
+      "weight": <float 0.05-0.40, base rate importance of this angle>,
+      "best_voices": ["<voice_id_1>", "<voice_id_2>"]
     }}
   ],
 
-  "stakeholder_emphasis": {{
-    "individual_consumer": <float 0.0-1.0>,
-    "advocacy_group": <float 0.0-1.0>,
-    "industry": <float 0.0-1.0>,
-    "academic": <float 0.0-1.0>,
-    "government": <float 0.0-1.0>
+  "campaign_voices": {{
+    "<voice_id>": <float, campaign weight for this voice>,
+    ...
   }},
 
-  "vector_mix": {{
-    "1": <float, weight for Semantic Variance — same argument, varied surface forms>,
-    "2": <float, weight for Persona Mimicry — diverse stakeholders, same position>,
-    "3": <float, weight for Citation Flooding — comments with many references>,
-    "4": <float, weight for Dilution/Noise — brief, vague agreement>
-  }},
+  "affinity_boost": <float, typically 3.0, the multiplier for preferred voice-argument pairings>,
 
-  "notes": "<strategic rationale: why this mix of angles, stakeholders, and vectors>"
+  "notes": "<strategic rationale: why this mix of voices, angles, and affinities>"
 }}
 
 RULES:
 - Generate 4-8 distinct argument angles. Each should be a genuinely different
   lens on the position, not just rephrasing.
-- Stakeholder emphasis should reflect who would REALISTICALLY comment on this
-  rule with this position. Don't include archetypes that wouldn't plausibly
-  comment unless the user's scenario suggests otherwise.
-- The valid archetype names are EXACTLY: individual_consumer, advocacy_group,
-  industry, academic, government. Use only these.
-- Vector weights should reflect a realistic campaign strategy. Persona Mimicry
-  (vector 2) is usually the primary vector. Citation Flooding (vector 3) works
-  best for academic/industry archetypes. Dilution (vector 4) should be a small
-  proportion unless the user specifically wants volume over substance.
+- For campaign_voices, you MUST use the exact voice_id strings from the
+  population data above. Only include voices with archetype != 'unknown'.
+- campaign_voices weights represent the campaign's desired emphasis. These
+  may differ from the base population. A campaign might amplify certain
+  voices (e.g., increase advocacy_group from 18% to 30%) but the result
+  should remain plausible — avoid extreme shifts (e.g., 50% academic when
+  the base is 2%).
+- best_voices on each argument angle should list 2-4 voice_ids that are
+  most naturally suited to make that argument. These voices get an
+  affinity_boost multiplier when the argument is assigned.
+- affinity_boost controls how strongly voice identity channels argument
+  selection. 3.0 means preferred voices are 3x more likely to get that
+  argument. Use 2.0-5.0 depending on how strongly you want to channel.
 - All weight values are relative — they will be normalized at runtime.
-- The notes field should explain YOUR strategic reasoning.
+- The notes field should explain YOUR strategic reasoning, including why
+  you shifted certain voices up or down from the base population.
+
+HOW THE FRAMEWORK WORKS:
+For each comment, the pipeline:
+  1. Draws a voice V from campaign_voices (probability P(V))
+  2. Draws an argument A with probability P(A|V) ∝ w(A) × f(A,V)
+     where f(A,V) = affinity_boost if V is in that angle's best_voices, else 1.0
+  3. Generates a comment in that voice making that argument
+
+So the overall campaign argument distribution P(A) emerges naturally from
+the interaction of voice weights and argument affinities — you don't need
+to specify it separately.
 """
 
 
@@ -140,10 +256,14 @@ def generate_campaign_plan(
     scenario: str,
     rule_text: str,
     config: Config,
+    docket_id: str = "",
     verbose: bool = True,
 ) -> CampaignPlan:
     """
-    Use an LLM to decompose a scenario into a structured CampaignPlan.
+    Use an LLM to decompose a scenario into a structured CampaignPlan (v2.0).
+
+    The planner is aware of the docket's stylometry voice groups and produces
+    a plan that references actual voice_ids from the stylometry index.
 
     Parameters
     ----------
@@ -154,6 +274,8 @@ def generate_campaign_plan(
         Full text of the proposed rule (used for grounding).
     config : Config
         API configuration.
+    docket_id : str
+        Docket identifier for loading stylometry data.
     verbose : bool
         Print progress to stderr.
 
@@ -164,12 +286,50 @@ def generate_campaign_plan(
     config.validate()
     client = config.openai_client()
 
+    # ── Load stylometry data ──────────────────────────────────────────────
+    voice_info: dict[str, dict] = {}
+    base_population: dict[str, float] = {}
+    total_comments = None
+
+    if docket_id:
+        if verbose:
+            print(f"[1/3] Loading stylometry for {docket_id}…", file=sys.stderr)
+        voice_info, base_population = _load_stylometry_summary(docket_id)
+
+        index_path = Path(docket_id) / "stylometry" / "index.json"
+        if index_path.exists():
+            with open(index_path) as f:
+                idx = json.load(f)
+            total_comments = idx.get("total_comments")
+
+        if voice_info:
+            if verbose:
+                print(f"      Found {len(voice_info)} voice groups", file=sys.stderr)
+                for vid, info in sorted(voice_info.items()):
+                    pct = base_population.get(vid, 0)
+                    print(
+                        f"        {vid:35s} {info['sample_size']:>4d} ({pct:5.1%})",
+                        file=sys.stderr,
+                    )
+        else:
+            if verbose:
+                print("      No stylometry data found — using generic plan", file=sys.stderr)
+    else:
+        if verbose:
+            print("[1/3] No docket-id — skipping stylometry", file=sys.stderr)
+
+    voice_summary = _format_voice_summary_for_prompt(
+        voice_info, base_population, total_comments
+    )
+
+    # ── Call LLM ──────────────────────────────────────────────────────────
     if verbose:
-        print("[1/2] Analyzing scenario and rule text…", file=sys.stderr)
+        print(f"[2/3] Analyzing scenario and rule text…", file=sys.stderr)
 
     prompt = _PLANNER_USER_TEMPLATE.format(
         scenario=scenario,
         rule_text=rule_text[:8000],
+        voice_summary=voice_summary,
     )
 
     response = client.chat.completions.create(
@@ -179,7 +339,7 @@ def generate_campaign_plan(
             {"role": "user", "content": prompt},
         ],
         temperature=0.4,
-        max_tokens=2000,
+        max_tokens=2500,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -198,7 +358,7 @@ def generate_campaign_plan(
         parsed = {}
 
     if verbose:
-        print("[2/2] Building campaign plan…", file=sys.stderr)
+        print("[3/3] Building campaign plan…", file=sys.stderr)
 
     # Build ArgumentAngle objects
     angles = []
@@ -207,25 +367,28 @@ def generate_campaign_plan(
             id=a.get("id", "unknown"),
             angle=a.get("angle", ""),
             weight=float(a.get("weight", 0.15)),
-            best_archetypes=a.get("best_archetypes", []),
+            best_voices=a.get("best_voices", []),
         ))
 
-    # Build vector_mix with int keys
-    raw_vm = parsed.get("vector_mix", {"1": 0.3, "2": 0.4, "3": 0.15, "4": 0.15})
-    vector_mix = {int(k): float(v) for k, v in raw_vm.items()}
+    # Build campaign_voices — validate against known voice_ids
+    raw_cv = parsed.get("campaign_voices", {})
+    campaign_voices: dict[str, float] = {}
+    for vid, w in raw_cv.items():
+        campaign_voices[vid] = float(w)
+    # If no valid voices, fall back to uniform over known voices
+    if not campaign_voices and voice_info:
+        campaign_voices = {vid: 1.0 for vid in voice_info}
+
+    # Affinity boost
+    affinity_boost = float(parsed.get("affinity_boost", 3.0))
 
     plan = CampaignPlan(
         objective=parsed.get("objective", scenario[:200]),
         scenario_summary=parsed.get("scenario_summary", scenario[:300]),
         argument_angles=angles,
-        stakeholder_emphasis=parsed.get("stakeholder_emphasis", {
-            "individual_consumer": 0.2,
-            "advocacy_group": 0.2,
-            "industry": 0.2,
-            "academic": 0.2,
-            "government": 0.2,
-        }),
-        vector_mix=vector_mix,
+        campaign_voices=campaign_voices,
+        base_population=base_population,
+        affinity_boost=affinity_boost,
         notes=parsed.get("notes", ""),
     )
 
@@ -239,8 +402,9 @@ def build_parser() -> argparse.ArgumentParser:
         prog="campaign-planner",
         description=(
             "Decompose a natural-language scenario into a structured campaign "
-            "plan for syncom. The output JSON can be reviewed, edited, and then "
-            "passed to syncom via --campaign-plan."
+            "plan for syncom. The planner loads stylometry voice groups from "
+            "the docket to produce a plan with actual voice_ids. The output JSON "
+            "can be reviewed, edited, and then passed to syncom via --campaign-plan."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
@@ -262,7 +426,8 @@ Example (all defaults from docket directory):
         help=(
             "Docket identifier (e.g., 'CMS-2025-0050'). When provided, "
             "--scenario, --rule-text, and --output default to conventional "
-            "paths inside the docket directory."
+            "paths inside the docket directory. Also loads stylometry data "
+            "for voice group awareness."
         ),
     )
 
@@ -294,6 +459,19 @@ Example (all defaults from docket directory):
         help=(
             "Destination path for the campaign plan JSON file. "
             "Default: {docket_id}/campaign/campaign_plan.json"
+        ),
+    )
+
+    # Preview option
+    p.add_argument(
+        "--preview-volume",
+        type=int,
+        default=None,
+        metavar="N",
+        help=(
+            "If set, print the allocation matrix for N comments after "
+            "generating the plan. Useful for reviewing the plan before "
+            "running generation."
         ),
     )
 
@@ -383,6 +561,7 @@ def main(argv: list[str] | None = None) -> int:
             scenario=scenario,
             rule_text=rule_text,
             config=config,
+            docket_id=docket_id or "",
             verbose=not args.quiet,
         )
     except Exception as exc:
@@ -398,6 +577,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"\nCampaign plan saved to: {output_arg}", file=sys.stderr)
         print(f"", file=sys.stderr)
         print(plan.summary(), file=sys.stderr)
+
+        if args.preview_volume:
+            print(f"", file=sys.stderr)
+            print(plan.allocation_summary(args.preview_volume), file=sys.stderr)
+
         print(f"\nReview and edit the plan, then generate:", file=sys.stderr)
         if docket_id:
             print(f"  python cli.py --docket-id {docket_id} --volume N", file=sys.stderr)

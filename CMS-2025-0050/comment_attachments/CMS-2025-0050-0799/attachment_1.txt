@@ -1,11 +1,383 @@
-1 | P a g eInovalon CMS RFI Due: June 16, 2025 Inovalon, a leading provider of solutions empowering data-driven healthcare, provides the following comments to the CMS Health Technology RFI. Payers: PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to address those limitations? To what degree do you expect these limitations to hinder participation in TEFCA? A barrier to adoption of TEFCA is due to the lack of incentives or clarity on what data that payers are expected to reciprocate in order to join TEFCA. An additional barrier is the ambiguity surrounding the total cost of implementation for Healthcare Ops exchange purposes (XPs) are hindering adoption as well as the lack of clarity regarding details of claims data reciprocity and the lack of clarity regarding participants’ ability to charge for Healthcare Ops XPs. Smaller Payers may have trouble adopting the technical and operational demands to reciprocate data for the QHIN that they join. Greater coordination with NCQA on HEDIS Compliance Audit regulations for payers (i.e., the need for Primary Source Validation to use clinical data requires manual chart review or Data Aggregator Validation (DAV)). While the HEDIS XP is one of the first XPs to be mandated, the HEDIS Compliance Audit regulations are an adoption factor for Plans. Many QHINs may be reluctant to share data for the HEDIS XPs, unless changes are made to DAV or PSV requirements. Inovalon proposes two possible solutions for this barrier: 1) the removal of primary source validation for reporting of Quality data from non-standard (non-claims sources), or 2) that TEFCA and NCQA to work together so that all QHINs are DAV certified. QHINs may have direct connections to the provider EMR or the HIE. Those participants in the QHIN can provide the original record for audit purposes. PA-4. What would be the value to payers of a nationwide provider directory that included FHIR end points and used digital identity credentials? A nationwide provider directory could be helpful to payers, as it would provide a single source for this important connectivity data. Such FHIR endpoint and digital ID information could also potentially streamline the Primary Source Validation (PSV) process for exchanges of clinical data. PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of providers? CMS should consider reducing or eliminating the need for Primary Source Validation (PSV) for clinical data securely exchanged via FHIR APIs contingent on robust digital identity and data integrity standards.
-2 | P a g ePA-5.a. How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider-side technology? Yes, Payers could benefit from, and demonstrate a strong interest in, capabilities to bulk extract EHR data to support operations and quality assurance activities. Likewise, providers would welcome anything that reduces any administrative burden on their behalf. However, in our experience not all payers are set-up to ingest bulk data and act on it. PA-5.b. In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? At present, consolidating reporting would be a challenging prospect as provider side reporting may not be complete compared to the results of the Payer, and vice versa. While the Provider has clinical data not available from the Payer's claims information, The Payer is receiving pharmacy, lab, radiology, etc. that may not be available to the Provider. Third parties, like Inovalon support technologies that could integrate the needed data from payers and providers. The advantage of this would extend far beyond quality reporting, and could be used to bolster the global patient record of payers and providers – a central goal of the Interoperability Rule. PA-7. How can CMS encourage payers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? We recommend that use cases are expanded to include payment and healthcare operations to help incentive data sharing. Payers need the support and collaboration of their providers despite information blocking. Many are reluctant to submit a complaint and see this option as a last resort. Even though the Payers are not getting what they need from those providers, they are unlikely to report non-cooperative providers. Value Based Care Organizations Digital Health Adoption VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital health management and care navigation products more often and more effectively with their patients? What are the current obstacles preventing broader digital product adoption for patients in ACOs? Providers in ACOs are in different settings (PCPs, Specialists) and using different EMRs. Most ACOs struggle with the lack of good data on specialist performance. Most specialists are paid on the fee-for-service models and need financial incentives to collaborate with PCPs, especially 
-3 | P a g ethose that are independent specialists or on different EHRs. Specialists need the financial incentive to participate and change workflows for bundled programs/referrals before they consider digital health adoption. CMS could offer shared savings bonuses or additional points in quality scoring frameworks (like the ACO REACH or MSSP quality metrics) based on the percentage of attributed lives engaging through digital care navigation platforms and/or the percentage of remote patient monitoring (RPM) utilization in chronic condition cohorts. Patient-reported outcomes or satisfaction could also be tracked through digital platforms quite easily. Additionally, CMS could offer incentives or reduce reporting burdens for ACOs who implement certified platforms that integrate with CMS APIs or claim-based data systems to support real- time patient identification, gaps in care, and SDOH risk scoring, and/or participate in information sharing via state HIEs. CMS could provide funding or partnerships for digital literacy programs or device subsidies for underserved populations, which would enable ACOs to broaden equitable access to digital platforms. As to current obstacles, providers in ACOs are in different settings (PCPs, Specialists) and are often using different EMRs. Most ACOs struggle with the lack of good data on specialist performance. Most specialists are paid on the fee-for-service models and need financial incentives to collaborate with PCPs, especially those that are independent specialists or on different EHRs. Specialists need the financial incentive to participate and change workflows for bundled programs/referrals before they consider digital health adoption. VB-2. How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? Encourage Clinical Decision Support (CDS) via AI CMS should explicitly allow and incentivize AI-enabled decision support tools that assist providers in identifying gaps in care, predicting hospitalizations, or coding accurately (e.g., AI- powered risk adjustment coding or claims generation tools). Incorporate Risk Stratification as a Core APM Activity Require ACOs to demonstrate a tech-enabled risk stratification approach to identify rising-risk patients, not just high-cost cohorts. Incentivize use of tools that combine claims, EHR, and SDOH data for better targeting. Third-party software could easily be developed to facilitate this. Enable API-Based Care Team Integration CMS should set interoperability standards that allow APM participants to connect external vendor tools (care navigation, RPM, behavioral health) into shared care plans via FHIR APIs. Tie Member Engagement Metrics to Shared Savings
-4 | P a g eRequire APMs to report patient engagement metrics—such as portal logins, completion of digital assessments, or interaction with care navigators—and reward ACOs that achieve high engagement in underserved populations. VB-3. What are essential health IT capabilities for value-based care arrangements? VBC stakeholders need the ability to seamlessly ingest and normalize data from EHRs, claims, labs, HIEs, and patient-generated sources (e.g., wearables) because providers and payers require a longitudinal, unified patient record across care settings to enable timely interventions and risk identification. Continued expansion of FHIR API adoption could support this; however, it will require high quality third-party software to integrate this data and avoid the already-present issue of information overload. Stakeholders need tools to collect, structure, and act on SDOH inputs (e.g., food insecurity, housing instability) from patients and care teams. SDOHs are key drivers of outcomes and costs, especially for Medicaid and underserved Medicare populations. To improve the use of SDOH data, CMS could integrate SDOH into risk adjustment models and incentivize interoperable tools that document and address these factors. They also need real-time dashboards showing APM performance across quality, cost, risk scores, and patient engagement. VBC participants need a clear line-of-sight into their performance to drive operational and clinical changes. CMS could provide standardized APIs for claim-level APM performance data to be visualized in third-party platforms. Finally, VBC stakeholders need ADT messages/pings within the care manager or nurse workflow. ADTs alert when a patient is admitted or discharged from a hospital setting. ACOs with nurses that oversee a panel of patients have faster follow up care post discharge. VB-4. What are the essential data types needed for successful participation in value-based care arrangements? Clinical Data - Forms the basis for clinical decision-making, HCC risk adjustment, and care gap identification. •Sources: EHRs, labs, imaging systems •Key Elements: Diagnoses (ICD-10 codes, problem lists), procedures (CPT, HCPCS codes), medications (prescribed and administered), vital signs and biometric data, provider notes (structured and unstructured) Claims and Encounter Data - Enables financial benchmarking, cost prediction, and population- level utilization analysis. •Sources: Medicare/MCO claims, clearing houses, payers •Key Elements: Claims (inpatient, outpatient, pharmacy, and SNF), cost/utilization patterns, diagnosis and procedure codes tied to payment, timestamps for services rendered.
-5 | P a g eQuality and Outcomes Data - Core to performance scoring in APMs; supports provider accountability and improvement tracking. •Sources: eCQM reporting tools, registries, digital apps •Key Elements: Preventive screening adherence, chronic condition management metrics (e.g., A1c, BP), readmission rates, ED visits, mortality rates, PROMs (Patient-Reported Outcome Measures) Risk and Stratification Data - Identifies who needs intervention and justifies care intensity/resource allocation. •Sources: Analytics platforms, EHRs, Payers •Key Elements: HCC risk scores and RAF (Risk Adjustment Factor), predictive risk models (e.g., rising risk, gaps in care), attribution rosters Social Determinants of Health (SDOH) Data - Crucial for equitable care planning, and for adjusting performance expectations based on social risk. •Sources: Screenings, community orgs, EHR, self-report •Key Elements: Housing instability, food insecurity, transportation needs, language, education, employment status, Area Deprivation Index or Z-codes (Z55–Z65) Behavioral Health and Substance Use Data - Key to whole-person care and high-cost population management; often fragmented or siloed. •Sources: EHR, BH-specific tools, claims •Key Elements: Mental health diagnoses and treatment plans, substance use disorder history and recovery status, therapy and psychiatry utilization Patient Engagement and Experience Data - Strongly linked to outcomes and increasingly factored into APM quality scoring. •Sources: Patient portals, apps, survey tools (e.g., CAHPS) •Key Elements: Portal usage, telehealth utilization, survey responses, engagement with care navigation or reminders, adherence to care plans and self-reported symptoms Real-Time and Remote Monitoring Data - Enables proactive intervention for chronic conditions and post-acute care management. •Sources: Wearables, remote patient monitoring (RPM), home health tools •Key Elements: Glucose levels, heart rate, blood pressure, daily symptom logs, medication adherence Referral and Care Coordination Data - Essential for reducing care fragmentation and improving outcomes across transitions. •Sources: EHR, care navigation platforms
-6 | P a g e•Key Elements: Referral status and outcomes, closed-loop tracking (e.g., whether the visit occurred), communication history across the care team Compliance and Certification VB-6. What specific health information technology capabilities that could benefit APMs are not currently addressed by existing certification criteria and standards that should be included under the ONC Health IT Certification Program? No standards exist for managing attributed populations or sharing attribution files with health IT systems. Attribution is foundational to APM success but lacks certified IT infrastructure for seamless integration across care platforms. Certify platforms that support: •Rostering and attribution file ingestion •Longitudinal patient tracking across attributed populations •APIs to share these lists with care teams and engagement tools Technical Standards VB-11. What specific interoperability challenges have you encountered in implementing value- based care programs? Physicians are becoming more interested in monitoring their VBC performance outside of what the Payer is sharing with them but due to the lack of data they have access to, they are unable to stand up VBC reporting tools without heavy reliance on the Payer for data. VB-14. How could implementing digital identity credentials improve value-based care delivery and outcomes? Digital identity credentials serve as a foundational enabler for scalable, secure, and efficient value-based care. They reduce friction in coordination, improve patient and provider trust, and allow for more precise and timely care interventions—directly contributing to improved outcomes and reduced costs. We are supportive of adding digital identity credentials accepted, but do not feel that a mandate forcing usage is necessary. Streamlined Care Coordination Across Entities - VBC arrangements often involve multi-entity collaboration (e.g., ACOs, CINs, SNFs, home health agencies) where providers must securely exchange patient data and engage in shared decision-making. Enabling digital identity improves efficiency, reduces duplication, and supports timely interventions—essential for managing high- risk populations in APMs. Improved Patient Matching and Attribution Accuracy - Accurate attribution is critical in VBC, yet it's often undermined by patient identity fragmentation across payers, providers, and health IT systems. Digital credentials would remain constant across platforms, reducing errors with the 
-7 | P a g eattribution file reconciliation, quality reporting, and care gap closure. Accurate attribution can increase patient satisfaction and close gaps sooner. More Efficient Provider Onboarding and Credentialing - VBC participants span many organizations due to the coordinated care efforts needed for managing the higher risk population. By linking a verified digital ID to the NPI, licensing, and other identities a provider could easily access platforms with comment credentials, cutting down on the provider's frustrations and creating more efficiency. Secure Patient Access and Engagement - Engaging patients in VBC programs (e.g., chronic care management, remote monitoring) require secure access to portals, apps, and devices—but password fatigue and authentication barriers reduce participation. Allowing patient credentials to pass across multiple platforms improves patient trust, participation, and data sharing. Better Compliance and Auditability - VBC programs involve complex regulatory requirements around data use, access tracking, and audit trails (e.g., for HEDIS, HCC audits, PHI access). A digital ID could potentially reduce compliance risk and build trust with regulators, payers, and patients. VB-15. How could a nationwide provider directory of FHIR endpoints help improve access to patient data and understanding of claims data sources? What key data elements would be necessary in a nationwide FHIR endpoints directory to maximize its effectiveness? Streamline patient data across networks - Enabling FHIR API endpoints across organizations would allow care coordination to happen more efficiently. Removes vendor onboarding burdens - Often Payers are asked to create configuration files to support their software implementation. The files are likely of the same data set but required in a specific format for each vendor. A nationwide Provider directory could cut down on the overhead to a Payer when looking to implement a new tool. Benefits specific to VBC programs - Faster and more reliable data sharing between different organizations, more accurate attribution and care gap identification, and the reduction of administrative overhead and manual efforts. The directory should include: FHIR Endpoint Metadata, Organization and Provider Details (name, location, NPI, Tax ID/Payer ID, care setting, affiliations), Payer Details (name, LOB, FHIR endpoint for claims APIs), Endpoint data security and trust metadata. Technology Vendors, Data Providers, and Networks TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? There is an opportunity to collect and provide information that is available through the US census, FDA and other government agencies pertaining to patients SDOH such as Education, Income levels, Access to Care, Race/Ethnicity, Food Deserts, etc. or Price Transparency data in a standard format, as well as providing it in a high quality, single 
-8 | P a g esource of truth, secure, interoperable manner that would be compliant with privacy and data use policies. This can be done through endorsed non-CMS vendors that make and organize public information while maintaining CMS standards. TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? CMS encourages organizations to provide APIs specifically for sharing patient data. However, today there are limits on the use cases for data access, which doesn’t support all the payer and provider needs. For example, an opportunity that Payers (and, consequently, those Payers’ Participating Providers who develop a verified treatment relationship with an enrollee of that Payer) could benefit from would be access to the entirety of a patient’s clinical data for newly enrolled patients that may have participated with other providers. Providers: 1. Digital Health Apps (response to PR-1, PR-2, PR-3, PR-4) Digital Health apps have created a way of engaging patients deeper in the management and ownership of their health. Generally, the ability to have more information at a patient’s fingertips regarding their health is a positive, however there are some risks including misleading / inaccurate information and lack of knowledge to know how to respond to the information available that could lead to unintended consequences which increase the burden on providers such as increases in emergency room visits, doctor appointments, as a result of perceived conditions or issues. From a Provider perspective, digital health apps and wearables create a new stream of patient health information which can provide visibility into how a patient is doing between provider interactions and support a more engaged care plan. Challenges are created in providers’ consumption of this data as it brings in both structured and unstructured data. To leverage unstructured data effectively, providers need the right technology (i.e. Natural Language Processing) to parse the data to make appropriate use of it to inform care decisions. Without AI-driven software, data from digital health apps has the potential to burden providers with too much data that can’t be used. In terms of relative importance, Providers generate roughly 137 terabytes of data every day, however 97% of data is going unused1. We are supportive of efforts that encourage the further use of the data and encourage sharing between patients and 
-9 | P a g eproviders. Steps should be taken to better encourage and enable patients to share heath app data with their providers or for data aggregation in a direct manner, since typically this data is not typically integrated or available to providers; nor in a way that is easy to share. Statistics show that 30% of Americans use wearables and only 25% of them even share data with their Provider2. 1. “What's moving the needle toward value-based care?,” Definitive Healthcare, https://www.definitivehc.com/blog/trends- value-based-care 2. “Study reveals wearable device trends among U.S. adults” https://www.nhlbi.nih.gov/news/2023/study-reveals-wearable- device-trends-among-us- adults#:~:text=Almost%20one%20in%20three%20Americans,published%20in%20JAMA%20Network%20Open%20. 2. Data Exchange (response to PR-5) Inovalon supports all APIs documented in the Data Exchange section of the Provider portion of the RFI, except for Bulk FHIR and SMART on FHIR. 3. Digital Identity (response to PR-9, PR-10, PR-11, PC-13, PC-14, TD-3) We are supportive of allowing for digital identities to be accepted alongside other forms of identity verification, but not enforcing a mandate that requires providers to adopt digital identities exclusively. Mandating acceptance of a digital ID for Patients would be burdensome and potentially detrimental for providers. Requiring more advanced security of the patient identity would be a large investment across the healthcare tech software industry that could slow other innovations and have a very costly impact across the industry if mandated as the exclusive identity verification process. While this approach could reduce identity fraud and even benefit providers by preventing lost revenue, it could also limit care and cause challenges for patients where there is limited access to technology or internet, limited education, and more importantly, the elderly. Introducing the digital identity concept while still allowing other forms of identity verification would give providers ample time to assess the technology, the requirements, and work through any necessary changes before enforcing it as a standard. 4. Information Blocking We are supportive of the information blocking rule and exceptions as currently defined and do not feel that they are limiting market competition. There is an opportunity to support providers in their efforts to share information by broadening the support for data exchange to provide faster, more accurate care to patients through enabling standards that encourage sharing of clinical information in a secure manner. Data Exchange for Provider, Tech, and Data Vendors:
-10 | P a g eThe section below addresses responses to PR-7, TD-1, TD-2, TD-4, TD-13 There are opportunities for CMS to make short-term improvements to existing data exchange models. Thoughts per channel below: •Part A Data Centers: oAllow for easier setup of dedicated threading for entities with higher-than-average traffic and CPU usage. ▪These customers can unknowingly impact FISS processing for all users, impacting overall performance and stability. ▪Entities with high customer volumes supporting customers accessing DDE FISS directly could be able to assist with this, ensuring best practices for all parties. oMove to API only connectivity for data exchange. ▪Removing stress from antiquated connectivity and file transfer oTighter availability/CPU monitoring to avoid unexpected outages ▪Entities with high customer volumes supporting customers accessing DDE FISS directly could be able to assist with this, ensuring best practices for all parties. •HETS: oImprove connectivity between HETS and Systems of Records to provide MBI changes in closer to real time capacity. oEliminate monthly output files based off above changes to either weekly, daily, or real-time CMS could move toward long term ecosystem improvements with the implementation of API connectivity to all Standard Systems. This would include reopening connection to the Part B systems for data exchange for HIHs, and potentially even DME and VMS. Providers want the ability to access the Part B MCS system like they do with Part A FISS, currently this is a gap for Medicare providers. This would improve and increase the data exchange offerings that providers can access related to claim status and patient demographics. Additionally, software developers and companies would be able to leverage this access to improve and augment existing Medicare products in the market. For Medicare Part A, patients, providers, and software organizations would benefit from updates to the DDE User Manual previously created by CMS. Not having any direct access into the Medicare Part B system limits the amount of analytics, tracking, and reporting for providers. It also limits any beneficiary data that could aid Part B customers. CMS could move towards a standardized version of prior authorizations in healthcare as it offers a multitude of benefits for all stakeholders. For providers, it would drastically reduce the current administrative burden and time spent navigating diverse and often opaque payer requirements, freeing up resources for direct patient care and improving staff satisfaction. Patients would experience faster access to necessary treatments and medications, reducing delays, anxiety, 
-11 | P a g eand the risk of adverse health outcomes. Insurers, while still maintaining a mechanism for medical necessity review and cost control, would benefit from streamlined, more efficient processes, potentially leading to lower administrative costs and improved relationships with providers. Ultimately, standardization fosters greater transparency, interoperability, and predictability across the healthcare system, leading to a more efficient, patient-centered, and ultimately, higher-quality delivery of care.
+Inovalon CMS RFI
+Due: June 16, 2025
+Inovalon, a leading provider of solutions empowering data-driven healthcare, provides
+the following comments to the CMS Health Technology RFI.
+Payers:
+PA-1. What policy or technical limitations do you see in TEFCA? What changes would you
+suggest to address those limitations? To what degree do you expect these limitations to hinder
+participation in TEFCA?
+A barrier to adoption of TEFCA is due to the lack of incentives or clarity on what data that
+payers are expected to reciprocate in order to join TEFCA. An additional barrier is the ambiguity
+surrounding the total cost of implementation for Healthcare Ops exchange purposes (XPs) are
+hindering adoption as well as the lack of clarity regarding details of claims data reciprocity and
+the lack of clarity regarding participants’ ability to charge for Healthcare Ops XPs.
+Smaller Payers may have trouble adopting the technical and operational demands to
+reciprocate data for the QHIN that they join. Greater coordination with NCQA on HEDIS
+Compliance Audit regulations for payers (i.e., the need for Primary Source Validation to use
+clinical data requires manual chart review or Data Aggregator Validation (DAV)). While the
+HEDIS XP is one of the first XPs to be mandated, the HEDIS Compliance Audit regulations are
+an adoption factor for Plans. Many QHINs may be reluctant to share data for the HEDIS XPs,
+unless changes are made to DAV or PSV requirements. Inovalon proposes two possible
+solutions for this barrier: 1) the removal of primary source validation for reporting of Quality data
+from non-standard (non-claims sources), or 2) that TEFCA and NCQA to work together so that
+all QHINs are DAV certified. QHINs may have direct connections to the provider EMR or the
+HIE. Those participants in the QHIN can provide the original record for audit purposes.
+PA-4. What would be the value to payers of a nationwide provider directory that included FHIR
+end points and used digital identity credentials?
+A nationwide provider directory could be helpful to payers, as it would provide a single source
+for this important connectivity data. Such FHIR endpoint and digital ID information could also
+potentially streamline the Primary Source Validation (PSV) process for exchanges of clinical
+data.
+PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of
+providers?
+CMS should consider reducing or eliminating the need for Primary Source Validation (PSV) for
+clinical data securely exchanged via FHIR APIs contingent on robust digital identity and data
+integrity standards.
+1 | Page
+
+PA-5.a. How interested are payers and providers in EHR technology advances that enable bulk
+extraction of clinical quality data from EHRs to payers to allow them to do the calculations
+instead of the provider-side technology?
+Yes, Payers could benefit from, and demonstrate a strong interest in, capabilities to bulk extract
+EHR data to support operations and quality assurance activities. Likewise, providers would
+welcome anything that reduces any administrative burden on their behalf. However, in our
+experience not all payers are set-up to ingest bulk data and act on it.
+PA-5.b. In what ways can the interoperability and quality reporting responsibilities of providers to
+both CMS and other payers be consolidated so investments can be dually purposed? Are there
+technologies payers might leverage that would support access to real time quality data for
+healthcare providers to inform clinical care in addition to simplifying reporting processes?
+At present, consolidating reporting would be a challenging prospect as provider side reporting
+may not be complete compared to the results of the Payer, and vice versa. While the Provider
+has clinical data not available from the Payer's claims information, The Payer is receiving
+pharmacy, lab, radiology, etc. that may not be available to the Provider.
+Third parties, like Inovalon support technologies that could integrate the needed data from
+payers and providers. The advantage of this would extend far beyond quality reporting, and
+could be used to bolster the global patient record of payers and providers – a central goal of the
+Interoperability Rule.
+PA-7. How can CMS encourage payers to submit information blocking complaints to
+ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or
+negatively impact data exchange?
+We recommend that use cases are expanded to include payment and healthcare operations to
+help incentive data sharing. Payers need the support and collaboration of their providers despite
+information blocking. Many are reluctant to submit a complaint and see this option as a last
+resort. Even though the Payers are not getting what they need from those providers, they are
+unlikely to report non-cooperative providers.
+Value Based Care Organizations
+Digital Health Adoption
+VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs)
+or participants in Medicare Shared Savings Program (MSSP) to leverage digital health
+management and care navigation products more often and more effectively with their patients?
+What are the current obstacles preventing broader digital product adoption for patients in
+ACOs?
+Providers in ACOs are in different settings (PCPs, Specialists) and using different EMRs. Most
+ACOs struggle with the lack of good data on specialist performance. Most specialists are paid
+on the fee-for-service models and need financial incentives to collaborate with PCPs, especially
+2 | Page
+
+those that are independent specialists or on different EHRs. Specialists need the financial
+incentive to participate and change workflows for bundled programs/referrals before they
+consider digital health adoption.
+CMS could offer shared savings bonuses or additional points in quality scoring frameworks (like
+the ACO REACH or MSSP quality metrics) based on the percentage of attributed lives engaging
+through digital care navigation platforms and/or the percentage of remote patient monitoring
+(RPM) utilization in chronic condition cohorts. Patient-reported outcomes or satisfaction could
+also be tracked through digital platforms quite easily.
+Additionally, CMS could offer incentives or reduce reporting burdens for ACOs who implement
+certified platforms that integrate with CMS APIs or claim-based data systems to support real-
+time patient identification, gaps in care, and SDOH risk scoring, and/or participate in information
+sharing via state HIEs.
+CMS could provide funding or partnerships for digital literacy programs or device subsidies for
+underserved populations, which would enable ACOs to broaden equitable access to digital
+platforms.
+As to current obstacles, providers in ACOs are in different settings (PCPs, Specialists) and are
+often using different EMRs. Most ACOs struggle with the lack of good data on specialist
+performance. Most specialists are paid on the fee-for-service models and need financial
+incentives to collaborate with PCPs, especially those that are independent specialists or on
+different EHRs. Specialists need the financial incentive to participate and change workflows for
+bundled programs/referrals before they consider digital health adoption.
+VB-2. How can key themes and technologies such as artificial intelligence, population health
+analytics, risk stratification, care coordination, usability, quality measurement, and patient
+engagement be better integrated into APM requirements?
+Encourage Clinical Decision Support (CDS) via AI
+CMS should explicitly allow and incentivize AI-enabled decision support tools that assist
+providers in identifying gaps in care, predicting hospitalizations, or coding accurately (e.g., AI-
+powered risk adjustment coding or claims generation tools).
+Incorporate Risk Stratification as a Core APM Activity
+Require ACOs to demonstrate a tech-enabled risk stratification approach to identify rising-risk
+patients, not just high-cost cohorts. Incentivize use of tools that combine claims, EHR, and
+SDOH data for better targeting. Third-party software could easily be developed to facilitate this.
+Enable API-Based Care Team Integration
+CMS should set interoperability standards that allow APM participants to connect external
+vendor tools (care navigation, RPM, behavioral health) into shared care plans via FHIR APIs.
+Tie Member Engagement Metrics to Shared Savings
+3 | Page
+
+Require APMs to report patient engagement metrics—such as portal logins, completion of
+digital assessments, or interaction with care navigators—and reward ACOs that achieve high
+engagement in underserved populations.
+VB-3. What are essential health IT capabilities for value-based care arrangements?
+VBC stakeholders need the ability to seamlessly ingest and normalize data from EHRs, claims,
+labs, HIEs, and patient-generated sources (e.g., wearables) because providers and payers
+require a longitudinal, unified patient record across care settings to enable timely interventions
+and risk identification. Continued expansion of FHIR API adoption could support this; however, it
+will require high quality third-party software to integrate this data and avoid the already-present
+issue of information overload.
+Stakeholders need tools to collect, structure, and act on SDOH inputs (e.g., food insecurity,
+housing instability) from patients and care teams. SDOHs are key drivers of outcomes and
+costs, especially for Medicaid and underserved Medicare populations. To improve the use of
+SDOH data, CMS could integrate SDOH into risk adjustment models and incentivize
+interoperable tools that document and address these factors.
+They also need real-time dashboards showing APM performance across quality, cost, risk
+scores, and patient engagement. VBC participants need a clear line-of-sight into their
+performance to drive operational and clinical changes. CMS could provide standardized APIs for
+claim-level APM performance data to be visualized in third-party platforms.
+Finally, VBC stakeholders need ADT messages/pings within the care manager or nurse
+workflow. ADTs alert when a patient is admitted or discharged from a hospital setting. ACOs
+with nurses that oversee a panel of patients have faster follow up care post discharge.
+VB-4. What are the essential data types needed for successful participation in value-based care
+arrangements?
+Clinical Data - Forms the basis for clinical decision-making, HCC risk adjustment, and care gap
+identification.
+• Sources: EHRs, labs, imaging systems
+• Key Elements: Diagnoses (ICD-10 codes, problem lists), procedures (CPT, HCPCS
+codes), medications (prescribed and administered), vital signs and biometric data,
+provider notes (structured and unstructured)
+Claims and Encounter Data - Enables financial benchmarking, cost prediction, and population-
+level utilization analysis.
+• Sources: Medicare/MCO claims, clearing houses, payers
+• Key Elements: Claims (inpatient, outpatient, pharmacy, and SNF), cost/utilization
+patterns, diagnosis and procedure codes tied to payment, timestamps for services
+rendered.
+4 | Page
+
+Quality and Outcomes Data - Core to performance scoring in APMs; supports provider
+accountability and improvement tracking.
+• Sources: eCQM reporting tools, registries, digital apps
+• Key Elements: Preventive screening adherence, chronic condition management metrics
+(e.g., A1c, BP), readmission rates, ED visits, mortality rates, PROMs (Patient-Reported
+Outcome Measures)
+Risk and Stratification Data - Identifies who needs intervention and justifies care
+intensity/resource allocation.
+• Sources: Analytics platforms, EHRs, Payers
+• Key Elements: HCC risk scores and RAF (Risk Adjustment Factor), predictive risk
+models (e.g., rising risk, gaps in care), attribution rosters
+Social Determinants of Health (SDOH) Data - Crucial for equitable care planning, and for
+adjusting performance expectations based on social risk.
+• Sources: Screenings, community orgs, EHR, self-report
+• Key Elements: Housing instability, food insecurity, transportation needs, language,
+education, employment status, Area Deprivation Index or Z-codes (Z55–Z65)
+Behavioral Health and Substance Use Data - Key to whole-person care and high-cost
+population management; often fragmented or siloed.
+• Sources: EHR, BH-specific tools, claims
+• Key Elements: Mental health diagnoses and treatment plans, substance use disorder
+history and recovery status, therapy and psychiatry utilization
+Patient Engagement and Experience Data - Strongly linked to outcomes and increasingly
+factored into APM quality scoring.
+• Sources: Patient portals, apps, survey tools (e.g., CAHPS)
+• Key Elements: Portal usage, telehealth utilization, survey responses, engagement with
+care navigation or reminders, adherence to care plans and self-reported symptoms
+Real-Time and Remote Monitoring Data - Enables proactive intervention for chronic conditions
+and post-acute care management.
+• Sources: Wearables, remote patient monitoring (RPM), home health tools
+• Key Elements: Glucose levels, heart rate, blood pressure, daily symptom logs,
+medication adherence
+Referral and Care Coordination Data - Essential for reducing care fragmentation and improving
+outcomes across transitions.
+• Sources: EHR, care navigation platforms
+5 | Page
+
+• Key Elements: Referral status and outcomes, closed-loop tracking (e.g., whether the
+visit occurred), communication history across the care team
+Compliance and Certification
+VB-6. What specific health information technology capabilities that could benefit APMs are not
+currently addressed by existing certification criteria and standards that should be included under
+the ONC Health IT Certification Program?
+No standards exist for managing attributed populations or sharing attribution files with health IT
+systems. Attribution is foundational to APM success but lacks certified IT infrastructure for
+seamless integration across care platforms.
+Certify platforms that support:
+• Rostering and attribution file ingestion
+• Longitudinal patient tracking across attributed populations
+• APIs to share these lists with care teams and engagement tools
+Technical Standards
+VB-11. What specific interoperability challenges have you encountered in implementing value-
+based care programs?
+Physicians are becoming more interested in monitoring their VBC performance outside of what
+the Payer is sharing with them but due to the lack of data they have access to, they are unable
+to stand up VBC reporting tools without heavy reliance on the Payer for data.
+VB-14. How could implementing digital identity credentials improve value-based care delivery
+and outcomes?
+Digital identity credentials serve as a foundational enabler for scalable, secure, and efficient
+value-based care. They reduce friction in coordination, improve patient and provider trust, and
+allow for more precise and timely care interventions—directly contributing to improved outcomes
+and reduced costs. We are supportive of adding digital identity credentials accepted, but do not
+feel that a mandate forcing usage is necessary.
+Streamlined Care Coordination Across Entities - VBC arrangements often involve multi-entity
+collaboration (e.g., ACOs, CINs, SNFs, home health agencies) where providers must securely
+exchange patient data and engage in shared decision-making. Enabling digital identity improves
+efficiency, reduces duplication, and supports timely interventions—essential for managing high-
+risk populations in APMs.
+Improved Patient Matching and Attribution Accuracy - Accurate attribution is critical in VBC, yet
+it's often undermined by patient identity fragmentation across payers, providers, and health IT
+systems. Digital credentials would remain constant across platforms, reducing errors with the
+6 | Page
+
+attribution file reconciliation, quality reporting, and care gap closure. Accurate attribution can
+increase patient satisfaction and close gaps sooner.
+More Efficient Provider Onboarding and Credentialing - VBC participants span many
+organizations due to the coordinated care efforts needed for managing the higher risk
+population. By linking a verified digital ID to the NPI, licensing, and other identities a provider
+could easily access platforms with comment credentials, cutting down on the provider's
+frustrations and creating more efficiency.
+Secure Patient Access and Engagement - Engaging patients in VBC programs (e.g., chronic
+care management, remote monitoring) require secure access to portals, apps, and devices—but
+password fatigue and authentication barriers reduce participation. Allowing patient credentials to
+pass across multiple platforms improves patient trust, participation, and data sharing.
+Better Compliance and Auditability - VBC programs involve complex regulatory requirements
+around data use, access tracking, and audit trails (e.g., for HEDIS, HCC audits, PHI access). A
+digital ID could potentially reduce compliance risk and build trust with regulators, payers, and
+patients.
+VB-15. How could a nationwide provider directory of FHIR endpoints help improve access to
+patient data and understanding of claims data sources? What key data elements would be
+necessary in a nationwide FHIR endpoints directory to maximize its effectiveness?
+Streamline patient data across networks - Enabling FHIR API endpoints across organizations
+would allow care coordination to happen more efficiently.
+Removes vendor onboarding burdens - Often Payers are asked to create configuration files to
+support their software implementation. The files are likely of the same data set but required in a
+specific format for each vendor. A nationwide Provider directory could cut down on the overhead
+to a Payer when looking to implement a new tool.
+Benefits specific to VBC programs - Faster and more reliable data sharing between different
+organizations, more accurate attribution and care gap identification, and the reduction of
+administrative overhead and manual efforts.
+The directory should include: FHIR Endpoint Metadata, Organization and Provider Details
+(name, location, NPI, Tax ID/Payer ID, care setting, affiliations), Payer Details (name, LOB,
+FHIR endpoint for claims APIs), Endpoint data security and trust metadata.
+Technology Vendors, Data Providers, and Networks
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what
+criteria or metrics should CMS consider?
+There is an opportunity to collect and provide information that is available through the
+US census, FDA and other government agencies pertaining to patients SDOH such as
+Education, Income levels, Access to Care, Race/Ethnicity, Food Deserts, etc. or Price
+Transparency data in a standard format, as well as providing it in a high quality, single
+7 | Page
+
+source of truth, secure, interoperable manner that would be compliant with privacy and
+data use policies. This can be done through endorsed non-CMS vendors that make and
+organize public information while maintaining CMS standards.
+TD-13. What new opportunities and advancements could emerge with APIs providing
+access to the entirety of a patient's electronic health information (EHI)?
+CMS encourages organizations to provide APIs specifically for sharing patient data.
+However, today there are limits on the use cases for data access, which doesn’t support
+all the payer and provider needs. For example, an opportunity that Payers (and,
+consequently, those Payers’ Participating Providers who develop a verified treatment
+relationship with an enrollee of that Payer) could benefit from would be access to the
+entirety of a patient’s clinical data for newly enrolled patients that may have participated
+with other providers.
+Providers:
+1. Digital Health Apps (response to PR-1, PR-2, PR-3, PR-4)
+Digital Health apps have created a way of engaging patients deeper in the
+management and ownership of their health. Generally, the ability to have more
+information at a patient’s fingertips regarding their health is a positive, however there
+are some risks including misleading / inaccurate information and lack of knowledge
+to know how to respond to the information available that could lead to unintended
+consequences which increase the burden on providers such as increases in
+emergency room visits, doctor appointments, as a result of perceived conditions or
+issues.
+From a Provider perspective, digital health apps and wearables create a new stream
+of patient health information which can provide visibility into how a patient is doing
+between provider interactions and support a more engaged care plan. Challenges
+are created in providers’ consumption of this data as it brings in both structured and
+unstructured data. To leverage unstructured data effectively, providers need the right
+technology (i.e. Natural Language Processing) to parse the data to make
+appropriate use of it to inform care decisions. Without AI-driven software, data from
+digital health apps has the potential to burden providers with too much data that
+can’t be used.
+In terms of relative importance, Providers generate roughly 137 terabytes of data
+every day, however 97% of data is going unused1. We are supportive of efforts that
+encourage the further use of the data and encourage sharing between patients and
+8 | Page
+
+providers. Steps should be taken to better encourage and enable patients to share
+heath app data with their providers or for data aggregation in a direct manner, since
+typically this data is not typically integrated or available to providers; nor in a way
+that is easy to share. Statistics show that 30% of Americans use wearables and only
+25% of them even share data with their Provider2.
+1. “What's moving the needle toward value-based care?,” Definitive Healthcare, https://www.definitivehc.com/blog/trends-
+value-based-care
+2. “Study reveals wearable device trends among U.S. adults” https://www.nhlbi.nih.gov/news/2023/study-reveals-wearable-
+device-trends-among-us-
+adults#:~:text=Almost%20one%20in%20three%20Americans,published%20in%20JAMA%20Network%20Open%20.
+2. Data Exchange (response to PR-5)
+Inovalon supports all APIs documented in the Data Exchange section of the Provider
+portion of the RFI, except for Bulk FHIR and SMART on FHIR.
+3. Digital Identity (response to PR-9, PR-10, PR-11, PC-13, PC-14, TD-3)
+We are supportive of allowing for digital identities to be accepted alongside other forms
+of identity verification, but not enforcing a mandate that requires providers to adopt
+digital identities exclusively. Mandating acceptance of a digital ID for Patients would be
+burdensome and potentially detrimental for providers. Requiring more advanced
+security of the patient identity would be a large investment across the healthcare tech
+software industry that could slow other innovations and have a very costly impact
+across the industry if mandated as the exclusive identity verification process. While this
+approach could reduce identity fraud and even benefit providers by preventing lost
+revenue, it could also limit care and cause challenges for patients where there is limited
+access to technology or internet, limited education, and more importantly, the elderly.
+Introducing the digital identity concept while still allowing other forms of identity
+verification would give providers ample time to assess the technology, the requirements,
+and work through any necessary changes before enforcing it as a standard.
+4. Information Blocking
+We are supportive of the information blocking rule and exceptions as currently defined
+and do not feel that they are limiting market competition. There is an opportunity to
+support providers in their efforts to share information by broadening the support for data
+exchange to provide faster, more accurate care to patients through enabling standards
+that encourage sharing of clinical information in a secure manner.
+Data Exchange for Provider, Tech, and Data Vendors:
+9 | Page
+
+The section below addresses responses to PR-7, TD-1, TD-2, TD-4, TD-13
+There are opportunities for CMS to make short-term improvements to existing data exchange
+models. Thoughts per channel below:
+• Part A Data Centers:
+o Allow for easier setup of dedicated threading for entities with higher-than-average
+traffic and CPU usage.
+▪ These customers can unknowingly impact FISS processing for all users,
+impacting overall performance and stability.
+▪ Entities with high customer volumes supporting customers accessing
+DDE FISS directly could be able to assist with this, ensuring best
+practices for all parties.
+o Move to API only connectivity for data exchange.
+▪ Removing stress from antiquated connectivity and file transfer
+o Tighter availability/CPU monitoring to avoid unexpected outages
+▪ Entities with high customer volumes supporting customers accessing
+DDE FISS directly could be able to assist with this, ensuring best
+practices for all parties.
+• HETS:
+o Improve connectivity between HETS and Systems of Records to provide MBI
+changes in closer to real time capacity.
+o Eliminate monthly output files based off above changes to either weekly, daily, or
+real-time
+CMS could move toward long term ecosystem improvements with the implementation of API
+connectivity to all Standard Systems. This would include reopening connection to the Part B
+systems for data exchange for HIHs, and potentially even DME and VMS.
+Providers want the ability to access the Part B MCS system like they do with Part A FISS,
+currently this is a gap for Medicare providers. This would improve and increase the data
+exchange offerings that providers can access related to claim status and patient demographics.
+Additionally, software developers and companies would be able to leverage this access to
+improve and augment existing Medicare products in the market.
+For Medicare Part A, patients, providers, and software organizations would benefit from updates
+to the DDE User Manual previously created by CMS. Not having any direct access into the
+Medicare Part B system limits the amount of analytics, tracking, and reporting for providers. It
+also limits any beneficiary data that could aid Part B customers.
+CMS could move towards a standardized version of prior authorizations in healthcare as it offers
+a multitude of benefits for all stakeholders. For providers, it would drastically reduce the current
+administrative burden and time spent navigating diverse and often opaque payer requirements,
+freeing up resources for direct patient care and improving staff satisfaction. Patients would
+experience faster access to necessary treatments and medications, reducing delays, anxiety,
+10 | Page
+
+and the risk of adverse health outcomes. Insurers, while still maintaining a mechanism for
+medical necessity review and cost control, would benefit from streamlined, more efficient
+processes, potentially leading to lower administrative costs and improved relationships with
+providers. Ultimately, standardization fosters greater transparency, interoperability, and
+predictability across the healthcare system, leading to a more efficient, patient-centered, and
+ultimately, higher-quality delivery of care.
+11 | Page

@@ -8,8 +8,8 @@ This module:
   2. Translates syncom output (♔-delimited) to a ♔-PSV using the CMS schema.
   3. Randomly interleaves the translated synthetic comments with the
      pre-processed real comments file.
-  4. Produces a combined ♔-PSV (with attachment URLs cleared) and a key CSV
-     that identifies every row as "real" or "synthetic".
+  4. Produces a combined ♔-PSV (with attachment URLs and tracking numbers
+     cleared) and a key CSV that identifies every row as "real" or "synthetic".
 
 PSV format (♔-Separated Values)
 --------------------------------
@@ -24,6 +24,7 @@ See shuffler/psv_io.py for the read/write utilities.
 import csv
 import os
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -50,7 +51,8 @@ def preprocess_real_comments(
 
     For each row in real_cms_file:
       - Look up the comment's Document ID in attachments_dir/<Document ID>/
-      - Read all *.txt files found there and concatenate their text.
+      - If multiple attachment text files exist (attachment_N.txt), use ONLY
+        the lowest-numbered N (e.g., attachment_1.txt always wins).
       - Compare len(attachment_text) vs len(comment_text).
       - Use whichever is longer as the "Comment" column value.
 
@@ -92,23 +94,35 @@ def preprocess_real_comments(
         if not attachment_subdir.is_dir():
             continue
 
-        # Collect all .txt files in the attachment directory
+        # Collect .txt files in the attachment directory.
+        # Prefer the lowest-numbered attachment_N.txt (attachment_1.txt wins).
         txt_files = sorted(attachment_subdir.glob("*.txt"))
         if not txt_files:
             continue
 
         rows_with_attachments += 1
 
-        # Concatenate text from all attachment .txt files
-        parts = []
-        for txt_path in txt_files:
-            try:
-                parts.append(
-                    txt_path.read_text(encoding="utf-8", errors="replace").strip()
-                )
-            except OSError:
-                pass
-        attachment_text = "\n\n".join(p for p in parts if p)
+        # Select just ONE attachment text file to use.
+        # If there are multiple attachment_N.txt files, pick the lowest N.
+        # If none match the naming convention, fall back to the first .txt file.
+        attachment_re = re.compile(r"^attachment_(\d+)$", re.IGNORECASE)
+        numbered: list[tuple[int, Path]] = []
+        for p in txt_files:
+            m = attachment_re.match(p.stem)
+            if m:
+                try:
+                    numbered.append((int(m.group(1)), p))
+                except ValueError:
+                    pass
+
+        chosen_txt = min(numbered, key=lambda t: t[0])[1] if numbered else txt_files[0]
+
+        try:
+            attachment_text = chosen_txt.read_text(
+                encoding="utf-8", errors="replace"
+            ).strip()
+        except OSError:
+            attachment_text = ""
 
         # Compare lengths; use whichever is longer
         comment_text = row.get("Comment", "") or ""
@@ -249,16 +263,18 @@ def shuffle_comments(
     # Replace every Document ID with a neutral "UID-XXXX" identifier so that
     # synthetic IDs (e.g. "CMS-2025-0050-SYNTH-0077") are indistinguishable
     # from real IDs in the combined output.
-    _DOC_ID_COL     = "Document ID"
-    _ATTACHMENT_COL = "Attachment Files"
+    _DOC_ID_COL      = "Document ID"
+    _ATTACHMENT_COL  = "Attachment Files"
+    _TRACKING_COL    = "Tracking Number"
 
     for idx, row in enumerate(combined, start=1):
         row["_original_doc_id"] = row.get(_DOC_ID_COL, "")
         row[_DOC_ID_COL]        = f"UID-{idx:04d}"
 
     # ── Write combined ♔-PSV ─────────────────────────────────────────────────
-    # The "Attachment Files" column is cleared so that no row reveals whether
-    # it originated from a real submission (only real comments have attachments).
+    # The "Attachment Files" and "Tracking Number" columns are cleared so that
+    # no row reveals whether it originated from a real submission (only real
+    # comments have attachment URLs and tracking numbers).
     _INTERNAL_KEYS = {"_type", "_original_doc_id"}
 
     clean_rows = []
@@ -266,6 +282,8 @@ def shuffle_comments(
         clean = {k: v for k, v in row.items() if k not in _INTERNAL_KEYS}
         if _ATTACHMENT_COL in clean:
             clean[_ATTACHMENT_COL] = ""
+        if _TRACKING_COL in clean:
+            clean[_TRACKING_COL] = ""
         clean_rows.append(clean)
 
     psv_io.write_psv(combined_output, combined_fieldnames, clean_rows)
@@ -336,8 +354,9 @@ def run_pipeline(
               → <output_dir>/synthetic_cms.psv
 
       Step 2  Shuffle the pre-processed real comments together with the
-              translated synthetic comments.  Attachment URLs are cleared in
-              the combined output so no row is distinguishable as real.
+              translated synthetic comments.  Attachment URLs and tracking
+              numbers are cleared in the combined output so no row is
+              distinguishable as real.
               → <output_dir>/combined.psv
               → <output_dir>/combined_key.csv   (comma-CSV; small, no free text)
 

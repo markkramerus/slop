@@ -1,5 +1,197 @@
-Subject: Comments on Request for Information; Health Technology Ecosystem (CMS-0042-NC) These comments are submitted in response to the RFI concerning the Health Technology Ecosystem, with a focus on the creation of a consolidated national provider directory. RFI: https://www.federalregister.gov/documents/2025/05/16/2025-08701/request-for-information- health-technology-ecosystem CareSet works to improve the quality and capacity of the U.S. healthcare system while eliminating waste and abuse. We partner with life science organizations to help them allocate resources, close care gaps, and distribute information and medicine more effectively. At the same time, we support investigative journalism by conducting deep pattern analyses that expose systemic issues and by liberating healthcare data. When working with life sciences companies to map provider networks, care pathways, and pinpoint where investment is most critical, gaps and deficiencies in the data made available by CMS and HHS can prevent the market from accurately or properly directing resources. Similarly, when supporting journalists, such as in our collaboration with ProPublica investigating the overuse of atherectomies by certain physicians ( https://www.propublica.org/article/how-propublica-careset-investigated-vascular-procedure-over use ), we are regularly hampered by poor data availability, inconsistency, and a lack of adherence to basic data correctness standards. We envision a system of information dissemination that will increase system efficiency and help ensure the US healthcare network of networks can withstand disruptions, allowing FEMA and other disaster preparedness groups to quickly repair and restore its capabilities. However, our collective ability to address complex and specific questions is limited by inaccurate data. B. Patients and Caregivers PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers? ● Holistic Quality Scoring and Open Sourcing: A significant need exists for a holistic provider quality score that sits above individual health plans. Many beneficiaries do not have a pre-selected doctor and need a reliable way to choose one, but Medicare Advantage plans each have different methods for scoring providers, or feature a few patient ratings. A standardized quality score would solve a major need for beneficiaries. We acknowledge that AMA, JACO, NQF, and many other groups have invested extensively in this area, and a coordinated approach is possible. Whichever path CMS chooses, the underlying requirement should be that SAS code be published and open sourced for public review and iteration. 
-● Patient-Familiar Branding: Any provider directory effort should present information using names that are familiar to patients, such as "Mayo Clinic," rather than complex corporate legal names. The system should resolve the complicated underlying organizational structures to present a simple, recognizable brand to the end-user, as non-reading and non-English speaking individuals can recognize logos and brands. There is a FHIR standard for brands, which should be adopted for this. PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers? ● Essential Data for a Provider Directory: To be useful for patients, a provider directory needs to include key data attributes. This includes: ○ An identifier for the provider, such as their NPI number. ○ Identifiers for the organizations they participate with to show affiliations. ○ Digital contact addresses (email, phone, direct address) to enable automation and communication. ■ Note : A difficult challenge is when the provider has multiple EHR/EMR systems, across their affiliations. A national directory can make clear which Direct Address is associated with each “location” where the provider works. This makes it most likely that the medical records can more easily flow beside and along the patient’s journey. ○ The dates and times a provider is available at a specific location, as this can be limited and is often not clear to patients. ○ The provider’s accepted insurance contracts/plans/programs. ○ Languages spoken by providers. ○ Accessibility of provider locations. ○ Provider credentials as issued by the state, along with renewal and expiration data. ■ Note: This can be achieved in a coordinated, federated model, eliminating the need for double/multiple entry. All states would be required to produce credentialing data in a machine-readable format. ○ Provider address ■ Note: Provider addresses are a difficult and unstable data point. The post office changes ZIP codes, which people incorrectly use as identifiers, and providers move, making addresses require special attention from a data quality perspective. ● Timeliness of data in Directory: Consider requiring providers to renew the information in the Provider Directory, perhaps annually, giving the clinic a window of time and responsibility to review and confirm their addresses, credentials, direct addresses, etc. There should be financial penalties for not updating their information in a timely manner, and extended inaction should result in the inability to bill Medicare. See more re Legal Entity below. ● Adhere to the Data Quality Act: For PECOS, we are spending millions of dollars in site visits, and audit activity, however these updates do not propagate to NPPES. This contradiction can end and dramatically upgrade the value of the existing NPPES data. 
-CMS needs to ensure that the data in its systems is accurate, and should be confirming which data for providers is correct, and making it uniform across all systems. ● Open by default: Data elements submitted by and about providers should be provided in open data or available through FOIA, unless it falls under a FOIA exemption. Two scenarios are currently problematic with NPPES, which we encourage CMS to consider how to prevent as they design a new directory: ○ When NPPES was created, regulations specified what data would be made available to the public, and what was considered private. However, the system ended up containing more elements than were originally listed. Administrators of NPPES later deemed elements not contained in the original list to be “private” and unavailable to the public, even though they did not meet any FOIA exemption requirements. ○ EINs were on the list of elements to be made public, but due to inadequate data validation, a small number of SSNs were successfully submitted by providers. Instead of fixing the data validation problem, or figuring out a way to later release the EIN data, it became blanket-unavailable in 2008, and the issue has still not been resolved. C. Providers PR-7. What strategies can CMS implement to support providers in making high-quality, timely, and comprehensive healthcare data available? ● Assign Responsibility to a Legal Entity: The obligation to provide and maintain information on interoperability endpoints should reside with the "legal entity" (e.g., the practice group, medical office, health system) and not the individual licensed practitioner. The legal entity establishes contracts with EHR/EMR vendors for these services and is the root of payor relationships. This is a significant challenge, as the owner of the data (e.g., IPA, MSO, DSO) is often impossible to identify, which creates management conflicts. CMS can create a framework for assigning the accountability for the “stewardship” of provider data . Instead of the physician, CMS should lever penalties for inaccurate data against this legal entity. This places the responsibility to maintain accuracy on the provider and put accountability on the contracting organization, designed to manage administrative risks. ● Investigate Data Change Triggers: A process should be undertaken to investigate the "trigger events" that cause changes in provider data. Understanding the velocity of change for different data components is key to maintaining accuracy. For example, a doctor leaving or joining a practice is an event that is often known months in advance, and can trigger a review of provider data. This is another example where these changes are reflected in PECOS in a more timely manner, but need to be propagated into a new provider directory, and/or NPPES. E. Technology Vendors, Data Providers, and Networks 
-TD-1. What short term and longer-term steps can CMS take to stimulate developer interest? ● Leverage Existing Data Assets: To avoid reinventing the wheel, the work done on the “HHS Protect” program during the COVID-19 pandemic should be reused. That program worked for months to solve the exact problem of mastering facility-to-health-system relationships. That data was important because there is no database - CDC, HHS, NPPES, PECOS that shows the presence of ICUs in facilities. That department association, along with the system-level mapping was a feat accomplished in the spring/summer of 2020. That work should be brought back and provided publicly. This data needs to be created and maintained in advance of the next public health emergency. ● Make source code and data open by default ○ For example, The SAS algorithms used on Medicare data to calculate the HCC performance measures should be published. (And be implemented in languages other than SAS as well.) TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information? ● A nationwide provider directory is a foundational need. The central debate for its architecture is whether to implement a "single source of truth" model or a "delegated" model. ○ Single Source of Truth: This approach would feature a single, centralized system where data is created, retrieved, updated, and deleted (CRUD). A patient/caregiver/administrator goes to get the final, authoritative answer about a provider. Proponents argue this is necessary to prevent having thousands of different versions of the data. ○ Federated Model: This approach would function like the internet's Domain Name System (DNS). There would be root servers that route requests to subsequently more specific servers (e.g., a .com server, then a website.com server) until the answer is resolved by the authoritative source. Similarly, a Delegated approach would serve data through trusted national networks. This is what DirectTrust uses for direct addresses. In either case, all storage and transmission of data would need to be machine readable on the same data schema/standard. Here, the Create, Update, and Delete functions can be localized to state government or enterprise stakeholders, and the Retrieve function can be democratized widely through portals, websites, etc. ○ CareSet suggests, like NPPES and PECOS, a single source of truth is most efficient , most likely to produce standardized outputs, and will eliminate the need for redundant systems to be built in the private and public sectors, making the service available sooner. Taking a delegated/federated alternative would result in a phased approach, at best, and would create a leader/lagger phenomenon for years, similar to the experience of launching Meaningful Use. 
-■ If CMS chooses to pursue a federated model, there is a critical need for well-defined technical specifications for APIs to ensure all sources of truth can work with each other. This includes shared, well-defined vocabularies and value sets for items like role codes and organization types so that data mapping is not required. TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? ● Inadequate and Incomplete Provider Taxonomies: The current NUCC taxonomy system is considered inadequate and untrustworthy. A new directory must: ○ Include all providers, such as dentists and behavioral health specialists, and clearly define what a "provider" is. The directory must be complete across all geographies and lines of business. ○ Establish a hierarchy to correlate mid-level practitioners (NPs, PAs) who function as PCPs but may roll up to an MD or DO, as some carriers only recognize the MD's NPI. ○ The taxonomy description must be oriented around the types of patients and complaints a practitioner sees and treats, because “Specialist” and “Student” are not helpful. ○ By beginning with NPPES, and extending it as above, the new system could become a universal standard, and replace the alternative and competing taxonomy system used by CMS in Medicare claims data. (link: https://resdac.org/cms-data/variables/line-cms-provider-specialty-code ). ○ Finally, CMS should prevent individual providers billing as organizations, and organizations billing as individual providers. TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? ● Partnership with National Networks: A partnership between CMS and trusted national networks, such as DirectTrust, should be considered as a source of truth for certain data elements. For example, the problem of managing multiple direct addresses for clinicians and organizations has already been solved by DirectTrust. Leveraging these existing networks for such "second order problems" would be an efficient architectural approach. We appreciate the opportunity to comment on these matters, and CMS’s efforts to improve the data ecosystem for patients and providers. Regards, CareSet 
+Subject: Comments on Request for Information; Health Technology
+Ecosystem (CMS-0042-NC)
+These comments are submitted in response to the RFI concerning the Health Technology
+Ecosystem, with a focus on the creation of a consolidated national provider directory.
+RFI:https://www.federalregister.gov/documents/2025/05/16/2025-08701/request-for-information-
+health-technology-ecosystem
+CareSet works to improve the quality and capacity of the U.S. healthcare system while
+eliminating waste and abuse. We partner with life science organizations to help them allocate
+resources, close care gaps, and distribute information and medicine more effectively. At the
+same time, we support investigative journalism by conducting deep pattern analyses that
+expose systemic issues and by liberating healthcare data.
+When working with life sciences companies to map provider networks, care pathways, and
+pinpoint where investment is most critical, gaps and deficiencies in the data made available by
+CMS and HHS can prevent the market from accurately or properly directing resources.
+Similarly, when supporting journalists, such as in our collaboration with ProPublica investigating
+the overuse of atherectomies by certain physicians
+(https://www.propublica.org/article/how-propublica-careset-investigated-vascular-procedure-over
+use), we are regularly hampered by poor data availability, inconsistency, and a lack of
+adherence to basic data correctness standards.
+We envision a system of information dissemination that will increase system efficiency and help
+ensure the US healthcare network of networks can withstand disruptions, allowing FEMA and
+other disaster preparedness groups to quickly repair and restore its capabilities. However, our
+collective ability to address complex and specific questions is limited by inaccurate data.
+B. Patients and Caregivers
+PC-6. What features are most important to make digital health products accessible and
+easy to use for Medicare beneficiaries and caregivers?
+● Holistic Quality Scoring and Open Sourcing: A significant need exists for a holistic
+provider quality score that sits above individual health plans. Many beneficiaries do not
+have a pre-selected doctor and need a reliable way to choose one, but Medicare
+Advantage plans each have different methods for scoring providers, or feature a few
+patient ratings. A standardized quality score would solve a major need for beneficiaries.
+We acknowledge that AMA, JACO, NQF, and many other groups have invested
+extensively in this area, and a coordinated approach is possible. Whichever path CMS
+chooses, the underlying requirement should be that SAS code be published and open
+sourced for public review and iteration.
+
+● Patient-Familiar Branding: Any provider directory effort should present information
+using names that are familiar to patients, such as "Mayo Clinic," rather than complex
+corporate legal names. The system should resolve the complicated underlying
+organizational structures to present a simple, recognizable brand to the end-user, as
+non-reading and non-English speaking individuals can recognize logos and brands.
+There is a FHIR standard for brands, which should be adopted for this.
+PC-8. In your experience, what health data is readily available and valuable to patients or
+their caregivers?
+● Essential Data for a Provider Directory: To be useful for patients, a provider directory
+needs to include key data attributes. This includes:
+○ An identifier for the provider, such as their NPI number.
+○ Identifiers for the organizations they participate with to show affiliations.
+○ Digital contact addresses (email, phone, direct address) to enable automation
+and communication.
+■ Note: A difficult challenge is when the provider has multiple EHR/EMR
+systems, across their affiliations. A national directory can make clear
+which Direct Address is associated with each “location” where the
+provider works. This makes it most likely that the medical records can
+more easily flow beside and along the patient’s journey.
+○ The dates and times a provider is available at a specific location, as this can be
+limited and is often not clear to patients.
+○ The provider’s accepted insurance contracts/plans/programs.
+○ Languages spoken by providers.
+○ Accessibility of provider locations.
+○ Provider credentials as issued by the state, along with renewal and expiration
+data.
+■ Note: This can be achieved in a coordinated, federated model,
+eliminating the need for double/multiple entry. All states would be required
+to produce credentialing data in a machine-readable format.
+○ Provider address
+■ Note: Provider addresses are a difficult and unstable data point. The post
+office changes ZIP codes, which people incorrectly use as identifiers, and
+providers move, making addresses require special attention from a data
+quality perspective.
+● Timeliness of data in Directory: Consider requiring providers to renew the information
+in the Provider Directory, perhaps annually, giving the clinic a window of time and
+responsibility to review and confirm their addresses, credentials, direct addresses, etc.
+There should be financial penalties for not updating their information in a timely manner,
+and extended inaction should result in the inability to bill Medicare. See more re Legal
+Entity below.
+● Adhere to the Data Quality Act: For PECOS, we are spending millions of dollars in site
+visits, and audit activity, however these updates do not propagate to NPPES. This
+contradiction can end and dramatically upgrade the value of the existing NPPES data.
+
+CMS needs to ensure that the data in its systems is accurate, and should be confirming
+which data for providers is correct, and making it uniform across all systems.
+● Open by default: Data elements submitted by and about providers should be provided
+in open data or available through FOIA, unless it falls under a FOIA exemption. Two
+scenarios are currently problematic with NPPES, which we encourage CMS to consider
+how to prevent as they design a new directory:
+○ When NPPES was created, regulations specified what data would be made
+available to the public, and what was considered private. However, the system
+ended up containing more elements than were originally listed. Administrators of
+NPPES later deemed elements not contained in the original list to be “private”
+and unavailable to the public, even though they did not meet any FOIA
+exemption requirements.
+○ EINs were on the list of elements to be made public, but due to inadequate data
+validation, a small number of SSNs were successfully submitted by providers.
+Instead of fixing the data validation problem, or figuring out a way to later release
+the EIN data, it became blanket-unavailable in 2008, and the issue has still not
+been resolved.
+C. Providers
+PR-7. What strategies can CMS implement to support providers in making high-quality,
+timely, and comprehensive healthcare data available?
+● Assign Responsibility to a Legal Entity: The obligation to provide and maintain
+information on interoperability endpoints should reside with the "legal entity" (e.g., the
+practice group, medical office, health system) and not the individual licensed practitioner.
+The legal entity establishes contracts with EHR/EMR vendors for these services and is
+the root of payor relationships. This is a significant challenge, as the owner of the data
+(e.g., IPA, MSO, DSO) is often impossible to identify, which creates management
+conflicts. CMS can create a framework for assigning the accountability for the
+“stewardship” of provider data. Instead of the physician, CMS should lever penalties for
+inaccurate data against this legal entity. This places the responsibility to maintain
+accuracy on the provider and put accountability on the contracting organization,
+designed to manage administrative risks.
+● Investigate Data Change Triggers: A process should be undertaken to investigate the
+"trigger events" that cause changes in provider data. Understanding the velocity of
+change for different data components is key to maintaining accuracy. For example, a
+doctor leaving or joining a practice is an event that is often known months in advance,
+and can trigger a review of provider data. This is another example where these changes
+are reflected in PECOS in a more timely manner, but need to be propagated into a new
+provider directory, and/or NPPES.
+E. Technology Vendors, Data Providers, and Networks
+
+TD-1. What short term and longer-term steps can CMS take to stimulate developer
+interest?
+● Leverage Existing Data Assets: To avoid reinventing the wheel, the work done on the
+“HHS Protect” program during the COVID-19 pandemic should be reused. That program
+worked for months to solve the exact problem of mastering facility-to-health-system
+relationships. That data was important because there is no database - CDC, HHS,
+NPPES, PECOS that shows the presence of ICUs in facilities. That department
+association, along with the system-level mapping was a feat accomplished in the
+spring/summer of 2020. That work should be brought back and provided publicly. This
+data needs to be created and maintained in advance of the next public health
+emergency.
+● Make source code and data open by default
+○ For example, The SAS algorithms used on Medicare data to calculate the HCC
+performance measures should be published. (And be implemented in languages
+other than SAS as well.)
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to
+health information?
+● A nationwide provider directory is a foundational need. The central debate for its
+architecture is whether to implement a "single source of truth" model or a "delegated"
+model.
+○ Single Source of Truth: This approach would feature a single, centralized
+system where data is created, retrieved, updated, and deleted (CRUD). A
+patient/caregiver/administrator goes to get the final, authoritative answer about a
+provider. Proponents argue this is necessary to prevent having thousands of
+different versions of the data.
+○ Federated Model: This approach would function like the internet's Domain Name
+System (DNS). There would be root servers that route requests to subsequently
+more specific servers (e.g., a .com server, then a website.com server) until the
+answer is resolved by the authoritative source. Similarly, a Delegated approach
+would serve data through trusted national networks. This is what DirectTrust uses
+for direct addresses. In either case, all storage and transmission of data would
+need to be machine readable on the same data schema/standard. Here, the
+Create, Update, and Delete functions can be localized to state government or
+enterprise stakeholders, and the Retrieve function can be democratized widely
+through portals, websites, etc.
+○ CareSet suggests, like NPPES and PECOS, a single source of truth is most
+efficient, most likely to produce standardized outputs, and will eliminate the need
+for redundant systems to be built in the private and public sectors, making the
+service available sooner. Taking a delegated/federated alternative would result in
+a phased approach, at best, and would create a leader/lagger phenomenon for
+years, similar to the experience of launching Meaningful Use.
+
+■ If CMS chooses to pursue a federated model, there is a critical need for
+well-defined technical specifications for APIs to ensure all sources of truth
+can work with each other. This includes shared, well-defined vocabularies
+and value sets for items like role codes and organization types so that
+data mapping is not required.
+TD-7. To what degree has USCDI improved interoperability and exchange and what are its
+limitations?
+● Inadequate and Incomplete Provider Taxonomies: The current NUCC taxonomy
+system is considered inadequate and untrustworthy. A new directory must:
+○ Include all providers, such as dentists and behavioral health specialists, and
+clearly define what a "provider" is. The directory must be complete across all
+geographies and lines of business.
+○ Establish a hierarchy to correlate mid-level practitioners (NPs, PAs) who function
+as PCPs but may roll up to an MD or DO, as some carriers only recognize the
+MD's NPI.
+○ The taxonomy description must be oriented around the types of patients and
+complaints a practitioner sees and treats, because “Specialist” and “Student” are
+not helpful.
+○ By beginning with NPPES, and extending it as above, the new system could
+become a universal standard, and replace the alternative and competing
+taxonomy system used by CMS in Medicare claims data. (link:
+https://resdac.org/cms-data/variables/line-cms-provider-specialty-code).
+○ Finally, CMS should prevent individual providers billing as organizations, and
+organizations billing as individual providers.
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria
+or metrics should CMS consider?
+● Partnership with National Networks: A partnership between CMS and trusted national
+networks, such as DirectTrust, should be considered as a source of truth for certain data
+elements. For example, the problem of managing multiple direct addresses for clinicians
+and organizations has already been solved by DirectTrust. Leveraging these existing
+networks for such "second order problems" would be an efficient architectural approach.
+We appreciate the opportunity to comment on these matters, and CMS’s efforts to improve the
+data ecosystem for patients and providers.
+Regards,
+CareSet

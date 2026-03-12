@@ -1,11 +1,416 @@
-Tennr's Role in CMS Risk Adjustment Data Validation (RADV) Audits at Scale and Advancing Digital Health Interoperability for Medicare Beneficiaries Tennr appreciates the opportunity to provide input on this Request for Information regarding the market of digital health products for Medicare beneficiaries and the state of data interoperability. As an intelligent automation platform for healthcare, Tennr is dedicated to streamlining clinical and operational tasks by precisely reading and interpreting healthcare documents, ensuring data accuracy, and facilitating seamless workflows to reduce patient delays and increase referral conversion rates. Our core services —Document Wrangling, Referral Intake, Clinical Qualification, Communication Coordination, and Eligibility & Benefits—are designed to reduce manual burdens, minimize errors, and significantly enhance efficiency across the healthcare continuum. Central to our capabilities is RaeLM™, our flagship document reasoning model. This sophisticated ensemble of AI and machine learning models processes even the messiest medical documents with exceptional precision (over 99.8% data entry accuracy, outperforming human averages). Beyond best-in-class machine learning, Tennr incorporates a flexible workflow orchestration engine to map automation to any process, structured human-in-the-loop validation to drive the highest possible performance, and a suite of quality control measures that strategically enable high-confidence, fully autonomous process operations. This comprehensive system is essential for improving patient outcomes, reducing delays in care, and proactively addressing critical challenges, such as CMS Risk Adjustment Data Validation (RADV) audits at scale. Tennr believes this comprehensive system is not only beneficial for providers but also essential for CMS to effectively manage and scale its oversight responsibilities, particularly in the context of increasingly rigorous RADV audits, by ensuring the integrity and accessibility of risk adjustment data. Tennr specifically proposes to leverage its Qualifications product and ICD-10 code extraction model to directly aid the CMS RADV audit team in coding and validating diagnoses at scale. Tennr's Impact at Scale Amidst New RADV Audit Enhancements: The Centers for Medicare & Medicaid Services (CMS) is responsible for auditing Medicare Advantage risk adjustment to ensure plans are paid correctly. The primary audit mechanism is the RAD program. In a RADV audit, CMS selects a sample of enrollees from a given MA contract and requires the MA Organization (MAO) to submit the medical records for those beneficiaries to validate the diagnoses billed. Auditors verify each HCC-driving diagnosis in the sample against the patient’s medical record documentation. If a diagnosis (e.g., diabetes with complications) that the plan submitted to CMS is not actually supported by the record (for example, the chart lacks evidence of that condition or proper documentation of management), it is flagged as an unsupported diagnosis. CMS then recalculates the sample enrollees’ risk scores with those unsupported codes removed, determining how much the plan was overpaid for each sampled member. Historically, CMS would recover overpayments only for the sampled beneficiaries, but not extrapolate to the full contract population. Recent CMS announcements indicate a significant strengthening of RADV audits, dramatically increasing their pace and scale. Starting with Payment Year 2018 audits, CMS will extrapolate sample audit findings to the 
-entire plan contract, meaning overpayments identified in a sample can lead to recoupment across the entire contract's Part C payments. Furthermore, CMS plans to: ● Audit all eligible MA contracts annually. ● Review as many as 200 records per MA plan each year, a substantial increase from the previous 35 records. ● Invest in enhanced technology and expanded human resources, including increasing its medical coder team to approximately 2,000 by September 1, 2025, and utilizing "enhanced technology" systems to streamline medical record review for unsupported diagnoses. Given these changes, the ability to ensure documentation integrity at scale is no longer a luxury but an absolute necessity. Tennr's automated, machine learning powered approach can significantly assist CMS in achieving its audit objectives by directly enabling the CMS RADV audit team to: ● Proactively Identify and Validate Diagnoses at Scale: By integrating Tennr's technology, CMS can identify and validate potential documentation gaps or unsupported diagnoses across vast patient populations, directly addressing the impact of extrapolation and ensuring the accuracy of risk adjustment payments. This proactive validation by MAOs, enabled by Tennr, means cleaner data submissions to CMS, reducing the overall burden on the audit system. ● Scale Audit Review Efficiently: Tennr automates the laborious process of reviewing medical records for audit validation, freeing CMS staff to handle the increased volume of records (up to 200 per plan per year) that CMS plans to review. This translates to a more efficient and less burdensome audit process for CMS. ● Enhance Financial Integrity and Protect the Medicare Trust Fund: By ensuring that billed diagnoses are consistently and accurately supported by medical records, Tennr's technology can help CMS significantly reduce the risk of multi-million dollar overpayment recoveries, directly aligning with CMS's fiduciary duty to protect the Medicare Trust Fund. ● Complement CMS's Enhanced Technology: Tennr's RaeLM™ and Qualifications product can act as a powerful pre-audit validation layer for MAOs, ensuring they are prepared for CMS's own "enhanced technology" systems and increased coder team. This pre-validation can lead to cleaner submissions to CMS, streamlining CMS's own review process and allowing their enhanced technology to focus on high-value discrepancies. ● Improve Data Accuracy for Payment Integrity: By providing highly accurate and validated data, Tennr directly supports CMS's reliance on accurate and valid data for payment integrity, ensuring that payments align with the actual health status of beneficiaries. How Tennr Addresses RADV Audit Challenges for CMS: 
-1. Automated Medical Necessity Determination for HCPCS: Tennr's Qualification product leverages a powerful, proprietary Machine Learning (ML) powered engine that can search through all relevant medical documentation (orders, referrals, and notes) to determine if a patient meets Medicare criteria for the HCPCS ordered by providers. This capability directly addresses the core challenge of RADV audits: validating that billed diagnoses are fully supported by the patient's medical record. CMS can leverage this automated validation to significantly reduce the volume of unsupported diagnoses flagged by its auditors, streamlining review efforts and improving audit efficiency. 2. Unparalleled Data Extraction Accuracy with RaeLM™: Central to Tennr's effectiveness in RADV audits is RaeLM™ , our flagship document reasoning model, which processes even the messiest medical documents with exceptional precision (over 99.8% data entry accuracy). This capability ensures that the foundational data extracted for risk adjustment, including complex clinical details, is of the highest quality, directly supporting audit validation. For CMS, integrating RaeLM™ ensures more accurate and complete data from MAOs, enhancing audit efficiency and reliability while reducing the need for extensive manual review by CMS's growing coder team. 3. Transforming Narrative to Standardized Codes (ICD-10): A critical capability for RADV audits is the accurate transformation of unstructured clinical information into billable codes. Tennr's proprietary ML model excels at this by transforming provider narrative descriptions of patient diagnoses and symptoms directly into standardized ICD-10 codes. CMS can utilize this model to ensure that the diagnostic information submitted by MAOs is consistently and accurately supported by the underlying documentation, mitigating the risk of unsupported diagnoses and providing CMS with more reliable data for risk adjustment calculations and audit validation. 4. High Confidence Autopilot for Enhanced Accuracy and Efficiency: RaeLM™ provides a confidence level for every extracted value. This enables Tennr's 'High Confidence Autopilot' feature, where human review is only required when the model's confidence falls below a specified threshold (typically 98%). CMS could leverage this capability to streamline its own audit review process, directing its human auditors to focus only on low-confidence flags identified by Tennr's models, thereby maximizing the efficiency and accuracy of CMS's audit resources. 5. Generating Comprehensive "Proof Packets" for Audits: Tennr's Qualifications product is designed to ensure compliance with payer requirements and, crucially, to generate comprehensive "proof packets". These packets consolidate all necessary medical documentation that validates a patient's diagnosis and medical necessity for ordered HCPCS. CMS can leverage these pre-compiled and validated proof packets directly from MAOs utilizing Tennr's technology, facilitating faster, more accurate reviews for CMS auditors and streamlining the overall audit process. Below are Tennr’s recommendations pertaining to specific questions in the RFI. E. Technology Vendors, Data Providers, and Networks TD-2. Regarding CMS Data, to stimulate developer interest— 
-a. What additional data would be most valuable if made available through CMS APIs? ● Detailed Clinical Encounter Data: Beyond basic claims, access to more granular clinical data, including diagnoses, procedures, problem lists, medications, and relevant provider notes, with appropriate privacy safeguards, would enable more sophisticated health management and care navigation applications. Tennr's Intake and Qualifications services, powered by RaeLM™ , are designed to extract and structure this type of complex, often unstructured, clinical information. This data is crucial for CMS's RADV audits to comprehensively validate diagnoses against medical records. ● Medicare Local Coverage Determinations (LCDs) and National Coverage Determinations (NCDs) via API: Providing structured, machine-readable access to LCDs and NCDs is critically valuable. This would enable technology vendors, like Tennr, to automate the evaluation of medical necessity for HCPCS codes, significantly reducing the burden on providers and speeding up determination processes for patients. c. What obstacles prevent accessing these data sources today? ● Data Siloing and Fragmentation: Information often resides in disparate systems (EHRs, payer systems, HIEs) with limited seamless exchange. ● Lack of Native Interoperability in Legacy Systems and Prohibitive API Costs: Many healthcare ERPs/EMRs currently in use by providers either lack native interoperability capabilities (APIs) or offer them at a prohibitively high cost. This perpetuates data siloing and forces providers to rely on error-prone manual data entry as patients traverse from one provider to the next. ● Lack of Granularity and Standardization: Even when data is available, it often lacks the necessary granularity or adheres to inconsistent standards, making it difficult to aggregate and utilize effectively. Tennr's RaeLM™ model is specifically trained to overcome the challenges of "messy medical document types" and extract structured data from unstructured sources, including transforming provider narrative descriptions of patient diagnoses and symptoms into standardized ICD-10 codes with high accuracy. This capability directly addresses a key obstacle for CMS in validating diagnoses from diverse documentation during RADV audits. ● Lack of API Access to Current Medicare LCDs/NCDs: The absence of standardized, machine-readable APIs for Medicare Local Coverage Determinations (LCDs) and National Coverage Determinations (NCDs) forces manual interpretation and integration by providers and technology vendors, creating a significant burden and delays in medical necessity determinations. ● Technical Complexity of Integration: Integrating with numerous proprietary systems or non-standard APIs is resource-intensive for developers. ● Privacy and Security Concerns: Navigating complex privacy regulations and ensuring secure data exchange can be a significant barrier. ● Information Blocking Practices: As noted in TD-18, practices that hinder access, exchange, or use of EHI remain a significant obstacle. TD-9. Regarding certification of health IT: 
-a. What are the benefits of redefining certification to prioritize API-enabled capabilities over software functionality? ● True Interoperability: Prioritizing API-enabled capabilities shifts the focus from merely having data to ensure that data can flow seamlessly and be used by a diverse ecosystem of applications. This moves beyond siloed functionalities within a single software. ● Accelerated Innovation: By guaranteeing robust API access, certification would unleash innovation by enabling third-party developers, like Tennr, to build specialized applications that leverage health data without needing to deeply integrate with proprietary EHR internals. This innovation can lead to better tools for MAOs to prepare for RADV audits, and for CMS to use directly. ● Reduced Vendor Lock-in and Increased Competition: A strong emphasis on standardized APIs allows healthcare organizations to choose best-of-breed solutions for specific workflows, rather than being confined to a single vendor's ecosystem, promoting market competition. ● Focus on Data Liquidity: The primary goal becomes ensuring the fluid and secure movement of health information, rather than just the presence of certain features within a software system. For CMS, this means a more reliable and accessible data stream for audit purposes. b. What would be the drawbacks? ● Potential for Neglecting Core Clinical Usability: An overemphasis on APIs could inadvertently lead to less attention on the direct usability and efficiency of the core EHR's clinical workflows for providers. ● Complexity of Comprehensive API Standards: Defining and maintaining API standards that cover all aspects of a patient's chart (including unstructured data) is technically challenging and requires continuous evolution. ● Implementation Burden for Legacy Systems: Older or less technologically advanced health IT systems may face significant challenges and costs in re-architecting to meet stringent API-centric certification requirements. ● Need for Robust Security and Privacy Controls: As more data becomes accessible via APIs, the need for stringent security and privacy controls, and rigorous testing of these, becomes even more critical. c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient's chart (for example, faxed records, free text, discrete data)? ● Mandate Data Transformation Capabilities: Require certified health IT to include capabilities for transforming unstructured data (e.g., scanned documents, free text notes) into structured, queryable formats accessible via APIs, where clinically appropriate and technically feasible. This could involve leveraging advanced AI/ML models like Tennr's RaeLM™ for intelligent data extraction and interpretation from diverse document types, 
-including the transformation of provider narrative descriptions of patient diagnoses and symptoms into standardized ICD-10 codes. This capability is directly applicable to CMS's need to validate diagnoses from diverse medical records during RADV audits. TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable privacy laws? To fully realize the "without special effort" mandate of the 21st Century Cures Act, ASTP/ONC should consider these further steps: ● Concrete Definition of "Without Special Effort": Move beyond a conceptual definition to provide specific, measurable criteria for API usability, developer experience, and data access. This could include metrics for API response times, clear error handling, and intuitive data models. ● Mandate Comprehensive EHI Access: Explicitly require APIs to expose all data elements of a patient's electronic health record, including structured, unstructured (e.g., free text notes, scanned documents), and image data, to the extent permissible under privacy laws. Tennr's Intake and Document Wrangling capabilities demonstrate the technical feasibility and value of extracting actionable data from these diverse formats. ● Standardized Data Transformation Requirements: For unstructured data, establish requirements or best practices for how this data should be transformed or referenced via APIs to ensure usability by downstream applications. This could involve mandating the use of specific FHIR resources for document references or encouraging the use of AI/ML for extracting key concepts into structured fields. ● Enhanced API Documentation and Developer Tools: Require certified developers to provide comprehensive, machine-readable, and human-readable API documentation, including detailed data element definitions, example queries, and robust software development kits (SDKs). TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? Providing APIs with access to the entirety of a patient's Electronic Health Information (EHI) would be transformative, unlocking unprecedented opportunities and advancements across the healthcare ecosystem. New Opportunities and Advancements: ● Hyper-Personalized Health Management: Digital health products could offer truly personalized insights, predictive analytics, and proactive interventions based on a complete understanding of a patient's history, preferences, and context. Tennr's ability to 
-extract and structure data from diverse documents, including transforming narrative descriptions into standardized ICD-10 codes, would be critical here, enabling the creation of comprehensive patient profiles and referral analytics. ● Proactive Care Navigation and Coordination: AI-powered care navigation apps could guide patients to the most appropriate providers, services, and resources with unparalleled accuracy, considering all clinical and administrative data. Tennr's Communication Coordination would be enhanced by a complete EHI view, allowing for more intelligent outreach. ● Enhanced Clinical Decision Support (CDS): AI and machine learning models could analyze the entirety of a patient's EHI to provide more precise and timely clinical decision support for providers, reducing diagnostic errors and optimizing treatment plans. ● Streamlined Administrative Workflows: Tasks like patient intake, prior authorization, and billing could be almost fully automated, as systems like Tennr's Referral Intake, Qualifications, and Eligibility & Benefits would have all the necessary information at their disposal, reducing manual effort and denials. Specifically, with full EHI access and API access to Medicare LCDs/NCDs, Tennr's machine learning-powered qualification engine could provide near real-time medical necessity determinations for HCPCS codes, significantly accelerating the prior authorization process and improving patient experience. a. What are the primary obstacles to this? ● Technical Interoperability Challenges: The sheer volume and diversity of data formats (structured, unstructured, images) across disparate systems make comprehensive EHI exchange technically complex. Tennr's RaeLM™ model is specifically designed to address this by interpreting messy, unstructured medical documents. ● Data Quality and Consistency: EHI often contains inconsistencies, missing data, or errors across different sources, which can impact the reliability of comprehensive data sets. ● Governance and Trust Frameworks: Establishing clear governance models and trust frameworks for widespread EHI exchange across different organizations is complex. ● Information Blocking: Deliberate or unintentional practices that hinder access to EHI remains a significant barrier. Given today's advancements in machine learning and natural language processing (like Tennr's RaeLM™ ), the ability to process and derive meaning from less structured data (e.g., free text, scanned faxes, check box data, product and service codes, etc.) has vastly improved. This shifts the tradeoff, making full EHI access more feasible and valuable, as the "processing burden by the receiver" is increasingly mitigated by intelligent automation platforms. While USCDI provides a necessary baseline, the true potential for innovation lies in unlocking the full EHI, with robust tools to manage its complexity. TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network infrastructure? 
-The choice between point-to-point data exchange models and shared network infrastructure presents significant tradeoffs in terms of scalability, efficiency, and the realization of a truly interoperable healthcare ecosystem. Point-to-Point Models: ● Tradeoffs: ○ Limited Scalability: Each new connection requires a separate integration effort, leading to exponential complexity as the number of participants grows. This creates a significant administrative and technical burden. ○ Data Siloing: Even with direct connections, data often remains fragmented across multiple discrete links, making it difficult to achieve a comprehensive patient view. ○ High Maintenance Overhead: Managing numerous individual connections, each with its own specifications and updates, is resource-intensive. ○ Hindered Innovation: The effort required for individual integrations discourages developers from building applications that need data from multiple sources. ○ Increased Information Blocking Potential: Without a centralized framework, it's easier for entities to create technical or contractual barriers to data exchange. ● Current Rules Encouraging Scalable Network Participation? Current rules, while pushing for interoperability, do not sufficiently disincentivize point-to-point models. The lack of a universally adopted, enforced, and easy-to-implement shared infrastructure means organizations often default to individual agreements, which are less scalable. Shared Network Infrastructure (e.g., TEFCA, QHINs): ● Tradeoffs: ○ Enhanced Scalability: A single connection to a trusted network allows access to a vast number of participants, significantly reducing individual integration efforts. ○ Comprehensive Data Access: Facilitates a more holistic view of patient data across different providers and care settings, crucial for care coordination and population health. ○ Reduced Burden: Lowers the technical and administrative burden on individual organizations by centralizing exchange mechanisms and governance. ○ Fosters Innovation: Enables developers to build applications that can access data from a wide range of sources through a single, standardized entry point. ○ Improved Data Quality and Trust: Common rules and technical requirements within a shared infrastructure can lead to more consistent data quality and increased trust among participants. ● Changes to Improve Alignment (for scalable network participation): ○ API Unification and Standardization: CMS and ASTP/ONC should aggressively promote and enforce the adoption of unified, standards-based APIs (e.g., FHIR) across all shared network infrastructures. This ensures consistency regardless of the underlying network. 
-○ Reciprocal Access Requirements: Mandate reciprocal data access, where participants in a network are obligated to both send and receive data, preventing one-sided data hoarding. ○ Clear Governance and Trust Frameworks: Establish robust and transparent governance models for shared networks, including clear rules of the road, dispute resolution mechanisms, and security policies. ○ Incentives for Network Participation: Provide strong financial and non-financial incentives for providers, payers, and technology vendors to join and actively participate in designated shared network infrastructure. ○ Technical Assistance and Onboarding Support: Offer resources and support to help organizations, especially smaller practices, easily connect to and utilize shared network infrastructure. Tennr's platform, with its ability to intelligently process and route information from various sources, is ideally positioned to thrive within a shared network infrastructure. By reducing the manual effort of data wrangling and intake, Tennr can help organizations maximize the value derived from comprehensive data exchange across such networks. TD-18. Information blocking: Information blocking remains a significant impediment to achieving a truly interoperable and patient-centric healthcare ecosystem. As a technology vendor focused on automating healthcare operations through data, Tennr frequently encounters practices that constitute information blocking, both through non-responsiveness and the provision of unusable data. a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? ● Situations of Non-Responsiveness: ○ Delayed or Ignored Requests for Information: Despite automated outreach via Tennr's Communication Coordination product for missing patient information (e.g., unsigned orders, missing insurance cards, complete referrals), some external providers or facilities may consistently fail to respond within reasonable timeframes or at all, directly delaying patient care and administrative processes. ○ Lack of Accessibility to Patient Portals/APIs: While theoretically available, some patient portals or provider APIs are difficult to discover, lack clear documentation, or have cumbersome onboarding processes for third-party applications, effectively hindering access. ● Situations Causing Failure or Unusable Response: ○ Provision of Incomplete or Fragmented Data: Receiving only partial patient records or fragmented documents (e.g., a multi-page fax where critical pages are missing or out of order), which requires significant manual effort to piece together 
-and often results in insufficient information for Tennr's Referral Intake or Clinical Qualification product to complete their automated processes. ○ Poor Quality or Unreadable Documents: Receiving scanned documents or faxes that are illegible, skewed, or contain significant artifacts, making it difficult even for advanced OCR and AI and machine learning models like Tennr's RaeLM™ to extract data accurately. This necessitates manual review and correction, negating the benefits of automation. ○ API Responses Lacking Granularity or Context: While an API might technically exist, the data returned may be too high-level, lack necessary context, or omit critical discrete data elements required for automated workflows (e.g., specific CPT codes, detailed diagnoses, or precise dates needed for Qualifications). ○ Excessive Fees or Burdensome Agreements: Imposing exorbitant fees or overly restrictive data use agreements for accessing EHI, even when technically feasible, acts as a significant deterrent. This is particularly true for payer prior authorization rules and requirements, which are often difficult to access programmatically, lack standardization, and are siloed, leading to ambiguity and hindering automated medical necessity determinations. b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? ● Clearer Definitions and Examples: Provide more granular definitions and concrete examples of what constitutes information blocking across various scenarios, particularly regarding data quality, completeness, and responsiveness. ● Stricter Enforcement and Escalating Penalties: Implement more robust enforcement mechanisms and a tiered system of escalating penalties for confirmed information blocking violations, ensuring consequences are significant enough to deter the practice. ● Proactive Audits and Monitoring: Conduct proactive audits of data exchange practices and monitor API usage patterns to identify potential information blocking behaviors, rather than relying solely on reactive complaints. ● Incentives for Proactive Data Sharing: Introduce positive incentives (e.g., financial bonuses, public recognition) for providers who consistently demonstrate exemplary data sharing practices and actively facilitate interoperability. ● Mandatory Transparency of Data Exchange Capabilities: Require providers and health IT vendors to publicly attest to and describe their data exchange capabilities, including supported APIs, data elements available, and typical response times for data requests. ● Streamlined Complaint Process: Further simplify and publicize the information blocking complaint process for patients, caregivers, and technology vendors, ensuring it is accessible and responsive. Tennr is committed to collaborating with CMS, ASTP/ONC, and other stakeholders to advance the digital health ecosystem. Our intelligent automation platform, designed to tackle the complexities of healthcare data and workflows, stands ready to support initiatives that enhance 
-interoperability, reduce administrative burden, and ultimately improve patient care and outcomes for Medicare beneficiaries. We believe that by addressing the challenges outlined in this RFI, particularly around data access and standardization for critical administrative processes like diagnosis coding and eligibility determination, we can collectively unlock the full potential of digital health technology while protecting the Medicare Trust Fund. 
+Tennr's Role in CMS Risk Adjustment Data Validation (RADV) Audits at Scale and
+Advancing Digital Health Interoperability for Medicare Beneficiaries
+Tennr appreciates the opportunity to provide input on this Request for Information regarding the
+market of digital health products for Medicare beneficiaries and the state of data interoperability.
+As an intelligent automation platform for healthcare, Tennr is dedicated to streamlining clinical
+and operational tasks by precisely reading and interpreting healthcare documents, ensuring
+data accuracy, and facilitating seamless workflows to reduce patient delays and increase
+referral conversion rates. Our core services—Document Wrangling, Referral Intake, Clinical
+Qualification, Communication Coordination, and Eligibility & Benefits—are designed to reduce
+manual burdens, minimize errors, and significantly enhance efficiency across the healthcare
+continuum. Central to our capabilities is RaeLM™, our flagship document reasoning model. This
+sophisticated ensemble of AI and machine learning models processes even the messiest
+medical documents with exceptional precision (over 99.8% data entry accuracy, outperforming
+human averages). Beyond best-in-class machine learning, Tennr incorporates a flexible
+workflow orchestration engine to map automation to any process, structured human-in-the-loop
+validation to drive the highest possible performance, and a suite of quality control measures that
+strategically enable high-confidence, fully autonomous process operations. This comprehensive
+system is essential for improving patient outcomes, reducing delays in care, and proactively
+addressing critical challenges, such as CMS Risk Adjustment Data Validation (RADV) audits at
+scale. Tennr believes this comprehensive system is not only beneficial for providers but also
+essential for CMS to effectively manage and scale its oversight responsibilities, particularly in
+the context of increasingly rigorous RADV audits, by ensuring the integrity and accessibility of
+risk adjustment data. Tennr specifically proposes to leverage its Qualifications product and
+ICD-10 code extraction model to directly aid the CMS RADV audit team in coding and validating
+diagnoses at scale.
+Tennr's Impact at Scale Amidst New RADV Audit Enhancements:
+The Centers for Medicare & Medicaid Services (CMS) is responsible for auditing Medicare
+Advantage risk adjustment to ensure plans are paid correctly. The primary audit mechanism is
+the RAD program. In a RADV audit, CMS selects a sample of enrollees from a given MA
+contract and requires the MA Organization (MAO) to submit the medical records for those
+beneficiaries to validate the diagnoses billed. Auditors verify each HCC-driving diagnosis in the
+sample against the patient’s medical record documentation. If a diagnosis (e.g., diabetes with
+complications) that the plan submitted to CMS is not actually supported by the record (for
+example, the chart lacks evidence of that condition or proper documentation of management), it
+is flagged as an unsupported diagnosis. CMS then recalculates the sample enrollees’ risk
+scores with those unsupported codes removed, determining how much the plan was overpaid
+for each sampled member. Historically, CMS would recover overpayments only for the sampled
+beneficiaries, but not extrapolate to the full contract population. Recent CMS announcements
+indicate a significant strengthening of RADV audits, dramatically increasing their pace and
+scale. Starting with Payment Year 2018 audits, CMS will extrapolate sample audit findings to the
+
+entire plan contract, meaning overpayments identified in a sample can lead to recoupment
+across the entire contract's Part C payments. Furthermore, CMS plans to:
+● Audit all eligible MA contracts annually.
+● Review as many as 200 records per MA plan each year, a substantial increase from the
+previous 35 records.
+● Invest in enhanced technology and expanded human resources, including increasing its
+medical coder team to approximately 2,000 by September 1, 2025, and utilizing
+"enhanced technology" systems to streamline medical record review for unsupported
+diagnoses.
+Given these changes, the ability to ensure documentation integrity at scale is no longer a luxury
+but an absolute necessity. Tennr's automated, machine learning powered approach can
+significantly assist CMS in achieving its audit objectives by directly enabling the CMS RADV
+audit team to:
+● Proactively Identify and Validate Diagnoses at Scale: By integrating Tennr's
+technology, CMS can identify and validate potential documentation gaps or unsupported
+diagnoses across vast patient populations, directly addressing the impact of
+extrapolation and ensuring the accuracy of risk adjustment payments. This proactive
+validation by MAOs, enabled by Tennr, means cleaner data submissions to CMS,
+reducing the overall burden on the audit system.
+● Scale Audit Review Efficiently: Tennr automates the laborious process of reviewing
+medical records for audit validation, freeing CMS staff to handle the increased volume of
+records (up to 200 per plan per year) that CMS plans to review. This translates to a more
+efficient and less burdensome audit process for CMS.
+● Enhance Financial Integrity and Protect the Medicare Trust Fund: By ensuring that
+billed diagnoses are consistently and accurately supported by medical records, Tennr's
+technology can help CMS significantly reduce the risk of multi-million dollar overpayment
+recoveries, directly aligning with CMS's fiduciary duty to protect the Medicare Trust
+Fund.
+● Complement CMS's Enhanced Technology: Tennr's RaeLM™ and Qualifications
+product can act as a powerful pre-audit validation layer for MAOs, ensuring they are
+prepared for CMS's own "enhanced technology" systems and increased coder team.
+This pre-validation can lead to cleaner submissions to CMS, streamlining CMS's own
+review process and allowing their enhanced technology to focus on high-value
+discrepancies.
+● Improve Data Accuracy for Payment Integrity: By providing highly accurate and
+validated data, Tennr directly supports CMS's reliance on accurate and valid data for
+payment integrity, ensuring that payments align with the actual health status of
+beneficiaries.
+How Tennr Addresses RADV Audit Challenges for CMS:
+
+1. Automated Medical Necessity Determination for HCPCS: Tennr's Qualification
+product leverages a powerful, proprietary Machine Learning (ML) powered engine that
+can search through all relevant medical documentation (orders, referrals, and notes) to
+determine if a patient meets Medicare criteria for the HCPCS ordered by providers. This
+capability directly addresses the core challenge of RADV audits: validating that billed
+diagnoses are fully supported by the patient's medical record. CMS can leverage this
+automated validation to significantly reduce the volume of unsupported diagnoses
+flagged by its auditors, streamlining review efforts and improving audit efficiency.
+2. Unparalleled Data Extraction Accuracy with RaeLM™: Central to Tennr's
+effectiveness in RADV audits is RaeLM™, our flagship document reasoning model,
+which processes even the messiest medical documents with exceptional precision (over
+99.8% data entry accuracy). This capability ensures that the foundational data extracted
+for risk adjustment, including complex clinical details, is of the highest quality, directly
+supporting audit validation. For CMS, integrating RaeLM™ ensures more accurate and
+complete data from MAOs, enhancing audit efficiency and reliability while reducing the
+need for extensive manual review by CMS's growing coder team.
+3. Transforming Narrative to Standardized Codes (ICD-10): A critical capability for
+RADV audits is the accurate transformation of unstructured clinical information into
+billable codes. Tennr's proprietary ML model excels at this by transforming provider
+narrative descriptions of patient diagnoses and symptoms directly into standardized
+ICD-10 codes. CMS can utilize this model to ensure that the diagnostic information
+submitted by MAOs is consistently and accurately supported by the underlying
+documentation, mitigating the risk of unsupported diagnoses and providing CMS with
+more reliable data for risk adjustment calculations and audit validation.
+4. High Confidence Autopilot for Enhanced Accuracy and Efficiency: RaeLM™
+provides a confidence level for every extracted value. This enables Tennr's 'High
+Confidence Autopilot' feature, where human review is only required when the model's
+confidence falls below a specified threshold (typically 98%). CMS could leverage this
+capability to streamline its own audit review process, directing its human auditors to
+focus only on low-confidence flags identified by Tennr's models, thereby maximizing the
+efficiency and accuracy of CMS's audit resources.
+5. Generating Comprehensive "Proof Packets" for Audits: Tennr's Qualifications
+product is designed to ensure compliance with payer requirements and, crucially, to
+generate comprehensive "proof packets". These packets consolidate all necessary
+medical documentation that validates a patient's diagnosis and medical necessity for
+ordered HCPCS. CMS can leverage these pre-compiled and validated proof packets
+directly from MAOs utilizing Tennr's technology, facilitating faster, more accurate reviews
+for CMS auditors and streamlining the overall audit process.
+Below are Tennr’s recommendations pertaining to specific questions in the RFI.
+E. Technology Vendors, Data Providers, and Networks
+TD-2. Regarding CMS Data, to stimulate developer interest—
+
+a. What additional data would be most valuable if made available through CMS APIs?
+● Detailed Clinical Encounter Data: Beyond basic claims, access to more granular
+clinical data, including diagnoses, procedures, problem lists, medications, and relevant
+provider notes, with appropriate privacy safeguards, would enable more sophisticated
+health management and care navigation applications. Tennr's Intake and Qualifications
+services, powered by RaeLM™, are designed to extract and structure this type of
+complex, often unstructured, clinical information. This data is crucial for CMS's RADV
+audits to comprehensively validate diagnoses against medical records.
+● Medicare Local Coverage Determinations (LCDs) and National Coverage
+Determinations (NCDs) via API: Providing structured, machine-readable access to
+LCDs and NCDs is critically valuable. This would enable technology vendors, like Tennr,
+to automate the evaluation of medical necessity for HCPCS codes, significantly reducing
+the burden on providers and speeding up determination processes for patients.
+c. What obstacles prevent accessing these data sources today?
+● Data Siloing and Fragmentation: Information often resides in disparate systems
+(EHRs, payer systems, HIEs) with limited seamless exchange.
+● Lack of Native Interoperability in Legacy Systems and Prohibitive API Costs: Many
+healthcare ERPs/EMRs currently in use by providers either lack native interoperability
+capabilities (APIs) or offer them at a prohibitively high cost. This perpetuates data siloing
+and forces providers to rely on error-prone manual data entry as patients traverse from
+one provider to the next.
+● Lack of Granularity and Standardization: Even when data is available, it often lacks
+the necessary granularity or adheres to inconsistent standards, making it difficult to
+aggregate and utilize effectively. Tennr's RaeLM™ model is specifically trained to
+overcome the challenges of "messy medical document types" and extract structured
+data from unstructured sources, including transforming provider narrative descriptions of
+patient diagnoses and symptoms into standardized ICD-10 codes with high accuracy.
+This capability directly addresses a key obstacle for CMS in validating diagnoses from
+diverse documentation during RADV audits.
+● Lack of API Access to Current Medicare LCDs/NCDs: The absence of standardized,
+machine-readable APIs for Medicare Local Coverage Determinations (LCDs) and
+National Coverage Determinations (NCDs) forces manual interpretation and integration
+by providers and technology vendors, creating a significant burden and delays in
+medical necessity determinations.
+● Technical Complexity of Integration: Integrating with numerous proprietary systems or
+non-standard APIs is resource-intensive for developers.
+● Privacy and Security Concerns: Navigating complex privacy regulations and ensuring
+secure data exchange can be a significant barrier.
+● Information Blocking Practices: As noted in TD-18, practices that hinder access,
+exchange, or use of EHI remain a significant obstacle.
+TD-9. Regarding certification of health IT:
+
+a. What are the benefits of redefining certification to prioritize API-enabled capabilities
+over software functionality?
+● True Interoperability: Prioritizing API-enabled capabilities shifts the focus from merely
+having data to ensure that data can flow seamlessly and be used by a diverse
+ecosystem of applications. This moves beyond siloed functionalities within a single
+software.
+● Accelerated Innovation: By guaranteeing robust API access, certification would
+unleash innovation by enabling third-party developers, like Tennr, to build specialized
+applications that leverage health data without needing to deeply integrate with
+proprietary EHR internals. This innovation can lead to better tools for MAOs to prepare
+for RADV audits, and for CMS to use directly.
+● Reduced Vendor Lock-in and Increased Competition: A strong emphasis on
+standardized APIs allows healthcare organizations to choose best-of-breed solutions for
+specific workflows, rather than being confined to a single vendor's ecosystem, promoting
+market competition.
+● Focus on Data Liquidity: The primary goal becomes ensuring the fluid and secure
+movement of health information, rather than just the presence of certain features within a
+software system. For CMS, this means a more reliable and accessible data stream for
+audit purposes.
+b. What would be the drawbacks?
+● Potential for Neglecting Core Clinical Usability: An overemphasis on APIs could
+inadvertently lead to less attention on the direct usability and efficiency of the core EHR's
+clinical workflows for providers.
+● Complexity of Comprehensive API Standards: Defining and maintaining API
+standards that cover all aspects of a patient's chart (including unstructured data) is
+technically challenging and requires continuous evolution.
+● Implementation Burden for Legacy Systems: Older or less technologically advanced
+health IT systems may face significant challenges and costs in re-architecting to meet
+stringent API-centric certification requirements.
+● Need for Robust Security and Privacy Controls: As more data becomes accessible
+via APIs, the need for stringent security and privacy controls, and rigorous testing of
+these, becomes even more critical.
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to
+consistently support exchanging data from all aspects of the patient's chart (for example,
+faxed records, free text, discrete data)?
+● Mandate Data Transformation Capabilities: Require certified health IT to include
+capabilities for transforming unstructured data (e.g., scanned documents, free text notes)
+into structured, queryable formats accessible via APIs, where clinically appropriate and
+technically feasible. This could involve leveraging advanced AI/ML models like Tennr's
+RaeLM™ for intelligent data extraction and interpretation from diverse document types,
+
+including the transformation of provider narrative descriptions of patient diagnoses and
+symptoms into standardized ICD-10 codes. This capability is directly applicable to CMS's
+need to validate diagnoses from diverse medical records during RADV audits.
+TD-10. For EHR and other developers subject to the ONC Health IT Certification Program,
+what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's
+API condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's
+APIs to allow health information to be accessed, exchanged, and used without special
+effort, including providing access to all data elements of a patient's electronic health
+record to the extent permissible under applicable privacy laws?
+To fully realize the "without special effort" mandate of the 21st Century Cures Act, ASTP/ONC
+should consider these further steps:
+● Concrete Definition of "Without Special Effort": Move beyond a conceptual definition
+to provide specific, measurable criteria for API usability, developer experience, and data
+access. This could include metrics for API response times, clear error handling, and
+intuitive data models.
+● Mandate Comprehensive EHI Access: Explicitly require APIs to expose all data
+elements of a patient's electronic health record, including structured, unstructured (e.g.,
+free text notes, scanned documents), and image data, to the extent permissible under
+privacy laws. Tennr's Intake and Document Wrangling capabilities demonstrate the
+technical feasibility and value of extracting actionable data from these diverse formats.
+● Standardized Data Transformation Requirements: For unstructured data, establish
+requirements or best practices for how this data should be transformed or referenced via
+APIs to ensure usability by downstream applications. This could involve mandating the
+use of specific FHIR resources for document references or encouraging the use of AI/ML
+for extracting key concepts into structured fields.
+● Enhanced API Documentation and Developer Tools: Require certified developers to
+provide comprehensive, machine-readable, and human-readable API documentation,
+including detailed data element definitions, example queries, and robust software
+development kits (SDKs).
+TD-13. What new opportunities and advancements could emerge with APIs providing
+access to the entirety of a patient's electronic health information (EHI)?
+Providing APIs with access to the entirety of a patient's Electronic Health Information (EHI)
+would be transformative, unlocking unprecedented opportunities and advancements across the
+healthcare ecosystem.
+New Opportunities and Advancements:
+● Hyper-Personalized Health Management: Digital health products could offer truly
+personalized insights, predictive analytics, and proactive interventions based on a
+complete understanding of a patient's history, preferences, and context. Tennr's ability to
+
+extract and structure data from diverse documents, including transforming narrative
+descriptions into standardized ICD-10 codes, would be critical here, enabling the
+creation of comprehensive patient profiles and referral analytics.
+● Proactive Care Navigation and Coordination: AI-powered care navigation apps could
+guide patients to the most appropriate providers, services, and resources with
+unparalleled accuracy, considering all clinical and administrative data. Tennr's
+Communication Coordination would be enhanced by a complete EHI view, allowing for
+more intelligent outreach.
+● Enhanced Clinical Decision Support (CDS): AI and machine learning models could
+analyze the entirety of a patient's EHI to provide more precise and timely clinical
+decision support for providers, reducing diagnostic errors and optimizing treatment
+plans.
+● Streamlined Administrative Workflows: Tasks like patient intake, prior authorization,
+and billing could be almost fully automated, as systems like Tennr's Referral Intake,
+Qualifications, and Eligibility & Benefits would have all the necessary information at their
+disposal, reducing manual effort and denials. Specifically, with full EHI access and API
+access to Medicare LCDs/NCDs, Tennr's machine learning-powered qualification engine
+could provide near real-time medical necessity determinations for HCPCS codes,
+significantly accelerating the prior authorization process and improving patient
+experience.
+a. What are the primary obstacles to this?
+● Technical Interoperability Challenges: The sheer volume and diversity of data formats
+(structured, unstructured, images) across disparate systems make comprehensive EHI
+exchange technically complex. Tennr's RaeLM™ model is specifically designed to
+address this by interpreting messy, unstructured medical documents.
+● Data Quality and Consistency: EHI often contains inconsistencies, missing data, or
+errors across different sources, which can impact the reliability of comprehensive data
+sets.
+● Governance and Trust Frameworks: Establishing clear governance models and trust
+frameworks for widespread EHI exchange across different organizations is complex.
+● Information Blocking: Deliberate or unintentional practices that hinder access to EHI
+remains a significant barrier.
+Given today's advancements in machine learning and natural language processing (like Tennr's
+RaeLM™), the ability to process and derive meaning from less structured data (e.g., free text,
+scanned faxes, check box data, product and service codes, etc.) has vastly improved. This
+shifts the tradeoff, making full EHI access more feasible and valuable, as the "processing
+burden by the receiver" is increasingly mitigated by intelligent automation platforms. While
+USCDI provides a necessary baseline, the true potential for innovation lies in unlocking the full
+EHI, with robust tools to manage its complexity.
+TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure?
+
+The choice between point-to-point data exchange models and shared network infrastructure
+presents significant tradeoffs in terms of scalability, efficiency, and the realization of a truly
+interoperable healthcare ecosystem.
+Point-to-Point Models:
+● Tradeoffs:
+○ Limited Scalability: Each new connection requires a separate integration effort,
+leading to exponential complexity as the number of participants grows. This
+creates a significant administrative and technical burden.
+○ Data Siloing: Even with direct connections, data often remains fragmented
+across multiple discrete links, making it difficult to achieve a comprehensive
+patient view.
+○ High Maintenance Overhead: Managing numerous individual connections, each
+with its own specifications and updates, is resource-intensive.
+○ Hindered Innovation: The effort required for individual integrations discourages
+developers from building applications that need data from multiple sources.
+○ Increased Information Blocking Potential: Without a centralized framework,
+it's easier for entities to create technical or contractual barriers to data exchange.
+● Current Rules Encouraging Scalable Network Participation? Current rules, while
+pushing for interoperability, do not sufficiently disincentivize point-to-point models. The
+lack of a universally adopted, enforced, and easy-to-implement shared infrastructure
+means organizations often default to individual agreements, which are less scalable.
+Shared Network Infrastructure (e.g., TEFCA, QHINs):
+● Tradeoffs:
+○ Enhanced Scalability: A single connection to a trusted network allows access to
+a vast number of participants, significantly reducing individual integration efforts.
+○ Comprehensive Data Access: Facilitates a more holistic view of patient data
+across different providers and care settings, crucial for care coordination and
+population health.
+○ Reduced Burden: Lowers the technical and administrative burden on individual
+organizations by centralizing exchange mechanisms and governance.
+○ Fosters Innovation: Enables developers to build applications that can access
+data from a wide range of sources through a single, standardized entry point.
+○ Improved Data Quality and Trust: Common rules and technical requirements
+within a shared infrastructure can lead to more consistent data quality and
+increased trust among participants.
+● Changes to Improve Alignment (for scalable network participation):
+○ API Unification and Standardization: CMS and ASTP/ONC should
+aggressively promote and enforce the adoption of unified, standards-based APIs
+(e.g., FHIR) across all shared network infrastructures. This ensures consistency
+regardless of the underlying network.
+
+○ Reciprocal Access Requirements: Mandate reciprocal data access, where
+participants in a network are obligated to both send and receive data, preventing
+one-sided data hoarding.
+○ Clear Governance and Trust Frameworks: Establish robust and transparent
+governance models for shared networks, including clear rules of the road, dispute
+resolution mechanisms, and security policies.
+○ Incentives for Network Participation: Provide strong financial and non-financial
+incentives for providers, payers, and technology vendors to join and actively
+participate in designated shared network infrastructure.
+○ Technical Assistance and Onboarding Support: Offer resources and support
+to help organizations, especially smaller practices, easily connect to and utilize
+shared network infrastructure.
+Tennr's platform, with its ability to intelligently process and route information from various
+sources, is ideally positioned to thrive within a shared network infrastructure. By reducing the
+manual effort of data wrangling and intake, Tennr can help organizations maximize the value
+derived from comprehensive data exchange across such networks.
+TD-18. Information blocking:
+Information blocking remains a significant impediment to achieving a truly interoperable and
+patient-centric healthcare ecosystem. As a technology vendor focused on automating
+healthcare operations through data, Tennr frequently encounters practices that constitute
+information blocking, both through non-responsiveness and the provision of unusable data.
+a. Could you, as a technology vendor, provide examples for the types of practices you
+have experienced that may constitute information blocking. Please include both
+situations of non-responsiveness as well as situations that may cause a failure or
+unusable response?
+● Situations of Non-Responsiveness:
+○ Delayed or Ignored Requests for Information: Despite automated outreach via
+Tennr's Communication Coordination product for missing patient information
+(e.g., unsigned orders, missing insurance cards, complete referrals), some
+external providers or facilities may consistently fail to respond within reasonable
+timeframes or at all, directly delaying patient care and administrative processes.
+○ Lack of Accessibility to Patient Portals/APIs: While theoretically available,
+some patient portals or provider APIs are difficult to discover, lack clear
+documentation, or have cumbersome onboarding processes for third-party
+applications, effectively hindering access.
+● Situations Causing Failure or Unusable Response:
+○ Provision of Incomplete or Fragmented Data: Receiving only partial patient
+records or fragmented documents (e.g., a multi-page fax where critical pages are
+missing or out of order), which requires significant manual effort to piece together
+
+and often results in insufficient information for Tennr's Referral Intake or Clinical
+Qualification product to complete their automated processes.
+○ Poor Quality or Unreadable Documents: Receiving scanned documents or
+faxes that are illegible, skewed, or contain significant artifacts, making it difficult
+even for advanced OCR and AI and machine learning models like Tennr's
+RaeLM™ to extract data accurately. This necessitates manual review and
+correction, negating the benefits of automation.
+○ API Responses Lacking Granularity or Context: While an API might
+technically exist, the data returned may be too high-level, lack necessary context,
+or omit critical discrete data elements required for automated workflows (e.g.,
+specific CPT codes, detailed diagnoses, or precise dates needed for
+Qualifications).
+○ Excessive Fees or Burdensome Agreements: Imposing exorbitant fees or
+overly restrictive data use agreements for accessing EHI, even when technically
+feasible, acts as a significant deterrent. This is particularly true for payer prior
+authorization rules and requirements, which are often difficult to access
+programmatically, lack standardization, and are siloed, leading to ambiguity and
+hindering automated medical necessity determinations.
+b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+● Clearer Definitions and Examples: Provide more granular definitions and concrete
+examples of what constitutes information blocking across various scenarios, particularly
+regarding data quality, completeness, and responsiveness.
+● Stricter Enforcement and Escalating Penalties: Implement more robust enforcement
+mechanisms and a tiered system of escalating penalties for confirmed information
+blocking violations, ensuring consequences are significant enough to deter the practice.
+● Proactive Audits and Monitoring: Conduct proactive audits of data exchange practices
+and monitor API usage patterns to identify potential information blocking behaviors,
+rather than relying solely on reactive complaints.
+● Incentives for Proactive Data Sharing: Introduce positive incentives (e.g., financial
+bonuses, public recognition) for providers who consistently demonstrate exemplary data
+sharing practices and actively facilitate interoperability.
+● Mandatory Transparency of Data Exchange Capabilities: Require providers and
+health IT vendors to publicly attest to and describe their data exchange capabilities,
+including supported APIs, data elements available, and typical response times for data
+requests.
+● Streamlined Complaint Process: Further simplify and publicize the information
+blocking complaint process for patients, caregivers, and technology vendors, ensuring it
+is accessible and responsive.
+Tennr is committed to collaborating with CMS, ASTP/ONC, and other stakeholders to advance
+the digital health ecosystem. Our intelligent automation platform, designed to tackle the
+complexities of healthcare data and workflows, stands ready to support initiatives that enhance
+
+interoperability, reduce administrative burden, and ultimately improve patient care and outcomes
+for Medicare beneficiaries. We believe that by addressing the challenges outlined in this RFI,
+particularly around data access and standardization for critical administrative processes like
+diagnosis coding and eligibility determination, we can collectively unlock the full potential of
+digital health technology while protecting the Medicare Trust Fund.

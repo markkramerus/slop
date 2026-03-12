@@ -1,6 +1,185 @@
- Document 2025-08701 / CMS-RFI-2025-HealthTech MEDCURIO, INC 88 Kensington Road, Portsmouth, NH 03801 510-210-9750 info@medcurio.com Medcurio Public Comment on CMS-0042-NC: Health Technology Ecosystem RFI Document 2025-08701 Submitted: June 16, 2025 This comment is submitted on behalf of Medcurio in response to CMS-0042-NC (Document 2025-08701). It reflects our team’s direct experience building real-time health data infrastructure and integrating with provider systems across diverse care settings. We welcome the opportunity to contribute to CMS’s vision for a more modular, responsive, and patient-centered digital ecosystem. Sections: 1. Executive Summary 2. Certify APIs 3. Polling vs. Eventing 4. Real-Time Interfaces 5. SDK Infrastructure 6. Usable FHIR 7. Closing Submitted by Walter Stewart on behalf of Medcurio Written in collaboration with Chris Notaro, Strategic Advisor 
- Document 2025-08701 / CMS-RFI-2025-HealthTech Medcurio Comment on the CMS RFI: Building the Health Data Infrastructure We Actually Need Public Comment on CMS RFI: Establishing the Health Technology Ecosystem (Document 2025-08701) Submitted: June 16, 2025 Credentials and Perspective Medcurio builds the underlying infrastructure for real-time, modular access to clinical data across systems of record. We are not an EHR. We are not an app. We operate at the orchestration layer - where event signals become system action, and fragmented data becomes decision-ready. Our team has led enterprise data strategies, interoperability architecture, and commercialization efforts across leading providers, payers, and platforms. We understand the constraints. And we build infrastructure that moves past them. Executive Summary RFI Reference: Federal Register p. 21036-21038, Section II: Solicitation of Public Comments CMS has correctly diagnosed the inertia at the heart of digital health: too much friction, too little signal, and a certification regime that rewards surface compliance over system utility. But policy alone doesn’t unlock transformation. Infrastructure does. CMS is right to focus on systemic drag - but it is patients, caregivers, and value-based care organizations who feel the friction first. The caregiver trying to coordinate a discharge with no context. The primary care team chasing risk gaps across fractured portals. The family member using outdated directories to find urgent specialty care. When infrastructure lags, patients fall through gaps and care teams chase shadows (risk gaps, care gaps, or both). If CMS wants to empower beneficiaries and enable care models that adapt, it must prioritize the architecture beneath the app layer. Our recommendations are designed to reduce lag, improve real-time visibility, and make the infrastructure legible, modular, and responsive - built to serve every actor in the care journey, from primary care provider to specialist to caregiver. Current State vs. Future State Today: A care manager waits three days for a batched eligibility file. Tomorrow: A reactive interface triggers immediate confirmation and launches follow-up scheduling. We recommend five structural shifts: • Certify APIs, not platforms (TD-4, TD-9, TD-10) • Shift from polling to event-driven architecture (TD-13, TD-15) • Treat real-time interfaces as deployment surfaces (PR-2, PR-4, PR-7) • Support SDK-native, composable infrastructure (TD-2, TD-9, TD-10) • Make FHIR usable—treat it like a platform (TD-7, TD-8, TD-10) 
- Document 2025-08701 / CMS-RFI-2025-HealthTech 1. Certify APIs, Not Platforms RFI Reference: p. 21039-21040, Section E: Technology Vendors, Questions TD-4, TD-9, TD-10 The current certification structure reinforces bloated platform dependency. CMS should certify modular, purpose-built APIs - tools that solve discrete problems without requiring full system overhaul. This approach would: • De-risk innovation for providers by enabling plug-in upgrades. • Pressure incumbents to expose more capabilities via standards-based APIs. • Create new competition and improve vendor diversity. Let certification reward infrastructure that is modular by design and independently composable. Use-Case Example: A provider-facing tool integrates a certified scheduling API to offer specialty availability in real time - without altering the EHR. The update eliminates referral faxes and reduces no-shows. CMS can fix this by... • Developing a certification pathway for discrete APIs that allows providers to adopt modular capabilities without full system overhaul. • Encouraging platform-agnostic API models to reduce vendor lock-in and increase innovation from small and mid-sized entrants. 2. Move from Polling to Eventing RFI Reference: p. 21040, Section E: Technology Vendors, Questions TD-13, TD-15 Polling-based data exchange (i.e. where systems repeatedly ask “has anything changed?” by pulling entire datasets) creates drag, delay, and duplication. Event-driven infrastructure (where systems react automatically to data changes or triggers) offers precision, scale, cost control, and signal clarity. And we are not talking about legacy interfaces (HL7, X12, etc.), we are talking about API-first eventing. We recommend CMS explicitly prioritize: • Change detection and delta queries (requests that only return what changed since last sync). • Subscription models over full data fetches. • Support for real-time triggers and reactive logic flows (automated decision chains that respond in real-time to incoming data). Eventing is not just a feature, it is a shift in how systems behave: from passive storage to real-time responsiveness. CMS can lead this transition. Use-Case Example: A care management platform subscribes to patient discharge events. The moment a patient is discharged, it triggers a task for post-acute follow-up and home health scheduling. And yes, we know…“HL7 this” and “HL7 that”. 
- Document 2025-08701 / CMS-RFI-2025-HealthTech CMS can fix this by... • Recognizing event-driven architecture (beyond legacy interfaces) as a best practice in federal interoperability programs. • Supporting care transitions and population health pilots that test real-time, event-based coordination models. 3. Real-Time Interfaces Are Deployment Surfaces RFI Reference: p. 21038-21039, Section C: Providers, Questions PR-2, PR-4, PR-7 Data in motion only reduces burden when it lands at the right time where decisions are made. CMS should prioritize interfaces that embed structured data directly into operational workflows. Recommendations: • Fund interface infrastructure that activates real-time care and ops logic. • Reward integration velocity and clinical relevance in grants and procurements. • Include workflow deployment layers in future VBC tech alignment. These interfaces are not cosmetic. They are the execution surface for CMS policy - where equity, timeliness, and patient-centered care become real. These interfaces are where CMS’s goals around care quality, patient empowerment, and VBC execution play out: • A referral coordinator sees network leakage and intervenes in real time. • A caregiver receives updated discharge instructions synced with post-acute home care apps. • A primary care team identifies and closes gaps from yesterday’s specialist visit - today. • A home health nurse gets a push alert that vitals trended outside target - before the readmission. This is what it means to meet patients and teams where they are. CMS should reward interface design that enables responsiveness, not just documentation. Use-Case Example: A care team dashboard auto-updates with hospital admit notifications and prescription fills, enabling real-time risk stratification and outreach within minutes, not weeks. CMS can fix this by... • Prioritizing interface investments that embed data directly into clinical workflows, with particular focus on reducing avoidable delays and disparities. • Including real-time interface functionality in future evaluations of value-based care infrastructure readiness. 
- Document 2025-08701 / CMS-RFI-2025-HealthTech 4. Support SDK-Native, API-First Infrastructure RFI Reference: p. 21039-21040, Section E: Technology Vendors, Questions TD-2, TD-9, TD-10 The most powerful digital ecosystems - Stripe, Twilio, Plaid - are SDK-native and API-first. Health tech should be no different. SDK-native means developers can embed secure, reusable functionality (like referrals, eligibility, or discharge logic) directly into their applications without reinventing the wheel. These kits reduce integration friction, standardize behavior across use cases, and radically accelerate time-to-impact. In healthcare, SDKs could let care management teams deploy risk scoring tools, referral workflows, or eligibility logic in days - not quarters. SDK-native tools also enable faster deployment of purpose-built applications for value-based care programs. Teams managing risk can adapt tooling without waiting on full platform upgrades - an essential capability for agile care delivery. To encourage this: • Include SDK availability and modularity in certification scoring. • Prioritize developer tooling and surface area in innovation models. • Treat SDK-based platforms as infrastructure, not just applications. This is how CMS can accelerate the multiplier effect of low-cost, reusable innovation. Use-Case Example: A startup focused on behavioral health embeds an SDK for claims status and visit eligibility checks, reducing rejection delays and speeding intake by 72 hours. CMS can fix this by... • Incorporating SDK quality and usability as part of evaluating developer-facing infrastructure. • Encouraging health IT programs to support tooling that enables faster, safer deployment of applications by new entrants and mission-driven organizations. 5. FHIR Alone Isn’t Enough. Make It Work Like a Platform. RFI Reference: p. 21040-21041, Section E: Technology Vendors, Questions TD-7, TD-8, TD-10 FHIR conformance is table stakes. What CMS must measure is FHIR usability and functional utility. Proposed actions: • Publish and enforce usability benchmarks for FHIR endpoints. • Encourage purposeful extensions that increase clinical signal-to-noise ratio. • Permit abstraction (a software layer that simplifies complexity and standardizes access across systems) layers and composability without penalty. 
- Document 2025-08701 / CMS-RFI-2025-HealthTech FHIR-only compliance has produced a proliferation of interfaces that meet the letter of the law, but fail the lived experience of interoperability. CMS should raise the bar and reward those who reach a higher standard of usability and functionality. When caregivers access FHIR-based tools that meet the technical spec but fail usability standards, the result is frustration - not empowerment - as well as sluggish adoption and apps that underperform. CMS’s approach should prioritize signal quality and real-world performance, not checkbox compliance. This is especially vital for populations who rely on caregivers to navigate fragmented systems. Use-Case Example: A multilingual caregiver app aggregates several health system FHIR feeds into one personalized timeline view - highlighting what’s new, what’s overdue, and what actions to take. CMS can fix this by... • Defining FHIR usability standards that prioritize clarity, consistency, and responsiveness for real-world use. • Encouraging infrastructure layers that make multi-source data easier to use for patients, caregivers, and clinical teams. Closing This RFI is not just a request for comment. It is a moment of infrastructural leverage. CMS now has the chance to enable healthcare in the US to leap forward by giving shape to the operating system of tomorrow’s health system by backing: • Event-driven, modular architectures • Composable, SDK-native systems • Embedded, real-time workflows • Usable, scalable APIs - not just certified ones The next generation of digital health will not be built inside the EHR. It will be built around it: modular, event-driven, caregiver-aware, and outcomes-tuned. CMS has the authority, and now the moment, to ensure that the infrastructure of healthcare serves everyone it touches. Contact: Walter “Buzz” Stewart CEO, Medcurio info@medcurio.com 
+MEDCURIO, INC
+88 Kensington Road, Portsmouth, NH 03801
+510-210-9750 info@medcurio.com
+Medcurio Public Comment on CMS-0042-NC: Health Technology Ecosystem RFI
+Document 2025-08701
+Submitted: June 16, 2025
+This comment is submitted on behalf of Medcurio in response to CMS-0042-NC (Document 2025-08701). It
+reflects our team’s direct experience building real-time health data infrastructure and integrating with
+provider systems across diverse care settings. We welcome the opportunity to contribute to CMS’s vision for
+a more modular, responsive, and patient-centered digital ecosystem.
+Sections:
+1. Executive Summary
+2. Certify APIs
+3. Polling vs. Eventing
+4. Real-Time Interfaces
+5. SDK Infrastructure
+6. Usable FHIR
+7. Closing
+Submitted by Walter Stewart on behalf of Medcurio
+Written in collaboration with Chris Notaro, Strategic Advisor
+Document 2025-08701 / CMS-RFI-2025-HealthTech
+
+Medcurio Comment on the CMS RFI: Building the Health Data Infrastructure We Actually Need
+Public Comment on CMS RFI: Establishing the Health Technology Ecosystem (Document 2025-08701)
+Submitted: June 16, 2025
+Credentials and Perspective
+Medcurio builds the underlying infrastructure for real-time, modular access to clinical data across systems of
+record. We are not an EHR. We are not an app. We operate at the orchestration layer - where event signals
+become system action, and fragmented data becomes decision-ready. Our team has led enterprise data
+strategies, interoperability architecture, and commercialization efforts across leading providers, payers, and
+platforms. We understand the constraints. And we build infrastructure that moves past them.
+Executive Summary
+RFI Reference: Federal Register p. 21036-21038, Section II: Solicitation of Public Comments
+CMS has correctly diagnosed the inertia at the heart of digital health: too much friction, too little signal, and a
+certification regime that rewards surface compliance over system utility.
+But policy alone doesn’t unlock transformation. Infrastructure does.
+CMS is right to focus on systemic drag - but it is patients, caregivers, and value-based care organizations who
+feel the friction first. The caregiver trying to coordinate a discharge with no context. The primary care team
+chasing risk gaps across fractured portals. The family member using outdated directories to find urgent
+specialty care.
+When infrastructure lags, patients fall through gaps and care teams chase shadows (risk gaps, care gaps,
+or both). If CMS wants to empower beneficiaries and enable care models that adapt, it must prioritize the
+architecture beneath the app layer. Our recommendations are designed to reduce lag, improve real-time
+visibility, and make the infrastructure legible, modular, and responsive - built to serve every actor in the care
+journey, from primary care provider to specialist to caregiver.
+Current State vs. Future State
+Today: A care manager waits three days for a batched eligibility file.
+Tomorrow: A reactive interface triggers immediate confirmation and launches follow-up scheduling.
+We recommend five structural shifts:
+• Certify APIs, not platforms (TD-4, TD-9, TD-10)
+• Shift from polling to event-driven architecture (TD-13, TD-15)
+• Treat real-time interfaces as deployment surfaces (PR-2, PR-4, PR-7)
+• Support SDK-native, composable infrastructure (TD-2, TD-9, TD-10)
+• Make FHIR usable—treat it like a platform (TD-7, TD-8, TD-10)
+Document 2025-08701 / CMS-RFI-2025-HealthTech
+
+1. Certify APIs, Not Platforms
+RFI Reference: p. 21039-21040, Section E: Technology Vendors, Questions TD-4, TD-9, TD-10
+The current certification structure reinforces bloated platform dependency. CMS should certify modular,
+purpose-built APIs - tools that solve discrete problems without requiring full system overhaul.
+This approach would:
+• De-risk innovation for providers by enabling plug-in upgrades.
+• Pressure incumbents to expose more capabilities via standards-based APIs.
+• Create new competition and improve vendor diversity.
+Let certification reward infrastructure that is modular by design and independently composable.
+Use-Case Example: A provider-facing tool integrates a certified scheduling API to offer specialty availability
+in real time - without altering the EHR. The update eliminates referral faxes and reduces no-shows.
+CMS can fix this by...
+• Developing a certification pathway for discrete APIs that allows providers to adopt modular
+capabilities without full system overhaul.
+• Encouraging platform-agnostic API models to reduce vendor lock-in and increase innovation from
+small and mid-sized entrants.
+2. Move from Polling to Eventing
+RFI Reference: p. 21040, Section E: Technology Vendors, Questions TD-13, TD-15
+Polling-based data exchange (i.e. where systems repeatedly ask “has anything changed?” by pulling entire
+datasets) creates drag, delay, and duplication. Event-driven infrastructure (where systems react
+automatically to data changes or triggers) offers precision, scale, cost control, and signal clarity. And we are
+not talking about legacy interfaces (HL7, X12, etc.), we are talking about API-first eventing.
+We recommend CMS explicitly prioritize:
+• Change detection and delta queries (requests that only return what changed since last sync).
+• Subscription models over full data fetches.
+• Support for real-time triggers and reactive logic flows (automated decision chains that respond in
+real-time to incoming data).
+Eventing is not just a feature, it is a shift in how systems behave: from passive storage to real-time
+responsiveness. CMS can lead this transition.
+Use-Case Example: A care management platform subscribes to patient discharge events. The moment a
+patient is discharged, it triggers a task for post-acute follow-up and home health scheduling. And yes, we
+know…“HL7 this” and “HL7 that”.
+Document 2025-08701 / CMS-RFI-2025-HealthTech
+
+CMS can fix this by...
+• Recognizing event-driven architecture (beyond legacy interfaces) as a best practice in federal
+interoperability programs.
+• Supporting care transitions and population health pilots that test real-time, event-based
+coordination models.
+3. Real-Time Interfaces Are Deployment Surfaces
+RFI Reference: p. 21038-21039, Section C: Providers, Questions PR-2, PR-4, PR-7
+Data in motion only reduces burden when it lands at the right time where decisions are made. CMS should
+prioritize interfaces that embed structured data directly into operational workflows.
+Recommendations:
+• Fund interface infrastructure that activates real-time care and ops logic.
+• Reward integration velocity and clinical relevance in grants and procurements.
+• Include workflow deployment layers in future VBC tech alignment.
+These interfaces are not cosmetic. They are the execution surface for CMS policy - where equity,
+timeliness, and patient-centered care become real.
+These interfaces are where CMS’s goals around care quality, patient empowerment, and VBC execution play
+out:
+• A referral coordinator sees network leakage and intervenes in real time.
+• A caregiver receives updated discharge instructions synced with post-acute home care apps.
+• A primary care team identifies and closes gaps from yesterday’s specialist visit - today.
+• A home health nurse gets a push alert that vitals trended outside target - before the readmission.
+This is what it means to meet patients and teams where they are. CMS should reward interface design that
+enables responsiveness, not just documentation.
+Use-Case Example: A care team dashboard auto-updates with hospital admit notifications and prescription
+fills, enabling real-time risk stratification and outreach within minutes, not weeks.
+CMS can fix this by...
+• Prioritizing interface investments that embed data directly into clinical workflows, with particular
+focus on reducing avoidable delays and disparities.
+• Including real-time interface functionality in future evaluations of value-based care infrastructure
+readiness.
+Document 2025-08701 / CMS-RFI-2025-HealthTech
+
+4. Support SDK-Native, API-First Infrastructure
+RFI Reference: p. 21039-21040, Section E: Technology Vendors, Questions TD-2, TD-9, TD-10
+The most powerful digital ecosystems - Stripe, Twilio, Plaid - are SDK-native and API-first. Health tech should
+be no different.
+SDK-native means developers can embed secure, reusable functionality (like referrals, eligibility, or
+discharge logic) directly into their applications without reinventing the wheel. These kits reduce integration
+friction, standardize behavior across use cases, and radically accelerate time-to-impact. In healthcare, SDKs
+could let care management teams deploy risk scoring tools, referral workflows, or eligibility logic in days -
+not quarters.
+SDK-native tools also enable faster deployment of purpose-built applications for value-based care programs.
+Teams managing risk can adapt tooling without waiting on full platform upgrades - an essential capability for
+agile care delivery.
+To encourage this:
+• Include SDK availability and modularity in certification scoring.
+• Prioritize developer tooling and surface area in innovation models.
+• Treat SDK-based platforms as infrastructure, not just applications.
+This is how CMS can accelerate the multiplier effect of low-cost, reusable innovation.
+Use-Case Example: A startup focused on behavioral health embeds an SDK for claims status and visit
+eligibility checks, reducing rejection delays and speeding intake by 72 hours.
+CMS can fix this by...
+• Incorporating SDK quality and usability as part of evaluating developer-facing infrastructure.
+• Encouraging health IT programs to support tooling that enables faster, safer deployment of
+applications by new entrants and mission-driven organizations.
+5. FHIR Alone Isn’t Enough. Make It Work Like a Platform.
+RFI Reference: p. 21040-21041, Section E: Technology Vendors, Questions TD-7, TD-8, TD-10
+FHIR conformance is table stakes. What CMS must measure is FHIR usability and functional utility.
+Proposed actions:
+• Publish and enforce usability benchmarks for FHIR endpoints.
+• Encourage purposeful extensions that increase clinical signal-to-noise ratio.
+• Permit abstraction (a software layer that simplifies complexity and standardizes access across
+systems) layers and composability without penalty.
+Document 2025-08701 / CMS-RFI-2025-HealthTech
+
+FHIR-only compliance has produced a proliferation of interfaces that meet the letter of the law, but fail the
+lived experience of interoperability. CMS should raise the bar and reward those who reach a higher standard
+of usability and functionality.
+When caregivers access FHIR-based tools that meet the technical spec but fail usability standards, the result
+is frustration - not empowerment - as well as sluggish adoption and apps that underperform. CMS’s
+approach should prioritize signal quality and real-world performance, not checkbox compliance. This is
+especially vital for populations who rely on caregivers to navigate fragmented systems.
+Use-Case Example: A multilingual caregiver app aggregates several health system FHIR feeds into one
+personalized timeline view - highlighting what’s new, what’s overdue, and what actions to take.
+CMS can fix this by...
+• Defining FHIR usability standards that prioritize clarity, consistency, and responsiveness for real-
+world use.
+• Encouraging infrastructure layers that make multi-source data easier to use for patients, caregivers,
+and clinical teams.
+Closing
+This RFI is not just a request for comment. It is a moment of infrastructural leverage.
+CMS now has the chance to enable healthcare in the US to leap forward by giving shape to the operating
+system of tomorrow’s health system by backing:
+• Event-driven, modular architectures
+• Composable, SDK-native systems
+• Embedded, real-time workflows
+• Usable, scalable APIs - not just certified ones
+The next generation of digital health will not be built inside the EHR. It will be built around it: modular, event-
+driven, caregiver-aware, and outcomes-tuned. CMS has the authority, and now the moment, to ensure that
+the infrastructure of healthcare serves everyone it touches.
+Contact:
+Walter “Buzz” Stewart
+CEO, Medcurio
+info@medcurio.com
+Document 2025-08701 / CMS-RFI-2025-HealthTech

@@ -1,0 +1,761 @@
+How will you
+design information
+architecture to unlock
+the power of data?
+Creating the right data environment
+for a connected health ecosystem
+
+CONTENTS
+3 Introduction
+Health systems today are not
+5
+built to enable data liquidity
+Keeping up with the velocity
+6
+and variety of health data
+Creating the right data
+8
+environment for tomorrow
+10 A frame of reference
+An architecture built
+12
+in layers
+Mix and match with
+14
+existing core systems
+16 What lies ahead?
+Laying the groundwork
+17
+for the coming years
+18 Endnotes
+19 Key contacts
+Connect with us!
+@EY_healthcare ey.com/health
+2 How will you design information architecture to unlock the power of data?
+
+INTRODUCTION
+The health industry after the COVID-19 pandemic won’t be the same as before. In the long run,
+the upside of this disruption is a permanent change in the way health systems, organizations and
+consumers use digital health technologies. Widespread adoption of tech-enabled care and emerging
+technologies will transform the very foundations of health and care. In this paper, we explore our
+vision of an information architecture that will unlock the power of digital technologies to create the
+connected health ecosystem of tomorrow.
+What it means to be healthy has become broader, anchored around digitally enabled care, including
+moving beyond the traditional confines of the health virtual delivery, remote monitoring and interactive
+industry to embody a more diverse, integrated and person-centered tools.1
+seamless system of care and well-being. Powered
+We live in a highly connected society, and advances in
+by digital health technologies, consumers are
+technologies and 5G connectivity are making possible a
+actively engaging with health systems in vastly
+suite of new solutions around well-being, remote care,
+different ways. Rather than being content with
+smart homes and communities. And while complex and
+touch points only when ill or injured, health and
+high-risk cases and trauma care within a hospital will
+care are transitioning to continuous engagement by
+always play a vital role in health systems, care models
+individuals, with many different stakeholders, and
+across the board are migrating to lower-cost settings.
+across the lifespan. Accustomed to on-demand and
+Many of these lie beyond the four walls of the clinic or
+self-directed experiences in other areas of their digital
+hospital and are happening closer to the consumer —
+lives, consumers expect something more; within the
+at home or in the community. (Figure 1)
+next decade, they believe that health care will be
+Figure 1
+ve Implantables rT ee tl ac io les r/ s P e
+dicti
+Pr cim ara ery
+r
+s
+o
+n
+re ali
+P Artificial Aged care z
+intelligence providers e d
+Sensors and
+monitoring Wearables
+Connected
+platform
+Social
+Funders care
+Hospital Social Life Government
+determinants sciences
+Analytics
+Participatory
+3
+EY 2020 report on global health technology
+
+More data than ever before will be collected by, and on
+behalf of, individuals. Today, complete health records
+from birth (if not before) that record care received and
+other relevant data and that travel with the individual
+are still largely an ambition. But eventually, our data
+will be captured and used over a lifetime. Health and
+social care systems create data with ease, but the
+many technological, regulatory and cultural challenges
+associated with the ownership, sharing and usage
+of personal health data impede data integration.
+(See the inset, “Fair data — unlocking data in the
+public interest.”)
+However, sharing organized and complete data to
+generate insights for better health outcomes is
+the driving force behind improving health. Using
+better data in better ways will result in integrated
+and prevention-focused care rather than merely
+treating disease.
+New care models and locations give rise to streams of
+THE POWER OF DATA data, including behavioral, environmental and social,
+that must be integrated with clinical data to provide
+Fair data — unlocking data holistic and personalized care. For consumers, this
+means tailored care and lifelong engagement. For
+in the public interest
+providers and payors, it means a longitudinal view of
+The concept of a fair data economy is based on a the drivers of health and current and future demand.
+broad sharing of data, not only among individuals For entrepreneurs, it means opportunities to bring
+but also among service providers. This empowers disruptive solutions to the market.
+individuals with the knowledge and tools to As this shift in the way health and care flows through
+access and use their personal data. But making the system, an infrastructure that can connect and
+data available to others facilitates medical share data, at scale, will be necessary.
+research, innovation and further development
+To deliver what the health ecosystem needs next would
+of public goods. This reflects not only the rights
+require a new information architecture — one that
+of individuals to control their own data, but also
+not only spans the health and social dimensions of an
+recognizes the social and economic value of open
+individual’s life journey but also realizes the immense
+data. Based on consent-based data portability,
+value of health data in accelerating novel approaches
+the concept is consistent with Article 20 of the
+for better and more efficient health and care.
+European General Data Protection Regulation
+(GDPR). Data movability should be seamless, In this paper, we describe a new approach to health
+requiring no effort from the consumer, similar to information architecture that we believe will create
+telephone number portability. This not only puts the right data environment for a consumer-enabled
+people in charge of their own data (as a right of care system and thus bridge the gap between the
+citizenship) but also seeks to maximize the use information systems of today and the connected health
+of, and value from, data. system of tomorrow.
+4 How will you design information architecture to unlock the power of data?
+
+HEALTH SYSTEMS TODAY ARE NOT
+BUILT TO ENABLE DATA LIQUIDITY
+Herein lies the problem — structural and technological issues, including access, (re)-usability and
+interoperability of data, are barriers to moving toward systems built on data liquidity. Current
+health information architectures have integration capabilities, but limitations around what can
+be integrated and the sheer quantity of solutions (and thus integration points) make sharing data
+within and across systems difficult.
+Data is trapped in unconnected silos and incompatible Even so, in a relatively short time, moving from
+through the use of different standards, interfaces paper-based to electronic health records (EHRs)
+and semantics. Data sharing can be limited by vendor has greatly advanced the collection, management
+restrictions and by information blocking by providers, and usability of health data. And while the current
+payors and vendors for competitive advantage.2,3 generation of EHR systems is built for a clinical care
+The logic layer that makes use of the systems’ data is environment, layers of modifications over time mean
+hardwired within proprietary systems, which means that systems may be less agile in responding to
+that customization is expensive and can’t be done in a changing models of care. True portability, persistence
+modular fashion. Consequently, major changes are out and completeness of data records are still a long
+of scope for most health organizations. way off, and clinicians’ dissatisfaction with EHR
+systems is well-recognized.4 The ability of consumers
+At present, interoperability issues are resolved using
+to access their own information and share it with
+intermediaries such as Fast Healthcare Interoperability
+others is, at best, an afterthought. Typically, upward
+Resources (FHIR) standards that allow different
+of 400 systems 5,6 may exist within a complex health
+applications and different health systems to talk to
+organization. Continued use of paper records and the
+one another. However, if health information systems
+existence of feral systems,7 those that lie outside of
+shared a common language (standards, semantics
+authorized IT systems, further complicate data liquidity.
+and structure), there would be no translational
+interoperability friction, and bridging would not
+be required.
+“
+Data is for life, not just for one system.
+If we consider that as a principle, we will
+design and procure systems differently.
+Rachel Dunscombe
+CEO NHS Digital Academy
+5
+EY 2020 report on global health technology
+
+KEEPING UP WITH THE VELOCITY
+AND VARIETY OF HEALTH DATA
+It’s clear that we are reaching a pivotal point, where health and social data needs to be better
+connected, combined and shared. Lessons from other industries are insightful. Open banking, for
+example, caused a significant shift in the financial sector. It was built on strengthening consumers’
+control of their own data. Secure and permissioned sharing of financial data with accredited third
+parties through application programming interfaces (APIs) is opening the sector to new entrants,
+including non-bank FinTech companies, bringing new revenue streams and better customer
+experiences and mobility across the sector.8
+In health care, we don’t yet have the means to connect The technologies that will connect us to a
+the volume and variety of data in a way that keeps wellness-oriented, anytime, anywhere health
+pace with the velocity at which health and social data ecosystem are available today. But the challenge
+is generated. What data linkages there are, aren’t we face is creating something that doesn’t yet exist
+comprehensive or seamless, nor are they accruing for in health — a ubiquitous information technology
+optimal benefit. We must remedy this by designing for infrastructure that is built around data persistence
+the future, with the entire system in mind. The potential (where an output lasts longer than the system that
+for societal and economic dividends is a powerful generated it), extensibility (additional elements
+incentive for scaling the exchange of data across or features can be added to an existing structure)
+health systems. and true interoperability9 (the coordinated access,
+THE POWER OF DATA
+Social and economic benefit of data mobility
+Data mobility in the fast-evolving digital economy gives rise to innovation
+and social and economic benefits. A 2018 UK study conservatively
+estimated that productivity and efficiency benefits (not including
+benefits generated by digital innovation) enabled by personal data
+mobility would result in an approximate £27.8b increase in UK GDP.1
+Information is “non-rival,” meaning that it can be produced and
+distributed at a very low marginal cost. Once consumed, information
+doesn’t disappear but remains available for recombination and
+reuse by others.
+And thus, the digital economy is eminently scalable. As an information
+network or platform, value arises through network effects — the more
+users, the greater the benefits.
+1. Data Mobility: The personal data portability growth opportunity for the UK economy,
+a study by Ctrl-Shift for the Department for Digital, Culture, Media & Sport,
+19 November 2018.
+6 How will you design information architecture to unlock the power of data?
+
+exchange and collaborative use of information Although the overall goal is ecosystem-wide
+within and across organizational boundaries). interoperability, health organizations wanting to unlock
+interaction data and to modernize their consumer
+Improving patient outcomes and system performance
+and staff experience face hard decisions around what
+by integrating care among the patchwork of health
+to pursue, what to repurpose or divest, and where to
+and social care agencies requires a networked
+invest. This means weighing the current state, including
+and modular information framework. Widespread
+existing deployments and contractual obligations, the
+deployment of artificial intelligence (AI) and natural
+life cycle stage of legacy systems, and the regulatory
+language processing (NLP) that support the
+and reporting environment. Strategy decisions will
+management and usability of the sheer volume and
+hinge on whether to optimize existing assets (by
+complexity of heterogeneous health data is central to
+modification or extension), introduce new modular
+the new integrated data environment.
+resources that complement the existing core or invest
+This requires a system-level infrastructure to serve
+in creating a new ecosystem from the ground up.
+a three-part purpose: safe clinical care, appropriate
+automation of clinical and back‑office operations,
+and the delivery of personalized care and prevention.
+This will not lead to abandoning existing core
+services, such as EHRs, imaging and laboratory
+systems; rather, these will become part of the
+broader data ecosystem. (Figure 2)
+Figure 2
+A digital backbone underpinning the Holistic, longitudinal patient data
+intelligent health care system, that integrates across data systems in
+seamlessly integrating from the the clinical, social, home care,
+home through to facility-based self-care and financial
+care; clinical decision-making resources domains
+algorithms, Al diagnostics,
+case management and
+Moving Organized
+care delivery pathways
+to organize systems from digital and complete
+and processes
+to smart capture
+efficiently and
+effectively systems of data
+Advanced Anytime,
+Built upon
+analytics anywhere consumer-oriented
+care virtual health
+technologies (such as
+apps, wearable and
+Personalization, environmental sensors,
+individualized care solutions video and chat platforms)
+and business intelligence and cloud-based mobile clinical
+insights through analysis of tools that capture and share
+administrative, financial and information between health and social
+clinical information care workers, at the point of care
+7
+EY 2020 report on global health technology
+
+CREATING THE RIGHT DATA
+ENVIRONMENT FOR TOMORROW
+Over a decade ago, eight global health agencies called for a common data architecture for the
+efficient generation and use of health information.10 And although progress has been slow,
+consumer demand and supportive legislation will likely lead to greater health data exchange and
+interoperability within the next five years.
+Recent trends suggest that in some quarters, To progress toward a truly connected health
+significant change is underway with reports of modern system, a data environment with no connection
+interoperability platforms. For example, large-scale restrictions other than permissions and security is
+open platform implementations have been introduced foundational. This, in turn, necessitates an open
+in 16 countries, covering over 22 million patients.11 platform architecture that allows for the storage and
+The European Commission has set standards for the linking of structured and unstructured data and that
+exchange of patient health information across borders, determines how data flows. Design considerations
+and regulators are taking an interest in data portability should provide clear data provenance to deliver
+and interoperability in the European General Data trusted algorithms. Built on common standards, this
+Protection Regulation. In the US, the Office of the platform forms the base for third-party applications,
+National Coordinator (ONC) for Health Information ensuring safe and interoperable systems.
+Technology in March 2020 made an important final
+ruling. The ONC rule gives patients secure access to A gradual process of change
+their data and implements interoperability requirements
+through open data sharing via standardized APIs, and it Adoption and scaling of such an architecture will be
+sets out provisions against information-blocking.12 a gradual process of localized activity and interest.
+Enterprises will build micro-ecosystems based on the
+As the focus of health systems moves toward
+current state of their technology journey — these may
+supporting wellness — anytime, anywhere — an open
+be internal to an enterprise or coupled as networks
+platform environment is required to connect and share
+between different enterprises. But over time, and
+data, at scale, within and among enterprises and
+when all enterprise and local area activities are added
+systems. The optimal platform will separate content
+together, the overall ecosystem coalesces and a
+and technology and will be vendor neutral, distributed
+connected health ecosystem emerges. This is perhaps
+and modular — incorporating third party as well as
+more easily visualized with an analogy. Think of a
+legacy systems.
+cell with a permeable membrane that allows for an
+This demands a new way of thinking about data.
+orchestrated but free-exchange of material. The cell,
+Rather than keeping it locked away in siloed systems,
+along with many others, ultimately forms part of a
+a decentralized and networked infrastructure could
+larger, interconnected entity.
+unify disparate information from multiple sources and
+make sense of it. This means capturing and linking all
+relevant data regardless of where it is stored.
+8 How will you design information architecture to unlock the power of data?
+
+9
+EY 2020 report on global health technology
+
+1
+SECTION
+A FRAME OF REFERENCE
+To architect for the future requires a reference framework around technology,
+data and end-user primacy
+What this means What this delivers
+• For consumers, permissioned free-flow Consumer control of their own health data
+exchange of data built around a unique for engagement and better health outcomes.
+User-centric individual identifier with a full audit trail. Customizable and adaptable operational
+systems that meet business needs.
+• For businesses, clinical and operational
+data relevance.
+• Built upon common rules that govern Vendor- and technology-neutral
+access, content management, with infrastructure that works seamlessly to allow
+Interoperable semantic and technical interoperability frictionless permission-based electronic
+referenced to internationally accepted sharing of usable health information among
+standards. patients, clinicians, researchers and others.
+• Information and metadata reside at the Underlying data structure remains
+point of creation while connecting with, unchanged at the site of collection and is fully
+Decentralized and contributing to, local and national area provenanced to guarantee future insights,
+health information systems. research, and third-party innovations
+and apps.
+• An architecture that is modular, built Allows for rapid changes as they occur,
+on micro-services with no need for incorporating new data elements as they arise
+Agile reconfiguration. Plug-and-play integration and scalability. Supports portability and safe
+of devices and equipment, and extensible. and secure development and integration of
+Separation of data and application layers. third-party innovations.
+• APIs integrate data within an enterprise Accommodates heterogeneity in
+and across enterprises. Integration with legacy systems, including EHR design,
+Heterogeneous open platforms. implementation and use across the ecosystem;
+applications seamlessly access information
+from multiple sources.
+• Based on accepted data security Governance and cybersecurity in a trusted
+frameworks, assurance schemes and system that is secure, safe, reliable and
+Secure standards for handling personal health performs as expected.
+and social care information.
+10 How will you design information architecture to unlock the power of data?
+
+11
+EY 2020 report on global health technology
+
+2
+SECTION
+AN ARCHITECTURE BUILT
+IN LAYERS
+The future health and care information platform we describe separates the architecture into
+different layers that organize transactions and interactions: the data layer, the application layer and
+the logic layer: (Figure 3)
+• The data layer helps deliver data that is up to Data is stored separately from the applications that
+the task. It is standardized in terms of format, collect, edit and display it. Greater flexibility allows for
+nomenclature, terminologies and definitions, which multiple use cases, multiple vendors and future growth.
+allows it to flow into other systems, as specified by Such flexibility enables data to flow for better care models
+the data owner. Good rules for data storage will not and data extensibility (e.g., across a patient’s lifetime).
+change much, if at all, allowing for persistence and, Clean, standardized, shared data will enable both AI
+ultimately, interoperability over time. and predictive analytics to come out of the data stream.
+Also necessary is a rules base that governs access and
+• The application layer requires a fully systemic
+content management. It’s also essential to incorporate
+design of workflow. This means knowing context, or
+internationally recognized standards for terminology,
+what comes before and after, in the care journey. It
+interfaces, storage and coding of records, documents and
+is based on triggered events of care or intervention
+images. For example, SNOMED CT and LOINC and other
+(e.g., clinical workflows or health consumer alerts)
+standards developed and adopted over time.
+rather than constant human monitoring.
+Rapid innovation will take place in the application and
+• The logic layer incorporates AI that is governed by
+logic layers, all without altering the underlying data
+a set of rules that define boundaries and exceptions
+structure. As Figure 3 shows, in the next five years,
+and can form workflows. AI and intelligence
+the information architecture will shift from siloed
+are monitored and managed by humans and
+vaults of data that don’t talk to each other to a more
+are subject to regular monitoring for audit and
+harmonized arrangement.
+clinical safety.
+12 How will you design information architecture to unlock the power of data?
+
+Logic units
+AI
+Extensible
+AI Data layer AI
+Vendor neutral
+AI
+Logic units
+stinu
+cigoL
+Logic
+units
+Enterprise Individual health care identifier
+Mobile
+D
+ata
+A
+pplication
+Logic System 1 E coH rR
+e
+apps
+IoT
+D
+ata
+A
+pplication
+Logic System 2 M dee vd icic ea sl Voice
+D ata
+A
+pplication
+Logic System 3
+Social Wearables determinants
+D
+ata
+A
+pplication
+Logic System 4
+...
+... reB pi
+a
+oll ni rn
+d
+tg
+in g
+Implants
+etc.
+Personal Sensors Within one enterprise, typically 200 to 400 systems exist, devices
+made up of different technologies and different vendors,
+many of which
+is
+a br ue
+n
+n do let
+d
+c o wm ithpl e am ppe lin ct aa tr ioy na sn .d where logic Individual
+health care
+identifier
+smetsys
+ynaM
+ytilibareporetni
+detimiL
+Figure 3
+Now In five years
+• Systemic design
+• Common standards
+where data is:
+• Provenanced
+• Permissioned
+• Persistent
+• Secure
+• Cloud-based
+• Modular plug-and-play
+Present: Many systems all with intimately bound data logic Future: A cohesive technology stack, giving a unified experience
+and applications for clinicians, professionals and patients; unique data at the center
+accessed by applications in real time through micro-services
+13
+EY 2020 report on global health technology
+
+3
+SECTION
+MIX AND MATCH WITH
+EXISTING CORE SYSTEMS
+As described, this will not require abandoning currently used core systems such as EHRs, laboratory
+and radiological information systems. Rather, these will be a component of the broader data
+ecosystem. Existing systems will still collect and reflect essential clinical and operational data.
+Policy levers and market-driven purchasing preferences will likely shape future commercial product
+development toward greater data standardization. Newer AI-driven solutions offer the opportunity to
+quickly and inexpensively deal with high-volume data and to take on data discovery and replications.
+A more flexible, dynamic infrastructure will be built APIs will persist into the future as ways of creating the
+around existing systems, communicating through frictionless data layer, but they won’t be necessary
+standard interfaces like FHIR and web APIs. The for creating terminology or future data standards.
+APIs of today will inform the technical design of In the near term, platform-based systems and legacy
+tomorrow but will also bridge the gap in data models EHRs will coexist by maintaining basic functionality
+and current absence of system-level design. In the in legacy systems while building and innovating in a
+future, systemically architected systems will mean platform-based environment.
+that this bridging function will not be needed. Web
+14 How will you design information architecture to unlock the power of data?
+
+Internationally, there are numerous examples of steps digital health network built around data interoperability
+being taken toward more open and interoperable to make health information available nationwide for its
+systems. Estonia, for example, has almost fully 25 million members.
+digitalized its health system and is currently
+What these examples have in common is a steady
+integrating health and social data for clinical
+progress toward system change built around meeting
+practice support and research. And several of the
+end-user needs, vendor neutrality, data persistence,
+Nordic countries, including Norway and Sweden,
+and demand for flexibility and data fluidity. None of
+are establishing permission-driven consumer and
+these examples are big-bang changes; rather, they’re
+clinician accessible health records that follow the
+staged building blocks for the future.
+patient, irrespective of care location. In the UK, the
+And so, to recap, for health care organizations, the shift
+Salford Royal NHS Foundation Trust has deployed
+in the ecosystem will likely look something like this:
+an open EHR clinical data repository alongside a
+an open platform and a clinical data repository, with
+core patient record system to meet changing clinical
+integration of legacy and third-party elements, that
+requirements and to incorporate patient-recorded
+support easy data migration and are transparent to all
+outcome measures. And in Germany, the AOK, a
+applications connected to the platform. (Figure 4)
+major health insurance provider, is developing a
+Figure 4
+EHR core Ecosystem
+and
+third-party
+Meds
+apps
+PAS
+ED
+Data
+PATH/ repository
+RAD independent
+... from EHR
+Theater
+Local and national
+systems
+15
+EY 2020 report on global health technology
+
+WHAT LIES AHEAD?
+While the overall goal is ecosystem-wide interoperability, there are several steps that health care
+organizations and policymakers can take today to meet the demands of tomorrow. Even though industry
+stakeholders may be totally invested, positioning for the next wave of data-driven change is paramount.
+Where we see success in the marketplace is when Introducing a new health information architecture, either
+organizations understand that the way forward is built at an enterprise or national level, requires alignment of
+around data and technologies that grow the business facilitatory policies, determined leadership and clarity of
+of tomorrow, rather than just a repeat of today’s governance. Good governance around data, for example,
+procurement cycle. These organizations build from an is necessary to establish user trust (both consumer and
+ecosystem mindset identifying what data are critical, clinician) and that privacy and security are maintained.
+and the right strategy to access them. They follow a Yet the right environment for innovation must be
+transformation agenda to create new business models fostered. As the care model shifts toward incorporating
+as data becomes the central asset in the organization. community and social care, policy attention will be
+necessary to align the governance and institutional
+To shift with confidence toward an interoperable
+factors around how health and social care organizations
+environment means making decisions around
+effectively work together.
+what to grow or transform in the existing business,
+scaling actions and investments at the right pace, Digital technologies form a data-driven foundation for
+and driving cultural change across the organization. the future health industry, and conversations about
+Also key is fostering innovation to create and test how we can use technology to make a real difference
+effective blueprints for doing things differently by are long overdue. A systemically architected approach
+using technology. Organizations must adapt business for the management of health data is an important step
+models and partnering strategies to the realities of the toward a connected health ecosystem, and the technical
+emerging ecosystem, augmenting their skills mix and elements for such a system already exist. But to move
+capabilities by working with other organizations. forward, we will need to reconfigure the information
+backbone of health care as a new, frictionless
+Adaptive technologies will be best supported by
+information architecture, strategically and thoughtfully.
+agile operational processes and governance models
+and implemented by individuals with data expertise.
+16 How will you design information architecture to unlock the power of data?
+
+To lay the groundwork for the coming years, here are three things to consider:
+1 2 3
+Framing up How ready What is the road map, given
+the future is the organization the current stage along the
+to change? technology journey?
+Perspective shapes the narrative in an Future relevance requires both agility Transformation must occur at the right
+organization — the future that stakeholders and confidence to shift, and to do so at pace for the organization and deliver
+want to own and how they will create scale. But where best to begin? Clarity the right combination of elements that
+value in the emerging wellness ecosystem. around where the greatest challenges are wanted and needed. Where legacy
+The speed of technological change and and opportunities lie can be elusive. IT infrastructure already exists, the way
+complexity in the health market require The speed of change is often slow, forward may lie with maintaining core
+reflecting on purpose, capabilities and hampered by contractual obligations, functionality while investing in adaptable
+priorities. One must also consider future capital intensive infrastructures and infrastructure such as open architecture
+market conditions and the services sought legacy technologies. and blockchain-enabled solutions that
+by the consumers of tomorrow. support a connected ecosystem.
+? ? ?
+To find out what creates value To identify the problem, ask: To develop the road map, ask:
+and how to get there, ask:
+• W hat are the pain points to be resolved? • W hat is the plan?
+• What lens is your organization looking • For example, wanting to: • To optimize existing assets (either
+through? How is purpose defined, and by modification or extension), to
+• Drive better clinical outcomes
+where do value streams lie: with the introduce resources that complement
+consumer, the organization or both? • Respond to growing demand the existing core, or to create a new
+• H ow will data shape future business • Migrate to new care models ecosystem from the ground up
+models and reimbursement, and and teaming • W hat is the process?
+what infrastructure must be in place • Reverse clinician burnout • A phased transition to new solutions,
+to unlock interaction data and to
+• Secure revenue streams a greenfield approach of creating new
+modernize the employee and consumer
+capabilities on a new platform, or a
+experience? • Free investment resources through
+big bang approach that converts all
+back‑office automation
+• What risk is involved, and how deep is capabilities to a modernized solution
+the appetite for change — incremental • Step away from lock-in with in single or multiple events?
+steps or redesign from the ground up? long-standing entangled systems
+• What else must be done?
+• T o what extent does the current tech • Design for trust, governance and
+environment cause or exacerbate the align organizational culture — where
+pain points, and how would changing boards and clinical and organizational
+the technology environment resolve the leadership are comfortable with
+problems? creating friction and deviating from
+• What are the opportunities to the status quo, and have the skills
+personalize, simplify and streamline? to do so
+• Bring other stakeholders, including
+the board and policymakers, along on
+the journey
+• Build the right in-house team with the
+right capabilities to execute
+17
+EY 2020 report on global health technology
+
+*
+ENDNOTES
+1. How will tech-enabled change play out in health care in the next decade?
+A NextWave Health report, EYGM Limited, 2019.
+2. J ulia Adler-Milstein and Eric Pfeifer, “Information blocking. Is it occurring
+and what policy strategies can address it?” The Milbank Quarterly,
+95(1) 2017: 117-135.
+3. J ordan Everson and Julia Adler-Milstein, “Engagement in hospital health
+information exchange is associated with marketplace dominance,”
+Health Affairs, 35,7 (2016): 1286‑1293.
+4. L isa Rosenbaum, “Transitional chaos or enduring harm? The EHR and the
+disruption of medicine,” NEJM, 373:17, 22 October 2015.
+5. R achel Dunscombe, CEO, NHS Digital Health Academy, interviewed by EY,
+December 2019.
+6. S abyasachi Dash, Sushil Kumar Shakyawar, Mohit Sharma and Sandeep
+Kaushik, “Big data in healthcare: management, analysis and future prospects,”
+J Big Data (2019) 6:54.
+7. S hakera Halim, “Global healthcare systems: patient data and the rise of feral
+information systems,” Health Europa, 4 July 2019.
+8. Review into open banking: giving customers choice, convenience and
+confidence, Department of the Treasury, Australia, December 2017.
+9. T om Sullivan, “HIMSS writes new definition of interoperability,” Healthcare IT
+News, 22 March 2019.
+10. M argaret Chan, Michel Kazatchkine, Julian Lob-Levyt, Thoraya Obaid,
+Julian Schweizer, et al., “Meeting the Demand for Results and Accountability:
+A Call for Action on Health Data from Eight Global Health Agencies,” PLoS Med
+7(1): e1000223. doi:10.1371/journal.pmed.1000223.
+11. A nze Droljc, “Is a mega-suite enough to really transform healthcare?”
+better.care, 30 January 2020.
+12. ONC’s Cures Act Final Rule, Office of the National Coordinator for Health IT,
+March 2020.
+18 How will you design information architecture to unlock the power of data?
+
+KEY CONTACTS
+Lead authors Contributors
+David Roberts Sheryl Coughlin PhD
+EY Global Health Leader EY Health Sciences and Wellness
+david.roberts@uk.ey.com Senior Analyst
+linkedin.com/in/davidrobertsey sheryl.coughlin@au.ey.com
+linkedin.com/in/sherylcoughlinphd
+Aloha McBride Jerome Pagani PhD
+EY Global Health Leader-Elect EY Health Sciences and Wellness
+Strategic Execution Leader
+aloha.mcbride@ey.com
+jerome.pagani@ey.com
+linkedin.com/in/alohamcbride
+linkedin.com/in/jeromepagani
+Rachel Dunscombe Emily Mailes
+CEO NHS Digital Academy Senior Manager, Digital Health
+Ernst & Young ABC Pty Ltd
+linkedin.com/in/rachel-dunscombe-b029b16/
+emily.mailes@au.ey.com
+linkedin.com/in/emily‑mailes‑4443784a
+About the authors
+David Roberts — At the time of writing, David was Global Health Industry Leader, EY Health Services and Wellness. In this role, he led the
+global network of EY health industry professionals, with a focus on executing strategy and building strong cross-service line capability.
+He has extensive experience in driving strategic reform, creating new business and operating models, and orchestrating the adoption of
+new technology and innovation, while supporting startup innovators and entrepreneurs. He is an active commentator and speaker on
+participatory health, the empowered consumer and the shifts in health care around digital health technologies.
+Aloha McBride — Aloha serves as the EY Global Health Advisory Leader and has an extensive background in serving international health
+care clients as well as federal health clients. She strives to share leading practices, knowledge and innovation with EY health care clients
+so they may provide the highest quality care to their patients.
+Rachel Dunscombe — Rachel is CEO of the NHS Digital Academy, KLAS Arch Collaborative International lead and strategic advisor
+to the NCA/Salford NHS Group. She provides advisory services to the Secretary of State for Health in the UK and is the health care
+representative on the UK government AI committee. Through her academic work, she has received a visiting professorship at Imperial
+College, London. She is a non-executive director of the Digital Health Society and formerly the Director of Digital for Salford/NCA Group,
+which was the most digitally mature organization in the NHS.
+19
+EY 2020 report on global health technology
+
+EY | Assurance | Tax | Transactions | Advisory
+About EY
+EY is a global leader in assurance, tax, transaction and advisory
+services. The insights and quality services we deliver help build
+trust and confidence in the capital markets and in economies the
+world over. We develop outstanding leaders who team to deliver
+on our promises to all of our stakeholders. In so doing, we play a
+critical role in building a better working world for our people, for
+our clients and for our communities.
+EY refers to the global organization, and may refer to one or
+more, of the member firms of Ernst & Young Global Limited, each
+of which is a separate legal entity. Ernst & Young Global Limited,
+a UK company limited by guarantee, does not provide services
+to clients. Information about how EY collects and uses personal
+data and a description of the rights individuals have under data
+protection legislation are available via ey.com/privacy. For more
+information about our organization, please visit ey.com.
+About EY’s Global Health Sector
+Across the world, health care systems and entities are under
+unprecedented pressure. Spiraling costs, exacerbated by
+aging populations and emerging market growth, are bringing
+newfound focus on value and outcomes. Mobile health and data
+analytics promise to revamp care delivery but are also bringing
+in competitors from other sectors. For governments, payers and
+providers, these trends create a host of challenges: extracting
+insights from “big data,” partnering in new ways, boosting
+operating efficiencies and more.
+EY’s Global Health Sector brings together a worldwide network of
+more than 4,000 sector-focused assurance, tax, transaction and
+advisory professionals with a range of health care and business
+backgrounds. Our wide-reaching network allows us to rapidly
+share leading practices and solutions around the globe and
+deploy diverse delivery teams to meet your needs. ey.com/health
+© 2020 EYGM Limited.
+All Rights Reserved.
+EYG no. 002544-20Gbl
+CSG no. 2003-3446456
+ED None
+This material has been prepared for general informational purposes only and is
+not intended to be relied upon as accounting, tax or other professional advice.
+Please refer to your advisors for specific advice.
+The views of third parties set out in this publication are not necessarily the views of
+the global EY organization or its member firms. Moreover, they should be seen in the
+context of the time they were made.
+ey.com

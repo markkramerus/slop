@@ -1,9 +1,389 @@
-Department of Health & Human Services (HHS ) Response to Request for Information #: CMS -0042- NC Health Technology Ecosystem Prepared For: Centers for Medicare & Medicaid Services (CMS), Assistant Secretary for Technology Policy (ASTP) / Office of the National Coordinator for Health Information Technology (ONC) (collectively, ASTP/ONC), HHS Submitted Electronically : https://www.regulations.gov Prepared By: Chris Huang, Director of Contracts & Compliance IT Concepts, Inc. DBA Kentro 8201 Greensboro Drive, Suite 735 McLean, VA 22102 DUNS: 968872213 UEID: GJ5YALPQMCH1 CAGE Code: 6GX40 Phone: (571) 918- 9987 Email: chris.huang@kentro.us This document contains commercial or financial information, or trade secrets, of Kentro, which are confidential and exempt from disclosure to the public under the Freedom of Information Act, 5 U.S.C. 552 (b) (4), and unlawful disclosure thereof is a violation of the Trad e Secrets Act, 18 U.S.C. 1905. Public disclosure of any such information or trade secrets shall not be made without the prior written permission of Kentro. 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response i CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. Table of Contents Table of Contents ............................................................................................................................. i 1.0 Patients and Caregivers (B) .......................................................................................................1 1.1 Patient Needs (B.1) ..............................................................................................................1 2.0 Providers (C) ..............................................................................................................................3 2.1 Data Exchange (C.2) ............................................................................................................3 2.2 Digital Identity (C.3) ............................................................................................................4 3.0 Technology Vendors, Data Providers, and Networks (E) ..........................................................5 3.1 Technical Standards and Certifications (E.3) ......................................................................5 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 1 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. 1.0 PATIENTS AND CAREGIVERS (B) 1.1 Patient Needs (B.1) PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? What difficulties are there in accessing or utilizing these data sources today? What suggestions do you have to improve the Blue Button 2.0 API experience? Is there non -CMS data that should be included in the API? Kentro Response: The most valuable additions to CMS Blue Button 2.0 API would address its current limitations regarding the absence of non -claims -based patient data and the exclusion of Medicare Advantage beneficiaries. The m ost valuable additional data sources would be :  Clinical Data (e.g., from EHRs): Information such as lab results, vital signs, clinical notes, immunizations, and allergies would provide a far more complete picture of a patient's health. While CMS does not directly hold all of this data, enabling access through other means ( such as TEFCA) would be critical. This clinical context would transform the API from a claims -based view to a comprehensive health record, enabling developers to create more clinically relevant care coordination and patient engagement tools .  Medicare Advantage (Part C) and Medicaid Data : While Blue Button 2.0 focuses on Medicare Fee- for-Service, including data for beneficiaries in Medicare Advantage plans, Medicaid would significantly broaden its utility. Applications utilizing Blue Button 2.0 data are more generally applicable than today's scope , which is limited to original Medicare beneficiaries. This expansion is particularly important given that over 50% of Medicare beneficiaries are now enrolled in Medicare Advantage plans. There are currently access difficulties to these valuable data sources from CMS perspective. They include :  Fragmentation across multiple systems and a lack of standardized APIs for clinical data  Privacy and consent management complexities when integrating data from multiple sources  Technical barriers in reconciling different data formats and identifiers across systems To address these challenges, we suggest the following API i mprovement:  Implement standardized data models (such as FHIR) consistently across all data types  Provide robust developer documentation with real -world use cases and sample implementations  Enable bulk data access options for population health management applications  Improve API performance and reliability for production -scale applications Lastly, integrating other non-CMS data would be valuable. Beyond CMS -held data, integration with social determinants of health data, pharmacy fill data from retail pharmacies, and patient - generated health data from wearables and home monitoring devices would create a truly holistic view of patient health and enable more impactful digital health s olutions. PC-10: How is the Trusted Exchange Framework and Common Agreement ™ (TEFCA ™) currently helping to advance patient access to health information in the real world? a. Please provide specific examples. b. What changes would you suggest? c. What use cases could have a significant impact if implemented through TEFCA? d. What standards are you aware of that are currently working well to advance access and existing exchange purposes? e. What standards are 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 2 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. you aware of that are not currently in wide use, but could improve data access and integration? f. Are there redundant standards, protocols, or channels that should be consolidated? g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? Kentro Response: TEFCA represents a transformative opportunity to address the fragmented nature of health data exchange in the United States. While still in early implementation phases, its framework for nationwide health information exchange offers the potential to enhance patient access to comprehensive health records dramatically . The integration of TEFCA with existing infrastructure like Blue Button 2.0 could create unprecedented opportunities for developers to build truly holistic patient- centered applications. Specifically, this integration could include transforming TEFCA ’s framework to establish Fast Healthcare Interoperability Resources (FHIR) as its foundational data standard, leveraging FHIR’s comprehensive data attributes and models, resour ce types, and standardized schemas. This strategic alignment would be synergistic —Blue Button 2.0 would handle patient authorization and consent management , while TEFCA would provide the nationwide exchange infrastructure using FHIR- native data products and services (e.g., Databricks, Azure Data Fabric, Snowflake , etc.). This proposed infrastructure would then seamlessly support bulk data operations and real -time API interactions with disrupting TEFCA compliance , enabling patients and healthcare organizations to leverage modern FHIR- native data products to support clinical needs. Below, we further outline the benefits and examples of this transformation: a. Current TEFCA i mpact and e xamples : TEFCA, by establishing a framework for nationwide EHI exchange, has the potential to allow Blue Button 2.0 (or applications built on it) to access non -CMS data, specifically clinical data from EHRs. Early implementations through QHINs (Qualified Health I nformation Networks) are beginning to demonstrate cross- network data exchange capabilities, though widespread patient -facing applications are still emerging. b. Suggested c hanges : The biggest limitation of Blue Button 2.0, as currently structured, is its reliance solely on CMS claims data. If Blue Button 2.0 could leverage TEFCA -enabled exchange, it would mean that an application authorized by a Medicare beneficiary could not only pull their CMS claims data but also (with proper authorization) access their clinical data from their various healthcare providers, regardless of which EHR system they use. This would create a much more comprehensive and unified view of the patient's heal th. c. Examples of h igh-impact u se cases: The most transformative use cases for TEFCA implementation center around comprehensive care coordination and patient empowerment. Imagine applications that could perform real -time medication reconciliation by combining pharmacy claims data with clinical prescriptions and allergy information from multiple providers. For complex patients managing chronic conditions across multiple specialists, TEFCA could enable seamless care coordination where each provider has access to the complete picture of a patient's health journey. In emergency situations, clinicians could instantly access a patient's complete medical history, regardless of where previous care was delivered. Additionally, population health management initiatives could leverage integrated clinical and claims data to identify care gaps and improve outcomes at scale. d. Standards : The current ecosystem benefits from several mature standards that have proven effective in advancing health data exchange. FHIR (Fast Healthcare Interoperability Resources) has emerged as the dominant standard for structuring and exchanging health data, 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 3 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. providing a modern API -based approach that developers find accessible. OAuth 2.0 has become the de facto standard for secure authorization, ensuring that patient consent and data security are maintained throughout the exchange process. The SMART on FHIR fr amework has successfully enabled third -party applications to integrate seamlessly with EHR systems, creating an app ecosystem that benefits both providers and patients. These standards work well because they leverage modern web technologies familiar to dev elopers while maintaining the security and privacy requirements essential to healthcare. e. Emerging standards with potential to work well : i. FHIR bulk data access specifications for population- level queries ii. Patient -mediated exchange standards iii. Advanced consent management frameworks f. Opportunities for consolidation : Instead of developers needing to build individual connections to countless EHR systems or other data sources, TEFCA aims to provide a single "on-ramp" to nationwide connectivity. This would significantly reduce the burden on developers who want to create applications that combine claims and clinical data. Multiple proprietary APIs and regional HIE approaches could be consolidated under the TEFCA framework. g. Alternatives to TEFCA : While direct -to-consumer APIs from EHR vendors and regional HIEs provide access, they lack the standardization and nationwide reach that TEFCA promises. The fragmented nature of these alternatives creates significant barriers for developers and patients seeking comprehensive access to health information. 2.0 PROVIDERS (C) 2.1 Data Exchange (C.2) PR-7. What strategies can CMS implement to support providers in making high -quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? A re there ways that workflows or metrics that providers are already motivated to optimize for could be reused for, or combined with, efforts needed to support interoperability? Kentro Response: Recent ASTP and GAO studies have found that large and system affiliated hospitals engage in health information exchange across the boundaries of their health care institutions or affiliated partners more frequently than independent, small, rural, critical access counterparts. Similarly, small physician practices and those in rural areas engaged in health information exchange less frequently than larger and urban practices. Lack of interoperability creates significant challenges, including delays in heal thcare, unnecessary medical testing and costs and adverse events. More than one -fifth of the U.S. population lives in rural areas and this population tends to be older and have worse health conditions than urban dwellers. Patients with chronic conditions and complex medical needs will likely have multiple providers involved in their care. The need for seamless data exchange with rural, small, unaffiliated hospitals and provider practices providers is significant. CMS could take several strategic steps to address underlying barriers to interoperability affecting these organizations and entities. This would improve care coordination and quality, minimize 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 4 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. unnecessary duplicate tests and procedures, which unnecessarily inflate healthcare costs and burdens, and improve provider efficiency. 1. Invest in t echnological expansion , particularly FHIR -native p latforms : Improve compliance to FHIR -native platforms via TEFCA and Blue Button integration, in underserved and rural areas to facilitate smoother electronic data exchange, and deploy such systems in areas/clinics where there may be no EHR/EMR present . For example , this investment could include : i. Deploying agentic AI cloud hosted services to process handwritten clinic al documents that would facilitate data exchange compliant to FHIR standards with Blue Button authorization. ii. Working with NIH, VA and other federal agencies a s well as universities in supporting nationwide and state -wide integration of FHIR standards for telemedicine programs/projects (e.g., Project Echo ) that are targeting key conditions and health priorities , especially those serving in rural and underserved areas. 2. Offer t ailored f unding p rograms : Provide grants or subsidies specifically for rural and small providers to adopt interoperable health IT systems and reward data -sharing efforts. 3. Simplify r eporting r equirements: Reduce administrative burdens by streamlining CMS data-sharing processes for smaller practices. 4. Enhance t echnical s upport : Expand access to training and hands -on technical assistance to help providers, many of which lack skilled IT staff, to integrate data -sharing systems efficiently. Additionally, equip providers with the knowledge and tools they need to troubleshoot and re solve interoperability challenges. 5. Provide m obile and c loud -based s olutions : Develop lightweight, scalable health IT options that don’t require extensive local infrastructure. 6. Develop u ser-friendly platforms : Improving CMS -supported data exchange platforms to make sharing simpler, more intuitive, and less time -consuming. 7. Encourage Regional Health Information Organizations (RHIOs) : Support local or state - based RHIOs which connect smaller providers with larger networks to participate in TEFCA. 8. Strengthen partnerships with l arger s ystems : CMS c ould facilitate collaborations between rural providers and larger hospitals to ensure seamless data sharing. 2.2 Digital Identity (C.3) PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs): a. What are the challenges and benefits for providers? b. How would requiring their use improve access to health information? c. What are the potential downsides? d. What impact would mandatory credentials have on a nationwide provider directory? e. How could digital identity implementation improve provider data flow? f. Would combining FHIR addresses and identity improve data flow? Kentro Response : The use of d igital identity credentials offers enhanced security, promotes interoperability, and can offer efficiencies. Government requirements for using digital identity credentials demonstrate how the same credential can be used across multiple agencies that serve different purposes ; however widespread trust of digital identity credentials, specifically for patient access, is not yet widely established across the industry . Allowing patients to access their health 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 5 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. records with a single credential would simplify the user experience preventing the need to manage multiple usernames and passwords . Patients can continue to sign in to their individual portals or leverage Individual Access Service exchange through TEFCA. However, implementation faces unique challenges in rural and underserved environments where many providers and organizations still lack EHR/EMR, requiring different approaches than urban settings. To address secu rity concerns, establishing a FedRAMP -certified system -as-a-service (SaaS) that integrates with digital identity providers while implementing advanced data protection would be key. By seperating registration from medical data transfer and employing f ield-level encryption with data masking, clinics and organizations can ensure that even if data streams are compromised, this would prevent data spillage given that the potentially obtained encrypted information would have no keys to decrypt patient -identifiable data. This approach would minimize data exposure while meeting CMS processing requirements. There are difficulties for populations (e.g., older and underserved) and users to obtain these credentials, thus it should not be the only option. An additional downside of a single credential can also be the creation of a single point of failure. Any effort to require digital identity credentials should be coupled with change management and transition timing . As the healthcare industry continues to experience increases in cyberattacks, use of digital identity credential s, coupled with additional best practice safeguards, such as multi -factor authentication , helps protect systems . 3.0 TECHNOLOGY VENDORS , DATA PROVIDERS, AND NETWORKS (E) 3.1 Technical Standards and Certifications (E.3) TD-6. What unique interoperability functions does TEFCA perform? What existing alternatives should be considered? Are there redundant standards, protocols or channels or both that should be consolidated ? Kentro Response: The Health Information Technology for Economic and Clinical Health (HITECH) Act promoted the adoption and implementation of certified EHRs by providing financial incentives that helped establish regional HIE networks. Recent reports show that 96% of acute care hospitals and 80% of primary care providers have implemented certified EHRs with interoperability capabilities ; however, actual use of the data from an external provider received through health information excha nge remains low. To promote and accelerate interoperability, the 21st Century Cures Act mandated the sharing of certain data elements (e.g. , USCDI), promoted use of FHIR APIs and placed restrictions on information blocking. The Cures Act also established T EFCA to provide an infrastructure model and common governing approach for HIE networks. TEFCA pushes interoperability by expanding the number and type of organizations engaged in exchange; and implements policies to widely recognize and make standard practice, exchange for Health Care Operations, Public Health, Payment, Individual Access and Government Benefits , with more XPs promised . TEFCA is driving an increase in WHAT information is exchanged (e.g., USCDI) and how the information is exchanged (e.g., FHIR APIs). TEFCA has an opportunity to drive the usability of data exchanged to increase trust , and reliability and reduce provider burden. Efforts to enforce quality standards to reduce instances of missing and mis placed data in documents and FHIR messages should be pursued. Incentivi zing EHR vendors to create and integrate workflows which allow providers to specify date ranges for desired information easily and to direct queries to specific recipients is needed. Lastly, to affect real 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 6 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. change, EHR business owners need to be encouraged to fully implement the capabilities offered by Certified EHR vendors . Nationwide healthcare interoperability , historically , has been a challenging task to conquer due to the complexities of health information technology (HIT). The 21st CURES Act set the stage for a unique , patient focused framework (i.e., TEFCA) in hopes to bridge the g aps within healthcare interoperability . TEFCA’s main function in creating a unique interoperability framework starts with its foundational purpose, establishing a universal governance, policy, and technical floor to accomplish the goal of nationwide interoperability . Although Qualified Health Information Networks (QHINs), which serve as connectivity brokers to ensure interoperability between different health information networks, may have flexibility in its approach for data exchange within TEFCA, they must do so in adherence to the functional requirements as described by the QHIN Technical Framework (QTF). Unique functions to TEFCA include , but are not limited to: 1. Expanded exchange purposes (XPs) : A. Despite national health information exchange networks or frameworks permitting exchange purposes outside of Treatment, they are not widely adopted or encouraged. TEFCA not only expands on permitted XPs (as listed below ) but also encourages and requires response outside of Treatment . a. Treatment i. Level 1 – Response not required ii. Level 2 – R esponse r equired . The benefit is that entities permitted to use Level 2 have been vetted and therefor, responders should have a higher level of trust in making the Required disclosure b. Payment i. Not currently required, but may require response in the future c. Healthcare Operations (HCO) i. In addition to the generic HCO XP, three granular HCO XPs have been added as permissible use cases for exchange (a ll three will require responses by Feb. 2026) : i. Care Coordination/Case Management ii. HEDIS Reporting iii. Quality Measure Reporting d. Public Health i. In addition to the generic Public Health XP, two granular Public Health XPs have been added as permissible use cases for exchange: i. Electronic Case Reporting ii. Electronic Lab Reporting e. Government Benefits Determination i. Not currently required, but may require response in the future f. Individual Access Services (IAS) i. Response required 
-RFI # CMS -0042- NC HHS Health Technology Ecosystem Kentro RFI Response 7 CAGE: 6GX40 June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page. g. As TEFCA evolves, additional XPs may be adopted , encouraged, and/or required (e.g., Research) h. Lastly, TEFCA has adopted a unique policy that allows QHINs to assess fees on the initiating QHIN when responding to certain XPs that permit fees . This may pose challenges to adoption. 2. Additional trust in exchange : A. For interoperability to succeed, advance, and be widely adopted, all parties involved must trust one another . TEFCA accomplishes this by adding additional layers of transparency and security such as: a. More robust policies and requirements for individuals querying on behalf of another organization (see TEFCA’s Delegation of Authority SOP) b. Multiple levels of XP codes provide more granularity/specificity to ensure the organization requesting the data is allowed to query for the data and is us ing the data as intended c. QHINs must follow strict vetting processes and attest t hat organizations/participants (and their subparticipants) within their QHIN/exchange are permitted to participate in TEFCA as well as query for each specific XP 3. Facilitated Fast Healthcare Interoperability Resources ( FHIR ) Exchange and United States Core Data for Interoperability (USCDI): A. No other national network or framework has standards that require FHIR and USCDI v3 adoption. Beginning in 2026, organizations participating in TEFCA must adhere to certain FHIR exchange requirements and guidelines, as well as conform to USCDI v3 standards (e.g., US@ address format standardizations) 4. Targeted queries : A. TEFCA’s QTF permits the ability for participants/subparticipants of a QHIN to initiate a directed query at a specific endpoint, rather than querying multiple organizations based on a geospatial radius or other smart query parameters TEFCA’s unique and progressive framework will help push the industry forward by advancing standards adoption for interoperability. N ational health information networks and frameworks are meeting the challenge by conform ing to these new standards (e.g., the eHealth Exchange Network built functionality to meet TEFCA’s Payment XP based on the Da Vinci HL7 FHIR standard, to support the automation of prior authorizations; The CommonWell Network has recently built functionality to allow its members (inside and outside of TEFCA) to send direct/targeted queries) , rather than operating in silos as was permitted in past national exchanges . In conclusion, we feel confident in stating, as part of the industry at large, that TEFCA is not only the here and now, but also the future of healthcare interoperability. TEFCA should and can help our nation accomplish the age-old goal of nationwide interoperability that meets both the healthcare organizations ’ and patients’ needs. Therefore, w e believe we should not consider any alternatives , but rather press forward with adopting and advancing TEFCA, which, within its first year and a half, has advanced interoperability standards adoption, has required participants to conform with implementation requirements , and can focus the industry to address data quality and usability challenges with broad representation in governance. 
+Department of Health & Human Services (HHS)
+Response to Request for Information #: CMS-0042-NC
+Health Technology Ecosystem
+Prepared For:
+Centers for Medicare & Medicaid Services (CMS),
+Assistant Secretary for Technology Policy (ASTP) /
+Office of the National Coordinator for Health Information
+Technology (ONC) (collectively, ASTP/ONC), HHS
+Submitted Electronically:
+https://www.regulations.gov
+Prepared By:
+Chris Huang, Director of Contracts & Compliance
+IT Concepts, Inc. DBA Kentro
+8201 Greensboro Drive, Suite 735
+McLean, VA 22102
+DUNS: 968872213
+UEID: GJ5YALPQMCH1
+CAGE Code: 6GX40
+Phone: (571) 918-9987
+Email: chris.huang@kentro.us
+This document contains commercial or financial information, or trade secrets, of Kentro, which are confidential and exempt from disclosure to the
+public under the Freedom of Information Act, 5 U.S.C. 552 (b) (4), and unlawful disclosure thereof is a violation of the Trade Secrets Act, 18
+U.S.C. 1905. Public disclosure of any such information or trade secrets shall not be made without the prior written permission of Kentro.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+Table of Contents
+Table of Contents ............................................................................................................................. i
+1.0 Patients and Caregivers (B) .......................................................................................................1
+1.1 Patient Needs (B.1) ..............................................................................................................1
+2.0 Providers (C) ..............................................................................................................................3
+2.1 Data Exchange (C.2) ............................................................................................................3
+2.2 Digital Identity (C.3) ............................................................................................................4
+3.0 Technology Vendors, Data Providers, and Networks (E) ..........................................................5
+3.1 Technical Standards and Certifications (E.3) ......................................................................5
+Kentro RFI Response i
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+1.0 PATIENTS AND CAREGIVERS (B)
+1.1 Patient Needs (B.1)
+PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare
+coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view
+as most valuable for inclusion in the API to enable more useful digital products for patients and
+caretakers? What difficulties are there in accessing or utilizing these data sources today? What
+suggestions do you have to improve the Blue Button 2.0 API experience? Is there non-CMS data
+that should be included in the API?
+Kentro Response: The most valuable additions to CMS Blue Button 2.0 API would address its
+current limitations regarding the absence of non-claims-based patient data and the exclusion of
+Medicare Advantage beneficiaries. The most valuable additional data sources would be:
+ Clinical Data (e.g., from EHRs): Information such as lab results, vital signs, clinical notes,
+immunizations, and allergies would provide a far more complete picture of a patient's
+health. While CMS does not directly hold all of this data, enabling access through other
+means (such as TEFCA) would be critical. This clinical context would transform the API
+from a claims-based view to a comprehensive health record, enabling developers to create
+more clinically relevant care coordination and patient engagement tools.
+ Medicare Advantage (Part C) and Medicaid Data: While Blue Button 2.0 focuses on
+Medicare Fee-for-Service, including data for beneficiaries in Medicare Advantage plans,
+Medicaid would significantly broaden its utility. Applications utilizing Blue Button 2.0 data
+are more generally applicable than today's scope, which is limited to original Medicare
+beneficiaries. This expansion is particularly important given that over 50% of Medicare
+beneficiaries are now enrolled in Medicare Advantage plans.
+There are currently access difficulties to these valuable data sources from CMS perspective. They
+include:
+ Fragmentation across multiple systems and a lack of standardized APIs for clinical data
+ Privacy and consent management complexities when integrating data from multiple sources
+ Technical barriers in reconciling different data formats and identifiers across systems
+To address these challenges, we suggest the following API improvement:
+ Implement standardized data models (such as FHIR) consistently across all data types
+ Provide robust developer documentation with real-world use cases and sample
+implementations
+ Enable bulk data access options for population health management applications
+ Improve API performance and reliability for production-scale applications
+Lastly, integrating other non-CMS data would be valuable. Beyond CMS-held data, integration
+with social determinants of health data, pharmacy fill data from retail pharmacies, and patient-
+generated health data from wearables and home monitoring devices would create a truly holistic
+view of patient health and enable more impactful digital health solutions.
+PC-10: How is the Trusted Exchange Framework and Common Agreement™ (TEFCA™)
+currently helping to advance patient access to health information in the real world? a. Please
+provide specific examples. b. What changes would you suggest? c. What use cases could have a
+significant impact if implemented through TEFCA? d. What standards are you aware of that are
+currently working well to advance access and existing exchange purposes? e. What standards are
+Kentro RFI Response 1
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+you aware of that are not currently in wide use, but could improve data access and integration? f.
+Are there redundant standards, protocols, or channels that should be consolidated? g. Are there
+adequate alternatives outside of TEFCA for achieving widespread patient access to their health
+information?
+Kentro Response: TEFCA represents a transformative opportunity to address the fragmented
+nature of health data exchange in the United States. While still in early implementation phases, its
+framework for nationwide health information exchange offers the potential to enhance patient
+access to comprehensive health records dramatically. The integration of TEFCA with existing
+infrastructure like Blue Button 2.0 could create unprecedented opportunities for developers to
+build truly holistic patient-centered applications.
+Specifically, this integration could include transforming TEFCA’s framework to establish Fast
+Healthcare Interoperability Resources (FHIR) as its foundational data standard, leveraging FHIR’s
+comprehensive data attributes and models, resource types, and standardized schemas. This
+strategic alignment would be synergistic—Blue Button 2.0 would handle patient authorization and
+consent management, while TEFCA would provide the nationwide exchange infrastructure using
+FHIR-native data products and services (e.g., Databricks, Azure Data Fabric, Snowflake, etc.).
+This proposed infrastructure would then seamlessly support bulk data operations and real-time
+API interactions with disrupting TEFCA compliance, enabling patients and healthcare
+organizations to leverage modern FHIR-native data products to support clinical needs. Below, we
+further outline the benefits and examples of this transformation:
+a. Current TEFCA impact and examples: TEFCA, by establishing a framework for
+nationwide EHI exchange, has the potential to allow Blue Button 2.0 (or applications built on
+it) to access non-CMS data, specifically clinical data from EHRs. Early implementations
+through QHINs (Qualified Health Information Networks) are beginning to demonstrate
+cross-network data exchange capabilities, though widespread patient-facing applications are
+still emerging.
+b. Suggested changes: The biggest limitation of Blue Button 2.0, as currently structured, is its
+reliance solely on CMS claims data. If Blue Button 2.0 could leverage TEFCA-enabled
+exchange, it would mean that an application authorized by a Medicare beneficiary could not
+only pull their CMS claims data but also (with proper authorization) access their clinical data
+from their various healthcare providers, regardless of which EHR system they use. This
+would create a much more comprehensive and unified view of the patient's health.
+c. Examples of high-impact use cases: The most transformative use cases for TEFCA
+implementation center around comprehensive care coordination and patient empowerment.
+Imagine applications that could perform real-time medication reconciliation by combining
+pharmacy claims data with clinical prescriptions and allergy information from multiple
+providers. For complex patients managing chronic conditions across multiple specialists,
+TEFCA could enable seamless care coordination where each provider has access to the
+complete picture of a patient's health journey. In emergency situations, clinicians could
+instantly access a patient's complete medical history, regardless of where previous care was
+delivered. Additionally, population health management initiatives could leverage integrated
+clinical and claims data to identify care gaps and improve outcomes at scale.
+d. Standards: The current ecosystem benefits from several mature standards that have proven
+effective in advancing health data exchange. FHIR (Fast Healthcare Interoperability
+Resources) has emerged as the dominant standard for structuring and exchanging health data,
+Kentro RFI Response 2
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+providing a modern API-based approach that developers find accessible. OAuth 2.0 has
+become the de facto standard for secure authorization, ensuring that patient consent and data
+security are maintained throughout the exchange process. The SMART on FHIR framework
+has successfully enabled third-party applications to integrate seamlessly with EHR systems,
+creating an app ecosystem that benefits both providers and patients. These standards work
+well because they leverage modern web technologies familiar to developers while
+maintaining the security and privacy requirements essential to healthcare.
+e. Emerging standards with potential to work well:
+i. FHIR bulk data access specifications for population-level queries
+ii. Patient-mediated exchange standards
+iii. Advanced consent management frameworks
+f. Opportunities for consolidation: Instead of developers needing to build individual
+connections to countless EHR systems or other data sources, TEFCA aims to provide a single
+"on-ramp" to nationwide connectivity. This would significantly reduce the burden on
+developers who want to create applications that combine claims and clinical data. Multiple
+proprietary APIs and regional HIE approaches could be consolidated under the TEFCA
+framework.
+g. Alternatives to TEFCA: While direct-to-consumer APIs from EHR vendors and regional
+HIEs provide access, they lack the standardization and nationwide reach that TEFCA
+promises. The fragmented nature of these alternatives creates significant barriers for
+developers and patients seeking comprehensive access to health information.
+2.0 PROVIDERS (C)
+2.1 Data Exchange (C.2)
+PR-7. What strategies can CMS implement to support providers in making high-quality, timely,
+and comprehensive healthcare data available for interoperability in the digital product ecosystem?
+How can the burden of increasing data availability and sharing be mitigated for providers? Are
+there ways that workflows or metrics that providers are already motivated to optimize for could be
+reused for, or combined with, efforts needed to support interoperability?
+Kentro Response: Recent ASTP and GAO studies have found that large and system affiliated
+hospitals engage in health information exchange across the boundaries of their health care
+institutions or affiliated partners more frequently than independent, small, rural, critical access
+counterparts. Similarly, small physician practices and those in rural areas engaged in health
+information exchange less frequently than larger and urban practices. Lack of interoperability
+creates significant challenges, including delays in healthcare, unnecessary medical testing and
+costs and adverse events.
+More than one-fifth of the U.S. population lives in rural areas and this population tends to be older
+and have worse health conditions than urban dwellers. Patients with chronic conditions and
+complex medical needs will likely have multiple providers involved in their care. The need for
+seamless data exchange with rural, small, unaffiliated hospitals and provider practices providers is
+significant.
+CMS could take several strategic steps to address underlying barriers to interoperability affecting
+these organizations and entities. This would improve care coordination and quality, minimize
+Kentro RFI Response 3
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+unnecessary duplicate tests and procedures, which unnecessarily inflate healthcare costs and
+burdens, and improve provider efficiency.
+1. Invest in technological expansion, particularly FHIR-native platforms: Improve
+compliance to FHIR-native platforms via TEFCA and Blue Button integration, in
+underserved and rural areas to facilitate smoother electronic data exchange, and deploy such
+systems in areas/clinics where there may be no EHR/EMR present. For example, this
+investment could include:
+i. Deploying agentic AI cloud hosted services to process handwritten clinical documents
+that would facilitate data exchange compliant to FHIR standards with Blue Button
+authorization.
+ii. Working with NIH, VA and other federal agencies as well as universities in supporting
+nationwide and state-wide integration of FHIR standards for telemedicine
+programs/projects (e.g., Project Echo) that are targeting key conditions and health
+priorities, especially those serving in rural and underserved areas.
+2. Offer tailored funding programs: Provide grants or subsidies specifically for rural and
+small providers to adopt interoperable health IT systems and reward data-sharing efforts.
+3. Simplify reporting requirements: Reduce administrative burdens by streamlining CMS
+data-sharing processes for smaller practices.
+4. Enhance technical support: Expand access to training and hands-on technical assistance to
+help providers, many of which lack skilled IT staff, to integrate data-sharing systems
+efficiently. Additionally, equip providers with the knowledge and tools they need to
+troubleshoot and resolve interoperability challenges.
+5. Provide mobile and cloud-based solutions: Develop lightweight, scalable health IT options
+that don’t require extensive local infrastructure.
+6. Develop user-friendly platforms: Improving CMS-supported data exchange platforms to
+make sharing simpler, more intuitive, and less time-consuming.
+7. Encourage Regional Health Information Organizations (RHIOs): Support local or state-
+based RHIOs which connect smaller providers with larger networks to participate in TEFCA.
+8. Strengthen partnerships with larger systems: CMS could facilitate collaborations between
+rural providers and larger hospitals to ensure seamless data sharing.
+2.2 Digital Identity (C.3)
+PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 CSPs):
+a. What are the challenges and benefits for providers?
+b. How would requiring their use improve access to health information?
+c. What are the potential downsides?
+d. What impact would mandatory credentials have on a nationwide provider directory?
+e. How could digital identity implementation improve provider data flow?
+f. Would combining FHIR addresses and identity improve data flow?
+Kentro Response: The use of digital identity credentials offers enhanced security, promotes
+interoperability, and can offer efficiencies. Government requirements for using digital identity
+credentials demonstrate how the same credential can be used across multiple agencies that serve
+different purposes; however widespread trust of digital identity credentials, specifically for patient
+access, is not yet widely established across the industry. Allowing patients to access their health
+Kentro RFI Response 4
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+records with a single credential would simplify the user experience preventing the need to manage
+multiple usernames and passwords. Patients can continue to sign in to their individual portals or
+leverage Individual Access Service exchange through TEFCA. However, implementation faces
+unique challenges in rural and underserved environments where many providers and organizations
+still lack EHR/EMR, requiring different approaches than urban settings. To address security
+concerns, establishing a FedRAMP-certified system-as-a-service (SaaS) that integrates with digital
+identity providers while implementing advanced data protection would be key. By seperating
+registration from medical data transfer and employing field-level encryption with data masking,
+clinics and organizations can ensure that even if data streams are compromised, this would prevent
+data spillage given that the potentially obtained encrypted information would have no keys to
+decrypt patient-identifiable data. This approach would minimize data exposure while meeting
+CMS processing requirements. There are difficulties for populations (e.g., older and underserved)
+and users to obtain these credentials, thus it should not be the only option. An additional downside
+of a single credential can also be the creation of a single point of failure. Any effort to require
+digital identity credentials should be coupled with change management and transition timing. As
+the healthcare industry continues to experience increases in cyberattacks, use of digital identity
+credentials, coupled with additional best practice safeguards, such as multi-factor authentication,
+helps protect systems.
+3.0 TECHNOLOGY VENDORS, DATA PROVIDERS, AND NETWORKS (E)
+3.1 Technical Standards and Certifications (E.3)
+TD-6. What unique interoperability functions does TEFCA perform? What existing alternatives
+should be considered? Are there redundant standards, protocols or channels or both that should be
+consolidated?
+Kentro Response: The Health Information Technology for Economic and Clinical Health
+(HITECH) Act promoted the adoption and implementation of certified EHRs by providing
+financial incentives that helped establish regional HIE networks. Recent reports show that 96%
+of acute care hospitals and 80% of primary care providers have implemented certified EHRs with
+interoperability capabilities; however, actual use of the data from an external provider received
+through health information exchange remains low.
+To promote and accelerate interoperability, the 21st Century Cures Act mandated the sharing of
+certain data elements (e.g., USCDI), promoted use of FHIR APIs and placed restrictions on
+information blocking. The Cures Act also established TEFCA to provide an infrastructure model
+and common governing approach for HIE networks. TEFCA pushes interoperability by expanding
+the number and type of organizations engaged in exchange; and implements policies to widely
+recognize and make standard practice, exchange for Health Care Operations, Public Health,
+Payment, Individual Access and Government Benefits, with more XPs promised. TEFCA is
+driving an increase in WHAT information is exchanged (e.g., USCDI) and how the information is
+exchanged (e.g., FHIR APIs).
+TEFCA has an opportunity to drive the usability of data exchanged to increase trust, and reliability
+and reduce provider burden. Efforts to enforce quality standards to reduce instances of missing
+and misplaced data in documents and FHIR messages should be pursued. Incentivizing EHR
+vendors to create and integrate workflows which allow providers to specify date ranges for desired
+information easily and to direct queries to specific recipients is needed. Lastly, to affect real
+Kentro RFI Response 5
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+change, EHR business owners need to be encouraged to fully implement the capabilities offered
+by Certified EHR vendors.
+Nationwide healthcare interoperability, historically, has been a challenging task to conquer due to
+the complexities of health information technology (HIT). The 21st CURES Act set the stage for a
+unique, patient focused framework (i.e., TEFCA) in hopes to bridge the gaps within healthcare
+interoperability.
+TEFCA’s main function in creating a unique interoperability framework starts with its
+foundational purpose, establishing a universal governance, policy, and technical floor to
+accomplish the goal of nationwide interoperability.
+Although Qualified Health Information Networks (QHINs), which serve as connectivity brokers
+to ensure interoperability between different health information networks, may have flexibility in
+its approach for data exchange within TEFCA, they must do so in adherence to the functional
+requirements as described by the QHIN Technical Framework (QTF).
+Unique functions to TEFCA include, but are not limited to:
+1. Expanded exchange purposes (XPs):
+A. Despite national health information exchange networks or frameworks permitting exchange
+purposes outside of Treatment, they are not widely adopted or encouraged. TEFCA not
+only expands on permitted XPs (as listed below) but also encourages and requires response
+outside of Treatment.
+a. Treatment
+i. Level 1 – Response not required
+ii. Level 2 – Response required. The benefit is that entities permitted to use
+Level 2 have been vetted and therefor, responders should have a higher
+level of trust in making the Required disclosure
+b. Payment
+i. Not currently required, but may require response in the future
+c. Healthcare Operations (HCO)
+i. In addition to the generic HCO XP, three granular HCO XPs have been
+added as permissible use cases for exchange (all three will require
+responses by Feb. 2026):
+i. Care Coordination/Case Management
+ii. HEDIS Reporting
+iii. Quality Measure Reporting
+d. Public Health
+i. In addition to the generic Public Health XP, two granular Public Health
+XPs have been added as permissible use cases for exchange:
+i. Electronic Case Reporting
+ii. Electronic Lab Reporting
+e. Government Benefits Determination
+i. Not currently required, but may require response in the future
+f. Individual Access Services (IAS)
+i. Response required
+Kentro RFI Response 6
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.
+
+RFI # CMS-0042-NC
+HHS
+Health Technology Ecosystem
+g. As TEFCA evolves, additional XPs may be adopted, encouraged, and/or required
+(e.g., Research)
+h. Lastly, TEFCA has adopted a unique policy that allows QHINs to assess fees on
+the initiating QHIN when responding to certain XPs that permit fees. This may
+pose challenges to adoption.
+2. Additional trust in exchange:
+A. For interoperability to succeed, advance, and be widely adopted, all parties involved must
+trust one another. TEFCA accomplishes this by adding additional layers of transparency
+and security such as:
+a. More robust policies and requirements for individuals querying on behalf of
+another organization (see TEFCA’s Delegation of Authority SOP)
+b. Multiple levels of XP codes provide more granularity/specificity to ensure the
+organization requesting the data is allowed to query for the data and is using the
+data as intended
+c. QHINs must follow strict vetting processes and attest that
+organizations/participants (and their subparticipants) within their QHIN/exchange
+are permitted to participate in TEFCA as well as query for each specific XP
+3. Facilitated Fast Healthcare Interoperability Resources (FHIR) Exchange and United States
+Core Data for Interoperability (USCDI):
+A. No other national network or framework has standards that require FHIR and USCDI v3
+adoption. Beginning in 2026, organizations participating in TEFCA must adhere to certain
+FHIR exchange requirements and guidelines, as well as conform to USCDI v3 standards
+(e.g., US@ address format standardizations)
+4. Targeted queries:
+A. TEFCA’s QTF permits the ability for participants/subparticipants of a QHIN to initiate a
+directed query at a specific endpoint, rather than querying multiple organizations based on a
+geospatial radius or other smart query parameters
+TEFCA’s unique and progressive framework will help push the industry forward by advancing
+standards adoption for interoperability. National health information networks and frameworks are
+meeting the challenge by conforming to these new standards (e.g., the eHealth Exchange Network
+built functionality to meet TEFCA’s Payment XP based on the Da Vinci HL7 FHIR standard, to
+support the automation of prior authorizations; The CommonWell Network has recently built
+functionality to allow its members (inside and outside of TEFCA) to send direct/targeted queries),
+rather than operating in silos as was permitted in past national exchanges.
+In conclusion, we feel confident in stating, as part of the industry at large, that TEFCA is not only
+the here and now, but also the future of healthcare interoperability. TEFCA should and can help
+our nation accomplish the age-old goal of nationwide interoperability that meets both the
+healthcare organizations’ and patients’ needs. Therefore, we believe we should not consider any
+alternatives, but rather press forward with adopting and advancing TEFCA, which, within its first
+year and a half, has advanced interoperability standards adoption, has required participants to
+conform with implementation requirements, and can focus the industry to address data quality and
+usability challenges with broad representation in governance.
+Kentro RFI Response 7
+CAGE: 6GX40 June 16, 2025
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page.

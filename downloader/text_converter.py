@@ -1,21 +1,21 @@
 """
-text_converter.py — Convert downloaded attachments to text files.
+text_converter.py — Convert downloaded comment attachments to text files.
 
-This standalone utility converts all PDF and DOCX files in a docket's
-comment_attachments directory to corresponding .txt files. This allows for
-faster reprocessing and makes text content easily accessible without repeated
-conversions.
+This utility reads a ``attachment_classification.csv`` produced by the AI
+classifier (``classify_attachments_ai.py``) and converts **only** the PDF
+and DOCX files that were classified as ``comment`` to corresponding ``.txt``
+files.
 
-By default, PDFs that appear to be presentation slides (PowerPoint, Keynote,
-etc.) are skipped, since their text extraction is typically fragmented and
-incoherent.  Detection uses PDF metadata (creator/producer fields) and average
-word count per page.  Use --include-presentations to convert them anyway.
+Workflow
+--------
+1. ``download_attachments.py`` downloads all PDFs for a docket.
+2. ``classify_attachments_ai.py`` classifies each PDF → ``attachment_classification.csv``.
+3. **This script** reads the CSV and converts only *comment* PDFs to text.
 
 Usage:
     python downloader/text_converter.py CMS-2025-0050
-    python downloader/text_converter.py CMS-2025-0050 --attachments-dir CMS-2025-0050/comment_attachments
+    python downloader/text_converter.py CMS-2025-0050 --classification-csv CMS-2025-0050/attachment_classification.csv
     python downloader/text_converter.py CMS-2025-0050 --force  # Reconvert even if .txt exists
-    python downloader/text_converter.py CMS-2025-0050 --include-presentations  # Include slide PDFs
 
 This module is also called automatically when using the --convert-text flag
 with the downloader:
@@ -25,14 +25,14 @@ with the downloader:
 from __future__ import annotations
 
 import argparse
+import csv
 import logging
-import re
 from pathlib import Path
 from typing import Any
 
 # Text extraction libraries
 try:
-    from pypdf import PdfReader
+    import pdfplumber
     HAS_PDF = True
 except ImportError:
     HAS_PDF = False
@@ -43,152 +43,138 @@ try:
 except ImportError:
     HAS_DOCX = False
 
+try:
+    from pdf2image import convert_from_path
+    import pytesseract
+    HAS_OCR = True
+except ImportError:
+    HAS_OCR = False
+
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 
-# ── Presentation detection constants ─────────────────────────────────────────
+# ── Classification CSV reader ─────────────────────────────────────────────────
 
-# PDF creator/producer strings that indicate presentation software.
-# Matched case-insensitively as substrings of the metadata fields.
-PRESENTATION_CREATOR_KEYWORDS = [
-    "powerpoint",
-    "impress",       # LibreOffice Impress
-    "keynote",
-    "google slides",
-    "prezi",
-]
-
-# Minimum average words per page for a PDF to be considered narrative text.
-# Presentation slides typically average 10–75 words/slide; narrative documents
-# typically average 200–500 words/page.
-MIN_WORDS_PER_PAGE = 100
-
-# Number of pages to sample when computing the word-density signal.
-# Sampling keeps classification fast for large PDFs.
-SAMPLE_PAGE_COUNT = 10
-
-
-# ── PDF readability classifier ────────────────────────────────────────────────
-
-def classify_pdf_readability(filepath: Path) -> dict[str, Any]:
-    """
-    Classify a PDF as either narrative text or a presentation/graphics-heavy file.
-
-    Uses two signals in priority order:
-
-    1. **Metadata** – If the PDF's Creator or Producer field contains a known
-       presentation-software keyword (PowerPoint, Impress, Keynote, etc.) the
-       file is immediately classified as a presentation.
-
-    2. **Word density** – The average word count per page across the first
-       SAMPLE_PAGE_COUNT pages must reach MIN_WORDS_PER_PAGE.  Slide decks
-       typically have far fewer words per page than narrative documents.
-
-    Note: a "short text block" heuristic was intentionally omitted.  pypdf
-    extracts text line-by-line from the PDF's internal structure, so even
-    dense narrative prose produces many short fragments.  Word density is a
-    more reliable signal.
+def load_comment_paths_from_csv(csv_path: Path, base_dir: Path | None = None) -> set[Path]:
+    """Read a attachment_classification.csv and return the set of attachment paths
+    whose ``ai_label`` is ``comment``.
 
     Parameters
     ----------
-    filepath : Path
-        Path to the PDF file to classify.
+    csv_path : Path
+        Path to the classification CSV file.
+    base_dir : Path, optional
+        Base directory to resolve relative attachment paths against.
+        If not provided, paths in the CSV are resolved relative to the
+        current working directory.  Typically this should be the
+        ``comment_attachments`` directory so that a CSV entry like
+        ``CMS-2025-0050-0004/attachment_1.pdf`` resolves correctly.
 
-    Returns
-    -------
-    dict with keys:
-        is_narrative (bool)       – True if the PDF looks like readable text.
-        reason (str)              – Human-readable reason for the verdict.
-        creator (str)             – Value of the PDF Creator metadata field.
-        producer (str)            – Value of the PDF Producer metadata field.
-        avg_words_per_page (float)– Average word count across sampled pages.
+    Returns a set of :class:`Path` objects (resolved to absolute paths for
+    reliable comparison).
     """
-    result: dict[str, Any] = {
-        "is_narrative": True,
-        "reason": "ok",
-        "creator": "",
-        "producer": "",
-        "avg_words_per_page": 0.0,
-    }
+    comment_paths: set[Path] = set()
+    if not csv_path.exists():
+        logger.warning(f"Classification CSV not found: {csv_path}")
+        return comment_paths
 
-    if not HAS_PDF:
-        # Can't classify without pypdf; assume narrative so we still attempt
-        # extraction (which will also fail, and be caught elsewhere).
-        return result
+    with csv_path.open("r", newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            label = (row.get("ai_label") or "").strip().lower()
+            att_path = (row.get("attachment_path") or "").strip()
+            if label == "comment" and att_path:
+                p = Path(att_path)
+                if base_dir and not p.is_absolute():
+                    p = base_dir / p
+                comment_paths.add(p.resolve())
 
-    try:
-        reader = PdfReader(str(filepath))
-
-        # ── Signal 1: metadata ────────────────────────────────────────────
-        meta = reader.metadata or {}
-        creator = str(meta.get("/Creator", "") or "").strip()
-        producer = str(meta.get("/Producer", "") or "").strip()
-        result["creator"] = creator
-        result["producer"] = producer
-
-        combined_meta = (creator + " " + producer).lower()
-        for keyword in PRESENTATION_CREATOR_KEYWORDS:
-            if keyword in combined_meta:
-                result["is_narrative"] = False
-                result["reason"] = f"presentation_metadata (matched '{keyword}' in creator/producer)"
-                return result
-
-        # ── Signal 2: sample page word density ───────────────────────────
-        pages = reader.pages
-        sample = pages[: min(SAMPLE_PAGE_COUNT, len(pages))]
-
-        total_words = 0
-        for page in sample:
-            raw = page.extract_text() or ""
-            total_words += len(raw.split())
-
-        num_pages = len(sample)
-        avg_words = total_words / num_pages if num_pages else 0.0
-        result["avg_words_per_page"] = round(avg_words, 1)
-
-        if avg_words < MIN_WORDS_PER_PAGE:
-            result["is_narrative"] = False
-            result["reason"] = (
-                f"low_density ({avg_words:.0f} words/page avg, "
-                f"threshold {MIN_WORDS_PER_PAGE})"
-            )
-            return result
-
-    except Exception as e:
-        logger.debug(f"classify_pdf_readability error for {filepath}: {e}")
-        # On any error, fall through and let the normal extractor handle it.
-
-    return result
+    logger.info(f"Loaded {len(comment_paths)} comment paths from {csv_path}")
+    return comment_paths
 
 
 # ── Text extraction functions ─────────────────────────────────────────────────
 
-def extract_text_from_pdf(filepath: Path) -> str:
-    """Extract text from a PDF file."""
-    if not HAS_PDF:
-        logger.warning(f"pypdf not available, skipping PDF extraction: {filepath}")
+def _is_garbage_text(text: str) -> bool:
+    """Return True if extracted PDF text looks like encoding garbage.
+
+    Some PDFs use custom font encodings that defeat text-based extractors,
+    producing output full of ``(cid:N)`` tokens or text where most characters
+    are non-alphabetic.  This check catches both patterns.
+    """
+    if not text or len(text.strip()) < 50:
+        return True  # too little text to judge
+
+    # Explicit (cid:...) markers left by PDF text extractors
+    cid_count = text.count("(cid:")
+    if cid_count > 10:
+        return True
+
+    # Ratio of normal letters (a-z, A-Z, spaces) to total characters.
+    # Readable English text is typically >70 %; garbage is usually <40 %.
+    alpha_space = sum(1 for ch in text if ch.isalpha() or ch == " ")
+    ratio = alpha_space / len(text)
+    return ratio < 0.40
+
+
+def _extract_pdf_via_ocr(filepath: Path) -> str:
+    """Extract text from a PDF using OCR (pdf2image + pytesseract).
+
+    This is slower than native text extraction but handles PDFs with
+    custom font encodings that defeat pdfplumber and similar libraries.
+    """
+    if not HAS_OCR:
+        logger.warning(
+            f"OCR libraries (pdf2image, pytesseract) not available; "
+            f"cannot OCR-fallback for {filepath}"
+        )
         return ""
 
     try:
-        reader = PdfReader(str(filepath))
+        images = convert_from_path(str(filepath), dpi=300)
         text_parts = []
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                # Fix: Collapse single newlines within paragraphs into spaces
-                # This handles PDFs where each word is on its own line
-                text = re.sub(r'(?<!\n)\n(?!\n)', ' ', text)
-                # Collapse multiple spaces
-                text = re.sub(r' +', ' ', text)
-                # Preserve paragraph breaks (double newlines)
-                text = re.sub(r'\n\n+', '\n\n', text)
-                text_parts.append(text)
+        for i, img in enumerate(images):
+            page_text = pytesseract.image_to_string(img)
+            if page_text:
+                text_parts.append(page_text)
         return "\n".join(text_parts)
     except Exception as e:
-        logger.warning(f"Failed to extract text from PDF {filepath}: {e}")
+        logger.warning(f"OCR extraction failed for {filepath}: {e}")
         return ""
+
+
+def extract_text_from_pdf(filepath: Path) -> str:
+    """Extract text from a PDF file.
+
+    Uses pdfplumber for text extraction (handles character spacing well).
+    If the result looks like encoding garbage, falls back to OCR via
+    pdf2image + pytesseract.
+    """
+    text = ""
+
+    # ── Attempt 1: pdfplumber (fast, good character grouping) ────────────
+    if HAS_PDF:
+        try:
+            with pdfplumber.open(str(filepath)) as pdf:
+                text_parts = []
+                for page in pdf.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text_parts.append(page_text)
+                text = "\n\n".join(text_parts)
+        except Exception as e:
+            logger.warning(f"pdfplumber extraction failed for {filepath}: {e}")
+            text = ""
+
+    # ── Check quality; OCR fallback if garbage ───────────────────────────
+    if _is_garbage_text(text):
+        if text:
+            logger.info(f"    pdfplumber output looks like garbage, trying OCR fallback...")
+        text = _extract_pdf_via_ocr(filepath)
+
+    return text
 
 
 def extract_text_from_docx(filepath: Path) -> str:
@@ -227,41 +213,36 @@ def extract_text_from_file(filepath: Path) -> str:
 def convert_docket_to_text(
     docket_id: str,
     attachments_dir: str | None = None,
+    classification_csv: str | None = None,
     force: bool = False,
-    skip_presentations: bool = True,
 ) -> dict[str, Any]:
     """
-    Convert all attachments in a docket to text files.
+    Convert comment attachments in a docket to text files.
 
-    This function:
-    1. Finds the attachments directory: {docket_id}/comment_attachments/
-    2. Iterates through all document subdirectories
-    3. For each .pdf or .docx file, creates a corresponding .txt file
-    4. Skips conversion if .txt already exists (unless force=True)
-    5. By default, skips PDF files that appear to be presentations/slides
+    Reads ``attachment_classification.csv`` to determine which PDFs the AI
+    classified as *comment*, then converts only those files.
 
     Parameters
     ----------
     docket_id : str
-        Docket identifier (e.g., "CMS-2025-0050")
+        Docket identifier (e.g., "CMS-2025-0050").
     attachments_dir : str, optional
-        Directory containing attachments (default: {docket_id}/comment_attachments/)
+        Directory containing attachments
+        (default: ``{docket_id}/comment_attachments/``).
+    classification_csv : str, optional
+        Path to the AI classification CSV
+        (default: ``{docket_id}/comment_attachments/attachment_classification.csv``).
     force : bool
-        If True, reconvert even when .txt files already exist (default: False)
-    skip_presentations : bool
-        If True (default), skip PDFs that appear to be presentation slides
-        or other graphics-heavy documents with little narrative text.
+        If True, reconvert even when .txt files already exist (default: False).
 
     Returns
     -------
     dict
         Statistics about the conversion:
-        - total_files: Total number of source files found
+        - total_comment_files: PDFs classified as comment in the CSV
         - converted: Number of files newly converted
         - skipped: Number of files skipped (already had .txt)
-        - presentations_skipped: PDFs skipped due to presentation detection
         - failed: Number of conversion failures
-        - document_count: Number of document directories processed
     """
     if attachments_dir:
         docket_path = Path(attachments_dir)
@@ -274,102 +255,81 @@ def convert_docket_to_text(
             f"Make sure you've downloaded attachments for {docket_id} first."
         )
 
-    logger.info(f"Converting attachments to text for docket: {docket_id}")
-    logger.info(f"Attachments directory: {docket_path}")
-    if skip_presentations:
-        logger.info(
-            "Presentation filtering: ON  "
-            "(use --include-presentations to convert slide-style PDFs)"
-        )
+    if classification_csv:
+        csv_path = Path(classification_csv)
     else:
-        logger.info("Presentation filtering: OFF  (all PDFs will be converted)")
+        csv_path = docket_path / "attachment_classification.csv"
 
-    stats = {
-        "total_files": 0,
+    if not csv_path.exists():
+        raise FileNotFoundError(
+            f"Classification CSV not found: {csv_path}\n"
+            f"Run the AI classifier first:\n"
+            f"  python downloader/classify_attachments_ai.py "
+            f"{docket_path} --output {csv_path}"
+        )
+
+    logger.info(f"Converting comment attachments to text for docket: {docket_id}")
+    logger.info(f"Attachments directory: {docket_path}")
+    logger.info(f"Classification CSV: {csv_path}")
+
+    # Load the set of PDF paths classified as "comment".
+    # Pass docket_path as base_dir so relative paths in the CSV
+    # (e.g. "CMS-2025-0050-0004/attachment_1.pdf") resolve correctly
+    # against the comment_attachments directory.
+    comment_paths = load_comment_paths_from_csv(csv_path, base_dir=docket_path)
+
+    stats: dict[str, Any] = {
+        "total_comment_files": len(comment_paths),
         "converted": 0,
         "skipped": 0,
-        "presentations_skipped": 0,
         "failed": 0,
-        "document_count": 0,
     }
 
-    # Find all document subdirectories (e.g., CMS-2025-0050-0004)
-    document_dirs = sorted([d for d in docket_path.iterdir() if d.is_dir()])
-
-    if not document_dirs:
-        logger.warning(f"No document directories found in {docket_path}")
+    if not comment_paths:
+        logger.warning("No files classified as 'comment' — nothing to convert.")
         return stats
 
-    stats["document_count"] = len(document_dirs)
-    logger.info(f"Found {len(document_dirs)} document directories")
+    # Process each comment file.
+    for source_path in sorted(comment_paths):
+        source_file = Path(source_path)
 
-    # Process each document directory
-    for doc_dir in document_dirs:
-        doc_id = doc_dir.name
-
-        # Find all convertible files (.pdf, .docx, .doc)
-        convertible_files = []
-        for pattern in ["*.pdf", "*.docx", "*.doc"]:
-            convertible_files.extend(doc_dir.glob(pattern))
-
-        if not convertible_files:
+        if not source_file.exists():
+            logger.warning(f"  File listed in CSV not found on disk: {source_file}")
+            stats["failed"] += 1
             continue
 
-        stats["total_files"] += len(convertible_files)
+        txt_file = source_file.with_suffix(".txt")
 
-        # Convert each file
-        for source_file in convertible_files:
-            txt_file = source_file.with_suffix(".txt")
+        # If .txt already exists and we're not forcing, skip.
+        if txt_file.exists() and not force:
+            logger.info(f"  Skipping {source_file.name} (already converted)")
+            stats["skipped"] += 1
+            continue
 
-            # Skip if .txt already exists and not forcing
-            if txt_file.exists() and not force:
-                logger.info(f"  Skipping {doc_id}/{source_file.name} (already converted)")
-                stats["skipped"] += 1
-                continue
+        # Extract text.
+        logger.info(f"  Converting {source_file}")
+        text = extract_text_from_file(source_file)
 
-            # For PDFs, run the readability classifier before extracting
-            if source_file.suffix.lower() == ".pdf" and skip_presentations:
-                classification = classify_pdf_readability(source_file)
-                if not classification["is_narrative"]:
-                    logger.warning(
-                        f"  SKIPPED (presentation) {doc_id}/{source_file.name}"
-                        f" — {classification['reason']}"
-                        + (
-                            f" | creator: '{classification['creator']}'"
-                            if classification["creator"]
-                            else ""
-                        )
-                    )
-                    stats["presentations_skipped"] += 1
-                    continue
-
-            # Extract text
-            logger.info(f"  Converting {doc_id}/{source_file.name}")
-            text = extract_text_from_file(source_file)
-
-            if text.strip():
-                # Save to .txt file
-                try:
-                    txt_file.write_text(text, encoding="utf-8")
-                    stats["converted"] += 1
-                    logger.info(f"    → Created {txt_file.name} ({len(text)} chars)")
-                except Exception as e:
-                    logger.error(f"    Failed to write {txt_file.name}: {e}")
-                    stats["failed"] += 1
-            else:
-                logger.warning(f"    No text extracted from {source_file.name}")
+        if text.strip():
+            try:
+                txt_file.write_text(text, encoding="utf-8")
+                stats["converted"] += 1
+                logger.info(f"    → Created {txt_file.name} ({len(text)} chars)")
+            except Exception as e:
+                logger.error(f"    Failed to write {txt_file.name}: {e}")
                 stats["failed"] += 1
+        else:
+            logger.warning(f"    No text extracted from {source_file.name}")
+            stats["failed"] += 1
 
-    # Print summary
+    # Print summary.
     logger.info("\n" + "=" * 60)
     logger.info("CONVERSION SUMMARY")
     logger.info("=" * 60)
     logger.info(f"Docket: {docket_id}")
-    logger.info(f"Documents processed: {stats['document_count']}")
-    logger.info(f"Total source files: {stats['total_files']}")
+    logger.info(f"Comment files in CSV:       {stats['total_comment_files']}")
     logger.info(f"  Newly converted:          {stats['converted']}")
-    logger.info(f"  Presentations skipped:    {stats['presentations_skipped']}")
-    logger.info(f"  Skipped (already existed):{stats['skipped']}")
+    logger.info(f"  Skipped (already existed): {stats['skipped']}")
     logger.info(f"  Failed:                   {stats['failed']}")
 
     return stats
@@ -377,7 +337,7 @@ def convert_docket_to_text(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Convert docket attachments to text files"
+        description="Convert comment-classified docket attachments to text files"
     )
     parser.add_argument(
         "docket_id",
@@ -389,18 +349,17 @@ def main():
         help="Directory containing attachments (default: {docket_id}/comment_attachments/)"
     )
     parser.add_argument(
+        "--classification-csv",
+        default=None,
+        help=(
+            "Path to the AI classification CSV "
+            "(default: {docket_id}/attachment_classification.csv)"
+        ),
+    )
+    parser.add_argument(
         "--force",
         action="store_true",
         help="Reconvert even if .txt files already exist"
-    )
-    parser.add_argument(
-        "--include-presentations",
-        action="store_true",
-        help=(
-            "Convert PDFs that appear to be presentation slides or other "
-            "graphics-heavy documents (skipped by default because their "
-            "text extraction is typically fragmented and incoherent)"
-        ),
     )
 
     args = parser.parse_args()
@@ -409,11 +368,11 @@ def main():
         stats = convert_docket_to_text(
             docket_id=args.docket_id,
             attachments_dir=args.attachments_dir,
+            classification_csv=args.classification_csv,
             force=args.force,
-            skip_presentations=not args.include_presentations,
         )
 
-        # Return non-zero exit code if there were failures
+        # Return non-zero exit code if there were failures.
         if stats["failed"] > 0:
             logger.warning(f"\nCompleted with {stats['failed']} failures")
             return 1

@@ -1,5 +1,158 @@
-Page 1 | 5 To: The Centers for Medicare & Medicaid Services (CMS) and the Assistant Secretary for Technology Policy (ASTP) From: Jim Younkin, Patient and Primary Caregiver Date: June 14, 2025 RE: Request for Information; Health Technology Ecosystem (CMS -0042-NC) I. Introduction: A Dual Perspective I submit these comments not in my professional capacity as a health IT executive, but as a citizen, a son, and a primary caregiver. My insights are drawn from my direct, recent, and often painful experience navigating our healthcare system. In early 2025, my 88 -year-old father entered the emergency room and never returned home. Over a period of less than two months, I was his advocate as he was moved from the ED, to inpatient hospital care, to a skilled nursing facility (SNF), back to the ED, back to a SNF, and so on—a cycle of repeated transfers that culminated in a move to a nursing home and finally hospice, where he passed in mid -March. This journey, combined with my current role as the primary caregiver for my 84 -year-old mother with demen tia, has given me a stark, ground -level view of the gaps between this RFI's goals and the reality for American families. My feedback is grounded in this lived experience, aimed at bridging the chasm between well-meaning policy and the fragmented reality for patients and caregivers. II. The Caregiver's Reality: A System of Data Gaps and Delays The core theme of my experience was that at every handoff in my father’s care, his health information broke down. This was not a niche technical problem; it was a fundamental barrier to his care and my ability to advocate for him. This directly addresses RFI questions PC-2, PC-3, and PC-8, which ask about the obstacles to accessing complete health information. • The "Care Continuum Churn": The constant churn from one facility to another meant his story was constantly being retold and his data was perpetually out of sync. Each transition was a data cliff, creating dangerous gaps in knowledge for me and for his next set of providers. • The Timeliness Gap: The most significant obstacle was the delay in data access. During my father's hospital stays, his lab and radiology results were often not available in the patient portal until the next day. During this two -month period of 
-Page 2 | 5 constant crisis, critical clinical decisions were being made daily. A 12-hour delay in receiving his results meant the data was always arriving nearly a day after it was most needed to inform my conversations with his doctors. My experience is validated by numerous studies, including a 2023 UT Southwestern review which found that 96% of patients prefer to receive their results immediately , even if their provider has not yet seen them. Data delayed is data denied. • The Transparency Gap: The situation in skilled nursing was worse. Labs were often conducted when I wasn't there, and I was not made aware they had even been ordered. I had to rely on paper printouts requested during my visits, completely defeating the purpose and promise of di gital health records. III. Recommendations to Empower Patients and Caregivers My experience reveals that focusing on the mere existence of portals and APIs is not enough. Policy must focus on their functional reality. Recommendation 1: Mandate "Portal -API Data Parity" and Timeliness (Addresses PR - 7, PC-2c, TD-9d) The single greatest frustration I faced was knowing my father's data existed in the system but being unable to access it when it mattered most. To fix this, CMS and ASTP must: • Establish a "Contemporaneous Access" Rule: I propose a new patient right: the right to access finalized clinical results at the same time as the ordering clinician. While some may argue for brief provider -mediated delays for highly sensitive results, ASTP’s own information blocking guidance makes it clear that such exceptions are narrow and that routine delays are "likely to be considered an interference" with patient access. To eliminate ambiguity, HHS should affirm that any system -level or policy-driven delay in releasing finalized clinical information to a patient or their authorized app is a form of information blocking. • Mandate "Portal -API Data Parity": My own development work on a patient -facing application confirmed that what is visible in a portal is not always available via the API. For example, while building an app to connect to my own records, I discovered that a vendor's public sandbox incorrectl y blocked access to lab results (patient/Observation.read ) and that radiology reports ( ImagingStudy ) were not supported for patient access at all, despite being visible in the portal. This must end. Any data a patient can see in a provider's patient portal must be made available via their certified FHIR API. Recommendation 2: Fix the "Front Door" to Interoperability (Addresses TD -1, TD-5) 
-Page 3 | 5 Before an application can help a patient, a developer must be able to build it. The current ecosystem makes this exceedingly difficult. • Fund a National Provider API Directory: The first barrier I faced was simply discovering how to connect to my provider's API. I had to rely on my specialized knowledge of projects like ASTP’s own Lantern project to find the correct endpoint. A typical caregiver has no chance. This is a known sy stemic failure; experts have noted "there is no nationwide directory of FHIR endpoints," and ASTP's Lantern project itself found existing vendor lists to be incomplete and inconsistent. CMS should fund and mandate a single, public, searchable "Provider API Directory" that is as easy to use as medicare.gov. • Mandate "Sandbox Fidelity" in the ONC Certification Program: The developer sandbox I used gave misleading errors that took weeks to resolve with vendor support. This "fidelity gap" between test and production environments is a tax on innovation and a known industry frustration, leading to "unexpected errors and delays" and "costly rework" when applications go live. The ONC Certification Program must be updated to require that a vendor's public sandbox and test patients accurately reflects the configurations and behaviors of its production systems. IV. A Vision for a Truly Empowered Future To achieve the goals of this RFI, we must think beyond the current "app" paradigm and design for the future of AI. Vision 1: The "Generative Application" - Real-Time, On -Demand Access (Addresses TD - 9, PC-14) • The Concept: CMS and ASTP must "rethink the application." The future is not a finite set of pre -registered apps. The future is millions of patients and caregivers interacting with generative AI applications —agents that are created and configured dynamically, at the moment of need. • The Need: Imagine my 88 -year-old father, who had Stage 3 Chronic Kidney Disease (CKD), is being discharged from the hospital. As his caregiver, I have an urgent need to see his latest lab results immediately to understand the state of his kidney function post -discharge. I need his discharge summary and labs available within my personal caregiver portal —not tomorrow, but now —so I can ask my AI assistant: 'His creatinine level is now X. How does that compare to his baseline? What has changed in his medication list that could affect his kidneys? Are there new dietary 
-Page 4 | 5 restrictions I need to enforce immediately?' . The current system of manual, weeks - long application (app) registration makes this real -time, data -driven, and clinically critical caregiving impossible. • The Ask: Recommend that CMS and ASTP champion and mandate support for protocols like Dynamic Client Registration (IETF RFC 7591) and use Verifiable Credentials for secure, real -time authorization. These are not hypothetical concepts; they are the foundation of scalable trust frameworks already being advanced by health IT initiatives like the UDAP and FAST workgroups to solve this exact problem. Vision 2: The Patient's Fundamental Right to Capture Their Own Health Story (Addresses PC -1, PC-1b) My experience has convinced me that for patients to be truly empowered, they must have the right to use modern tools to help them understand the complex, high -stakes conversations that define their care. • The Use Case: I witnessed this firsthand in the ER with my father after a fall. Because of my background in health IT, I understood the complex trade -offs the doctor was explaining regarding a potential UTI, dehydration, and possibility of stroke. But I was struck by a chilling thought: what if I wasn't there? My mother, in an emotional state, would have had no chance of comprehending the decision she was being asked to participate in. Patients and caregivers, during moments of intense stress, need access to tools that help them make sense of the complex medical world. • The "AI Exam Room Coach": A patient should always have the right to use their own personal "AI Exam Room Coach." This tool would listen to the clinical conversation, access the patient's own FHIR -based health record in real -time, and act as their advocate. For my mother, it could have prompted her to ask a critical question, such as, 'What are the most important signs of a problem I should watch for when he gets back to the facility?' . The benefits of this are well -documented: studies show that up to 72% of patients listen to recordings of their visits , and that doing so significantly improves their recall and understanding of their own health conditions. Furthermore, HIPAA does not prohibit a patient from recording their own visit; the barriers are a patchwork of state laws and provider policies. • The Ask: Establish a Fundamental Patient Right: A patient's ability to capture and understand their own health information should be a fundamental right, not a conditional privilege. We ask that ASTP, leveraging its authority under the 21st 
-Page 5 | 5 Century Cures Act, issue a clarification that any state law or provider policy that categorically prohibits a patient from recording their own clinical encounter for personal use is an unreasonable barrier and thus a form of information blocking. A patient cannot be expected to "access, exchange, and use" their electronic health information if they are blocked from capturing the most critical information of all: the real-time dialogue with their clinician that gives their data context. V. Conclusion To truly empower patients and caregivers, policy must evolve. We must move beyond mandating the mere existence of technology and focus on its functional reality. Data must be timely, complete, and accessible through modern, transparent, and automated methods. The recommendations I have outlined, born from direct and often painful personal experience, provide a path toward an ecosystem that will not only foster the innovation CMS desires but will also provide American families with the tools and rights they desperately need to advocate for their loved ones. 
+To: The Centers for Medicare & Medicaid Services (CMS) and the Assistant Secretary for
+Technology Policy (ASTP)
+From: Jim Younkin, Patient and Primary Caregiver
+Date: June 14, 2025
+RE: Request for Information; Health Technology Ecosystem (CMS-0042-NC)
+I. Introduction: A Dual Perspective
+I submit these comments not in my professional capacity as a health IT executive, but as a
+citizen, a son, and a primary caregiver. My insights are drawn from my direct, recent, and
+often painful experience navigating our healthcare system.
+In early 2025, my 88-year-old father entered the emergency room and never returned home.
+Over a period of less than two months, I was his advocate as he was moved from the ED, to
+inpatient hospital care, to a skilled nursing facility (SNF), back to the ED, back to a SNF, and
+so on—a cycle of repeated transfers that culminated in a move to a nursing home and
+finally hospice, where he passed in mid-March. This journey, combined with my current
+role as the primary caregiver for my 84-year-old mother with dementia, has given me a
+stark, ground-level view of the gaps between this RFI's goals and the reality for American
+families.
+My feedback is grounded in this lived experience, aimed at bridging the chasm between
+well-meaning policy and the fragmented reality for patients and caregivers.
+II. The Caregiver's Reality: A System of Data Gaps and Delays
+The core theme of my experience was that at every handoff in my father’s care, his health
+information broke down. This was not a niche technical problem; it was a fundamental
+barrier to his care and my ability to advocate for him.
+This directly addresses RFI questions PC-2, PC-3, and PC-8, which ask about the
+obstacles to accessing complete health information.
+• The "Care Continuum Churn": The constant churn from one facility to another
+meant his story was constantly being retold and his data was perpetually out of
+sync. Each transition was a data cliff, creating dangerous gaps in knowledge for me
+and for his next set of providers.
+• The Timeliness Gap: The most significant obstacle was the delay in data access.
+During my father's hospital stays, his lab and radiology results were often not
+available in the patient portal until the next day. During this two-month period of
+Page 1 | 5
+
+constant crisis, critical clinical decisions were being made daily. A 12-hour delay in
+receiving his results meant the data was always arriving nearly a day after it was
+most needed to inform my conversations with his doctors. My experience is
+validated by numerous studies, including a 2023 UT Southwestern review which
+found that 96% of patients prefer to receive their results immediately, even if
+their provider has not yet seen them. Data delayed is data denied.
+• The Transparency Gap: The situation in skilled nursing was worse. Labs were often
+conducted when I wasn't there, and I was not made aware they had even been
+ordered. I had to rely on paper printouts requested during my visits, completely
+defeating the purpose and promise of digital health records.
+III. Recommendations to Empower Patients and Caregivers
+My experience reveals that focusing on the mere existence of portals and APIs is not
+enough. Policy must focus on their functional reality.
+Recommendation 1: Mandate "Portal-API Data Parity" and Timeliness (Addresses PR-
+7, PC-2c, TD-9d)
+The single greatest frustration I faced was knowing my father's data existed in the system
+but being unable to access it when it mattered most. To fix this, CMS and ASTP must:
+• Establish a "Contemporaneous Access" Rule: I propose a new patient right: the
+right to access finalized clinical results at the same time as the ordering clinician.
+While some may argue for brief provider-mediated delays for highly sensitive results,
+ASTP’s own information blocking guidance makes it clear that such exceptions are
+narrow and that routine delays are "likely to be considered an interference" with
+patient access. To eliminate ambiguity, HHS should affirm that any system-level or
+policy-driven delay in releasing finalized clinical information to a patient or their
+authorized app is a form of information blocking.
+• Mandate "Portal-API Data Parity": My own development work on a patient-facing
+application confirmed that what is visible in a portal is not always available via the
+API. For example, while building an app to connect to my own records, I discovered
+that a vendor's public sandbox incorrectly blocked access to lab results
+(patient/Observation.read) and that radiology reports (ImagingStudy) were not
+supported for patient access at all, despite being visible in the portal. This must
+end. Any data a patient can see in a provider's patient portal must be made
+available via their certified FHIR API.
+Recommendation 2: Fix the "Front Door" to Interoperability (Addresses TD-1, TD-5)
+Page 2 | 5
+
+Before an application can help a patient, a developer must be able to build it. The current
+ecosystem makes this exceedingly difficult.
+• Fund a National Provider API Directory: The first barrier I faced was simply
+discovering how to connect to my provider's API. I had to rely on my specialized
+knowledge of projects like ASTP’s own Lantern project to find the correct endpoint. A
+typical caregiver has no chance. This is a known systemic failure; experts have
+noted "there is no nationwide directory of FHIR endpoints," and ASTP's Lantern
+project itself found existing vendor lists to be incomplete and inconsistent. CMS
+should fund and mandate a single, public, searchable "Provider API Directory" that
+is as easy to use as medicare.gov.
+• Mandate "Sandbox Fidelity" in the ONC Certification Program: The developer
+sandbox I used gave misleading errors that took weeks to resolve with vendor
+support. This "fidelity gap" between test and production environments is a tax on
+innovation and a known industry frustration, leading to "unexpected errors and
+delays" and "costly rework" when applications go live. The ONC Certification
+Program must be updated to require that a vendor's public sandbox and test
+patients accurately reflects the configurations and behaviors of its production
+systems.
+IV. A Vision for a Truly Empowered Future
+To achieve the goals of this RFI, we must think beyond the current "app" paradigm and
+design for the future of AI.
+Vision 1: The "Generative Application" - Real-Time, On-Demand Access (Addresses TD-
+9, PC-14)
+• The Concept: CMS and ASTP must "rethink the application." The future is not a finite
+set of pre-registered apps. The future is millions of patients and caregivers
+interacting with generative AI applications—agents that are created and
+configured dynamically, at the moment of need.
+• The Need: Imagine my 88-year-old father, who had Stage 3 Chronic Kidney Disease
+(CKD), is being discharged from the hospital. As his caregiver, I have an urgent need
+to see his latest lab results immediately to understand the state of his kidney
+function post-discharge. I need his discharge summary and labs available within my
+personal caregiver portal—not tomorrow, but now—so I can ask my AI assistant:
+'His creatinine level is now X. How does that compare to his baseline? What has
+changed in his medication list that could affect his kidneys? Are there new dietary
+Page 3 | 5
+
+restrictions I need to enforce immediately?'. The current system of manual, weeks-
+long application (app) registration makes this real-time, data-driven, and clinically
+critical caregiving impossible.
+• The Ask: Recommend that CMS and ASTP champion and mandate support for
+protocols like Dynamic Client Registration (IETF RFC 7591) and use Verifiable
+Credentials for secure, real-time authorization. These are not hypothetical
+concepts; they are the foundation of scalable trust frameworks already being
+advanced by health IT initiatives like the UDAP and FAST workgroups to solve this
+exact problem.
+Vision 2: The Patient's Fundamental Right to Capture Their Own Health Story
+(Addresses PC-1, PC-1b)
+My experience has convinced me that for patients to be truly empowered, they must have
+the right to use modern tools to help them understand the complex, high-stakes
+conversations that define their care.
+• The Use Case: I witnessed this firsthand in the ER with my father after a fall.
+Because of my background in health IT, I understood the complex trade-offs the
+doctor was explaining regarding a potential UTI, dehydration, and possibility of
+stroke. But I was struck by a chilling thought: what if I wasn't there? My mother, in
+an emotional state, would have had no chance of comprehending the decision
+she was being asked to participate in. Patients and caregivers, during moments of
+intense stress, need access to tools that help them make sense of the complex
+medical world.
+• The "AI Exam Room Coach": A patient should always have the right to use their own
+personal "AI Exam Room Coach." This tool would listen to the clinical conversation,
+access the patient's own FHIR-based health record in real-time, and act as their
+advocate. For my mother, it could have prompted her to ask a critical question, such
+as, 'What are the most important signs of a problem I should watch for when he gets
+back to the facility?'. The benefits of this are well-documented: studies show that up
+to 72% of patients listen to recordings of their visits, and that doing so
+significantly improves their recall and understanding of their own health conditions.
+Furthermore, HIPAA does not prohibit a patient from recording their own visit; the
+barriers are a patchwork of state laws and provider policies.
+• The Ask: Establish a Fundamental Patient Right: A patient's ability to capture and
+understand their own health information should be a fundamental right, not a
+conditional privilege. We ask that ASTP, leveraging its authority under the 21st
+Page 4 | 5
+
+Century Cures Act, issue a clarification that any state law or provider policy that
+categorically prohibits a patient from recording their own clinical encounter for
+personal use is an unreasonable barrier and thus a form of information blocking. A
+patient cannot be expected to "access, exchange, and use" their electronic health
+information if they are blocked from capturing the most critical information of all:
+the real-time dialogue with their clinician that gives their data context.
+V. Conclusion
+To truly empower patients and caregivers, policy must evolve. We must move beyond
+mandating the mere existence of technology and focus on its functional reality. Data must
+be timely, complete, and accessible through modern, transparent, and automated
+methods. The recommendations I have outlined, born from direct and often painful
+personal experience, provide a path toward an ecosystem that will not only foster the
+innovation CMS desires but will also provide American families with the tools and rights
+they desperately need to advocate for their loved ones.
+Page 5 | 5

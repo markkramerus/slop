@@ -20,10 +20,10 @@ st.title("🔀 Step 6 — Pre-process, Translate & Shuffle")
 st.caption(
     "**Step 0** — Pre-processes the real comments CSV by substituting attachment text "
     "where it is longer than the inline comment body.  "
-    "**Step 1** — Converts the ♔-delimited synthetic output to CMS CSV format.  "
+    "**Step 1** — Converts the ♔-delimited synthetic output to CMS PSV format.  "
     "**Step 2** — Randomly interleaves synthetic comments with the pre-processed real "
-    "comments and produces `combined.csv` (attachment URLs cleared) and a ground-truth "
-    "`combined_key.csv`."
+    "comments and produces `combined.psv` (attachment URLs and tracking numbers cleared) "
+    "and a ground-truth `combined_key.csv`."
 )
 st.divider()
 
@@ -96,7 +96,7 @@ with opt_cols[0]:
         value=False,
         help=(
             "--skip-translation.  Use if you have already run translation and "
-            "`synthetic_cms.csv` exists."
+            "`synthetic_cms.psv` exists."
         ),
     )
 
@@ -122,7 +122,7 @@ with st.expander("Advanced — Explicit path overrides"):
             placeholder=str(synthetic_txt),
         )
         translated_override = st.text_input(
-            "Translated CSV output path",
+            "Translated PSV output path",
             value="",
             placeholder=str(translated_path),
         )
@@ -188,6 +188,7 @@ if st.button("🔀 Run Shuffler", type="primary", disabled=run_disabled):
         if exit_code == 0:
             run_status.update(label="Shuffle complete ✅", state="complete")
             st.success("Shuffler finished successfully.")
+            st.rerun()  # Force page refresh so output metrics update
         else:
             run_status.update(label="Shuffle failed ❌", state="error")
             st.error(f"Shuffler exited with code {exit_code}.")
@@ -253,7 +254,7 @@ else:
 st.divider()
 st.subheader("Translation Only")
 st.caption(
-    "Run only the ♔-delimited → CMS CSV translation step, without shuffling.  "
+    "Run only the ♔-delimited → CMS PSV translation step, without shuffling.  "
     "Useful for inspection before committing to a shuffle."
 )
 

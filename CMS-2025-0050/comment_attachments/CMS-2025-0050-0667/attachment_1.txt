@@ -1,4 +1,141 @@
- Dr. Mehmet Oz Administrator Centers for Medicare and Medicaid Services Department of Health and Human Services Attention: CMS -0042 -NC P.O. Box 8016 Baltimore, MD 21244 -8016 Thomas Keane, MD, MBA Assistant Secretary for Technology Policy Office of the National Coordinator for Health Information Technology Department of Health and Human Services 330 C Street SW Washington, DC 20024 June 16, 2025 SUBMITTED VIA REGULATIONS.GOV Re: Encompass Health Comments on “Request for Information; Health Technology Ecosystem; 90 Fed. Reg. 21,034 (May 16, 2025) Dear Administrator Dr. Oz and Assistant Secretary Dr. Keane : We are pleased to present the Centers for Medicare and Medicaid Services (“CMS”) and the Assistant Secretary for Technology Policy (ASTP) with the following comments on the “Request for Information; Health Technology Ecosystem; 90 Fed. Reg. 21,034 (May 16, 2025) (herein referred to as the “RFI”) . Encompass Health is the nation’s leading provider of inpatient rehabilitation hospital care and services. As of April 30, 2025, we operate 167 freestanding rehabilitation hospitals (referred to as “IRFs” by CMS) in 38 states and Puerto Rico. In 2024, our hospitals had over 252,000 inpatient discharges, more than 82% of whom were Medicare beneficiaries. These comments focus on select RFI questions to which we have constructive feedback and omit questions to which we do not. 1. Digital Health Apps PR-2. What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated? We utilize Substitutable Medical Applications, Reusable Technologies (SMART) on Fast Healthcare Interoperability Resources (FHIR® ) applications that are integrated within our EHR, 
-providing access to patient information, such as care progression , and an enhanced user experience . One application provides discrete, “drillable” access to patient risk conditions . However, there are challenges for adopti on of these products. Quality reporting in particular mandates varying collection and submission requirements across different federal and state agencies. Within the IRF Quality Reporting Program (QRP) for Medicare , IRFs submit data to both CMS and the Centers for Disease Control and Prevention (CDC) through National Health Safety Network (NHSN). In previous years, we have encountered issues when new data elements are required to be reported through NHSN , but when the elements are first introduced, they cannot be completed through the automated reporting method (CDA Direct). This has occurred several times, and in some cases, the inability to report required information through automated/electronic methods would persist for years before being included in CDA Direc t. Until problems like these are comprehensively addressed within the government ’s reporting systems, and until providers trust that the process will not fail each time a new collection item is required , wide spread adoption of applications which allow for direct reporting of quality data will not occur . PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? It is crucial for all providers that data in an EHR system be accessible for exchange. Within EHR systems, there is a lack of standardized uniform language between various products , and the inevitable discrepancies can hinder data exchange across systems. Terminology may not always align, and different vendors for specialty services, such as labs, may use varying naming conventions for tests or require different information for orders and patient matching indicators. Patient preference , namely whether a patient consents to have their data available for exch ange, may also affect a provider’s degree of participation in data exchange . The cost of implementing systems also may mean some healthcare entities are unable to participate fully, leading to continued reliance on paper exchange to understand a patient's needs. 2. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization's systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: We use (SMART) on FHIR ® applications that are integrated within our EHR, providing access and an enhanced user experience. One application provides discrete, “drillable” access to patient risk conditions. However, we encounter challenges such as incomplete data exposure via the FHIR API, acquiring the necessary expertise to work with the framework, and ensuring accurate mappings during implementation . 
-Leveraging FHIR's modern standards and flexibility facilitates platform development and provides easier integration with the EMR. We remain optimistic that the growing community support for FHIR will ensure a robust interoperability platform that allows us and other healthcare providers to deliver functionality more efficiently. PR-6. Is TEFCA currently helping to advance provider access to health information? While we participate in many Health Information Exchanges ( HIEs ) supported by TEFCA, m any providers still resort to direct communication (phone calls, faxes, or individual portal logins) to obtain records, suggesting that HIE networks are not yet fully ready to meet providers’ needs for timely information at the point of care. PR-7. What strategies can CMS implement to support providers in making high -quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed t o support interoperability ? • Facilitate clear implementation guidelines and accurate , reliable mapping of IRF -PAI data elements to FHIR resources. • Promote the use of standardized terminologies such as ICD, Snomed, LOINC, MeSH, and UCUM • Advocate for development into clinical workflows to minimize disruption and facilitate real-time data capture. • Ensure contextual accuracy across care settings to distinguish and preserve the context of care delivery (e.g., IRF vs SNF vs acute care) PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers ? Data extraction and transmission for quality reporting are complicated by the fact that different EHR systems capture the required data elements in varying ways as previously mentioned above. There is a lack of standardized workflow and documentation practices across healthcare organizations, inconsistent interpretation of quality measures, and varied data ingestion formats required by different quality reporting agencies including the federal government and state public health departments . Below are several ways CMS could help simplify quality data reporting and data transmission. • An online quality measurement registration and validation tool that an organization could register with and : o Select their EMR vendor on record , 
-o Select a quality measure /metric and validate that the FHIR data for the selected measure/metric confirms a successful connection with partners as needed for online reporting. • Ready -made “App Store” of government -verified quality measure items that are FHIR - compatible for various EMR platforms and freely available on a mobile platform . This feature would provide the ability to download and securely connect to a provider’s EMR for quality measure collection. • Utilizing Standardized APIs: Encouraging the use of standardized APIs, such as those based on the FHIR® standard, can facilitate seamless electronic data sharing and improve interoperability. • Establishing a common language for all levels of care is essential, utilizing coding systems like ICD, Snomed, LOINC, MeSH, and UCUM. Without this common language, sharing data points becomes challenging; only document exchanges are possible. • Incentivize adoption of interoperable data systems for all providers. The cost associated with conversion, rebuilding, and interface setup may pose challenges for healthcare providers who did not receive funding under the HITECH Act . 3. Digital Identity PR-9. How might CMS encourage providers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins that need to be tracked for each provider relationship? Wider use of digital identity credentials for patients and providers could facilitate data access and information sharing across different healthcare settings . However, cost and concerns for vulnerable patients and patients with low technological fluency must be addressed. For example, vulnerable patient populations , or patients who are elderly, may lack access to, trust in, or familiarity with emerging digital technologies. Patient education and technological “buttressing” will be important in helping patients understand what a digital identity credential is , how to use it, and how to maintain its security and privacy. CMS/ONC/ASTP should consider certifying or formally endorsing specific third -party credential service providers (CSPs) that meet stringent security standards (for example, those meeting NIST Special Publication 800 -63-3 Identity Assurance Level 2 and Authenticator Assurance Level 2 guidelines) as a way to increase adoption . Clear government endorsement can help foster trust in these solutions among both providers and patients 
+Dr. Mehmet Oz
+Administrator
+Centers for Medicare and Medicaid Services Department of Health and Human
+Services Attention: CMS-0042-NC
+P.O. Box 8016
+Baltimore, MD 21244-8016
+Thomas Keane, MD, MBA
+Assistant Secretary for Technology Policy
+Office of the National Coordinator for Health Information Technology
+Department of Health and Human Services
+330 C Street SW
+Washington, DC 20024
+June 16, 2025
+SUBMITTED VIA REGULATIONS.GOV
+Re: Encompass Health Comments on “Request for Information; Health
+Technology Ecosystem; 90 Fed. Reg. 21,034 (May 16, 2025)
+Dear Administrator Dr. Oz and Assistant Secretary Dr. Keane:
+We are pleased to present the Centers for Medicare and Medicaid Services (“CMS”) and
+the Assistant Secretary for Technology Policy (ASTP) with the following comments on the
+“Request for Information; Health Technology Ecosystem; 90 Fed. Reg. 21,034 (May 16, 2025)
+(herein referred to as the “RFI”). Encompass Health is the nation’s leading provider of inpatient
+rehabilitation hospital care and services. As of April 30, 2025, we operate 167 freestanding
+rehabilitation hospitals (referred to as “IRFs” by CMS) in 38 states and Puerto Rico. In 2024, our
+hospitals had over 252,000 inpatient discharges, more than 82% of whom were Medicare
+beneficiaries. These comments focus on select RFI questions to which we have constructive
+feedback and omit questions to which we do not.
+1. Digital Health Apps
+PR-2. What are obstacles that prevent development, deployment, or effective utilization of
+the most useful and innovative applications for physician workflows, such as quality
+measurement reporting, clinical documentation, and billing tasks? How could these
+obstacles be mitigated?
+We utilize Substitutable Medical Applications, Reusable Technologies (SMART) on Fast
+Healthcare Interoperability Resources (FHIR®) applications that are integrated within our EHR,
+
+providing access to patient information, such as care progression, and an enhanced user
+experience. One application provides discrete, “drillable” access to patient risk conditions.
+However, there are challenges for adoption of these products. Quality reporting in particular
+mandates varying collection and submission requirements across different federal and state
+agencies. Within the IRF Quality Reporting Program (QRP) for Medicare, IRFs submit data to
+both CMS and the Centers for Disease Control and Prevention (CDC) through National Health
+Safety Network (NHSN). In previous years, we have encountered issues when new data elements
+are required to be reported through NHSN, but when the elements are first introduced, they
+cannot be completed through the automated reporting method (CDA Direct). This has occurred
+several times, and in some cases, the inability to report required information through
+automated/electronic methods would persist for years before being included in CDA Direct.
+Until problems like these are comprehensively addressed within the government’s reporting
+systems, and until providers trust that the process will not fail each time a new collection item is
+required, widespread adoption of applications which allow for direct reporting of quality data
+will not occur.
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural
+areas that all data in an EHR system be accessible for exchange, regardless of storage
+format (for example, scanned documents, faxed records, lab results, free text notes,
+structured data fields)?
+It is crucial for all providers that data in an EHR system be accessible for exchange. Within EHR
+systems, there is a lack of standardized uniform language between various products, and the
+inevitable discrepancies can hinder data exchange across systems. Terminology may not always
+align, and different vendors for specialty services, such as labs, may use varying naming
+conventions for tests or require different information for orders and patient matching indicators.
+Patient preference, namely whether a patient consents to have their data available for exchange,
+may also affect a provider’s degree of participation in data exchange. The cost of implementing
+systems also may mean some healthcare entities are unable to participate fully, leading to
+continued reliance on paper exchange to understand a patient's needs.
+2. Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize
+in your provider organization's systems, directly or through an intermediary? For each,
+describe the transaction model, use case, whether you use individual queries or bulk
+transactions, and any constraints:
+We use (SMART) on FHIR® applications that are integrated within our EHR, providing access
+and an enhanced user experience. One application provides discrete, “drillable” access to patient
+risk conditions. However, we encounter challenges such as incomplete data exposure via the
+FHIR API, acquiring the necessary expertise to work with the framework, and ensuring accurate
+mappings during implementation.
+
+Leveraging FHIR's modern standards and flexibility facilitates platform development and
+provides easier integration with the EMR. We remain optimistic that the growing community
+support for FHIR will ensure a robust interoperability platform that allows us and other
+healthcare providers to deliver functionality more efficiently.
+PR-6. Is TEFCA currently helping to advance provider access to health information?
+While we participate in many Health Information Exchanges (HIEs) supported by TEFCA, many
+providers still resort to direct communication (phone calls, faxes, or individual portal logins) to
+obtain records, suggesting that HIE networks are not yet fully ready to meet providers’ needs for
+timely information at the point of care.
+PR-7. What strategies can CMS implement to support providers in making high-quality,
+timely, and comprehensive healthcare data available for interoperability in the digital
+product ecosystem? How can the burden of increasing data availability and sharing be
+mitigated for providers? Are there ways that workflows or metrics that providers are
+already motivated to optimize for that could be reused for, or combined with, efforts
+needed to support interoperability?
+• Facilitate clear implementation guidelines and accurate, reliable mapping of IRF-PAI data
+elements to FHIR resources.
+• Promote the use of standardized terminologies such as ICD, Snomed, LOINC, MeSH,
+and UCUM
+• Advocate for development into clinical workflows to minimize disruption and facilitate
+real-time data capture.
+• Ensure contextual accuracy across care settings to distinguish and preserve the context of
+care delivery (e.g., IRF vs SNF vs acute care)
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers?
+Data extraction and transmission for quality reporting are complicated by the fact that different
+EHR systems capture the required data elements in varying ways as previously mentioned above.
+There is a lack of standardized workflow and documentation practices across healthcare
+organizations, inconsistent interpretation of quality measures, and varied data ingestion formats
+required by different quality reporting agencies including the federal government and state public
+health departments. Below are several ways CMS could help simplify quality data reporting and
+data transmission.
+• An online quality measurement registration and validation tool that an organization could
+register with and:
+o Select their EMR vendor on record,
+
+o Select a quality measure/metric and validate that the FHIR data for the selected
+measure/metric confirms a successful connection with partners as needed for
+online reporting.
+• Ready-made “App Store” of government-verified quality measure items that are FHIR-
+compatible for various EMR platforms and freely available on a mobile platform. This
+feature would provide the ability to download and securely connect to a provider’s EMR
+for quality measure collection.
+• Utilizing Standardized APIs: Encouraging the use of standardized APIs, such as those
+based on the FHIR® standard, can facilitate seamless electronic data sharing and improve
+interoperability.
+• Establishing a common language for all levels of care is essential, utilizing coding
+systems like ICD, Snomed, LOINC, MeSH, and UCUM. Without this common language,
+sharing data points becomes challenging; only document exchanges are possible.
+• Incentivize adoption of interoperable data systems for all providers. The cost associated
+with conversion, rebuilding, and interface setup may pose challenges for healthcare
+providers who did not receive funding under the HITECH Act.
+3. Digital Identity
+PR-9. How might CMS encourage providers to accept digital identity credentials (for
+example, CLEAR, ID.me, Login.gov) from patients and their partners instead of
+proprietary logins that need to be tracked for each provider relationship?
+Wider use of digital identity credentials for patients and providers could facilitate data access and
+information sharing across different healthcare settings. However, cost and concerns for
+vulnerable patients and patients with low technological fluency must be addressed. For example,
+vulnerable patient populations, or patients who are elderly, may lack access to, trust in, or
+familiarity with emerging digital technologies. Patient education and technological “buttressing”
+will be important in helping patients understand what a digital identity credential is, how to use
+it, and how to maintain its security and privacy.
+CMS/ONC/ASTP should consider certifying or formally endorsing specific third-party credential
+service providers (CSPs) that meet stringent security standards (for example, those meeting NIST
+Special Publication 800-63-3 Identity Assurance Level 2 and Authenticator Assurance Level 2
+guidelines) as a way to increase adoption. Clear government endorsement can help foster trust in
+these solutions among both providers and patients

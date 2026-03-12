@@ -1,10 +1,322 @@
-Response to CMS -2025- 0050- 0031: Request For Information: Health Technology Ecosystem Daniel Carnese dcarnese@ patientprecision.com Patient Precision, Inc. 6/16/2025 Introduction The 21st Century Cures Act (P .L. 114- 146) speciﬁe s that: The Secretary shall use existing authorities [...] with the goal of offering patients access to their electronic health information in a single, longitudinal format that is easy to understand, secure, and may be updated automatically. This response to the HHS Request for Information on the health technlogy ecosystem is focused on accelerating patient adoption of “ electronic health information in a single, longitudinal format ” as called for by the Act. In this note, we use the term “lifetime medical record” to refer to this concept . The content is organized into three sections : • Vision. The vision of how patients can access and control their lifetime medical record using an online service provider of their choice. • Detailed Scenarios . Decomposition of the vision into the key process ﬂows which together can implement the vision. • Gap Analysis . An analysis of the delta between the current health information technology ecosystem and one that would support the scenarios that implement the vision . My background relevant to this topic is 30+ years of working in the health informatics industry. Vision: Patient Ownership of a Lifetime Medical Record To summarize the vision: with a single request to an online service provider , any patient can have their lifetime medical record gathered from their previous healthcare providers, and 
-2 have that record kept up to date for all future healthcare received. Since access to a lifetime medical record is called for by the 21st Century Cures Act, organizations providing this service are referred to as Cures Act Repository (CAR) provider s. Any person can request that their lifetime medical record be aggregated by a CAR provider of their choice. Parents can designate a CAR provider for their children , as early as the time of birth. Adults can designate an initial CAR provider at any time or change their chosen CAR provider at any time. Each of the patient’s healthcare providers has access to all or part of the patient’s lifetime record , based on the patient ’s wishes for each provider. Once access has been granted to a healthcare provider , the data available from the patient’s CAR record is available to the healthcare provider’s clinicians , in a form that allows them to quickly identify the elements of the record relevant to the current patient encounter. Since the patient’s lifetime record is available in one place, online services that offer clinical guidance, help patients navigate care, or facilitate the participation of patients in clinical research can obtain data from the patient’s CAR record rather than having to query the patient or request access to healthcare organization’s data systems. The patient can also grant access to some or all of their CAR record to family or other personal caregivers to allow them to participate in the patient’s care. Detailed Scenarios of Lifetime Medical Record Usage Scenario: The Patient Decides to Obtain a Lifetime Medical Record As a starting point, it should be assumed that most people will not be familiar with the concept of a lifetime medical record and why a patient would want one . To respond to the ongoing need for basic information about lifetime health records , there is an ongoing educational campaign involving all elements of the healthcare ecosystem that drives patients to a speciﬁc website focused on lifetime medical records. This site has educational information for patients new to the concept of a lifetime medical record ( how they work, why a patient would want one, how to use them, etc.), as well as a directory of certiﬁed CAR providers (as described below). Since the website is purely an educational resource, with no responsibility for viewing or transmitting patient health data, it is developed and maintained by a unit of HHS in a manner similar to other patient -facing informational websites. 
-3 Scenario: An Organization Becomes a CAR Provider Organizations offering CAR services must attest that they comply with a rigorous set of data privacy and security best practices , and have regular audits to ensure compliance . The requirements go beyond the security and privacy standards mandated by HIPAA because, unlike entities involved in providing healthcare services, the sole purpose of a CAR provider is to provide secure access to patient data. The list of currently certiﬁed CAR service providers is maintained by ASTP/ONC. Failure to comply with security and privacy requirements is enforceable by Federal regulatory agenc ies – speciﬁcally, the Federal Trade Commission or the HHS Office of Civil Rights. Intentional violations are subject to Federal criminal prosecution. State , local , or private enforcement action s are also possible. This robust enforcement regime is justiﬁed by the extreme sensitivity of the data being protected. A speciﬁc requirement of all CAR providers is that each record is encrypted with a patient-speciﬁc key. This ensures that even if a CAR provider database is compromised, a single decryption effort will result in only a single record being compromised, ra ther than the entire database. CAR service providers are required to meet responsiveness and reliability standards in order to maintain their participation in the network. However , to maintain data integrity over the inevitable periods of unavailability, each CAR must provide access to an external reliable delivery mechanism which will : • Store information sent during periods of CAR service unavailability, then subsequently forward to the CAR provider when CAR services again become available. • Store requests for information made to the CAR provider , then subsequently forward the information the requestor when CA R services again beco me available. The reliability of this mechanism is included in CAR audits. Scenario: A CAR Provider Is Chosen by the Patient Patients can use the CAR provider directory on the HHS lifetime health record website to access the website s of speciﬁc CAR providers. Alternatively, the patient may be referred to a speciﬁc CAR service provider by their healthcare provider or some other entity (for example, an employer, a health insurance company, a patient advocacy organization, or a social services organization ). 
-4 If the patient is satisﬁed with the CAR provider’s offering, the patient can request that the CAR provider begin to aggregate the patient’s lifetime medical record. At this point, the patient makes the following decisions. • First, the patient chooses how the CAR provider will gather records of the patient’s previous healthcare. To do this, the patient can either : a) Specify the healthcare providers from which the CAR provider should request records , or b) Request that the CAR provider use a Patient Record Locator Service to identify the healthcare provider organizations which have previously provided healthcare to the patient. The Patient Record Locator Service uses the patient’s demographic information (name, phone, address history, etc.) and/or identity designation from a consumer service (such as CLEAR or ID.me ) to attempt to identify the healthcare providers that have previously provided care to the patient . After receiving an secure request for patient records from a CAR provider, the patient’s healthcare provider s repl y with all Electronic Health Information (EHI ) to which the patient is entitled , based on the information blocking regulations issued pursuant to the Cures Act. • Second , the patient speciﬁes the initial set of healthcare provide rs, private individuals , and/or digital healthcare applications which should have access to their CAR record. For each recipient, a ccess can be limited by the category of healthcare information (psychiatric , sexual, substance abuse, etc.) and by time period (for example, the last 5 years). When access to a patient’s CAR record is granted, the CAR provider notiﬁes the designated recipients about their access, and provides a secure mechanism through which the access can occur. For healthcare provider organization s, granting access is done via t he OAuth process now common in consumer applications. • Finally, the patient speciﬁes whether they wish to participate in a national database associating patients with their choice of CAR provider. The advantage of doing this is that for all future healthcare encounters with all future healthcare providers, the patie nt does not need to take any action to identify their CAR provider . This is especially important for the signiﬁcant number of less -advantaged patients with signiﬁcant health issues resulting in high health care expenditures, but limited capacity t o pro -actively deal with health system administrative processes. 
-5 Scenario: Data Is Request ed from a Patient’s CAR Record Organizations responsible for applications that request access to a patient’s CAR record must have attested that they comply with the same security and privacy standards that HIPAA requires for entities directly involved in healthcare delivery. Failure to comply with these standards is subject to civil enforcem ent actions, and willful failure is subject to criminal prosecution. Accredited healthcare provider organizations can request access to a patient’s CAR record by either presenting an OAuth identity token or presenting demographic information indicating a strong likelihood that the patient involved in an encounter is the same person who is the subject of the CAR record. In response to such requests for access, the CAR provider will notify the patient about the request. Except in emergency situations, the patient must respond positively for access to be granted. People or organizations granted access to the patient’s CAR record use a FHIR interface supporting at least the version of the USCDI standard required by current interoperability rules. A requirement for accessing a patient’s CAR record is identiﬁcation using the UDAP protocol, consistent with the FAST Security Implementation Guide developed by the HL7 FHIR At Scale Taskforce . For patient transparency and a cross check against abuse, both CAR service providers and healthcare providers maintain an audit trail of the entities to which a patient’s information has been sent and the nature of the information that was sent. To ensure effective access by the patient, the audit trails can be read and queried by a patient -accessible API Scenario: A Patient Receives Care from a Healthcare Provider When ever a patient has an encounter with a healthcare provider , one of two situations will obtain. • If the patient has granted the healthcare provider access to the patient’s CAR record , the healthcare provider’s EHR indicates to its clinician users that a patient CAR record exists and identiﬁes the data added since the CAR record was last reviewed. Similar to the current Certiﬁed EHR Technology requirement to provide a capability for clinicians to integrate data from externally provided C -CDA documents, the EHR makes it possible to integrate all or part of the patient’s CAR record into the patient record maintained by the healthcare provider. 
-6 • If the patient has not granted the healthcare provider access to the patient’s CAR record, the healthcare provider checks whether the patient is in the national CAR provider choice database referred to in the “ CAR Provider Is Chosen by the Patient ” scenario described above. o If the patient is present in the CAR provider choice database , the healthcare provider offers the patient the opportunity to opt out of having his CAR record accessed by the healthcare provider and/or having the records of the encounter added to the patient’s CAR record. Unless the patient speciﬁcally makes this choice, the healthcare provider will have access to the patient’s CAR record, and the encounter records to which the patient is entitled will be added to the patient’s CAR record . o If the patient is not present in the CAR provider choice database , the patient is offered the opportunity to specify the CAR provider from which the patient’s CAR record should be retrieved and/or to which the records of the encounter will be sent . This will trigger the patient notiﬁcation process described in the “ Data Is Requested from a Patient’s CAR Record ” scenario described above. The registration process also allows the patient to conﬁrm that all records created by the healthcare provider to which the patient is entitled should automatically be sent to the patient’s designated CAR provider. As a result of this single action by the patient, all current and future records generated by the healthcare provider will automatically be sent to the patient’s CAR provider, unless and until the patient notiﬁes the healthcare provider otherwise. If sharing all records is for any reason not desired by the patient, the patient can specify the speciﬁc elements of the record that should not be shared, or that no records at all should be shared. Finally, since simple aggregation of records from all of a patient’s past healthcare encounters would be impossibly burdensome for clinicians to review, a patient can employ a CAR Curation Service (CCS) offered by the CAR provider or another organization o f the patient’s choice. Once chosen by the patient, the CCS is responsible for an ongoing process of organizing, reconciling, and interpreting the data obtained from past healthcare encounters, to make it easier for clinicians to identify the elements of t he record relevant to the current patient encounter. For example, work by the HL7 EHR Reducing Clinician Burden project indicated that imposing a problem -oriented record organization integrat ing 
-7 patient data across multiple healthcare providers can potentially increase the usability to clinicians of the patient’s health record. Scenario: A CAR Receives Data For Which Provide r Notiﬁcation Has Been Requested If a healthcare provider is authorized to receive informati on from a patient ’s CAR record, the healthcare providers can register for notiﬁcation when speciﬁc information has been requested. For example, a patient ’s primary care provider can register to be notiﬁed if the patient is admitted to a hospital. To support the inevitable perio ds of unavailability, the same reliable delivery system referred to in the “Organization Becomes a CAR Provider ” scenario is u sed to ensure that notiﬁcations are reliably delivered to the requestor , even if the requestor is temporarily unavailable. Scenario: A Patient Wishes to Correct a Healthcare Provider Record It is not uncommon for a patient to ﬁnd data in their health record that is inconsistent with that they believe is the case. If a patient viewing their CAR record ﬁnds an item generated by a healthcare provider that they believe is incorrect, they can request that the CAR service provider communicate the disagreement to a well -known access point provided by the healthcare provider’s software . The healthcare provider ’s EHR will then ensure that whenever that element of the record is viewed, the patient’s disagreement is presented . It will also provide the viewer of the record the opportunity to incorporate the patient’s correction or provide further annotation. Scenario: A Patient Wishes to Participate in Clinical Research There are two basic ways in which a patient can participate in clinical research: • Participation in an interventional clinical trial (for example, for a new drug or medical procedure) . • Participation in an observational study (for example, a longitudinal study about the impact on health outcomes of speciﬁc lifestyle aspects like diet or exercise or a commonly -administered prescription drug) . Understandably, patient s generally do not wish to make their entire medical record available to a study without the patient having review ed the study and without knowing their medical condition is basically consistent with the recruitment criteria for the study. 
-8 Here is how the use of patient CAR records can overcome this barrier to clinical research recruitment. • For an interventional study, the patient can offer access to a designated subset of their data, using anonymization techniques to shield the patient’s identity (for example, by sharing age range rather than birthdate and obscuring locations). The patient offer s such access to speciﬁc clinical trial ﬁnder services trusted by the patient (for example, ResearchMatch or Thrivable ). Once access is offered, the services can use the patient- designated elements of the record to provide the ﬁrst level of screening for trial eligibility. The clinical trial team can then reach out to the patient to engage in a dialogue about the trial. If the patient decides to participate, the patient grants access to all aspects of their record needed to determine whether the patient actually satisﬁes the detailed inclusion and exclusion criteria for the trial. If all conditions are satisﬁed and the patient enrolls in the trial, the patient can designate the trial -generated information that should be included in the patient’s CAR record. • For an observational study , the same sequence of events described for recruitment in interventional studies applies. The difference is that after study enrollment, the patient grants access on an ongoing basis to the elements of their health data record used for the observational stu dy. The infrastructure used to carry out the study uses the standard FHIR APIs to access the authorized components of the patient’s CAR record. In either case, patient s can communicate data relevant to the study though a user interface provided by the CAR service based on the FHIR Questionnaire resource. Scenario: A Patient Changes Their CAR Preferences There are three basic ways in which a patient can change their CAR preferences. • Changing the patient’s CAR provider . A patient can change their CAR provider at any time. They can register with a different CAR provider, authenticate with the previous CAR provider, then request that their complete CAR record be transferred to the new CAR provider and deleted from the previous provider. If the patient has opted into the CAR provider choice database , their entry will also be updated by the new CAR provider. If a patient no longer wishes to maintain a CAR record at all, the patient can request that their CAR provider delete the record . 
-9 • Changing the information sent from the patient’s CAR provider to the patient’s healthcare providers . This is accomplished by updating the patient preferences used by the CAR provider . • Changing the information sent from the patient’s healthcare providers to the patient’s CAR provider . This is accomplished by updating the patient’s CAR provider preferences used by the healthcare provider. Gap Analysis These are the key capabilities required to transform the current health information technology ecosystem into one that delivers the vision. • Resources to drive patient awareness of the concept of a lifetime medical record and its value. These include both content (such as websites and educational materials) and an ongoing advertising campaign making patients aware of the available content and motivating patients to access them . • Increased number of healthcare providers that use standards -based health information technology. Penetration is excellent among healthcare systems, good but not perfect among physician practices, and poor among specialty providers (psychiatric practices, dental practices, ophthalmologic practices, specialized hospitals). • Adding UDAP support as a basic interoperability requirement for Certiﬁed Health IT. • Adding the following to the requirements for Certiﬁed EHR Technology: o The ability to query a CAR provider choice database . o The ability to support OAuth workﬂows for interacting with CAR providers. o The ability to support patient requests for sharing subsets of their health record. o The ability to incorporate selected elements of a patient -speciﬁed FHIR datasource (i.e., the patient CAR record) into the record maintained by the EHR. o The ability to accept and display patient disagreements with speciﬁc data items in the healthcare provider’s record. 1 • Universal availability of a provider FHIR endpoint directory. • An attestation process for healthcare applications accessing CAR data, and an attestation and audi ting process for CAR providers. • ASTP/ONC support for CAR provider certiﬁcation and ongoing SLA measurement. 1 Technical note: t his requires the FHIR standard to be enhanced to support a unique GUID associated with each record entry (for example, each occurrence of an observation or a diagnosis) . 
-10 • A business model for private -sector CAR providers, possibly combined with a funding model for non- proﬁt and/or public -sector CAR providers. • Availabilit y of patient locator services with substantial healthcare provider coverage (for example, as is being pursued by the PEHRLS initiative) and standards for the demographic matching used by these services. • A sponsor and manager of the CAR patient choice database . • Continuing, intense focus on identifying security vulnerabilities in all elements of the infrastructure, and continuing expansion of the security technology required (for example, use of zero -trust methodologies). • Enforcem ent resources to activ ely pursue non -compliance. 
+Response to CMS-2025-0050-0031:
+Request For Information: Health Technology Ecosystem
+Daniel Carnese
+dcarnese@patientprecision.com
+Patient Precision, Inc.
+6/16/2025
+Introduction
+The 21st Century Cures Act (P.L. 114-146) specifies that:
+The Secretary shall use existing authorities [...] with the goal of offering patients
+access to their electronic health information in a single, longitudinal format that is
+easy to understand, secure, and may be updated automatically.
+This response to the HHS Request for Information on the health technlogy ecosystem is
+focused on accelerating patient adoption of “electronic health information in a single,
+longitudinal format” as called for by the Act. In this note, we use the term “lifetime medical
+record” to refer to this concept.
+The content is organized into three sections:
+• Vision. The vision of how patients can access and control their lifetime medical
+record using an online service provider of their choice.
+• Detailed Scenarios. Decomposition of the vision into the key process flows which
+together can implement the vision.
+• Gap Analysis. An analysis of the delta between the current health information
+technology ecosystem and one that would support the scenarios that implement
+the vision.
+My background relevant to this topic is 30+ years of working in the health informatics
+industry.
+Vision: Patient Ownership of a Lifetime Medical Record
+To summarize the vision: with a single request to an online service provider, any patient can
+have their lifetime medical record gathered from their previous healthcare providers, and
+
+have that record kept up to date for all future healthcare received. Since access to a
+lifetime medical record is called for by the 21st Century Cures Act, organizations providing
+this service are referred to as Cures Act Repository (CAR) providers.
+Any person can request that their lifetime medical record be aggregated by a CAR provider
+of their choice. Parents can designate a CAR provider for their children, as early as the time
+of birth. Adults can designate an initial CAR provider at any time or change their chosen
+CAR provider at any time.
+Each of the patient’s healthcare providers has access to all or part of the patient’s lifetime
+record, based on the patient’s wishes for each provider. Once access has been granted to a
+healthcare provider, the data available from the patient’s CAR record is available to the
+healthcare provider’s clinicians, in a form that allows them to quickly identify the elements
+of the record relevant to the current patient encounter.
+Since the patient’s lifetime record is available in one place, online services that offer
+clinical guidance, help patients navigate care, or facilitate the participation of patients in
+clinical research can obtain data from the patient’s CAR record rather than having to query
+the patient or request access to healthcare organization’s data systems. The patient can
+also grant access to some or all of their CAR record to family or other personal caregivers to
+allow them to participate in the patient’s care.
+Detailed Scenarios of Lifetime Medical Record Usage
+Scenario: The Patient Decides to Obtain a Lifetime Medical Record
+As a starting point, it should be assumed that most people will not be familiar with the
+concept of a lifetime medical record and why a patient would want one.
+To respond to the ongoing need for basic information about lifetime health records, there is
+an ongoing educational campaign involving all elements of the healthcare ecosystem that
+drives patients to a specific website focused on lifetime medical records.
+This site has educational information for patients new to the concept of a lifetime medical
+record (how they work, why a patient would want one, how to use them, etc.), as well as a
+directory of certified CAR providers (as described below).
+Since the website is purely an educational resource, with no responsibility for viewing or
+transmitting patient health data, it is developed and maintained by a unit of HHS in a
+manner similar to other patient-facing informational websites.
+2
+
+Scenario: An Organization Becomes a CAR Provider
+Organizations offering CAR services must attest that they comply with a rigorous set of
+data privacy and security best practices, and have regular audits to ensure compliance.
+The requirements go beyond the security and privacy standards mandated by HIPAA
+because, unlike entities involved in providing healthcare services, the sole purpose of a
+CAR provider is to provide secure access to patient data. The list of currently certified CAR
+service providers is maintained by ASTP/ONC.
+Failure to comply with security and privacy requirements is enforceable by Federal
+regulatory agencies – specifically, the Federal Trade Commission or the HHS Office of Civil
+Rights. Intentional violations are subject to Federal criminal prosecution. State, local, or
+private enforcement actions are also possible. This robust enforcement regime is justified
+by the extreme sensitivity of the data being protected.
+A specific requirement of all CAR providers is that each record is encrypted with a patient-
+specific key. This ensures that even if a CAR provider database is compromised, a single
+decryption effort will result in only a single record being compromised, rather than the
+entire database.
+CAR service providers are required to meet responsiveness and reliability standards in
+order to maintain their participation in the network. However, to maintain data integrity over
+the inevitable periods of unavailability, each CAR must provide access to an external
+reliable delivery mechanism which will:
+• Store information sent during periods of CAR service unavailability, then
+subsequently forward to the CAR provider when CAR services again become
+available.
+• Store requests for information made to the CAR provider, then subsequently forward
+the information the requestor when CAR services again become available.
+The reliability of this mechanism is included in CAR audits.
+Scenario: A CAR Provider Is Chosen by the Patient
+Patients can use the CAR provider directory on the HHS lifetime health record website to
+access the websites of specific CAR providers. Alternatively, the patient may be referred to
+a specific CAR service provider by their healthcare provider or some other entity (for
+example, an employer, a health insurance company, a patient advocacy organization, or a
+social services organization).
+3
+
+If the patient is satisfied with the CAR provider’s offering, the patient can request that the
+CAR provider begin to aggregate the patient’s lifetime medical record. At this point, the
+patient makes the following decisions.
+• First, the patient chooses how the CAR provider will gather records of the patient’s
+previous healthcare. To do this, the patient can either:
+a) Specify the healthcare providers from which the CAR provider should request
+records, or
+b) Request that the CAR provider use a Patient Record Locator Service to identify
+the healthcare provider organizations which have previously provided healthcare
+to the patient. The Patient Record Locator Service uses the patient’s
+demographic information (name, phone, address history, etc.) and/or identity
+designation from a consumer service (such as CLEAR or ID.me) to attempt to
+identify the healthcare providers that have previously provided care to the
+patient.
+After receiving an secure request for patient records from a CAR provider, the patient’s
+healthcare providers reply with all Electronic Health Information (EHI) to which the
+patient is entitled, based on the information blocking regulations issued pursuant to the
+Cures Act.
+• Second, the patient specifies the initial set of healthcare providers, private individuals,
+and/or digital healthcare applications which should have access to their CAR record.
+For each recipient, access can be limited by the category of healthcare information
+(psychiatric, sexual, substance abuse, etc.) and by time period (for example, the last 5
+years).
+When access to a patient’s CAR record is granted, the CAR provider notifies the
+designated recipients about their access, and provides a secure mechanism through
+which the access can occur. For healthcare provider organizations, granting access is
+done via the OAuth process now common in consumer applications.
+• Finally, the patient specifies whether they wish to participate in a national database
+associating patients with their choice of CAR provider. The advantage of doing this is
+that for all future healthcare encounters with all future healthcare providers, the patient
+does not need to take any action to identify their CAR provider. This is especially
+important for the significant number of less-advantaged patients with significant health
+issues resulting in high health care expenditures, but limited capacity to pro-actively
+deal with health system administrative processes.
+4
+
+Scenario: Data Is Requested from a Patient’s CAR Record
+Organizations responsible for applications that request access to a patient’s CAR record
+must have attested that they comply with the same security and privacy standards that
+HIPAA requires for entities directly involved in healthcare delivery. Failure to comply with
+these standards is subject to civil enforcement actions, and willful failure is subject to
+criminal prosecution.
+Accredited healthcare provider organizations can request access to a patient’s CAR record
+by either presenting an OAuth identity token or presenting demographic information
+indicating a strong likelihood that the patient involved in an encounter is the same person
+who is the subject of the CAR record. In response to such requests for access, the CAR
+provider will notify the patient about the request. Except in emergency situations, the
+patient must respond positively for access to be granted.
+People or organizations granted access to the patient’s CAR record use a FHIR interface
+supporting at least the version of the USCDI standard required by current interoperability
+rules. A requirement for accessing a patient’s CAR record is identification using the UDAP
+protocol, consistent with the FAST Security Implementation Guide developed by the HL7
+FHIR At Scale Taskforce.
+For patient transparency and a cross check against abuse, both CAR service providers and
+healthcare providers maintain an audit trail of the entities to which a patient’s information
+has been sent and the nature of the information that was sent. To ensure effective access
+by the patient, the audit trails can be read and queried by a patient-accessible API
+Scenario: A Patient Receives Care from a Healthcare Provider
+Whenever a patient has an encounter with a healthcare provider, one of two situations will
+obtain.
+• If the patient has granted the healthcare provider access to the patient’s CAR
+record, the healthcare provider’s EHR indicates to its clinician users that a patient
+CAR record exists and identifies the data added since the CAR record was last
+reviewed.
+Similar to the current Certified EHR Technology requirement to provide a capability
+for clinicians to integrate data from externally provided C-CDA documents, the EHR
+makes it possible to integrate all or part of the patient’s CAR record into the patient
+record maintained by the healthcare provider.
+5
+
+• If the patient has not granted the healthcare provider access to the patient’s CAR
+record, the healthcare provider checks whether the patient is in the national CAR
+provider choice database referred to in the “CAR Provider Is Chosen by the Patient”
+scenario described above.
+If the patient is present in the CAR provider choice database, the healthcare
+o
+provider offers the patient the opportunity to opt out of having his CAR record
+accessed by the healthcare provider and/or having the records of the encounter
+added to the patient’s CAR record. Unless the patient specifically makes this
+choice, the healthcare provider will have access to the patient’s CAR record, and
+the encounter records to which the patient is entitled will be added to the
+patient’s CAR record.
+If the patient is not present in the CAR provider choice database, the patient is
+o
+offered the opportunity to specify the CAR provider from which the patient’s CAR
+record should be retrieved and/or to which the records of the encounter will be
+sent. This will trigger the patient notification process described in the “Data Is
+Requested from a Patient’s CAR Record” scenario described above.
+The registration process also allows the patient to confirm that all records created by the
+healthcare provider to which the patient is entitled should automatically be sent to the
+patient’s designated CAR provider. As a result of this single action by the patient, all current
+and future records generated by the healthcare provider will automatically be sent to the
+patient’s CAR provider, unless and until the patient notifies the healthcare provider
+otherwise.
+If sharing all records is for any reason not desired by the patient, the patient can specify the
+specific elements of the record that should not be shared, or that no records at all should
+be shared.
+Finally, since simple aggregation of records from all of a patient’s past healthcare
+encounters would be impossibly burdensome for clinicians to review, a patient can employ
+a CAR Curation Service (CCS) offered by the CAR provider or another organization of the
+patient’s choice. Once chosen by the patient, the CCS is responsible for an ongoing
+process of organizing, reconciling, and interpreting the data obtained from past healthcare
+encounters, to make it easier for clinicians to identify the elements of the record relevant to
+the current patient encounter. For example, work by the HL7 EHR Reducing Clinician
+Burden project indicated that imposing a problem-oriented record organization integrating
+6
+
+patient data across multiple healthcare providers can potentially increase the usability to
+clinicians of the patient’s health record.
+Scenario: A CAR Receives Data For Which Provider Notification Has
+Been Requested
+If a healthcare provider is authorized to receive information from a patient’s CAR record,
+the healthcare providers can register for notification when specific information has been
+requested. For example, a patient’s primary care provider can register to be notified if the
+patient is admitted to a hospital.
+To support the inevitable periods of unavailability, the same reliable delivery system
+referred to in the “Organization Becomes a CAR Provider” scenario is used to ensure that
+notifications are reliably delivered to the requestor, even if the requestor is temporarily
+unavailable.
+Scenario: A Patient Wishes to Correct a Healthcare Provider Record
+It is not uncommon for a patient to find data in their health record that is inconsistent with
+that they believe is the case. If a patient viewing their CAR record finds an item generated
+by a healthcare provider that they believe is incorrect, they can request that the CAR
+service provider communicate the disagreement to a well-known access point provided by
+the healthcare provider’s software.
+The healthcare provider’s EHR will then ensure that whenever that element of the record is
+viewed, the patient’s disagreement is presented. It will also provide the viewer of the record
+the opportunity to incorporate the patient’s correction or provide further annotation.
+Scenario: A Patient Wishes to Participate in Clinical Research
+There are two basic ways in which a patient can participate in clinical research:
+• Participation in an interventional clinical trial (for example, for a new drug or medical
+procedure).
+• Participation in an observational study (for example, a longitudinal study about the
+impact on health outcomes of specific lifestyle aspects like diet or exercise or a
+commonly-administered prescription drug).
+Understandably, patients generally do not wish to make their entire medical record
+available to a study without the patient having reviewed the study and without knowing
+their medical condition is basically consistent with the recruitment criteria for the study.
+7
+
+Here is how the use of patient CAR records can overcome this barrier to clinical research
+recruitment.
+• For an interventional study, the patient can offer access to a designated subset of their
+data, using anonymization techniques to shield the patient’s identity (for example, by
+sharing age range rather than birthdate and obscuring locations). The patient offers
+such access to specific clinical trial finder services trusted by the patient (for example,
+ResearchMatch or Thrivable).
+Once access is offered, the services can use the patient-designated elements of the
+record to provide the first level of screening for trial eligibility. The clinical trial team can
+then reach out to the patient to engage in a dialogue about the trial. If the patient
+decides to participate, the patient grants access to all aspects of their record needed to
+determine whether the patient actually satisfies the detailed inclusion and exclusion
+criteria for the trial. If all conditions are satisfied and the patient enrolls in the trial, the
+patient can designate the trial-generated information that should be included in the
+patient’s CAR record.
+• For an observational study, the same sequence of events described for recruitment in
+interventional studies applies. The difference is that after study enrollment, the patient
+grants access on an ongoing basis to the elements of their health data record used for
+the observational study. The infrastructure used to carry out the study uses the
+standard FHIR APIs to access the authorized components of the patient’s CAR record.
+In either case, patients can communicate data relevant to the study though a user interface
+provided by the CAR service based on the FHIR Questionnaire resource.
+Scenario: A Patient Changes Their CAR Preferences
+There are three basic ways in which a patient can change their CAR preferences.
+• Changing the patient’s CAR provider. A patient can change their CAR provider at any
+time. They can register with a different CAR provider, authenticate with the previous
+CAR provider, then request that their complete CAR record be transferred to the new
+CAR provider and deleted from the previous provider. If the patient has opted into the
+CAR provider choice database, their entry will also be updated by the new CAR provider.
+If a patient no longer wishes to maintain a CAR record at all, the patient can request
+that their CAR provider delete the record.
+8
+
+• Changing the information sent from the patient’s CAR provider to the patient’s
+healthcare providers. This is accomplished by updating the patient preferences used by
+the CAR provider.
+• Changing the information sent from the patient’s healthcare providers to the patient’s
+CAR provider. This is accomplished by updating the patient’s CAR provider preferences
+used by the healthcare provider.
+Gap Analysis
+These are the key capabilities required to transform the current health information
+technology ecosystem into one that delivers the vision.
+• Resources to drive patient awareness of the concept of a lifetime medical record
+and its value. These include both content (such as websites and educational
+materials) and an ongoing advertising campaign making patients aware of the
+available content and motivating patients to access them.
+• Increased number of healthcare providers that use standards-based health
+information technology. Penetration is excellent among healthcare systems, good
+but not perfect among physician practices, and poor among specialty providers
+(psychiatric practices, dental practices, ophthalmologic practices, specialized
+hospitals).
+• Adding UDAP support as a basic interoperability requirement for Certified Health IT.
+• Adding the following to the requirements for Certified EHR Technology:
+The ability to query a CAR provider choice database.
+o
+The ability to support OAuth workflows for interacting with CAR providers.
+o
+The ability to support patient requests for sharing subsets of their health
+o
+record.
+The ability to incorporate selected elements of a patient-specified FHIR
+o
+datasource (i.e., the patient CAR record) into the record maintained by the
+EHR.
+The ability to accept and display patient disagreements with specific data
+o
+items in the healthcare provider’s record.1
+• Universal availability of a provider FHIR endpoint directory.
+• An attestation process for healthcare applications accessing CAR data, and an
+attestation and auditing process for CAR providers.
+• ASTP/ONC support for CAR provider certification and ongoing SLA measurement.
+1 Technical note: this requires the FHIR standard to be enhanced to support a unique GUID associated with
+each record entry (for example, each occurrence of an observation or a diagnosis).
+9
+
+• A business model for private-sector CAR providers, possibly combined with a
+funding model for non-profit and/or public-sector CAR providers.
+• Availability of patient locator services with substantial healthcare provider coverage
+(for example, as is being pursued by the PEHRLS initiative) and standards for the
+demographic matching used by these services.
+• A sponsor and manager of the CAR patient choice database.
+• Continuing, intense focus on identifying security vulnerabilities in all elements of
+the infrastructure, and continuing expansion of the security technology required (for
+example, use of zero-trust methodologies).
+• Enforcement resources to actively pursue non-compliance.
+10

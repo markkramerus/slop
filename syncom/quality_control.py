@@ -224,6 +224,7 @@ class QCResult:
     relevant: bool
     on_message: bool
     unique: bool
+    in_word_bounds: bool = True
     nearest_similarity: float = 0.0
     notes: str = ""
 
@@ -307,7 +308,21 @@ class QualityController:
                         f"near_duplicate: nearest_similarity={nearest_sim:.4f}"
                     )
 
-        passed = relevant and on_message and unique
+        # 4. Word-count bounds (structural QC — Phase 6)
+        in_word_bounds = True
+        if comment.frame.directives is not None:
+            target = comment.frame.directives.target_word_count
+            actual = comment.word_count()
+            lo = max(int(target * 0.5), 20)
+            hi = int(target * 2.0)
+            if actual < lo or actual > hi:
+                in_word_bounds = False
+                notes.append(
+                    f"word_count_out_of_bounds: target={target}, actual={actual}, "
+                    f"range=[{lo},{hi}]"
+                )
+
+        passed = relevant and on_message and unique and in_word_bounds
 
         if passed and not self.skip_embedding_check and comment.embedding:
             self._accepted_embeddings.append(comment.embedding)
@@ -317,6 +332,7 @@ class QualityController:
             relevant=relevant,
             on_message=on_message,
             unique=unique,
+            in_word_bounds=in_word_bounds,
             nearest_similarity=nearest_sim,
             notes="; ".join(notes),
         )
@@ -375,7 +391,21 @@ class QualityController:
                         f"near_duplicate: nearest_similarity={nearest_sim:.4f}"
                     )
 
-        passed = relevant and on_message and unique
+        # 4. Word-count bounds (structural QC — Phase 6)
+        in_word_bounds = True
+        if comment.frame.directives is not None:
+            target = comment.frame.directives.target_word_count
+            actual = comment.word_count()
+            lo = max(int(target * 0.5), 20)
+            hi = int(target * 2.0)
+            if actual < lo or actual > hi:
+                in_word_bounds = False
+                notes.append(
+                    f"word_count_out_of_bounds: target={target}, actual={actual}, "
+                    f"range=[{lo},{hi}]"
+                )
+
+        passed = relevant and on_message and unique and in_word_bounds
 
         if passed and not self.skip_embedding_check and comment.embedding:
             self._accepted_embeddings.append(comment.embedding)
@@ -385,6 +415,7 @@ class QualityController:
             relevant=relevant,
             on_message=on_message,
             unique=unique,
+            in_word_bounds=in_word_bounds,
             nearest_similarity=nearest_sim,
             notes="; ".join(notes),
         )

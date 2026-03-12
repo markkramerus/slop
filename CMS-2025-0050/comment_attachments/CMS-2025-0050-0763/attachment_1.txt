@@ -1,5 +1,156 @@
-Monday, June 16, 2025 Centers for Medicare & Medicaid Services Department of Health and Human Services Attention: CMS -2025-0050-0031 P .O. Box 8013 Baltimore, MD 21244– 8013 Regarding CMS -2025-0050-0031, Request for Information (RFI) Health Technology Ecosystem To the Director of the Centers for Medicare & Medicaid Services (CMS): Systemic Harmonization and Interoperability Enhancement for Laboratory Data (SHIELD) Community is a public -private partnership of over 70 organizations representing in vitro diagnostics (IVD) and Healthcare Information tech nology vendors, standards development organizations , medical and other professional laboratory organizations and federal agencies with the mission to “Describe the SAME test the SAME way ANYWHERE in the Healthcare ecosystem” . The SHIELD Community is pleased to provide this response to the CMS/ASTP Request for Information: Health Technology Ecosystem. 3. Technical Standards and Certiﬁcation TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? SHIELD appreciates the role that USCDI plays in standardizing health data for interoperability in the laboratory space. However, the high level of the USCDI guidance leads to inconsistencies across the industry when individual health and laboratory entitie s need to determine individually how to ﬁll in the gaps. The lack of a coherent data model is still a barrier to with end -to-end laboratory interoperability and many of the SHIELD participants have noted that without a complete set of laboratory data, the y are unable to validate and therefore integrate the laboratory data that is currently ﬂowing into care processes and analytics, resulting in low-yield, low quality data exchanges. In addition, the HIT certiﬁcation program must support all partners of the targeted data exchange in order to promote interoperability (in the case of lab data many laboratories are not covered by HIT certiﬁcation requirements, which means the data producer’s system does not provide interoperable data the receiver cannot be compliant either). 
-a. Does it contain the full extent of data elements you need? SHIELD strongly encourages ASTP/ONC to consider expanding USCDI’s laboratory data class to more formally deﬁne a data model for the current collection of data elements, including more formal vocabulary bindings. This would add great value by improving laboratory data interoperability and could be an opportunity to onboard Laboratory Information Systems into FHIR data exchange with standardized source data. SHIELD would be excited to offer its industry, informatics and healthcare expertise to any effort to build out a shared laboratory data model with other laboratory interoperability stakeholders. Speciﬁcally: Unique Device Identiﬁer : 1. In principle SHIELD supports the creation of single construct across classes in USCDI because it is an opportunity to improve data across healthcare. 2. SHIELD suggests to focus on the device model part of the UDI, as that may be sufficient and easier to ingest into the documentation ﬂow to start. 3. In the laboratory domain it is essential to include the device identiﬁer - speciﬁcally, we previously had requested inclusion of USCDI Data Element Test Kit Unique Identiﬁer and USCDI Data Element Instrument Unique Identiﬁer ). These identiﬁers are critical for effective data reconciliation and deduplication, particularly in the context of clinical trials, patient charts for laboratory results from different institutions, and the creation of Real World Evidence (RWE). Without adequate details about the test(s) performed, EHR-systems may struggle to safely ingest and display data in chart views, which could advers ely affect patient outcomes. Given that laboratory data comprise 90% of clinical records and support 80% of diagnosis we strongly reiterate our requests for the inclusion of the USCDI Data Element Test Kit Unique Identiﬁer and the USCDI Data Element Instrument Unique Identiﬁer in USCDIv6. 4. In support of seamless UDI exchange, it is important to facilitate the deﬁnition and exchange of this data within/between In Vitro Diagnostic (IVD) devices and Laboratory Information Systems (LIS). It should also be noted that in most cases there are no i ncentives for the developers or users of these systems to adopt certiﬁed HIT. 5. HIT should support the addition of UDIs to laboratory results, the updating of UDIs (if entered in error), the association of one or more UDIs to a laboratory result, 
-exchange of the UDI with laboratory results, receipt of all UDIs associated to laboratory results and search for UDIs and/or laboratory results reﬂecting both. Laboratory Order : 1. SHIELD suggests ASTP/ONC clarify the scope of this data element as the current deﬁnition is not clear enough: a. Given that ASTP/ONC associates LOINC as the required vocabulary for Laboratory Orders, most likely the data element targeted here is “Ordered Test” which should cover both the code (drawn from LOINC and available as USCDI+ Public Health Lab Use Case Laboratory Test/Panel Code as well as the display name for that test in the Laboratory Compendium (CLIA requirement) compared to the CLIA deﬁnition of what the test request needs to include ( 42 CFR 493.1241 -- Standard: Test request. ). b. SHIELD supports the use of LOINC when an appropriate code is available for Laboratory Orders whenever they are being communicated externally and should cover all orders; the initial order, individual occurrences of a multi - occurrence order, individual test s from a larger panel ordered to a reference laboratory, reﬂex, etc. Performance Time (under Procedure) : 1. Since laboratory tests are not medical procedures performed on a patient, SHIELD suggests ASTP/ONC consider adding the following widely implemented (through HL7 v2 laboratory result messaging in support of CMS CLIA regulations) laboratory test related date/time stamps to V6: a. as equivalent to procedure performance time: test result date/time (Deﬁnition: when the analysis is performed on the specimen(s) creating the observation, or when the result is calculated on existing observations.) We would argue that this is a Level 2 element already because of its widespread capture and use in healthc are. b. to track and understand when results were available outside the laboratory as well as to understand any updates to laboratory results over time: reporting date/time (Deﬁnition: when the results are veriﬁed and released for reporting.; the requested laboratory reporting equivalent to PH / Case Reporting / Date of the Report ). We would argue that this is a Level 2 element already because of its widespread capture and use in healthcare. 
-c. clinically important for interpretation of results: Laboratory / Specimen collection date/time / Level 0: (Deﬁnition: Date/time when clinical specimen was collected from subject patient. This is the clinically relevant date time of an observation when a specimen is collected for a test.) We would argue that this is a Level 2 element already because of its widespread capture and use in healthcare. d. The proposed elements should not be considered Level 0 or 1; they must at least be elevated to Level 2 given their wide adoption and availability and the fact that they are required under CMS CLIA regulations. Result Unit of Measure : 1. SHIELD suggests use of UCUM for unit of measure unless the test has an element that is not captured through a standardized set of units (such as a clinical set of criteria speciﬁc to an individual laboratory test). b. If not, is it because of limitations in the deﬁnition of the USCDI format or the way it is utilized? SHIELD requests more detailed deﬁnitions of the USCDI elements, speciﬁcally a link to desired data model representation, applicable datatype(s) and where applicable a more constrained terminology binding, as the more undeﬁned elements leave too much room for interpretation, resulting in different implementations by vendors and standards developers (for example in different HL7 products), reducing the usefulness for interoperability. In the laboratory class, the best example is Values/Results , which is currently deﬁned as: “Documented ﬁndings of a tested specimen including structured and unstructured components.” with the Applicable Vocabulary Standard(s) identiﬁed as SNOMED Clinical Terms (SNOMED CT®) U.S. Edition, September 2024 Release. Values/Results can have different scales and depending on the scale use of other data elements called out separately in USCDI are needed, like Result Unit of Measure for quantitative results; use of SNOMED CT is only applicable to coded results, but depending on the scale, different hierarchies should be used (ordinal from the qualiﬁer hierarchy and nominal from the organism and potentially also the clinical ﬁnding hierarchy). Comments with suggested updates to the deﬁnition have been submitted previously on this data element. SHIELD acknowledges that maintaining data elements may require additional effort to keep them updated when models change, when more suitable data types become available, or when value set content needs to be revised. 
-SHIELD would welcome a better explanation about the relationship between USCDI and USCDI+ content, if the intent of USCDI+ is to further clarify data element deﬁnitions for speciﬁc use cases, then potentially the more detailed deﬁnitions could be applie d there to allow for a more granular titration of HIT certiﬁcation criteria. c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such challenges be addressed? As mentioned under TD7.a SHIELD believes that several core elements are still missing from the Laboratory data class and others are not linked from that class, making it potentially hard to ﬁnd for some implementers. Grouping of data elements into classes appropriate for speciﬁc use cases might alleviate scope challenges for HIT certiﬁcation by providing “HIT certiﬁcation swim lanes” for speciﬁc use cases, where certifying HIT could declare which use cases they support, avoiding scoping challenges. Thank you again for the opportunity to comment on CMS -0042-NC, Request for Information, Health Technology Ecosystem. Should you have any questions about SHIELD’s response, please contact Riki Merrick, SHIELD Community Steering Committee Chair at riki.merrick@aphl.org . Sincerely, Riki Merrick SHIELD Community Steering Committee Chair 
+Monday, June 16, 2025
+Centers for Medicare & Medicaid Services
+Department of Health and Human Services
+Attention: CMS-2025-0050-0031
+P.O. Box 8013
+Baltimore, MD 21244–8013
+Regarding CMS-2025-0050-0031, Request for Information (RFI) Health Technology
+Ecosystem
+To the Director of the Centers for Medicare & Medicaid Services (CMS):
+Systemic Harmonization and Interoperability Enhancement for Laboratory Data (SHIELD)
+Community is a public-private partnership of over 70 organizations representing in vitro
+diagnostics (IVD) and Healthcare Information technology vendors, standards development
+organizations, medical and other professional laboratory organizations and federal
+agencies with the mission to “Describe the SAME test the SAME way ANYWHERE in the
+Healthcare ecosystem”.
+The SHIELD Community is pleased to provide this response to the CMS/ASTP Request for
+Information: Health Technology Ecosystem.
+3. Technical Standards and Certification
+TD-7. To what degree has USCDI improved interoperability and exchange and what are
+its limitations?
+SHIELD appreciates the role that USCDI plays in standardizing health data for
+interoperability in the laboratory space. However, the high level of the USCDI guidance
+leads to inconsistencies across the industry when individual health and laboratory entities
+need to determine individually how to fill in the gaps. The lack of a coherent data model is
+still a barrier to with end-to-end laboratory interoperability and many of the SHIELD
+participants have noted that without a complete set of laboratory data, they are unable to
+validate and therefore integrate the laboratory data that is currently flowing into care
+processes and analytics, resulting in low-yield, low quality data exchanges. In addition, the
+HIT certification program must support all partners of the targeted data exchange in order
+to promote interoperability (in the case of lab data many laboratories are not covered by
+HIT certification requirements, which means the data producer’s system does not provide
+interoperable data the receiver cannot be compliant either).
+
+a. Does it contain the full extent of data elements you need?
+SHIELD strongly encourages ASTP/ONC to consider expanding USCDI’s laboratory data
+class to more formally define a data model for the current collection of data elements,
+including more formal vocabulary bindings. This would add great value by improving
+laboratory data interoperability and could be an opportunity to onboard Laboratory
+Information Systems into FHIR data exchange with standardized source data. SHIELD
+would be excited to offer its industry, informatics and healthcare expertise to any effort to
+build out a shared laboratory data model with other laboratory interoperability
+stakeholders.
+Specifically:
+Unique Device Identifier:
+1. In principle SHIELD supports the creation of single construct across classes in
+USCDI because it is an opportunity to improve data across healthcare.
+2. SHIELD suggests to focus on the device model part of the UDI, as that may be
+sufficient and easier to ingest into the documentation flow to start.
+3. In the laboratory domain it is essential to include the device identifier - specifically,
+we previously had requested inclusion of USCDI Data Element Test Kit Unique
+Identifier and USCDI Data Element Instrument Unique Identifier). These identifiers
+are critical for effective data reconciliation and deduplication, particularly in the
+context of clinical trials, patient charts for laboratory results from different
+institutions, and the creation of Real World Evidence (RWE). Without adequate
+details about the test(s) performed, EHR-systems may struggle to safely ingest and
+display data in chart views, which could adversely affect patient outcomes. Given
+that laboratory data comprise 90% of clinical records and support 80% of diagnosis
+we strongly reiterate our requests for the inclusion of the USCDI Data Element Test
+Kit Unique Identifier and the USCDI Data Element Instrument Unique Identifier in
+USCDIv6.
+4. In support of seamless UDI exchange, it is important to facilitate the definition and
+exchange of this data within/between In Vitro Diagnostic (IVD) devices and
+Laboratory Information Systems (LIS). It should also be noted that in most cases
+there are no incentives for the developers or users of these systems to adopt
+certified HIT.
+5. HIT should support the addition of UDIs to laboratory results, the updating of UDIs
+(if entered in error), the association of one or more UDIs to a laboratory result,
+
+exchange of the UDI with laboratory results, receipt of all UDIs associated to
+laboratory results and search for UDIs and/or laboratory results reflecting both.
+Laboratory Order:
+1. SHIELD suggests ASTP/ONC clarify the scope of this data element as the current
+definition is not clear enough:
+a. Given that ASTP/ONC associates LOINC as the required vocabulary for
+Laboratory Orders, most likely the data element targeted here is “Ordered
+Test” which should cover both the code (drawn from LOINC and available as
+USCDI+ Public Health Lab Use Case Laboratory Test/Panel Code as well as
+the display name for that test in the Laboratory Compendium (CLIA
+requirement) compared to the CLIA definition of what the test request needs
+to include (42 CFR 493.1241 -- Standard: Test request. ).
+b. SHIELD supports the use of LOINC when an appropriate code is available for
+Laboratory Orders whenever they are being communicated externally and
+should cover all orders; the initial order, individual occurrences of a multi-
+occurrence order, individual tests from a larger panel ordered to a reference
+laboratory, reflex, etc.
+Performance Time (under Procedure):
+1. Since laboratory tests are not medical procedures performed on a patient, SHIELD
+suggests ASTP/ONC consider adding the following widely implemented (through
+HL7 v2 laboratory result messaging in support of CMS CLIA regulations) laboratory
+test related date/time stamps to V6:
+a. as equivalent to procedure performance time: test result date/time
+(Definition: when the analysis is performed on the specimen(s) creating the
+observation, or when the result is calculated on existing observations.) We
+would argue that this is a Level 2 element already because of its widespread
+capture and use in healthcare.
+b. to track and understand when results were available outside the laboratory
+as well as to understand any updates to laboratory results over time:
+reporting date/time (Definition: when the results are verified and released
+for reporting.; the requested laboratory reporting equivalent to PH / Case
+Reporting / Date of the Report). We would argue that this is a Level 2 element
+already because of its widespread capture and use in healthcare.
+
+c. clinically important for interpretation of results: Laboratory / Specimen
+collection date/time / Level 0: (Definition: Date/time when clinical
+specimen was collected from subject patient. This is the clinically relevant
+date time of an observation when a specimen is collected for a test.) We
+would argue that this is a Level 2 element already because of its widespread
+capture and use in healthcare.
+d. The proposed elements should not be considered Level 0 or 1; they must at
+least be elevated to Level 2 given their wide adoption and availability and the
+fact that they are required under CMS CLIA regulations.
+Result Unit of Measure:
+1. SHIELD suggests use of UCUM for unit of measure unless the test has an element
+that is not captured through a standardized set of units (such as a clinical set of
+criteria specific to an individual laboratory test).
+b. If not, is it because of limitations in the definition of the USCDI format or the way it
+is utilized?
+SHIELD requests more detailed definitions of the USCDI elements, specifically a link to
+desired data model representation, applicable datatype(s) and where applicable a more
+constrained terminology binding, as the more undefined elements leave too much room for
+interpretation, resulting in different implementations by vendors and standards developers
+(for example in different HL7 products), reducing the usefulness for interoperability.
+In the laboratory class, the best example is Values/Results, which is currently defined as:
+“Documented findings of a tested specimen including structured and unstructured
+components.” with the Applicable Vocabulary Standard(s) identified as SNOMED Clinical
+Terms (SNOMED CT®) U.S. Edition, September 2024 Release.
+Values/Results can have different scales and depending on the scale use of other data
+elements called out separately in USCDI are needed, like Result Unit of Measure for
+quantitative results; use of SNOMED CT is only applicable to coded results, but depending
+on the scale, different hierarchies should be used (ordinal from the qualifier hierarchy and
+nominal from the organism and potentially also the clinical finding hierarchy). Comments
+with suggested updates to the definition have been submitted previously on this data
+element.
+SHIELD acknowledges that maintaining data elements may require additional effort to
+keep them updated when models change, when more suitable data types become
+available, or when value set content needs to be revised.
+
+SHIELD would welcome a better explanation about the relationship between USCDI and
+USCDI+ content, if the intent of USCDI+ is to further clarify data element definitions for
+specific use cases, then potentially the more detailed definitions could be applied there to
+allow for a more granular titration of HIT certification criteria.
+c. If so, would adding more data elements to USCDI add value or create scoping
+challenges? How could such challenges be addressed?
+As mentioned under TD7.a SHIELD believes that several core elements are still missing
+from the Laboratory data class and others are not linked from that class, making it
+potentially hard to find for some implementers. Grouping of data elements into classes
+appropriate for specific use cases might alleviate scope challenges for HIT certification by
+providing “HIT certification swim lanes” for specific use cases, where certifying HIT could
+declare which use cases they support, avoiding scoping challenges.
+Thank you again for the opportunity to comment on CMS-0042-NC, Request for
+Information, Health Technology Ecosystem.
+Should you have any questions about SHIELD’s response, please contact Riki Merrick,
+SHIELD Community Steering Committee Chair at riki.merrick@aphl.org.
+Sincerely,
+Riki Merrick
+SHIELD Community Steering Committee Chair

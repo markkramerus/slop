@@ -1,8 +1,346 @@
-INTRODUCTION BillHCO, LLC is a sole proprietorship, Healthcare IT consulting firm leveraging ~35 years of interoperability experience including connecting lab instruments to information systems, scaling up an EDI X12 clearinghouse during the HIPAA transition, implementing dozens of HIEs (in 6 continents), implementing statewide encounter alert services in ~10 states, as well as being the board chair of a national network for ~5 years (during its transition to be a TEFCA QHIN). This RFI response is built on a career of experiences and represents my personal opinions only! TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? Analysis For inter-Participant exchange (e.g. Provider-to-Payer, Provider-to-Public Health), there are advantages and disadvantages to using FHIR APIs compared with a CDA + AI approach that is already at-scale and time-to-value can be immediately realized (as it was during COVID). Here are some of the pros/cons of the different approaches: FHIR Pro’s: 1. Modern approach: FHIR is a more elegant and modern API-centric approach. 2. Regulations: FHIR is called-out in many regulations (CMS-9115 (Patient Access), CMS-0057 (ePA, Provider Access) as well as CEHRT (which is called out in CMS MU/PI/MIPS)) … so, FHIR must be deployed by specific dates!!! FHIR Con’s: 3. Adoption: has limited production adoption for “inter-Participant, B2B” (which is quite different than “intra-Participant” (sidecar apps used by health systems) or “B2C” (very low adoption, consumer-limited usage)) 4. FHIR Client Registration: requires either a “Networked FHIR” approach (like eHealth Exchange or Epic) or OAuth UDAP Dynamic Client Registration (not proven technically nor by CISO scrutiny (not to mention the long timeline for adding to EHR CEHRT & then market adoption)) 5. Chatty: FHIR is “chatty” and likely to be expensive to deploy due to the # of transactions traversing disparate systems (whereas “OnDemandCDA’s” do the heavy-lifting on the server-side (as does BulkFHIR, conceptually)). 6. Unproven IGs: still has unproven integration patterns (Facilitated point-to- point vs Brokered vs Networked FHIR) … the Carequality and TEFCA FHIR specs have not been implemented in production (and thus will still need refinement). 7.Bulk FHIR: is not scalable for many use cases at least two reasons: #1: there’s no support for posting a “group” (e.g. a Payer or ACO asserting a member roster), and #2: FHIR performance when querying a transaction server (not to mention the need to manage large rosters across many providers and many payers). CDA Pro’s:
-9. Production Use: National Networks transact billions of transactions per month which are in production and solving real-world issues for which users are “willing to pay” (the litmus test for product management: CDA’s go for $1-10 PMPY and this is much cheaper than manual chart pulls ($10-$50/patient)). 10. Time-to-Market: we know extending the Purposes of Use for Health Care Operations and Public Health could be quickly adopted (given COVID experiences where PoU=T was used in combination with a SAML header which included additional query initiator details to allow proper audit logging. 11. Legal Authenticator: CDA’s have “legal authenticator” which is critical for many data quality program audits (e.g. CMS RADV for Medicare Advantage). It is not clear how this would be implemented within FHIR given the flexibility querying for any type of combination of resources? 12. Sensitive Data: CDA implementations properly handle sensitive data (whereas the FHIR APIs are unfiltered, causing concerns about handling of sensitive data and the need for additional tooling (non-trivial, even if filtered by an Encounter ID)). This has not been built by EHRs nor is this part of CEHRT. 13. AI-Tools: in an “agentic AI’ world, the “kitchen-sink” CDA approach may be adequate and more effective than the discrete data queried using FHIR. 14. Proof-Points: CDA is good enough for many of the EHR vendor’s “Payer Platforms” (where additional administrative data and access to CDA discharge summaries are state of the art and are able to provide adequate data for Payers (in addition to Provider-to-Provider exchanges which are integrated into the end-user workflows given the CEHRT Clinical Information Reconciliation requirement). Recommendatio nAs was successfully done within days during COVID, make small policy and technology changes to enable the current IHE SOAP CDA national networks to be used for inter-Participant exchange. This, combined with the use of AI tools, can stimulate innovation and maximize the value of readily available (but “verbose”) CDA documents (both for unstructured and structured but not compliant CDAs). Conclusion FHIR is a great technical advancement that is well-suited today for specific use cases (like Patient Apps or Provider side-car apps within a health system’ EHR). However, immediate value could be realized (in months, not years) by leveraging the IHE SOAP / CDA approach across National Networks for cross- entity exchange (e.g. Provider-to-Payer and Public Health). TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? Analysis 1. Today, CEHRT requires EHR support for Public Health reporting. 2. CMS requires Public Health reporting as part of MU/PI/MIPS, etc. 3. Jurisdictions have various mandatory reporting requirements. 4. The combination of these regulations has led to a high level of adoption. 5. Infectious and chronic diseases have ongoing data needs. 6. The HL7 Helios FHIR accelerator has profiled FHIR “query & response.” 7. Policy-wise, queries could be constrained to cases already reported. 8. HHS has made historical commitments ( E Pluribus Unum blog) Recommendation •CMS encourage standards-based APIs (in a manner aligned with other parts of HHS) by requiring Providers to have proof of ongoing 
-production access to FHIR (g)(10) APIs by Public Health Agencies. This would support FHIR Query & Response for case follow-up after mandatory Public Health reporting. •Reinvigorate the Interoperability Standards Advisory (ISA) and build a process which collaborates with standards bodies and accelerators to assure a maturity life cycle (to avoid standards being added to regulations without any real-world proof-points). Conclusion Public Health queries for supplemental data can automate otherwise manual phone/fax processes for both Public Health workers and Provider organizations. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? Analysis Several directories already exist today: 1. National Networks (TEFCA, Carequality, eHealth Exchange, etc.) 2. State and regional HIEs maintain participant directories 3. Public health and state agencies have directories (e.g. licensed facilities) 4. Payers have directories which include their Provider networks 5. NPPES and PECOS have attributes which tie to NPI and/or TaxIDs 6. CAQH (Council for Affordable Quality Healthcare, a member-governed non-profit) offers a credentialling service which includes a directory, and they also have a service for coordination of benefits for most insured patients in the country. Governance of a directory must be in the context of its purpose for success. TEFCA (or Carequality or HIE’s or any National Network) have existing directories which are fed from its Participants and Sub-Participants which have (or could have) FHIR endpoints and other attributes (Organization Name, Facilities, physical address, Home-Community IDs, etc.). Requiring NPI (or PayerID or other IDs for other market segments) could solve the FHIR directory need. Recommendation Leverage the use of existing directories within existing governance structures and regulate mandatory participation and contributions to national directories (which in turn requires Participants and Sub- Participants to meet the directory quality requirements governed by the networks). Conclusion For a directory to be built and used successfully, it needs governance which is aligned with the purpose of the directory. In this case, for nationwide health information exchange, the directory could be built and governed in the context of TEFCA (and it could be sourced by its Participants and Sub-Participants). TD-14. Regarding networks’ use of FHIR APIs:
-TD-14. a. How many endpoints is your network connected to for patient data sharing? What types, categories, geographies of endpoints do you cover? Are they searchable by National Provider Identifier (NPI) or organizational ID? TD-14. b. How are these connections established (for example, FHIR (g)(10) endpoints, TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)? TD-14. c. Do you interconnect with other networks? Under what frameworks (for example, TEFCA, private agreements)? Analysis 1. FHIR has been successfully deployed in many areas: •B2C (consumer apps connected to individual health systems) •B2B (intra-organization side-car apps atop EHRs) •B2B (One:Many situations like CMS’s BCDA or DPC, which are feasible since CMS works directly with Provider orgs … this becomes much more challenging considering all Payers and all Providers) 2. FHIR has issues when considering B2B across Participants: •(g)(10) APIs are present but need FHIR clients to be registered for OAuth •TEFCA’s “FHIR Roadmap” envisions UDAP Dynamic Client Registration (or other manual methods). 3. As one example, eHealth Exchange has hundreds of Participants exchanging via IHE SOAP/CDA, but only a fraction participate in FHIR exchange (and at pilot scale with Payers, Public Health and Federal Agencies like the FDA). Today, the FHIR endpoint directory does not have NPI as an attribute. 4. Continuing the example, eHealth Exchange has found that a collection of services are necessary for inter-Participant FHIR (referred to as “Networked FHIR”): •FHIR proxies are registered in each Participant EHR (to set the OAuth scopes per each FHIR resource) •FHIR traffic is between each Participant and a hub (to fulfill the TEFCA “one on-ramp” concept). •FHIR transactions are either individual (synchronous) or grouped into “bundle profiles” (and asynchronously triggered by a FHIR task) •FHIR traffic can be monitored and audited Recommendation Revisit the current FHIR integration patterns used by CMS, specified (but not used) by TEFCA, and profiled by HL7 accelerators (e.g. Da Vinci, Helios, FAST, etc.). Build a harmonized set of integration patterns which allow incremental adoption (with common FHIR integration patterns across Payers, Public Health, Payers and Patients). In the context of the current TEFCA roadmap, a few suggestions: •Add support for an “end-to-end” FHIR approach (as opposed to the current IHE/FHIR hybrid). •Add support for a “Networked FHIR” variation of “Facilitated FHIR” or “Brokered FHIR”, where each QHIN establishes and maintains FHIR proxies for its own participants (and does QHIN-to-QHIN FHIR exchange, instead of peer-to-peer “Facilitated FHIR”).
-•Add “Task-Based Exchange” as an interim step to Bulk FHIR, where a bundle-profile can be defined to retrieve a set of resources for 1 patient (somewhat like Bulk FHIR for a Group of 1 – which also eliminates the need for a Group to be defined in the EHR). •Add details for what a QHIN can do to aid Bulk FHIR for situations where a “Group” can be easily added to an EHR. Conclusion FHIR is well-suited today for a subset of data exchanges. An incremental transition which includes “Networked FHIR” concepts, can help broaden the applicability of FHIR. CDA, combined with AI, could be rapidly scaled in the interim while FHIR adoption catches up. TD-15. Regarding bulk FHIR APIs: TD-15. a. How would increased use of bulk FHIR improve use cases and data flow? TD-15. b. What are the potential disadvantages of their use? Analysis 1. Bulk FHIR has proven use for specific use cases 2. However, as designed and certified, it has several issues: #1: CEHRT doesn’t require an API to write “Groups” into an EHR #2: For many Payer-to-Provider use cases, the “Groups” are very large membership rosters which can have many thousands or even millions of patients (creating a large “many-to-many” challenge if the large rosters were in many Providers EHRs) #3: Performance of even modest-sized “Groups” in Bulk FHIR can be problematic (with EHR vendors recommending a limit of ~5000 members in a Group) Recommendation •Continue to use Bulk FHIR as designed for 1:Many scenarios. •Add a requirement for an API to write Bulk FHIR “Groups.” •Look at FHIR Task Base Exchange (which behaves like Bulk FHIR but for a Group of 1, but it eliminates the need for a Group in the EHR if performed by an intermediary). •Leverage intermediaries (or HIEs) to host “Groups” (since they typically have member rosters and have processes to keep them current) Conclusion Bulk FHIR works well for very specific use cases today, and could be enhanced (and performance improved) to cover the known gaps. PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to address those limitations? To what degree do you expect these limitations to hinder participation in TEFCA? PA-2. How can CMS encourage payers to accelerate the implementation and utilization of APIs for patients, providers, and other payers, similar to the Blue Button 2.0 and Data at the Point of Care APIs released by CMS? Analysis TEFCA is at a turning point - will it grow or dwindle? Recommendation s•Require responses for purposes beyond Treatment. •Stick to HIPAA-aligned purposes of use (not granular). •Do not allow fees but instead focus on reciprocity.
-•Move CMS/ASTP-ONC’s role to regulate (not directly govern). •Cap the number of QHINs to ~3-5. •Don’t allow EHR Vendors to be QHINs. •Adjust governance to include Payers and Public Health. •State-based consent registries (opt-in/out and access alerts). •CMS should continue its leadership by adopting CMS-0057 over TEFCA Conclusion TEFCA could expand beyond Carequality 2.0 with a few changes. CMS could drive adoption of CMS-0057 by showing its benefits. PC-11. c. Are there particular examples of high-performing HIE models that you believe should be propagated across markets? Analysis Civitas defines a Health Data Utility ( HDU) model which extends beyond core HIE services to include robust value-add services. Several state HIE’s have adopted the HDU model (CRISP, IHIE, Manifest Medex, New York’s SHIN-NY, to name a few). Recommendation •The HDU model, which extends beyond core HIE services (such as population analytics), should be adopted as the preferred model, but only if there is strong commitment of financial support and participation from either state agencies or the state healthcare market. •Otherwise, focus only on a HIE model that offers core services. •In either case, HIEs or HDUs should leverage TEFCA and/or National Networks for commodity transactional services (w/ local value-adds). Conclusion In markets where there is commitment of participation and financial support, the HDU model can provide robust population health services at the lowest cost. PC-11. d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? Analysis TEFCA can provide “commodity” exchange services, but it does not address some of the critical components which make health information exchange work. Recommendation Define a set of “Core HIE” services and push to fulfill the vision of a network-of-networks model: •Governance and local regulatory awareness (including adoption) •Market needs and priorities: build and maintain a use case roadmap •Patient Index (with extra MPI attributes to optimize patient matching) •Consent and Patient Preference registries (tied to the MPI) •Relationship registry: Patient-to-Provider-to-Payer (tied to the MPI) •Encounter Alerts (ED or Hospital admits and discharges) Conclusion It will take all entities (QHINs, HIEs, EHR vendors, etc.) to be providing their best and complementary services to make healthcare interoperability ubiquitous. PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions or conditions within the exceptions (45 CFR part 171, subparts B 
-through D) to further the access, exchange, and use of electronic health information (EHI) and to promote market competition? Analysis Information blocking is a very complex set of regulations and rules (with neither the market reporting blockers nor regulators doing enforcement). Recommendation TEFCA participation could be incentivized by offering an Information Blocking “safe-harbor.” There could be “trust & verify” model where true participation could be verified by monitoring transaction volumes and confirming reciprocity. Conclusion Providing an incentive for uniform and reciprocal TEFCA participation can promote market competition (and reduce the legal risks of info-blocking). PR-14. How can CMS encourage providers to submit information blocking complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? Analysis Trust is likely to degrade if Participants are forced to submit complaints. Recommendation Shift the emphasis from complaints to actually measuring and monitoring API access and data exchange reciprocity. This should be an expectation of TEFCA and all national networks. This is another reason brokering all transactions, including FHIR, is critical to TEFCA. Conclusion Successful networks monitor usage and proactively measure, monitor, investigate imbalances in data exchange reciprocity. PC-2. Do you have easy access to your own and all your loved ones’ health information in one location (for example, in a single patient portal or another software system)? PC-2. c. Were there particular data types, such as x-rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones’ complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? Analysis Worldwide, image exchange is commonly the first use case to be adopted since the data are electronic and images are costly. Recommendation Require participation in “Image exchanges” by all Providers and imaging centers (using policy mechanisms similar to the adoption of clinical data exchange for treatment). Conclusion Image exchange participation can improve care (access to relevant prior images), reduce costs (unnecessary duplicate images), and patient safety (reduced unnecessary radiological exposure). PC-8. c. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? Analysis Individual Access is critical but historically had had low rates of adoption. If a patient provides an informed consent and provides a written authorization, it should be required to support exchange for patient- authorized purposes. Recommendation •Support patient-authorized exchange by extending the model used for the SSA benefits determinations, Life Insurance benefits 
-determinations and more recently to support the NIH All of Us program. •Also include an access alert back to the patient who furnished the authorization. Conclusion Support for patient-authorized data exchange for various purposes (benefits determinations, research, etc.) can accelerate more clinical research. PR-9. b. How might CMS balance patient privacy with convenience and access to digital health products and services that may lead to significant improvements in health? Analysis Currently, access and exchange of patient data is a black box to consumers. Why is it normal and acceptable for a Provider to share data with many 3rd parties to deliver care? Would consumers swap Providers or Payers if they knew how they handled data (just like someone may swap doctors if they don’t use an EHR)? TEFCA also provides a new opportunity to check consent during the patient record location process (and if there is an opt-out, stop the queries). Recommendation •TEFCA should force checking state/regional consent registries. •Allow patients to choose to be alerted when data are accessed. •Allow patients to have the “right to be forgotten” (from Payers, Providers) •With Payer-to-Payer exchange in place, set expectations about auto- purging patient data within health plans. •Better define HIPAA minimum necessary (or define it as EHI). Conclusion Patient privacy can be better balanced by adopting best practices from other industries (banking) and other countries (EU countries). An “engaged” patient can also benefit patient matching and help to improve patient care.
+INTRODUCTION
+BillHCO, LLC is a sole proprietorship, Healthcare IT consulting firm leveraging ~35 years of
+interoperability experience including connecting lab instruments to information systems, scaling up an
+EDI X12 clearinghouse during the HIPAA transition, implementing dozens of HIEs (in 6 continents),
+implementing statewide encounter alert services in ~10 states, as well as being the board chair of a
+national network for ~5 years (during its transition to be a TEFCA QHIN).
+This RFI response is built on a career of experiences and represents my personal opinions only!
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate
+developer interest in building digital health products for Medicare beneficiaries and
+caregivers?
+Analysis For inter-Participant exchange (e.g. Provider-to-Payer, Provider-to-Public
+Health), there are advantages and disadvantages to using FHIR APIs compared
+with a CDA + AI approach that is already at-scale and time-to-value can be
+immediately realized (as it was during COVID).
+Here are some of the pros/cons of the different approaches:
+FHIR Pro’s:
+1. Modern approach: FHIR is a more elegant and modern API-centric
+approach.
+2. Regulations: FHIR is called-out in many regulations (CMS-9115 (Patient
+Access), CMS-0057 (ePA, Provider Access) as well as CEHRT (which is called
+out in CMS MU/PI/MIPS)) … so, FHIR must be deployed by specific dates!!!
+FHIR Con’s:
+3. Adoption: has limited production adoption for “inter-Participant, B2B” (which
+is quite different than “intra-Participant” (sidecar apps used by health systems)
+or “B2C” (very low adoption, consumer-limited usage))
+4. FHIR Client Registration: requires either a “Networked FHIR” approach (like
+eHealth Exchange or Epic) or OAuth UDAP Dynamic Client Registration (not
+proven technically nor by CISO scrutiny (not to mention the long timeline for
+adding to EHR CEHRT & then market adoption))
+5. Chatty: FHIR is “chatty” and likely to be expensive to deploy due to the # of
+transactions traversing disparate systems (whereas “OnDemandCDA’s” do the
+heavy-lifting on the server-side (as does BulkFHIR, conceptually)).
+6. Unproven IGs: still has unproven integration patterns (Facilitated point-to-
+point vs Brokered vs Networked FHIR) … the Carequality and TEFCA FHIR
+specs have not been implemented in production (and thus will still need
+refinement).
+7.Bulk FHIR: is not scalable for many use cases at least two reasons: #1:
+there’s no support for posting a “group” (e.g. a Payer or ACO asserting a
+member roster), and #2: FHIR performance when querying a transaction server
+(not to mention the need to manage large rosters across many providers and
+many payers).
+CDA Pro’s:
+
+9. Production Use: National Networks transact billions of transactions per
+month which are in production and solving real-world issues for which users are
+“willing to pay” (the litmus test for product management: CDA’s go for $1-10
+PMPY and this is much cheaper than manual chart pulls ($10-$50/patient)).
+10. Time-to-Market: we know extending the Purposes of Use for Health Care
+Operations and Public Health could be quickly adopted (given COVID
+experiences where PoU=T was used in combination with a SAML header which
+included additional query initiator details to allow proper audit logging.
+11. Legal Authenticator: CDA’s have “legal authenticator” which is critical for
+many data quality program audits (e.g. CMS RADV for Medicare Advantage). It
+is not clear how this would be implemented within FHIR given the flexibility
+querying for any type of combination of resources?
+12. Sensitive Data: CDA implementations properly handle sensitive data
+(whereas the FHIR APIs are unfiltered, causing concerns about handling of
+sensitive data and the need for additional tooling (non-trivial, even if filtered by
+an Encounter ID)). This has not been built by EHRs nor is this part of CEHRT.
+13. AI-Tools: in an “agentic AI’ world, the “kitchen-sink” CDA approach may be
+adequate and more effective than the discrete data queried using FHIR.
+14. Proof-Points: CDA is good enough for many of the EHR vendor’s “Payer
+Platforms” (where additional administrative data and access to CDA discharge
+summaries are state of the art and are able to provide adequate data for Payers
+(in addition to Provider-to-Provider exchanges which are integrated into the
+end-user workflows given the CEHRT Clinical Information Reconciliation
+requirement).
+Recommendatio As was successfully done within days during COVID, make small policy and
+n technology changes to enable the current IHE SOAP CDA national networks to
+be used for inter-Participant exchange. This, combined with the use of AI tools,
+can stimulate innovation and maximize the value of readily available (but
+“verbose”) CDA documents (both for unstructured and structured but not
+compliant CDAs).
+Conclusion FHIR is a great technical advancement that is well-suited today for specific use
+cases (like Patient Apps or Provider side-car apps within a health system’
+EHR). However, immediate value could be realized (in months, not years) by
+leveraging the IHE SOAP / CDA approach across National Networks for cross-
+entity exchange (e.g. Provider-to-Payer and Public Health).
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+Analysis 1. Today, CEHRT requires EHR support for Public Health reporting.
+2. CMS requires Public Health reporting as part of MU/PI/MIPS, etc.
+3. Jurisdictions have various mandatory reporting requirements.
+4. The combination of these regulations has led to a high level of
+adoption.
+5. Infectious and chronic diseases have ongoing data needs.
+6. The HL7 Helios FHIR accelerator has profiled FHIR “query &
+response.”
+7. Policy-wise, queries could be constrained to cases already reported.
+8. HHS has made historical commitments (E Pluribus Unum blog)
+Recommendation • CMS encourage standards-based APIs (in a manner aligned with
+other parts of HHS) by requiring Providers to have proof of ongoing
+
+production access to FHIR (g)(10) APIs by Public Health Agencies.
+This would support FHIR Query & Response for case follow-up after
+mandatory Public Health reporting.
+• Reinvigorate the Interoperability Standards Advisory (ISA) and build a
+process which collaborates with standards bodies and accelerators to
+assure a maturity life cycle (to avoid standards being added to
+regulations without any real-world proof-points).
+Conclusion Public Health queries for supplemental data can automate otherwise
+manual phone/fax processes for both Public Health workers and Provider
+organizations.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to
+health information for patients, providers, and payers? Who should publish such a
+directory, and should users bear a cost?
+Analysis Several directories already exist today:
+1. National Networks (TEFCA, Carequality, eHealth Exchange, etc.)
+2. State and regional HIEs maintain participant directories
+3. Public health and state agencies have directories (e.g. licensed
+facilities)
+4. Payers have directories which include their Provider networks
+5. NPPES and PECOS have attributes which tie to NPI and/or TaxIDs
+6. CAQH (Council for Affordable Quality Healthcare, a member-governed
+non-profit) offers a credentialling service which includes a directory, and
+they also have a service for coordination of benefits for most insured
+patients in the country.
+Governance of a directory must be in the context of its purpose for
+success.
+TEFCA (or Carequality or HIE’s or any National Network) have existing
+directories which are fed from its Participants and Sub-Participants which
+have (or could have) FHIR endpoints and other attributes (Organization
+Name, Facilities, physical address, Home-Community IDs, etc.).
+Requiring NPI (or PayerID or other IDs for other market segments) could
+solve the FHIR directory need.
+Recommendation Leverage the use of existing directories within existing governance
+structures and regulate mandatory participation and contributions to
+national directories (which in turn requires Participants and Sub-
+Participants to meet the directory quality requirements governed by the
+networks).
+Conclusion For a directory to be built and used successfully, it needs governance
+which is aligned with the purpose of the directory. In this case, for
+nationwide health information exchange, the directory could be built and
+governed in the context of TEFCA (and it could be sourced by its
+Participants and Sub-Participants).
+TD-14. Regarding networks’ use of FHIR APIs:
+
+TD-14. a. How many endpoints is your network connected to for patient data sharing?
+What types, categories, geographies of endpoints do you cover? Are they searchable
+by National Provider Identifier (NPI) or organizational ID?
+TD-14. b. How are these connections established (for example, FHIR (g)(10) endpoints,
+TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)?
+TD-14. c. Do you interconnect with other networks? Under what frameworks (for
+example, TEFCA, private agreements)?
+Analysis 1. FHIR has been successfully deployed in many areas:
+• B2C (consumer apps connected to individual health systems)
+• B2B (intra-organization side-car apps atop EHRs)
+• B2B (One:Many situations like CMS’s BCDA or DPC, which are
+feasible since CMS works directly with Provider orgs … this becomes
+much more challenging considering all Payers and all Providers)
+2. FHIR has issues when considering B2B across Participants:
+• (g)(10) APIs are present but need FHIR clients to be registered for
+OAuth
+• TEFCA’s “FHIR Roadmap” envisions UDAP Dynamic Client
+Registration (or other manual methods).
+3. As one example, eHealth Exchange has hundreds of Participants
+exchanging via IHE SOAP/CDA, but only a fraction participate in FHIR
+exchange (and at pilot scale with Payers, Public Health and Federal
+Agencies like the FDA). Today, the FHIR endpoint directory does not
+have NPI as an attribute.
+4. Continuing the example, eHealth Exchange has found that a collection
+of services are necessary for inter-Participant FHIR (referred to as
+“Networked FHIR”):
+• FHIR proxies are registered in each Participant EHR (to set the OAuth
+scopes per each FHIR resource)
+• FHIR traffic is between each Participant and a hub (to fulfill the TEFCA
+“one on-ramp” concept).
+• FHIR transactions are either individual (synchronous) or grouped into
+“bundle profiles” (and asynchronously triggered by a FHIR task)
+• FHIR traffic can be monitored and audited
+Recommendation Revisit the current FHIR integration patterns used by CMS, specified (but
+not used) by TEFCA, and profiled by HL7 accelerators (e.g. Da Vinci,
+Helios, FAST, etc.). Build a harmonized set of integration patterns which
+allow incremental adoption (with common FHIR integration patterns
+across Payers, Public Health, Payers and Patients).
+In the context of the current TEFCA roadmap, a few suggestions:
+• Add support for an “end-to-end” FHIR approach (as opposed to the
+current IHE/FHIR hybrid).
+• Add support for a “Networked FHIR” variation of “Facilitated FHIR” or
+“Brokered FHIR”, where each QHIN establishes and maintains FHIR
+proxies for its own participants (and does QHIN-to-QHIN FHIR
+exchange, instead of peer-to-peer “Facilitated FHIR”).
+
+• Add “Task-Based Exchange” as an interim step to Bulk FHIR, where a
+bundle-profile can be defined to retrieve a set of resources for 1
+patient (somewhat like Bulk FHIR for a Group of 1 – which also
+eliminates the need for a Group to be defined in the EHR).
+• Add details for what a QHIN can do to aid Bulk FHIR for situations
+where a “Group” can be easily added to an EHR.
+Conclusion FHIR is well-suited today for a subset of data exchanges.
+An incremental transition which includes “Networked FHIR” concepts, can
+help broaden the applicability of FHIR.
+CDA, combined with AI, could be rapidly scaled in the interim while FHIR
+adoption catches up.
+TD-15. Regarding bulk FHIR APIs:
+TD-15. a. How would increased use of bulk FHIR improve use cases and data flow?
+TD-15. b. What are the potential disadvantages of their use?
+Analysis 1. Bulk FHIR has proven use for specific use cases
+2. However, as designed and certified, it has several issues:
+#1: CEHRT doesn’t require an API to write “Groups” into an EHR
+#2: For many Payer-to-Provider use cases, the “Groups” are very large
+membership rosters which can have many thousands or even millions of
+patients (creating a large “many-to-many” challenge if the large rosters
+were in many Providers EHRs)
+#3: Performance of even modest-sized “Groups” in Bulk FHIR can be
+problematic (with EHR vendors recommending a limit of ~5000 members
+in a Group)
+Recommendation • Continue to use Bulk FHIR as designed for 1:Many scenarios.
+• Add a requirement for an API to write Bulk FHIR “Groups.”
+• Look at FHIR Task Base Exchange (which behaves like Bulk FHIR but
+for a Group of 1, but it eliminates the need for a Group in the EHR if
+performed by an intermediary).
+• Leverage intermediaries (or HIEs) to host “Groups” (since they
+typically have member rosters and have processes to keep them
+current)
+Conclusion Bulk FHIR works well for very specific use cases today, and could be
+enhanced (and performance improved) to cover the known gaps.
+PA-1. What policy or technical limitations do you see in TEFCA? What changes would
+you suggest to address those limitations? To what degree do you expect these
+limitations to hinder participation in TEFCA?
+PA-2. How can CMS encourage payers to accelerate the implementation and utilization
+of APIs for patients, providers, and other payers, similar to the Blue Button 2.0 and Data
+at the Point of Care APIs released by CMS?
+Analysis TEFCA is at a turning point - will it grow or dwindle?
+Recommendation • Require responses for purposes beyond Treatment.
+s • Stick to HIPAA-aligned purposes of use (not granular).
+• Do not allow fees but instead focus on reciprocity.
+
+• Move CMS/ASTP-ONC’s role to regulate (not directly govern).
+• Cap the number of QHINs to ~3-5.
+• Don’t allow EHR Vendors to be QHINs.
+• Adjust governance to include Payers and Public Health.
+• State-based consent registries (opt-in/out and access alerts).
+• CMS should continue its leadership by adopting CMS-0057 over
+TEFCA
+Conclusion TEFCA could expand beyond Carequality 2.0 with a few changes.
+CMS could drive adoption of CMS-0057 by showing its benefits.
+PC-11. c. Are there particular examples of high-performing HIE models that you believe
+should be propagated across markets?
+Analysis Civitas defines a Health Data Utility (HDU) model which extends beyond
+core HIE services to include robust value-add services. Several state
+HIE’s have adopted the HDU model (CRISP, IHIE, Manifest Medex, New
+York’s SHIN-NY, to name a few).
+Recommendation • The HDU model, which extends beyond core HIE services (such as
+population analytics), should be adopted as the preferred model, but
+only if there is strong commitment of financial support and participation
+from either state agencies or the state healthcare market.
+• Otherwise, focus only on a HIE model that offers core services.
+• In either case, HIEs or HDUs should leverage TEFCA and/or National
+Networks for commodity transactional services (w/ local value-adds).
+Conclusion In markets where there is commitment of participation and financial
+support, the HDU model can provide robust population health services at
+the lowest cost.
+PC-11. d. What is the ongoing role of HIEs amidst other entities facilitating data
+exchange and broader frameworks for data exchange (for example, vendor health
+information networks, TEFCA, private exchange networks, etc.)?
+Analysis TEFCA can provide “commodity” exchange services, but it does not
+address some of the critical components which make health information
+exchange work.
+Recommendation Define a set of “Core HIE” services and push to fulfill the vision of a
+network-of-networks model:
+• Governance and local regulatory awareness (including adoption)
+• Market needs and priorities: build and maintain a use case roadmap
+• Patient Index (with extra MPI attributes to optimize patient matching)
+• Consent and Patient Preference registries (tied to the MPI)
+• Relationship registry: Patient-to-Provider-to-Payer (tied to the MPI)
+• Encounter Alerts (ED or Hospital admits and discharges)
+Conclusion It will take all entities (QHINs, HIEs, EHR vendors, etc.) to be providing
+their best and complementary services to make healthcare interoperability
+ubiquitous.
+PR-12. Should ASTP/ONC consider removing or revising any of the information
+blocking exceptions or conditions within the exceptions (45 CFR part 171, subparts B
+
+through D) to further the access, exchange, and use of electronic health information
+(EHI) and to promote market competition?
+Analysis Information blocking is a very complex set of regulations and rules (with
+neither the market reporting blockers nor regulators doing enforcement).
+Recommendation TEFCA participation could be incentivized by offering an Information
+Blocking “safe-harbor.” There could be “trust & verify” model where true
+participation could be verified by monitoring transaction volumes and
+confirming reciprocity.
+Conclusion Providing an incentive for uniform and reciprocal TEFCA participation can
+promote market competition (and reduce the legal risks of info-blocking).
+PR-14. How can CMS encourage providers to submit information blocking complaints
+to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would it
+advance or negatively impact data exchange?
+Analysis Trust is likely to degrade if Participants are forced to submit complaints.
+Recommendation Shift the emphasis from complaints to actually measuring and monitoring
+API access and data exchange reciprocity. This should be an expectation
+of TEFCA and all national networks. This is another reason brokering all
+transactions, including FHIR, is critical to TEFCA.
+Conclusion Successful networks monitor usage and proactively measure, monitor,
+investigate imbalances in data exchange reciprocity.
+PC-2. Do you have easy access to your own and all your loved ones’ health information
+in one location (for example, in a single patient portal or another software system)?
+PC-2. c. Were there particular data types, such as x-rays or specific test results, that
+were unavailable? What are the obstacles to accessing your own or your loved ones’
+complete health information electronically and using it for managing health conditions
+or finding the best care (for example, limitations in functionality, user friendliness, or
+access to basic technology infrastructure)?
+Analysis Worldwide, image exchange is commonly the first use case to be adopted
+since the data are electronic and images are costly.
+Recommendation Require participation in “Image exchanges” by all Providers and imaging
+centers (using policy mechanisms similar to the adoption of clinical data
+exchange for treatment).
+Conclusion Image exchange participation can improve care (access to relevant prior
+images), reduce costs (unnecessary duplicate images), and patient safety
+(reduced unnecessary radiological exposure).
+PC-8. c. What specific opportunities and challenges exist to improve accessibility,
+interoperability and integration of clinical data from different sources to enable more
+meaningful clinical research and generation of actionable evidence?
+Analysis Individual Access is critical but historically had had low rates of adoption.
+If a patient provides an informed consent and provides a written
+authorization, it should be required to support exchange for patient-
+authorized purposes.
+Recommendation • Support patient-authorized exchange by extending the model used for
+the SSA benefits determinations, Life Insurance benefits
+
+determinations and more recently to support the NIH All of Us
+program.
+• Also include an access alert back to the patient who furnished the
+authorization.
+Conclusion Support for patient-authorized data exchange for various purposes
+(benefits determinations, research, etc.) can accelerate more clinical
+research.
+PR-9. b. How might CMS balance patient privacy with convenience and access to digital
+health products and services that may lead to significant improvements in health?
+Analysis Currently, access and exchange of patient data is a black box to
+consumers. Why is it normal and acceptable for a Provider to share data
+with many 3rd parties to deliver care? Would consumers swap Providers
+or Payers if they knew how they handled data (just like someone may
+swap doctors if they don’t use an EHR)?
+TEFCA also provides a new opportunity to check consent during the
+patient record location process (and if there is an opt-out, stop the
+queries).
+Recommendation • TEFCA should force checking state/regional consent registries.
+• Allow patients to choose to be alerted when data are accessed.
+• Allow patients to have the “right to be forgotten” (from Payers,
+Providers)
+• With Payer-to-Payer exchange in place, set expectations about auto-
+purging patient data within health plans.
+• Better define HIPAA minimum necessary (or define it as EHI).
+Conclusion Patient privacy can be better balanced by adopting best practices from
+other industries (banking) and other countries (EU countries). An
+“engaged” patient can also benefit patient matching and help to improve
+patient care.

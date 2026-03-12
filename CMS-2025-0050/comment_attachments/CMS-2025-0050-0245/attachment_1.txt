@@ -1,3 +1,81 @@
-Response to: RFI - Health Technology Ecosystem (CMS-0042-NC) Page 1 of 3 Thank you for the opportunity to offer ideas related to your RFI for Health Technology Ecosystem . Docket® is a standards-based platform for public health that provides immunization records as a service to millions of American healthcare consumers. Please see our comments below. We are happy to discuss further if you like . PC-4. Features missing from apps you are aware of today… .......................................... 1 PC-8 Data readily available & valuable to patients… ..................................................... 1 PC-9. Additional CMS Data Sources ............................................................................ 2 PC-4. Features missing from apps you are aware of today… PC-4. b. What set of workﬂows is CMS is uniquely positioned to offer? Medi-gap CMS is in a unique position to help seniors with additional assistance in understanding the need and options for Medicare Supplement Policies (aka “Medi-gap”). The My Medicare web page is quite helpful today, but making the supplemental policy decision (do I need it?, what plan should I get?, what prices are reasonable?) is still intimidating for many seniors. We suggest augmenting the existing chat capability with an optional AI facilitated decision tree to help members understand the differences between Plans (F, G, K, etc.), informed by the member’s Medicare A/B/D claims history to further personalize the decision process. PC-8 Data readily available & valuable to patients… PC-8. a. What data is hard for patients & caregivers, or developers & vendors, to access… Access to Patient Imaging Records Today Medicare patients may have Patient Portal access to two or more hospitals and specialty groups - and can send records (e.g. messages, lab test results, history) from one hospital to the other using their Portal accounts. However, medical images (e.g. CAT / MRI / X-Ray scans) often cannot be sent via the Patient’s portal accounts. The patient must coordinate the shipping of these images (e.g. via DVD and express mail, fax, or other alternative), and this process can take days and be administratively problematic. This limitation is true even when both hospitals are using the same EMR vendor (Epic, Cerner, Meditech, et.al.) and same Picture Archiving and Communication System (PACS). 
-Response to: RFI - Health Technology Ecosystem (CMS-0042-NC) Page 2 of 3 An Infrequent but Important Need Situations where the patient needs to get images from one hospital health system to another, although not common, are almost by deﬁnition critical to patient care. For example, the patient may be seeking tertiary care outside of that offered by their primary hospital provider (complex cancer diagnosis/treatments radiation treatment, rare diseases), and/or the patient has moved residences. EMR-Image System Standards There are existing FHIR standards that facilitate the interoperability between FHIR and the PACS data exchange standard DICOM (Digital Imaging and Communications in Medicine). These artifacts include:  FHIR ImagingStudy Resource to describe details of the image.  DICOM to FHIR Resource Mapping Implementation Guide that deﬁnes how to extract and represent measurements from DICOM as FHIR resources (such as Observation). What Can CMS Do CMS should consider requiring FHIR-DICOM support in future rulemaking, and/or as part of an ASTP/ONC future “HTI” rule for certiﬁcation. Support for easier patient/caregiver access to medical images would support the Secretary’s focus on addressing chronic and high acuity conditions by eliminating some of the friction in processes for accessing tertiary/specialty care (particularly for Medicare patients). These images are rapidly becoming even more useful to providers as hospital health systems (particularly specialty systems) deploy more sophisticated Artiﬁcial Intelligence applications to identify and diagnose disease . PC-9. Additional CMS Data Sources PC-9. c. Is there non-CMS data that should be included in the API? Health Alert Information Considering the age & risk factors of the Medicare population, it'd be useful to use CDC alert data - in terms of particular risks of the member based on where they live and/or known condition.  Example – suppose the Medicare member has COPD, and if the CDC has information on a ﬂu breakout in user's location – enable the CMS API to issue a health alert to that user via the API, perhaps derived from the CDC Health Alert Network . 
-Response to: RFI - Health Technology Ecosystem (CMS-0042-NC) Page 3 of 3 Immunization Records Another “non-CMS” data source that CMS should consider for inclusion (directly or indirectly) is vaccination records from the CDC’s Immunization (IZ) Gateway . One of the Gateway’s use cases is support for immunization data exchanges across state jurisdictions. An API enabled with the Gateway could enable Medicare members to get efficient access to a more complete picture of their vaccination records – a need dramatically illustrated during the recent Public Health Emergency, where seniors were most vulnerable to respiratory illness. Full disclosure: Docket® is a third-party mobile app company that uses the IZ Gateway for consumer access to vaccination records. 
+Response to: RFI - Health Technology Ecosystem (CMS-0042-NC)
+Thank you for the opportunity to offer ideas related to your RFI for Health Technology
+Ecosystem. Docket® is a standards-based platform for public health that provides
+immunization records as a service to millions of American healthcare consumers.
+Please see our comments below. We are happy to discuss further if you like.
+PC-4. Features missing from apps you are aware of today… .......................................... 1
+PC-8 Data readily available & valuable to patients… ..................................................... 1
+PC-9. Additional CMS Data Sources ............................................................................ 2
+PC-4. Features missing from apps you are aware of today…
+PC-4. b. What set of workflows is CMS is uniquely positioned to offer?
+Medi-gap
+CMS is in a unique position to help seniors with additional assistance in understanding the
+need and options for Medicare Supplement Policies (aka “Medi-gap”). The My Medicare
+web page is quite helpful today, but making the supplemental policy decision (do I need it?,
+what plan should I get?, what prices are reasonable?) is still intimidating for many seniors.
+We suggest augmenting the existing chat capability with an optional AI facilitated decision
+tree to help members understand the differences between Plans (F, G, K, etc.), informed
+by the member’s Medicare A/B/D claims history to further personalize the decision
+process.
+PC-8 Data readily available & valuable to patients…
+PC-8. a. What data is hard for patients & caregivers, or developers & vendors,
+to access…
+Access to Patient Imaging Records
+Today Medicare patients may have Patient Portal access to two or more hospitals and
+specialty groups - and can send records (e.g. messages, lab test results, history) from one
+hospital to the other using their Portal accounts. However, medical images (e.g. CAT / MRI
+/ X-Ray scans) often cannot be sent via the Patient’s portal accounts. The patient must
+coordinate the shipping of these images (e.g. via DVD and express mail, fax, or other
+alternative), and this process can take days and be administratively problematic.
+This limitation is true even when both hospitals are using the same EMR vendor (Epic,
+Cerner, Meditech, et.al.) and same Picture Archiving and Communication System (PACS).
+Page 1 of 3
+
+Response to: RFI - Health Technology Ecosystem (CMS-0042-NC)
+An Infrequent but Important Need
+Situations where the patient needs to get images from one hospital health system to
+another, although not common, are almost by definition critical to patient care. For
+example, the patient may be seeking tertiary care outside of that offered by their primary
+hospital provider (complex cancer diagnosis/treatments radiation treatment, rare
+diseases), and/or the patient has moved residences.
+EMR-Image System Standards
+There are existing FHIR standards that facilitate the interoperability between FHIR and the
+PACS data exchange standard DICOM (Digital Imaging and Communications in Medicine).
+These artifacts include:
+ FHIR ImagingStudy Resource to describe details of the image.
+ DICOM to FHIR Resource Mapping Implementation Guide that defines how to
+extract and represent measurements from DICOM as FHIR resources (such as
+Observation).
+What Can CMS Do
+CMS should consider requiring FHIR-DICOM support in future rulemaking, and/or as part of
+an ASTP/ONC future “HTI” rule for certification.
+Support for easier patient/caregiver access to medical images would support the
+Secretary’s focus on addressing chronic and high acuity conditions by eliminating some of
+the friction in processes for accessing tertiary/specialty care (particularly for Medicare
+patients). These images are rapidly becoming even more useful to providers as hospital
+health systems (particularly specialty systems) deploy more sophisticated Artificial
+Intelligence applications to identify and diagnose disease.
+PC-9. Additional CMS Data Sources
+PC-9. c. Is there non-CMS data that should be included in the API?
+Health Alert Information
+Considering the age & risk factors of the Medicare population, it'd be useful to use CDC
+alert data - in terms of particular risks of the member based on where they live and/or
+known condition.
+ Example – suppose the Medicare member has COPD, and if the CDC has
+information on a flu breakout in user's location – enable the CMS API to issue a
+health alert to that user via the API, perhaps derived from the CDC Health Alert
+Network.
+Page 2 of 3
+
+Response to: RFI - Health Technology Ecosystem (CMS-0042-NC)
+Immunization Records
+Another “non-CMS” data source that CMS should consider for inclusion (directly or
+indirectly) is vaccination records from the CDC’s Immunization (IZ) Gateway. One of the
+Gateway’s use cases is support for immunization data exchanges across state
+jurisdictions. An API enabled with the Gateway could enable Medicare members to get
+efficient access to a more complete picture of their vaccination records – a need
+dramatically illustrated during the recent Public Health Emergency, where seniors were
+most vulnerable to respiratory illness.
+Full disclosure: Docket® is a third-party mobile app company that uses the IZ Gateway for
+consumer access to vaccination records.
+Page 3 of 3

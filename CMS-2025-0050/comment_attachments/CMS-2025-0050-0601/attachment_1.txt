@@ -1,25 +1,600 @@
- Response to Request for Inform ation: Health Technology Ecosystem Prepared for Centers for Medicare & Medicaid Services 
- Databricks, Inc. 160 Spear St., 13th Floor San Francisco, CA 94105 Re: Databricks, Inc.’s Response To Whom It May Concern: The information provided in this proposal by Databricks is for general informational purposes only. This document is strictly conﬁdential and may not be reproduced or disclosed to any third party unless as speciﬁcally authorized by Databricks. While we strive to ensure that the information is accurate and up-to-date, we make no guarantees about the completeness, reliability, or accuracy of this information. Any reliance you place on such information is strictly at your own risk. In no event will we be liable for any loss or damage, including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from the use of this proposal. Sincerely, Matt Moss and Travis Gibbons CMS Account Executives 2 
- Table of Contents Table of Contents .................................................................................................................................... 3 Cover Letter .............................................................................................................................................. 4 Section E. Technology Vendors, Data Providers, and Networks ............................................... 6 1. Ecosystem ..................................................................................................................................................................... 6 2. Digital Identity ............................................................................................................................................................ 9 3. Technical Standards and Certiﬁcation .................................................................................................... 10 4. Data Exchange ........................................................................................................................................................ 20 5. Compliance ............................................................................................................................................................... 24 3 
- Cover Letter June 16, 2025 To Whom It May Concern: On behalf of Databricks, we are pleased to submit our response to the Centers for Medicare & Medicaid Services (CMS) and the Ofﬁce of the National Coordinator for Health Information Technology (ONC) Request for Information regarding the Health Technology Ecosystem. We appreciate the opportunity to share our perspective and recommendations as a leader in uniﬁed analytics, data governance, and healthcare interoperability. At Databricks, our mission is democratizing data and AI, helping organizations of all sizes unlock the full value of their data to drive innovation, better outcomes, and greater efﬁciency. We believe that a uniﬁed data platform is key to breaking down silos, enabling seamless integration, and powering advanced analytics and AI at scale. Guided by this vision, Databricks introduced the Lakehouse architecture in 2020, a paradigm widely adopted by both organizations and competitors across the analytics landscape. A Lakehouse architecture combines the reliability, performance, and governance of data warehouses with the openness, ﬂexibility, and scalability of data lakes, enabling organizations to manage all types of data—structured, semi-structured, and unstructured—within a single platform. The Databricks Data Intelligence Platform, built on this Lakehouse foundation, enables real-time access, high-performance 4 
- analytics, and seamless integration with machine learning workﬂows. By allowing BI tools and AI models to operate directly on up-to-date, governed data, our platform streamlines everything from data preparation to model deployment—accelerating insights while maintaining strong governance and cost efﬁciency. We are proud to already support CMS in its mission to improve healthcare outcomes and operational efﬁciency by helping modernize its data infrastructure, streamline analytics, and enable secure, scalable data sharing across programs and partners. By leveraging our platform, CMS is better able to aggregate and analyze massive healthcare datasets, drive population health insights, and support regulatory compliance and transparency initiatives. Interoperability is at the core of our approach. We support open standards such as HL7 FHIR and bulk data APIs, and we enable secure, scalable data exchange through Delta Sharing, allowing healthcare organizations to share large datasets across platforms and partners without duplication or loss of ﬁdelity. Our robust governance capabilities, powered by Unity Catalog (UC), ensure that all data assets (data, AI/ML models, notebooks, etc) are managed, secured, and audited according to the highest standards of privacy, compliance, and trust. This uniﬁed governance framework supports not only regulatory requirements but also the broader goals of transparency and accountability in healthcare data sharing. We are committed to helping CMS and ONC realize a future where health information ﬂows securely and efﬁciently across the ecosystem, supporting better care coordination, patient engagement, and population health management. Our response outlines practical, scalable solutions to accelerate innovation, reduce administrative burden, and foster a more connected, patient-centered healthcare system. 5 
- Section E. Technology Vendors, Data Providers, and Networks 1. Ecosystem TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneﬁciaries and caregivers? Databricks believes CMS can accelerate digital health innovation by expanding API access, including Blue Button 2.0, enhancing developer resources and sandbox environments, and launching pilot programs for new digital tools. For long-term impact, CMS should invest in foundational infrastructure such as a national provider directory, modern identity veriﬁcation systems like Login.gov, digital insurance cards, and secure data exchange networks. Continuously updating API standards and enabling bulk data access will further drive ongoing advancements. Additionally, developers need robust data cataloging to easily discover and securely share not only data, but also business semantics and AI/ML models, ensuring a common understanding of business metrics and accelerating innovation across the healthcare ecosystem. As a uniﬁed analytics and AI platform, Databricks sees ﬁrsthand how adopting data standards like USCDI, HL7 FHIR APIs, and TEFCA streamlines health data exchange and reduces fragmentation. Databricks empowers organizations to unify structured and unstructured health data, leverage real-time analytics, and build interoperable solutions at scale. With Unity Catalog, organizations can centrally govern, discover, and manage data and AI assets across clouds and formats, while Delta Sharing enables secure, real-time, cross-platform data sharing with strong governance, 6 
- making it easier for healthcare innovators to deliver actionable insights that beneﬁt Medicare beneﬁciaries and the broader healthcare community. TD-2. Regarding CMS Data, to stimulate developer interest— a. What additional data would be most valuable if made available through CMS APIs? Developers would beneﬁt from expanded access to clinical EHR data, pharmacy and medication data, imaging, social determinants of health, and real-time eligibility or coverage information, in addition to claims data already available through Blue Button 2.0. Integrating and harmonizing these diverse data types within a uniﬁed platform and making them accessible through secure APIs would support advanced analytics, machine learning, and real-time insights for app developers and researchers. b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? In addition to the claims and coverage data from Blue Button 2.0, electronic health record (EHR) data and health information exchange (HIE) data are especially valuable, as they provide detailed clinical information such as lab results, diagnoses, and procedures. Integrating these sources creates a more comprehensive and actionable view of a patient’s health for providers and care teams. c. What obstacles prevent accessing these data sources today? Key obstacles include data silos, lack of interoperability standards, privacy and security concerns, regulatory complexity, inconsistent data quality, and challenges with digital identity veriﬁcation and consent management. These are challenges that Databricks has seen across industries and is uniquely positioned to help 7 
- address by enabling organizations through integrated data platforms, adopt health information exchange solutions, leverage standardized APIs, and establish strong data governance frameworks. A well architected Lakehouse architecture can break down data silos by centralizing all data into a uniﬁed Lakehouse platform, enabling teams across departments to access, share, and analyze the same data in real time. This uniﬁed approach eliminates fragmentation, streamlines governance, accelerates insights, and empowers collaborative analytics and AI initiatives across the organization d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? CMS should consider expanding FHIR-based APIs for provider directories, payer-to-payer data exchange, digital identity veriﬁcation, digital insurance cards, and bulk data APIs to support research, care coordination, and TEFCA participation. These API policies, outlined in recent CMS interoperability and prior authorization rules, are intended to improve access to interoperable patient data for patients, providers, and payers while reducing administrative burden. By adopting and continuously updating open API standards (such as HL7 FHIR, CARIN IG for Blue Button, Da Vinci PDex, and Plan-Net IG) CMS can foster a more connected healthcare ecosystem, enable seamless data exchange, and drive innovation in patient-facing applications and digital health workﬂows at scale. A uniﬁed data platform like Databricks can further support these efforts by leveraging its Lakehouse architecture and FHIR interoperability capabilities to ingest, process, and analyze payer claims data in compliance with the CARIN IG for Blue Button. This approach empowers organizations to efﬁciently manage and utilize healthcare data, supporting both regulatory compliance and advanced analytics. 8 
- 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and beneﬁts? Key challenges of digital identity implementation include fragmentation across networks, lack of interoperability, privacy concerns, regulatory complexity, and user adoption barriers. Databricks has seen healthcare organizations struggle to connect disparate systems and ensure consistent identity veriﬁcation across platforms, often resulting in gaps in data access and increased administrative burden. A uniﬁed data and intelligence platform like Databricks, when integrated with a Single Sign-On (SSO) authentication provider that supports modern protocols such as OpenID Connect (OIDC), helps address these challenges by providing a single, secure environment where identity data from multiple sources can be integrated, managed, and governed. OpenID Connect, as an industry-standard authentication protocol, enables interoperability between identity providers and applications, ensuring secure and seamless user authentication across systems. While Databricks is not an identity manager itself, its integration with leading SSO solutions,leveraging protocols like OpenID Connect. streamlines identity veriﬁcation processes, simpliﬁes compliance, and enables seamless, secure data sharing across the healthcare ecosystem. b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? Requiring digital identity credentials from trusted providers would greatly enhance cybersecurity and data exchange for CMS’s patient-centered data sharing efforts. These credentials provide strong identity veriﬁcation and multi-factor 9 
- authentication, reducing the risk of unauthorized access and ensuring that only veriﬁed individuals can access sensitive health information. For managing unique patient IDs, this approach offers robust privacy and encryption protections, helping to safeguard personal data throughout the exchange process. By implementing a standardized, high-assurance digital identity system, CMS can enable secure and trusted data sharing directly with patients, empowering beneﬁciaries to access and control their health information conﬁdently. This strengthens trust among patients, providers, and payers while supporting seamless interoperability. To maximize effectiveness, it is important to maintain strict data protection measures and ongoing security monitoring, given the sensitive nature of identity data. Overall, requiring digital identity credentials would signiﬁcantly improve both the security and efﬁciency of patient-centered health data exchange. c. What impact would mandatory use of the OpenID Connect identity protocol have? Mandatory adoption of OpenID Connect would standardize authentication, enable single sign-on across healthcare applications, improve interoperability, and enhance security by centralizing identity management and reducing password-related risks. This would simplify user experience and support regulatory compliance, but may require signiﬁcant integration efforts for legacy systems. Databricks supports open standards based authentication, such as OpenID Connect. 3. Technical Standards and Certiﬁcation TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? 10 
- CMS can promote open, standards-based APIs by mandating HL7 FHIR, requiring certiﬁed health IT developers to publish service URLs and organizational details, and ensuring comprehensive, publicly accessible API documentation. A Lakehouse architecture supports open standards APIs by providing comprehensive REST APIs, open ﬁle formats, and standardized interfaces for data access and integration, enabling seamless interoperability with external tools, BI platforms, and machine learning frameworks. This openness prevents vendor lock-in and ensures ﬂexible, governed access across diverse systems and workloads. Incentives for compliance, robust developer tools, and inclusion in the Health IT Certiﬁcation Program further drive adoption and consistency across the industry. By making open APIs a condition of certiﬁcation and maintenance, CMS lowers integration barriers, reduces vendor lock-in, and empowers patients, providers, and third-party developers with more consistent, portable, and interoperable access to health information. These policies, combined with transparent publication requirements and support for implementation guides like SMART on FHIR, help standardize data exchange, foster innovation, and ensure that healthcare data is accessible and usable without special effort across the ecosystem. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? A nationwide provider directory of FHIR endpoints would streamline access to health data, simplify care coordination, and enhance interoperability for patients, providers, and payers. Ideally, CMS or ONC should publish and maintain this directory as a public good, ensuring accuracy, security, and broad access without imposing costs on users to maximize adoption and equity. 11 
- Databricks can support the creation and maintenance of such a directory by enabling robust data ingestion from diverse healthcare sources, including EHRs, health information exchanges, and other clinical systems, and consolidating this information into a uniﬁed, governed environment. The platform ensures high data quality through automated validation, cleansing, and enrichment processes, and facilitates entity resolution to accurately identify and link provider records across disparate systems. Leveraging scalable cloud infrastructure and advanced analytics, Databricks supports real-time updates and seamless integration with healthcare applications, improving access to health information while supporting interoperability and compliance with healthcare standards. TD-6. What unique interoperability functions does TEFCA perform? TEFCA (Trusted Exchange Framework and Common Agreement) provides unique interoperability functions by establishing a nationwide, standardized framework for secure health information exchange through Qualiﬁed Health Information Networks (QHINs). Databricks empowers healthcare organizations to securely ingest, process, and analyze electronic health information from diverse sources, including QHINs, while maintaining TEFCA compliance and robust data governance through its Lakehouse architecture. Supporting major standards such as FHIR, HL7, X12, and CDA, and partnering with industry leaders like Redox, Komodo Health, and Health Catalyst, Databricks leverages open protocols like Delta Sharing and direct FHIR API support for secure, real-time, cross-platform data exchange. This uniﬁed approach eliminates silos, streamlines analytics and AI workloads, and ensures trusted, up-to-date access to health data—accelerating insights while maintaining strong governance, security, and cost efﬁciency. 12 
- b. Are there redundant standards, protocols or channels or both that should be consolidated? Databricks strongly encourages CMS to leverage open standard storage formats for storing data in CMS-managed storage accounts and to adopt open source-based enterprise data and analytics platforms. This approach will help reduce redundancy, simplify integration, and promote greater interoperability and innovation across the healthcare ecosystem. d. Given improvements in language models, would you prefer a non-proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? Given improvements in language models, Databricks supports the use of non-proprietary, less structured formats to improve data coverage, even if it requires more processing by the receiver. By leveraging the Medallion architecture (bronze, silver, gold data layers), CMS can share data and AI assets at multiple stages of reﬁnement, ranging from raw, unstructured data to highly curated datasets and models, through Delta Sharing. This ﬂexible approach allows the development community to access both foundational and reﬁned resources, supporting a broad spectrum of innovation while maintaining openness and interoperability. As a result, CMS can maximize data utility and foster collaboration, empowering developers to choose the level of structure that best ﬁts their needs. Databricks understands that processing and validating less structured data introduces additional technical and resource demands, requiring careful attention to data quality, privacy, and reliability. Databricks addresses these challenges by providing a uniﬁed analytics platform that seamlessly ingests, organizes, and analyzes both structured and unstructured healthcare data at scale. The Databricks 13 
- platform empowers healthcare organizations to harness the full potential of LLMs and AI, transforming raw clinical text into actionable insights while maintaining the highest standards of security and compliance. TD-8. What are the most effective certiﬁcation criteria and standards under the ONC Health IT Certiﬁcation Program? From a Databricks perspective, the most effective certiﬁcation criteria and standards under the ONC Health IT Certiﬁcation Program are those that prioritize interoperability, data security, and usability—such as standardized FHIR APIs, strong privacy protections, real-world testing, and measures to prevent information blocking. These requirements ensure certiﬁed health IT systems can reliably exchange core clinical data, support patient access, and remain adaptable to evolving standards while maintaining compliance and security. Databricks strongly recommends that open source and open standards be foundational to certiﬁcation. Leveraging open storage formats such as Delta Lake and Apache Iceberg enables organizations to store data in a way that is platform-agnostic, scalable, and avoids vendor lock-in. These formats provide ACID transactions, scalable metadata handling, and compatibility with a wide range of analytics engines, making them ideal for modern healthcare data environments. Additionally, open standards for data sharing—such as Delta Sharing—enable secure, real-time, cross-platform data exchange, further enhancing interoperability and transparency across the ecosystem. By adopting open source-based enterprise data and analytics platforms and embedding open standards into certiﬁcation, healthcare organizations can maximize the value of their certiﬁed systems, drive actionable insights, and 14 
- accelerate innovation while upholding the highest standards of data integrity and regulatory compliance. TD-9. Regarding certiﬁcation of health IT: a. What are the beneﬁts of redeﬁning certiﬁcation to prioritize API-enabled capabilities over software functionality? An API-enabled, decentralized approach offers signiﬁcant advantages over traditional monolithic software. By decoupling services, APIs enhance agility, scalability, and adaptability, making integration, maintenance, and upgrades easier while enabling reusable components and faster time-to-market. Decentralization empowers teams to innovate independently and reduces coordination overhead. Prioritizing API-enabled capabilities in certiﬁcation supports seamless, standardized data exchange across diverse health IT systems, making it easier for patients, providers, and payers to access and share health information. To ensure the reliability and usability of exchanged data, it is essential that certiﬁcation criteria also include the ability to determine and monitor data quality in real time. Real-time data quality assessment helps organizations quickly identify and address issues, maintaining trust and accuracy throughout the data lifecycle. APIs further facilitate integration with third-party apps, streamline workﬂows, automate administrative tasks, and foster innovation by allowing new tools to connect without custom development. This approach enhances patient engagement, care coordination, and interoperability, while supporting regulatory compliance and reducing vendor lock-in. c. How could ASTP/ONC revise health IT certiﬁcation criteria to require APIs to consistently support exchanging data from all aspects of the patient's chart (for example, faxed records, free text, discrete data)? 15 
- To further strengthen trust and usability, completeness and accuracy of the data, key aspects of data quality, should be explicitly addressed as part of certiﬁcation. Data serviced via APIs must be certiﬁed for quality before release, with mechanisms in place to assess and monitor data quality in real time. This ensures that patients, providers, and payers receive reliable, up-to-date information and can conﬁdently use data for care coordination, analytics, and reporting. By embedding real-time data quality checks and certiﬁcation into the process, the health IT ecosystem can better support interoperability, regulatory compliance, and improved patient outcomes. d. What policy changes could CMS make so providers are motivated to respond to API-based data requests with best possible coverage and quality of data? CMS could tie ﬁnancial incentives, quality measures, or participation in value-based programs to timely, complete, and accurate API-based data sharing. Public reporting of provider performance on data exchange, streamlined compliance processes, and technical assistance could further motivate providers. Clearer requirements and enforcement mechanisms would ensure that providers prioritize high-quality, comprehensive responses to API requests. To ensure a service-oriented API approach would be adopted with success, CMS could create a Center of Excellence (CoE) for this. A CoE would help govern APIs by deﬁning and enforcing standards, best practices, and security policies, providing centralized guidance and tooling, and ensuring consistency, quality, and compliance across all APIs. It would also facilitate collaboration, supports automation, and drives continuous improvement through feedback and performance measurement e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? What capabilities are needed to show beneﬁt? What concerns are there with this approach? 16 
- EHRs with bulk data transfer capabilities can automate the extraction and submission of large volumes of quality performance data, minimizing manual reporting and reducing administrative burden. To demonstrate value, EHRs must support standardized bulk data APIs (such as FHIR Bulk Data), ensure accurate and complete data mapping, and integrate with analytics tools for validation and feedback. Databricks addresses these needs by enabling secure, scalable data sharing through Delta Sharing, which allows organizations to seamlessly exchange large datasets across platforms and partners without data duplication. This approach helps maintain data quality, privacy, and security while simplifying the technical challenges of aggregating data from multiple sources and ensuring up-to-date, accurate information for quality measurement and reporting. TD-10. For EHR and other developers subject to the ONC Health IT Certiﬁcation Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certiﬁcation ( 42 U.S.C. 300jj-11(c)(5)(D)(iv) ) that requires a developer's APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable privacy laws? To further implement the 21st Century Cures Act's API condition of certiﬁcation and ensure APIs allow health information to be accessed, exchanged, and used without special effort, ASTP/ONC should encourage the adoption of robust tokenization tools that can mask personally identiﬁable information (PII) and protected health information (PHI) while still enabling data consumers to utilize the data effectively. 17 
- Tokenization replaces sensitive information with encrypted tokens, allowing datasets to be linked and analyzed without exposing underlying identities, thus supporting both privacy and usability. Additionally, Databricks highlights the importance of secure, scalable data sharing through open standards like Delta Sharing. Delta Sharing provides a secure and efﬁcient way to share data and AI models across platforms, clouds, and organizations, with centralized governance and auditing to ensure compliance and privacy. Databricks’ ability to integrate with third-party tokenization vendors, further strengthens the privacy and security of shared data, allowing developers and data consumers to conﬁdently access de-identiﬁed information for research, analytics, and patient-centered applications. By combining tokenization with secure, open-standard data sharing protocols, ONC can help ensure that all data elements of a patient's electronic health record are accessible to the extent permitted by law, while minimizing privacy risks and administrative burden. This approach supports the spirit of the Cures Act by empowering innovation and interoperability without compromising data protection. TD-11. As of January 1, 2024, many health IT developers with products certiﬁed through the ONC Health IT Certiﬁcation Program are required to include the capability to perform an electronic health information export or “EHI export” for a single patient as well as for patient populations ( 45 CFR 170.315(b)(10) ). Such health IT developers are also required to publicly describe the format of the EHI export. Notably, how EHI export was accomplished was left entirely to the health IT developer. Now that this capability has been in production for over a year, CMS and ASTP/ONC seek input on the following: a. Should this capability be revised to specify standardized API requirements for EHI export? 18 
- EHI export capability to require standardized APIs—such as FHIR for both single patient and population-level exports—would greatly enhance interoperability, consistency, and ease of data exchange across health IT systems. Currently, the lack of a mandated standard means formats and export methods vary by developer, leading to challenges in automating data ingestion, migration, and analytics. Standardized APIs would ensure that exported data is computable, structured, and readily usable by different platforms without custom processing. b. Are there speciﬁc workﬂow aspects that could be improved? Workﬂow improvements could include making EHI export more user-friendly and integrated into routine clinical and administrative tasks. For example, enabling automated, scheduled exports, providing clearer export status notiﬁcations, and allowing for granular export options (such as by date range or data type) would streamline processes for clinicians and administrators. Enhanced access controls and audit trails would also improve security and accountability. c. Should CMS consider policy changes to support this capability's use? CMS should consider policies that incentivize or require the use of standardized EHI export functionalities, such as tying compliance to participation in federal programs or quality reporting initiatives. Additional support could include technical assistance, clear guidance on best practices, and aligning reporting requirements with standardized export formats to reduce provider burden and accelerate adoption. These steps would encourage broader use and ensure that EHI export capabilities deliver meaningful value for patients, providers, and the healthcare system. 19 
- 4. Data Exchange TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? CMS should consider endorsing non-CMS data sources and networks if they meet rigorous criteria related to data quality, interoperability, privacy, security, and governance. Important factors include the scientiﬁc acceptability of the data, its reliability and validity, feasibility of use, and alignment with CMS’s goals for quality measurement and value-based care. Additionally, endorsed sources should demonstrate usability for public reporting, support for health equity, and compliance with regulatory requirements. CMS typically evaluates such data sources through transparent, consensus-based processes like those conducted by the CMS Consensus-Based Entity (CBE), ensuring that endorsed data contributes meaningfully to healthcare quality improvement and patient outcomes. TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? APIs that provide full access to a patient’s electronic health information (EHI) enable comprehensive records, improved care coordination, and advanced analytics for providers, payers, and patients. This interoperability drives the development of innovative digital health tools, enhances data portability, and supports value-based care, all while ensuring secure, scalable, and compliant data exchange through standards like FHIR. Together, these advancements create a more connected, efﬁcient, and patient-centered healthcare ecosystem. From a technology and platform perspective, aggregating and analyzing full EHI from diverse APIs in a secure, uniﬁed environment enables advanced analytics, AI-driven insights, and real-time patient engagement tools. A scalable platform that supports 20 
- integration of structured and unstructured data, compliance with evolving standards, and seamless interoperability empowers healthcare organizations to innovate rapidly and operationalize next-generation applications. By leveraging technology such as Databricks’ Delta Sharing capabilities, organizations can securely and efﬁciently share live EHI datasets across partners and platforms without duplication of data, further streamlining collaboration, supporting population health management, and delivering personalized care at scale. This approach ultimately transforms both patient outcomes and operational efﬁciency across the healthcare landscape. a. What are the primary obstacles to this? From the Databricks perspective, major obstacles to comprehensive API access for patient electronic health information include fragmented data silos, inconsistent standards, privacy and security concerns, data quality issues, and complex regulatory requirements around consent and data sharing. These challenges hinder seamless data aggregation and exchange, complicate compliance, and can impact the accuracy and usability of health information. Databricks addresses these barriers with the Databricks Lakehouse Platform, which uniﬁes structured and unstructured health data, supports standardized APIs like FHIR, and simpliﬁes integration across disparate systems for real-time analytics and advanced AI. The Databricks platform features robust data governance with Unity Catalog, ensuring secure access, auditing, and compliance with privacy regulations. Additionally, Delta Sharing enables secure, real-time data sharing across organizations and platforms without duplication, streamlining collaboration and data portability while maintaining high data quality and privacy standards. By leveraging these capabilities, healthcare organizations can overcome fragmentation, improve 21 
- interoperability, and maximize the value of their health data for better patient outcomes. TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data ﬂow? Increased use of bulk FHIR APIs would enhance healthcare data interoperability by enabling efﬁcient, standardized extraction and transfer of large datasets across systems. This approach supports population health management, clinical research, public health reporting, and advanced analytics by allowing organizations to analyze trends, conduct studies, and generate quality reports at scale. To further improve throughput and performance, organizations can share bulk FHIR data using the Delta Sharing open standard and run processing in the backend. This method provides much higher throughput and scalability than traditional REST API-based approaches, as Delta Sharing efﬁciently moves large volumes of data across platforms without duplication and supports real-time, secure data exchange. Databricks natively supports these workﬂows with scalable ingestion and processing of ﬁles, automated job orchestration, and powerful analytics on large volumes of FHIR data. Combined with Delta Sharing for secure, high-performance data sharing and Unity Catalog for robust data governance, Databricks streamlines the aggregation, analysis, and sharing of comprehensive patient data—supporting value-based care, regulatory compliance, and ongoing innovation in digital health tools. b. What are the potential disadvantages of their use? Despite its beneﬁts, bulk FHIR faces several challenges. Real-world implementations often suffer from inconsistent support across EHR vendors, performance limitations, 22 
- and data quality issues that can result in incomplete or failed exports. Pagination and throttling can complicate data extraction, while large-scale transfers increase risks related to data security and privacy. Additionally, variations in FHIR version support, resource availability, and ﬁltering capabilities across systems can hinder true interoperability and require custom solutions or workarounds. These factors mean that while bulk FHIR is a powerful tool, it currently requires careful planning, robust infrastructure, and ongoing collaboration among stakeholders to fully realize its potential. Databricks addresses these challenges by providing a scalable, secure platform for processing, validating, and sharing bulk FHIR data, enabling organizations to overcome interoperability barriers and maximize the value of their healthcare data. TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? CMS and ASTP/ONC play a critical role in ensuring the viability of healthcare data sharing networks by building foundational infrastructure, setting interoperability standards, and promoting both the supply of and demand for data exchange. To support network sustainability, they can invest in dynamic, interoperable national provider directories, modern identity veriﬁcation, and the expansion of open data sharing protocols like Delta Sharing. Delta Sharing enables secure, real-time data exchange across organizational boundaries without complex integrations, making it easier for healthcare organizations to collaborate, share insights, and maintain up-to-date provider information. By leveraging these modern approaches, the healthcare ecosystem can achieve greater interoperability, efﬁciency, and sustainability. Certiﬁcation programs such as ASTP/ONC certiﬁcation help streamline compliance across states, making it easier for organizations to participate in networks and meet 23 
- both federal and local requirements. Additionally, CMS can encourage participation by aligning incentives, providing technical assistance, and ensuring robust privacy and security protections. By fostering collaboration among stakeholders, investing in data standards like FHIR, and enhancing analytics and dashboard tools for network participants, CMS and ASTP/ONC can help create a balanced ecosystem with sufﬁcient supply and demand to drive meaningful usage and improved health outcomes. 5. Com pliance TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? From the Databricks perspective, information blocking often manifests as non-responsiveness or the delivery of unusable or failed data responses, undermining efforts to create a truly interoperable healthcare ecosystem. Databricks frequently sees organizations restrict or delay access to critical healthcare data by maintaining silos across EHRs, imaging systems, and other internal platforms, making it challenging to centralize or share information efﬁciently. Even when open protocols are used, attempts to access shared data can be thwarted by authorization failures, ﬁrewall restrictions, or inconsistent adherence to interoperability standards, resulting in denied or incomplete responses despite proper permissions. Inconsistent API implementations and proprietary data formats further contribute to unusable or delayed data, impeding timely data exchange and collaboration. These practices not only hinder the breaking down of data silos and 24 
- the streamlining of analytics, but also limit the potential for advanced use cases such as personalized patient care, population health management, and machine learning. Databricks addresses these barriers by providing a uniﬁed, standards-based platform that enables secure, reliable, and scalable data integration and sharing, helping organizations unlock the full value of their healthcare data. 25 
+Response to Request for Information: Health Technology
+Ecosystem
+Prepared for Centers for Medicare & Medicaid Services
+
+Databricks, Inc.
+160 Spear St., 13th Floor
+San Francisco, CA 94105
+Re: Databricks, Inc.’s Response
+To Whom It May Concern:
+The information provided in this proposal by Databricks is for general informational
+purposes only. This document is strictly confidential and may not be reproduced or
+disclosed to any third party unless as specifically authorized by Databricks. While
+we strive to ensure that the information is accurate and up-to-date, we make no
+guarantees about the completeness, reliability, or accuracy of this information. Any
+reliance you place on such information is strictly at your own risk. In no event will we
+be liable for any loss or damage, including without limitation, indirect or
+consequential loss or damage, or any loss or damage whatsoever arising from the
+use of this proposal.
+Sincerely,
+Matt Moss and Travis Gibbons
+CMS Account Executives
+2
+
+Table of Contents
+Table of Contents....................................................................................................................................3
+Cover Letter..............................................................................................................................................4
+Section E. Technology Vendors, Data Providers, and Networks...............................................6
+1. Ecosystem.....................................................................................................................................................................6
+2. Digital Identity............................................................................................................................................................9
+3. Technical Standards and Certification....................................................................................................10
+4. Data Exchange........................................................................................................................................................20
+5. Compliance...............................................................................................................................................................24
+3
+
+Cover Letter
+June 16, 2025
+To Whom It May Concern:
+On behalf of Databricks, we are pleased to submit our response to the Centers for
+Medicare & Medicaid Services (CMS) and the Office of the National Coordinator for
+Health Information Technology (ONC) Request for Information regarding the Health
+Technology Ecosystem. We appreciate the opportunity to share our perspective
+and recommendations as a leader in unified analytics, data governance, and
+healthcare interoperability.
+At Databricks, our mission is democratizing data and AI, helping organizations of all
+sizes unlock the full value of their data to drive innovation, better outcomes, and
+greater efficiency. We believe that a unified data platform is key to breaking down
+silos, enabling seamless integration, and powering advanced analytics and AI at
+scale. Guided by this vision, Databricks introduced the Lakehouse architecture in
+2020, a paradigm widely adopted by both organizations and competitors across the
+analytics landscape.
+A Lakehouse architecture combines the reliability, performance, and governance of
+data warehouses with the openness, flexibility, and scalability of data lakes, enabling
+organizations to manage all types of data—structured, semi-structured, and
+unstructured—within a single platform. The Databricks Data Intelligence Platform,
+built on this Lakehouse foundation, enables real-time access, high-performance
+4
+
+analytics, and seamless integration with machine learning workflows. By allowing BI
+tools and AI models to operate directly on up-to-date, governed data, our platform
+streamlines everything from data preparation to model deployment—accelerating
+insights while maintaining strong governance and cost efficiency.
+We are proud to already support CMS in its mission to improve healthcare
+outcomes and operational efficiency by helping modernize its data infrastructure,
+streamline analytics, and enable secure, scalable data sharing across programs and
+partners. By leveraging our platform, CMS is better able to aggregate and analyze
+massive healthcare datasets, drive population health insights, and support
+regulatory compliance and transparency initiatives.
+Interoperability is at the core of our approach. We support open standards such as
+HL7 FHIR and bulk data APIs, and we enable secure, scalable data exchange through
+Delta Sharing, allowing healthcare organizations to share large datasets across
+platforms and partners without duplication or loss of fidelity. Our robust governance
+capabilities, powered by Unity Catalog (UC), ensure that all data assets (data, AI/ML
+models, notebooks, etc) are managed, secured, and audited according to the
+highest standards of privacy, compliance, and trust. This unified governance
+framework supports not only regulatory requirements but also the broader goals of
+transparency and accountability in healthcare data sharing.
+We are committed to helping CMS and ONC realize a future where health
+information flows securely and efficiently across the ecosystem, supporting better
+care coordination, patient engagement, and population health management. Our
+response outlines practical, scalable solutions to accelerate innovation, reduce
+administrative burden, and foster a more connected, patient-centered healthcare
+system.
+5
+
+Section E. Technology Vendors, Data Providers,
+and Networks
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to
+stimulate developer interest in building digital health products for Medicare
+beneficiaries and caregivers?
+Databricks believes CMS can accelerate digital health innovation by expanding API
+access, including Blue Button 2.0, enhancing developer resources and sandbox
+environments, and launching pilot programs for new digital tools. For long-term
+impact, CMS should invest in foundational infrastructure such as a national provider
+directory, modern identity verification systems like Login.gov, digital insurance cards,
+and secure data exchange networks. Continuously updating API standards and
+enabling bulk data access will further drive ongoing advancements. Additionally,
+developers need robust data cataloging to easily discover and securely share not
+only data, but also business semantics and AI/ML models, ensuring a common
+understanding of business metrics and accelerating innovation across the
+healthcare ecosystem.
+As a unified analytics and AI platform, Databricks sees firsthand how adopting data
+standards like USCDI, HL7 FHIR APIs, and TEFCA streamlines health data exchange
+and reduces fragmentation. Databricks empowers organizations to unify structured
+and unstructured health data, leverage real-time analytics, and build interoperable
+solutions at scale. With Unity Catalog, organizations can centrally govern, discover,
+and manage data and AI assets across clouds and formats, while Delta Sharing
+enables secure, real-time, cross-platform data sharing with strong governance,
+6
+
+making it easier for healthcare innovators to deliver actionable insights that benefit
+Medicare beneficiaries and the broader healthcare community.
+TD-2. Regarding CMS Data, to stimulate developer interest—
+a. What additional data would be most valuable if made available through CMS
+APIs?
+Developers would benefit from expanded access to clinical EHR data, pharmacy and
+medication data, imaging, social determinants of health, and real-time eligibility or
+coverage information, in addition to claims data already available through Blue
+Button 2.0. Integrating and harmonizing these diverse data types within a unified
+platform and making them accessible through secure APIs would support advanced
+analytics, machine learning, and real-time insights for app developers and
+researchers.
+b. What data sources are most valuable alongside the data available through the
+Blue Button 2.0 API?
+In addition to the claims and coverage data from Blue Button 2.0, electronic health
+record (EHR) data and health information exchange (HIE) data are especially
+valuable, as they provide detailed clinical information such as lab results, diagnoses,
+and procedures. Integrating these sources creates a more comprehensive and
+actionable view of a patient’s health for providers and care teams.
+c. What obstacles prevent accessing these data sources today?
+Key obstacles include data silos, lack of interoperability standards, privacy and
+security concerns, regulatory complexity, inconsistent data quality, and challenges
+with digital identity verification and consent management. These are challenges
+that Databricks has seen across industries and is uniquely positioned to help
+7
+
+address by enabling organizations through integrated data platforms, adopt health
+information exchange solutions, leverage standardized APIs, and establish strong
+data governance frameworks. A well architected Lakehouse architecture can break
+down data silos by centralizing all data into a unified Lakehouse platform, enabling
+teams across departments to access, share, and analyze the same data in real time.
+This unified approach eliminates fragmentation, streamlines governance,
+accelerates insights, and empowers collaborative analytics and AI initiatives across
+the organization
+d. What other APIs should CMS and ASTP/ONC consider including in program
+policies to unleash innovation and support patients and providers?
+CMS should consider expanding FHIR-based APIs for provider directories,
+payer-to-payer data exchange, digital identity verification, digital insurance cards,
+and bulk data APIs to support research, care coordination, and TEFCA participation.
+These API policies, outlined in recent CMS interoperability and prior authorization
+rules, are intended to improve access to interoperable patient data for patients,
+providers, and payers while reducing administrative burden. By adopting and
+continuously updating open API standards (such as HL7 FHIR, CARIN IG for Blue
+Button, Da Vinci PDex, and Plan-Net IG) CMS can foster a more connected
+healthcare ecosystem, enable seamless data exchange, and drive innovation in
+patient-facing applications and digital health workflows at scale.
+A unified data platform like Databricks can further support these efforts by
+leveraging its Lakehouse architecture and FHIR interoperability capabilities to ingest,
+process, and analyze payer claims data in compliance with the CARIN IG for Blue
+Button. This approach empowers organizations to efficiently manage and utilize
+healthcare data, supporting both regulatory compliance and advanced analytics.
+8
+
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits?
+Key challenges of digital identity implementation include fragmentation across
+networks, lack of interoperability, privacy concerns, regulatory complexity, and user
+adoption barriers. Databricks has seen healthcare organizations struggle to connect
+disparate systems and ensure consistent identity verification across platforms,
+often resulting in gaps in data access and increased administrative burden. A
+unified data and intelligence platform like Databricks, when integrated with a Single
+Sign-On (SSO) authentication provider that supports modern protocols such as
+OpenID Connect (OIDC), helps address these challenges by providing a single,
+secure environment where identity data from multiple sources can be integrated,
+managed, and governed. OpenID Connect, as an industry-standard authentication
+protocol, enables interoperability between identity providers and applications,
+ensuring secure and seamless user authentication across systems. While Databricks
+is not an identity manager itself, its integration with leading SSO solutions,leveraging
+protocols like OpenID Connect. streamlines identity verification processes,
+simplifies compliance, and enables seamless, secure data sharing across the
+healthcare ecosystem.
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov,
+ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data
+exchange?
+Requiring digital identity credentials from trusted providers would greatly enhance
+cybersecurity and data exchange for CMS’s patient-centered data sharing efforts.
+These credentials provide strong identity verification and multi-factor
+9
+
+authentication, reducing the risk of unauthorized access and ensuring that only
+verified individuals can access sensitive health information. For managing unique
+patient IDs, this approach offers robust privacy and encryption protections, helping
+to safeguard personal data throughout the exchange process.
+By implementing a standardized, high-assurance digital identity system, CMS can
+enable secure and trusted data sharing directly with patients, empowering
+beneficiaries to access and control their health information confidently. This
+strengthens trust among patients, providers, and payers while supporting seamless
+interoperability. To maximize effectiveness, it is important to maintain strict data
+protection measures and ongoing security monitoring, given the sensitive nature of
+identity data. Overall, requiring digital identity credentials would significantly
+improve both the security and efficiency of patient-centered health data exchange.
+c. What impact would mandatory use of the OpenID Connect identity protocol
+have?
+Mandatory adoption of OpenID Connect would standardize authentication, enable
+single sign-on across healthcare applications, improve interoperability, and enhance
+security by centralizing identity management and reducing password-related risks.
+This would simplify user experience and support regulatory compliance, but may
+require significant integration efforts for legacy systems. Databricks supports open
+standards based authentication, such as OpenID Connect.
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly
+available APIs over proprietary APIs?
+10
+
+CMS can promote open, standards-based APIs by mandating HL7 FHIR, requiring
+certified health IT developers to publish service URLs and organizational details, and
+ensuring comprehensive, publicly accessible API documentation. A Lakehouse
+architecture supports open standards APIs by providing comprehensive REST APIs,
+open file formats, and standardized interfaces for data access and integration,
+enabling seamless interoperability with external tools, BI platforms, and machine
+learning frameworks. This openness prevents vendor lock-in and ensures flexible,
+governed access across diverse systems and workloads.
+Incentives for compliance, robust developer tools, and inclusion in the Health IT
+Certification Program further drive adoption and consistency across the industry. By
+making open APIs a condition of certification and maintenance, CMS lowers
+integration barriers, reduces vendor lock-in, and empowers patients, providers, and
+third-party developers with more consistent, portable, and interoperable access to
+health information.
+These policies, combined with transparent publication requirements and support
+for implementation guides like SMART on FHIR, help standardize data exchange,
+foster innovation, and ensure that healthcare data is accessible and usable without
+special effort across the ecosystem.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access
+to health information for patients, providers, and payers? Who should publish such
+a directory, and should users bear a cost?
+A nationwide provider directory of FHIR endpoints would streamline access to
+health data, simplify care coordination, and enhance interoperability for patients,
+providers, and payers. Ideally, CMS or ONC should publish and maintain this
+directory as a public good, ensuring accuracy, security, and broad access without
+imposing costs on users to maximize adoption and equity.
+11
+
+Databricks can support the creation and maintenance of such a directory by
+enabling robust data ingestion from diverse healthcare sources, including EHRs,
+health information exchanges, and other clinical systems, and consolidating this
+information into a unified, governed environment. The platform ensures high data
+quality through automated validation, cleansing, and enrichment processes, and
+facilitates entity resolution to accurately identify and link provider records across
+disparate systems. Leveraging scalable cloud infrastructure and advanced analytics,
+Databricks supports real-time updates and seamless integration with healthcare
+applications, improving access to health information while supporting
+interoperability and compliance with healthcare standards.
+TD-6. What unique interoperability functions does TEFCA perform?
+TEFCA (Trusted Exchange Framework and Common Agreement) provides unique
+interoperability functions by establishing a nationwide, standardized framework for
+secure health information exchange through Qualified Health Information Networks
+(QHINs).
+Databricks empowers healthcare organizations to securely ingest, process, and
+analyze electronic health information from diverse sources, including QHINs, while
+maintaining TEFCA compliance and robust data governance through its Lakehouse
+architecture. Supporting major standards such as FHIR, HL7, X12, and CDA, and
+partnering with industry leaders like Redox, Komodo Health, and Health Catalyst,
+Databricks leverages open protocols like Delta Sharing and direct FHIR API support
+for secure, real-time, cross-platform data exchange. This unified approach
+eliminates silos, streamlines analytics and AI workloads, and ensures trusted,
+up-to-date access to health data—accelerating insights while maintaining strong
+governance, security, and cost efficiency.
+12
+
+b. Are there redundant standards, protocols or channels or both that should be
+consolidated?
+Databricks strongly encourages CMS to leverage open standard storage formats for
+storing data in CMS-managed storage accounts and to adopt open source-based
+enterprise data and analytics platforms. This approach will help reduce redundancy,
+simplify integration, and promote greater interoperability and innovation across the
+healthcare ecosystem.
+d. Given improvements in language models, would you prefer a non-proprietary but
+less structured format that might improve data coverage even if it requires more
+processing by the receiver?
+Given improvements in language models, Databricks supports the use of
+non-proprietary, less structured formats to improve data coverage, even if it
+requires more processing by the receiver. By leveraging the Medallion architecture
+(bronze, silver, gold data layers), CMS can share data and AI assets at multiple
+stages of refinement, ranging from raw, unstructured data to highly curated
+datasets and models, through Delta Sharing. This flexible approach allows the
+development community to access both foundational and refined resources,
+supporting a broad spectrum of innovation while maintaining openness and
+interoperability. As a result, CMS can maximize data utility and foster collaboration,
+empowering developers to choose the level of structure that best fits their needs.
+Databricks understands that processing and validating less structured data
+introduces additional technical and resource demands, requiring careful attention
+to data quality, privacy, and reliability. Databricks addresses these challenges by
+providing a unified analytics platform that seamlessly ingests, organizes, and
+analyzes both structured and unstructured healthcare data at scale. The Databricks
+13
+
+platform empowers healthcare organizations to harness the full potential of LLMs
+and AI, transforming raw clinical text into actionable insights while maintaining the
+highest standards of security and compliance.
+TD-8. What are the most effective certification criteria and standards under the
+ONC Health IT Certification Program?
+From a Databricks perspective, the most effective certification criteria and
+standards under the ONC Health IT Certification Program are those that prioritize
+interoperability, data security, and usability—such as standardized FHIR APIs, strong
+privacy protections, real-world testing, and measures to prevent information
+blocking. These requirements ensure certified health IT systems can reliably
+exchange core clinical data, support patient access, and remain adaptable to
+evolving standards while maintaining compliance and security.
+Databricks strongly recommends that open source and open standards be
+foundational to certification. Leveraging open storage formats such as Delta Lake
+and Apache Iceberg enables organizations to store data in a way that is
+platform-agnostic, scalable, and avoids vendor lock-in. These formats provide ACID
+transactions, scalable metadata handling, and compatibility with a wide range of
+analytics engines, making them ideal for modern healthcare data environments.
+Additionally, open standards for data sharing—such as Delta Sharing—enable
+secure, real-time, cross-platform data exchange, further enhancing interoperability
+and transparency across the ecosystem.
+By adopting open source-based enterprise data and analytics platforms and
+embedding open standards into certification, healthcare organizations can
+maximize the value of their certified systems, drive actionable insights, and
+14
+
+accelerate innovation while upholding the highest standards of data integrity and
+regulatory compliance.
+TD-9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled
+capabilities over software functionality?
+An API-enabled, decentralized approach offers significant advantages over
+traditional monolithic software. By decoupling services, APIs enhance agility,
+scalability, and adaptability, making integration, maintenance, and upgrades easier
+while enabling reusable components and faster time-to-market. Decentralization
+empowers teams to innovate independently and reduces coordination overhead.
+Prioritizing API-enabled capabilities in certification supports seamless, standardized
+data exchange across diverse health IT systems, making it easier for patients,
+providers, and payers to access and share health information. To ensure the
+reliability and usability of exchanged data, it is essential that certification criteria
+also include the ability to determine and monitor data quality in real time. Real-time
+data quality assessment helps organizations quickly identify and address issues,
+maintaining trust and accuracy throughout the data lifecycle. APIs further facilitate
+integration with third-party apps, streamline workflows, automate administrative
+tasks, and foster innovation by allowing new tools to connect without custom
+development. This approach enhances patient engagement, care coordination, and
+interoperability, while supporting regulatory compliance and reducing vendor
+lock-in.
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to
+consistently support exchanging data from all aspects of the patient's chart (for
+example, faxed records, free text, discrete data)?
+15
+
+To further strengthen trust and usability, completeness and accuracy of the data,
+key aspects of data quality, should be explicitly addressed as part of certification.
+Data serviced via APIs must be certified for quality before release, with mechanisms
+in place to assess and monitor data quality in real time. This ensures that patients,
+providers, and payers receive reliable, up-to-date information and can confidently
+use data for care coordination, analytics, and reporting. By embedding real-time
+data quality checks and certification into the process, the health IT ecosystem can
+better support interoperability, regulatory compliance, and improved patient
+outcomes.
+d. What policy changes could CMS make so providers are motivated to respond to
+API-based data requests with best possible coverage and quality of data?
+CMS could tie financial incentives, quality measures, or participation in value-based
+programs to timely, complete, and accurate API-based data sharing. Public
+reporting of provider performance on data exchange, streamlined compliance
+processes, and technical assistance could further motivate providers. Clearer
+requirements and enforcement mechanisms would ensure that providers prioritize
+high-quality, comprehensive responses to API requests.
+To ensure a service-oriented API approach would be adopted with success, CMS
+could create a Center of Excellence (CoE) for this. A CoE would help govern APIs by
+defining and enforcing standards, best practices, and security policies, providing
+centralized guidance and tooling, and ensuring consistency, quality, and compliance
+across all APIs. It would also facilitate collaboration, supports automation, and drives
+continuous improvement through feedback and performance measurement
+e. How could EHRs capable of bulk data transfer be used to reduce the burden on
+providers for reporting quality performance data to CMS? What capabilities are
+needed to show benefit? What concerns are there with this approach?
+16
+
+EHRs with bulk data transfer capabilities can automate the extraction and
+submission of large volumes of quality performance data, minimizing manual
+reporting and reducing administrative burden. To demonstrate value, EHRs must
+support standardized bulk data APIs (such as FHIR Bulk Data), ensure accurate and
+complete data mapping, and integrate with analytics tools for validation and
+feedback.
+Databricks addresses these needs by enabling secure, scalable data sharing
+through Delta Sharing, which allows organizations to seamlessly exchange large
+datasets across platforms and partners without data duplication. This approach
+helps maintain data quality, privacy, and security while simplifying the technical
+challenges of aggregating data from multiple sources and ensuring up-to-date,
+accurate information for quality measurement and reporting.
+TD-10. For EHR and other developers subject to the ONC Health IT Certification
+Program, what further steps should ASTP/ONC consider to implement the 21st
+Century Cures Act's API condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv))
+that requires a developer's APIs to allow health information to be accessed,
+exchanged, and used without special effort, including providing access to all data
+elements of a patient's electronic health record to the extent permissible under
+applicable privacy laws?
+To further implement the 21st Century Cures Act's API condition of certification and
+ensure APIs allow health information to be accessed, exchanged, and used without
+special effort, ASTP/ONC should encourage the adoption of robust tokenization
+tools that can mask personally identifiable information (PII) and protected health
+information (PHI) while still enabling data consumers to utilize the data effectively.
+17
+
+Tokenization replaces sensitive information with encrypted tokens, allowing datasets
+to be linked and analyzed without exposing underlying identities, thus supporting
+both privacy and usability.
+Additionally, Databricks highlights the importance of secure, scalable data sharing
+through open standards like Delta Sharing. Delta Sharing provides a secure and
+efficient way to share data and AI models across platforms, clouds, and
+organizations, with centralized governance and auditing to ensure compliance and
+privacy. Databricks’ ability to integrate with third-party tokenization vendors, further
+strengthens the privacy and security of shared data, allowing developers and data
+consumers to confidently access de-identified information for research, analytics,
+and patient-centered applications.
+By combining tokenization with secure, open-standard data sharing protocols, ONC
+can help ensure that all data elements of a patient's electronic health record are
+accessible to the extent permitted by law, while minimizing privacy risks and
+administrative burden. This approach supports the spirit of the Cures Act by
+empowering innovation and interoperability without compromising data protection.
+TD-11. As of January 1, 2024, many health IT developers with products certified
+through the ONC Health IT Certification Program are required to include the
+capability to perform an electronic health information export or “EHI export” for a
+single patient as well as for patient populations (45 CFR 170.315(b)(10)). Such health
+IT developers are also required to publicly describe the format of the EHI export.
+Notably, how EHI export was accomplished was left entirely to the health IT
+developer. Now that this capability has been in production for over a year, CMS and
+ASTP/ONC seek input on the following:
+a. Should this capability be revised to specify standardized API requirements for
+EHI export?
+18
+
+EHI export capability to require standardized APIs—such as FHIR for both single
+patient and population-level exports—would greatly enhance interoperability,
+consistency, and ease of data exchange across health IT systems. Currently, the lack
+of a mandated standard means formats and export methods vary by developer,
+leading to challenges in automating data ingestion, migration, and analytics.
+Standardized APIs would ensure that exported data is computable, structured, and
+readily usable by different platforms without custom processing.
+b. Are there specific workflow aspects that could be improved?
+Workflow improvements could include making EHI export more user-friendly and
+integrated into routine clinical and administrative tasks. For example, enabling
+automated, scheduled exports, providing clearer export status notifications, and
+allowing for granular export options (such as by date range or data type) would
+streamline processes for clinicians and administrators. Enhanced access controls
+and audit trails would also improve security and accountability.
+c. Should CMS consider policy changes to support this capability's use?
+CMS should consider policies that incentivize or require the use of standardized EHI
+export functionalities, such as tying compliance to participation in federal programs
+or quality reporting initiatives. Additional support could include technical
+assistance, clear guidance on best practices, and aligning reporting requirements
+with standardized export formats to reduce provider burden and accelerate
+adoption. These steps would encourage broader use and ensure that EHI export
+capabilities deliver meaningful value for patients, providers, and the healthcare
+system.
+19
+
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what
+criteria or metrics should CMS consider?
+CMS should consider endorsing non-CMS data sources and networks if they meet
+rigorous criteria related to data quality, interoperability, privacy, security, and
+governance. Important factors include the scientific acceptability of the data, its
+reliability and validity, feasibility of use, and alignment with CMS’s goals for quality
+measurement and value-based care. Additionally, endorsed sources should
+demonstrate usability for public reporting, support for health equity, and
+compliance with regulatory requirements. CMS typically evaluates such data
+sources through transparent, consensus-based processes like those conducted by
+the CMS Consensus-Based Entity (CBE), ensuring that endorsed data contributes
+meaningfully to healthcare quality improvement and patient outcomes.
+TD-13. What new opportunities and advancements could emerge with APIs
+providing access to the entirety of a patient's electronic health information (EHI)?
+APIs that provide full access to a patient’s electronic health information (EHI) enable
+comprehensive records, improved care coordination, and advanced analytics for
+providers, payers, and patients. This interoperability drives the development of
+innovative digital health tools, enhances data portability, and supports value-based
+care, all while ensuring secure, scalable, and compliant data exchange through
+standards like FHIR. Together, these advancements create a more connected,
+efficient, and patient-centered healthcare ecosystem.
+From a technology and platform perspective, aggregating and analyzing full EHI from
+diverse APIs in a secure, unified environment enables advanced analytics, AI-driven
+insights, and real-time patient engagement tools. A scalable platform that supports
+20
+
+integration of structured and unstructured data, compliance with evolving
+standards, and seamless interoperability empowers healthcare organizations to
+innovate rapidly and operationalize next-generation applications. By leveraging
+technology such as Databricks’ Delta Sharing capabilities, organizations can
+securely and efficiently share live EHI datasets across partners and platforms
+without duplication of data, further streamlining collaboration, supporting
+population health management, and delivering personalized care at scale. This
+approach ultimately transforms both patient outcomes and operational efficiency
+across the healthcare landscape.
+a. What are the primary obstacles to this?
+From the Databricks perspective, major obstacles to comprehensive API access for
+patient electronic health information include fragmented data silos, inconsistent
+standards, privacy and security concerns, data quality issues, and complex
+regulatory requirements around consent and data sharing. These challenges hinder
+seamless data aggregation and exchange, complicate compliance, and can impact
+the accuracy and usability of health information. Databricks addresses these
+barriers with the Databricks Lakehouse Platform, which unifies structured and
+unstructured health data, supports standardized APIs like FHIR, and simplifies
+integration across disparate systems for real-time analytics and advanced AI.
+The Databricks platform features robust data governance with Unity Catalog,
+ensuring secure access, auditing, and compliance with privacy regulations.
+Additionally, Delta Sharing enables secure, real-time data sharing across
+organizations and platforms without duplication, streamlining collaboration and data
+portability while maintaining high data quality and privacy standards. By leveraging
+these capabilities, healthcare organizations can overcome fragmentation, improve
+21
+
+interoperability, and maximize the value of their health data for better patient
+outcomes.
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+Increased use of bulk FHIR APIs would enhance healthcare data interoperability by
+enabling efficient, standardized extraction and transfer of large datasets across
+systems. This approach supports population health management, clinical research,
+public health reporting, and advanced analytics by allowing organizations to analyze
+trends, conduct studies, and generate quality reports at scale.
+To further improve throughput and performance, organizations can share bulk FHIR
+data using the Delta Sharing open standard and run processing in the backend. This
+method provides much higher throughput and scalability than traditional REST
+API-based approaches, as Delta Sharing efficiently moves large volumes of data
+across platforms without duplication and supports real-time, secure data exchange.
+Databricks natively supports these workflows with scalable ingestion and
+processing of files, automated job orchestration, and powerful analytics on large
+volumes of FHIR data. Combined with Delta Sharing for secure, high-performance
+data sharing and Unity Catalog for robust data governance, Databricks streamlines
+the aggregation, analysis, and sharing of comprehensive patient data—supporting
+value-based care, regulatory compliance, and ongoing innovation in digital health
+tools.
+b. What are the potential disadvantages of their use?
+Despite its benefits, bulk FHIR faces several challenges. Real-world implementations
+often suffer from inconsistent support across EHR vendors, performance limitations,
+22
+
+and data quality issues that can result in incomplete or failed exports. Pagination
+and throttling can complicate data extraction, while large-scale transfers increase
+risks related to data security and privacy. Additionally, variations in FHIR version
+support, resource availability, and filtering capabilities across systems can hinder
+true interoperability and require custom solutions or workarounds. These factors
+mean that while bulk FHIR is a powerful tool, it currently requires careful planning,
+robust infrastructure, and ongoing collaboration among stakeholders to fully realize
+its potential. Databricks addresses these challenges by providing a scalable, secure
+platform for processing, validating, and sharing bulk FHIR data, enabling
+organizations to overcome interoperability barriers and maximize the value of their
+healthcare data.
+TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in
+ensuring viability of healthcare data sharing networks, including enough supply and
+demand, that results in usage and outcomes?
+CMS and ASTP/ONC play a critical role in ensuring the viability of healthcare data
+sharing networks by building foundational infrastructure, setting interoperability
+standards, and promoting both the supply of and demand for data exchange. To
+support network sustainability, they can invest in dynamic, interoperable national
+provider directories, modern identity verification, and the expansion of open data
+sharing protocols like Delta Sharing. Delta Sharing enables secure, real-time data
+exchange across organizational boundaries without complex integrations, making it
+easier for healthcare organizations to collaborate, share insights, and maintain
+up-to-date provider information. By leveraging these modern approaches, the
+healthcare ecosystem can achieve greater interoperability, efficiency, and
+sustainability.
+Certification programs such as ASTP/ONC certification help streamline compliance
+across states, making it easier for organizations to participate in networks and meet
+23
+
+both federal and local requirements. Additionally, CMS can encourage participation
+by aligning incentives, providing technical assistance, and ensuring robust privacy
+and security protections. By fostering collaboration among stakeholders, investing in
+data standards like FHIR, and enhancing analytics and dashboard tools for network
+participants, CMS and ASTP/ONC can help create a balanced ecosystem with
+sufficient supply and demand to drive meaningful usage and improved health
+outcomes.
+5. Compliance
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices
+you have experienced that may constitute information blocking. Please include
+both situations of non-responsiveness as well as situations that may cause a failure
+or unusable response?
+From the Databricks perspective, information blocking often manifests as
+non-responsiveness or the delivery of unusable or failed data responses,
+undermining efforts to create a truly interoperable healthcare ecosystem.
+Databricks frequently sees organizations restrict or delay access to critical
+healthcare data by maintaining silos across EHRs, imaging systems, and other
+internal platforms, making it challenging to centralize or share information efficiently.
+Even when open protocols are used, attempts to access shared data can be
+thwarted by authorization failures, firewall restrictions, or inconsistent adherence to
+interoperability standards, resulting in denied or incomplete responses despite
+proper permissions. Inconsistent API implementations and proprietary data formats
+further contribute to unusable or delayed data, impeding timely data exchange and
+collaboration. These practices not only hinder the breaking down of data silos and
+24
+
+the streamlining of analytics, but also limit the potential for advanced use cases
+such as personalized patient care, population health management, and machine
+learning. Databricks addresses these barriers by providing a unified,
+standards-based platform that enables secure, reliable, and scalable data
+integration and sharing, helping organizations unlock the full value of their
+healthcare data.
+25

@@ -1,1 +1,269 @@
-¹ Rune L abs , San F rancisc o, CA, USA ;² Kaiser Permanente , Sacramento, C A, USA Unlocking movement disorder specialist capacity and mitigating risk: a platform solution for cost reduction and care optimization in Parkinson’s disease Aiden Arnold¹, Tiffany Jansen¹, Trevor Haynes¹, Amanda Hare¹, Mark Sedrak², Ejaz Shamim², Suketu Khandhar², Ro’ee Gilron¹ OBJECT IVES CONCLUSIONSMETHODSMobile Application, Wearable and LLM Application Program Goals & Results User Experience Symptom report by category: Prevalence of reported bothersome symptoms across patients StrivePD AI Report PipelineResults INCREASED ENGAGEMENT1 DOWNSTREAM IMPACT2Improve patient and clinician care delivery ex- perience through a technology-driven coaching and triage system •Program has the potential to reduce the burden on MDS clinicians by increasing MDS capacity •Problematic symptoms addressed sooner •Support timely care plan changes between clinical visits •Suggests a reduction in hospitalization rate Metrics cap tured fr om a c ontinuousl y worn wris t-based wearable with mobile phone carried near the w aist•Patients (n=138) used a wearable paired to a mobile application to monitor their symptoms, re- ceive medication reminders and educational con- tent. •Patients reported speciﬁc symptoms that may re- quire intervention or special attention such as falls, rapid decline in mobility or hallucinations. •Regular coaching sessions regarding mobile appli- cation usage, medication reminders and reporting were offered. •Prior to upcoming visits with Movement Disorder Specialists (MDS), LLMs were combined with tem- plates to generate reports summarizing passively and actively reported symptoms as a tool to facili- tate and enrich communication during the clinical visit. Patient Experience Clinician Experience −300 −250 −200 −150 −100 −50 0 50 10001020304050Ofﬁc e Visit Video Visit Telephone Appointment Visit After Onboar ding Before Onboar dingMDS appointment r ate per pa tient y ear bef ore and af ter onboar ding t o StrivePD MDS appointment R elative to Onboar d Da te (da ys)Patient Serial Number (a .u.) MDS visit r ate: 2.39 / pa tient y ear MDS visit r ate: 1.95 / pa tient y ear −300 −250 −200 −150 −100 −50 0 50 1000102030405060ED Visits Before Onboar ding After Onboar dingED visit r ate per pa tient y ear bef ore and af ter onboar ding t o StrivePD ED Visit R elative to Onboar d Da te (da ys)Patient Serial Number (a .u.) ED R ate: 2.39 / pa tient y ear ED R ate: 1.95 / pa tient y earLeveraging LLM technology to provide patient summaries and personalized recommendations based on their passively-recorded and self-reported data. Patients log med- ication, symp- toms and activi- ties in StrivePD iOS appInterested patients opt-in to StrivePD AI features, includ- ing generative reportsStrivePD AI ingests and reasons through symp- tom data, notes and physical activity logsEvery 4 weeks, patients receive a report with in- sights into their symptom trends1 2 3Safety & Evaluation HIPAA & COMPLIANCE External AI and API services used by Strive- PD AI are covered by a Business Associate Agreement (BAA) to ensure that all data and information is handled in a HIPAA compliant manner. RISK MITIGATION Internal security teams maintain a risk matrix identifying core areas of risk for all AI ser- vices. A governance board provides monthly reviews of all AI applications.PHI & GUARDRAILS All data sent to external services is scrubbed of PHI and monitored by Amazon Bedrock Guardrails for harmful content, jailbreaks and prompt injections.StrivePD AI summaries are generated on a test set of synthetic notes/logs that have summaries written by healthcare professionals. Generated summaries are scored on semantic similarity, faithfulness and detection rate of key symptoms from the human curated test set. If new updates score better on the metrics, summaries are generated on real patient data and a random sample is reviewed by internal health- care professionals. If the human-in-the-loop testing re- sults in a summary rejection rate >2%, the update is not migrated into pro- duction systems.4 Engagement drives medication and exercise adherence: motivation to time medications properly along with exercise results in continual optimi- zation at home.High-risk participants are identiﬁed by algorithms and engaged with coaching and educational interventions, decreasing utilization of specialists, emergency medicine and inpatient resources. patients reported StrivePD helpful in med adherence 75% Mean of 2.57 different med. /day; taken 2.65 times daily [0.29-5.83]. Total of 108,509 events evaluated. Top 3: Off period, lightheadedness, falling. Total of 3,835 free-text notes written. 62K words, summarized and screened for “attention needed”. Logging via voice available on watch and phone. Total of 10,269 exercise sessions logged.patients reported “attention needed” events67% watch wear per patient per day in average15h patients reported increased activity after onboarding 74% 1.74M hours of sensor data recorded, with 3+ daily app interactions per patient.free-text notes per patient weekly in average4.7 tremorbalanc e-issuesrigidit yoff-perioddyskinesiafreezingdystoniafallinggait-issuesleg-crampsslownes s lightheadednes sswallowing -issuesanxiet yfatiguedizzines sdry-mouthpainconstipationdroolingurinar y-urgencygut-issuesheadache 0 10 20 30 40 50 60apathydepr essioninsomniahallucina tionsPercentag e of Patients R epor ting Symp toms b y Ca tegory [n=131] Prevalanc e acr oss pa tients (%)Motor Symp toms (Including Mot or Complica tions) Autonomic and Sensor y Symp toms Neur opsychia tric and Sleep Symp tomstremorbalanc e-issuesrigidit yoff-perioddyskinesiafreezingdystoniafallinggait-issuesleg-crampsslownes s lightheadednes sswallowing -issuesanxiet yfatiguedizzines sdry-mouthpainconstipationdroolingurinar y-urgencygut-issuesheadache 0 10 20 30 40 50 60apathydepr essioninsomniahallucina tionsPercentag e of Patients R epor ting Symp toms b y Ca tegory [n=131] Prevalanc e acr oss pa tients (%)Motor Symp toms (Including Mot or Complica tions) Autonomic and Sensor y Symp toms Neur opsychia tric and Sleep Symp tomstremorbalanc e-issuesrigidit yoff-perioddyskinesiafreezingdystoniafallinggait-issuesleg-crampsslownes s lightheadednes sswallowing -issuesanxiet yfatiguedizzines sdry-mouthpainconstipationdroolingurinar y-urgencygut-issuesheadache 0 10 20 30 40 50 60apathydepr essioninsomniahallucina tionsPercentag e of Patients R epor ting Symp toms b y Ca tegory [n=131] Prevalanc e acr oss pa tients (%)Motor Symp toms (Including Mot or Complica tions) Autonomic and Sensor y Symp toms Neur opsychia tric and Sleep Symp tomsSymptoms were reported through the mobile application. The symptoms are categorized into three groups: motor symptoms (left section), autonomic and sensory symptoms (top right section), and neuropsychiatric and sleep symptoms (right bottom section). Cross marks indicate symptoms that receive special attention in reporting, risk triage, and educational materials. Primary Objectives Help patients recognize data patterns to drive behavioral changes that alleviate symptoms and improve quality of life.Provide clinicians with access to patient data, and provide patients with data-enriched tools to prepare for visits.Enable clinicians to monitor patients between visits using wearable data and symptom logs.Triage patients in need of appointments while well-controlled pa- tients are monitored remotely without the need for additional cli- nician visits.Empower patient self-careImprove visit efﬁciencyContinuous care monitoring Increase MDS Capacity In the program, patients used a wearable device paired with a mobile app to track symptoms, receive medication reminders, access personalized educational content, and recieve coaching on app use and program goal setting every six weeks. Data were collected passively using Apple Watches. Exercise time increased signiﬁcantly after onboarding (Wilcoxon signed rank test, W = 120.0, p = 0.03).exercised more than 150 min per week52%Older patients were more likely to visit ED; no association was found between ED visits and years since PD diagnosis MDS visits 250 days before onboarding to StrivePD and 100 days after. Visits prior to onboarding associated with enrollment were masked out of this dataset. Each value on y axis represents one patient. Before StrivePD onboarding, 2.38 visits per patient year were observed compared to 1.95 after; representing a 18.1% decline. Dot size represents visit duration. ED visit decreased after onboarding 42.9% MDS visit decreased after onboarding 18.1% ED visits 100 days before on- boarding to StrivePD. Each value on y axis represents one patient. Before StrivePD onboarding, 0.29 visits per patient year were observed compared to 0.17 after; representing a 42.9% de- cline. No ED Visit ED Visit = 1 ED Visit >= 2405060708090100110 No ED Visit ED Visit = 1 ED Visit >= 2024681012141618age (years) time sinc e diagnosis ( years)Age / ED visits Years Sinc e Diagnosis / ED Visits** * 
+Unlocking movement disorder specialist capacity and mitigating risk: a platform
+solution for cost reduction and care optimization in Parkinson’s disease
+Aiden Arnold¹, Tiffany Jansen¹, Trevor Haynes¹, Amanda Hare¹, Mark Sedrak², Ejaz Shamim², Suketu Khandhar², Ro’ee Gilron¹
+¹ Rune Labs , San Francisco, CA, USA ;² Kaiser Permanente , Sacramento, CA, USA
+Program Goals & Results
+Mobile Application, Wearable and LLM Application
+OBJECTIVES
+Improve patient and clinician care delivery ex-
+perience through a technology-driven coaching
+and triage system
+METHODS
+• Patients (n=138) used a wearable paired to a
+mobile application to monitor their symptoms, re-
+ceive medication reminders and educational con-
+tent.
+User Experience
+• Patients reported specific symptoms that may re-
+1 2
+quire intervention or special attention such as falls,
+Results INCREASED ENGAGEMENT DOWNSTREAM IMPACT
+rapid decline in mobility or hallucinations.
+• Regular coaching sessions regarding mobile appli-
+cation usage, medication reminders and reporting
+were offered.
+MDS appointment rate per patient year before and after onboarding to StrivePD
+• Prior to upcoming visits with Movement Disorder
+Specialists (MDS), LLMs were combined with tem- Office Visit
+50
+Video Visit
+plates to generate reports summarizing passively Telephone Appointment Visit
+40
+After Onboarding
+and actively reported symptoms as a tool to facili-
+Before Onboarding
+30
+tate and enrich communication during the clinical
+20
+visit.
+10
+0
+−300 −250 −200 −150 −100 −50 0 50 100
+MDS appointment Relative to Onboard Date (days)
+StrivePD AI Report Pipeline
+Symptom report by category: Prevalence of reported bothersome
+symptoms across patients
+Metrics captured from a continuously worn wrist-based
+CONCLUSIONS
+wearable with mobile phone carried near the waist
+• Program has the potential to reduce the burden on MDS clinicians
+by increasing MDS capacity
+• Problematic symptoms addressed sooner
+• Support timely care plan changes between clinical visits
+• Suggests a reduction in hospitalization rate
+Clinician Experience Patient Experience
+).u.a(
+rebmuN
+laireS
+tneitaP
+MDS visit rate: MDS visit rate:
+2.39 / patient year 1.95 / patient year
+ED visit rate per patient year before and after onboarding to StrivePD
+60
+ED Visits
+50
+Before Onboarding
+After Onboarding
+40
+30
+20
+10
+0
+−300 −250 −200 −150 −100 −50 0 50 100
+ED Visit Relative to Onboard Date (days)
+).u.a(
+rebmuN
+laireS
+tneitaP
+Primary Objectives
+Empower Improve Continuous Increase
+patient self-care visit efficiency care monitoring MDS Capacity
+Help patients recognize Provide clinicians with Enable clinicians to Triage patients in need
+data patterns to drive access to patient data, monitor patients of appointments while
+behavioral changes that and provide patients between visits using well-controlled pa-
+alleviate symptoms and with data-enriched wearable data and tients are monitored
+In the program, patients used a wearable device paired with a mobile app to track
+Leveraging LLM technology to provide patient summaries and personalized recommendations based
+improve quality of life. tools to prepare for symptom logs. remotely without the
+symptoms, receive medication reminders, access personalized educational content,
+on their passively-recorded and self-reported data.
+visits. need for additional cli-
+and recieve coaching on app use and program goal setting every six weeks.
+nician visits.
+Safety & Evaluation
+1 2 3 4
+StrivePD AI summaries are generated
+on a test set of synthetic notes/logs
+Engagement drives medication and exercise adherence: motivation to High-risk participants are identified by algorithms and engaged with coaching and educational interventions,
+that have summaries written by
+time medications properly along with exercise results in continual optimi- decreasing utilization of specialists, emergency medicine and inpatient resources.
+healthcare professionals.
+zation at home.
+Generated summaries are scored on
+110
+Older patients were more likely
+semantic similarity, faithfulness and to visit ED; no association was
+Patients log med- Interested StrivePD AI Every 4 weeks, 75% 67% 74% 100
+found between ED visits and
+detection rate of key symptoms from
+years since PD diagnosis
+ication, symp- patients opt-in ingests and patients receive
+90
+the human curated test set.
+toms and activi- to StrivePD AI reasons a report with in- patients reported patients reported patients reported
+80
+StrivePD helpful “attention increased activity
+ties in StrivePD features, includ- through symp- sights into their MDS visits 250 days before
+If new updates score better on the
+in med adherence needed” events after onboarding onboarding to StrivePD and 100
+70
+iOS app ing generative tom data, notes symptom trends
+metrics, summaries are generated on days after. Visits prior to
+Mean of 2.57 different med. /day; Total of 108,509 events Total of 10,269 exercise sessions 18.1%
+reports and physical onboarding associated with
+60
+real patient data and a random
+taken 2.65 times daily evaluated. Top 3: Off period, logged. enrollment were masked out of
+activity logs
+sample is reviewed by internal health- this dataset. Each value on y axis
+[0.29-5.83]. lightheadedness, falling. 50
+MDS visit decreased
+represents one patient. Before
+care professionals.
+after onboarding
+StrivePD onboarding, 2.38 visits 40
+No ED Visit ED Visit = 1 ED Visit >= 2
+per patient year were observed
+If the human-in-the-loop testing re- compared to 1.95 after;
+representing a 18.1% decline.
+4.7
+sults in a summary rejection rate >2%,
+15h 52% Dot size represents visit 18
+the update is not migrated into pro- duration.
+16
+ED Rate: ED Rate:
+free-text notes per 2.39 / patient year 1.95 / patient year
+duction systems. 14
+watch wear per exercised more
+patient weekly in
+12
+patient per day in than 150 min
+Percentage of Patients Reporting Symptoms by Categoryaverage
+average per week 10
+[n=131]
+Motor Symptoms (Including Motor Complications)
+Total of 3,835 free-text notes ED visits 100 days before on-
+8
+1.74M hours of sensor data Data were collected passively
+slowness
+boarding to StrivePD. Each value
+written. 62K words, summarized
+recorldege-cdra, mwpsith 3+ daily app using Apple Watches. Exercise 6
+on y axis represents one patient.
+and screened for “attention
+HIPAA & COMPLIANCE interagcatiti-oissnuses per patient. time increased significantly after Before StrivePD onboarding, 4
+42.9%
+needed”. Logging via voice
+falling onboarding (Wilcoxon signed 0.29 visits per patient year were
+Percentage of Patients Reporting Symptoms by Category
+External AI and API services used by Strive- 2
+dystonia available on watch and phone. [n=1ra3n1]k test, W = 120.0, p = 0.03). observed compared to 0.17
+Motor Symptoms (Including Motor Complications) 0
+PD AI are covered by a Business Associate ED visit decreased after; representing a 42.9% de-
+freezing
+slowness No ED Visit ED Visit = 1 ED Visit >= 2
+cline.
+Agreement (BAA) to ensure that all data and dyskinesia after onboarding
+leg-cramps
+off-period
+gait-issues
+information is handled in a HIPAA compliant
+rigidity falling
+manner.
+balance-issues dystonia
+freezing
+tremor
+dyskinesia
+PHI & GUARDRAILS
+Symptoms were reported through the mobile application. The symptoms are categorized into three groups:
+Autonomic and Sensory Symptoms
+off-period
+All data sent to external services is scrubbed motohera dsacyhme ptoms (left section), autonomic and sensory symptomsri g(idtiotyp right section), and neuropsychiatric and
+gut-issues balance-issues
+of PHI and monitored by Amazon Bedrock sleep symptoms (right bottom section). Cross marks indicate symptoms that receive special attention in reporting,
+urinary-urgency tremor
+Guardrails for harmful content, jailbreaks and risk triage, and educational materials.
+drooling
+Autonomic and Sensory Symptoms
+prompt injections. constipation
+headache
+pain
+gut-issues
+Percentage of Patients Reporting Symptoms by Category
+dry-mouth urinary-urgency
+[n=131]
+Motor Symptoms (Including Motor Complications)
+dizziness drooling
+RISK MITIGATION
+slowness
+constipation
+fatigue
+leg-cramps
+Internal security teams maintain a risk matrix
+pain
+anxiety
+gait-issues
+dry-mouth
+identifying core areas of risk for all AI ser-
+swallowing-fisaslluinegs
+dizziness
+lightheaddyesdtnoensias
+vices. A governance board provides monthly
+fatigue
+freezing
+reviews of all AI applications. Neuropsychiatric and Sleep Symptoms anxiety
+dyskinesia
+swallowing-issues
+hallucinations
+off-period
+lightheadedness
+insomnia
+rigidity
+balandceep-riessssuieosn
+Neuropsychiatric and Sleep Symptoms
+tarpematohry hallucinations
+0 10 20 30 40 50 60 insomnia
+Autonomic and Sensory Symptoms
+Prevalance across patients (%) depression
+headache
+apathy
+gut-issues
+0 10 20 30 40 50 60
+urinary-urgency
+Prevalance across patients (%)
+drooling
+constipation
+pain
+dry-mouth
+dizziness
+fatigue
+anxiety
+swallowing-issues
+lightheadedness
+Neuropsychiatric and Sleep Symptoms
+hallucinations
+insomnia
+depression
+apathy
+0 10 20 30 40 50 60
+Prevalance across patients (%)
+)sraey(
+ega
+)sraey(
+sisongaid
+ecnis
+emit
+Age / ED visits
+**
+*
+Years Since Diagnosis / ED Visits

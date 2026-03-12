@@ -1,110 +1,124 @@
-# Text Conversion for Attachment Processing
 
-This document explains how to use the text conversion functionality to pre-convert downloaded attachments to text files, which speeds up downstream analysis (e.g., stylometry) and allows for easier inspection of extracted text.
+# Text Conversion for Comment Attachments
+
+This document explains how to use the text conversion functionality to convert
+downloaded comment attachments to text files for downstream analysis (e.g.,
+stylometry).
 
 ## Overview
 
-The downloader module supports two approaches for converting attachments to text:
+Text conversion is driven by **AI classification**: only PDFs that the AI
+classifier labels as `comment` are converted to text. This avoids wasting time
+on presentations, cover letters, marketing materials, and other non-comment
+attachments.
 
-1. **Integrated conversion** (recommended): Use the `--convert-text` flag when downloading
-2. **Standalone conversion**: Run `text_converter.py` directly after downloading
+### Three-Step Workflow
 
-## Presentation Filtering (Default Behavior)
-
-Many public comment dockets receive PDF submissions that are actually PowerPoint or Keynote presentations exported to PDF. These convert very poorly—the text comes out as short, fragmented bullet points with scrambled reading order, making them useless for text analysis.
-
-**By default, `text_converter.py` skips these files.** A PDF is classified as a presentation and skipped if either of the following is true:
-
-| Signal | Threshold | Rationale |
-|---|---|---|
-| **Metadata** | Creator/Producer contains "PowerPoint", "Impress", "Keynote", "Google Slides", or "Prezi" | Most reliable; presentation software stamps these fields reliably |
-| **Low word density** | Average < 100 words/page (across first 10 pages) | Slides typically have 10–75 words/slide; narrative pages have 200–500 |
-
-Signals are checked in order; the first match causes the file to be skipped. The reason is logged at WARNING level so you can see exactly what was filtered and why.
-
-> **Note:** A "short text block" ratio heuristic was considered but dropped. pypdf extracts text line-by-line from the PDF's internal structure, so even dense narrative prose produces many short fragments, making that signal unreliable.
-
-To convert presentation-style PDFs anyway, add `--include-presentations`.
-
-## Benefits of Pre-Converting to Text
-
-- **Speed**: Text files are read instantly; PDF/DOCX extraction can be slow
-- **Consistency**: Once converted, the same text is used across multiple analyses
-- **Quality**: Presentation-style PDFs are filtered out, keeping only readable narrative text
-- **Debugging**: Easy to inspect what text was extracted from attachments
-- **Reprocessing**: Run stylometry analysis multiple times without re-extracting
-
-## Usage
-
-### Option 1: Download + Convert in One Step (Recommended)
-
-```bash
-# Download attachments and convert to text in one command
-# (presentation-style PDFs are skipped automatically)
-python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
-
-# Force reconversion (even if .txt files exist)
-python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --force-convert
-
-# Include presentation-style PDFs (not recommended for text analysis)
-python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text --include-presentations
+```
+1. Download all attachments        → download_attachments.py
+2. AI-classify each PDF            → classify_attachments_ai.py  → attachment_classification.csv
+3. Convert comment PDFs to text    → text_converter.py  (reads attachment_classification.csv)
 ```
 
-### Option 2: Standalone Text Conversion
-
-After downloading attachments, convert them separately:
+## Step 1: Download Attachments
 
 ```bash
-# Basic usage — looks in CMS-2025-0050/comment_attachments/
-# (presentation-style PDFs are skipped automatically)
+python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv
+```
+
+## Step 2: AI Classification
+
+Classify every PDF in the attachment tree as `comment` or `not_comment`:
+
+```bash
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv
+```
+
+This produces a CSV with one row per PDF containing the AI label, confidence,
+document type, and rationale. The classifier renders the first pages of each PDF
+to images and sends them to an OpenAI-compatible endpoint. It does **not** need
+`.txt` files — classification is completely independent of text conversion.
+
+**Environment variables required** (set in `.env` or your shell):
+
+- `SLOP_CLASSIFER_API_BASE_URL`
+- `SLOP_CLASSIFER_API_KEY`
+- `SLOP_CLASSIFER_MODEL`
+
+### Resume / re-run
+
+Re-running skips PDFs already in the CSV. To force reclassification:
+
+```bash
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv --force
+```
+
+## Step 3: Convert Comment PDFs to Text
+
+After classification, convert **only** the files labeled `comment`:
+
+```bash
+# Basic usage — reads CMS-2025-0050/attachment_classification.csv by default
 python downloader/text_converter.py CMS-2025-0050
 
-# Specify custom attachments directory
-python downloader/text_converter.py CMS-2025-0050 --attachments-dir path/to/attachments
+# Specify a custom classification CSV
+python downloader/text_converter.py CMS-2025-0050 \
+  --classification-csv CMS-2025-0050/attachment_classification.csv
 
 # Force reconversion (even if .txt files exist)
 python downloader/text_converter.py CMS-2025-0050 --force
-
-# Include presentation-style PDFs (not recommended for text analysis)
-python downloader/text_converter.py CMS-2025-0050 --include-presentations
 ```
 
-Both options will:
-1. Find all PDF and DOCX files in `CMS-2025-0050/comment_attachments/*/`
-2. Skip PDFs that look like presentation slides (unless `--include-presentations`)
-3. Create corresponding `.txt` files (e.g., `attachment_1.pdf` → `attachment_1.txt`)
-4. Skip files that already have `.txt` versions (unless force is used)
+The converter will:
+1. Read `attachment_classification.csv` to get the list of comment PDFs
+2. For each comment PDF, check if a `.txt` file already exists
+3. Extract text (via pdfplumber, with OCR fallback) and write `.txt`
+4. Skip files that already have `.txt` versions (unless `--force`)
 
-### Step 2: Run Stylometry Analysis
+### Integrated Download + Convert
 
-Run stylometry analysis as normal. The analyzer will automatically use `.txt` files when available:
+You can also convert as part of the download step:
 
 ```bash
-python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
+python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
 ```
 
-The analyzer will:
-- Check for `.txt` files first
-- Use pre-converted text when available (fast)
-- Fall back to extracting from source files if no `.txt` exists (slower)
+> **Note:** This requires `attachment_classification.csv` to already exist. Run the
+> AI classifier (Step 2) first.
+
+## Benefits of This Approach
+
+- **Fewer conversions**: Only comment PDFs are converted; presentations, cover
+  letters, and marketing materials are skipped entirely.
+- **Better classification**: AI vision-based classification is more reliable than
+  heuristic signals (PDF metadata, word density, landscape detection, image
+  coverage).
+- **Auditability**: The classification CSV records every decision with confidence
+  scores and rationale for human review.
+- **Speed**: Text files are read instantly; PDF extraction can be slow.
+- **Consistency**: Once converted, the same text is reused across analyses.
 
 ## File Structure
 
-After conversion, your attachments directory will look like:
+After classification and conversion:
 
 ```
 CMS-2025-0050/
+  attachment_classification.csv          ← AI classification results
   comment_attachments/
     CMS-2025-0050-0004/
-      attachment_1.pdf
-      attachment_1.txt          ← Created by text converter
+      attachment_1.pdf                ← classified as "comment"
+      attachment_1.txt                ← converted to text
     CMS-2025-0050-0007/
-      attachment_1.pdf
+      attachment_1.pdf                ← classified as "comment"
       attachment_1.txt
-      attachment_2.docx
-      attachment_2.txt
+      attachment_2.docx               ← classified as "not_comment"
+                                         (no .txt created)
     CMS-2025-0050-0021/
-      attachment_1.pdf          ← Presentation-style PDF: no .txt created
+      attachment_1.pdf                ← classified as "not_comment"
+                                         (no .txt created)
     ...
 ```
 
@@ -113,226 +127,127 @@ CMS-2025-0050/
 After running, you'll see a summary like:
 
 ```
-==================================================
-TEXT CONVERSION SUMMARY
-==================================================
-Documents processed:      87
-Total source files:        94
-Newly converted:           71
-Presentations skipped:      9   ← filtered presentation-style PDFs
-Skipped (existed):          8
-Failed:                     6
-==================================================
+============================================================
+CONVERSION SUMMARY
+============================================================
+Docket: CMS-2025-0050
+Comment files in CSV:       142
+  Newly converted:           71
+  Skipped (already existed):  65
+  Failed:                      6
 ```
 
-Filtered files are also logged individually at WARNING level:
+## Text Extraction Details
 
-```
-WARNING:  SKIPPED (presentation) CMS-2025-0050-0021/attachment_1.pdf
-          — presentation_metadata (matched 'powerpoint' in creator/producer)
-          | creator: 'Microsoft PowerPoint'
+The converter uses **pdfplumber** (built on pdfminer.six) for PDF text extraction.
+pdfplumber uses layout analysis to group characters into words based on geometric
+proximity, which produces much better results than simpler extractors for PDFs with
+character-level glyph positioning.
 
-WARNING:  SKIPPED (presentation) CMS-2025-0050-0047/attachment_1.pdf
-          — low_density (42 words/page avg, threshold 100)
-```
+If pdfplumber output looks like encoding garbage (custom font CIDs or low
+alpha-character ratio), the converter automatically falls back to **OCR** via
+`pdf2image` + `pytesseract`.
 
 ## Workflow Examples
 
-### Example 1: First-Time Analysis (Recommended Workflow)
+### Example 1: Full Pipeline
 
 ```bash
-# 1. Download attachments and convert to text in one step
-python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
+# 1. Download attachments
+python downloader/download_attachments.py CMS-2025-0050
 
-# 2. Run stylometry analysis
-python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
-```
+# 2. Classify
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv
 
-### Example 2: Reprocessing Existing Downloads
-
-If you already have downloads but want to ensure all text is pre-converted:
-
-```bash
-# Convert any new attachments that don't have .txt files yet
+# 3. Convert comment PDFs to text
 python downloader/text_converter.py CMS-2025-0050
 
-# Run analysis
+# 4. Run stylometry analysis
 python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
 ```
 
-### Example 3: Updating Text Extraction
+### Example 2: Re-classify and Reconvert
 
-If text extraction logic improves and you want to reconvert everything:
+If the AI model or prompt changes and you want fresh results:
 
 ```bash
-# Force reconversion of all files
+# Reclassify all PDFs
+python downloader/classify_attachments_ai.py CMS-2025-0050/comment_attachments \
+  --output CMS-2025-0050/attachment_classification.csv --force
+
+# Reconvert text
 python downloader/text_converter.py CMS-2025-0050 --force
-
-# Run analysis with updated text
-python stylometry/stylometry_analyzer.py CMS-2025-0050/comments/CMS-2025-0050.csv
-```
-
-## Implementation Details
-
-### Presentation Classifier (`text_converter.classify_pdf_readability`)
-
-The classifier runs two signals in priority order, returning early as soon as one fires:
-
-1. **Metadata check** (fastest): reads PDF `/Creator` and `/Producer` fields and matches
-   against a list of known presentation-software keywords. No page content is read.
-
-2. **Word density** (fast): samples the first `SAMPLE_PAGE_COUNT` (10) pages and
-   computes the average word count. A threshold of `MIN_WORDS_PER_PAGE` (100) is used.
-
-Both thresholds are defined as named constants at the top of `text_converter.py` for easy
-tuning.
-
-### Text Conversion Logic (`downloader/text_converter.py`)
-
-The converter:
-1. Finds all `.pdf`, `.docx`, and `.doc` files in the docket directory
-2. For each `.pdf`, runs the readability classifier (unless `--include-presentations`)
-3. Skips classified presentations; converts everything else
-4. Creates a `.txt` file with the same basename
-5. Skips conversion if `.txt` already exists (unless `--force` is specified)
-
-### Downloader Integration (`download_attachments.py --convert-text`)
-
-When the `--convert-text` flag is passed:
-1. Downloads all attachments as normal
-2. Determines the docket ID from the CSV filename
-3. Calls `convert_docket_to_text()` with `skip_presentations=True` (default)
-4. Prints a combined summary of both download and conversion statistics
-
-### Stylometry Analyzer Integration (`stylometry_utils.get_attachment_text`)
-
-The stylometry analyzer's `get_attachment_text` function:
-1. Lists all files in a document's attachment directory
-2. For each file, checks if a corresponding `.txt` file exists
-3. If `.txt` exists: reads it directly (fast path)
-4. If `.txt` doesn't exist: extracts from source file (slow path)
-5. Avoids processing duplicates (e.g., both `attachment_1.pdf` and `attachment_1.txt`)
-
-Since presentation PDFs are never converted to `.txt`, the analyzer will fall back to
-on-the-fly extraction for them. If you want to avoid that, pass `--include-presentations`
-during conversion to create `.txt` stubs (though the quality will be poor).
-
-### Backward Compatibility
-
-The stylometry analyzer remains fully backward compatible:
-- Works without pre-converted text files (extracts on-the-fly)
-- Works with a mix of converted and non-converted files
-- No changes to command-line interface or existing workflows
-
-## Tuning the Classifier
-
-If you find the classifier is filtering too aggressively or missing some presentations,
-edit the constants at the top of `downloader/text_converter.py`:
-
-```python
-PRESENTATION_CREATOR_KEYWORDS = [
-    "powerpoint", "impress", "keynote", "google slides", "prezi",
-]
-MIN_WORDS_PER_PAGE = 100   # lower = less aggressive filtering
-SAMPLE_PAGE_COUNT  = 10    # pages to sample for the word-density signal
-```
-
-To audit which files are being filtered and why, check the WARNING-level log output
-during conversion, or redirect the output to a file:
-
-```bash
-python downloader/text_converter.py CMS-2025-0050 2>&1 | findstr SKIPPED
-```
-
-## Troubleshooting
-
-### Issue: Too many files being filtered
-
-The `low_density` signal can catch scanned documents or short PDFs that extracted
-sparsely. Try lowering `MIN_WORDS_PER_PAGE` (e.g., to 50), or use
-`--include-presentations` and inspect the resulting `.txt` files manually.
-
-### Issue: Presentation PDFs are not being filtered
-
-Some presentation exports don't embed creator metadata and happen to have dense text
-(e.g., a presenter who puts full sentences on every slide). In this case, lower
-`MIN_WORDS_PER_PAGE` toward 75 to catch more borderline cases.
-
-### Issue: Text extraction fails for some files
-
-**Solution**: Check the conversion output for errors:
-
-```bash
-python downloader/text_converter.py CMS-2025-0050
-# Look for "Failed" count in summary
-```
-
-Inspect specific `.txt` files to verify content. You may need to manually convert
-problematic files.
-
-### Issue: Analyzer still running slowly
-
-**Solution**: Verify that `.txt` files exist:
-
-```bash
-# Check if txt files exist
-dir CMS-2025-0050\comment_attachments\CMS-2025-0050-0004\
-
-# The analyzer logs when it uses pre-converted text
-# Look for: "Using pre-converted text from ..."
 ```
 
 ## Command Reference
 
-### download_attachments.py (with text conversion)
+### classify_attachments_ai.py
 
 ```
-python downloader/download_attachments.py CSV_FILE [OPTIONS]
+python downloader/classify_attachments_ai.py ATTACHMENTS_ROOT --output CSV_PATH [OPTIONS]
 
-Text Conversion Options:
-  --convert-text           Convert PDF/DOCX to .txt after downloading
-                           (presentation-style PDFs are skipped by default)
-  --force-convert          Force reconversion even if .txt exists (implies --convert-text)
-  --include-presentations  Also convert presentation-style PDFs
+Arguments:
+  ATTACHMENTS_ROOT      Root directory of PDF attachments
+  --output CSV_PATH     Output classification CSV
+
+Options:
+  --force               Reclassify even if already in CSV
+  --limit N             Only classify N attachments (debug)
+  --request-format FMT  content_parts (default) | attachments_field | multipart_form
+  --max-mb MB           Skip PDFs larger than MB (default 20)
+  --sleep SECONDS       Rate-limiting delay between requests
+  --max-pages N         Pages to render as images (default 2)
+  --dpi DPI             Image rendering DPI (default 150)
+  --quiet               Suppress progress output
 ```
 
-### text_converter.py (standalone)
+### text_converter.py
 
 ```
 python downloader/text_converter.py DOCKET_ID [OPTIONS]
 
 Arguments:
-  DOCKET_ID                   Docket identifier (e.g., CMS-2025-0050)
+  DOCKET_ID                       Docket identifier (e.g., CMS-2025-0050)
 
 Options:
-  --attachments-dir DIR       Directory containing attachments
-                              (default: {docket_id}/comment_attachments/)
-  --force                     Reconvert even if .txt files exist
-  --include-presentations     Also convert presentation-style PDFs
+  --attachments-dir DIR           Directory containing attachments
+                                  (default: {docket_id}/comment_attachments/)
+  --classification-csv CSV_PATH   Path to attachment_classification.csv
+                                  (default: {docket_id}/attachment_classification.csv)
+  --force                         Reconvert even if .txt files exist
 ```
 
-**Output Statistics**:
-- `Documents processed`: Number of document directories found
-- `Total source files`: Total PDF/DOCX files found
-- `Newly converted`: Files converted in this run
-- `Presentations skipped`: PDFs filtered by the readability classifier
-- `Skipped`: Files with existing .txt (only shown without --force)
-- `Failed`: Conversion failures
+## Troubleshooting
+
+### "Classification CSV not found"
+
+Run the AI classifier first (Step 2). `text_converter.py` requires the
+`attachment_classification.csv` file to know which PDFs to convert.
+
+### Text extraction fails for some files
+
+Check the conversion output for errors and inspect the `.txt` files. The OCR
+fallback handles most encoding issues, but some PDFs may need manual conversion.
+
+### Analyzer still running slowly
+
+Verify that `.txt` files exist for comment attachments:
+
+```bash
+dir CMS-2025-0050\comment_attachments\CMS-2025-0050-0004\
+```
 
 ## Best Practices
 
-1. **Use --convert-text when downloading**: Single command for download + convert
-   ```bash
-   python downloader/download_attachments.py CMS-2025-0050/comments/CMS-2025-0050.csv --convert-text
-   ```
+1. **Always classify before converting**: The classification CSV is the single
+   source of truth for which files get converted.
 
-2. **Check how many presentations were filtered**: The summary shows `Presentations skipped`.
-   A handful is normal; if it's a large fraction of your corpus, check whether the thresholds
-   need tuning.
+2. **Keep source files**: Don't delete PDFs after conversion — allows
+   re-extraction if needed and preserves original formatting.
 
-3. **Keep source files**: Don't delete PDF/DOCX after conversion
-   - Allows re-extraction if needed
-   - Preserves original formatting for reference
+3. **Use `--force` sparingly**: Only reconvert when extraction logic changes or
+   after reclassification.
 
-4. **Use --force sparingly**: Only reconvert when extraction logic changes
-   - Saves time by reusing existing conversions
+4. **Review the classification CSV**: Spot-check the AI's rationale column to
+   ensure the classifier is performing well on your docket.

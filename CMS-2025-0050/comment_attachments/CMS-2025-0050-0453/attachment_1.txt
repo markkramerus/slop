@@ -1,20 +1,651 @@
-Centers for Medicare & Medicaid Services Department of Health and Human Services Attention: CMS -1833 -P, Mail Stop C4 -26-05, 7500 Security Boulevard Baltimore, MD 21244 -1850. Submitted electronically via: federalregister.gov Subject: Request for Information: Health Technology Ecosystem General Comments In response to CMS’s RFI, I offer the following general comments: • Standards based Digital identity proofing and digital identity credentials ha ve the potential to ease the sharing of reliable health information by improving authentication and authorization processes for accessing electronic health information, supporting the reliability of identity as an attribute of the records that are exchanged, and supporting the portability of digital identity across organizational boundaries and contexts. • The success of the Trusted Exchange Framework and Cooperative Agreement (TEFCA) is incomplete to date, and I believe confusion still exists about its future role as it expands into permitted purposes of exchange beyond treatment and individual access servi ces. As ASTP/ONC and the Recognized Coordinating Entity (RCE) seek to expand participation to include payers, public health entities, quality data registries and other non -provider/non -health IT developer participants and sub-participants, I recommend that CMS and ASTP/ONC consider how TEFCA can complement existing functional healthcare exchanges rather than duplicating them. For example, how may TEFCA complement the existing HIPAA EDI transacting that occurs significantly through healthcare clearinghouses using the ASC X -12 transaction standards? Help stakeholders understand the complementary use of TEFCA to address non -HIPAA EDI payment purposes of health information exchange alongside the existing HIPAA EDI X -12 based exchange. Further, help stakeholders understand the value proposition of TEFCA in terms of complementing existing local, state, or regional health information exchanges already serving purposes of use including public health and quality measure reporting or provide a better roadmap to the int ended expansion of TEFCA to support planning by potential participants and sub -participants to account for its future use. • The interest in standing up a potential nationwide provider directory is a laudable aim, but here too, CMS needs to help stakeholders understand how it would complement several related requirements including: 
-o The provider network directories required by CMS -9115 -F for payers that are subject to CMS’s regulatory oversight that are to be made accessible through public facing FHIR APIs. o The use of the National Plan and Provider Enumeration (NPPES) system requirements under the 21st Century Cures Act for providers to supply their digital contact information to NPPES. o The directory maintained by the RCE for TEFCA. If such a national provider directory is to be stood up, what is the complementary role for it to be played alongside these (and other) provider directories, and how can provider burden be lessened by being required to maintain another information source f or directory information? • The future of the ASTP/ONC certification program remains a vital element to the use of certified health information technology (HIT) by hospitals, eligible clinicians, value -based care participants, and others in satisfaction of Medicare program requiremen ts for Medicare Fee for Service, Advanced Alternative Payment Models under the MACRA statute and for the CMS Innovation Center value -based care models, and other purposes. CMS is right to ask about what certification criteria are of most value ; and what should the strategic focus for the program be. Along with these considerations, CMS and ASTP/ONC should develop a regular rhythm of certification criteria rulemaking that provides adequate advance runway for HIT developers who would seek certific ation to plan, design, develop, test, certify, and deploy their updates to their basis of certified HIT. At the same time, ASTP/ONC should revisit how the US Data Set for Core Interoperability (USCDI) is used as a certification standard . To date, the USCDI has been used as if a monolith for the FHIR API and C -CDA document -based interoperability criteria, and for the patient access criteria. This approach ignores the realities of specialty HIT developers ; and what an appropriate role for clinically focused HIT is. It also does not do justice to the approach needed to support developments such as digital clinical quality measures (dCQMs) and USCDI+ needs for certified HIT. Specific Comments B. Patients and Caregivers 2. Data Access and Integration PC-12 - What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? b. What use cases are possible today? 
-Patients and caregivers would find greatest value in: o Patient educational materials available through self -service portals (same as for what may be used for patient access) to help them understand self -care expectations for their clinical conditions and for common tasks of daily living when such is of concern o Self-directed appointment scheduling and pre -registration with an ability to see provider availability o Pricing comparison and good faith estimate tools that allow for a patient or their caregiver to be able to assess the impact of their insurance status and out-of-pocket responsibilities in making decisions about where to be seen , and additionally access to payment options that the provider accepts in advance of care. o Access to a shared care plan accessible to the patient or caregiver with the patient’s care team that is a person centric care plan o Access to provider directory information to assess provider network status to the patient’s insurance , digital contact information for patient -provider messaging, and supportive information for knowing appointment hours, directions, and similar information o Electronic notification capabilities to a patient’s primary care and specialty care providers for major hospitalization events , and for similar notifications to family members and caregivers c. What should be possible in the near future? Better abilities for the patient to consolidate their record leveraging interoperability standards , such as those represented in certification requirements using the FHIR standard to be able to obtain electronic health information from multiple provider sources. This would include the ability for the patient to then share the EHI or to grant access to it to other care providers involved in their care at the useful level of an instance of a type of clinical record, a date range, and other reasonable selection parameters. d. What would be valuable but may be very hard to achieve? To enable the HIPAA Patient Privacy Right focused on restriction of consent in a practical implementable interoperable way for providers to effectively be able to accept such requests. 
-To ensure the trustworthiness of consumer -facing health applications for the privacy and security of electronic health information which by necessity likely would require self -regulation to support and sustain . Aside fro m the Federal Trade Commission ’s role in federal breach notification requirements that involve EHI maintained by consumer health applications, there is no significant federal regulation of the consumer health space when it comes to security and privacy of the EHI. 3. Information Blocking and Digital Identity PC-14 - Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 credentialing service providers (CSP)): a. What are the challenges today in getting patients/caregivers to sign up and use digital identity credentials? Consumers already have experience using digital identity credentials for many use cases including access to government web sites . Consumers also encounter multi - factor authentication for banking, financial services, credit bureaus, and other consumer -facing sites ; and for healthcare use cases such as for patient portals and consumer -facing healthcare applications. However, they are compelled to use a wide variety of access paths with largely unique digital identity credentials that are established for each web site or app a consumer may use. While in theory, a patient should be able to get access to all their records from multiple sources using a single interoperable digital identity credential that can be trusted across providers, applications, and health IT developer products, the reality is that there is not enough trust established to use interoperable digital credentials . In healthcare, there is not a singular scheme of identity for patients that spans healthcare settings, and even when the same health information technology product is u sed in different care settings , a common means of identity management is not used across distinct provider systems and practices. Individuals cannot reuse an identity credential themselves across different access paths for different websites and consumer -facing health apps. Even if they could (or did), the use of the same digital identity credentials may not be supported by many portals or health apps that use proprietary authentication schemes. The interoperability of digital identity credentials is limit ed. 
-b. What could be the benefits to patients/caregivers if digital identity credentials were more widely used? The real benefit may come digital identity credentials that were able to be reused or supported across disparate healthcare web sites, portals, and apps. The burden on consumers to use authentication credentials unique to each healthcare app, portal, or healthcare web site they access would be greatly reduced if digital identity credentials were portable, reusable, interoperable , and supported by the wide variety of accesses patients and caregivers need. d. How would encouraging the use of CSPs improve access to health information? The use of CSPs could help standardize identity proofing of patients and caregivers especially by permitting remote processes to be used to avoid the burden of necessarily presenting in -person. CSPs also would be useful for supporting standards -based methods for issuing digital credentials compliant to industry and federally recognized s tandards. e. What role should CMS/payers, providers, and app developers have in driving adoption? CMS and ASTP/ONC can play a leading role in identifying appropriate standards to be used in healthcare. This could include CMS leading the way by adopting requirements for the use of such standards to access CMS web sites intended to be used by beneficiaries and shared with other federal web sites used by the public or for other identity authentication processes enabled by the federal government for public use. ASTP/ONC already has certification requirements for the use of the OpenID Connect across its API requirements for patient and provider facing use, and CMS requires its use in access to payer held electronic health information (EHI) in its regulatory requirements for payer interoperability under CMS -0057 -F and CMS -9915 -F. Building on these requirements , CMS and ASTP/ONC can further requirements for the use of digital identity credentials in federal requirements for the use of HIT. The HHS Office for Civil Rights (OCR) also recently proposed the use of multi -factor authentication (MFA) in its recently pr oposed HIPAA Security Rule. While OCR did not propose specific standards or implementation guides for MFA adoption, and patients and caregivers were not included in the requirement per se, OCR might consider providing guidance for adoption of digital identity credentials that would provide a compliance path to such requirements that could also apply to consumer facing access. 
- Payers, providers, and app developers could support the use of portable, reusable digital identity credentials that follow the individual that abide by federally recognized standards for their issuance and maintenance in an interoperable way. App developers and HIT developers could be encouraged to transition away from proprietary schemes or the use of IdPs that do not support the use of portable interoperable digital identity for consumer access . These may not be driven by regulatory requirements at least in the short term but by supporting the move to the use of interoperable and reusable digital identity credentials issued by independent CSPs that service the market. f. How can CMS encourage patients to get digital identity credentials? CMS may consider making available voluntary beneficiary registration for digital identity credential issuance at key intervals such as when beneficiaries are newly enrolled for Medicare benefits by whatever avenue in a Medicare benefit or insurance program. CMS might make it a matter of contractual requirement or requirement for the use of federal funds to requir e Medicaid and CHIP plans to make similar voluntary beneficiary registration for digital identity credentials available. CMS could work with ASTP/O NC to make the capabilities needed for their issuance and interoperability a matter of requirement for HIT certification for consumer -facing portals and FHIR APIs. C. Providers 2. Data Exchange PR-6. Is TEFCA currently helping to advance provider access to health information? a. Please provide specific examples TEFCA has the potential to broaden the basis of health information available for query based “pull” of health information on a national basis to help fill in access issues for underserved parts of the health information exchange landscape including rural health, post -acute care, and types of providers not included in Promoting Interoperability. However, t he exchange of health information for the required purpose of exchange for treatment has been widely available through more local and regional health info rmation exchanges to the provider community of most interest – that which is within the provider’s service area . It is difficult to say 
-if the availability of health information for most needs significant to a local provider community has been more than incrementally improved . b. What changes would you suggest? The use of TEFCA for other exchange purposes beyond treatment , and beyond HL7 v3 C -CDA based document exchange has been very limited to date . As TEFCA may expand into other purposes of exchange (especially those that become mandatory), TEFCA seems to suffer from good branding as to just what its utility may be. For example, for the payment purpose of exchange , the market already uses ASC X-12 implementation specifications for the exchange of the HIPAA standard transactions . ONC and the RCE should consider identifying complementary use of TEFCA to help cover exchange needs beyond the scope of HIPAA EDI. These may include the sharing of healthcare attachments, the sharing of pricing information including negotiated rates for purpose of provision of good faith estimates, or for sharing of health information for payer audit purposes or utilization review where there is not a HIPAA standard transaction . Payer participation has also significantly lagged, limiting the utility of TEFCA for payment purposes. For public health, the participation of public health entities in many jurisdictions is limited within TEFCA, and oftentimes, such entities are already participating in regional or state based HIEs or point to point exchange for data submission or bi - direc tional information sharing (such as for immunization information) with providers. Again, the issue is understanding what value -add TEFCA may bring to public health reporting, and how that may come about. Similar challenges prevail for quality measure repo rting with multiple submission channels already well established with regulatory agencies, clinical data registries, and payers. The bottom line is for the ONC and the RCE to sort out complementary use rather than what many may see as redundant use where functional health information exchange already exists. This is a major marketing and positioning need to sell TEFCA to be considered for use for purposes of exchange beyond treatment and individual access services. Of further challenge, TEFCA still requires participation in only one QHIN at a time which continues to raise the question of what becomes of existing participation in other health information exchanges that support other permitted purposes of exchange that are already in use. C IOs and provider HIT leadership may be left to 
-question what the value proposition for use of TEFCA beyond its current scope of participation is when it comes to these kinds of questions. PR-7. What strategies can CMS implement to support providers in making high -quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? CMS should work with ASTP/ONC to develop guidance for the positioning and growth of TEFCA to make its value statement clear for how it may be used to complement the kind of health information exchange that is prevalent and in use. There is significant local, regional, and state based health information exchange occurring for specific purposes that overlap with the permitted exchange purposes within TEFCA . CMS should advocate for a complementary use of TEFCA that fills in “white space” where significant non -standard method of exchange , and limited interoperability prevails. 3. Digital Identity PR-9. How might CMS encourage providers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins that need to be tracked for each provider relationship? CMS and ASTP/ON C have available regulatory levers they can consider using to either drive or incent adoption of standards based digital identity credentials for patients by providers that have the potential to be portable and interoperable with other IdPs . I recommend they consider the development of a certification criterion that include s requirements for use of standards based digital identity credentials that could be adopted as a Privacy and Security criterion. Alternatively, CMS and ASTP/ONC could work to expand patient access certification requirements to include capabilities to support standards based IAL2 /AAL2 registration and credential provision for digital identity credential s for patient access to EHI. Either approach would in turn be a part of the definition of Certified EHR Technolog y (CEHRT) which is a prerequisite requirement for Promoting Interoperability, for Advanced A lternative Payment Model (APM) status under MACRA for APM participants, and other CMS program requirements. This would help place the capability in the hands of hospitals and eligible clinicians to have available the capability to support standards based digital identity credentials for at least those large segments of the provider community required to use CEHRT . 
-For actual adoption of standards based digital identity credentials for patients , it is doubtful they can be mandate d. However, CMS should consider how a process of offering patients the chance to adopt standards based digital identity credentials could be implemented as a part of Promoting Interoperability. CMS could work with ASTP/ONC ; and with the OCR to provide guidance on how to educate and encourage the adoption of the credentials by patients as was done initially for the adoption of patient portals . The choice to use digital identity credentials still could be the patient’s choice but a process of at least offering them to patients on a renewal basis or upon sign up of new patient users for either portals or consumer facing APIs to leverage any new standards based digital identity approach could be considered as part of measurement requirements for Consumer Access Objective measures for Promoting Interoperability . This kind of offering of access was a part of earlier Meaningful Use and Promoting Interoperability approaches for consumer access to portals. It seems a coordinated effort to support the acceptability of such credentials that follow the individual and are recognized for their ability to meet the bar set by federally recognized or industry recognized consensus -based standards is needed to make mu ch headway for their use. a. What would providers need help with to accelerate the transition to a single set of trusted digital identity credentials for the patient to keep track of, instead of one for each provider? CMS, ASTP/ONC, and OCR should work together to address challenges providers face in supporting the acceptability of interoperable digital identity credentials. Providers could use help in understanding the role they could play in the issuance of such credentials. Many providers are familiar with registration processes that support the issuance of individual digital identity credentials for clinicians for such requirements as electronic prescribing whether they work as registration authorities or credential authorities themselves or work with entities that support these activities. Providers could stand guidance for how to support processes for individual patient or caregiver identity proofing and registration. The information needed for these activities coul d be collected adjunct to registration or check -in processes that already occur . HIT developers could be required t o certify the use of standards to support IAL2 identity assurance processes, and to support for the collection of additional identity information as part of certification requirements for demographic data collection and/or security. ASTP/ONC could reasonably expand certification criteria to address IAL2 identity assurance as well as AAL2 authentication requirements to support the use of digital identi ty credentials for patients and caregivers that are 
-standards based. These requirements could be connected to the Base EHR to drive their adoption into certified HIT . b. How might CMS balance patient privacy with convenience and access to digital health products and services that may lead to significant improvements in health? CMS can work with OCR to develop guidance for how digital health products offered through the provider as covered entity may be regulated by the HIPAA Security and Privacy rules to make clear how the EHI they collect, process, and store should be protected under HIPAA. CMS can work with ASTP/ONC to support the development of certification criteria that would apply to the use of digital identity credentials that are portable and interoperable . CMS should work with OCR to provide guidance on the role that pro viders could play in the issuance of such credentials that would leverage the demographic data collection and registration processes providers already do. CMS and OCR should promote the use of industry best practice self -regulation for consumer -facing digital health products that are independently used by patients and caregivers such as the CARIN Alliance Code of Conduct as it is unlikely that there will be developments in the federal regulatory space to adequately address such requirements. PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs): a. What are the challenges and benefits for providers? Many providers already are asked to use digital identity credentials for purposes such as electronic prescribing of controlled substances. However, the same individual might possess more than one set of these credentials should they work across multiple ca re settings under distinct individual or institutional settings. The challenge for providers is like that for patients when it comes to the need for having portable interoperable digital identity credentials that could be acceptable across care settings an d entities. HIPAA Security (including as proposed in the recent HIPAA Cybersecurity Rule for Multi -Factor Authentication) only impacts compliance practices within a covered entity and do es not address the portability and interoperability of identity across entities. They do not set the stage for digital identity to follow the individual. 
-The benefits could come from having a portable interoperable credential that could cross contexts, jurisdictions , and bridge what are currently distinct identity proofing requirements. I point back to the desirability of establishing certification requirements to support the concept of a portable and interoperable standards - based digital identity and point CMS back to those remarks as they can apply to provider identity. b. How would requiring their use improve access to health information? They would support a trusted digital identity for the individual provider/clinician not only in access to health information, but in supporting a hardened representation of identity for the purpose of trusted identity and trace ability of identity within the medical record. This would enhance the reliability of author/individual identity for provenance, for assurance of individuals acting within their scope of practice, and for reliability and trust in the chain of custody for medical records. c. What are the potential downsides? I have previously highlighted the current difficulties in having a portable and interoperable digital identity ; and the current constraints on having such an identity that would follow the individual. In the current environment, both regulatory requirements such as HIPAA Security, and HIT certification criteria presume that the requirements apply within a context - the provider as covered entity or care setting within which the identity holds meaning. d. What impact would mandatory credentials have on a nationwide provider directory? Directories can benefit from verified attributes captured as part of identity assurance processes. The form of the attributes can benefit from being based on equivalence across identity proofing and registration processes that support the issuance of digit al identity credentials. e. How could digital identity implementation improve provider data flow? As discussed in previous responses, it would help to improve the reliability, veracity, and trustworthiness of provider identity in EHI for all the purposes of 
-medical record integrity and downstream reliance that depends on an immutable identity of author and participation in medical record provenance. E. Technology Vendors, Data Providers, and Networks 1. Ecosystem TD-1. What short term (in the next 2 years) and longer -term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? In the short term, CMS should work with the OCR and industry collaborations like the CARIN Alliance to promote self -regulatory approaches for security and privacy best practices for consumer facing digital health apps . For digital health apps supplied by or through HIPAA covered entities (payers and providers), similar guidance on the applicability of HIPAA Security and Privacy to them should be strengthened and improved to make clear the applicability of such regulati ons to such products. These actions ma y help build trust and confidence . Medicare beneficiaries need to adopt digital health applications . In the longer term, CMS may want to consider if there may be beneficiary incentives for adoption of digital health apps such as Part B premium reductions or similar beneficiary incentives across Medicare programs to encourage beneficiary adoption which in turn may help spur market demand. CMS also may wish to consider what kind of incentives could be offered to or through Medicare participating providers to offer digital health products associated with particular patient engagement needs or to consider some reimbursement incentive s associated with offering such products by providers. CMS also should consider how it can work with ASTP/ONC and with OCR to promote the use of the FHIR standard to support the interoperability of digital health apps with HIT to support patient/provider health information sharing relevant to a patient’s plan of care and purpose of care. This may include development of certification requirements for provider -facing HIT to include abilities to add or modify EHI through FHIR APIs into provider EHRs or HIT that also may be connected to the definition of the Base E HR to compel provider adoption. These may build on requirements such as patient/provider messaging, and enabling patient requested modifications or changes to their EHI that are within patient HIPAA Privacy Rights. Having such requirements may enhance the value of patient sourced EHI within the context of using digital heal th apps supplied through 
-providers or payers. By extension, these become required elements for certified HIT developers to address. TD-2. Regarding CMS Data, to stimulate developer interest - b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? Given that CMS is already obligated under CMS -0057 -F to make available all EHI defined to be within scope by that final rule for Medicare Advantage plans, and CMS has stated it would also apply the requirements of that final rule to Medicare Fee For Servic e for Parts A and B, it is assumed that this information would be provided alongside what is available through Blue Button 2.0’s API. c. What obstacles prevent accessing these data sources today? CMS should make evident how the EHI held through or by Medicare Parts A and B should be made accessible in line with CMS -0057 -F. CMS may also consider whether data held by Medicare Part D could similarly be made available. CMS also should consider if they can maintain a reference site for how Medicare Advantage, Medicaid. CHIP Fee for Service and Managed Care Plans, and federally funded health insurance marketplace plans make EHI accessible in compliance with CMS - 0057 -F. This could summarize links or connec tions to FHIR endpoints used by the types of health plans subject to CMS -0057 -F to make payer held EHI available for patient access. Developers of digital health products might leverage these access endpoints to enable their products to support and optimiz e patient or their providers’ access for the purposes of their digital health products. 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and benefits? As discussed in response to PC14 and PR9, there is much to overcome with the current use by HIT developers of proprietary credentials ; and non -standard identity credential registration and issuance processes. 
-I have discussed the benefits of portable or at least interoperable digital identity credentials in other responses. The ideal would be to have the digital identity credential follow the individual to reduce the burden of individual clinicians and patients having to still maintain vendor product or production deployment unique digital identities. Minimally, developers should be driven to support standards based digital identity registration, credential management, and authentication approaches that comply w ith standards -based approaches such as for IAL2 and AAL2 requirements as a floor and support technical capabilities to support acceptance of par level digital identity credentials. CMS should work with ASTP/ONC and OCR to assert requirements for these through HIT certification criteria and HIPAA Security Rule requirements to reinforce the ir adoption. b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? I point back to my responses to PC -14 for the impacts on use by patients, and to PR-9 for the impact on use by providers . 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? CMS should emphasize the benefits of using standards -based APIs that support the use of interoperable digital identity versus the use of proprietary digital identity as a means of promoting the benefits of easing health information exchange. CMS and ASTP/ONC can use various regulatory levers such as HIT certifica tion, the Base EHR concept, and prerequisite requirements for the use of Certified EHR Technology to drive adoption of standards -based APIs where those requirements hold impact. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? This would enable a more broadly available resource for understanding how to connect to provider -held EHI ; and to discover digital addressing information. Who should publish such a directory, and should users bear a cost? 
-CMS should be the convener for such a directory . The suitability of NPPES to be the basis for a full expression of a provider directory , such as is required of payers under CMS -9115 -F, may require clarity to be developed to define just what is maintained through NPPES as a national provider directory versus those maintained by payers for their own networks under that final rule . However, since digital contact information already should be maintained through NPPES by enrolled providers, the scope and purpose of leveraging NPPES to support a provider directory of FHIR endpoints should be achievable. TD-8. What are the most effective certification criteria and standards under the ONC Health IT Certification Program? The most effective of the certification criteria and standards are those that support the adoption of interoperability standards where they have broad benefit ; and drive out proprietary means of what should be standard. The standards for the adoption of FHIR APIs in support of patient and population services are ones that hold great promise given requirements for certified HIT to support the use of standards -based APIs. However, they are limited in their scope and us e. They could be enhanced by considering what is necessary to support push transactions , write transactions, and not simply query transactions. This would improve the use of the FHIR standard to support clinical workflow, patient/provider engagement when it comes to patients requesting modifications , or supplying clinical information important to their provider , and to support use cases that involve the incorporation and reconciliation of EHI to truly enable its utility to follow the patient timely to care related needs versus ad hoc or asynchronous (to care) query transactions. TD-9. Regarding certification of health IT: a. What are the benefits of redefining certification to prioritize API -enabled capabilities over software functionality? This would hold the potential for improving the availability of EHI for providers, patients, and other stakeholders in actionable ways at the point of need . I also urge consideration be given to expand FHIR API requirements If it also included an expansion of requirements to enable write capabilities to add and modify EHI to better support use of clinical information within workflow, and to support consolidation of EHI to support reconciliation of EHI for specific needs, or for 
-communicating updates in statuses of key work activities like prior authorization decisions. b. What would be the drawbacks? The current use of the FHIR standard has been mostly limited to support query kinds of use cases. Write capabilities should be added to leverage better utility for supporting healthcare workflows. Further, the USCDI can no longer be a monolith for both FHIR API as well as C - CDA criteria. This prevails for enabling patient access as well through FHIR APIs or through patient portals. Two main problems emerge. First, the scope of the USCDI at the version 3 or version 4 level is broader than many HIT p roducts can support organically based on their scope of function. CMS and ASTP/ONC should move away from a one size fits all scope of requirement for FHIR based criteria but instead allow for reduced scope of requirements for what FHIR resources must be supported as common requirements for any type of HIT being presented for certification, and what ones may be optional that given HIT developers could seek to certify to without requiring all developers to cer tify to the maximal scope of the USCDI at current and future version levels. Second, the scope of requiring the full of USCDI is completely inappropriate for specialty EHR developers such as those who support physical therapists, mental health specialists, occupational therapists, dental providers or other specialty/sub - specialty providers. Such specialties simply have no reason to collect and support provision of the full scope of the EHI contained within USCDI v3 and v4. This could be addressed by the type of scaling of the USCDI to fit the purpo se and scope of given types of HIT. This would permit them to seek certification especially since many specialties and levels of provider scope of practice fit the definition of eligible clinician under MACRA and yet must adopt capabilities they will not u se, and their HIT developer partners must provide with no benefit. Before ASTP/ONC seeks to broaden API certification requirements, they need to address this deficit of approach that has long been present within the certification program. d. What policy changes could CMS make so providers are motivated to respond to API based data requests with best possible coverage and quality of data? I urge CMS to work with ASTP/ONC to allow for the fact that because specialty providers and mid -level clinicians are a part of the scope of eligible clinicians 
-subject to MACRA QPP, certification requirements that reference the USCDI be restructured to recognize a common floor set of FHIR resources that should be enabled for health information exchange with additional optional FHIR resources to enable exchange of additional EHI appropriate to the scope of practice for providers using specialty HIT. This would require conforming changes to the definitions of the Base EHR, and the definition of Certified EHR Technology, which CMS has already given itself the authority to do when it comes to Alternative Payment Models considered to be Advanced APM s under MACRA. Do the same sort of thing for specialty providers and mid -level clinicians. Beyond this, CMS should work with ASTP/ONC to consider how to make the EHI shared using the FHIR standard to include support for clinical workflow using write capabilities of the FHIR standard such as for incorporation and reconciliation of EHI as has been done with C -CDA based certification requirements. These kinds of requirements could be incorporated into Certified EHR Technology definitions but still done sensitively to the scope of EHI appropriate as a common floor and considerate of the interest to special ist providers and mid -level clinicians with more limited scope needs for EHI . e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? As CMS considers the adoption of digital clinical quality measures (dQMs), CMS should consider an approach that leverages the bulk data transfer capabilities based on the FHIR Bulk API standard to address the scope of EHI needed for quality measure calcula tion. This may work to fulfill data submissions for individual quality measures for all qualifying patients. What capabilities are needed to show benefit? What concerns are there with this approach? To reduce provider burden, CMS should evaluate how the FHIR Bulk API standard can be used to support dQM requirements as they are adopted, and to relieve providers from having to calculate measure outcomes prior to submission. CMS should also make availabl e the details of measure calculations for providers to be able to leverage outcomes for their own operational purposes. 
-TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient’s electronic health information (EHI)? CMS and ASTP/ONC should consider developing a different way of presenting the USCDI as the required set of EHI to be enabled for health information exchange using both FHIR API and C -CDA interoperability or for enabling patient access to their EHI. I recommend the development of a common minimum set of the USCDI version (and attendant FHIR resources when applicable) in effect as a certification standard (currently v3) be identified that all HIT seeking certification to any criterion that involve the u se of the USCDI as a certification standard be able to exchange. Beyond this, I recommend identifying as optional additional data types and supporting FHIR resources as applicable to the criterion that are appropriate to the intended scope and purpose of the HIT being presented for certification , especially when the HIT is intended for use by specialty providers or mid -level clinicians who do not interact with the full scope of the USCDI version in effect as a certification standard. ASTP/ONC might consider making those additional “optional” data types and classes required if a developer is presenting H IT for use in general acute care settings or in primary care specialties if that helps make for distinction for when the full scope of the USCDI is appropriate to a given type of HIT. This kind of approach could also be useful for creating models for optional certification for “USCDI +” data sets that are tailored to fit specific use cases. TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data flow? The use of the FHIR Bulk API standard could be useful for addressing many types of use cases where larger data sets are being sought and/or a bulk data submission could ease the burden of submitting individual patient EHI. These include payer related reque sts for EHI for payment audit, fraud prevention, utilization review, quality measurement, beneficiary enrollment, and other purposes where bulk provision of data is appropriate. Where individual patient records are not required to fulfill the purpose at ha nd singly, the use of the FHIR Bulk API standard promises to reduce the burden of record preparation for submission, and workflows and capabilities that leverage triggering events from key milestones in patient care (such as for quality measures at time of discharge or departure) could be developed to build out bulk data files of qualifying patients to be submitted at 
-once. This kind of approach was contemplated for payer -to-payer EHI exchange under CMS -9115 -F and CMS -0057 -F; and could be similar in approach to other such use cases of a like kind. TD-16. What are the tradeoffs of maintaining point -to-point models vs. shared network infrastructure? Point -to-point models of exchange that are in use typically serve existing needs for local health information exchange where such has been seen as necessary by the participating exchange partners. This may be because of contractual, closed model or context (for example, for the purposes of an ACO or a health system for exchange among its constituent members) or business -to-business requirements, and the necessity of it may remain true going forward if required by the exchange partners. However, it is desirable to move away from point -to-point exchanges that serve to repr esent more costly means of maintaining health information exchange than is necessary. This also may be true if the point -to-point model uses proprietary or custom interface specifications that are limited for their ability to be reused or maintained for the longer term especially where standards are available for lower cost broader scale ex change across a broader community. Shared network infrastructures will better serve exchange purposes that engage the whole of the community for a shared purpose (for example as is the case with TEFCA, supporting a query based model to find EHI for a patie nt for a treatment purpose where exchange participants are obligated to respond to a legitimate request from a treating provider), or that standardize exchange modalities and methods for a common exchange purpose or need such as standardizing exchange of b ulk data for audit or quality management purposes or for public health submission where the public health entity participates in a shared network community for public health reporting purposes using standards based submission specifications. a. Do current rules encourage scalable network participation? Exchange of clinical EHI for treatment or for other permitted disclosure purposes both as permissible under HIPAA, and as practiced in many local, regional, or national exchanges may require response for participants and sub -participants (using TEFCA’s ter ms) who agree to the terms of participation to share information with each other in response to requests and queries, but participation is not required. It mostly is encouraged. Exchange of EHI in support of more closed contexts (a state mandated HIE, a contractual exchange to support a value -based care model, etc) may be required by 
-law or by contractual obligation for the limited purposes and scope of that context but usually is limited in that sort of way. Thank you for the opportunity to submit these comments, and I hope they are worthy of your consideration. Please feel free to contact me at jftprgllc@yahoo.com if you have any questions. Sincerely, John Travis , CPA, MA, FHFMA Principal JFT PRG LLC 
+Centers for Medicare & Medicaid Services
+Department of Health and Human Services
+Attention: CMS-1833-P, Mail Stop C4-26-05, 7500 Security Boulevard
+Baltimore, MD 21244-1850.
+Submitted electronically via: federalregister.gov
+Subject: Request for Information: Health Technology Ecosystem
+General Comments
+In response to CMS’s RFI, I offer the following general comments:
+• Standards based Digital identity proofing and digital identity credentials have the
+potential to ease the sharing of reliable health information by improving
+authentication and authorization processes for accessing electronic health
+information, supporting the reliability of identity as an attribute of the records that
+are exchanged, and supporting the portability of digital identity across
+organizational boundaries and contexts.
+• The success of the Trusted Exchange Framework and Cooperative Agreement
+(TEFCA) is incomplete to date, and I believe confusion still exists about its future
+role as it expands into permitted purposes of exchange beyond treatment and
+individual access services. As ASTP/ONC and the Recognized Coordinating Entity
+(RCE) seek to expand participation to include payers, public health entities, quality
+data registries and other non-provider/non-health IT developer participants and
+sub-participants, I recommend that CMS and ASTP/ONC consider how TEFCA can
+complement existing functional healthcare exchanges rather than duplicating them.
+For example, how may TEFCA complement the existing HIPAA EDI transacting that
+occurs significantly through healthcare clearinghouses using the ASC X-12
+transaction standards? Help stakeholders understand the complementary use of
+TEFCA to address non-HIPAA EDI payment purposes of health information
+exchange alongside the existing HIPAA EDI X-12 based exchange. Further, help
+stakeholders understand the value proposition of TEFCA in terms of
+complementing existing local, state, or regional health information exchanges
+already serving purposes of use including public health and quality measure
+reporting or provide a better roadmap to the intended expansion of TEFCA to
+support planning by potential participants and sub-participants to account for its
+future use.
+• The interest in standing up a potential nationwide provider directory is a laudable
+aim, but here too, CMS needs to help stakeholders understand how it would
+complement several related requirements including:
+
+o The provider network directories required by CMS-9115-F for payers that
+are subject to CMS’s regulatory oversight that are to be made accessible
+through public facing FHIR APIs.
+o The use of the National Plan and Provider Enumeration (NPPES) system
+requirements under the 21st Century Cures Act for providers to supply their
+digital contact information to NPPES.
+o The directory maintained by the RCE for TEFCA.
+If such a national provider directory is to be stood up, what is the complementary
+role for it to be played alongside these (and other) provider directories, and how
+can provider burden be lessened by being required to maintain another information
+source for directory information?
+• The future of the ASTP/ONC certification program remains a vital element to the
+use of certified health information technology (HIT) by hospitals, eligible clinicians,
+value-based care participants, and others in satisfaction of Medicare program
+requirements for Medicare Fee for Service, Advanced Alternative Payment Models
+under the MACRA statute and for the CMS Innovation Center value-based care
+models, and other purposes. CMS is right to ask about what certification criteria are
+of most value; and what should the strategic focus for the program be. Along with
+these considerations, CMS and ASTP/ONC should develop a regular rhythm of
+certification criteria rulemaking that provides adequate advance runway for HIT
+developers who would seek certification to plan, design, develop, test, certify, and
+deploy their updates to their basis of certified HIT. At the same time, ASTP/ONC
+should revisit how the US Data Set for Core Interoperability (USCDI) is used as a
+certification standard. To date, the USCDI has been used as if a monolith for the
+FHIR API and C-CDA document-based interoperability criteria, and for the patient
+access criteria. This approach ignores the realities of specialty HIT developers; and
+what an appropriate role for clinically focused HIT is. It also does not do justice to
+the approach needed to support developments such as digital clinical quality
+measures (dCQMs) and USCDI+ needs for certified HIT.
+Specific Comments
+B. Patients and Caregivers
+2. Data Access and Integration
+PC-12 - What are the most valuable operational health data use cases for patients and
+caregivers that, if addressed, would create more efficient care navigation or eliminate
+barriers to competition among providers or both?
+b. What use cases are possible today?
+
+Patients and caregivers would find greatest value in:
+o Patient educational materials available through self-service portals (same as
+for what may be used for patient access) to help them understand self-care
+expectations for their clinical conditions and for common tasks of daily living
+when such is of concern
+o Self-directed appointment scheduling and pre-registration with an ability to
+see provider availability
+o Pricing comparison and good faith estimate tools that allow for a patient or
+their caregiver to be able to assess the impact of their insurance status and
+out-of-pocket responsibilities in making decisions about where to be seen,
+and additionally access to payment options that the provider accepts in
+advance of care.
+o Access to a shared care plan accessible to the patient or caregiver with the
+patient’s care team that is a person centric care plan
+o Access to provider directory information to assess provider network status
+to the patient’s insurance, digital contact information for patient-provider
+messaging, and supportive information for knowing appointment hours,
+directions, and similar information
+o Electronic notification capabilities to a patient’s primary care and specialty
+care providers for major hospitalization events, and for similar notifications
+to family members and caregivers
+c. What should be possible in the near future?
+Better abilities for the patient to consolidate their record leveraging interoperability
+standards, such as those represented in certification requirements using the FHIR
+standard to be able to obtain electronic health information from multiple provider
+sources. This would include the ability for the patient to then share the EHI or to
+grant access to it to other care providers involved in their care at the useful level of
+an instance of a type of clinical record, a date range, and other reasonable selection
+parameters.
+d. What would be valuable but may be very hard to achieve?
+To enable the HIPAA Patient Privacy Right focused on restriction of consent in a
+practical implementable interoperable way for providers to effectively be able to
+accept such requests.
+
+To ensure the trustworthiness of consumer-facing health applications for the
+privacy and security of electronic health information which by necessity likely
+would require self-regulation to support and sustain. Aside from the Federal Trade
+Commission’s role in federal breach notification requirements that involve EHI
+maintained by consumer health applications, there is no significant federal
+regulation of the consumer health space when it comes to security and privacy of
+the EHI.
+3. Information Blocking and Digital Identity
+PC-14 - Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 credentialing service providers (CSP)):
+a. What are the challenges today in getting patients/caregivers to sign up and use
+digital identity credentials?
+Consumers already have experience using digital identity credentials for many use
+cases including access to government web sites. Consumers also encounter multi-
+factor authentication for banking, financial services, credit bureaus, and other
+consumer-facing sites; and for healthcare use cases such as for patient portals and
+consumer-facing healthcare applications. However, they are compelled to use a
+wide variety of access paths with largely unique digital identity credentials that are
+established for each web site or app a consumer may use.
+While in theory, a patient should be able to get access to all their records from
+multiple sources using a single interoperable digital identity credential that can be
+trusted across providers, applications, and health IT developer products, the reality
+is that there is not enough trust established to use interoperable digital credentials.
+In healthcare, there is not a singular scheme of identity for patients that spans
+healthcare settings, and even when the same health information technology
+product is used in different care settings, a common means of identity management
+is not used across distinct provider systems and practices. Individuals cannot reuse
+an identity credential themselves across different access paths for different
+websites and consumer-facing health apps. Even if they could (or did), the use of
+the same digital identity credentials may not be supported by many portals or
+health apps that use proprietary authentication schemes. The interoperability of
+digital identity credentials is limited.
+
+b. What could be the benefits to patients/caregivers if digital identity credentials
+were more widely used?
+The real benefit may come digital identity credentials that were able to be reused
+or supported across disparate healthcare web sites, portals, and apps. The burden
+on consumers to use authentication credentials unique to each healthcare app,
+portal, or healthcare web site they access would be greatly reduced if digital
+identity credentials were portable, reusable, interoperable, and supported by the
+wide variety of accesses patients and caregivers need.
+d. How would encouraging the use of CSPs improve access to health information?
+The use of CSPs could help standardize identity proofing of patients and caregivers
+especially by permitting remote processes to be used to avoid the burden of
+necessarily presenting in-person. CSPs also would be useful for supporting
+standards-based methods for issuing digital credentials compliant to industry and
+federally recognized standards.
+e. What role should CMS/payers, providers, and app developers have in driving
+adoption?
+CMS and ASTP/ONC can play a leading role in identifying appropriate standards to
+be used in healthcare. This could include CMS leading the way by adopting
+requirements for the use of such standards to access CMS web sites intended to
+be used by beneficiaries and shared with other federal web sites used by the public
+or for other identity authentication processes enabled by the federal government
+for public use. ASTP/ONC already has certification requirements for the use of the
+OpenID Connect across its API requirements for patient and provider facing use,
+and CMS requires its use in access to payer held electronic health information (EHI)
+in its regulatory requirements for payer interoperability under CMS-0057-F and
+CMS-9915-F. Building on these requirements, CMS and ASTP/ONC can further
+requirements for the use of digital identity credentials in federal requirements for
+the use of HIT. The HHS Office for Civil Rights (OCR) also recently proposed the
+use of multi-factor authentication (MFA) in its recently proposed HIPAA Security
+Rule. While OCR did not propose specific standards or implementation guides for
+MFA adoption, and patients and caregivers were not included in the requirement
+per se, OCR might consider providing guidance for adoption of digital identity
+credentials that would provide a compliance path to such requirements that could
+also apply to consumer facing access.
+
+Payers, providers, and app developers could support the use of portable, reusable
+digital identity credentials that follow the individual that abide by federally
+recognized standards for their issuance and maintenance in an interoperable way.
+App developers and HIT developers could be encouraged to transition away from
+proprietary schemes or the use of IdPs that do not support the use of portable
+interoperable digital identity for consumer access. These may not be driven by
+regulatory requirements at least in the short term but by supporting the move to
+the use of interoperable and reusable digital identity credentials issued by
+independent CSPs that service the market.
+f. How can CMS encourage patients to get digital identity credentials?
+CMS may consider making available voluntary beneficiary registration for digital
+identity credential issuance at key intervals such as when beneficiaries are newly
+enrolled for Medicare benefits by whatever avenue in a Medicare benefit or
+insurance program. CMS might make it a matter of contractual requirement or
+requirement for the use of federal funds to require Medicaid and CHIP plans to
+make similar voluntary beneficiary registration for digital identity credentials
+available. CMS could work with ASTP/ONC to make the capabilities needed for
+their issuance and interoperability a matter of requirement for HIT certification for
+consumer-facing portals and FHIR APIs.
+C. Providers
+2. Data Exchange
+PR-6. Is TEFCA currently helping to advance provider access to health information?
+a. Please provide specific examples
+TEFCA has the potential to broaden the basis of health information available for
+query based “pull” of health information on a national basis to help fill in access
+issues for underserved parts of the health information exchange landscape
+including rural health, post-acute care, and types of providers not included in
+Promoting Interoperability. However, the exchange of health information for the
+required purpose of exchange for treatment has been widely available through
+more local and regional health information exchanges to the provider community of
+most interest – that which is within the provider’s service area. It is difficult to say
+
+if the availability of health information for most needs significant to a local provider
+community has been more than incrementally improved.
+b. What changes would you suggest?
+The use of TEFCA for other exchange purposes beyond treatment, and beyond
+HL7 v3 C-CDA based document exchange has been very limited to date. As
+TEFCA may expand into other purposes of exchange (especially those that become
+mandatory), TEFCA seems to suffer from good branding as to just what its utility
+may be. For example, for the payment purpose of exchange, the market already
+uses ASC X-12 implementation specifications for the exchange of the HIPAA
+standard transactions. ONC and the RCE should consider identifying
+complementary use of TEFCA to help cover exchange needs beyond the scope of
+HIPAA EDI. These may include the sharing of healthcare attachments, the sharing
+of pricing information including negotiated rates for purpose of provision of good
+faith estimates, or for sharing of health information for payer audit purposes or
+utilization review where there is not a HIPAA standard transaction. Payer
+participation has also significantly lagged, limiting the utility of TEFCA for payment
+purposes.
+For public health, the participation of public health entities in many jurisdictions is
+limited within TEFCA, and oftentimes, such entities are already participating in
+regional or state based HIEs or point to point exchange for data submission or bi-
+directional information sharing (such as for immunization information) with
+providers. Again, the issue is understanding what value-add TEFCA may bring to
+public health reporting, and how that may come about. Similar challenges prevail
+for quality measure reporting with multiple submission channels already well
+established with regulatory agencies, clinical data registries, and payers. The
+bottom line is for the ONC and the RCE to sort out complementary use rather than
+what many may see as redundant use where functional health information
+exchange already exists. This is a major marketing and positioning need to sell
+TEFCA to be considered for use for purposes of exchange beyond treatment and
+individual access services.
+Of further challenge, TEFCA still requires participation in only one QHIN at a time
+which continues to raise the question of what becomes of existing participation in
+other health information exchanges that support other permitted purposes of
+exchange that are already in use. CIOs and provider HIT leadership may be left to
+
+question what the value proposition for use of TEFCA beyond its current scope of
+participation is when it comes to these kinds of questions.
+PR-7. What strategies can CMS implement to support providers in making high-quality,
+timely, and comprehensive healthcare data available for interoperability in the digital
+product ecosystem? How can the burden of increasing data availability and sharing be
+mitigated for providers? Are there ways that workflows or metrics that providers are
+already motivated to optimize for that could be reused for, or combined with, efforts
+needed to support interoperability?
+CMS should work with ASTP/ONC to develop guidance for the positioning and growth of
+TEFCA to make its value statement clear for how it may be used to complement the kind
+of health information exchange that is prevalent and in use. There is significant local,
+regional, and state based health information exchange occurring for specific purposes that
+overlap with the permitted exchange purposes within TEFCA. CMS should advocate for a
+complementary use of TEFCA that fills in “white space” where significant non-standard
+method of exchange, and limited interoperability prevails.
+3. Digital Identity
+PR-9. How might CMS encourage providers to accept digital identity credentials (for
+example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary
+logins that need to be tracked for each provider relationship?
+CMS and ASTP/ONC have available regulatory levers they can consider using to either
+drive or incent adoption of standards based digital identity credentials for patients by
+providers that have the potential to be portable and interoperable with other IdPs. I
+recommend they consider the development of a certification criterion that includes
+requirements for use of standards based digital identity credentials that could be adopted
+as a Privacy and Security criterion. Alternatively, CMS and ASTP/ONC could work to
+expand patient access certification requirements to include capabilities to support
+standards based IAL2 /AAL2 registration and credential provision for digital identity
+credentials for patient access to EHI. Either approach would in turn be a part of the
+definition of Certified EHR Technology (CEHRT) which is a prerequisite requirement for
+Promoting Interoperability, for Advanced Alternative Payment Model (APM) status under
+MACRA for APM participants, and other CMS program requirements. This would help
+place the capability in the hands of hospitals and eligible clinicians to have available the
+capability to support standards based digital identity credentials for at least those large
+segments of the provider community required to use CEHRT.
+
+For actual adoption of standards based digital identity credentials for patients, it is
+doubtful they can be mandated. However, CMS should consider how a process of
+offering patients the chance to adopt standards based digital identity credentials could be
+implemented as a part of Promoting Interoperability. CMS could work with ASTP/ONC;
+and with the OCR to provide guidance on how to educate and encourage the adoption of
+the credentials by patients as was done initially for the adoption of patient portals. The
+choice to use digital identity credentials still could be the patient’s choice but a process of
+at least offering them to patients on a renewal basis or upon sign up of new patient users
+for either portals or consumer facing APIs to leverage any new standards based digital
+identity approach could be considered as part of measurement requirements for
+Consumer Access Objective measures for Promoting Interoperability. This kind of offering
+of access was a part of earlier Meaningful Use and Promoting Interoperability approaches
+for consumer access to portals.
+It seems a coordinated effort to support the acceptability of such credentials that follow
+the individual and are recognized for their ability to meet the bar set by federally
+recognized or industry recognized consensus-based standards is needed to make much
+headway for their use.
+a. What would providers need help with to accelerate the transition to a single set
+of trusted digital identity credentials for the patient to keep track of, instead of one
+for each provider?
+CMS, ASTP/ONC, and OCR should work together to address challenges providers
+face in supporting the acceptability of interoperable digital identity credentials.
+Providers could use help in understanding the role they could play in the issuance
+of such credentials. Many providers are familiar with registration processes that
+support the issuance of individual digital identity credentials for clinicians for such
+requirements as electronic prescribing whether they work as registration
+authorities or credential authorities themselves or work with entities that support
+these activities. Providers could stand guidance for how to support processes for
+individual patient or caregiver identity proofing and registration. The information
+needed for these activities could be collected adjunct to registration or check-in
+processes that already occur.
+HIT developers could be required to certify the use of standards to support IAL2
+identity assurance processes, and to support for the collection of additional identity
+information as part of certification requirements for demographic data collection
+and/or security. ASTP/ONC could reasonably expand certification criteria to
+address IAL2 identity assurance as well as AAL2 authentication requirements to
+support the use of digital identity credentials for patients and caregivers that are
+
+standards based. These requirements could be connected to the Base EHR to drive
+their adoption into certified HIT.
+b. How might CMS balance patient privacy with convenience and access to digital
+health products and services that may lead to significant improvements in health?
+CMS can work with OCR to develop guidance for how digital health products
+offered through the provider as covered entity may be regulated by the HIPAA
+Security and Privacy rules to make clear how the EHI they collect, process, and
+store should be protected under HIPAA. CMS can work with ASTP/ONC to
+support the development of certification criteria that would apply to the use of
+digital identity credentials that are portable and interoperable. CMS should work
+with OCR to provide guidance on the role that providers could play in the issuance
+of such credentials that would leverage the demographic data collection and
+registration processes providers already do.
+CMS and OCR should promote the use of industry best practice self-regulation for
+consumer-facing digital health products that are independently used by patients
+and caregivers such as the CARIN Alliance Code of Conduct as it is unlikely that
+there will be developments in the federal regulatory space to adequately address
+such requirements.
+PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 CSPs):
+a. What are the challenges and benefits for providers?
+Many providers already are asked to use digital identity credentials for purposes
+such as electronic prescribing of controlled substances. However, the same
+individual might possess more than one set of these credentials should they work
+across multiple care settings under distinct individual or institutional settings. The
+challenge for providers is like that for patients when it comes to the need for
+having portable interoperable digital identity credentials that could be acceptable
+across care settings and entities. HIPAA Security (including as proposed in the
+recent HIPAA Cybersecurity Rule for Multi-Factor Authentication) only impacts
+compliance practices within a covered entity and does not address the portability
+and interoperability of identity across entities. They do not set the stage for digital
+identity to follow the individual.
+
+The benefits could come from having a portable interoperable credential that could
+cross contexts, jurisdictions, and bridge what are currently distinct identity proofing
+requirements. I point back to the desirability of establishing certification
+requirements to support the concept of a portable and interoperable standards-
+based digital identity and point CMS back to those remarks as they can apply to
+provider identity.
+b. How would requiring their use improve access to health information?
+They would support a trusted digital identity for the individual provider/clinician
+not only in access to health information, but in supporting a hardened
+representation of identity for the purpose of trusted identity and traceability of
+identity within the medical record. This would enhance the reliability of
+author/individual identity for provenance, for assurance of individuals acting within
+their scope of practice, and for reliability and trust in the chain of custody for
+medical records.
+c. What are the potential downsides?
+I have previously highlighted the current difficulties in having a portable and
+interoperable digital identity; and the current constraints on having such an identity
+that would follow the individual. In the current environment, both regulatory
+requirements such as HIPAA Security, and HIT certification criteria presume that
+the requirements apply within a context - the provider as covered entity or care
+setting within which the identity holds meaning.
+d. What impact would mandatory credentials have on a nationwide provider
+directory?
+Directories can benefit from verified attributes captured as part of identity
+assurance processes. The form of the attributes can benefit from being based on
+equivalence across identity proofing and registration processes that support the
+issuance of digital identity credentials.
+e. How could digital identity implementation improve provider data flow?
+As discussed in previous responses, it would help to improve the reliability,
+veracity, and trustworthiness of provider identity in EHI for all the purposes of
+
+medical record integrity and downstream reliance that depends on an immutable
+identity of author and participation in medical record provenance.
+E. Technology Vendors, Data Providers, and Networks
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to
+stimulate developer interest in building digital health products for Medicare beneficiaries
+and caregivers?
+In the short term, CMS should work with the OCR and industry collaborations like the
+CARIN Alliance to promote self-regulatory approaches for security and privacy best
+practices for consumer facing digital health apps. For digital health apps supplied by or
+through HIPAA covered entities (payers and providers), similar guidance on the
+applicability of HIPAA Security and Privacy to them should be strengthened and improved
+to make clear the applicability of such regulations to such products. These actions may
+help build trust and confidence. Medicare beneficiaries need to adopt digital health
+applications.
+In the longer term, CMS may want to consider if there may be beneficiary incentives for
+adoption of digital health apps such as Part B premium reductions or similar beneficiary
+incentives across Medicare programs to encourage beneficiary adoption which in turn
+may help spur market demand. CMS also may wish to consider what kind of incentives
+could be offered to or through Medicare participating providers to offer digital health
+products associated with particular patient engagement needs or to consider some
+reimbursement incentives associated with offering such products by providers.
+CMS also should consider how it can work with ASTP/ONC and with OCR to promote the
+use of the FHIR standard to support the interoperability of digital health apps with HIT to
+support patient/provider health information sharing relevant to a patient’s plan of care
+and purpose of care. This may include development of certification requirements for
+provider-facing HIT to include abilities to add or modify EHI through FHIR APIs into
+provider EHRs or HIT that also may be connected to the definition of the Base EHR to
+compel provider adoption. These may build on requirements such as patient/provider
+messaging, and enabling patient requested modifications or changes to their EHI that are
+within patient HIPAA Privacy Rights. Having such requirements may enhance the value of
+patient sourced EHI within the context of using digital health apps supplied through
+
+providers or payers. By extension, these become required elements for certified HIT
+developers to address.
+TD-2. Regarding CMS Data, to stimulate developer interest-
+b. What data sources are most valuable alongside the data available through the
+Blue Button 2.0 API?
+Given that CMS is already obligated under CMS-0057-F to make available all EHI
+defined to be within scope by that final rule for Medicare Advantage plans, and
+CMS has stated it would also apply the requirements of that final rule to Medicare
+Fee For Service for Parts A and B, it is assumed that this information would be
+provided alongside what is available through Blue Button 2.0’s API.
+c. What obstacles prevent accessing these data sources today?
+CMS should make evident how the EHI held through or by Medicare Parts A and B
+should be made accessible in line with CMS-0057-F. CMS may also consider
+whether data held by Medicare Part D could similarly be made available. CMS also
+should consider if they can maintain a reference site for how Medicare Advantage,
+Medicaid. CHIP Fee for Service and Managed Care Plans, and federally funded
+health insurance marketplace plans make EHI accessible in compliance with CMS-
+0057-F. This could summarize links or connections to FHIR endpoints used by the
+types of health plans subject to CMS-0057-F to make payer held EHI available for
+patient access. Developers of digital health products might leverage these access
+endpoints to enable their products to support and optimize patient or their
+providers’ access for the purposes of their digital health products.
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits?
+As discussed in response to PC14 and PR9, there is much to overcome with the
+current use by HIT developers of proprietary credentials; and non-standard identity
+credential registration and issuance processes.
+
+I have discussed the benefits of portable or at least interoperable digital identity
+credentials in other responses. The ideal would be to have the digital identity
+credential follow the individual to reduce the burden of individual clinicians and
+patients having to still maintain vendor product or production deployment unique
+digital identities. Minimally, developers should be driven to support standards
+based digital identity registration, credential management, and authentication
+approaches that comply with standards-based approaches such as for IAL2 and
+AAL2 requirements as a floor and support technical capabilities to support
+acceptance of par level digital identity credentials. CMS should work with
+ASTP/ONC and OCR to assert requirements for these through HIT certification
+criteria and HIPAA Security Rule requirements to reinforce their adoption.
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov,
+ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data
+exchange?
+I point back to my responses to PC-14 for the impacts on use by patients, and to
+PR-9 for the impact on use by providers.
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+CMS should emphasize the benefits of using standards-based APIs that support the use of
+interoperable digital identity versus the use of proprietary digital identity as a means of
+promoting the benefits of easing health information exchange. CMS and ASTP/ONC can
+use various regulatory levers such as HIT certification, the Base EHR concept, and
+prerequisite requirements for the use of Certified EHR Technology to drive adoption of
+standards-based APIs where those requirements hold impact.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to
+health information for patients, providers, and payers?
+This would enable a more broadly available resource for understanding how to connect to
+provider-held EHI; and to discover digital addressing information.
+Who should publish such a directory, and should users bear a cost?
+
+CMS should be the convener for such a directory. The suitability of NPPES to be
+the basis for a full expression of a provider directory, such as is required of payers
+under CMS-9115-F, may require clarity to be developed to define just what is
+maintained through NPPES as a national provider directory versus those
+maintained by payers for their own networks under that final rule. However, since
+digital contact information already should be maintained through NPPES by
+enrolled providers, the scope and purpose of leveraging NPPES to support a
+provider directory of FHIR endpoints should be achievable.
+TD-8. What are the most effective certification criteria and standards under the ONC
+Health IT Certification Program?
+The most effective of the certification criteria and standards are those that support the
+adoption of interoperability standards where they have broad benefit; and drive out
+proprietary means of what should be standard.
+The standards for the adoption of FHIR APIs in support of patient and population services
+are ones that hold great promise given requirements for certified HIT to support the use
+of standards-based APIs. However, they are limited in their scope and use. They could be
+enhanced by considering what is necessary to support push transactions, write
+transactions, and not simply query transactions. This would improve the use of the FHIR
+standard to support clinical workflow, patient/provider engagement when it comes to
+patients requesting modifications, or supplying clinical information important to their
+provider, and to support use cases that involve the incorporation and reconciliation of EHI
+to truly enable its utility to follow the patient timely to care related needs versus ad hoc or
+asynchronous (to care) query transactions.
+TD-9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled
+capabilities over software functionality?
+This would hold the potential for improving the availability of EHI for providers,
+patients, and other stakeholders in actionable ways at the point of need. I also urge
+consideration be given to expand FHIR API requirements If it also included an
+expansion of requirements to enable write capabilities to add and modify EHI to
+better support use of clinical information within workflow, and to support
+consolidation of EHI to support reconciliation of EHI for specific needs, or for
+
+communicating updates in statuses of key work activities like prior authorization
+decisions.
+b. What would be the drawbacks?
+The current use of the FHIR standard has been mostly limited to support query
+kinds of use cases. Write capabilities should be added to leverage better utility for
+supporting healthcare workflows.
+Further, the USCDI can no longer be a monolith for both FHIR API as well as C-
+CDA criteria. This prevails for enabling patient access as well through FHIR APIs or
+through patient portals. Two main problems emerge. First, the scope of the USCDI
+at the version 3 or version 4 level is broader than many HIT products can support
+organically based on their scope of function. CMS and ASTP/ONC should move
+away from a one size fits all scope of requirement for FHIR based criteria but
+instead allow for reduced scope of requirements for what FHIR resources must be
+supported as common requirements for any type of HIT being presented for
+certification, and what ones may be optional that given HIT developers could seek
+to certify to without requiring all developers to certify to the maximal scope of the
+USCDI at current and future version levels.
+Second, the scope of requiring the full of USCDI is completely inappropriate for
+specialty EHR developers such as those who support physical therapists, mental
+health specialists, occupational therapists, dental providers or other specialty/sub-
+specialty providers. Such specialties simply have no reason to collect and support
+provision of the full scope of the EHI contained within USCDI v3 and v4. This
+could be addressed by the type of scaling of the USCDI to fit the purpose and
+scope of given types of HIT. This would permit them to seek certification especially
+since many specialties and levels of provider scope of practice fit the definition of
+eligible clinician under MACRA and yet must adopt capabilities they will not use,
+and their HIT developer partners must provide with no benefit. Before ASTP/ONC
+seeks to broaden API certification requirements, they need to address this deficit
+of approach that has long been present within the certification program.
+d. What policy changes could CMS make so providers are motivated to respond to
+API based data requests with best possible coverage and quality of data?
+I urge CMS to work with ASTP/ONC to allow for the fact that because specialty
+providers and mid-level clinicians are a part of the scope of eligible clinicians
+
+subject to MACRA QPP, certification requirements that reference the USCDI be
+restructured to recognize a common floor set of FHIR resources that should be
+enabled for health information exchange with additional optional FHIR resources to
+enable exchange of additional EHI appropriate to the scope of practice for
+providers using specialty HIT. This would require conforming changes to the
+definitions of the Base EHR, and the definition of Certified EHR Technology, which
+CMS has already given itself the authority to do when it comes to Alternative
+Payment Models considered to be Advanced APMs under MACRA. Do the same
+sort of thing for specialty providers and mid-level clinicians.
+Beyond this, CMS should work with ASTP/ONC to consider how to make the EHI
+shared using the FHIR standard to include support for clinical workflow using write
+capabilities of the FHIR standard such as for incorporation and reconciliation of EHI
+as has been done with C-CDA based certification requirements. These kinds of
+requirements could be incorporated into Certified EHR Technology definitions but
+still done sensitively to the scope of EHI appropriate as a common floor and
+considerate of the interest to specialist providers and mid-level clinicians with more
+limited scope needs for EHI.
+e. How could EHRs capable of bulk data transfer be used to reduce the burden on
+providers for reporting quality performance data to CMS?
+As CMS considers the adoption of digital clinical quality measures (dQMs), CMS
+should consider an approach that leverages the bulk data transfer capabilities
+based on the FHIR Bulk API standard to address the scope of EHI needed for
+quality measure calculation. This may work to fulfill data submissions for individual
+quality measures for all qualifying patients.
+What capabilities are needed to show benefit? What concerns are there
+with this approach?
+To reduce provider burden, CMS should evaluate how the FHIR Bulk API
+standard can be used to support dQM requirements as they are adopted,
+and to relieve providers from having to calculate measure outcomes prior to
+submission. CMS should also make available the details of measure
+calculations for providers to be able to leverage outcomes for their own
+operational purposes.
+
+TD-13. What new opportunities and advancements could emerge with APIs providing
+access to the entirety of a patient’s electronic health information (EHI)?
+CMS and ASTP/ONC should consider developing a different way of presenting the USCDI
+as the required set of EHI to be enabled for health information exchange using both FHIR
+API and C-CDA interoperability or for enabling patient access to their EHI. I recommend
+the development of a common minimum set of the USCDI version (and attendant FHIR
+resources when applicable) in effect as a certification standard (currently v3) be identified
+that all HIT seeking certification to any criterion that involve the use of the USCDI as a
+certification standard be able to exchange.
+Beyond this, I recommend identifying as optional additional data types and supporting
+FHIR resources as applicable to the criterion that are appropriate to the intended scope
+and purpose of the HIT being presented for certification, especially when the HIT is
+intended for use by specialty providers or mid-level clinicians who do not interact with the
+full scope of the USCDI version in effect as a certification standard. ASTP/ONC might
+consider making those additional “optional” data types and classes required if a developer
+is presenting HIT for use in general acute care settings or in primary care specialties if that
+helps make for distinction for when the full scope of the USCDI is appropriate to a given
+type of HIT.
+This kind of approach could also be useful for creating models for optional certification for
+“USCDI +” data sets that are tailored to fit specific use cases.
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+The use of the FHIR Bulk API standard could be useful for addressing many types
+of use cases where larger data sets are being sought and/or a bulk data submission
+could ease the burden of submitting individual patient EHI. These include payer
+related requests for EHI for payment audit, fraud prevention, utilization review,
+quality measurement, beneficiary enrollment, and other purposes where bulk
+provision of data is appropriate. Where individual patient records are not required
+to fulfill the purpose at hand singly, the use of the FHIR Bulk API standard
+promises to reduce the burden of record preparation for submission, and
+workflows and capabilities that leverage triggering events from key milestones in
+patient care (such as for quality measures at time of discharge or departure) could
+be developed to build out bulk data files of qualifying patients to be submitted at
+
+once. This kind of approach was contemplated for payer-to-payer EHI exchange
+under CMS-9115-F and CMS-0057-F; and could be similar in approach to other
+such use cases of a like kind.
+TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure?
+Point-to-point models of exchange that are in use typically serve existing needs for local
+health information exchange where such has been seen as necessary by the participating
+exchange partners. This may be because of contractual, closed model or context (for
+example, for the purposes of an ACO or a health system for exchange among its
+constituent members) or business-to-business requirements, and the necessity of it may
+remain true going forward if required by the exchange partners. However, it is desirable to
+move away from point-to-point exchanges that serve to represent more costly means of
+maintaining health information exchange than is necessary. This also may be true if the
+point-to-point model uses proprietary or custom interface specifications that are limited
+for their ability to be reused or maintained for the longer term especially where standards
+are available for lower cost broader scale exchange across a broader community. Shared
+network infrastructures will better serve exchange purposes that engage the whole of the
+community for a shared purpose (for example as is the case with TEFCA, supporting a
+query based model to find EHI for a patient for a treatment purpose where exchange
+participants are obligated to respond to a legitimate request from a treating provider), or
+that standardize exchange modalities and methods for a common exchange purpose or
+need such as standardizing exchange of bulk data for audit or quality management
+purposes or for public health submission where the public health entity participates in a
+shared network community for public health reporting purposes using standards based
+submission specifications.
+a. Do current rules encourage scalable network participation?
+Exchange of clinical EHI for treatment or for other permitted disclosure purposes
+both as permissible under HIPAA, and as practiced in many local, regional, or
+national exchanges may require response for participants and sub-participants
+(using TEFCA’s terms) who agree to the terms of participation to share information
+with each other in response to requests and queries, but participation is not
+required. It mostly is encouraged.
+Exchange of EHI in support of more closed contexts (a state mandated HIE, a
+contractual exchange to support a value-based care model, etc) may be required by
+
+law or by contractual obligation for the limited purposes and scope of that context
+but usually is limited in that sort of way.
+Thank you for the opportunity to submit these comments, and I hope they are worthy of
+your consideration. Please feel free to contact me at jftprgllc@yahoo.com if you have any
+questions.
+Sincerely,
+John Travis, CPA, MA, FHFMA
+Principal
+JFT PRG LLC

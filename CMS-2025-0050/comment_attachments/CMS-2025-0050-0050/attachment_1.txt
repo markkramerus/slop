@@ -1,55 +1,1545 @@
-Comments by David Rocha drocha3408@outlook.com What health management or care navigation apps would help you understand and manage your (or your loved ones’) health needs, as well as the actions you should take? The next generation of health management and care navigation apps should be created on open interoperability standards such as FHIR , SNOMED CT , LOINC , openEHR , and aligned with USCDI+ to support longitudinal, patient -centric care. For these apps to truly empower patients and caregivers, they should: 1. Integrate data across settings and networks via TEFCA and FHIR APIs. Apps should offer a unified view of a patient’s journey across primary care, specialty care, behavioral health, and social determinants — using QHINs and local HIEs to pull in FHIR -based records. 2. Enable proactive, standards -based care navigation. Use SNOMED CT -coded care plans and problem lists, LOINC -coded lab results, and FHIR Clinical Reasoning resources to suggest timely actions: e.g., when to schedule follow -ups, refill prescriptions, or enroll in a care management program. 3. Provide personalized insights through clinical decision support (CDS) rules that are explainable and aligned with guideline -based care. Open CDS tools (e.g., using CQL and FHIR CDS Hooks) could drive these insights, making the app a true partner in care navigation. 4. Surface social and behavioral health needs using structured data. For example, if a patient faces food or transportation insecurity, the app could suggest community resources — ideally using FHIR SDOH profiles and Gravity Project standards. 5. Support family caregivers with appropriate data segmentation and consent. Privacy -aware FHIR -based segmentation (e.g., for behavioral health, HIV, reproductive care) can help loved ones access the information they need while respecting patient consent preferences. 6. Support interoperability with wearables and home -based monitoring. Health management apps should incorporate vital signs and activity data from devices, ideally using FHIR Observation and Device resources — and link them to actionable insights (e.g., call provider if BP spikes). To accelerate this, CMS could: • Incentivize development of open -source prototypes for care navigation apps using public funding. • Partner with organizations like HL7 , The Sequoia Project , OpenHIE , and HIMSS to launch FHIR hackathons focused on care navigation for priority populations (e.g., cancer, behavioral health, maternal health). • Promote alignment with USCDI+ domains to ensure these apps can serve both individual and public health needs. 
- If I was CMS, I would be meeting with the Australia Digital Health Agency, CSIRO, Canada Health Infoway, and Nictiz on how they implemented these data standards well. These organizations seem to be years ahead of CMS in terms of semantic and structural interoperability. If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? For complex, chronic, and conditions like COPD, congestive heart failure (CHF), cirrhosis, and dementia , I would want a digital personal assistant to: 1. Track and Alert on Ejection Fraction (EF) and FEV₁% Trends • Monitor ejection fraction (EF) values from echocardiograms or other imaging (e.g., LOINC 33878 -0) and flag when EF falls below clinical thresholds (e.g., <40% for HFrEF, <25% for high -risk status). • Monitor FEV₁% predicted (e.g., LOINC 20150 -9) for COPD and detect when respiratory function declines, such as a drop from 60% to 45%. • Use FHIR Observation , SNOMED CT -coded findings, and CDS logic to generate timely alerts to the patient, caregiver, or care team. • Explain these changes in lay terms and suggest next steps (e.g., "Your heart function has worsened; your cardiologist may want to review your medications"). 2. Coordinate Follow -up and Interventions • Trigger automated referrals (FHIR ServiceRequest ) to cardiology, pulmonology, or palliative care when EF or FEV₁% deteriorates. • Remind patients and caregivers of relevant lifestyle, medication, or device updates based on these measures (e.g., starting cardio selective beta blockers for EF < 40%, pulmonary rehab for FEV₁% < 50%). 3. Surface Data for Shared Care Planning 
-• Present longitudinal cardiopulmonary metrics (EF, FEV₁%) in a simple visual timeline — helping patients, caregivers, and clinicians plan ahead. • Sync with FHIR CarePlan and Goal resources for whole -person care, especially when EF or FEV₁% signals risk of hospitalization or functional decline. 4. Integrate Device + Imaging Data • Pull in device -based EF estimates (e.g., from cardiac implantable devices or AI - supported echo interpretation) and home spirometry readings , if available. • Allow authorized caregivers to see these trends and receive structured, SNOMED CT - coded alerts when worsening is detected. 5. Facilitate Crisis Prevention • Combine changes in EF and FEV₁% with other indicators (e.g., weight gain, edema, oxygen desaturation) to predict and prevent ER visits. • Help patients and caregivers understand when to escalate, call a provider, or prepare for care transitions (e.g., from home to hospice). Policy Implication: CMS should: • Promote inclusion of EF and FEV₁% as prioritized data elements in USCDI+ Cardiovascular and Pulmonary profiles . • Support apps or CDS tools that can pull structured cardiopulmonary data from TEFCA - participating sources and deliver personalized guidance . • Fund pilots that use FHIR, SNOMED CT, and LOINC to power assistant -style tools for advanced illness care , particularly in older adults with multimorbidity . Do you have easy access to your own and all your loved ones' health information in one location (for example, in a single patient portal or another software system)? No The information is only per medical provider. I have heard stories about having separate Epic mychart logins just to get in. 
-This is why the coalition from the CARIN alliance and the HIMSS demo from b.well and Commonwell Health alliance is helpful. Were there particular data types, such as x -rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones' complete health information electronically and using it for managing health conditions or fin ding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? Right now, the x -rays use a PACS imaging system to view the photos and unfortunately, some of the imaging centers where I live still issue compact discs or USB flash drives. In addition, the imaging studies are mostly PDFs - which to me is one of the biggest obstacles in healthcare. The lack of abstraction from PDFs is definitely affecting the healthcare system. What would help is to have data elements for the imaging studies that relate to the impression findings, such as: . Masses / Tumors • Size (e.g., in mm or cm) : critical for tracking tumor progression or response to therapy. o E.g., “Mass increased from 2.3 cm to 3.1 cm.” • Location : anatomical site (e.g., liver segment, lung lobe, renal pole). • Margins : well -defined vs. spiculated or infiltrative (indicative of malignancy). • Enhancement pattern : helpful in oncology (e.g., arterial phase enhancement in HCC). • Number of lesions : single vs. multifocal. • Metastatic suspicion : impression of metastasis (e.g., “consistent with metastatic disease”). 2. Cardiothoracic Findings • Ejection fraction (EF) : if estimated via cardiac MRI or echo. • Left ventricular size or wall motion abnormalities . • Pericardial effusion : size and impact. • Pulmonary artery size or RV enlargement (e.g., for pulmonary hypertension risk). • Pleural effusions and laterality. 3. Pulmonary Findings • Lung nodules : o Size, density (solid, ground -glass), borders, growth over time. • Bronchiectasis or air trapping (in COPD). • Interstitial changes : fibrosis, honeycombing (e.g., in IPF or long COVID). • Atelectasis or consolidation . • Spirometry correlation (if reported with chest imaging or CT). 
-4. Hepatic and Abdominal Findings • Cirrhosis indicators : nodular liver contour, splenomegaly, varices. • Ascites : presence and volume estimate. • Liver lesion characteristics (LI-RADS category if available). • Portal vein patency / thrombosis . • Renal mass characteristics . 5. Neurologic al Findings • Brain atrophy : degree and lobar involvement (important in dementia). • White matter changes : periventricular, small vessel disease. • Hemorrhage or infarct : location, size. • Hydrocephalus . • Mass effect / midline shift . 6. Spine / Bone • Compression fractures : level and severity (e.g., L1 wedge fracture). • Metastatic lesions in bone . • Degenerative changes . 7. Lymphadenopathy • Size and location of lymph nodes : supraclavicular, mediastinal, retroperitoneal. • Necrosis or calcification in nodes. • New vs. stable lymphadenopathy (important for cancer staging). Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? • Care Merge and Care Merge Caregiver apps • Wellsky • GetWell Loop PC-4. What features are missing from apps you use or that you are aware of today? In the US the features that are missing from apps is integration with SNOMED International’s SNOMED CT Expression constraint language (ECL). ECL makes it easier to: • Dynamically define large concept sets • Avoid errors from static, hand -picked code lists 
-• Keep pace with SNOMED CT updates ECL would allow CMS to: • Dynamically define clinically relevant concepts • Reduce maintenance burden • Improve accuracy of quality measures, cohorts, and rules • Integrate more deeply with FHIR -based programs For phase 1, CMS should encourage voluntary use of SNOMED CT’s Expression constraint language ( ECL ) and FHIR’s Value Set Compose Language (VSCL) created by Michael Lawley from CSIRO, in FHIR APIs. Phase 2: CMS could pilot ECL use and VSCL use in certain CMS programs like US core and ACO reach. Phase 3: CMS could require terminology servers with ECL support and VSCL support for CMS contractors Phase 4: CMS would mandate ECL for SNOMED CT value set definitions and VSCL for authoring FHIR value sets in new FHIR based programs Here is how ECL and VSCL could help the PIQI framework: PIQI opportunities : • Precise patient cohort definition : ECL provides SNOMED CT hierarchical queries for exact exclusion/inclusion criteria for more granular patient stratification and population health analytics • Multi -code system value sets : VSCL composes value sets across SNOMED CT, LOINC, CPT, ICD, etc. • Automation and currency of data : up to date information and quality metrics • Interoperability and consistency : standardized syntax used across HIT systems s • Quality measure tooling : VSCL supports complex, composite measures • Maintenance overhead : dynamic definitions reduce manual updates and errors Value Set Compose language links: Power point presentation from DevDays 2023 
-https://www.devdays.com/wp - content/uploads/2023/08/230608_MichaelLawley_A_general_CodeSystem_query_language - v2.pdf DevDays 2023 Presentation https://www.youtube.com/watch?v=f2gRFXwuoTE a. What apps should exist but do not yet? Why do you believe they do not exist yet? • Caregiver proxy access caregivers could manage multiple Medicare beneficiaries • Integrat ed SDOH and Community Services app b. What set of workflows do you believe CMS is uniquely positioned to offer? • Transition of care notifications and post acute follow up o Include the follow up workflows (for example - SNF to the home) • FHIR workflow with annual wellness visits and preventive services PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? Digital literacy , training programs with AARP, Area agencies on aging, etc. a. What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if t here is a review process? CMS could be the certifier to either co -certify the digital health products with the FTC/FDA and/or have separate certifications on quality like a CMS certified level 1 digital health product If there was a review process, some of the criteria could include clinical efficacy, interoperability, cost and accessibility, privacy and security, etc.s 
- What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary communications)? A reimbursement adjustment to Medicare payment models can occur to reward providers and payers for supporting and providing digital health tools b. What changes would enable timely access to high quality CMS and provider generated data on patients? Data built on openEHR archetypes and 100% integrated with SNOMED CT - meaning that the SNOMED CT ontology is downloaded and installed correctly inside the electronic software. PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? Other commenters will give a better answer. PC-7. If CMS were to collect real -world data on digital health products' impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? • Leverage existing claims and encounter data • Integrate patient reported outcomes and experience data (for example CAHPS survey data) • Digital health product registry and/or repository • Conduct clinical trials and observational studies 2. Data Access and Integration PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? Vital signs data , routine allergies, routine medications 
-a. What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, p rices)? Observable entities data, such as: Assessment scales data, assessment scores data DescendantOrSelfOf <<Assessment score (observable entity) In SNOMED CT, there is a full list of assessment scores related to assessment scales. This would be useful to include in consumer health IT software to track assessment scores for relevant diseases, such as dementia, COPD, CHF, etc. <<Imaging observable (observable entity) <<Interpretation of findings (observable entity) <<Function observable (observable entity) Example of <<Activity of daily living (observable entity) Which ADLs can the subject/patient perform? Examples: Ability to feed self (observable entity) Ability to manage medication using memory technique (observable entity) To me, this is more useful to query the electronic health system by observable entities for the assessment scores to improve the search queries. Example: query all the patients who had a Glasgow coma score Query all the patients who had a COPD assessment test score , etc. An example to put here also includes an ontology that is closed source and not available unless you pay the licensing fees - OMIM. 
-OMIM could be very useful for genomics data exchange but there are no existing maps between OMIM and SNOMED CT, OMIM and HPO, OMIM and MONDO, OMIM and LOINC. For the stewardship standards development organizations like SNOMED International, the Monarch Initiative and the Regenstrief Institute, they would most likely not fall under academic institutions to be able to download the ontology - hence a closed source ontology. This could affect further genomics research and the newer technology of agentic AI. b. What are specific sources, other than claims and clinical data, that would be of highest value, and why? For criminal justice and law enforcement systems : Including the SNOMED CT concept for Dangerous and harmful thoughts (finding): 285261008 would be useful here. <<Dangerous and harmful thoughts (finding): 285261008 
-Children (6) • Dangerous fantasy (finding) o Rape fantasy (finding) • Dangerous plans (finding) o Plans to assault (finding) o Plans to commit sexual crime (finding) ▪ Plans to rape (finding) o Plans to kill (finding) o Plans to set fire (finding) • Harmful thoughts (finding) o Thoughts of self harm (finding) ▪ Suicidal thoughts (finding) ▪ Planning suicide (finding) ▪ Suicidal intent (finding) ▪ Suicidal (finding) ▪ Suicidal behavior (finding) ▪ Has access to planned means of suicide (finding) ▪ Thoughts of deliberate self harm (finding) ▪ Intent of deliberate self harm with detailed plans (finding) ▪ Plans for deliberate self harm without intent (finding) • Thoughts of arson (finding) • Thoughts of revenge (finding) • Thoughts of violence (finding) o Homicidal thoughts (finding) o Thoughts of physical assault (finding) o Thoughts of sexual violence (finding) ▪ Thoughts of raping (finding) Criminal justice systems and law enforcement would have a USCDI+ behavioral health data element related to such harmful thoughts as listed above. If this is for obesity data, maybe o consumer and retail purchase data , like grocery purchase pattern s or pharmacy data ▪ rewards card loyalty data ▪ refusal o f medication doorstep delivery and/or food delivery o Public transit data and geographic access data : could verify that the transportation distance is truly an issue o Legal and civic data - utility shut -off notices, guardianship records, elder abuse filings, eviction filings o Community organization data - # of missed visits to meals on wheels o Transportation service pickups # of missed pickups and drop -offs o Home health aid or personal care attendant visits 
-c. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? Opportunities: • Standardization of data formats and technologies , like FHIR, SNOMED CT, LOINC, ICD-10 • Data aggregation platforms and federated networks Challenges: • Data Silos and fragmentation • Privacy and consent complexity • Limited incentives for data sharing • Technical integration barriers PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? • Medicare advantage encounter data (part C) • SDOH data • Risk adjustment data • Care coordination data and care plan data • Beneficiary survey data • Long -term services and support data : post acute services data a. What difficulties are there in accessing or utilizing these data sources today? Some parent companies of the large health systems are overly dependent on the EHR vendors to provide this service , meaning that some of the provider organizations are not aware that Blue Button is integrated in the EHR. In addition, the training has not been disseminated down to the regional health system and the local hospitals . I don’t feel comfortable naming specific systems, but an indicator would be the provider organizations that are parent companies of the large health systems that are not engaging in the HL7 FHIR accelerators. 
-b. What suggestions do you have to improve the Blue Button 2.0 API experience? Include Medicare advantage data, SDOH, risk adjustment data , care plans c. Is there non -CMS data that should be included in the API? • Patient generated health data • Pharmacy and medication management data • Long -term services support data • Behavioral and mental health data • Public health and immunization registries PC-10. How is the Trusted Exchange Framework and Common AgreementTM (TEFCATM) currently helping to advance patient access to health information in the real world? a. Please provide specific examples. Other commenters will answer this better. b. What changes would you suggest? Utilizing a national terminology server API for terminology services Similar to what CSIRO did in Australia and implemented in other countries, such as with Nictiz and Canada Health Infoway. The RCE has an opportunity to meet with CSIRO, Nictiz, and Canada Health Infoway on best practices to what recognized coordinating entities in other countries are doing better with terminology services, FHIR scaling, SNOMED CT and openEHR integration. The public health use case of TEFCA should include SNOMED CT into its querying engine like SNOMED CT’s expression constraint language. An example is to query the DescendantOrSelfOf mode of transmission <<Mode of transmission values (qualifier value) SCTID: 414753003 Children (15) • Animal to animal transmission (qualifier value) 
-• Animal to human transmission (qualifier value) • Body fluid contact transmission (qualifier value) o Blood borne transmission (qualifier value) o Lactation transmission (qualifier value) • Environmental exposure transmission (qualifier value) o Airborne transmission (qualifier value) • Fecal -oral transmission (qualifier value) • Fomite transmission (qualifier value) • Food -borne transmission (qualifier value) • Human to human transmission (qualifier value) • Indeterminate disease transmission mode (qualifier value) • Nosocomial transmission (qualifier value) • Parenteral transmission (qualifier value) o Transdermal transmission (qualifier value) o Transfusion transmission (qualifier value) • Sexual transmission (qualifier value) • Vector -borne transmission (qualifier value) • Vertical transmission (qualifier value) o Lactation transmission (qualifier value) o Transplacental transmission (qualifier value) • Water -borne transmission (qualifier value) In public health, the mode of transmission is useful to determine how the public health related disorder was transmitted and/or the outbreak was transmitted. c. What use cases could have a significant impact if implemented through TEFCA? The ASTP/ ONC should formally define “Care Coordination” as a supported exchange purpose under TEFCA. Many transitions of care including those between hospitals, post -acute settings, and primary care require timely access to structured data by care managers, nurses, and social workers who are not the ordering clinician. Without explicit support, these critical workflows remain underpowered, limiting the ability of value -based care models to succeed. \ The International Patient Summary (IPS) US realm could be implemented through TEFCA. The embedding of the IPS as the standard patient summary document could create an interoperable clinical snapshot which could be available across QHINs, participants, and subparticipants The IPS essential clinical dataset would be useful and beneficial for sharing timely patient information across silo s. TEFCA’s adoption of IPS can drive accelerated FHIR adoption among the participants in TEFCA. 
-d. What standards are you aware of that are currently working well to advance access and existing exchange purposes? • FHIR o International Patient Summary (IPS) o Terminology Service specification • CCDA • USCDI • IHE Profiles https://build.fhir.org/terminology -service.html e. What standards are you aware of that are not currently in wide use, but could improve data access and integration? SNOMED CT is not being utilized to its full potential openEHR is not being utilized in the US The International Patient Summary (FHIR Documents) could be scaled in US interoperability. The International Patient Summary is a standardized clinical summary to provide necessary patient information to support continuity of care across care settings and geographical regions. Benefits to scale IPS in the national setting: • Interoperable and Standardized o IPS built on FHIR profiles and FHIR resources • Supports emergency care and transitions of care o IPS is a snapshot of the critical patient information to use in emergency care and post acute care settings • The IPS aligns with understandable and accessible health summaries using FHIR A Patient Summary for the United States (PS -US) could be very helpful in exchanging the minimally exhaustive data set for the summary of care between jurisdictions. f. Are there redundant standards, protocols, or channels that should be consolidated? CMS could create its own governing council on interoperability (similar to the Joint Initiative Council of SDOs) as a central coordinating body to harmonize standards, trust frameworks, and data exchange policies . 
-Membership would include federal agencies, standards development organizations ( SDOs ), health information networks (HINs), and other necessary stakeholders g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? CMS should consider a Track B for healthcare sectors who cannot afford TEFCA, including: Rural hospitals (Critical access hospitals) and clinics (rural health clinics FQHCs Track B in TEFCA could be for Open HIE interoperability framework for public health and community care CMS could work with ASTP/ ONC, CDC, and Civitas to explore OpenHIE -style architectures for population health and emergency preparedness use cases. PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? a. How valuable, available, and accurate do you find the data they share to be? Other commenters will answer this question better. b. What changes would you suggest? Evaluate the openHIE standard openHIE is being utilized by developing countries. openHIE could be useful in rural areas, critical access hospitals, and rural health clinics. Existing HIEs should be FHIR incubators and spearheading conversion pilots (V2 to FHIR, CDA to FHIR). HIEs could testbed US Core and USCDI+ implementations Use FHIR subscription FHIR bulk data 
- CMS should create a national terminology server for FHIR terminology services APIs (national country example is CSIRO’s Ontoserver) . In turn, HIEs should have access to the CMS national terminology server. HIEs would then have the potential to translate local codes into SNOMED CT, LOINC, etc. In the UK, the NHS utilizes a national SNOMED CT terminology service that is accessible to the HIE equivalent systems. In Australia, the Australia Digital Health Agency uses Ontoserver with a federated access model for jurisdictions and vendors. c. Are there particular examples of high -performing HIE models that you believe should be propagated across markets? Same response as above d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? being the incubator for FHIR and SNOMED CT acceleration PC-12. What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? a. Examples may include the following: (1) Binding cost estimates for pre -defined periods. (2) Viewing provider schedule availability. (3) Using third -party apps for appointment management. (4) Accessing patient -facing quality metrics. (5) Finding the right provider for specific healthcare needs. 
-b. What use cases are possible today? c. What should be possible in the near future? Fund regional or national FHIR + SNOMED CT HIE accelerators as part of PIQI and QHIN onboarding. d. What would be very valuable but may be very hard to achieve? 3. Information Blocking and Digital Identity PC-13. How can CMS encourage patients and caregivers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would increasing reporting of complaints advance or negatively impact data exchange? • Increase awareness and the education on the information blocking portal • Simplify the complaint submission process • Provide feedback and transparency PC-14. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 credentialing service providers (CSP)): a. What are the challenges today in getting patients/caregivers to sign up and use digital identity credentials? Complexity and usability barriers for older adults and caregivers. From my experience with provider organizations, the grandchildren are teaching the grandparents on this technology. b. What could be the benefits to patients/caregivers if digital identity credentials were more widely used? Could integrate with digital drivers license and digital insurance cards , and even the passport The passport integration would be beneficial for the International Patient Summary (IPS). c. What are the potential downsides? Other commenters will answer this question better. d. How would encouraging the use of CSPs improve access to health information? 
-e. What role should CMS/payers, providers, and app developers have in driving adoption? f. How can CMS encourage patients to get digital identity credentials? Create an assisted enrollment program to set up digital identity credentials Provide a small financial incentive to enroll in digital identity credentials C. Providers This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve providers. While we certainly want providers to answer questions in this section (and in other sections) from the provider po int of view, we also invite all stakeholders to provide their viewpoints on the provider workflows as appropriate. 1. Digital Health Apps PR-1. What can CMS and its partners do to encourage providers, including those in rural areas, to leverage approved (see description in PC -5) digital health products for their patients? Reimbursement bonuses New CPT/HCPCS codes specifically for digital health products adoption for caregivers and patients in rural areas Prioritizing the rural providers including FQHCs, CAHs and doing training at the front lines level. The EHR vendors and the parent companies of the health systems most likely integrate with FHIR but there needs to be training and education on FHIR APIs at the front lines level . HIEs and QHINs should be the rural innovation enablers. CMS should sponsor a “Digital Ready Rural Provider” designation for providers. CMS can spearhead a initiative for continuing education units for healthcare professionals on digital care coordination for rural clinicians and staff. a. What are the current obstacles? Lack of training for FQHCs and CAHs at the front lines level ( insurance verification specialists, licensed nurses, certified medical assistants/nursing assistants). b. What information should providers share with patients when using digital products in the provision of their care? 
-• Purpose and function of the digital health products • Ways to access and use the tools • What data will be collected and by whom • Costs and coverage information • Informed consent c. What responsibilities do providers have when recommending use of a digital product by a patient? • Clinical relevance and appropriateness : evidence -based • Due diligence : intended use, data collection practices , risks • Avoid digital harm • Evaluate outcomes and patient experience on an ongoing basis PR-2. What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could thes e obstacles be mitigated? • Proprietary EHR architectures and history of closed APIs o Hence the need for openEHR standard and open FHIR APIs and FHIR IGs like US Core • Lack of standardized data models o National terminology services (PIQI/Ontoserver access) o Mandate the standard clinical content models (openEHR, USCDI+) • High burden of regulatory compliance • Limited incentives to physicians and change fatigue o Align app adoption to reimbursement incentives (ACO, M edicare advantage , managed Medicaid ) • Poor user experience o Promote FHIR populated smart forms • Consent barriers An example of provider burden and change fatigue is the risk adjustment reporting . There is a FHIR Implementation for Risk Adjustment reporting. In risk adjustment, there is the attestation process when a physician/clinician has to confirm a diagnosis.In the EHR software, every diagnosis needs a plan of care statement /small paragraph for each diagnosis that gets addressed. Every diagnosis must be confirmed with evidence, linked to a care plan, and captured in a structured, reviewable, and auditable format. As one can imagine, this is very time consuming for physicians. 
-A primary care physician I am familiar with had to do 40 diagnosis on a new patient and write 40 distinct plans of care for that encounter. Today's workflows often rely on manual entry in EHRs, lack of semantic interoperability , and limited automation . Natural language processing could be used to extract SNOMED CT codes from past notes. SNOMED CT could be very useful to auto -generate care plans per condition. We need a starter library to map the top risk adjustment diagnoses to care plan templates (editable by clinicians) And define the FHIR resources for PlanDefinition and CarePlan . The Da Vinci Risk Adjustment FHIR IG for risk adjustment is a prime example on administrative burden for physicians who having to document every year a plan of care for each diagnosis. https://build.fhir.org/ig/HL7/davinci -ra/ PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text n otes, structured data fields)? Please address all of the following: a. Current challenges in accessing different data formats. • Scanned and faxed documents stored as PDFs /images have historically not been machine readable. The recent innovation in natural language processing and artificial intelligence has opened this up. • Free text clinical notes lack standardization . • Legacy systems are continuing to store data in proprietary formats. b. Impact on patient care quality. Care coordination is still suffering during transitions of care. c. Technical barriers to full data accessibility. • Lack of NLP at scale. • Limited adoption of data normalization and terminology services. 
-• Poor integration between PACS systems and clinical records - more could be done to align with openEHR and SNOMED CT for radiology findings. d. Cost or privacy implications of making all data formats interoperable. Other comments will answer this question better. e. Priority level compared to other interoperability needs. Other comments will answer this question better. PR-4. What changes or improvements to standards or policies might be needed for patients' third -party digital products to have access to administrative workflows, such as auto -populating intake forms, viewing provider information and schedules, and making and modifying an appointment? • Mandate adoption of HL7 FHIR Scheduling and Appointment APIs • Extend ONC certification criteria to include FHIR based appointment workflows • Promote the use of FHIR Questionnaire and QuestionnaireResponse FHIR resources. • Mandate a nationwide FHIR based provider directory 2. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization's systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries o r bulk transactions, and any constraints: a. Patient Access API. b. Standardized API for Patient and Population Services. c. Provider Directory API. d. Provider Access API. e. Payer -to-Payer API. f. Prior Authorization API. g. Bulk FHIR —Do you support Group ID -based access filtering for population -specific queries? h. SMART on FHIR —Do you support both EHR -launched and standalone app access? What does the process for application deployment entail? 
-i. CDS Hooks (for clinical decision support integrations). PR-6. Is TEFCA currently helping to advance provider access to health information? TEFCA is helping with the treatment use case. a. Please provide specific examples. b. What changes would you suggest? ONC should formally define “Care Coordination” a supported exchange purpose under TEFCA. Many transitions of care — including those between hospitals, post -acute settings, and primary care — require timely access to structured data by care managers, nurses, and social workers who are not the ordering clinician. Without explicit support, these critical workflows remain underpowered, limiting the ability of value -based care models to succeed.” The ASTP/ONC and RCE should clarify how behavioral health and mental health data types — particularly those regulated under 42 CFR Part 2 or protected by state law — will be handled under TEFCA. We encourage the adoption and enforcement of data segmentation standards using FHIR secur ity labels and CDA DS4P to enable safe, consented exchange of sensitive behavioral health information. This is critical for supporting whole -person care in value -based arrangements. CMS should consider a Track B for healthcare sectors who cannot afford TEFCA, including: Rural hospitals (Critical access hospitals) and clinics (rural health clinics FQHCs Track B could be for Open HIE interoperability framework for public health and community care CMS could work with ASTP/ ONC, CDC, and Civitas to explore OpenHIE -style architectures for population health and emergency preparedness use cases. c. What other options are available outside of TEFCA? d. Are there redundant standards, protocols or channels or both that could be consolidated? PR-7. What strategies can CMS implement to support providers in making high -quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing b e mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to 
-optimize for that could be reused for, or combined with, efforts needed to support interoperability? CMS can incentivize or mandate the use of federated terminology services for: • Value set validation • Code system normalization • Terminology mapping PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? CMS, ASTP/ONC and the NLM have the opportunity to create a national terminology service like what CSIRO and the Australia Digital Health Agency did with Ontoserver for national reference services. A National Terminology Service , funded or coordinated by ASTP/ONC/CMS /NLM and aligned with TEFCA, could: • Provide real -time validation, expansion, and mapping as a shared utility • Reduce duplication across EHR vendors and HIEs • Support public health, quality reporting, and research use cases • Scale the PIQI framework • Support FHIR operations like $expand, $validate -code • Provide terminology validation as a service within TEFCA -connected networks, ensuring smooth data exchange with consistent semantics. The national terminology service could be the authoritative source for all PIQI -related code systems and value sets, reduce the amount of local code systems Scaling the International Patient Summary (patient summary US edition) in the United States would be helpful and beneficial to exchange FHIR documents of the essential health information of the patient. Scaling IPS could reduce administrative burden of providers. 
-a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? Bulk FHIR would help to pull the data once for CMS Bulk FHIR exports could be scheduled quarterly, monthly, or at the end of the reporting period. Bulk FHIR serves as the batch transport mechanism for large scale quality data. FHIR subscriptions could assist as the event driven mechanism for real time quality data. b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? • A unified submission portal for FHIR would help for: MIPS, ACO, HEDIS, Joint Commission ,etc. • Accepting FHIR data to fulfill all programs simultaneously (QI-CORE, DEQM) c. Are there requirements CMS should consider for data registries to support digital quality measurement in a more efficient manner? Are there requirements CMS should consider for data registries that would support access to real -time quality data for healthcare provi ders to inform clinical care in addition to simplifying reporting processes? Support automated terminology services with FHIR Supporting inter -registry exchange with Bulk FHIR (cancer registries, cardiovascular registries) 3. Digital Identity PR-9. How might CMS encourage providers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins that need to be tracked for each provider relationship? The paper from Leavitt Partners on “Kill the Clipboard” addresses thi s issue. a. What would providers need help with to accelerate the transition to a single set of trusted digital identity credentials for the patient to keep track of, instead of one for each provider? In the provider space, the Electronic Prescription for Controlled Substances (EPCS) already utilizes identity proofing and digital identity credentials. 
-However, the introduction of TEFCA shows that such identity proofing needs to be done at scale for both providers and patients. Vendors like ID.me and Imprivata are already doing identity proofing for both patients and providers. CMS and ASTP/ONC can reuse the model for EPCS and apply it to FHIR based identity exchange and what the CARIN alliance is promoting. There definitely needs to be EHR integration for login and chec k-in and incentives (bonus payments percentage to managed care models, etc.) to drive the adoption. b. How might CMS balance patient privacy with convenience and access to digital health products and services that may lead to significant improvements in health? Tiered level access controls based on sensitivity : 1. Tier 1: General health information (PAMPI) 2. Tier 2: Behavioral health, substance use, reproductive health, infectious disease 3. Tier 3: Genomics and SDOH data CMS can set the privacy rules for developers , such as no secondary use for research without explicit consent, etc. PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs): a. What are the challenges and benefits for providers? • IAL2 integration may become time consuming and have a small degree of resistance to change from providers • Privacy concerns • User experience Benefits: • Easier access with single sign on • Compliance • Interoperability b. How would requiring their use improve access to health information? • Support TEFCA framework • Quicker onboarding for providers • Trusted access 
-c. What are the potential downsides? • Rural areas may struggle with MFA and/or identity proofing • Implementation costs • Resistance to change d. What impact would mandatory credentials have on a nationwide provider directory? • Verified identities would have lower occurrences of fraud • Identity system allows for easier updates and syncing provider information e. How could digital identity implementation improve provider data flow? • Reduce manual processes of paperwork and phone calls • Ameliorates audit trails with regards to logs • Confirming provider identity close to real time f. Would combining FHIR addresses and identity improve data flow? Yes • Trusted APIs • Ameliorate interoperability PR-11. How could members of trust communities [3] (for example, QHINs, participants and subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential Service Providers (CSPs)) better support the goals of reduced provider and patient burden while also enhancing identity manageme nt and security? 4. Information Blocking PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions or conditions within the exceptions ( 45 CFR part 171, subparts B through D) to further the access, exchange, and use of electronic health information (EHI) and to promote market competition? Other commenters will answer this question better. PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3) ), without a current information blocking disincentive established by CMS, what would be the most effective disincentive for that category of provider? Payment Adjustments and financial penalties such as reduction of payments and/or recoups of a percentage of bonus incentives (MSSP ACO, HEDIS, Medicare Advantage) 
- PR-14. How can CMS encourage providers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? • Raise training and awareness • Feedback and transparency D. Payers PA-1. What policy or technical limitations do you see in TEFCA? • Long roadmap to facilitated FHIR exchange • Overreliance on CDA and IHE profiles o Meditech’s Traverse exchange network went full FHIR exchange without IHE profiles o CCDs are not API friendly • Lack of terminology services and no national terminology server for terminology services APIs What changes would you suggest to address those limitations? • National terminology service for FHIR terminology services APIs (network of terminology servers) o Aligns with the PIQI framework o Adopt terminology services like what CSIRO, Nictiz, and Canada Health Infoway did • The International Patient Summary (IPS) standard is designed as a FHIR based, API friendly summary o IPS is designed for real time queries with FHIR APIs • CMS could lead or strongly support openEHR adoption To what degree do you expect these limitations to hinder participation in TEFCA? PA-2. How can CMS encourage payers to accelerate the implementation and utilization of APIs for patients, providers, and other payers, similar to the Blue Button 2.0 and Data at the Point of Care APIs released by CMS? • Align FHIR implementation to star ratings and bonus incentives for Medicare Advantage, ACO program • Provide grants or shared services (FHIR servers) for smaller payers, third party administrators 
-PA-3. How can CMS encourage payers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins? • Incentivize adoption with funding or bonus points in the star ratings PA-4. What would be the value to payers of a nationwide provider directory that included FHIR end points and used digital identity credentials? Other commenters will answer this question better. PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of providers? • Accept and process Bulk FHIR exports • Use real time FHIR subscriptions • Use FHIR Quality Reporting • Utilize the FHIR Risk Adjustment IG for risk adjustment a. How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider -side technology? Right now, the larger payers are using FHIR and bulk FHIR. The medium size payers and small payers have not fully integrated with FHIR. The life insurance companies which offer Medicare supplement plans are not utilizing FHIR nor involved in WEDI nor the Da Vinci project FHIR accelerator . CMS and the ASTP/ONC have the opportunity to engage the smaller payers, medium sized payers, third party administrators, life insurance companies to move to FHIR. b. In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? Unified data submission platforms PA-7. How can CMS encourage payers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? • Continue to encourage payers to submit 
-• Education, awareness, training E. Technology Vendors, Data Providers, and Networks This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve technology vendors, data providers, and networks. While we certainly want technology vendors, data providers, and networks to answer questions in this section (and in other sections) from their point of view, we also invite all stakeholders to provide their viewpoints on the technology vendor, data provider, and network use cases as appropriate. 1. Ecosystem TD-1. What short term (in the next 2 years) and longer -term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? More hackathons and co -sponsored hackathons Having the larger IT corporations and AI companies being co -sponsors of such hackathons for FHIR, V2 to FHIR, CCDA to FHIR, Blue Button, SNOMED CT, SNOMED CT with FHIR, openEHR, etc. Involve stakeholders: HIMSS, ASTP/ONC, HL7 International, SNOMED International, openEHR , Regentrief Institute, AMIA, AHA, AMA TD-2. Regarding CMS Data, to stimulate developer interest — a. What additional data would be most valuable if made available through CMS APIs? CMS Expenditure APIs to provide access to expenditure and cost -related information. A family of Expenditure APIs covering: • Total cost of care • Episode -based costs • Service -level costs • Patient out -of-pocket estimates • Geographic/provider cost comparisons Potential names of the family of the CMS Expenditure APIs: • CMS Attribution API s: beneficiary attribution to ACOs or other VBC programs • CMS Claims and Encounters APIs : claims data, encounter data • CMS Quality Performance APIs : quality measures data, patient experience data , preventive and chronic care metrics 
-• CMS Financial and Payment APIs : shared savings/losses reports, payment reconciliation data • CMS Risk Adjustment APIs : risk scores, risk adjustment factors • CMS Utilization Analytics APIs : reports on hospital admissions, readmissions, ED visits, utilization trends • CMS Beneficiary Notifications APIs : beneficiary attribution notifications (like date of death) • CMS Social Determinants APIs : SDOH data linked to beneficiaries or regions • CMS Care Coordination APIs : data supporting care transitions, referrals, and care team communications • CMS Patient -Recorded Outcomes APIs : patient feedback and outcome data • CMS Expenditure APIs : detailed cost and spending by service, episode, provider region • CMS ACO Benchmarks APIs : ACO specific performance targets and peer benchmarks Historically, CMS has not exposed ACO benchmark data as public APIs. This could seriously bolster innovation and further competition for the participating ACOs. CMS ACO benchmarks APIs • Real -time or near real-time access: ACOs could track performance more dynamically rather than waiting for annual reports. • Granular benchmarking: APIs could allow querying by region, size, specialty composition, and more. • Transparency and comparability: Potentially open up benchmarking for new entrants or other value -based programs. • Integration: ACOs could integrate benchmark data directly into dashboards or EHRs for ongoing quality improvement. • Custom queries: Researchers and payers could analyze benchmarks across various dimensions (e.g., cost, quality, patient demographics). What could the ACO Benchmark APIs Include? • Financial benchmarks: Total cost of care benchmarks risk -adjusted by patient population. • Quality measure benchmarks: Benchmarks for quality metrics ACOs report on (e.g., preventive care, chronic disease management). • Shared savings/losses data: Year -over-year savings performance and reconciliation. 
-• Patient attribution info: Counts and demographics of attributed beneficiaries. • Risk score adjustments: CMS -HCC or similar risk scores that influence benchmarks. • Peer group comparisons: Benchmarks compared against regional or national ACO cohorts. For privacy and security purposes, the patient -level data would definitely be protected The benchmarks could be aggregated. Based on the APIs above, CMS could also create APIs for Medicare Advantage • CMS MA Enrollment and Attribution APIs • CMS MA Claims and Encounter APIs • CMS MA Quality Performance APIs • CMS Financial and Payment APIs • CMS MA Risk Adjustment APIs • CMS MA Utilization Management APIs • CMS MA Network Management APIs • CMS MA Benefit and Plan Design APIs • CMS MA Appeal and Grievance APIs • CMS MA Social Determinants APIs • CMS MA Care Coordination APIs • CMS MA Patient -Reported Outcomes APIs • CMS MA Pharmacy APIs b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? Same as above c. What obstacles prevent accessing these data sources today? Legacy technology: h istorically such CMS data was only available with CSV files. d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? Potential names of the family of the CMS Expenditure APIs: 
-• CMS Attribution APIs: beneficiary attribution to ACOs or other VBC programs • CMS Claims and Encounters APIs: claims data, encounter data • CMS Quality Performance APIs: quality measures data, patient experience data, preventive and chronic care metrics • CMS Financial and Payment APIs: shared savings/losses reports, payment reconciliation data • CMS Risk Adjustment APIs: risk scores, risk adjustment factors • CMS Utilization Analytics APIs: reports on hospital admissions, readmissions, ED visits, utilization trends • CMS Beneficiary Notifications APIs: beneficiary attribution notifications (like date of death) • CMS Social Determinants APIs: SDOH data linked to beneficiaries or regions • CMS Care Coordination APIs: data supporting care transitions, referrals, and care team communications • CMS Patient -Recorded Outcomes APIs: patient feedback and outcome data • CMS Expenditure APIs: detailed cost and spending by service, episode, provider region • CMS ACO Benchmarks APIs: ACO specific performance targets and peer benchmarks Based on the APIs above, CMS could also create APIs for Medicare Advantage • CMS MA Enrollment and Attribution APIs • CMS MA Claims and Encounter APIs • CMS MA Quality Performance APIs • CMS Financial and Payment APIs • CMS MA Risk Adjustment APIs • CMS MA Utilization Management APIs • CMS MA Network Management APIs • CMS MA Benefit and Plan Design APIs • CMS MA Appeal and Grievance APIs • CMS MA Social Determinants APIs • CMS MA Care Coordination APIs • CMS MA Patient -Reported Outcomes APIs • CMS MA Pharmacy APIs 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and benefits? Other commenters will answer this question better. 
-b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? Other commenters will answer this question better. c. What impact would mandatory use of the OpenID Connect identity protocol have? Other commenters will answer this question better. 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? Tie to financial incentives (percentage of bonus incentives through MSSP ACO program, Medicare Advantage, managed Medicaid, etc.) TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? CMS and ASTP/ONC It should be freely available TD-6. What unique interoperability functions does TEFCA perform? The most notable use case currently is the t reatment use case a. What existing alternatives should be considered? To me the only alternative to TEFCA would apply to the public health use case : CMS could fund OpenHIE pilots for safety -net providers as part of broader innovation efforts, even if such approaches exist outside TEFCA's main structure . alternative funding tracks (e.g., via CMMI, CDC, HRSA, or HHS Office for Civil Rights) for public health and community orgs using: • OpenHIE -based shared services (e.g., Client Registry, OpenHIM) • Open terminology servers (e.g., Ontoserver) • FHIR APIs for care transitions and referrals Track A could be for TEFCA for the larger networks 
-Track B could be for Open HIE interoperability framework for public health and community care CMS could work with ASTP/ ONC, CDC, and Civitas to explore OpenHIE -style architectures for population health and emergency preparedness use cases. CMS should consider a Track B for healthcare sectors who cannot afford TEFCA, including: Rural hospitals (Critical access hospitals) and clinics (rural health clinics FQHCs b. Are there redundant standards, protocols or channels or both that should be consolidated? An independent and/or academic study can be conducted to compare Carequality, eHealth Exchange, DirectTrust to analyze if there are overlapping query and document exchange capabilities. Another independent and/or academic study can be conducted to compare IHE profiles with FHIR APIs. TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? Benefits: • Standardized core data set • Alignment with FHIR • Slow Adoption: some EHR vendors may be doing the bare minimum • Limited support for behavioral health data, dental data a. Does it contain the full extent of data elements you need? No b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized? 
-To me, USCDI v4 and v5 does not align with the IPS standard nor openEHR archetypes. In addition, USCDI does not require alignment with standard terminologies at the data element level. The introduction of the PIQI framework and possibly a national terminology server for a terminology services FHIR APIs could help with this issue. c. If so, would adding more data elements to USCDI add value or create scoping challenges? It would add value Adding a data element for Dangerous and harmful thoughts based on SNOMED CT’s concept for Dangerous and harmful thoughts (finding): 285261008 <<Dangerous and harmful thoughts (finding): 2 85261008 Children (6) • Dangerous fantasy (finding) o Rape fantasy (finding) • Dangerous plans (finding) o Plans to assault (finding) o Plans to commit sexual crime (finding) ▪ Plans to rape (finding) o Plans to kill (finding) o Plans to set fire (finding) • Harmful thoughts (finding) o Thoughts of self harm (finding) ▪ Suicidal thoughts (finding) ▪ Planning suicide (finding) ▪ Suicidal intent (finding) ▪ Suicidal (finding) ▪ Suicidal behavior (finding) ▪ Has access to planned means of suicide (finding) ▪ Thoughts of deliberate self harm (finding) ▪ Intent of deliberate self harm with detailed plans (finding) ▪ Plans for deliberate self harm without intent (finding) • Thoughts of arson (finding) • Thoughts of revenge (finding) • Thoughts of violence (finding) o Homicidal thoughts (finding) o Thoughts of physical assault (finding) 
-o Thoughts of sexual violence (finding) ▪ Thoughts of raping (finding) USCDI+ for behavioral health would not just help health information software, but could also help criminal justice systems and law enforcement. How could such challenges be addressed? ASTP/ONC could add more USCDI+ domains for neurosurgery , dental, and nephrology . d. Given improvements in language models, would you prefer a non -proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? o openEHR templates might help with this issue o CMS and ASTP/ONC could also reference NLP models TD-8. What are the most effective certification criteria and standards under the ONC Health IT Certification Program? Bulk FHIR and USCDI adoption Terminology services APIs and IPS TD-9. Regarding certification of health IT: a. What are the benefits of redefining certification to prioritize API -enabled capabilities over software functionality? • Promoting interoperability • Supporting TEFCA and other VBC and managed care programs via FHIR adoption b. What would be the drawbacks? • Market may be flooded with APIs with inconsistent quality of data usability, especially for terminology services and PIQI framework conformance c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient's chart (for example, faxed records, free text, discrete data)? Require use of DocumentReference and FHIR resources for scanned /fax documents 
-d. What policy changes could CMS make so providers are motivated to respond to API -based data requests with best possible coverage and quality of data? Flag or penalize providers who block or delay API queries Tie incentives dollars for managed care programs to KPIs like API uptime, accuracy and PIQI framework conformance e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? What capabilities are needed to show benefit? What concerns are there with this approach? • Utilize FHIR ($export) that pulls from clinical data sets • Integrate with quality measures libraries like CQL TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certification ( 42 U.S.C. 300jj -11(c)(5)(D)(iv) ) that requires a developer's APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable pr ivacy laws? TD-11. As of January 1, 2024, many health IT developers with products certified through the ONC Health IT Certification Program are required to include the capability to perform an electronic health information export or “EHI export” for a single patient a s well as for patient populations ( 45 CFR 170.315(b)(10) ). Such health IT developers are also required to publicly describe the format of the EHI export. Notably, how EHI export was accomplished was left entirely to the health IT developer. Now that this capability has been in production for over a year, CMS an d ASTP/ONC seek input on the following: a. Should this capability be revised to specify standardized API requirements for EHI export? b. Are there specific workflow aspects that could be improved? c. Should CMS consider policy changes to support this capability's use? 4. Data Exchange TD-12. Should CMS endorse non -CMS data sources and networks, and if so, what criteria or metrics should CMS consider? TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? a. What are the primary obstacles to this? 
-b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing capabilities today? TD-14. Regarding networks' use of FHIR APIs: a. How many endpoints is your network connected to for patient data sharing? What types, categories, geographies of endpoints do you cover? Are they searchable by National Provider Identifier (NPI) or organizational ID? b. How are these connections established (for example, FHIR (g)(10) endpoints, TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)? c. Do you interconnect with other networks? Under what frameworks (for example, TEFCA, private agreements)? TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data flow? b. What are the potential disadvantages of their use? TD-16. What are the tradeoffs of maintaining point -to-point models vs. shared network infrastructure? a. Do current rules encourage scalable network participation? b. What changes would improve alignment (for example, API unification, reciprocal access)? TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? 5. Compliance TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non - responsiveness as well as situations that may cause a failure or unusable response? b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? Fines and penalties for information blocking violations 
-Recouping MSSP and MA plan Bonuses : • Information Blocking The below statement might be more controversial, but CMS and ASTP/ONC could recoup some of the prior year MSSP and Medicare advantage bonus payments if an insurance plan or ACO engaged in information blocking. CMS has the opportunity to tie a portion of MA and ACO shared savings/performance bonuses to adherence in information blocking regulations. • API CEHRT Integration with FHIR In addition, CMS and ASTP/ONC could do the same thing of recouping bonuses for the lack of FHIR and API CEHRT integration. CMS could align bonus eligibility to FHIR performance , such as the partial withholding of shared savings/quality bonuses for failing to demonstrate effective API CEHRT integration using FHIR. • PIQI Compliance Align the bonus payments with PIQI standards (accuracy, completeness, consistency) . CMS could enforce recoupments or penalties with noncompliance with the PIQI framework. c. Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? TD-19. Regarding price transparency implementation: a. What are current shortcomings in content, format, delivery, and timeliness? 
-The integration of the implementation guides maintained by the HL7 Financial Management work group would be useful here. FHIR resources: Invoice PaymentNotice PaymentReconciliation what patient owes and what has been paid The life insurance companies which offer Medicare supplement plans are currently not fully FHIR integrated. This would be a problem for tracking claims for Medicare supplement al payers. b. Which workflows would benefit most from functional price transparency? c. What improvements would be most valuable for patients, providers, or payers, including CMS? The entire revenue cycle management cycle should be on FHIR. The EOBs, itemized billing, PaymentNotice, Invoice, patient cost estimation tools need to be utilized by medium sized payers, third party administrators, life insurance companies which offer Medicare supplemental insurance plans. Currently, the Da Vinci project mostly has the large payers in the accelerator. The other payers, like managed Medicaid payers, smaller Medicare advantage payers should be using the FHIR resources associated with the Da Vinci project and the HL7 Financial Management working group IGs. d. What would further motivate solution development? 
-F. Value -Based Care Organizations This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve value -based care organizations. While we certainly want value - based care organizations to answer questions in this section (a nd in other sections) from the value -based care provider point of view, we also invite all stakeholders to provide their viewpoints on the value -based care workflows as appropriate. 1. Digital Health Adoption VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital health management and care navigation products more often and more effectively with their patients? The ACOs receive a shared savings check (so -to-speak) based on how many millions were saved. Part of the incentive bonus could be based on interoperability engagement. What are the current obstacles preventing broader digital product adoption for patients in ACOs? NAACOs and HL7 International have not signed a collaborative agreement. NAACOs and SNOMED International have not signed a collaborative agreement. To me, if these organizations engaged with each other, more education on interoperability standards could be provided to NAACOs and its members (various ACOs). Also, do not forget about care delivery organizations. We respectfully urge CMS to recognize that many care delivery organizations (CDOs) participating in Medicare Advantage and Managed Medicaid programs are currently not utilizing FHIR standards for data exchange. To promote interoperability and improve patient care coordination, CMS should implement mechanisms to track and report FHIR adoption and usage among these organizations . Establishing such tracking would encourage transparency, identify gaps in technology adoption, and support targeted initiatives to accelerate the integration of FHIR across all care settings. FHIR is being adopted at the payer level, but not at the level of the care delivery organizations. The below statement could be under consideration: All payer -associated and affiliated care delivery organizations (CDOs) should be required to adopt CEHRT, including API -enabled CEHRT, to ensure seamless interoperability and patient access across the evolving healthcare ecosystem. 
-I strongly urge CMS and ASTP/ ONC to explicitly include care delivery organizations (CDOs), CDOs that are also independent physician associations (IPAs), particularly payer -associated entities and payer -affiliated entities in the certification requirements for API -enabled CEHRT. Such inclusion is essential to advance interoperability, ensure consistent patient and consumer access to electronic health information, and align with the reality of evolving healthcare delivery models. CMS and ASTP/ ONC should explicitly require that all care delivery organizations (CDOs) especially those submitting data to CMS, adopt certified EHR technology with robust CDA and FHIR API capabilities. CMS should accelerate the transition to FHIR -based submission workflows, supported by clear implementation guides and financial incentives, t o reduce reliance on PDFs and manual processes and improve data timeliness, accuracy, and patient outcomes.” 1. Explicit Certification & API Requirements for CDOs • Mandate that CDOs use certified EHR technology (CEHRT) with both CDA and FHIR API capabilities , especially for CMS submission workflows (e.g., quality reporting, value -based care , risk adjustment ). • Require API-enabled CEHRT that supports standardized FHIR profiles and bundles aligned with CMS data submission requirements. FHIR and CDA education should be mandated to flow from the parent organizations of provider health systems and payer -affiliated care delivery organizations down to frontline staff, including insurance verification specialists and certified medical assistants. Ensuring that all levels of clinical and administrative person nel are knowledgeable about interoperability standards is critical to successful implementation, data accuracy, and improving patient care coordination. VB-2. How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? Care coordination is already being integrated into APM requirements. However, CMS can rebrand care coordination to include digital care coordination should include APIs and PIQI framework integration and move away from more portals, PDFs, CSV files, etc. Quality measurement is already being integrated into APM requirements. 
-However, data usability and information quality (known as data quality) are not being integrated into APM requirements. SNOMED CT should be integrated for richer clinical semantics. The streamlining and connection of multiple portals to integrate shared care plans with shared decision making, and the gathering of patient outcomes in real time. CMS should require EHRs and reporting systems to use PIQI aligned data models . CMS should also mandate continuous data quality checks via APIs that assesses completeness, correctness and consistency of submitted data aligned with PIQI definitions. Implement terminology translation services to map local or legacy codes. By integrating the PIQI framework and terminology services APIs into APM requirements, CMS could greatly enhance the usability, accuracy, and semantic consistency of clinical and quality data. This would reduce administrative burden, improve care coordination, enable richer analytics, and ultimately drive better value -based care outcomes. Integrating risk stratification with SNOMED CT ’s Expression Constraint Language (ECL) allows APMs to leverage precise, interoperable, and dynamically maintainable clinical definitions — enabling smarter patient segmentation and more effective population health management aligned with value -based care goals. With artificial intelligence, CMS could create a coalition with some of the leading AI companies, such as Nvidia, openAI, Intel, AMD, etc. as well as the standards development organizations, such as HL7 International, SNOMED International, openEHR, Global Alliance for Genomics and Health (GA4GH), and the Monarch Initiative. The coalition would be helpful to scale large scale genomics and to create an infrastructure to integrate genomics and clinical data. Benefits to create a coalition for genomics and bioinformatics • Accelerate Genomics Data Processing with GPUs • Deploy AI models at scale • Federated AI to train models • Public genomics initiative to include a CMS endorsed value based genomics and rare disease programs • Governance, Policy and Standards to expand CMS coverage of genomics tests 
- VB-3. What are essential health IT capabilities for value -based care arrangements? FHIR and CDA education should be mandated to flow from the parent organizations of provider health systems and payer -affiliated care delivery organizations down to frontline staff, including front desk /insurance verification specialists , certified medical assistants , and licensed vocational nurses . Ensuring that all levels of clinical and administrative personnel are knowledgeable about interoperability standards is critical to successful implementation, data accuracy, and improving patient care coordinatio n. Such training will lower the utilization of labeling PDFs and faxing referrals. A reskilling of health IT professionals to match what Interoperability employers want will help the industry. With the recent layoffs in the IT industry and other industries, the market to hire talent is hypercompetitive. CMS, ASTP/ONC, NLM , HIMSS, CAHIIM and SDOs could back an upskilling and credential strategy to roll out: • A national initiative of reskilling aligned with TEFCA rollout, CMS 0052 initiatives • Credential recognition by federal agencies • Registry of SME professionals Possible training pathways: FHIR data analyst openEHR architect SNOMED CT value curator Reskilling should not only teach tools , but should also prepare health IT professionals to: • Understand FHIR profiles and terminology bindings • Navigate crosswalks between C -CDA, FHIR, and openEHR • Participate in clinical terminology governance with SNOMED CT and LOINC • Engage in TEFCA -related implementation activities One way to do this could be through the state HIMSS chapters. 
- State HIMSS chapters can: • Broker partnerships between universities, regional employers, and government programs • Facilitate CEU accreditation , especially for training aimed at licensed clinicians • Support microcredential recognition across institutions Currently HL7’s Education Advisory council and SNOMED International’s e-Learning advisory group are both looking for educational partnerships with educational institutions to increase the education and training to utilize FHIR and SNOMED CT. More engagement can be done to reach out to multiple institutions - like computer science schools, health informatics schools, health information management schools, medical schools, nursing schools, etc. CEU accreditation should be important to create so that physicians (MDs, DOs), midlevel practitioners (NPs, PAs), licensed nurses (RNs, LVNs) and certified medical assistants (MAs, CNAs) could all benefit from CEU hours related to FHIR, SNOMED CT, and openEHR training. The NLM does not offer CEUs /CME hours for SNOMED CT education nor FHIR education. If CMS could ask one of the organizations to offer CEU accreditation hours like CMS, HIMSS, NLM, etc., this would help engagement for both clinicians and nursing professionals. From what I heard from HL7 International, they are looking for clinical professionals to engage in the development of the FHIR standard. In addition, SNOMED International is looking for clinical professionals to engage in the development of SNOMED CT via c linical reference groups. Since these organizations are more volunteer based, one of the ways to boost engagement is the offering of CEU /CME hours. Post-acute care (PAC) providers —skilled nursing facilities (SNFs), home health agencies, inpatient rehab, long -term acute care hospitals (LTACHs), and hospices —are rarely using 
-CEHRT, usually not exchanging data via FHIR or CDA , and usually excluded from mainstream IT investment, even though: • They are essential to care transitions , readmission prevention, and total cost of care . • Their outcomes directly affect ACO and VBC performance metrics . Fortunately, a couple of QHINs have captured some of this piece of the post-acute care. However, the ACOs are not in the equation for such FHIR and CDA exchange on their assigned beneficiar y list for the reporting year. Including Post Acute providers like SNFs, LTPAC , LTACH s, HHAs to participate in accelerators like the Gravity Project would be beneficial for such continuum of health information exchange, especially for the MSSPs. a. Examples (not comprehensive) may include: care planning, patient event notification, data extraction/normalization, quality performance measurement, access to claims data, attribution and patient ID matching, remote device interoperability, or other pat ient empowerment tools. b. What other health IT capabilities have proven valuable to succeeding in value -based care arrangements? Standards based data exchange like SNOMED CT, openEHR Care coordination for closed loop communication (FHIR care plan , CommunicationRequest) These would be helpful for care coordination and secure messaging platforms. Risk adjustment reporting in FHIR using the Risk Adjustment FHIR IG Revenue cycle integration 
-VB-4. What are the essential data types needed for successful participation in value -based care arrangements? ER visits SNF stays Home health episodes Hospice episodes Specialist consults Care plans Advance directives Behavioral health data : including PHQ -9 scores One of the quality measures for ACOs is the depression remission measure and the depression screening measure - both are contin gent upon the PHQ -9 score. The ASTP/ONC and RCE should clarify how behavioral health and mental health data types — particularly those regulated under 42 CFR Part 2 or protected by state law — will be handled under TEFCA. We encourage the adoption and enforcement of data segmentation standards using FHIR security labels and CDA DS4P to enable safe, consented exchange of sensitive behavioral health information. This is cr itical for supporting whole -person care in value -based arrangements. Payer risk scores (RAF scores) Also, CMS should enter a collaborative agreement with SNOMED International. CMS owns the HCPCS code system. If CMS and SNOMED International entered a collaborative agreement, CMS could introduce a HCPCS to SNOMED CT map. Benefits of a HCPCS to SNOMED CT Map: • Improves interoperability by linking billing codes with detailed clinical concepts. • Enables better data analytics by combining clinical and claims information. • Supports value -based care through accurate quality and outcomes measurement. • Facilitates FHIR -based data exchange using standard clinical terminology. 
-• Standardizes mappings to reduce errors and inconsistencies. • Enhances clinical decision support by providing richer context for procedures and services. In a similar fashion, CMS could collaborate with the AMA to create a HCPCS to CPT map/crosswalk. Once the 3 maps (HCPCS to SNOMED CT, CPT to HCPCS, CPT to SNOMED CT) are mature , the US edition of SNOMED CT could then create an extension for these 3 maps. If CMS formalized these maps and collaborated with the NLM and SNOMED International, the US edition of SNOMED CT would be semantically better for the connection of administrative, clinical, and research data in the US. 2. Compliance and Certification VB-5. In your experience, how do current certification criteria and standards incorporated into the ONC Health IT Certification Program support value -based care delivery? VB-6. What specific health information technology capabilities that could benefit APMs are not currently addressed by existing certification criteria and standards that should be included under the ONC Health IT Certification Program? Care Coordination APIs Leverage FHIR subscription resources APIs to query and integrate community resources referrals APIs enabling real time quality submission and feedback (quality reporting, risk adjustment) to have the entire process be FHIR based (versus CSV files, excel files upload , PDF uploads ) VB-7. How can technology requirements for APMs, established through CEHRT or other pathways, reduce complexity while preserving necessary flexibility? Other commenters will answer this question better 
-VB-8. How can other HHS policies supplement CEHRT requirements to better optimize the use of digital health products in APMs? As an example, requirements under the Conditions of Participation for hospitals ( 42 CFR 482.24(d) ) require hospitals to transmit electronic patient event notifications to community providers. The transmission requirement of electronic patient event notifications should extend beyond hospitals to include ambulatory, post -acute, behavioral health, and social service providers. HHS should support the infrastructure for smaller providers , such as funding to HIEs to assist rural providers, or professional associations to offer discounted membership fees to rural providers to include interoperability and data exchange. What barriers are in place preventing APM participants from receiving the same notifications? Lack of interoperability Inconsistent use of messaging protocols (HL7 FHIR Subscription, others use Direct messaging) Rural providers may lack technical infrastructure to do advanced messaging features VB-9. What technology requirements should be different for APM organizations when comparing to non -APM organizations (for example, quality reporting, and interoperability)? APM organizations require more advanced real time quality reporting capabilities and FHIR based interoperability and enhanced security controls . VB-10. In the Calendar Year (CY) 2024 Physician Fee Schedule final rule ( 88 FR 79413 ), CMS established that CEHRT requirements for Advanced APMs beyond those in the “Base EHR” definition should be flexible based on what is applicable to the APM that year based on the area of clinical practice. What certification criteria should CMS identi fy under this flexibility for specific Advanced APMs, or for Advanced APMs in general? Are there specific flexibilities or alternatives to consider for smaller or resource -constrained (such as rural) providers in meeting CEHRT requirements without compromi sing quality of care or availability of performance data? Core certification should include support for FHIR APIs, USCDI and USCDI+ data elements, and real time data exchange capabilities. 
-3. Technical Standards VB-11. What specific interoperability challenges have you encountered in implementing value - based care programs? Lack of incentives to scale to full FHIR Lack of incentives to move to 100% SNOMED CT integration embedded in the software One way to handle this is to co -sponsor more hackathons to encourage further adoption of SNOMED CT, openEHR, FHIR, CDA , and V2 to FHIR mapping, CDA to FHIR , and maybe even International Patient Summary (IPS). The IPS standard is being used in Canada for province -to-province exchange of the minimally exhaustive data set for a patient’s summary of care to “travel” with the patient across borders. This could be applied to the US for a patient summary US. A FHIR based IPS document for the US would be very useful for a more useful summary of care. With respect to medications, there could be more adoption of SNOMED CT Drug model for medications IDMP standards for medications. SNOMED CT includes attributes such as • has active ingredient • has precise strength • has dose form • has strength numerator • has strength numerator unit • has strength denominator • has strength denominator unit • has manufactured dose form • has pharmaceutical dose form • has container • has route of administration • has manufacturer • has storage condition 
-When someone wants do advanced queries on a health information software for medication data, it is hard to do that without SNOMED CT’s drug model attributes. Including the SNOMED CT Drug model would be helpful to ameliorate the degree of semantic interoperability for pharmacy informatics and pharmacy related information exchange. CMS should leverage the recognized coordinating entity (RCE) to promote the adoption of SNOMED CT drug model attributes —such as active ingredients, dose forms, indications, contraindications, and therapeutic roles —in pharmacy data exchange workflows. Supporting SNOMED CT’s Expression Constraint Language (ECL) querying will enable pharmacies to perform precise, attribute -based queries essential for medication safety, prior authorization, and clinical quality reporting. This approach will advance interoperabi lity, improve medication management, and align with CMS’s goals for enhanced patient outcomes and data -driven care delivery. Such adoption of ECL querying would be useful for hypersensitivity, adverse reactions , and research. IDMP covers substances, products, dosage forms with granularity on the strength, units, device, packaging. CMS can collaborate with the FDA and NLM to do rxnorm to IDMP mappings. FHIR IGs could be created which support IDMP aligned concepts. Data Elements Missing from rxnorm but inside of IDMP • Global unique identifiers for products and substances • Comprehensive packaging details (packaging type, quantity, labeling) • Marketing authorization details (approval status, regulatory jurisdictions, authorization holder) • Manufacturing and marketing authorization holder information • Precise dosage form and route of administration • Substance structure and specification • Batch/Lot Level Traceability • Unit of Measurement specification VB-12. What technology standardization would preserve program -specific flexibility while promoting innovation in APM technology implementation? 
-A hybrid approach using layered, modular FHIR profiles with open identity, consent, and terminology standards, combined with machine -readable policy and open analytics APIs, enables CMS and other payers to preserve program -specific flexibility while foster ing a vibrant innovation ecosystem for APM technology implementation. VB-13. What improvements to existing criteria and standards would better support value -based care capabilities while reducing provider burden? • Risk Adjustment FHIR IG • International Patient Summary US realm adoption • V2 to FHIR assistance • C-CDA to FHIR assistance VB-14. How could implementing digital identity credentials improve value -based care delivery and outcomes? Digital identity can be extended beyond people to services and applications (e.g. terminology services APIs) . Verified API clients enables better governance and auditing of terminology lookups and code validations, which directly affects quality measures, risk adjustment, value based care reporting and CDS in value based care models. VB-15. How could a nationwide provider directory of FHIR endpoints help improve access to patient data and understanding of claims data sources? What key data elements would be necessary in a nationwide FHIR endpoints directory to maximize its effectivenes s? The key data elements I think about relate to terminology services. FHIR capabilities FHIR version supported CapabilityStatement code System.supported list supported code systems value Set.expand is ValueSet/$expand supported 
- code System.subsumes whether $subsumes is implemented validate -code support $validate -code operation ConceptMap. translate is ConceptMap/$translate supported CodeSystem.versions specific versions for the code systems Implementation Guides Supported Use cases $export capability Bulk data group export support HIE Affiliation HIN affiliation e.g. QHIN Payer network Network membership ACO, IPA Comments by David Rocha drocha3408@outlook.com 
- 
+Comments by David Rocha drocha3408@outlook.com
+What health management or care navigation apps would help you understand and manage your
+(or your loved ones’) health needs, as well as the actions you should take?
+The next generation of health management and care navigation apps should be created on open
+interoperability standards such as FHIR, SNOMED CT, LOINC, openEHR, and aligned with
+USCDI+ to support longitudinal, patient-centric care. For these apps to truly empower patients
+and caregivers, they should:
+1. Integrate data across settings and networks via TEFCA and FHIR APIs.
+Apps should offer a unified view of a patient’s journey across primary care, specialty
+care, behavioral health, and social determinants — using QHINs and local HIEs to pull in
+FHIR-based records.
+2. Enable proactive, standards-based care navigation.
+Use SNOMED CT-coded care plans and problem lists, LOINC-coded lab results, and
+FHIR Clinical Reasoning resources to suggest timely actions: e.g., when to schedule
+follow-ups, refill prescriptions, or enroll in a care management program.
+3. Provide personalized insights through clinical decision support (CDS) rules that are
+explainable and aligned with guideline-based care.
+Open CDS tools (e.g., using CQL and FHIR CDS Hooks) could drive these insights,
+making the app a true partner in care navigation.
+4. Surface social and behavioral health needs using structured data.
+For example, if a patient faces food or transportation insecurity, the app could suggest
+community resources — ideally using FHIR SDOH profiles and Gravity Project
+standards.
+5. Support family caregivers with appropriate data segmentation and consent.
+Privacy-aware FHIR-based segmentation (e.g., for behavioral health, HIV, reproductive
+care) can help loved ones access the information they need while respecting patient
+consent preferences.
+6. Support interoperability with wearables and home-based monitoring.
+Health management apps should incorporate vital signs and activity data from devices,
+ideally using FHIR Observation and Device resources — and link them to actionable
+insights (e.g., call provider if BP spikes).
+To accelerate this, CMS could:
+• Incentivize development of open-source prototypes for care navigation apps using
+public funding.
+• Partner with organizations like HL7, The Sequoia Project, OpenHIE, and HIMSS to
+launch FHIR hackathons focused on care navigation for priority populations (e.g.,
+cancer, behavioral health, maternal health).
+• Promote alignment with USCDI+ domains to ensure these apps can serve both
+individual and public health needs.
+
+If I was CMS, I would be meeting with the Australia Digital Health Agency, CSIRO, Canada
+Health Infoway, and Nictiz on how they implemented these data standards well.
+These organizations seem to be years ahead of CMS in terms of semantic and structural
+interoperability.
+If you had a personal assistant to support your health needs, what are the top things you would
+ask them to help with?
+For complex, chronic, and conditions like COPD, congestive heart failure (CHF), cirrhosis,
+and dementia, I would want a digital personal assistant to:
+1. Track and Alert on Ejection Fraction (EF) and FEV₁% Trends
+• Monitor ejection fraction (EF) values from echocardiograms or other imaging (e.g.,
+LOINC 33878-0) and flag when EF falls below clinical thresholds (e.g., <40% for
+HFrEF, <25% for high-risk status).
+• Monitor FEV₁% predicted (e.g., LOINC 20150-9) for COPD and detect when
+respiratory function declines, such as a drop from 60% to 45%.
+• Use FHIR Observation, SNOMED CT-coded findings, and CDS logic to generate
+timely alerts to the patient, caregiver, or care team.
+• Explain these changes in lay terms and suggest next steps (e.g., "Your heart function has
+worsened; your cardiologist may want to review your medications").
+2. Coordinate Follow-up and Interventions
+• Trigger automated referrals (FHIR ServiceRequest) to cardiology, pulmonology, or
+palliative care when EF or FEV₁% deteriorates.
+• Remind patients and caregivers of relevant lifestyle, medication, or device updates based
+on these measures (e.g., starting cardio selective beta blockers for EF < 40%, pulmonary
+rehab for FEV₁% < 50%).
+3. Surface Data for Shared Care Planning
+
+• Present longitudinal cardiopulmonary metrics (EF, FEV₁%) in a simple visual timeline
+— helping patients, caregivers, and clinicians plan ahead.
+• Sync with FHIR CarePlan and Goal resources for whole-person care, especially when
+EF or FEV₁% signals risk of hospitalization or functional decline.
+4. Integrate Device + Imaging Data
+• Pull in device-based EF estimates (e.g., from cardiac implantable devices or AI-
+supported echo interpretation) and home spirometry readings, if available.
+• Allow authorized caregivers to see these trends and receive structured, SNOMED CT-
+coded alerts when worsening is detected.
+5. Facilitate Crisis Prevention
+• Combine changes in EF and FEV₁% with other indicators (e.g., weight gain, edema,
+oxygen desaturation) to predict and prevent ER visits.
+• Help patients and caregivers understand when to escalate, call a provider, or prepare for
+care transitions (e.g., from home to hospice).
+Policy Implication:
+CMS should:
+• Promote inclusion of EF and FEV₁% as prioritized data elements in USCDI+
+Cardiovascular and Pulmonary profiles.
+• Support apps or CDS tools that can pull structured cardiopulmonary data from TEFCA-
+participating sources and deliver personalized guidance.
+• Fund pilots that use FHIR, SNOMED CT, and LOINC to power assistant-style tools
+for advanced illness care, particularly in older adults with multimorbidity.
+Do you have easy access to your own and all your loved ones' health information in one location
+(for example, in a single patient portal or another software system)?
+No
+The information is only per medical provider. I have heard stories about having separate Epic
+mychart logins just to get in.
+
+This is why the coalition from the CARIN alliance and the HIMSS demo from b.well and
+Commonwell Health alliance is helpful.
+Were there particular data types, such as x-rays or specific test results, that were unavailable?
+What are the obstacles to accessing your own or your loved ones' complete health information
+electronically and using it for managing health conditions or finding the best care (for example,
+limitations in functionality, user friendliness, or access to basic technology infrastructure)?
+Right now, the x-rays use a PACS imaging system to view the photos and unfortunately, some of
+the imaging centers where I live still issue compact discs or USB flash drives.
+In addition, the imaging studies are mostly PDFs- which to me is one of the biggest obstacles in
+healthcare. The lack of abstraction from PDFs is definitely affecting the healthcare system.
+What would help is to have data elements for the imaging studies that relate to the impression
+findings, such as:
+. Masses / Tumors
+• Size (e.g., in mm or cm): critical for tracking tumor progression or response to therapy.
+o E.g., “Mass increased from 2.3 cm to 3.1 cm.”
+• Location: anatomical site (e.g., liver segment, lung lobe, renal pole).
+• Margins: well-defined vs. spiculated or infiltrative (indicative of malignancy).
+• Enhancement pattern: helpful in oncology (e.g., arterial phase enhancement in HCC).
+• Number of lesions: single vs. multifocal.
+• Metastatic suspicion: impression of metastasis (e.g., “consistent with metastatic
+disease”).
+2. Cardiothoracic Findings
+• Ejection fraction (EF): if estimated via cardiac MRI or echo.
+• Left ventricular size or wall motion abnormalities.
+• Pericardial effusion: size and impact.
+• Pulmonary artery size or RV enlargement (e.g., for pulmonary hypertension risk).
+• Pleural effusions and laterality.
+3. Pulmonary Findings
+• Lung nodules:
+o Size, density (solid, ground-glass), borders, growth over time.
+• Bronchiectasis or air trapping (in COPD).
+• Interstitial changes: fibrosis, honeycombing (e.g., in IPF or long COVID).
+• Atelectasis or consolidation.
+• Spirometry correlation (if reported with chest imaging or CT).
+
+4. Hepatic and Abdominal Findings
+• Cirrhosis indicators: nodular liver contour, splenomegaly, varices.
+• Ascites: presence and volume estimate.
+• Liver lesion characteristics (LI-RADS category if available).
+• Portal vein patency / thrombosis.
+• Renal mass characteristics.
+5. Neurological Findings
+• Brain atrophy: degree and lobar involvement (important in dementia).
+• White matter changes: periventricular, small vessel disease.
+• Hemorrhage or infarct: location, size.
+• Hydrocephalus.
+• Mass effect / midline shift.
+6. Spine / Bone
+• Compression fractures: level and severity (e.g., L1 wedge fracture).
+• Metastatic lesions in bone.
+• Degenerative changes.
+7. Lymphadenopathy
+• Size and location of lymph nodes: supraclavicular, mediastinal, retroperitoneal.
+• Necrosis or calcification in nodes.
+• New vs. stable lymphadenopathy (important for cancer staging).
+Are you aware of health management, care navigation, or personal health record apps that would
+be useful to Medicare beneficiaries and their caregivers?
+• Care Merge and Care Merge Caregiver apps
+• Wellsky
+• GetWell Loop
+PC-4. What features are missing from apps you use or that you are aware of today?
+In the US the features that are missing from apps is integration with SNOMED International’s
+SNOMED CT Expression constraint language (ECL).
+ECL makes it easier to:
+• Dynamically define large concept sets
+• Avoid errors from static, hand-picked code lists
+
+• Keep pace with SNOMED CT updates
+ECL would allow CMS to:
+• Dynamically define clinically relevant concepts
+• Reduce maintenance burden
+• Improve accuracy of quality measures, cohorts, and rules
+• Integrate more deeply with FHIR-based programs
+For phase 1, CMS should encourage voluntary use of SNOMED CT’s Expression constraint
+language (ECL) and FHIR’s Value Set Compose Language (VSCL) created by Michael Lawley
+from CSIRO, in FHIR APIs.
+Phase 2: CMS could pilot ECL use and VSCL use in certain CMS programs like US core and
+ACO reach.
+Phase 3: CMS could require terminology servers with ECL support and VSCL support for CMS
+contractors
+Phase 4: CMS would mandate ECL for SNOMED CT value set definitions and VSCL for
+authoring FHIR value sets in new FHIR based programs
+Here is how ECL and VSCL could help the PIQI framework:
+PIQI opportunities:
+• Precise patient cohort definition: ECL provides SNOMED CT hierarchical queries for
+exact exclusion/inclusion criteria for more granular patient stratification and population
+health analytics
+• Multi-code system value sets: VSCL composes value sets across SNOMED CT, LOINC,
+CPT, ICD, etc.
+• Automation and currency of data: up to date information and quality metrics
+• Interoperability and consistency: standardized syntax used across HIT systems s
+• Quality measure tooling: VSCL supports complex, composite measures
+• Maintenance overhead: dynamic definitions reduce manual updates and errors
+Value Set Compose language links:
+Power point presentation from DevDays 2023
+
+https://www.devdays.com/wp-
+content/uploads/2023/08/230608_MichaelLawley_A_general_CodeSystem_query_language-
+v2.pdf
+DevDays 2023 Presentation
+https://www.youtube.com/watch?v=f2gRFXwuoTE
+a. What apps should exist but do not yet? Why do you believe they do not exist yet?
+• Caregiver proxy access caregivers could manage multiple Medicare beneficiaries
+• Integrated SDOH and Community Services app
+b. What set of workflows do you believe CMS is uniquely positioned to offer?
+• Transition of care notifications and post acute follow up
+o Include the follow up workflows (for example- SNF to the home)
+• FHIR workflow with annual wellness visits and preventive services
+PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these
+digital health products?
+Digital literacy, training programs with AARP, Area agencies on aging, etc.
+a. What role, if any, should CMS have in reviewing or approving digital health products on the
+basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense
+of a coverage determination)? What criteria should be used if there is a review process?
+CMS could be the certifier to either co-certify the digital health products with the FTC/FDA
+and/or have separate certifications on quality like a CMS certified level 1 digital health product
+If there was a review process, some of the criteria could include clinical efficacy,
+interoperability, cost and accessibility, privacy and security, etc.s
+
+What technology solutions, policy changes, or program design changes can increase patient and
+caregiver adoption of digital health products (for example, enhancements to data access,
+reimbursement adjustments, or new beneficiary communications)?
+A reimbursement adjustment to Medicare payment models can occur to reward providers and
+payers for supporting and providing digital health tools
+b. What changes would enable timely access to high quality CMS and provider generated data on
+patients?
+Data built on openEHR archetypes and 100% integrated with SNOMED CT- meaning that the
+SNOMED CT ontology is downloaded and installed correctly inside the electronic software.
+PC-6. What features are most important to make digital health products accessible and easy to
+use for Medicare beneficiaries and caregivers, particularly those with limited prior experience
+using digital tools and services?
+Other commenters will give a better answer.
+PC-7. If CMS were to collect real-world data on digital health products' impact on health
+outcomes and related costs once they are released into the market, what would be the best means
+of doing so?
+• Leverage existing claims and encounter data
+• Integrate patient reported outcomes and experience data (for example CAHPS survey
+data)
+• Digital health product registry and/or repository
+• Conduct clinical trials and observational studies
+2. Data Access and Integration
+PC-8. In your experience, what health data is readily available and valuable to patients or their
+caregivers or both?
+Vital signs data, routine allergies, routine medications
+
+a. What data is valuable, but hard for patients and caregivers, or app developers and other
+technical vendors, to access for appropriate and valuable use (for example, claims data, clinical
+data, encounter notes, operative reports, appointment schedules, prices)?
+Observable entities data, such as:
+Assessment scales data, assessment scores data
+DescendantOrSelfOf
+<<Assessment score (observable entity)
+In SNOMED CT, there is a full list of assessment scores related to assessment
+scales. This would be useful to include in consumer health IT software to track assessment
+scores for relevant diseases, such as dementia, COPD, CHF, etc.
+<<Imaging observable (observable entity)
+<<Interpretation of findings (observable entity)
+<<Function observable (observable entity)
+Example of <<Activity of daily living (observable entity)
+Which ADLs can the subject/patient perform?
+Examples: Ability to feed self (observable entity)
+Ability to manage medication using memory technique (observable
+entity)
+To me, this is more useful to query the electronic health system by observable entities for the
+assessment scores to improve the search queries.
+Example: query all the patients who had a Glasgow coma score
+Query all the patients who had a COPD assessment test score, etc.
+An example to put here also includes an ontology that is closed source and not available unless
+you pay the licensing fees- OMIM.
+
+OMIM could be very useful for genomics data exchange but there are no existing maps between
+OMIM and SNOMED CT, OMIM and HPO, OMIM and MONDO, OMIM and LOINC.
+For the stewardship standards development organizations like SNOMED International, the
+Monarch Initiative and the Regenstrief Institute, they would most likely not fall under academic
+institutions to be able to download the ontology- hence a closed source ontology.
+This could affect further genomics research and the newer technology of agentic AI.
+b. What are specific sources, other than claims and clinical data, that would be of highest value,
+and why?
+For criminal justice and law enforcement systems:
+Including the SNOMED CT concept for Dangerous and harmful thoughts (finding): 285261008
+would be useful here.
+<<Dangerous and harmful thoughts (finding): 285261008
+
+Children (6)
+• Dangerous fantasy (finding)
+o Rape fantasy (finding)
+• Dangerous plans (finding)
+o Plans to assault (finding)
+o Plans to commit sexual crime (finding)
+▪ Plans to rape (finding)
+o Plans to kill (finding)
+o Plans to set fire (finding)
+• Harmful thoughts (finding)
+o Thoughts of self harm (finding)
+▪ Suicidal thoughts (finding)
+▪ Planning suicide (finding)
+▪ Suicidal intent (finding)
+▪ Suicidal (finding)
+▪ Suicidal behavior (finding)
+▪ Has access to planned means of suicide (finding)
+▪ Thoughts of deliberate self harm (finding)
+▪ Intent of deliberate self harm with detailed plans (finding)
+▪ Plans for deliberate self harm without intent (finding)
+• Thoughts of arson (finding)
+• Thoughts of revenge (finding)
+• Thoughts of violence (finding)
+o Homicidal thoughts (finding)
+o Thoughts of physical assault (finding)
+o Thoughts of sexual violence (finding)
+▪ Thoughts of raping (finding)
+Criminal justice systems and law enforcement would have a USCDI+ behavioral health data
+element related to such harmful thoughts as listed above.
+If this is for obesity data, maybe
+o consumer and retail purchase data, like grocery purchase patterns or pharmacy
+data
+▪ rewards card loyalty data
+▪ refusal of medication doorstep delivery and/or food delivery
+o Public transit data and geographic access data: could verify that the transportation
+distance is truly an issue
+o Legal and civic data- utility shut-off notices, guardianship records, elder abuse
+filings, eviction filings
+o Community organization data- # of missed visits to meals on wheels
+o Transportation service pickups # of missed pickups and drop-offs
+o Home health aid or personal care attendant visits
+
+c. What specific opportunities and challenges exist to improve accessibility, interoperability and
+integration of clinical data from different sources to enable more meaningful clinical research
+and generation of actionable evidence?
+Opportunities:
+• Standardization of data formats and technologies, like FHIR, SNOMED CT, LOINC,
+ICD-10
+• Data aggregation platforms and federated networks
+Challenges:
+• Data Silos and fragmentation
+• Privacy and consent complexity
+• Limited incentives for data sharing
+• Technical integration barriers
+PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare
+coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view
+as most valuable for inclusion in the API to enable more useful digital products for patients and
+caretakers?
+• Medicare advantage encounter data (part C)
+• SDOH data
+• Risk adjustment data
+• Care coordination data and care plan data
+• Beneficiary survey data
+• Long-term services and support data: post acute services data
+a. What difficulties are there in accessing or utilizing these data sources today?
+Some parent companies of the large health systems are overly dependent on the EHR vendors to
+provide this service, meaning that some of the provider organizations are not aware that Blue
+Button is integrated in the EHR. In addition, the training has not been disseminated down to the
+regional health system and the local hospitals.
+I don’t feel comfortable naming specific systems, but an indicator would be the provider
+organizations that are parent companies of the large health systems that are not engaging in the
+HL7 FHIR accelerators.
+
+b. What suggestions do you have to improve the Blue Button 2.0 API experience?
+Include Medicare advantage data, SDOH, risk adjustment data, care plans
+c. Is there non-CMS data that should be included in the API?
+• Patient generated health data
+• Pharmacy and medication management data
+• Long-term services support data
+• Behavioral and mental health data
+• Public health and immunization registries
+PC-10. How is the Trusted Exchange Framework and Common AgreementTM (TEFCATM)
+currently helping to advance patient access to health information in the real world?
+a. Please provide specific examples.
+Other commenters will answer this better.
+b. What changes would you suggest?
+Utilizing a national terminology server API for terminology services
+Similar to what CSIRO did in Australia and implemented in other countries, such as with Nictiz
+and Canada Health Infoway.
+The RCE has an opportunity to meet with CSIRO, Nictiz, and Canada Health Infoway on best
+practices to what recognized coordinating entities in other countries are doing better with
+terminology services, FHIR scaling, SNOMED CT and openEHR integration.
+The public health use case of TEFCA should include SNOMED CT into its querying engine like
+SNOMED CT’s expression constraint language.
+An example is to query the DescendantOrSelfOf mode of transmission
+<<Mode of transmission values (qualifier value) SCTID: 414753003
+Children (15)
+• Animal to animal transmission (qualifier value)
+
+• Animal to human transmission (qualifier value)
+• Body fluid contact transmission (qualifier value)
+o Blood borne transmission (qualifier value)
+o Lactation transmission (qualifier value)
+• Environmental exposure transmission (qualifier value)
+o Airborne transmission (qualifier value)
+• Fecal-oral transmission (qualifier value)
+• Fomite transmission (qualifier value)
+• Food-borne transmission (qualifier value)
+• Human to human transmission (qualifier value)
+• Indeterminate disease transmission mode (qualifier value)
+• Nosocomial transmission (qualifier value)
+• Parenteral transmission (qualifier value)
+o Transdermal transmission (qualifier value)
+o Transfusion transmission (qualifier value)
+• Sexual transmission (qualifier value)
+• Vector-borne transmission (qualifier value)
+• Vertical transmission (qualifier value)
+o Lactation transmission (qualifier value)
+o Transplacental transmission (qualifier value)
+• Water-borne transmission (qualifier value)
+In public health, the mode of transmission is useful to determine how the public health related
+disorder was transmitted and/or the outbreak was transmitted.
+c. What use cases could have a significant impact if implemented through TEFCA?
+The ASTP/ONC should formally define “Care Coordination” as a supported exchange purpose
+under TEFCA. Many transitions of care including those between hospitals, post-acute settings,
+and primary care require timely access to structured data by care managers, nurses, and social
+workers who are not the ordering clinician. Without explicit support, these critical workflows
+remain underpowered, limiting the ability of value-based care models to succeed.\
+The International Patient Summary (IPS) US realm could be implemented through TEFCA.
+The embedding of the IPS as the standard patient summary document could create an
+interoperable clinical snapshot which could be available across QHINs, participants, and
+subparticipants
+The IPS essential clinical dataset would be useful and beneficial for sharing timely patient
+information across silos.
+TEFCA’s adoption of IPS can drive accelerated FHIR adoption among the participants in
+TEFCA.
+
+d. What standards are you aware of that are currently working well to advance access and
+existing exchange purposes?
+• FHIR
+o International Patient Summary (IPS)
+o Terminology Service specification
+• CCDA
+• USCDI
+• IHE Profiles
+https://build.fhir.org/terminology-service.html
+e. What standards are you aware of that are not currently in wide use, but could improve data
+access and integration?
+SNOMED CT is not being utilized to its full potential
+openEHR is not being utilized in the US
+The International Patient Summary (FHIR Documents) could be scaled in US interoperability.
+The International Patient Summary is a standardized clinical summary to provide necessary
+patient information to support continuity of care across care settings and geographical regions.
+Benefits to scale IPS in the national setting:
+• Interoperable and Standardized
+o IPS built on FHIR profiles and FHIR resources
+• Supports emergency care and transitions of care
+o IPS is a snapshot of the critical patient information to use in emergency care and
+post acute care settings
+• The IPS aligns with understandable and accessible health summaries using FHIR
+A Patient Summary for the United States (PS-US) could be very helpful in exchanging the
+minimally exhaustive data set for the summary of care between jurisdictions.
+f. Are there redundant standards, protocols, or channels that should be consolidated?
+CMS could create its own governing council on interoperability (similar to the Joint Initiative
+Council of SDOs) as a central coordinating body to harmonize standards, trust frameworks, and
+data exchange policies.
+
+Membership would include federal agencies, standards development organizations (SDOs),
+health information networks (HINs), and other necessary stakeholders
+g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to
+their health information?
+CMS should consider a Track B for healthcare sectors who cannot afford TEFCA, including:
+Rural hospitals (Critical access hospitals) and clinics (rural health clinics
+FQHCs
+Track B in TEFCA could be for Open HIE interoperability framework for public health and
+community care
+CMS could work with ASTP/ONC, CDC, and Civitas to explore OpenHIE-style architectures for
+population health and emergency preparedness use cases.
+PC-11. How are health information exchanges (HIEs) currently helping to advance patient access
+to health information in the real world?
+a. How valuable, available, and accurate do you find the data they share to be?
+Other commenters will answer this question better.
+b. What changes would you suggest?
+Evaluate the openHIE standard
+openHIE is being utilized by developing countries. openHIE could be useful in rural areas,
+critical access hospitals, and rural health clinics.
+Existing HIEs should be FHIR incubators and spearheading conversion pilots (V2 to FHIR, CDA
+to FHIR).
+HIEs could testbed US Core and USCDI+ implementations
+Use FHIR subscription
+FHIR bulk data
+
+CMS should create a national terminology server for FHIR terminology services APIs (national
+country example is CSIRO’s Ontoserver).
+In turn, HIEs should have access to the CMS national terminology server.
+HIEs would then have the potential to translate local codes into SNOMED CT, LOINC, etc.
+In the UK, the NHS utilizes a national SNOMED CT terminology service that is accessible to the
+HIE equivalent systems.
+In Australia, the Australia Digital Health Agency uses Ontoserver with a federated access model
+for jurisdictions and vendors.
+c. Are there particular examples of high-performing HIE models that you believe should be
+propagated across markets?
+Same response as above
+d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader
+frameworks for data exchange (for example, vendor health information networks, TEFCA,
+private exchange networks, etc.)?
+being the incubator for FHIR and SNOMED CT acceleration
+PC-12. What are the most valuable operational health data use cases for patients and caregivers
+that, if addressed, would create more efficient care navigation or eliminate barriers to
+competition among providers or both?
+a. Examples may include the following:
+(1) Binding cost estimates for pre-defined periods.
+(2) Viewing provider schedule availability.
+(3) Using third-party apps for appointment management.
+(4) Accessing patient-facing quality metrics.
+(5) Finding the right provider for specific healthcare needs.
+
+b. What use cases are possible today?
+c. What should be possible in the near future?
+Fund regional or national FHIR + SNOMED CT HIE accelerators as part of PIQI and QHIN
+onboarding.
+d. What would be very valuable but may be very hard to achieve?
+3. Information Blocking and Digital Identity
+PC-13. How can CMS encourage patients and caregivers to submit information blocking
+complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would
+increasing reporting of complaints advance or negatively impact data exchange?
+• Increase awareness and the education on the information blocking portal
+• Simplify the complaint submission process
+• Provide feedback and transparency
+PC-14. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 credentialing service providers (CSP)):
+a. What are the challenges today in getting patients/caregivers to sign up and use digital identity
+credentials?
+Complexity and usability barriers for older adults and caregivers.
+From my experience with provider organizations, the grandchildren are teaching the
+grandparents on this technology.
+b. What could be the benefits to patients/caregivers if digital identity credentials were more
+widely used?
+Could integrate with digital drivers license and digital insurance cards, and even the passport
+The passport integration would be beneficial for the International Patient Summary (IPS).
+c. What are the potential downsides?
+Other commenters will answer this question better.
+d. How would encouraging the use of CSPs improve access to health information?
+
+e. What role should CMS/payers, providers, and app developers have in driving adoption?
+f. How can CMS encourage patients to get digital identity credentials?
+Create an assisted enrollment program to set up digital identity credentials
+Provide a small financial incentive to enroll in digital identity credentials
+C. Providers
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve providers. While we certainly want providers to answer
+questions in this section (and in other sections) from the provider point of view, we also invite all
+stakeholders to provide their viewpoints on the provider workflows as appropriate.
+1. Digital Health Apps
+PR-1. What can CMS and its partners do to encourage providers, including those in rural areas,
+to leverage approved (see description in PC-5) digital health products for their patients?
+Reimbursement bonuses
+New CPT/HCPCS codes specifically for digital health products adoption for caregivers and
+patients in rural areas
+Prioritizing the rural providers including FQHCs, CAHs and doing training at the front lines
+level. The EHR vendors and the parent companies of the health systems most likely integrate
+with FHIR but there needs to be training and education on FHIR APIs at the front lines level.
+HIEs and QHINs should be the rural innovation enablers.
+CMS should sponsor a “Digital Ready Rural Provider” designation for providers.
+CMS can spearhead a initiative for continuing education units for healthcare professionals on
+digital care coordination for rural clinicians and staff.
+a. What are the current obstacles?
+Lack of training for FQHCs and CAHs at the front lines level (insurance verification specialists,
+licensed nurses, certified medical assistants/nursing assistants).
+b. What information should providers share with patients when using digital products in the
+provision of their care?
+
+• Purpose and function of the digital health products
+• Ways to access and use the tools
+• What data will be collected and by whom
+• Costs and coverage information
+• Informed consent
+c. What responsibilities do providers have when recommending use of a digital product by a
+patient?
+• Clinical relevance and appropriateness: evidence-based
+• Due diligence: intended use, data collection practices, risks
+• Avoid digital harm
+• Evaluate outcomes and patient experience on an ongoing basis
+PR-2. What are obstacles that prevent development, deployment, or effective utilization of the
+most useful and innovative applications for physician workflows, such as quality measurement
+reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated?
+• Proprietary EHR architectures and history of closed APIs
+o Hence the need for openEHR standard and open FHIR APIs and FHIR IGs like
+US Core
+• Lack of standardized data models
+o National terminology services (PIQI/Ontoserver access)
+o Mandate the standard clinical content models (openEHR, USCDI+)
+• High burden of regulatory compliance
+• Limited incentives to physicians and change fatigue
+o Align app adoption to reimbursement incentives (ACO, Medicare advantage,
+managed Medicaid)
+• Poor user experience
+o Promote FHIR populated smart forms
+• Consent barriers
+An example of provider burden and change fatigue is the risk adjustment reporting. There is a
+FHIR Implementation for Risk Adjustment reporting. In risk adjustment, there is the attestation
+process when a physician/clinician has to confirm a diagnosis.In the EHR software, every
+diagnosis needs a plan of care statement/small paragraph for each diagnosis that gets addressed.
+Every diagnosis must be confirmed with evidence, linked to a care plan, and captured in a
+structured, reviewable, and auditable format. As one can imagine, this is very time consuming
+for physicians.
+
+A primary care physician I am familiar with had to do 40 diagnosis on a new patient and write 40
+distinct plans of care for that encounter.Today's workflows often rely on manual entry in EHRs,
+lack of semantic interoperability, and limited automation.
+Natural language processing could be used to extract SNOMED CT codes from past notes.
+SNOMED CT could be very useful to auto-generate care plans per condition.
+We need a starter library to map the top risk adjustment diagnoses to care plan templates
+(editable by clinicians)
+And define the FHIR resources for PlanDefinition and CarePlan.
+The Da Vinci Risk Adjustment FHIR IG for risk adjustment is a prime example on administrative
+burden for physicians who having to document every year a plan of care for each diagnosis.
+https://build.fhir.org/ig/HL7/davinci-ra/
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas
+that all data in an EHR system be accessible for exchange, regardless of storage format (for
+example, scanned documents, faxed records, lab results, free text notes, structured data fields)?
+Please address all of the following:
+a. Current challenges in accessing different data formats.
+• Scanned and faxed documents stored as PDFs/images have historically not been machine
+readable. The recent innovation in natural language processing and artificial intelligence
+has opened this up.
+• Free text clinical notes lack standardization.
+• Legacy systems are continuing to store data in proprietary formats.
+b. Impact on patient care quality.
+Care coordination is still suffering during transitions of care.
+c. Technical barriers to full data accessibility.
+• Lack of NLP at scale.
+• Limited adoption of data normalization and terminology services.
+
+• Poor integration between PACS systems and clinical records- more could be done to
+align with openEHR and SNOMED CT for radiology findings.
+d. Cost or privacy implications of making all data formats interoperable.
+Other comments will answer this question better.
+e. Priority level compared to other interoperability needs.
+Other comments will answer this question better.
+PR-4. What changes or improvements to standards or policies might be needed for patients'
+third-party digital products to have access to administrative workflows, such as auto-populating
+intake forms, viewing provider information and schedules, and making and modifying an
+appointment?
+• Mandate adoption of HL7 FHIR Scheduling and Appointment APIs
+• Extend ONC certification criteria to include FHIR based appointment workflows
+• Promote the use of FHIR Questionnaire and QuestionnaireResponse FHIR resources.
+• Mandate a nationwide FHIR based provider directory
+2. Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in
+your provider organization's systems, directly or through an intermediary? For each, describe the
+transaction model, use case, whether you use individual queries or bulk transactions, and any
+constraints:
+a. Patient Access API.
+b. Standardized API for Patient and Population Services.
+c. Provider Directory API.
+d. Provider Access API.
+e. Payer-to-Payer API.
+f. Prior Authorization API.
+g. Bulk FHIR—Do you support Group ID-based access filtering for population-specific queries?
+h. SMART on FHIR—Do you support both EHR-launched and standalone app access? What
+does the process for application deployment entail?
+
+i. CDS Hooks (for clinical decision support integrations).
+PR-6. Is TEFCA currently helping to advance provider access to health information? TEFCA is
+helping with the treatment use case.
+a. Please provide specific examples.
+b. What changes would you suggest?
+ONC should formally define “Care Coordination” a supported exchange purpose under TEFCA.
+Many transitions of care — including those between hospitals, post-acute settings, and primary
+care — require timely access to structured data by care managers, nurses, and social workers
+who are not the ordering clinician. Without explicit support, these critical workflows remain
+underpowered, limiting the ability of value-based care models to succeed.”
+The ASTP/ONC and RCE should clarify how behavioral health and mental health data types —
+particularly those regulated under 42 CFR Part 2 or protected by state law — will be handled
+under TEFCA. We encourage the adoption and enforcement of data segmentation standards
+using FHIR security labels and CDA DS4P to enable safe, consented exchange of sensitive
+behavioral health information. This is critical for supporting whole-person care in value-based
+arrangements.
+CMS should consider a Track B for healthcare sectors who cannot afford TEFCA, including:
+Rural hospitals (Critical access hospitals) and clinics (rural health clinics
+FQHCs
+Track B could be for Open HIE interoperability framework for public health and community care
+CMS could work with ASTP/ONC, CDC, and Civitas to explore OpenHIE-style architectures for
+population health and emergency preparedness use cases.
+c. What other options are available outside of TEFCA?
+d. Are there redundant standards, protocols or channels or both that could be consolidated?
+PR-7. What strategies can CMS implement to support providers in making high-quality, timely,
+and comprehensive healthcare data available for interoperability in the digital product
+ecosystem? How can the burden of increasing data availability and sharing be mitigated for
+providers? Are there ways that workflows or metrics that providers are already motivated to
+
+optimize for that could be reused for, or combined with, efforts needed to support
+interoperability?
+CMS can incentivize or mandate the use of federated terminology services for:
+• Value set validation
+• Code system normalization
+• Terminology mapping
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers?
+CMS, ASTP/ONC and the NLM have the opportunity to create a national terminology service
+like what CSIRO and the Australia Digital Health Agency did with Ontoserver for national
+reference services.
+A National Terminology Service, funded or coordinated by ASTP/ONC/CMS/NLM and
+aligned with TEFCA, could:
+• Provide real-time validation, expansion, and mapping as a shared utility
+• Reduce duplication across EHR vendors and HIEs
+• Support public health, quality reporting, and research use cases
+• Scale the PIQI framework
+• Support FHIR operations like $expand, $validate-code
+• Provide terminology validation as a service within TEFCA-connected networks, ensuring
+smooth data exchange with consistent semantics.
+The national terminology service could be the authoritative source for all PIQI-related code
+systems and value sets, reduce the amount of local code systems
+Scaling the International Patient Summary (patient summary US edition) in the United States
+would be helpful and beneficial to exchange FHIR documents of the essential health information
+of the patient. Scaling IPS could reduce administrative burden of providers.
+
+a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to
+CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by
+performing quality metrics calculations leveraging Bulk FHIR data exports?
+Bulk FHIR would help to pull the data once for CMS
+Bulk FHIR exports could be scheduled quarterly, monthly, or at the end of the reporting period.
+Bulk FHIR serves as the batch transport mechanism for large scale quality data.
+FHIR subscriptions could assist as the event driven mechanism for real time quality data.
+b. In what ways can the interoperability and quality reporting responsibilities of providers be
+consolidated so investments can be dually purposed?
+• A unified submission portal for FHIR would help for: MIPS, ACO, HEDIS, Joint
+Commission,etc.
+• Accepting FHIR data to fulfill all programs simultaneously (QI-CORE, DEQM)
+c. Are there requirements CMS should consider for data registries to support digital quality
+measurement in a more efficient manner? Are there requirements CMS should consider for data
+registries that would support access to real-time quality data for healthcare providers to inform
+clinical care in addition to simplifying reporting processes?
+Support automated terminology services with FHIR
+Supporting inter-registry exchange with Bulk FHIR (cancer registries, cardiovascular registries)
+3. Digital Identity
+PR-9. How might CMS encourage providers to accept digital identity credentials (for example,
+CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins that
+need to be tracked for each provider relationship?
+The paper from Leavitt Partners on “Kill the Clipboard” addresses this issue.
+a. What would providers need help with to accelerate the transition to a single set of trusted
+digital identity credentials for the patient to keep track of, instead of one for each provider?
+In the provider space, the Electronic Prescription for Controlled Substances (EPCS) already
+utilizes identity proofing and digital identity credentials.
+
+However, the introduction of TEFCA shows that such identity proofing needs to be done at scale
+for both providers and patients. Vendors like ID.me and Imprivata are already doing identity
+proofing for both patients and providers.
+CMS and ASTP/ONC can reuse the model for EPCS and apply it to FHIR based identity
+exchange and what the CARIN alliance is promoting. There definitely needs to be EHR
+integration for login and check-in and incentives (bonus payments percentage to managed care
+models, etc.) to drive the adoption.
+b. How might CMS balance patient privacy with convenience and access to digital health
+products and services that may lead to significant improvements in health?
+Tiered level access controls based on sensitivity:
+1. Tier 1: General health information (PAMPI)
+2. Tier 2: Behavioral health, substance use, reproductive health, infectious disease
+3. Tier 3: Genomics and SDOH data
+CMS can set the privacy rules for developers, such as no secondary use for research without
+explicit consent, etc.
+PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 CSPs):
+a. What are the challenges and benefits for providers?
+• IAL2 integration may become time consuming and have a small degree of resistance to
+change from providers
+• Privacy concerns
+• User experience
+Benefits:
+• Easier access with single sign on
+• Compliance
+• Interoperability
+b. How would requiring their use improve access to health information?
+• Support TEFCA framework
+• Quicker onboarding for providers
+• Trusted access
+
+c. What are the potential downsides?
+• Rural areas may struggle with MFA and/or identity proofing
+• Implementation costs
+• Resistance to change
+d. What impact would mandatory credentials have on a nationwide provider directory?
+• Verified identities would have lower occurrences of fraud
+• Identity system allows for easier updates and syncing provider information
+e. How could digital identity implementation improve provider data flow?
+• Reduce manual processes of paperwork and phone calls
+• Ameliorates audit trails with regards to logs
+• Confirming provider identity close to real time
+f. Would combining FHIR addresses and identity improve data flow? Yes
+• Trusted APIs
+• Ameliorate interoperability
+PR-11. How could members of trust communities [3] (for example, QHINs, participants and
+subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential
+Service Providers (CSPs)) better support the goals of reduced provider and patient burden while
+also enhancing identity management and security?
+4. Information Blocking
+PR-12. Should ASTP/ONC consider removing or revising any of the information blocking
+exceptions or conditions within the exceptions (45 CFR part 171, subparts B through D) to
+further the access, exchange, and use of electronic health information (EHI) and to promote
+market competition?
+Other commenters will answer this question better.
+PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3)), without a
+current information blocking disincentive established by CMS, what would be the most effective
+disincentive for that category of provider?
+Payment Adjustments and financial penalties such as reduction of payments and/or recoups of a
+percentage of bonus incentives (MSSP ACO, HEDIS, Medicare Advantage)
+
+PR-14. How can CMS encourage providers to submit information blocking complaints to
+ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or
+negatively impact data exchange?
+• Raise training and awareness
+• Feedback and transparency
+D. Payers
+PA-1. What policy or technical limitations do you see in TEFCA?
+• Long roadmap to facilitated FHIR exchange
+• Overreliance on CDA and IHE profiles
+o Meditech’s Traverse exchange network went full FHIR exchange without IHE
+profiles
+o CCDs are not API friendly
+• Lack of terminology services and no national terminology server for terminology services
+APIs
+What changes would you suggest to address those limitations?
+• National terminology service for FHIR terminology services APIs (network of
+terminology servers)
+o Aligns with the PIQI framework
+o Adopt terminology services like what CSIRO, Nictiz, and Canada Health Infoway
+did
+• The International Patient Summary (IPS) standard is designed as a FHIR based, API
+friendly summary
+o IPS is designed for real time queries with FHIR APIs
+• CMS could lead or strongly support openEHR adoption
+To what degree do you expect these limitations to hinder participation in TEFCA?
+PA-2. How can CMS encourage payers to accelerate the implementation and utilization of APIs
+for patients, providers, and other payers, similar to the Blue Button 2.0 and Data at the Point of
+Care APIs released by CMS?
+• Align FHIR implementation to star ratings and bonus incentives for Medicare Advantage,
+ACO program
+• Provide grants or shared services (FHIR servers) for smaller payers, third party
+administrators
+
+PA-3. How can CMS encourage payers to accept digital identity credentials (for example,
+CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins?
+• Incentivize adoption with funding or bonus points in the star ratings
+PA-4. What would be the value to payers of a nationwide provider directory that included FHIR
+end points and used digital identity credentials?
+Other commenters will answer this question better.
+PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of
+providers?
+• Accept and process Bulk FHIR exports
+• Use real time FHIR subscriptions
+• Use FHIR Quality Reporting
+• Utilize the FHIR Risk Adjustment IG for risk adjustment
+a. How interested are payers and providers in EHR technology advances that enable bulk
+extraction of clinical quality data from EHRs to payers to allow them to do the calculations
+instead of the provider-side technology?
+Right now, the larger payers are using FHIR and bulk FHIR. The medium size payers and small
+payers have not fully integrated with FHIR. The life insurance companies which offer Medicare
+supplement plans are not utilizing FHIR nor involved in WEDI nor the Da Vinci project FHIR
+accelerator. CMS and the ASTP/ONC have the opportunity to engage the smaller payers,
+medium sized payers, third party administrators, life insurance companies to move to FHIR.
+b. In what ways can the interoperability and quality reporting responsibilities of providers to both
+CMS and other payers be consolidated so investments can be dually purposed? Are there
+technologies payers might leverage that would support access to real time quality data for
+healthcare providers to inform clinical care in addition to simplifying reporting processes?
+Unified data submission platforms
+PA-7. How can CMS encourage payers to submit information blocking complaints to
+ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or
+negatively impact data exchange?
+• Continue to encourage payers to submit
+
+• Education, awareness, training
+E. Technology Vendors, Data Providers, and Networks
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve technology vendors, data providers, and networks. While we
+certainly want technology vendors, data providers, and networks to answer questions in this
+section (and in other sections) from their point of view, we also invite all stakeholders to provide
+their viewpoints on the technology vendor, data provider, and network use cases as appropriate.
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate
+developer interest in building digital health products for Medicare beneficiaries and caregivers?
+More hackathons and co-sponsored hackathons
+Having the larger IT corporations and AI companies being co-sponsors of such hackathons for
+FHIR, V2 to FHIR, CCDA to FHIR, Blue Button, SNOMED CT, SNOMED CT with FHIR,
+openEHR, etc.
+Involve stakeholders: HIMSS, ASTP/ONC, HL7 International, SNOMED International,
+openEHR, Regentrief Institute, AMIA, AHA, AMA
+TD-2. Regarding CMS Data, to stimulate developer interest—
+a. What additional data would be most valuable if made available through CMS APIs?
+CMS Expenditure APIs to provide access to expenditure and cost-related information.
+A family of Expenditure APIs covering:
+• Total cost of care
+• Episode-based costs
+• Service-level costs
+• Patient out-of-pocket estimates
+• Geographic/provider cost comparisons
+Potential names of the family of the CMS Expenditure APIs:
+• CMS Attribution APIs: beneficiary attribution to ACOs or other VBC programs
+• CMS Claims and Encounters APIs: claims data, encounter data
+• CMS Quality Performance APIs: quality measures data, patient experience data,
+preventive and chronic care metrics
+
+• CMS Financial and Payment APIs: shared savings/losses reports, payment reconciliation
+data
+• CMS Risk Adjustment APIs: risk scores, risk adjustment factors
+• CMS Utilization Analytics APIs: reports on hospital admissions, readmissions, ED visits,
+utilization trends
+• CMS Beneficiary Notifications APIs: beneficiary attribution notifications (like date of
+death)
+• CMS Social Determinants APIs: SDOH data linked to beneficiaries or regions
+• CMS Care Coordination APIs: data supporting care transitions, referrals, and care team
+communications
+• CMS Patient-Recorded Outcomes APIs: patient feedback and outcome data
+• CMS Expenditure APIs: detailed cost and spending by service, episode, provider region
+• CMS ACO Benchmarks APIs: ACO specific performance targets and peer benchmarks
+Historically, CMS has not exposed ACO benchmark data as public APIs. This could seriously
+bolster innovation and further competition for the participating ACOs.
+CMS ACO benchmarks APIs
+• Real-time or near real-time access: ACOs could track performance more dynamically rather
+than waiting for annual reports.
+• Granular benchmarking: APIs could allow querying by region, size, specialty composition,
+and more.
+• Transparency and comparability: Potentially open up benchmarking for new entrants or
+other value-based programs.
+• Integration: ACOs could integrate benchmark data directly into dashboards or EHRs for
+ongoing quality improvement.
+• Custom queries: Researchers and payers could analyze benchmarks across various
+dimensions (e.g., cost, quality, patient demographics).
+What could the ACO Benchmark APIs Include?
+• Financial benchmarks: Total cost of care benchmarks risk-adjusted by patient
+population.
+• Quality measure benchmarks: Benchmarks for quality metrics ACOs report on (e.g.,
+preventive care, chronic disease management).
+• Shared savings/losses data: Year-over-year savings performance and reconciliation.
+
+• Patient attribution info: Counts and demographics of attributed beneficiaries.
+• Risk score adjustments: CMS-HCC or similar risk scores that influence benchmarks.
+• Peer group comparisons: Benchmarks compared against regional or national ACO
+cohorts.
+For privacy and security purposes, the patient-level data would definitely be protected The
+benchmarks could be aggregated.
+Based on the APIs above, CMS could also create APIs for Medicare Advantage
+• CMS MA Enrollment and Attribution APIs
+• CMS MA Claims and Encounter APIs
+• CMS MA Quality Performance APIs
+• CMS Financial and Payment APIs
+• CMS MA Risk Adjustment APIs
+• CMS MA Utilization Management APIs
+• CMS MA Network Management APIs
+• CMS MA Benefit and Plan Design APIs
+• CMS MA Appeal and Grievance APIs
+• CMS MA Social Determinants APIs
+• CMS MA Care Coordination APIs
+• CMS MA Patient-Reported Outcomes APIs
+• CMS MA Pharmacy APIs
+b. What data sources are most valuable alongside the data available through the Blue Button 2.0
+API?
+Same as above
+c. What obstacles prevent accessing these data sources today?
+Legacy technology: historically such CMS data was only available with CSV files.
+d. What other APIs should CMS and ASTP/ONC consider including in program policies to
+unleash innovation and support patients and providers?
+Potential names of the family of the CMS Expenditure APIs:
+
+• CMS Attribution APIs: beneficiary attribution to ACOs or other VBC programs
+• CMS Claims and Encounters APIs: claims data, encounter data
+• CMS Quality Performance APIs: quality measures data, patient experience data,
+preventive and chronic care metrics
+• CMS Financial and Payment APIs: shared savings/losses reports, payment reconciliation
+data
+• CMS Risk Adjustment APIs: risk scores, risk adjustment factors
+• CMS Utilization Analytics APIs: reports on hospital admissions, readmissions, ED visits,
+utilization trends
+• CMS Beneficiary Notifications APIs: beneficiary attribution notifications (like date of
+death)
+• CMS Social Determinants APIs: SDOH data linked to beneficiaries or regions
+• CMS Care Coordination APIs: data supporting care transitions, referrals, and care team
+communications
+• CMS Patient-Recorded Outcomes APIs: patient feedback and outcome data
+• CMS Expenditure APIs: detailed cost and spending by service, episode, provider region
+• CMS ACO Benchmarks APIs: ACO specific performance targets and peer benchmarks
+Based on the APIs above, CMS could also create APIs for Medicare Advantage
+• CMS MA Enrollment and Attribution APIs
+• CMS MA Claims and Encounter APIs
+• CMS MA Quality Performance APIs
+• CMS Financial and Payment APIs
+• CMS MA Risk Adjustment APIs
+• CMS MA Utilization Management APIs
+• CMS MA Network Management APIs
+• CMS MA Benefit and Plan Design APIs
+• CMS MA Appeal and Grievance APIs
+• CMS MA Social Determinants APIs
+• CMS MA Care Coordination APIs
+• CMS MA Patient-Reported Outcomes APIs
+• CMS MA Pharmacy APIs
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits?
+Other commenters will answer this question better.
+
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me,
+other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange?
+Other commenters will answer this question better.
+c. What impact would mandatory use of the OpenID Connect identity protocol have?
+Other commenters will answer this question better.
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs
+over proprietary APIs?
+Tie to financial incentives (percentage of bonus incentives through MSSP ACO program,
+Medicare Advantage, managed Medicaid, etc.)
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health
+information for patients, providers, and payers? Who should publish such a directory, and should
+users bear a cost?
+CMS and ASTP/ONC
+It should be freely available
+TD-6. What unique interoperability functions does TEFCA perform? The most notable use case
+currently is the treatment use case
+a. What existing alternatives should be considered?
+To me the only alternative to TEFCA would apply to the public health use case:
+CMS could fund OpenHIE pilots for safety-net providers as part of broader innovation efforts,
+even if such approaches exist outside TEFCA's main structure.
+alternative funding tracks (e.g., via CMMI, CDC, HRSA, or HHS Office for Civil Rights) for
+public health and community orgs using:
+• OpenHIE-based shared services (e.g., Client Registry, OpenHIM)
+• Open terminology servers (e.g., Ontoserver)
+• FHIR APIs for care transitions and referrals
+Track A could be for TEFCA for the larger networks
+
+Track B could be for Open HIE interoperability framework for public health and community care
+CMS could work with ASTP/ONC, CDC, and Civitas to explore OpenHIE-style architectures for
+population health and emergency preparedness use cases.
+CMS should consider a Track B for healthcare sectors who cannot afford TEFCA, including:
+Rural hospitals (Critical access hospitals) and clinics (rural health clinics
+FQHCs
+b. Are there redundant standards, protocols or channels or both that should be consolidated?
+An independent and/or academic study can be conducted to compare Carequality, eHealth
+Exchange, DirectTrust to analyze if there are overlapping query and document exchange
+capabilities.
+Another independent and/or academic study can be conducted to compare IHE profiles with
+FHIR APIs.
+TD-7. To what degree has USCDI improved interoperability and exchange and what are its
+limitations?
+Benefits:
+• Standardized core data set
+• Alignment with FHIR
+• Slow Adoption: some EHR vendors may be doing the bare minimum
+• Limited support for behavioral health data, dental data
+a. Does it contain the full extent of data elements you need?
+No
+b. If not, is it because of limitations in the definition of the USCDI format or the way it is
+utilized?
+
+To me, USCDI v4 and v5 does not align with the IPS standard nor openEHR archetypes.
+In addition, USCDI does not require alignment with standard terminologies at the data element
+level. The introduction of the PIQI framework and possibly a national terminology server for a
+terminology services FHIR APIs could help with this issue.
+c. If so, would adding more data elements to USCDI add value or create scoping challenges?
+It would add value
+Adding a data element for Dangerous and harmful thoughts based on SNOMED CT’s concept
+for Dangerous and harmful thoughts (finding): 285261008
+<<Dangerous and harmful thoughts (finding): 285261008
+Children (6)
+• Dangerous fantasy (finding)
+o Rape fantasy (finding)
+• Dangerous plans (finding)
+o Plans to assault (finding)
+o Plans to commit sexual crime (finding)
+▪ Plans to rape (finding)
+o Plans to kill (finding)
+o Plans to set fire (finding)
+• Harmful thoughts (finding)
+o Thoughts of self harm (finding)
+▪ Suicidal thoughts (finding)
+▪ Planning suicide (finding)
+▪ Suicidal intent (finding)
+▪ Suicidal (finding)
+▪ Suicidal behavior (finding)
+▪ Has access to planned means of suicide (finding)
+▪ Thoughts of deliberate self harm (finding)
+▪ Intent of deliberate self harm with detailed plans (finding)
+▪ Plans for deliberate self harm without intent (finding)
+• Thoughts of arson (finding)
+• Thoughts of revenge (finding)
+• Thoughts of violence (finding)
+o Homicidal thoughts (finding)
+o Thoughts of physical assault (finding)
+
+o Thoughts of sexual violence (finding)
+▪ Thoughts of raping (finding)
+USCDI+ for behavioral health would not just help health information software, but could also
+help criminal justice systems and law enforcement.
+How could such challenges be addressed?
+ASTP/ONC could add more USCDI+ domains for neurosurgery, dental, and nephrology.
+d. Given improvements in language models, would you prefer a non-proprietary but less
+structured format that might improve data coverage even if it requires more processing by the
+receiver?
+o openEHR templates might help with this issue
+o CMS and ASTP/ONC could also reference NLP models
+TD-8. What are the most effective certification criteria and standards under the ONC Health IT
+Certification Program?
+Bulk FHIR and USCDI adoption
+Terminology services APIs and IPS
+TD-9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled capabilities over
+software functionality?
+• Promoting interoperability
+• Supporting TEFCA and other VBC and managed care programs via FHIR adoption
+b. What would be the drawbacks?
+• Market may be flooded with APIs with inconsistent quality of data usability, especially
+for terminology services and PIQI framework conformance
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently
+support exchanging data from all aspects of the patient's chart (for example, faxed records, free
+text, discrete data)?
+Require use of DocumentReference and FHIR resources for scanned/fax documents
+
+d. What policy changes could CMS make so providers are motivated to respond to API-based
+data requests with best possible coverage and quality of data?
+Flag or penalize providers who block or delay API queries
+Tie incentives dollars for managed care programs to KPIs like API uptime, accuracy and PIQI
+framework conformance
+e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for
+reporting quality performance data to CMS? What capabilities are needed to show benefit? What
+concerns are there with this approach?
+• Utilize FHIR ($export) that pulls from clinical data sets
+• Integrate with quality measures libraries like CQL
+TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what
+further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API
+condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's APIs to
+allow health information to be accessed, exchanged, and used without special effort, including
+providing access to all data elements of a patient's electronic health record to the extent
+permissible under applicable privacy laws?
+TD-11. As of January 1, 2024, many health IT developers with products certified through the
+ONC Health IT Certification Program are required to include the capability to perform an
+electronic health information export or “EHI export” for a single patient as well as for patient
+populations (45 CFR 170.315(b)(10)). Such health IT developers are also required to publicly
+describe the format of the EHI export. Notably, how EHI export was accomplished was left
+entirely to the health IT developer. Now that this capability has been in production for over a
+year, CMS and ASTP/ONC seek input on the following:
+a. Should this capability be revised to specify standardized API requirements for EHI export?
+b. Are there specific workflow aspects that could be improved?
+c. Should CMS consider policy changes to support this capability's use?
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or
+metrics should CMS consider?
+TD-13. What new opportunities and advancements could emerge with APIs providing access to
+the entirety of a patient's electronic health information (EHI)?
+a. What are the primary obstacles to this?
+
+b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible
+data processing capabilities today?
+TD-14. Regarding networks' use of FHIR APIs:
+a. How many endpoints is your network connected to for patient data sharing? What types,
+categories, geographies of endpoints do you cover? Are they searchable by National Provider
+Identifier (NPI) or organizational ID?
+b. How are these connections established (for example, FHIR (g)(10) endpoints,
+TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)?
+c. Do you interconnect with other networks? Under what frameworks (for example, TEFCA,
+private agreements)?
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+b. What are the potential disadvantages of their use?
+TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure?
+a. Do current rules encourage scalable network participation?
+b. What changes would improve alignment (for example, API unification, reciprocal access)?
+TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring
+viability of healthcare data sharing networks, including enough supply and demand, that results
+in usage and outcomes?
+5. Compliance
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices you have
+experienced that may constitute information blocking. Please include both situations of non-
+responsiveness as well as situations that may cause a failure or unusable response?
+b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+Fines and penalties for information blocking violations
+
+Recouping MSSP and MA plan Bonuses:
+• Information Blocking
+The below statement might be more controversial, but CMS and ASTP/ONC could recoup some
+of the prior year MSSP and Medicare advantage bonus payments if an insurance plan or ACO
+engaged in information blocking.
+CMS has the opportunity to tie a portion of MA and ACO shared savings/performance bonuses
+to adherence in information blocking regulations.
+• API CEHRT Integration with FHIR
+In addition, CMS and ASTP/ONC could do the same thing of recouping bonuses for the lack of
+FHIR and API CEHRT integration.
+CMS could align bonus eligibility to FHIR performance, such as the partial withholding of
+shared savings/quality bonuses for failing to demonstrate effective API CEHRT integration
+using FHIR.
+• PIQI Compliance
+Align the bonus payments with PIQI standards (accuracy, completeness, consistency).
+CMS could enforce recoupments or penalties with noncompliance with the PIQI framework.
+c. Are there specific categories of healthcare actors covered under the definition of information
+blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information
+blocking disincentives?
+TD-19. Regarding price transparency implementation:
+a. What are current shortcomings in content, format, delivery, and timeliness?
+
+The integration of the implementation guides maintained by the HL7 Financial Management
+work group would be useful here.
+FHIR resources:
+Invoice
+PaymentNotice
+PaymentReconciliation what patient owes and what has been paid
+The life insurance companies which offer Medicare supplement plans are currently not fully
+FHIR integrated.
+This would be a problem for tracking claims for Medicare supplemental payers.
+b. Which workflows would benefit most from functional price transparency?
+c. What improvements would be most valuable for patients, providers, or payers, including
+CMS?
+The entire revenue cycle management cycle should be on FHIR.
+The EOBs, itemized billing, PaymentNotice, Invoice, patient cost estimation tools need to be
+utilized by medium sized payers, third party administrators, life insurance companies which offer
+Medicare supplemental insurance plans.
+Currently, the Da Vinci project mostly has the large payers in the accelerator. The other payers,
+like managed Medicaid payers, smaller Medicare advantage payers should be using the FHIR
+resources associated with the Da Vinci project and the HL7 Financial Management working
+group IGs.
+d. What would further motivate solution development?
+
+F. Value-Based Care Organizations
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve value-based care organizations. While we certainly want value-
+based care organizations to answer questions in this section (and in other sections) from the
+value-based care provider point of view, we also invite all stakeholders to provide their
+viewpoints on the value-based care workflows as appropriate.
+1. Digital Health Adoption
+VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs)
+or participants in Medicare Shared Savings Program (MSSP) to leverage digital health
+management and care navigation products more often and more effectively with their patients?
+The ACOs receive a shared savings check (so-to-speak) based on how many millions were
+saved. Part of the incentive bonus could be based on interoperability engagement.
+What are the current obstacles preventing broader digital product adoption for patients in ACOs?
+NAACOs and HL7 International have not signed a collaborative agreement.
+NAACOs and SNOMED International have not signed a collaborative agreement.
+To me, if these organizations engaged with each other, more education on interoperability
+standards could be provided to NAACOs and its members (various ACOs).
+Also, do not forget about care delivery organizations.
+We respectfully urge CMS to recognize that many care delivery organizations (CDOs)
+participating in Medicare Advantage and Managed Medicaid programs are currently not utilizing
+FHIR standards for data exchange. To promote interoperability and improve patient care
+coordination, CMS should implement mechanisms to track and report FHIR adoption and usage
+among these organizations. Establishing such tracking would encourage transparency, identify
+gaps in technology adoption, and support targeted initiatives to accelerate the integration of
+FHIR across all care settings.
+FHIR is being adopted at the payer level, but not at the level of the care delivery organizations.
+The below statement could be under consideration:
+All payer-associated and affiliated care delivery organizations (CDOs) should be required to
+adopt CEHRT, including API-enabled CEHRT, to ensure seamless interoperability and patient
+access across the evolving healthcare ecosystem.
+
+I strongly urge CMS and ASTP/ONC to explicitly include care delivery organizations (CDOs),
+CDOs that are also independent physician associations (IPAs), particularly payer-associated
+entities and payer-affiliated entities in the certification requirements for API-enabled CEHRT.
+Such inclusion is essential to advance interoperability, ensure consistent patient and consumer
+access to electronic health information, and align with the reality of evolving healthcare delivery
+models.
+CMS and ASTP/ONC should explicitly require that all care delivery organizations (CDOs)
+especially those submitting data to CMS, adopt certified EHR technology with robust CDA and
+FHIR API capabilities. CMS should accelerate the transition to FHIR-based submission
+workflows, supported by clear implementation guides and financial incentives, to reduce reliance
+on PDFs and manual processes and improve data timeliness, accuracy, and patient outcomes.”
+1. Explicit Certification & API Requirements for CDOs
+• Mandate that CDOs use certified EHR technology (CEHRT) with both CDA and
+FHIR API capabilities, especially for CMS submission workflows (e.g., quality
+reporting, value-based care, risk adjustment).
+• Require API-enabled CEHRT that supports standardized FHIR profiles and bundles
+aligned with CMS data submission requirements.
+FHIR and CDA education should be mandated to flow from the parent organizations of provider
+health systems and payer-affiliated care delivery organizations down to frontline staff, including
+insurance verification specialists and certified medical assistants. Ensuring that all levels of
+clinical and administrative personnel are knowledgeable about interoperability standards is
+critical to successful implementation, data accuracy, and improving patient care coordination.
+VB-2. How can key themes and technologies such as artificial intelligence, population health
+analytics, risk stratification, care coordination, usability, quality measurement, and patient
+engagement be better integrated into APM requirements?
+Care coordination is already being integrated into APM requirements. However, CMS can
+rebrand care coordination to include digital care coordination should include APIs and PIQI
+framework integration and move away from more portals, PDFs, CSV files, etc.
+Quality measurement is already being integrated into APM requirements.
+
+However, data usability and information quality (known as data quality) are not being
+integrated into APM requirements.
+SNOMED CT should be integrated for richer clinical semantics.
+The streamlining and connection of multiple portals to integrate shared care plans with shared
+decision making, and the gathering of patient outcomes in real time.
+CMS should require EHRs and reporting systems to use PIQI aligned data models.
+CMS should also mandate continuous data quality checks via APIs that assesses completeness,
+correctness and consistency of submitted data aligned with PIQI definitions.
+Implement terminology translation services to map local or legacy codes.
+By integrating the PIQI framework and terminology services APIs into APM requirements, CMS
+could greatly enhance the usability, accuracy, and semantic consistency of clinical and quality
+data. This would reduce administrative burden, improve care coordination, enable richer
+analytics, and ultimately drive better value-based care outcomes.
+Integrating risk stratification with SNOMED CT’s Expression Constraint Language (ECL)
+allows APMs to leverage precise, interoperable, and dynamically maintainable clinical
+definitions — enabling smarter patient segmentation and more effective population health
+management aligned with value-based care goals.
+With artificial intelligence, CMS could create a coalition with some of the leading AI companies,
+such as Nvidia, openAI, Intel, AMD, etc. as well as the standards development organizations,
+such as HL7 International, SNOMED International, openEHR, Global Alliance for Genomics
+and Health (GA4GH), and the Monarch Initiative.
+The coalition would be helpful to scale large scale genomics and to create an infrastructure to
+integrate genomics and clinical data.
+Benefits to create a coalition for genomics and bioinformatics
+• Accelerate Genomics Data Processing with GPUs
+• Deploy AI models at scale
+• Federated AI to train models
+• Public genomics initiative to include a CMS endorsed value based genomics and rare
+disease programs
+• Governance, Policy and Standards to expand CMS coverage of genomics tests
+
+VB-3. What are essential health IT capabilities for value-based care arrangements?
+FHIR and CDA education should be mandated to flow from the parent organizations of provider
+health systems and payer-affiliated care delivery organizations down to frontline staff, including
+front desk/insurance verification specialists, certified medical assistants, and licensed vocational
+nurses. Ensuring that all levels of clinical and administrative personnel are knowledgeable about
+interoperability standards is critical to successful implementation, data accuracy, and improving
+patient care coordination.
+Such training will lower the utilization of labeling PDFs and faxing referrals.
+A reskilling of health IT professionals to match what Interoperability employers want will help
+the industry. With the recent layoffs in the IT industry and other industries, the market to hire
+talent is hypercompetitive.
+CMS, ASTP/ONC, NLM, HIMSS, CAHIIM and SDOs could back an upskilling and credential
+strategy to roll out:
+• A national initiative of reskilling aligned with TEFCA rollout, CMS 0052 initiatives
+• Credential recognition by federal agencies
+• Registry of SME professionals
+Possible training pathways:
+FHIR data analyst
+openEHR architect
+SNOMED CT value curator
+Reskilling should not only teach tools, but should also prepare health IT professionals to:
+• Understand FHIR profiles and terminology bindings
+• Navigate crosswalks between C-CDA, FHIR, and openEHR
+• Participate in clinical terminology governance with SNOMED CT and LOINC
+• Engage in TEFCA-related implementation activities
+One way to do this could be through the state HIMSS chapters.
+
+State HIMSS chapters can:
+• Broker partnerships between universities, regional employers, and government
+programs
+• Facilitate CEU accreditation, especially for training aimed at licensed clinicians
+• Support microcredential recognition across institutions
+Currently HL7’s Education Advisory council and SNOMED International’s e-Learning advisory
+group are both looking for educational partnerships with educational institutions to increase the
+education and training to utilize FHIR and SNOMED CT.
+More engagement can be done to reach out to multiple institutions- like computer science
+schools, health informatics schools, health information management schools, medical schools,
+nursing schools, etc.
+CEU accreditation should be important to create so that physicians (MDs, DOs), midlevel
+practitioners (NPs, PAs), licensed nurses (RNs, LVNs) and certified medical assistants (MAs,
+CNAs) could all benefit from CEU hours related to FHIR, SNOMED CT, and openEHR training.
+The NLM does not offer CEUs/CME hours for SNOMED CT education nor FHIR education.
+If CMS could ask one of the organizations to offer CEU accreditation hours like CMS, HIMSS,
+NLM, etc., this would help engagement for both clinicians and nursing professionals.
+From what I heard from HL7 International, they are looking for clinical professionals to engage
+in the development of the FHIR standard. In addition, SNOMED International is looking for
+clinical professionals to engage in the development of SNOMED CT via clinical reference
+groups.
+Since these organizations are more volunteer based, one of the ways to boost engagement is the
+offering of CEU/CME hours.
+Post-acute care (PAC) providers—skilled nursing facilities (SNFs), home health agencies,
+inpatient rehab, long-term acute care hospitals (LTACHs), and hospices—are rarely using
+
+CEHRT, usually not exchanging data via FHIR or CDA, and usually excluded from
+mainstream IT investment, even though:
+• They are essential to care transitions, readmission prevention, and total cost of care.
+• Their outcomes directly affect ACO and VBC performance metrics.
+Fortunately, a couple of QHINs have captured some of this piece of the post-acute care.
+However, the ACOs are not in the equation for such FHIR and CDA exchange on their assigned
+beneficiary list for the reporting year.
+Including Post Acute providers like SNFs, LTPAC, LTACHs, HHAs to participate in
+accelerators like the Gravity Project would be beneficial for such continuum of health
+information exchange, especially for the MSSPs.
+a. Examples (not comprehensive) may include: care planning, patient event notification, data
+extraction/normalization, quality performance measurement, access to claims data, attribution
+and patient ID matching, remote device interoperability, or other patient empowerment tools.
+b. What other health IT capabilities have proven valuable to succeeding in value-based care
+arrangements?
+Standards based data exchange like SNOMED CT, openEHR
+Care coordination for closed loop communication (FHIR care plan, CommunicationRequest)
+These would be helpful for care coordination and secure messaging platforms.
+Risk adjustment reporting in FHIR using the Risk Adjustment FHIR IG
+Revenue cycle integration
+
+VB-4. What are the essential data types needed for successful participation in value-based care
+arrangements?
+ER visits
+SNF stays
+Home health episodes
+Hospice episodes
+Specialist consults
+Care plans
+Advance directives
+Behavioral health data: including PHQ-9 scores
+One of the quality measures for ACOs is the depression remission measure and the depression
+screening measure- both are contingent upon the PHQ-9 score.
+The ASTP/ONC and RCE should clarify how behavioral health and mental health data types —
+particularly those regulated under 42 CFR Part 2 or protected by state law — will be handled
+under TEFCA. We encourage the adoption and enforcement of data segmentation standards
+using FHIR security labels and CDA DS4P to enable safe, consented exchange of sensitive
+behavioral health information. This is critical for supporting whole-person care in value-based
+arrangements.
+Payer risk scores (RAF scores)
+Also, CMS should enter a collaborative agreement with SNOMED International.
+CMS owns the HCPCS code system.
+If CMS and SNOMED International entered a collaborative agreement, CMS could introduce a
+HCPCS to SNOMED CT map.
+Benefits of a HCPCS to SNOMED CT Map:
+• Improves interoperability by linking billing codes with detailed clinical concepts.
+• Enables better data analytics by combining clinical and claims information.
+• Supports value-based care through accurate quality and outcomes measurement.
+• Facilitates FHIR-based data exchange using standard clinical terminology.
+
+• Standardizes mappings to reduce errors and inconsistencies.
+• Enhances clinical decision support by providing richer context for procedures and
+services.
+In a similar fashion, CMS could collaborate with the AMA to create a HCPCS to CPT
+map/crosswalk.
+Once the 3 maps (HCPCS to SNOMED CT, CPT to HCPCS, CPT to SNOMED CT) are mature,
+the US edition of SNOMED CT could then create an extension for these 3 maps.
+If CMS formalized these maps and collaborated with the NLM and SNOMED International, the
+US edition of SNOMED CT would be semantically better for the connection of administrative,
+clinical, and research data in the US.
+2. Compliance and Certification
+VB-5. In your experience, how do current certification criteria and standards incorporated into
+the ONC Health IT Certification Program support value-based care delivery?
+VB-6. What specific health information technology capabilities that could benefit APMs are not
+currently addressed by existing certification criteria and standards that should be included under
+the ONC Health IT Certification Program?
+Care Coordination APIs
+Leverage FHIR subscription resources
+APIs to query and integrate community resources referrals
+APIs enabling real time quality submission and feedback (quality reporting, risk adjustment) to
+have the entire process be FHIR based (versus CSV files, excel files upload, PDF uploads)
+VB-7. How can technology requirements for APMs, established through CEHRT or other
+pathways, reduce complexity while preserving necessary flexibility?
+Other commenters will answer this question better
+
+VB-8. How can other HHS policies supplement CEHRT requirements to better optimize the use
+of digital health products in APMs? As an example, requirements under the Conditions of
+Participation for hospitals (42 CFR 482.24(d)) require hospitals to transmit electronic patient
+event notifications to community providers.
+The transmission requirement of electronic patient event notifications should extend beyond
+hospitals to include ambulatory, post-acute, behavioral health, and social service providers.
+HHS should support the infrastructure for smaller providers, such as funding to HIEs to assist
+rural providers, or professional associations to offer discounted membership fees to rural
+providers to include interoperability and data exchange.
+What barriers are in place preventing APM participants from receiving the same notifications?
+Lack of interoperability
+Inconsistent use of messaging protocols (HL7 FHIR Subscription, others use Direct messaging)
+Rural providers may lack technical infrastructure to do advanced messaging features
+VB-9. What technology requirements should be different for APM organizations when
+comparing to non-APM organizations (for example, quality reporting, and interoperability)?
+APM organizations require more advanced real time quality reporting capabilities and FHIR
+based interoperability and enhanced security controls.
+VB-10. In the Calendar Year (CY) 2024 Physician Fee Schedule final rule (88 FR 79413), CMS
+established that CEHRT requirements for Advanced APMs beyond those in the “Base EHR”
+definition should be flexible based on what is applicable to the APM that year based on the area
+of clinical practice. What certification criteria should CMS identify under this flexibility for
+specific Advanced APMs, or for Advanced APMs in general? Are there specific flexibilities or
+alternatives to consider for smaller or resource-constrained (such as rural) providers in meeting
+CEHRT requirements without compromising quality of care or availability of performance data?
+Core certification should include support for FHIR APIs, USCDI and USCDI+ data elements,
+and real time data exchange capabilities.
+
+3. Technical Standards
+VB-11. What specific interoperability challenges have you encountered in implementing value-
+based care programs?
+Lack of incentives to scale to full FHIR
+Lack of incentives to move to 100% SNOMED CT integration embedded in the software
+One way to handle this is to co-sponsor more hackathons to encourage further adoption of
+SNOMED CT, openEHR, FHIR, CDA, and V2 to FHIR mapping, CDA to FHIR, and maybe
+even International Patient Summary (IPS).
+The IPS standard is being used in Canada for province-to-province exchange of the minimally
+exhaustive data set for a patient’s summary of care to “travel” with the patient across borders.
+This could be applied to the US for a patient summary US.A FHIR based IPS document for the
+US would be very useful for a more useful summary of care.
+With respect to medications, there could be more adoption of
+SNOMED CT Drug model for medications
+IDMP standards for medications.
+SNOMED CT includes attributes such as
+• has active ingredient
+• has precise strength
+• has dose form
+• has strength numerator
+• has strength numerator unit
+• has strength denominator
+• has strength denominator unit
+• has manufactured dose form
+• has pharmaceutical dose form
+• has container
+• has route of administration
+• has manufacturer
+• has storage condition
+
+When someone wants do advanced queries on a health information software for medication data,
+it is hard to do that without SNOMED CT’s drug model attributes.
+Including the SNOMED CT Drug model would be helpful to ameliorate the degree of semantic
+interoperability for pharmacy informatics and pharmacy related information exchange.
+CMS should leverage the recognized coordinating entity (RCE) to promote the adoption of
+SNOMED CT drug model attributes—such as active ingredients, dose forms, indications,
+contraindications, and therapeutic roles—in pharmacy data exchange workflows. Supporting
+SNOMED CT’s Expression Constraint Language (ECL) querying will enable pharmacies to
+perform precise, attribute-based queries essential for medication safety, prior authorization, and
+clinical quality reporting. This approach will advance interoperability, improve medication
+management, and align with CMS’s goals for enhanced patient outcomes and data-driven care
+delivery.
+Such adoption of ECL querying would be useful for hypersensitivity, adverse reactions, and
+research.
+IDMP covers substances, products, dosage forms with granularity on the strength, units, device,
+packaging.
+CMS can collaborate with the FDA and NLM to do rxnorm to IDMP mappings.
+FHIR IGs could be created which support IDMP aligned concepts.
+Data Elements Missing from rxnorm but inside of IDMP
+• Global unique identifiers for products and substances
+• Comprehensive packaging details (packaging type, quantity, labeling)
+• Marketing authorization details (approval status, regulatory jurisdictions, authorization
+holder)
+• Manufacturing and marketing authorization holder information
+• Precise dosage form and route of administration
+• Substance structure and specification
+• Batch/Lot Level Traceability
+• Unit of Measurement specification
+VB-12. What technology standardization would preserve program-specific flexibility while
+promoting innovation in APM technology implementation?
+
+A hybrid approach using layered, modular FHIR profiles with open identity, consent, and
+terminology standards, combined with machine-readable policy and open analytics APIs, enables
+CMS and other payers to preserve program-specific flexibility while fostering a vibrant
+innovation ecosystem for APM technology implementation.
+VB-13. What improvements to existing criteria and standards would better support value-based
+care capabilities while reducing provider burden?
+• Risk Adjustment FHIR IG
+• International Patient Summary US realm adoption
+• V2 to FHIR assistance
+• C-CDA to FHIR assistance
+VB-14. How could implementing digital identity credentials improve value-based care delivery
+and outcomes?
+Digital identity can be extended beyond people to services and applications (e.g. terminology
+services APIs). Verified API clients enables better governance and auditing of terminology
+lookups and code validations, which directly affects quality measures, risk adjustment, value
+based care reporting and CDS in value based care models.
+VB-15. How could a nationwide provider directory of FHIR endpoints help improve access to
+patient data and understanding of claims data sources? What key data elements would be
+necessary in a nationwide FHIR endpoints directory to maximize its effectiveness?
+The key data elements I think about relate to terminology services.
+FHIR capabilities
+FHIR version supported
+CapabilityStatement
+codeSystem.supported list supported code systems
+valueSet.expand is ValueSet/$expand supported
+
+codeSystem.subsumes whether $subsumes is implemented
+validate-code support $validate-code operation
+ConceptMap.translate is ConceptMap/$translate supported
+CodeSystem.versions specific versions for the code systems
+Implementation Guides Supported
+Use cases
+$export capability
+Bulk data group export support
+HIE Affiliation
+HIN affiliation e.g. QHIN
+Payer network
+Network membership ACO, IPA
+Comments by David Rocha
+drocha3408@outlook.com

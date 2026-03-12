@@ -1,30 +1,1254 @@
- Response to Centers for Medicare & Medicaid Services (CMS) Health Technology Ecosystem RFI June 16, 2025 Michael Sarkis Named Account Executive 571-431-2956 msarkis@salesforce.com 
- June 16, 2025 Centers for Medicare & Medicaid Services, Department of Health and Human Services, Attention: CMS-0042-NC, P.O. Box 8013, Baltimore, MD 21244-8013. Re: Response to CMS, Health Technology Ecosystem RFI To whom it may concern: Salesforce appreciates the opportunity to respond to your organization request for CMS for a Health Technology Ecosystem. While Salesforce system integrators will also be directly responding to the solution brief with their expertise and implementation approach, Salesforce is providing an alternative response that provides an overview of our proposed solution and recommendations. Salesforce is pleased to present our capabilities to help your organization deliver a Health Technology Ecosystem. Salesforce is the world’s enterprise cloud computing leader, dedicated to helping companies and government agencies transform and connect through cloud, social, and mobile technologies. Our 150,000+ customers include over 4,200 government agencies worldwide, representing all federal cabinet level agencies and the majority of the United States. Cloud computing offers a tremendous opportunity for the government to consolidate and innovate, freeing up time, money and resources towards agency productivity. Salesforce provides the #1 ranked Platform as a Service (PaaS) and the World’s #1 Software as a Service (SaaS) CRM solution. Salesforce’s world leading, trusted cloud platform allows agencies and partners to build applications that achieve a 59% accelerated time to value, implementing solutions in weeks and months vs. months or years, compared to on-premise system implementations. It’s one of the many reasons why Forbes named Salesforce one of the World’s Most Innovative Companies nine years in a row and Innovator of the Decade. We look forward to building a long lasting relationship to support your organization in its technology and program innovation efforts and the opportunity to meet with you and provide a formal demo to further educate your team on our capabilities. I can be contacted at 571-495-7467 or mwhippen@salesforce.com with any questions or clarifications. Thank you for your time and interest in our solution. Sincerely, Michael Sarkis Named Account Executive 571-431-2956 msarkis@salesforce.com 1 
- DISCLAIMER: Salesforce is a leading provider of innovative cloud services, continuously advancing our technology. We have made a diligent effort to provide accurate and current responses to your request as of the date of this response. Please be aware that Salesforce's procedures and policies may evolve over time, and we regularly introduce multiple major release upgrades each year. Consequently, the information provided herein may be subject to change. Use of Salesforce’s online software services will be governed by Salesforce’s Main Services Agreement available at https://www.salesforce.com/company/legal/customer-agreements/ , unless customer has a written master agreement executed by Salesforce for such services already in effect. The agreement will include a statement that any purchases are not contingent upon the delivery of future functionality or features, nor dependent on any public comments made by Salesforce regarding such future functionality or features. While we strive to provide comprehensive and accurate information, please note that the responses provided herein are for informational purposes only and are not intended to form part of a final contract. All information shared in this response is subject to the confidentiality terms outlined in the applicable agreement between you and Salesforce. This response includes confidential and proprietary data that shall not be disclosed outside the recipient organization and shall not be duplicated, used, or disclosed—in whole or in part—for any purpose other than to evaluate this response. If a contract is awarded to Salesforce in connection with the submission of this data, then the recipient shall have the right to duplicate, use, or disclose the data to the extent provided in the resulting contract. Except to the extent prohibited by the express terms of the solicitation, Salesforce provides the confidential and proprietary information herein with the expectation that it will be exempt from disclosure under applicable federal, state, or local laws. This document is provided for informational purposes only. It represents AWS’s current product offerings and practices as of the date of issue of this document and is subject to change. Customers are responsible for making their own independent assessment of the information in this document and any use of AWS’s products or services. This document does not create any warranties, representations, contractual commitments, conditions or assurances from AWS, its affiliates, suppliers or licensors. The responsibilities and liabilities of AWS to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers. For current prices for AWS services, please refer to the AWS website at www.aws.amazon.com. 2 
- Executive Summary Salesforce welcomes the opportunity to respond to the Centers for Medicare & Medicaid Services (CMS) and the Assistant Secretary for Technology Policy/Office of the National Coordinator for Health Information Technology (ASTP/ONC) Request for Information on advancing digital health technology for Medicare beneficiaries. As a leading cloud platform provider serving healthcare organizations nationwide, we offer unique insights into the challenges and opportunities facing the digital health ecosystem. This response addresses the request concerning the evolution of the digital health ecosystem for Medicare beneficiaries. The RFI seeks to build upon the foundational policies established by the 21st Century Cures Act and subsequent rulemakings, which aim to enhance health data availability, secure patient access, and promote interoperability. While significant progress has been made, particularly with initiatives like Blue Button 2.0 and the establishment of FHIR-based APIs, the RFI acknowledges that the patient, caregiver, and provider experience remains fragmented and often complex. The core objective of this RFI is to gather feedback on how to accelerate the adoption of health management and care navigation applications, reduce barriers to data access and exchange, and foster innovation that ultimately improves health outcomes within a patient-centric learning health system. Furthermore, it emphasizes the critical role of technology in the transition to value-based care (VBC) and seeks input on aligning technology requirements with the needs of providers in Alternative Payment Models (APMs). Our response highlights the current landscape's challenges, such as the lack of consolidated health information access for patients and caregivers across disparate systems, and the complexities faced by app developers in integrating diverse healthcare data. We emphasize the demand for digital tools that offer a holistic health view, personalized care plans, streamlined communication, efficient care coordination, and cost transparency. We propose that a comprehensive health engagement platform, integrating clinical and non-clinical data with advanced analytics and AI capabilities, is essential for digital transformation. This platform can create a "digital front door" for 24/7 service and hyper-personalized engagement. We detail how solutions built on platforms like Salesforce can offer a unified patient profile, facilitate seamless data exchange through FHIR standards and frameworks like TEFCA, and provide AI-powered insights for proactive care and operational efficiency. Key recommendations include: Enhancing Patient & Caregiver Engagement: By providing intuitive user interfaces, guided workflows, omni-channel support, and accessible features, alongside clear education and robust security. Improving Data Access & Integration: Addressing the fragmentation of data across EHRs and other systems by promoting unified data views, comprehensive interoperability, and bidirectional data flows. Leveraging TEFCA: Recognizing its role in creating a standardized and secure framework for nationwide health information exchange, streamlining patient onboarding, and enabling data harmonization for personalized experiences. Supporting Value-Based Care: Integrating AI, population health analytics, risk stratification, care coordination, usability, and patient engagement into APM requirements to drive better outcomes and reduce costs. Ultimately, our response underscores the necessity of a scalable, flexible, and secure health IT infrastructure that empowers patients, supports providers, and aligns with the goals of value-based care, paving the way for a truly seamless and effective digital health ecosystem. 3 
- Solution Overview To further support our response to the RFI on advancing the digital health ecosystem, we are pleased to share the following articles. These resources provide additional insights into the crucial role of a connected health consumer, the transformative power of integrated healthcare technology platforms, the acceleration of innovation through seamless connectivity, and the vital benefits of integrating core systems like EHRs and CRMs. They also highlight key advancements in interoperability, such as Qualified Health Information Networks (QHINs), reinforcing our commitment to a truly seamless and patient-centric healthcare future: ● Connected Health Consumer: Trust in a New Era of Health ● Everything You Need to Know About Healthcare Technology Platforms ● Accelerating Healthcare Innovation on a Connected Platform ● Innovating Healthcare:The Benefits of Integrating EHR and CRM ● Mulesoft: Qualified health information networks integration 4 
- Response to RFx Requirements 1. Patient Needs PC-1. What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? a. What are the top things you would like to be able to do for your or your loved ones’ health that can be enabled by digital health products? b. If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? In your response, please consider tasks that could be supported or facilitated by software solutions in the future. Health management and care navigation apps that would be beneficial are those that provide a comprehensive and easily understandable view of health needs and actionable steps, a capability that Salesforce is actively addressing. Specifically, apps built on a platform like Salesforce can offer: ● Holistic Health View: The ability to consolidate all clinical and non-clinical patient information onto a single console, including diagnoses, medications, appointment history, wearable device data, communication preferences, and non-clinical data (employment, finances, housing, transportation). This unified view helps in understanding the complete picture of one's health or a loved one's health beyond just medical records. ● Personalized Care Plans and Actionable Insights: Apps that allow for the creation of personalized care plans driven by clinical needs, ensuring tailored care for specific health conditions. These platforms can also provide actionable, AI-powered insights and recommendations for optimal next steps based on a holistic health profile. This includes features like predictive insights for prior authorizations and guidance towards optimal treatments. ● Streamlined Communication and Engagement: Functionality for multi-channel communication (text, email, webchat, phone, mail) to proactively send messages about upcoming appointments, lab results, and wellness/disease-management programs. This also extends to empowering self-service options for patients to manage their profiles, applications, and care processes conveniently. ● Efficient Care Coordination: Tools that facilitate seamless collaboration among care team members by sharing information and coordinating efforts in real-time. This can include features like referral management and the ability for agents to quickly access and summarize patient information to inform whole-person care. ● Integrated Care Network Access: Tools that provide transparent access to provider networks, real-time appointment availability, and seamless referral management across different healthcare organizations and specialists. ● Cost Management and Transparency: Apps that simplify understanding of health expenses and plan details, coverage, and costs. Salesforce's approach aims to connect and automate business processes, providing a 360-degree view of each member, and enabling teams to collaborate in real-time and proactively engage members. This directly supports the need for comprehensive health management and care navigation tools. 5 
- a. What are the top things you would like to be able to do for your or your loved ones' health that can be enabled by digital health products? Based on Salesforce's extensive research into health consumer behaviors and preferences, here are the top things consumers would like to be able to do for themselves and their loved ones' health that can be enabled by digital health products: ● Care Coordination & Navigation : Consumers most want digital tools that can orchestrate care across multiple providers, specialists, and health organizations for themselves and their families. Our research shows that 71% of consumers have been responsible for managing their health across different parties, representing an 11-percentage point increase since 2019. Consumers desire digital solutions that seamlessly coordinate appointments for family members, ensure medical information flows between providers, and help navigate complex healthcare systems. ● Personalized Health Insights & Reminders: Consumers increasingly seek digital health products that provide tailored health guidance for each family member's unique needs. They want personalized medication reminders, preventive care scheduling, and health goal tracking that adapts to their family's lifestyle. Consumers who trust health companies are over six times more likely than those who don't to receive timely communications, highlighting the importance of proactive, relevant health outreach that keeps families on track. ● Benefits & Coverage Optimization: Our data reveals that consumers want digital tools to help them understand and maximize their family's health benefits. With 46% of consumers feeling unclear about what health insurance covers, they desire digital assistants that can help maximize insurance benefits, explain coverage details in digestible terms, and identify cost-effective care options for their family's various health needs. ● Proactive Health Management: Consumers want digital health products that monitor health trends for family members, flag potential issues early, and suggest preventive measures based on personal health data and non-clinical patient information. Since 71% of health consumers want care that addresses their social, economic, and environmental factors, this holistic approach is essential for protecting loved ones' wellbeing. ● Simplified Communication Hub: Consumers desire digital platforms that act as central communication points with all their health stakeholders. They want tools that handle routine inquiries for their families, schedule appointments across preferred channels, and ensure consistent information sharing while respecting each family member's communication preferences. These capabilities align with consumers' growing expectations for integrated, personalized healthcare experiences that address the whole person rather than isolated health episodes. PC-2. Do you have easy access to your own and all your loved ones’ health information in one location (for example, in a single patient portal or another software system)? a. If so, what are some examples of benefits it has provided? b. If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? c. Were there particular data types, such as x-rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones’ complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? 6 
- Salesforce has done extensive research into health consumer behaviors and digital health access patterns. Based on that information, the answer regarding consolidated health information access reveals significant gaps in the current healthcare landscape. ● Current State of Health Information Access: Our data shows that the vast majority of consumers do not have easy access to their own and their loved ones' health information in one centralized location. The healthcare ecosystem remains highly fragmented, with health information scattered across multiple provider portals, insurance platforms, pharmacy systems, and specialty care networks. ● Fragmentation Challenges: Our research indicates that 71% of consumers are responsible for managing their health across different parties - a figure that has increased by 11 percentage points since 2019. This fragmentation means families often juggle multiple patient portals, each with different login credentials, interfaces, and limited information sharing capabilities between systems. ● Consumer Demand for Integration: While comprehensive, single-location access remains elusive for most consumers, our data reveals strong demand for integrated health information platforms. Consumers consistently express frustration with having to piece together health information from disparate sources, particularly when coordinating care for elderly parents or managing complex family health needs. ● Technology Gaps: Current patient portal technology typically serves individual provider organizations rather than offering truly integrated, cross-system visibility. Even when consumers have access to multiple portals, these systems rarely communicate with each other, creating information silos that hinder comprehensive health management. ● Emerging Solutions: While traditional healthcare systems have been slow to integrate, consumers are increasingly turning to third-party health management platforms and digital health tools that attempt to aggregate information from multiple sources, though these solutions often face technical and regulatory barriers to achieving complete integration. The lack of consolidated health information access represents one of the most significant unmet needs in digital health today. a. If so, what are some examples of benefits it has provided? Based on Salesforce's research and data from consumers who do have consolidated health information access, we've identified several key benefits that emerge when families can manage health information in one location: ● Improved Care Coordination: Consumers with integrated health information report significantly better coordination between providers. When all health data is accessible in one location, families can more effectively manage appointments across specialists, ensure test results are shared between providers, and avoid duplicate procedures. This is particularly valuable given that 71% of consumers manage health across multiple parties. ● Enhanced Emergency Preparedness: Families with consolidated health records report feeling more prepared for medical emergencies. Having immediate access to medication lists, allergies, medical histories, and emergency contacts for all family members in one location enables faster, more informed emergency care decisions. ● Better Medication Management: Consumers benefit from comprehensive medication tracking across all family members and providers. This reduces dangerous drug interactions, helps 7 
- identify duplicate prescriptions, and ensures medication adherence - particularly important for families managing complex chronic conditions across multiple specialists. ● Streamlined Insurance and Benefits Utilization: When health information is consolidated alongside insurance data, families report better understanding of their coverage and more strategic use of benefits. Given that 46% of consumers feel unclear about what their health insurance covers, integrated platforms help optimize benefit utilization and reduce unexpected costs. ● Proactive Health Monitoring: Families with integrated health platforms can more easily track health trends over time, identify patterns, and catch potential issues early. This supports the 71% of health consumers who want care that addresses their social, economic, and environmental factors through comprehensive health monitoring. ● Reduced Administrative Burden: Perhaps most significantly, consumers report dramatic reductions in time spent on health administration, paperwork, and information gathering when systems are integrated, allowing more focus on actual health outcomes. b. If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? Given that many payers and healthcare providers currently struggle with operational issues and disjointed member/patient experiences due to disconnected systems and isolated data, it's highly likely that easy access to all health information in one location is not universally available. The contexts and workflows where a single portal or system for all health information would be most valuable include: ● Coordinated Care Management: Having all health information in one place would be invaluable for care teams to proactively engage with members and patients, prioritize actions, and address questions faster. It enables real-time collaboration among providers, leading to personalized experiences and improved health outcomes. This is particularly crucial given that effective care management relies on accurate and readily available data, well-connected systems, and smooth communication. ● Customer Service and Member/Patient Engagement: A unified system provides customer service centers with a complete view of each member/patient, empowering them to guide individuals through a seamless health journey and transform interactions into trusted relationships. Agents could easily address questions about plan details, coverage, and costs, as well as verify identity, capture interaction details, and review health plan information. This leads to increased member satisfaction and loyalty. ● Prior Authorizations and Utilization Management: A single, integrated system would significantly speed up processes like prior authorizations by providing predictive insights and enabling automated approvals for routine services. This would reduce manual reviews and administrative burdens, facilitating timely care for patients and improving the experience for healthcare providers. ● Health Plan Buying and Selling: For sales teams, a unified, AI-powered CRM would offer deep insights into plan performance, helping generate leads more effectively and speeding up relationship-building efforts. It would also streamline the plan selection process and make enrollment hassle-free for employee administrators and brokers by providing user-friendly filters, comparison features, and a swift checkout process. ● Provider Network Management: A single system would harmonize provider contracting processes, track negotiations, capture communications, and allow for informed decisions about 8 
- provider relationships. It would also significantly expedite provider credentialing from weeks to days through direct integrations and automated primary source verification, while also making provider data management more straightforward. ● Understanding the "Whole Person": A unified platform would integrate both clinical and non-clinical data, offering a comprehensive understanding of a patient's circumstances beyond just their medical record. This allows for more personalized and effective care plans that are tailored to individual needs and life circumstances, improving adherence and success rates. ● Reducing Avoidable Readmissions: By unifying data and facilitating proactive member engagement, connected systems can enable real-time collaboration among providers, leading to personalized experiences, increased member satisfaction, and improved health outcomes, including a decrease in avoidable readmissions. ● Operational Efficiency Across the Organization: Overall, a single, integrated platform driven by AI and automation would boost operational efficiency across all teams, including sales, service, marketing, and care coordination. It would reduce the need for employees to toggle between disconnected systems and manually enter information, which hinders productivity. This allows healthcare workers to spend more time on valuable, patient-centered tasks. c. Were there particular data types, such as x-rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones' complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? Electronic health records (EHRs) are designed to log every medical interaction a patient has with a provider and contain clinical information about them, facilitating safe care delivery and supporting regulatory compliance. However, EHRs are primarily encounter-focused, and their regulatory-linked nature and medicolegal risks make innovation and changes difficult, leading to potential stagnancy in healthcare technology. This means that while EHRs are crucial for clinical data, they may not readily provide access to a comprehensive view of a patient that includes non-clinical data, or be easily adaptable to integrate with other systems for a holistic patient experience. A robust CRM , especially one integrated with an EHR, addresses these limitations by centralizing both clinical and non-clinical data, offering a complete view of the patient. This integration is not just beneficial for patient relationships but also for providers, who often deal with fragmented technology stacks alongside their EHRs. By integrating with a CRM, healthcare organizations can overcome challenges like fragmented provider network management and centralize data for a unified view, which is valuable for onboarding providers and new clinicians, and for populating accurate provider directories. The integration of an EHR with an AI-powered CRM eliminates data silos, harmonizing and organizing all available data, including clinical, non-clinical, and insurance information. This unified data provides a full view of the patient, enabling more collaborative care delivery. Furthermore, centralizing data management ensures industry compliance and provides alerts for regulatory updates. This integrated approach ensures that AI capabilities draw from clean, high-quality data, leading to optimal insights for patient care and operations. Obstacles to accessing complete health information and using it for managing health conditions or finding the best care often stem from limitations in EHR functionality and the lack of a unified view of patient data. The traditional EHR, while essential for clinical records, isn't designed to evolve at the pace of consumer expectations or integrate seamlessly with the broader healthcare ecosystem. This can make it difficult for patients to engage with the healthcare system and for providers to offer personalized experiences. 9 
- A comprehensive health engagement platform that combines clinical and non-clinical data, along with automation, analytics, and AI capabilities, is crucial for digital transformation and improving patient engagement. This type of platform creates a "digital front door" providing 24/7 service and personalized engagement across all channels. The flexibility and configurability of CRM technologies, unlike EHRs, allow them to evolve with consumer needs and expectations, providing a differentiated experience and competitive edge. The current healthcare landscape, where 70% of U.S. adults feel their needs aren't being met and 65% find care coordination confusing , highlights the need for improved data access and user-friendliness. The lack of a robust CRM can lead to increased costs due to limited capabilities, time-consuming vendor selection, resource-intensive administration, and delayed time to value. By adopting a platform that integrates all necessary capabilities, healthcare organizations can enhance privacy and security by consolidating data management. PC-3. Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? The full power of the Salesforce platform (including Agentforce, Tableau, Health Cloud, Mulesoft, and more!) offers a comprehensive ecosystem of integrated health management, care navigation, and personal health record solutions specifically designed to benefit Medicare beneficiaries and their caregivers. Our platform leverages the power of AI-driven CRM, advanced data integration, and healthcare analytics to deliver personalized, coordinated care experiences. Core Solution Components Salesforce Health Cloud with Agentforce Our flagship healthcare CRM platform provides: ● 360-degree patient views integrating clinical and non-clinical data ● AI-powered care coordination with autonomous agents available 24/7 ● Member engagement tools for benefits verification, provider search, and care navigation ● Integrated care management with personalized care plans aligned to industry standards ● HIPAA-compliant platform ensuring data security and privacy for Medicare beneficiaries MuleSoft Healthcare Integration Platform MuleSoft's healthcare integration solutions enable providers to securely unlock and integrate data from core systems of records to achieve a 360, real-time view of your patient's data and personalize patient care and outreach through connected patient experiences. Key capabilities include: ● FHIR-standard integration for seamless EHR connectivity ● Real-time data synchronization across multiple healthcare systems ● Pre-built healthcare accelerators reducing implementation time ● Secure API management ensuring compliance with healthcare regulations ● MuleSoft Direct for Health Cloud offering easier implementation and faster time to value Tableau Healthcare Analytics 10 
- Tableau's healthcare analytics platform provides a complete intelligence platform offering healthcare organizations a native analytics experience to surface intelligent, actionable insights—right within their workflow. This includes: ● Medicare enrollment tracking with demographic and age cohort analysis ● Population health insights for proactive care management ● Care gap identification to improve health outcomes ● HIPAA-compliant cloud analytics ensuring data security Specific Benefits for Medicare Beneficiaries Care Navigation and Access ● Automated appointment scheduling and provider matching ● Real-time benefits verification and coverage information ● Care coordination across multiple providers and health systems ● Emergency access to comprehensive health records ● Multi-channel communication (phone, email, chat, mobile app) Personal Health Record Management ● Unified health data from multiple sources (EHRs, claims, wearables) ● Medication management with automated reminders and drug interaction alerts ● Care plan tracking with progress monitoring and goal setting ● Family caregiver access with appropriate permissions and controls ● Portable health records accessible anywhere, anytime Predictive and Proactive Care ● AI-powered health insights identifying potential health risks ● Preventive care reminders for screenings and vaccinations ● Chronic disease management with personalized intervention strategies ● Non-clinical patient information integration, considering housing, transportation, and social factors ● Care gap closure improving health outcomes and Star Ratings Value Proposition for Medicare Program For Beneficiaries: ● Simplified access to comprehensive health information ● Improved care coordination reducing duplicate services ● Proactive health management preventing costly complications ● Enhanced communication with providers and care teams ● Better health outcomes through data-driven insights For Caregivers: ● Real-time access to patient health status and history ● Coordination tools for managing complex care scenarios ● Communication platforms for provider collaboration ● Emergency access to critical health information ● Family health management capabilities 11 
- For Medicare Administration: ● Improved Star Ratings through better care coordination ● Reduced administrative costs through automation ● Enhanced compliance monitoring and reporting ● Population health insights for program optimization ● Fraud detection and prevention capabilities Salesforce's integrated ecosystem provides a comprehensive solution addressing the complex needs of Medicare beneficiaries and their caregivers. Our platform combines the power of AI-driven care management, seamless data integration, and advanced analytics to deliver personalized, coordinated, and effective healthcare experiences while maintaining the highest standards of security and compliance required for Medicare. PC-4. What features are missing from apps you use or that you are aware of today? a. What apps should exist but do not yet? Why do you believe they do not exist yet? b. What set of workflows do you believe CMS is uniquely positioned to offer? To make digital health products accessible and easy to use for Medicare beneficiaries and their caregivers, especially those with limited prior digital experience, the most important features should focus on simplicity, clear guidance, and robust support. Key features include: ● Intuitive User Interface (UI): The design should be clean, uncluttered, and easy to navigate with large, clearly labeled buttons and readable fonts. Minimizing the number of steps to complete a task and using familiar icons will enhance ease of use. ● Guided Workflows and Automation: Implement step-by-step processes for common tasks like scheduling appointments, refilling prescriptions, or accessing information. Automated reminders and pre-filled forms can reduce manual effort and potential errors. ● Omni-channel Engagement: Offer various communication channels (email, SMS, bots, chat, push messages, etc.) to cater to different preferences and technological comfort levels. This ensures beneficiaries and caregivers can interact using their preferred method. ● Easy Access to Support: Provide readily available and clear pathways to support, such as a prominent help button, a clearly visible phone number for a call center, or a chat function with live agents. For example, a call center employee should be able to easily help schedule follow-ups and confirm insurance coverage. ● Personalized Engagement: Leverage non-clinical data to tailor experiences to individual needs. This makes interactions more relevant and less overwhelming. ● Accessibility Features: Incorporate features like voice commands, screen readers, adjustable font sizes, and high-contrast modes to assist users with visual or motor impairments. ● Centralized Information and "Single Source of Truth": Consolidate all relevant patient information, both clinical and non-clinical, into a single, easily accessible interface. This eliminates the need for users to navigate multiple systems to find what they need, reducing confusion and frustration. ● Security and Trust: Clearly communicate how sensitive health information is protected to build trust, especially since many people remain wary of AI and new technologies in healthcare. A 12 
- robust platform that integrates all necessary capabilities directly within its system reduces risks associated with fragmented data management. ● Education and Onboarding: Offer clear tutorials, guides, and educational resources to help users understand how to use the digital tools. This could include step-by-step processes for employee training, onboarding, and education that guide users through a predetermined workflow. PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? a. What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if there is a review process? What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary communications)? b. What changes would enable timely access to high quality CMS and provider generated data on patients? In the rapidly evolving healthcare landscape, the integration of advanced technologies is crucial for bridging data gaps between healthcare providers and payers, unlocking essential information, and delivering better, lower-cost care. Salesforce Health Cloud, Data Cloud, Agentforce, Experience Cloud, Tableau, MuleSoft, and Slack collectively offer a comprehensive solution to these challenges, fostering a more connected and efficient healthcare ecosystem. Salesforce Health Cloud serves as the cornerstone of patient-centric care, providing a unified platform that consolidates patient information from various sources. By integrating Health Cloud with Data Cloud, healthcare providers and payers can aggregate and analyze vast amounts of data, creating a holistic view of each patient. This comprehensive data aggregation helps in identifying care gaps, predicting health risks, and personalizing treatment plans, ultimately leading to improved patient outcomes and reduced healthcare costs. Agentforce enhances this ecosystem by empowering healthcare agents and case managers with the tools they need to deliver personalized support. With access to detailed patient profiles and histories, agents can proactively engage with patients, ensuring they adhere to treatment plans and receive timely interventions. This proactive approach not only improves patient health but also reduces the likelihood of costly hospital readmissions. Experience Cloud plays a pivotal role in enhancing patient and provider engagement. By creating customized portals and communities, Experience Cloud facilitates seamless communication and collaboration between patients, providers, and payers. Patients can easily access their health information, schedule appointments, and communicate with their care teams, while providers and payers can share critical updates and resources. This transparent and efficient communication streamlines care coordination and enhances patient satisfaction. Tableau, a powerful data visualization tool, transforms complex healthcare data into intuitive, actionable insights. By integrating Tableau with Health Cloud and Data Cloud, healthcare organizations can create dynamic dashboards that highlight key performance indicators, track patient outcomes, and identify trends. These visualizations enable providers and payers to make data-driven decisions, optimize resource allocation, and monitor the effectiveness of care interventions. The ability to quickly interpret and act on data insights is crucial for improving care quality and reducing costs. 13 
- MuleSoft, a leading integration platform, ensures seamless connectivity between disparate healthcare systems and applications. By leveraging MuleSoft’s API-led connectivity, healthcare organizations can integrate electronic health records (EHRs), claims systems, and other critical applications with Salesforce solutions. This integration eliminates data silos, ensuring that providers and payers have access to real-time, accurate information. The result is a more cohesive and efficient healthcare ecosystem where data flows seamlessly across systems, enhancing care coordination and reducing administrative burdens. Slack, a collaboration and communication platform, further enhances the integration by facilitating real-time communication and collaboration among healthcare teams. By integrating Slack with Health Cloud and other Salesforce solutions, care teams can quickly share updates, discuss patient cases, and coordinate care plans. Slack’s channels and direct messaging features ensure that critical information is communicated promptly, reducing delays and improving response times. This real-time collaboration is essential for delivering timely and effective care. The integration of Salesforce Health Cloud, Data Cloud, Agentforce, Experience Cloud, Tableau, MuleSoft, and Slack creates a powerful ecosystem that bridges data gaps between healthcare providers and payers. By aggregating and analyzing data, these solutions unlock essential information, enabling personalized and proactive care. The seamless communication and collaboration facilitated by Experience Cloud and Slack enhance care coordination, while Tableau’s data visualizations provide actionable insights for data-driven decision-making. MuleSoft’s integration capabilities ensure that data flows seamlessly across systems, reducing administrative burdens and enhancing efficiency. Together, these technologies empower healthcare organizations to deliver better, lower-cost care and improve patient outcomes in an increasingly complex healthcare environment. PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? For patients and caregivers, accessing a comprehensive and easily understandable view of their health information presents a significant hurdle. While EHRs are essential for clinical data, they are primarily designed around individual encounters, logging every medical interaction a patient has with a provider. This encounter-centric design means that valuable non-clinical data—such as communication preferences, non-clinical patient information, and other information useful to providers—is often hard for patients and caregivers to access directly through traditional EHRs. Furthermore, the strict regulatory and medicolegal oversight of EHRs makes it challenging to innovate and adapt these systems quickly, limiting the availability of dynamic and patient-centric information. For app developers and other technical vendors, the main challenge in accessing valuable healthcare data stems from the fragmented nature of existing systems. Healthcare providers frequently operate with a complex array of disparate technologies. This fragmentation means that data is spread across various specialized solutions, complicating efforts to harmonize, unify, and integrate it for effective use. These challenges can hinder the development of comprehensive, bidirectional data flows. The absence of a unified data platform, or "single source of truth," also makes it difficult to reconcile multiple patient profiles and ensure data cleanliness, which is crucial for effective analytics and AI applications. This widespread data fragmentation also elevates the risk of security breaches. 2. Data Access and Integration PC-10. How is the Trusted Exchange Framework and Common AgreementTM (TEFCATM) currently helping to advance patient access to health information in the real world? a. Please provide specific examples. b. What changes would you suggest? c. What use cases could have a significant impact if implemented through TEFCA? d. What standards are you aware of that are currently working well to advance access 14 
- and existing exchange purposes? e. What standards are you aware of that are not currently in wide use, but could improve data access and integration? f. Are there redundant standards, protocols, or channels that should be consolidated? g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? The Trusted Exchange Framework and Common Agreement (TEFCA) is currently advancing patient access to health information in the real world by establishing a unified and secure framework for nationwide health information exchange. Key ways TEFCA is helping include: ● Creating a Standardized Interoperability Framework: TEFCA provides a set of guidelines to ensure a consistent and secure approach to data exchange across the United States. This framework aims to achieve true interoperability at scale for various use cases, including patient access. ● Leveraging Qualified Health Information Networks (QHINs): Organizations designated as QHINs, act as central nodes that facilitate the secure sharing of health information among diverse healthcare entities. ● Enabling Data Integration and Harmonization: TEFCA supports bringing harmonized clinical data directly into application workflows. This process creates a single, unified patient profile, which is crucial for delivering personalized patient experiences. ● Streamlining Patient Onboarding and Workflows: The framework and its associated integrations streamline processes such as patient onboarding and enable the automation of various everyday workflows, allowing access to information from across the continuum of care. ● Connecting to Existing National Networks: QHINs also serve as gateways to existing national networks, further expanding the reach of TEFCA-based exchange as it grows. a. Please provide specific examples. Real-World Implementation Through QHINs: TEFCA has been successfully implemented through seven federally Qualified Health Information Networks (QHINs) named by the Office of the National Coordinator (ONC). This represents a concrete step from policy framework to operational reality. Streamlined Patient Onboarding and Care Coordination The TEFCA framework is enabling practical improvements in patient care through: ● Automated Patient Information Retrieval: Healthcare organizations can now streamline patient onboarding and improve patient experience by retrieving critical patient information at the time of registration and scheduling. This eliminates manual data entry and reduces administrative burden. ● Cross-Network Data Access: The framework enables organizations to search for patient information across a vast network of healthcare organizations and ingest relevant records into their systems, removing the need for manual data entry. ● Cross-Organizational Referral Management: TEFCA significantly enhances the ability to manage patient referrals seamlessly across different healthcare organizations, a function gaining considerable traction due to improved information flow and care coordination. Technical Integration and Interoperability 15 
- TEFCA is advancing patient access through sophisticated technical solutions: ● Unified Patient Profiles: The integration helps healthcare organizations bring connected and harmonized clinical data right into their application workflows, giving them a single, unified profile that enables personalized experiences for every patient or member. ● Standardized Data Exchange: TEFCA establishes a standardized and secure framework for data exchange across the United States with QHINs serving as nodes facilitating the sharing of information across organizations. Comprehensive Clinical Information Sharing The framework supports exchange of critical clinical data including: ● Allergy Intolerances, Conditions, Procedures, and Medication Requests ● Document conversion from C-CDA format to FHIR bundles for broader system compatibility Beyond Treatment Use Cases TEFCA addresses interoperability challenges for use cases beyond treatment, including public health, benefits determination, and patient access, representing a more comprehensive approach to health information exchange than previous frameworks. The integration of TEFCA through platforms like MuleSoft and Salesforce Health Cloud demonstrates how the framework is moving from theoretical policy to practical, operational solutions that directly benefit patient care and healthcare efficiency. PC-12. What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? a. Examples may include the following: (1) Binding cost estimates for pre-defined periods. (2) Viewing provider schedule availability. (3) Using third-party apps for appointment management. (4) Accessing patient-facing quality metrics. (5) Finding the right provider for specific healthcare needs. b. What use cases are possible today? c. What should be possible in the near future? d. What would be very valuable but may be very hard to achieve? Using a unified platform that can aggregate and analyze vast amounts of data, creating a holistic view of each patient, would greatly increase the efficiency of healthcare and break down silos in data. This comprehensive data aggregation helps in identifying care gaps, predicting health risks, and personalizing treatment plans, ultimately leading to improved patient outcomes and reduced healthcare costs. Additionally, using and maintaining real-time dashboard visualizations enable providers and payers to make data-driven decisions, optimize resource allocation, and monitor the effectiveness of care interventions. The ability to quickly interpret and act on data insights is crucial for improving care quality and reducing costs. 16 
- C. Providers 1. Digital Health Apps PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? Please address all of the following: a. Current challenges in accessing different data formats. b. Impact on patient care quality. c. Technical barriers to full data accessibility. d. Cost or privacy implications of making all data formats interoperable. e. Priority level compared to other interoperability needs. By leveraging MuleSoft's API-led connectivity, healthcare organizations can integrate various EHR systems, ensuring that all data, regardless of format, is accessible and interoperable. Health Cloud and Data Cloud can aggregate and standardize this data, while Agentforce and Experience Cloud facilitate efficient communication and collaboration among care teams. Tableau's data visualization capabilities enable the analysis and presentation of comprehensive patient data, enhancing decision-making. Slack further supports real-time communication, ensuring that critical information is promptly shared. However, technical barriers such as legacy systems and data silos, along with cost and privacy implications, must be addressed to achieve full data accessibility. Ensuring data interoperability can be resource-intensive and requires robust security measures to protect patient privacy. Despite these challenges, making all data formats interoperable is a high priority compared to other interoperability needs, as it directly impacts patient care quality and operational efficiency. By integrating these Salesforce solutions, healthcare organizations can overcome these barriers, ensuring that comprehensive and accurate patient data is readily available for exchange, ultimately improving patient outcomes and reducing costs. 2. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization’s systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: a. Patient Access API b. Standardized API for Patient and Population Services c. Provider Directory API d. Provider Access API e. Payer-to-Payer API f. Prior Authorization API g. Bulk FHIR – Do you support Group ID-based access filtering for population-specific queries? h. SMART on FHIR – Do you support both EHR-launched and standalone app access? What does the process for application deployment entail? i. CDS Hooks (for clinical decision support integrations) Our organization has developed comprehensive specifications for all relevant FHIR APIs. We have successfully deployed and demonstrated our capability in implementing Patient Access, Provider Directory, and Provider Access APIs across various customer environments, consistently meeting stringent requirements. Furthermore, we are actively engaged in the strategic implementation of the Prior Authorization API, based on the DaVinci IG, signifying our commitment to advancing automated prior authorization workflows. Additionally, the Salesforce Platform provides programmatic access to organization’s information using simple, powerful, and secure application programming interfaces. Central to the ability to integrate and extend Salesforce is the powerful and modern Web Services API. Architected around the latest 17 
- standards, including SOAP, WSDL and WS-I Basic Profile, this Web service provides the complete set of operations necessary to complete ever demanding integration projects. As an open Web service, we provide our complete object model, and the API is available to all platforms that support the core Web services standards, including Java, .NET and Perl. Out-of-the-box, Salesforce provides powerful APIs such as: ● REST API - Access objects in your organization using REST. The Salesforce Platform REST API lets you integrate with Salesforce applications using simple HTTP methods, in either XML or JSON formats, making this an ideal API for developing mobile applications or external clients. You can now use JSON Web Token (JWT)-based access tokens for granting access to REST APIs ● SOAP API - Integrate your organization’s data with other applications using SOAP. The Salesforce Platform SOAP API lets you integrate Salesforce applications that can create, retrieve, update or delete records managed by Salesforce ● Chatter REST API - Access Chatter feeds and social data such as users, groups, followers, and files using REST. Use Chatter REST API to integrate mobile apps, intranet sites, and 3rd party Web applications with Salesforce. Chatter REST API provides resources for feeds, comments, likes, users, groups, private messages, recommendations, topics, and more. Chatter REST API is on by default in all organizations and editions that have Chatter. ● CRM Analytics REST API - You can access CRM Analytics datasets and lenses programmatically using the Einstein REST API. Using the Einstein REST API you can: Send queries directly to the Einstein Platform; Access datasets that have been imported into the Einstein Platform; Create and retrieve CRM Analytics lenses; Access XMD information; Retrieve a list of dataset versions; Create and retrieve CRM Analytics applications; Create, update, and retrieve CRM Analytics dashboards; Retrieve a list of dependencies for an application; Determine what features are available to the user; Work with snapshots; Manipulate replicated datasets. ● Bulk API - Load or delete large numbers of records. The Bulk API is a RESTful API that is optimal for loading or deleting large sets of data. You can use it to query, insert, update, upsert, or delete a large number of records asynchronously by submitting batches that Salesforce processes in the background. ● Metadata API - Manage customizations in your org and build tools that manage the metadata model (not the data, itself). The Salesforce Platform exposes a Metadata API—a SOAP-based Web service—that lets you access metadata in the same way you can access any of your Salesforce Platform applications, from any location on the Web. ● Streaming API - Provide a stream of data reflecting data changes in your organization. Salesforce Platform Streaming API lets you expose a near real-time stream of data from the Salesforce Platform. Administrators can create topics, to which applications can subscribe, receiving asynchronous notifications of changes to data in Salesforce. The streaming API includes a subset of functionality such as Change Data Capture that allows near-real time capturing changes for specific Salesforce objects and synchronizing them to remote system, and Platform Events which allows creation of custom events that can be sent in near-real time to remote system. Further details can be found here: ○ Streaming API: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intr o_stream.htm ○ Change Data Capture: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_da ta_capture/cdc_intro.htm ○ Platform Events: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/ platform_events_intro.htm ● Apex REST API - Build your own REST API in Apex. This API exposes Apex classes and methods as RESTful Web services. ● Apex SOAP API - Create custom SOAP Web services in Apex. This API exposes Apex classes as SOAP Web services, allowing an external application to invoke Apex methods through SOAP Web services. 18 
- ● Tooling API - Build custom development tools for Salesforce Platform applications. Tooling API provides SOAP and REST interfaces that allow you to build custom development tools for Salesforce applications. While other Salesforce APIs can handle deployment, Tooling API was designed from the ground up to support the entire development lifecycle, including design, implementation, deployment, and maintenance. More information about Salesforce APIs is available at: https://developer.salesforce.com/page/Salesforce_APIs . A list of APIs can be reviewed here: https://developer.salesforce.com/docs/apis . Anypoint Exchange provides significant features for API providers to easily publish and share APIs with developers inside and outside of an organization. To register a client application to an existing API instance or API Group instance, the client application requests access. When the owner of the instance approves the request, a contract is created between the client application and the instance, and the client application is registered. Instances that are protected by a client ID enforcement policy require client applications to provide a client ID and optional client secret. The client ID and client secret credentials are automatically created when the client application is registered. Please refer to Request Access for further details. Anypoint API Experience Hub is an API management platform and digital experience that enables organizations to create vibrant API ecosystems within and outside the enterprise. API providers can share, promote, and engage with their developer community. Developers and partners can find, explore, and consume APIs designed anywhere from a single place. Using a self-service API portal, developers and partners can quickly access applications, interact with documentation, and build products from existing data. API Experience Hub portals enable developers to find, consume, and reuse APIs their are essential to building their products. From the API Details page, member users request access to an API instance to which to register a client application. They do this by selecting an API instance, selecting or creating a client application, and optionally selecting a service-level agreement (SLA). When the owner of the instance approves the request, a contract is created between the client application and the instance, and the client application is registered. PR-7. What strategies can CMS implement to support providers in making high-quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? CMS can consider products that collectively empower the organization to make high-quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem. Health Cloud serves as the central hub for patient data, aggregating information from various sources such as electronic health records (EHRs), wearable devices, and patient-reported outcomes. This creates a unified and comprehensive view of each patient's health record, facilitating seamless care coordination among healthcare providers and ensuring that all relevant health information is consistently updated and accessible. Ideally, CMS needs to consider a solution adept at managing large volumes of healthcare data, ensuring data consistency, accuracy, and security, like Salesforce Data Cloud. It includes advanced analytics tools that enable CMS to identify trends, predict health outcomes, and generate actionable insights. These 19 
- insights can inform policy decisions, optimize resource allocation, and improve patient care by identifying areas that require intervention or improvement. Agentforce empowers agents and case managers with robust tools to provide personalized support and manage patient interactions efficiently. By having access to detailed patient profiles and histories, agents can engage with patients proactively, ensuring they adhere to treatment plans and receive timely interventions. This proactive engagement can significantly improve patient adherence to care plans and overall health outcomes. CMS should also consider customized portals for patients and providers, facilitating easy access to health records, appointment scheduling, and secure communication. These portals enhance patient engagement by allowing them to actively participate in their healthcare management. By integrating with Health Cloud and Data Cloud, a visualization tool like Tableau enables CMS and healthcare providers to create dynamic dashboards that highlight key performance indicators, track patient outcomes, and identify trends. These visualizations help stakeholders quickly interpret data, make informed decisions, and monitor the effectiveness of care interventions. Tableau's ability to present data in a clear and understandable format is crucial for driving data-driven decision-making and improving healthcare delivery. An API integration tool like MuleSoft ensures seamless integration of disparate healthcare systems and applications through its API-led connectivity approach. By connecting EHR systems, claims systems, and other critical applications, MuleSoft facilitates the flow of comprehensive and accurate data across the digital product ecosystem. This interoperability eliminates data silos, ensuring that healthcare providers have access to real-time information, which is essential for effective care coordination and decision-making. Slack enhances real-time communication and collaboration among healthcare teams. By integrating with Salesforce, Slack provides a unified platform where updates, alerts, and patient information can be easily accessed and discussed. This real-time communication ensures that critical information is promptly shared and acted upon, reducing delays and improving response times. Slack's channels and direct messaging features enable healthcare teams to coordinate care more effectively, ensuring that patients receive timely and appropriate interventions. By leveraging these Salesforce solutions, CMS can ensure that high-quality, timely, and comprehensive healthcare data is available for interoperability. This integrated approach enhances data accuracy, improves care coordination, and supports data-driven decision-making. It also fosters a more connected and efficient digital product ecosystem, ultimately leading to better patient outcomes, more effective healthcare delivery, and optimized resource utilization. 3. Digital Identity PR-9. How might CMS encourage providers to accept digital identity credentials (for example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary logins that need to be tracked for each provider relationship? a. What would providers need help with to accelerate the transition to a single set of trusted digital identity credentials for the patient to keep track of, instead of one for each provider? b. How might CMS balance patient privacy with convenience and access to digital health products and services that may lead to significant improvements in health? Requiring digital identity credentials, such as those provided by CLEAR, Login.gov, ID.me, and other NIST 800-63-3 IAL2/AAL2 certified credential service providers (CSPs), could enhance cybersecurity and data exchange from the perspective of a cloud SaaS provider. Implementing these high-assurance digital identity credentials ensures that only verified and authenticated users can access sensitive data and services, thereby reducing the risk of unauthorized access and potential data breaches. These credentials 20 
- adhere to stringent identity proofing and authentication standards, providing a robust layer of security that helps protect against identity theft, phishing attacks, and other cyber threats. Additionally, the use of standardized digital identity credentials facilitates seamless and secure data exchange across different platforms and services, promoting interoperability and trust within the digital ecosystem. For a cloud SaaS provider, this means enhanced confidence in the security of user identities and data transactions, leading to improved compliance with regulatory requirements and industry standards. Furthermore, the streamlined authentication process provided by these credentials can enhance user experience by reducing the need for multiple logins and passwords, thereby increasing user satisfaction and adoption of the SaaS platform. PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs): a. What are the challenges and benefits for providers? b. How would requiring their use improve access to health information? c. What are the potential downsides? d. What impact would mandatory credentials have on a nationwide provider directory? e. How could digital identity implementation improve provider data flow? f. Would combining FHIR addresses and identity improve data flow? Salesforce offers OTB SSO integration with OpenID Connect and SAML 2.0 identity providers, along with flexible login experiences for both patients and providers via Experience Cloud portals. Its Customer Identity and Access Management (CIAM) features support seamless external identity federation while enforcing fine-grained access controls. Providers can accelerate adoption using low-code tools, prebuilt identity components, and hybrid login options that allow existing proprietary credentials to coexist during transition. With built-in consent management, purpose-based access, and audit-ready privacy controls, Salesforce helps balance security, convenience, and compliance—empowering patients to use a single digital identity while reducing overhead for providers. To encourage widespread adoption, CMS can leverage Salesforce’s ability to create secure, consistent identity experiences across provider networks, while offering guidance, technical support, and education on the benefits of using federated identity providers. E. Technology Vendors, Data Providers, and Networks 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and benefits? b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? c. What impact would mandatory use of the OpenID Connect identity protocol have? Requiring digital identity credentials, such as those provided by CLEAR, Login.gov, ID.me, and other NIST 800-63-3 IAL2/AAL2 certified credential service providers (CSPs), could enhance cybersecurity and data exchange from the perspective of a cloud SaaS provider. Implementing these high-assurance digital identity credentials ensures that only verified and authenticated users can access sensitive data and services, thereby reducing the risk of unauthorized access and potential data breaches. These credentials adhere to stringent identity proofing and authentication standards, providing a robust layer of security that helps protect against identity theft, phishing attacks, and other cyber threats. Additionally, the use of standardized digital identity credentials facilitates seamless and secure data exchange across different platforms and services, promoting interoperability and trust within the digital ecosystem. For a cloud SaaS provider, this means enhanced confidence in the security of user identities and data transactions, leading to improved compliance with regulatory requirements and industry standards. Furthermore, the streamlined authentication process provided by these credentials can enhance user experience by reducing the need for multiple logins and passwords, thereby increasing user satisfaction and adoption of 21 
- the SaaS platform. Overall, requiring digital identity credentials from trusted CSPs would bolster the security posture of a cloud SaaS provider while enabling efficient and secure data exchange. TD-6. What unique interoperability functions does TEFCA perform? a. What existing alternatives should be considered? b. Are there redundant standards, protocols or channels or both that should be consolidated? The Trusted Exchange Framework and Common Agreement (TEFCA) is currently advancing patient access to health information in the real world by establishing a unified and secure framework for nationwide health information exchange. Key ways TEFCA is helping include: ● Creating a Standardized Interoperability Framework: TEFCA provides a set of guidelines to ensure a consistent and secure approach to data exchange across the United States. This framework aims to achieve true interoperability at scale for various use cases, including patient access. ● Leveraging Qualified Health Information Networks (QHINs): Organizations designated as QHINs act as central nodes that facilitate the secure sharing of health information among diverse healthcare entities. ● Enabling Data Integration and Harmonization: TEFCA supports bringing harmonized clinical data directly into application workflows. This process creates a single, unified patient profile, which is crucial for delivering personalized patient experiences. ● Streamlining Patient Onboarding and Workflows: The framework and its associated integrations streamline processes such as patient onboarding and enable the automation of various everyday workflows, allowing access to information from across the continuum of care. ● Connecting to Existing National Networks: QHINs also serve as gateways to existing national networks, further expanding the reach of TEFCA-based exchange as it grows. a. Please provide specific examples. Real-World Implementation Through QHINs: TEFCA has been successfully implemented through seven federally Qualified Health Information Networks (QHINs) named by the Office of the National Coordinator (ONC) This represents a concrete step from policy framework to operational reality. Streamlined Patient Onboarding and Care Coordination The TEFCA framework is enabling practical improvements in patient care through: ● Automated Patient Information Retrieval: Healthcare organizations can now streamline patient onboarding and improve patient experience by retrieving critical patient information at the time of registration and scheduling. This eliminates manual data entry and reduces administrative burden. ● Cross-Network Data Access: The framework enables organizations to search for patient information across a vast network of healthcare organizations and ingest relevant records into their systems, removing the need for manual data entry. ● Cross-Organizational Referral Management: TEFCA significantly enhances the ability to manage patient referrals seamlessly across different healthcare organizations, a function gaining considerable traction due to improved information flow and care coordination. 22 
- Technical Integration and Interoperability TEFCA is advancing patient access through sophisticated technical solutions: ● Unified Patient Profiles: The integration helps healthcare organizations bring connected and harmonized clinical data right into their application workflows, giving them a single, unified profile that enables personalized experiences for every patient or member. ● Standardized Data Exchange: TEFCA establishes a standardized and secure framework for data exchange across the United States with QHINs serving as nodes facilitating the sharing of information across organizations. Comprehensive Clinical Information Sharing The framework supports exchange of critical clinical data including: ● Allergy Intolerances, Conditions, Procedures, and Medication Requests ● Document conversion from C-CDA format to FHIR bundles for broader system compatibility Beyond Treatment Use Cases TEFCA addresses interoperability challenges for use cases beyond treatment, including public health, benefits determination, and patient access, representing a more comprehensive approach to health information exchange than previous frameworks. The integration of TEFCA through platforms like MuleSoft and Salesforce Health Cloud demonstrates how the framework is moving from theoretical policy to practical, operational solutions that directly benefit patient care and healthcare efficiency. 5. Compliance TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? c. Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? As a technology vendor operating in the healthcare sector, we have encountered various practices that impede the seamless flow and usability of health information. These experiences fall broadly into situations of non-responsiveness and those that lead to data failure or rendering it unusable. Situations of Non-Responsiveness: 23 
- ● Unmet Requests for Data Access or Integration: We frequently face instances where requests for standard data access pathways or integration points with foundational health information systems are met with slow or no response, unexplained delays, or access denial. These requests are essential for our applications to ingest or contribute critical patient information, impacting our ability to deliver features that enable patient access, more efficiently coordinate care, and improve quality. ● Lack of Technical Specifications for Interoperability: A significant hurdle is the absence of publicly available or adequately documented technical specifications, APIs, or integration protocols from established platform providers. This forces our development teams to engage in costly and time-consuming reverse-engineering efforts, or in many cases, makes integration impossible, effectively isolating critical data within proprietary environments. ● Unwillingness to Establish Necessary Data Exchange Pathways: Despite clear clinical or operational needs for data exchange, we sometimes encounter a reluctance to collaborate on establishing necessary technical interfaces or data pathways. This can manifest as a lack of engagement from the incumbent vendor or the healthcare provider, leading to stalled projects aimed at enhancing data liquidity. Situations that Cause a Failure or Unusable Response: ● Provision of Data in Incompatible or Proprietary Formats: When data is eventually provided, it often arrives in formats that are highly specific to the originating system, requiring extensive transformation, manual reconciliation, or custom coding to be consumable by our standard-based applications. This increases implementation costs, introduces data integrity risks, and often renders automated data exchange impractical or unreliable. ● Restrictive Agreements, Unreasonable Pricing, or Data Blocking: Our ability to fully leverage health information is frequently hampered by contractual clauses, licensing agreements, or the imposition of unreasonable prices for access to or distribution of EHR data, crucial for running or maintaining healthcare operations. These agreements or prohibitive costs can severely limit a customer's legitimate use of their own data with third-party solutions, effectively constituting hard data blocking and creating barriers to innovation even when the technical means for data access might exist. ● Consequences of Vendor Influence and Lack of Interoperability: We have observed situations where the significant influence of a primary platform vendor on a healthcare organization's technology strategy can sometimes lead to the deferral or discontinuation of integration efforts with alternative solutions. In the absence of robust interoperability, this dynamic can contribute to vendor lock-in, potentially limiting a healthcare organization's agility to innovate and optimize care delivery. b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? ● Promote Vendor-Agnostic Health IT Platforms and Data Portability: ASTP/ONC and CMS should provide clear guidance encouraging the adoption of health IT platforms that are inherently vendor-agnostic. This means moving away from single-vendor, closed ecosystems towards open architectures that facilitate seamless data portability and exchange across disparate systems, regardless of the originating vendor. Policies should actively discourage practices that lead to "vendor lock-in," where providers become excessively reliant on one vendor due to technical or contractual barriers to switching. This would foster a competitive marketplace, drive innovation, and ensure that healthcare organizations can choose the best-of-breed solutions without fear of data entrapment. 24 
- F. Value-Based Care Organizations 1. Digital Health Adoption VB-2. How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? ● Artificial Intelligence (AI): AI can be integrated into APM requirements by using it for predictive analytics to identify patients at high risk of adverse health events or hospital readmissions. This allows for proactive interventions, which can be incentivized under APMs. Salesforce's AI capabilities can analyze vast datasets to pinpoint these risks, enabling care teams to focus resources where they're most needed. AI can also automate administrative tasks related to APM reporting, ensuring accuracy and efficiency. ● Population Health Analytics: APM requirements can mandate the use of population health analytics to identify and manage patient cohorts based on chronic conditions, socioeconomic determinants of health, and care gaps. Salesforce Health Cloud, with its robust data platform, can aggregate data from various sources (EHRs, wearables, non-clinical patient information) to provide a holistic view of a population's health. This allows for targeted interventions and measurement of health outcomes across the population, aligning with APM goals of improving overall health. ● Risk Stratification: Integrating risk stratification into APM requirements involves tying reimbursement to the accurate identification and management of patient risk levels. AI-powered risk stratification tools can analyze clinical and non-clinical data to categorize patients into different risk groups. Salesforce's analytical capabilities can help organizations operationalize these risk groups, allowing care teams to prioritize outreach and tailor care plans, which directly impacts the cost and quality metrics emphasized by APMs. ● Care Coordination: APM requirements should emphasize and incentivize robust care coordination, facilitated by digital tools. Salesforce Health Cloud offers features for shared care plans, secure communication among care team members, and task management. By integrating these capabilities, APMs can reward providers for effective transitions of care, reduced duplicative services, and improved patient outcomes through collaborative care. ● Usability: For digital health tools to effectively support APMs, they must be highly usable for both providers and patients. APM requirements could include metrics related to user adoption and satisfaction with digital tools. Salesforce prioritizes user-friendly interfaces and mobile accessibility, which encourages consistent use by care teams and patients for tasks like appointment scheduling, communication, and accessing educational resources. This usability directly contributes to efficient care delivery and patient engagement, both critical for APMs. ● Patient Engagement: APM success is heavily reliant on active patient engagement. Requirements can tie incentives to quantifiable patient engagement metrics, such as portal usage, adherence to care plans, and participation in health education programs. Salesforce's comprehensive CRM capabilities enable personalized patient journeys, omni-channel communication (email, SMS, chat, patient portals), and self-service options. These features empower patients to take a more active role in their health, which is a key driver for achieving the improved outcomes and cost efficiencies sought by APMs. VB-3. What are essential health IT capabilities for value-based care arrangements? 25 
- a. Examples (not comprehensive) may include: care planning, patient event notification, data extraction/normalization, quality performance measurement, access to claims data, attribution and patient ID matching, remote device interoperability, or other patient empowerment tools. b. What other health IT capabilities have proven valuable to succeeding in value-based care arrangements? Essential health IT capabilities for value-based care arrangements revolve around robust data management, seamless integration, advanced analytics, and enhanced patient and provider experiences: ● Unified Data View and Integration: The ability to integrate clinical data from EHRs with non-clinical data from CRM systems is paramount. This provides a full and complete view of the patient beyond just what is on their medical record, allowing for personalized experiences. It centralizes data from various disparate systems, like labs and surgical suites , creating a "single source of truth" that is invaluable for tasks such as managing provider networks and clinician onboarding. ● Comprehensive Interoperability: Health IT systems must be able to connect multiple EHRs and a wide array of clinical and non-clinical systems onto a single platform to achieve ultimate interoperability. This fosters "data sharing, accessibility, and harmonization" , which is increasingly facilitated by regulatory changes that encourage EHRs to share data more openly. ● AI-Powered Analytics and Insights: AI capabilities are crucial for value-based care, as they can "simplify or speed up processes and boost operational efficiencies". When combined with centralized, high-quality data, AI provides optimal insights into patient care and operations , supporting data-driven decision-making. ● Workflow Automation and Dynamic Processes: Automation built into health IT platforms significantly increases productivity and efficiency. This includes dynamic workflows that provide "information and insight at employee fingertips" , allowing healthcare workers to focus more on patient-centered tasks by reducing manual input. ● Omni-channel Patient Engagement: A robust health IT system should enable "omni-channel engagement (email, SMS, bots, chat, push messages, etc.), contact center management, [and] digital marketing". This creates a "digital front door that provides 24/7 service and access along with hyperpersonalized engagement across all channels", which is vital for patient retention and satisfaction. ● Patient-Centric Functionality: Capabilities like patient access portals, self-scheduling, smart scheduling, easy benefits confirmation, and simplified pre-appointment activities are essential for meeting evolving patient expectations and enhancing satisfaction. ● Scalability and Flexibility: The chosen health IT solution should offer a "scalable, flexible platform that IT teams can use to optimize a wide range of business needs". This includes the ability to rapidly develop and deploy new solutions without extensive coding. ● Robust Security and Compliance: Centralized data management is key to maintaining industry compliance. A comprehensive health IT platform that integrates all necessary capabilities directly within its system mitigates security risks associated with dispersed data, ensuring greater privacy and security of sensitive information. These capabilities empower organizations to deliver superior experiences, speed time to outcomes, grow their business, and improve efficiency, all while reducing the cost to serve, directly supporting the goals of value-based care. 26 
- Customer Success With the world’s leading cloud platform, Salesforce is freeing government data from legacy systems and unleashing staff, partners, and citizens to administer government in powerful new ways. In the public sector, Salesforce’s trusted cloud platform and applications help government employees and agencies collaborate easily and connect with citizens and partners like never before. Organizations around the globe are leveraging Salesforce’s leading cloud solutions and experiencing incredible results ranging from more connected customer service, to streamlined operations, better performance, and overall cost savings. A few representative customer success stories are provided below: Humana , a leading health and well-being company, has leveraged Salesforce to enhance patient trust and improve healthcare outcomes. By integrating Salesforce Health Cloud, Humana has been able to create a more personalized and efficient healthcare experience for its members. The platform allows Humana to consolidate patient data from various sources, providing a comprehensive view of each member's health journey. This holistic approach enables healthcare providers to deliver more targeted and effective care. Additionally, Salesforce's robust data security measures ensure that patient information is protected, fostering trust between Humana and its members. The implementation of Salesforce has also streamlined administrative processes, reducing the burden on healthcare providers and allowing them to focus more on patient care. Overall, Humana's partnership with Salesforce exemplifies how technology can be harnessed to build stronger patient relationships and drive better health outcomes. Full Story Here Community Health Choice (CHC) , a local, non-profit, managed care organization in Texas, is working to help provide whole-person care to its members. By fully integrating Health Cloud (and eliminating the need for multiple systems and screens) they are able to get a 360-degree view of a member's health needs, non-clinical patient information, and communication preferences in one central location. This has allowed them to proactively address barriers to care, achieve state regulatory compliance, and ensure patients receive appropriate services regardless of their socio-economic circumstances. A 360-degree view has enabled Community Health Choice to: ● CHC workers can identify non-clinical patient information, proactively address barriers to care, and ensure better health outcomes for its members ● CHC offers members better self-service capabilities, including a self-service portal to easily address claims and common questions ● CHC simplified first call resolution by incorporating intelligent automation to more effectively triage member questions and recommend next best answers ● CHC engages members via text and email to offer a more connected member journey Fully integrating their existing IT systems with a connected platform gives CHC teams instant access to member information. This creates a more connected experience, easier agent transactions, reduced wait times, and faster call resolution. The creation of a single connected system reduces operating expenses and improves member engagement. CHC teams are more efficient due to no longer needing to use various systems and screens to find the information needed to serve each member. Digital transformation has made it possible for CHC to recover lost revenues through the implementation of digital shop, enroll and broker channels. Transcend , a company dedicated to providing high-quality education, has transformed its operations using Salesforce, particularly through the implementation of Agentforce. By leveraging Salesforce's Education Cloud and Agentforce, Transcend has streamlined its processes, enabling more effective collaboration and communication among its team members. Agentforce has been instrumental in managing data more efficiently, providing a unified view of operations and facilitating better decision-making. With the combined power of Salesforce and Agentforce, Transcend can track and analyze key metrics, ensuring they meet their goals and continuously improve their services. The integration of Agentforce has also enhanced Transcend's ability to engage with its community, fostering stronger relationships with educators, partners, and stakeholders. Overall, Salesforce and Agentforce 27 
- have empowered Transcend to scale its impact, driving innovation and excellence in education. Full Story Here UChicago Medicine (UCM), is on a mission to use AI to deliver healthcare on their patients’ terms. Yet while UCM leads in care innovation and clinical excellence, patient engagement fell short. Data was siloed in their EHR and other systems, limiting their ability to offer omnichannel experiences and personalized communications. Meanwhile, limited patient self-service options resulted in high access center call volumes, giving reps less time to focus on complex cases. UCM is going all-in on Data Cloud and Agentforce, starting with a bold goal: create 100 data-driven marketing segments in five months, all built on Data Cloud. New segments will enable personalized healthcare experiences at scale, with early success fueling UCM’s investment in Agentforce. Their first agent is being stood up in the access center to answer common patient questions like, “Where should I park?” or “Do you have a dermatology clinic?” By using AI to handle non-clinical FAQs, reps can focus on more complex patient needs. UCM is also part of the Agentforce Voice pilot, paving the way for seamless, omnichannel patient support across phone and web. University of California, San Francisco’s (UCSF) Medicine Service has transitioned from a legacy pager-based solution to CareWeb Messenger, a revolutionary approach to patient care team collaboration that both improves patient outcomes and lowers operational costs. At the core of this solution is Salesforce, which enables communication between UCSF Medical Center staff and MuleSoft’s Anypoint Platform™, which seamlessly connects on-premise, cloud and mobile applications in a highly available and HIPAA compliant environment. Using Salesforce and MuleSoft, UCSF Medical Center developed CareWeb Messenger, a next-generation messaging platform, which securely integrates patient information across key systems. In order to build CareWeb Messenger, UCSF Medical Center needed to connect the Epic EMR to non-clinical systems. They also needed a place to store and access patient information and messages being sent between UCSF Medical Center staff. They selected Salesforce to provide them with a single view of the communications about the patient and test results. Salesforce also enabled communication between patients and their attending doctors and nurses. This revolutionary approach to patient care messaging combines aspects of social networking sites like Twitter and Facebook, in a safe, secure, and HIPAA-compliant environment. CareWeb Messenger now works as a paging system for UCSF Medical Center staff across web and mobile platforms. CareWeb Messenger tags all messages to the sender, recipient and patient and stores this information, both text and images, under the patient account. Multiple threading and indexing of messages enable the care team to see, in one place, all messages that have been exchanged. Since Salesforce meets all patient health information standards, UCSF Medical Center is able to collaborate around this patient data in a HIPAA-compliant environment. In order to provide a single view of the patient, it was necessary to integrate data from a number of different systems, both on-premises and in the cloud. Anypoint Platform was able to meet UCSF’S Medical Center integration needs with a hybrid approach, connecting to on-premises and cloud applications, within UCSF’S Medical Center secure environment. “The solution we have developed together has made a tremendous difference to how our patient care teams interact with one another,” concluded Dr. Raman Khanna, MD, a faculty member in the UCSF Medical Center Department of Hospital Medicine and team lead for CareWeb.. “Increasing the flow of rich information in real time will ultimately improve patient outcomes.” Full Story Here The State of Colorado has significantly improved its ability to collaborate across health systems by leveraging MuleSoft's Anypoint Platform. Faced with the challenge of integrating disparate systems and data sources, Colorado's Office of eHealth Innovation (OeHI) turned to MuleSoft to create a more connected and efficient healthcare ecosystem. By using MuleSoft's Anypoint Platform, the state was able to integrate over 700 healthcare systems, including electronic health records (EHRs), public health databases, and other critical applications. 28 
- This integration has enabled seamless data sharing and communication between various health systems, improving the coordination of care and enhancing patient outcomes. Healthcare providers can now access comprehensive patient information in real-time, leading to more informed decision-making and personalized care. The platform's ability to connect different systems has also reduced administrative burdens, allowing healthcare professionals to focus more on patient care rather than managing data silos. Additionally, MuleSoft's Anypoint Platform has provided the State of Colorado with the flexibility to adapt to changing healthcare needs and regulatory requirements. The platform's scalability and ease of use have empowered the state to continuously innovate and improve its healthcare services. By breaking down data silos and enabling real-time information sharing, MuleSoft has played a pivotal role in transforming Colorado's healthcare landscape. MuleSoft has empowered the State of Colorado to create a more connected and collaborative healthcare ecosystem. The integration of various health systems has led to improved communication, better patient outcomes, and a more efficient use of resources. MuleSoft's Anypoint Platform has proven to be a critical tool in the state's efforts to enhance healthcare delivery and respond to public health challenges. Full Story Here 29 
+Response to Centers for
+Medicare & Medicaid Services
+(CMS) Health Technology
+Ecosystem RFI
+June 16, 2025
+Michael Sarkis
+Named Account Executive
+571-431-2956
+msarkis@salesforce.com
+
+June 16, 2025
+Centers for Medicare & Medicaid Services,
+Department of Health and Human Services,
+Attention: CMS-0042-NC,
+P.O. Box 8013,
+Baltimore, MD 21244-8013.
+Re: Response to CMS, Health Technology Ecosystem RFI
+To whom it may concern:
+Salesforce appreciates the opportunity to respond to your organization request for CMS for a Health
+Technology Ecosystem. While Salesforce system integrators will also be directly responding to the
+solution brief with their expertise and implementation approach, Salesforce is providing an alternative
+response that provides an overview of our proposed solution and recommendations.
+Salesforce is pleased to present our capabilities to help your organization deliver a Health Technology
+Ecosystem. Salesforce is the world’s enterprise cloud computing leader, dedicated to helping companies
+and government agencies transform and connect through cloud, social, and mobile technologies. Our
+150,000+ customers include over 4,200 government agencies worldwide, representing all federal cabinet
+level agencies and the majority of the United States. Cloud computing offers a tremendous opportunity for
+the government to consolidate and innovate, freeing up time, money and resources towards agency
+productivity. Salesforce provides the #1 ranked Platform as a Service (PaaS) and the World’s #1 Software
+as a Service (SaaS) CRM solution. Salesforce’s world leading, trusted cloud platform allows agencies and
+partners to build applications that achieve a 59% accelerated time to value, implementing solutions in
+weeks and months vs. months or years, compared to on-premise system implementations. It’s one of the
+many reasons why Forbes named Salesforce one of the World’s Most Innovative Companies nine years
+in a row and Innovator of the Decade.
+We look forward to building a long lasting relationship to support your organization in its technology and
+program innovation efforts and the opportunity to meet with you and provide a formal demo to further
+educate your team on our capabilities.
+I can be contacted at 571-495-7467 or mwhippen@salesforce.com with any questions or clarifications.
+Thank you for your time and interest in our solution.
+Sincerely,
+Michael Sarkis
+Named Account Executive
+571-431-2956
+msarkis@salesforce.com
+1
+
+DISCLAIMER: Salesforce is a leading provider of innovative cloud services, continuously advancing our technology. We
+have made a diligent effort to provide accurate and current responses to your request as of the date of this response.
+Please be aware that Salesforce's procedures and policies may evolve over time, and we regularly introduce multiple major
+release upgrades each year. Consequently, the information provided herein may be subject to change.
+Use of Salesforce’s online software services will be governed by Salesforce’s Main Services Agreement available at
+https://www.salesforce.com/company/legal/customer-agreements/, unless customer has a written master agreement
+executed by Salesforce for such services already in effect. The agreement will include a statement that any purchases are
+not contingent upon the delivery of future functionality or features, nor dependent on any public comments made by
+Salesforce regarding such future functionality or features.
+While we strive to provide comprehensive and accurate information, please note that the responses provided herein are
+for informational purposes only and are not intended to form part of a final contract. All information shared in this
+response is subject to the confidentiality terms outlined in the applicable agreement between you and Salesforce.
+This response includes confidential and proprietary data that shall not be disclosed outside the recipient organization and
+shall not be duplicated, used, or disclosed—in whole or in part—for any purpose other than to evaluate this response. If a
+contract is awarded to Salesforce in connection with the submission of this data, then the recipient shall have the right to
+duplicate, use, or disclose the data to the extent provided in the resulting contract. Except to the extent prohibited by the
+express terms of the solicitation, Salesforce provides the confidential and proprietary information herein with the
+expectation that it will be exempt from disclosure under applicable federal, state, or local laws.
+This document is provided for informational purposes only. It represents AWS’s current product offerings and practices as
+of the date of issue of this document and is subject to change. Customers are responsible for making their own
+independent assessment of the information in this document and any use of AWS’s products or services. This document
+does not create any warranties, representations, contractual commitments, conditions or assurances from AWS, its
+affiliates, suppliers or licensors. The responsibilities and liabilities of AWS to its customers are controlled by AWS
+agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers. For
+current prices for AWS services, please refer to the AWS website at www.aws.amazon.com.
+2
+
+Executive Summary
+Salesforce welcomes the opportunity to respond to the Centers for Medicare & Medicaid Services (CMS)
+and the Assistant Secretary for Technology Policy/Office of the National Coordinator for Health
+Information Technology (ASTP/ONC) Request for Information on advancing digital health technology for
+Medicare beneficiaries. As a leading cloud platform provider serving healthcare organizations nationwide,
+we offer unique insights into the challenges and opportunities facing the digital health ecosystem.
+This response addresses the request concerning the evolution of the digital health ecosystem for
+Medicare beneficiaries. The RFI seeks to build upon the foundational policies established by the 21st
+Century Cures Act and subsequent rulemakings, which aim to enhance health data availability, secure
+patient access, and promote interoperability. While significant progress has been made, particularly with
+initiatives like Blue Button 2.0 and the establishment of FHIR-based APIs, the RFI acknowledges that the
+patient, caregiver, and provider experience remains fragmented and often complex.
+The core objective of this RFI is to gather feedback on how to accelerate the adoption of health
+management and care navigation applications, reduce barriers to data access and exchange, and foster
+innovation that ultimately improves health outcomes within a patient-centric learning health system.
+Furthermore, it emphasizes the critical role of technology in the transition to value-based care (VBC) and
+seeks input on aligning technology requirements with the needs of providers in Alternative Payment
+Models (APMs).
+Our response highlights the current landscape's challenges, such as the lack of consolidated health
+information access for patients and caregivers across disparate systems, and the complexities faced by
+app developers in integrating diverse healthcare data. We emphasize the demand for digital tools that
+offer a holistic health view, personalized care plans, streamlined communication, efficient care
+coordination, and cost transparency.
+We propose that a comprehensive health engagement platform, integrating clinical and non-clinical data
+with advanced analytics and AI capabilities, is essential for digital transformation. This platform can create
+a "digital front door" for 24/7 service and hyper-personalized engagement. We detail how solutions built
+on platforms like Salesforce can offer a unified patient profile, facilitate seamless data exchange through
+FHIR standards and frameworks like TEFCA, and provide AI-powered insights for proactive care and
+operational efficiency.
+Key recommendations include:
+Enhancing Patient & Caregiver Engagement: By providing intuitive user interfaces, guided workflows,
+omni-channel support, and accessible features, alongside clear education and robust security.
+Improving Data Access & Integration: Addressing the fragmentation of data across EHRs and other
+systems by promoting unified data views, comprehensive interoperability, and bidirectional data flows.
+Leveraging TEFCA: Recognizing its role in creating a standardized and secure framework for nationwide
+health information exchange, streamlining patient onboarding, and enabling data harmonization for
+personalized experiences.
+Supporting Value-Based Care: Integrating AI, population health analytics, risk stratification, care
+coordination, usability, and patient engagement into APM requirements to drive better outcomes and
+reduce costs.
+Ultimately, our response underscores the necessity of a scalable, flexible, and secure health IT
+infrastructure that empowers patients, supports providers, and aligns with the goals of value-based care,
+paving the way for a truly seamless and effective digital health ecosystem.
+3
+
+Solution Overview
+To further support our response to the RFI on advancing the digital health ecosystem, we are pleased to
+share the following articles. These resources provide additional insights into the crucial role of a
+connected health consumer, the transformative power of integrated healthcare technology platforms, the
+acceleration of innovation through seamless connectivity, and the vital benefits of integrating core
+systems like EHRs and CRMs. They also highlight key advancements in interoperability, such as
+Qualified Health Information Networks (QHINs), reinforcing our commitment to a truly seamless and
+patient-centric healthcare future:
+● Connected Health Consumer: Trust in a New Era of Health
+● Everything You Need to Know About Healthcare Technology Platforms
+● Accelerating Healthcare Innovation on a Connected Platform
+● Innovating Healthcare:The Benefits of Integrating EHR and CRM
+● Mulesoft: Qualified health information networks integration
+4
+
+Response to RFx Requirements
+1. Patient Needs
+PC-1. What health management or care navigation apps would help you understand and manage your (or
+your loved ones) health needs, as well as the actions you should take?
+a. What are the top things you would like to be able to do for your or your loved ones’ health that can be
+enabled by digital health products?
+b. If you had a personal assistant to support your health needs, what are the top things you would ask them
+to help with? In your response, please consider tasks that could be supported or facilitated by software
+solutions in the future.
+Health management and care navigation apps that would be beneficial are those that provide a
+comprehensive and easily understandable view of health needs and actionable steps, a capability that
+Salesforce is actively addressing. Specifically, apps built on a platform like Salesforce can offer:
+● Holistic Health View: The ability to consolidate all clinical and non-clinical patient information onto
+a single console, including diagnoses, medications, appointment history, wearable device data,
+communication preferences, and non-clinical data (employment, finances, housing,
+transportation). This unified view helps in understanding the complete picture of one's health or a
+loved one's health beyond just medical records.
+● Personalized Care Plans and Actionable Insights: Apps that allow for the creation of personalized
+care plans driven by clinical needs, ensuring tailored care for specific health conditions. These
+platforms can also provide actionable, AI-powered insights and recommendations for optimal next
+steps based on a holistic health profile. This includes features like predictive insights for prior
+authorizations and guidance towards optimal treatments.
+● Streamlined Communication and Engagement: Functionality for multi-channel communication
+(text, email, webchat, phone, mail) to proactively send messages about upcoming appointments,
+lab results, and wellness/disease-management programs. This also extends to empowering
+self-service options for patients to manage their profiles, applications, and care processes
+conveniently.
+● Efficient Care Coordination: Tools that facilitate seamless collaboration among care team
+members by sharing information and coordinating efforts in real-time. This can include features
+like referral management and the ability for agents to quickly access and summarize patient
+information to inform whole-person care.
+● Integrated Care Network Access: Tools that provide transparent access to provider networks,
+real-time appointment availability, and seamless referral management across different healthcare
+organizations and specialists.
+● Cost Management and Transparency: Apps that simplify understanding of health expenses and
+plan details, coverage, and costs.
+Salesforce's approach aims to connect and automate business processes, providing a 360-degree view
+of each member, and enabling teams to collaborate in real-time and proactively engage members. This
+directly supports the need for comprehensive health management and care navigation tools.
+5
+
+a. What are the top things you would like to be able to do for your or your loved ones' health that
+can be enabled by digital health products?
+Based on Salesforce's extensive research into health consumer behaviors and preferences, here are the
+top things consumers would like to be able to do for themselves and their loved ones' health that can be
+enabled by digital health products:
+● Care Coordination & Navigation: Consumers most want digital tools that can orchestrate care
+across multiple providers, specialists, and health organizations for themselves and their families.
+Our research shows that 71% of consumers have been responsible for managing their health
+across different parties, representing an 11-percentage point increase since 2019. Consumers
+desire digital solutions that seamlessly coordinate appointments for family members, ensure
+medical information flows between providers, and help navigate complex healthcare systems.
+● Personalized Health Insights & Reminders: Consumers increasingly seek digital health
+products that provide tailored health guidance for each family member's unique needs. They want
+personalized medication reminders, preventive care scheduling, and health goal tracking that
+adapts to their family's lifestyle. Consumers who trust health companies are over six times more
+likely than those who don't to receive timely communications, highlighting the importance of
+proactive, relevant health outreach that keeps families on track.
+● Benefits & Coverage Optimization: Our data reveals that consumers want digital tools to help
+them understand and maximize their family's health benefits. With 46% of consumers feeling
+unclear about what health insurance covers, they desire digital assistants that can help maximize
+insurance benefits, explain coverage details in digestible terms, and identify cost-effective care
+options for their family's various health needs.
+● Proactive Health Management: Consumers want digital health products that monitor health
+trends for family members, flag potential issues early, and suggest preventive measures based
+on personal health data and non-clinical patient information. Since 71% of health consumers want
+care that addresses their social, economic, and environmental factors, this holistic approach is
+essential for protecting loved ones' wellbeing.
+● Simplified Communication Hub: Consumers desire digital platforms that act as central
+communication points with all their health stakeholders. They want tools that handle routine
+inquiries for their families, schedule appointments across preferred channels, and ensure
+consistent information sharing while respecting each family member's communication
+preferences.
+These capabilities align with consumers' growing expectations for integrated, personalized healthcare
+experiences that address the whole person rather than isolated health episodes.
+PC-2. Do you have easy access to your own and all your loved ones’ health information
+in one location (for example, in a single patient portal or another software system)?
+a. If so, what are some examples of benefits it has provided?
+b. If not, in what contexts or for what workflows would it be most valuable to use one
+portal or system to access all such health information?
+c. Were there particular data types, such as x-rays or specific test results, that were
+unavailable? What are the obstacles to accessing your own or your loved ones’ complete health
+information electronically and using it for managing health conditions or finding the best care
+(for example, limitations in functionality, user friendliness, or access to basic technology
+infrastructure)?
+6
+
+Salesforce has done extensive research into health consumer behaviors and digital health access
+patterns. Based on that information, the answer regarding consolidated health information access reveals
+significant gaps in the current healthcare landscape.
+● Current State of Health Information Access: Our data shows that the vast majority of consumers
+do not have easy access to their own and their loved ones' health information in one centralized
+location. The healthcare ecosystem remains highly fragmented, with health information scattered
+across multiple provider portals, insurance platforms, pharmacy systems, and specialty care
+networks.
+● Fragmentation Challenges: Our research indicates that 71% of consumers are responsible for
+managing their health across different parties - a figure that has increased by 11 percentage
+points since 2019. This fragmentation means families often juggle multiple patient portals, each
+with different login credentials, interfaces, and limited information sharing capabilities between
+systems.
+● Consumer Demand for Integration: While comprehensive, single-location access remains elusive
+for most consumers, our data reveals strong demand for integrated health information platforms.
+Consumers consistently express frustration with having to piece together health information from
+disparate sources, particularly when coordinating care for elderly parents or managing complex
+family health needs.
+● Technology Gaps: Current patient portal technology typically serves individual provider
+organizations rather than offering truly integrated, cross-system visibility. Even when consumers
+have access to multiple portals, these systems rarely communicate with each other, creating
+information silos that hinder comprehensive health management.
+● Emerging Solutions: While traditional healthcare systems have been slow to integrate, consumers
+are increasingly turning to third-party health management platforms and digital health tools that
+attempt to aggregate information from multiple sources, though these solutions often face
+technical and regulatory barriers to achieving complete integration.
+The lack of consolidated health information access represents one of the most significant unmet needs in
+digital health today.
+a. If so, what are some examples of benefits it has provided?
+Based on Salesforce's research and data from consumers who do have consolidated health information
+access, we've identified several key benefits that emerge when families can manage health information in
+one location:
+● Improved Care Coordination: Consumers with integrated health information report significantly
+better coordination between providers. When all health data is accessible in one location, families
+can more effectively manage appointments across specialists, ensure test results are shared
+between providers, and avoid duplicate procedures. This is particularly valuable given that 71% of
+consumers manage health across multiple parties.
+● Enhanced Emergency Preparedness: Families with consolidated health records report feeling
+more prepared for medical emergencies. Having immediate access to medication lists, allergies,
+medical histories, and emergency contacts for all family members in one location enables faster,
+more informed emergency care decisions.
+● Better Medication Management: Consumers benefit from comprehensive medication tracking
+across all family members and providers. This reduces dangerous drug interactions, helps
+7
+
+identify duplicate prescriptions, and ensures medication adherence - particularly important for
+families managing complex chronic conditions across multiple specialists.
+● Streamlined Insurance and Benefits Utilization: When health information is consolidated
+alongside insurance data, families report better understanding of their coverage and more
+strategic use of benefits. Given that 46% of consumers feel unclear about what their health
+insurance covers, integrated platforms help optimize benefit utilization and reduce unexpected
+costs.
+● Proactive Health Monitoring: Families with integrated health platforms can more easily track
+health trends over time, identify patterns, and catch potential issues early. This supports the 71%
+of health consumers who want care that addresses their social, economic, and environmental
+factors through comprehensive health monitoring.
+● Reduced Administrative Burden: Perhaps most significantly, consumers report dramatic
+reductions in time spent on health administration, paperwork, and information gathering when
+systems are integrated, allowing more focus on actual health outcomes.
+b. If not, in what contexts or for what workflows would it be most valuable to use one portal or
+system to access all such health information?
+Given that many payers and healthcare providers currently struggle with operational issues and disjointed
+member/patient experiences due to disconnected systems and isolated data, it's highly likely that easy
+access to all health information in one location is not universally available.
+The contexts and workflows where a single portal or system for all health information would be most
+valuable include:
+● Coordinated Care Management: Having all health information in one place would be invaluable
+for care teams to proactively engage with members and patients, prioritize actions, and address
+questions faster. It enables real-time collaboration among providers, leading to personalized
+experiences and improved health outcomes. This is particularly crucial given that effective care
+management relies on accurate and readily available data, well-connected systems, and smooth
+communication.
+● Customer Service and Member/Patient Engagement: A unified system provides customer
+service centers with a complete view of each member/patient, empowering them to guide
+individuals through a seamless health journey and transform interactions into trusted
+relationships. Agents could easily address questions about plan details, coverage, and costs, as
+well as verify identity, capture interaction details, and review health plan information. This leads to
+increased member satisfaction and loyalty.
+● Prior Authorizations and Utilization Management: A single, integrated system would
+significantly speed up processes like prior authorizations by providing predictive insights and
+enabling automated approvals for routine services. This would reduce manual reviews and
+administrative burdens, facilitating timely care for patients and improving the experience for
+healthcare providers.
+● Health Plan Buying and Selling: For sales teams, a unified, AI-powered CRM would offer deep
+insights into plan performance, helping generate leads more effectively and speeding up
+relationship-building efforts. It would also streamline the plan selection process and make
+enrollment hassle-free for employee administrators and brokers by providing user-friendly filters,
+comparison features, and a swift checkout process.
+● Provider Network Management: A single system would harmonize provider contracting
+processes, track negotiations, capture communications, and allow for informed decisions about
+8
+
+provider relationships. It would also significantly expedite provider credentialing from weeks to
+days through direct integrations and automated primary source verification, while also making
+provider data management more straightforward.
+● Understanding the "Whole Person": A unified platform would integrate both clinical and
+non-clinical data, offering a comprehensive understanding of a patient's circumstances beyond
+just their medical record. This allows for more personalized and effective care plans that are
+tailored to individual needs and life circumstances, improving adherence and success rates.
+● Reducing Avoidable Readmissions: By unifying data and facilitating proactive member
+engagement, connected systems can enable real-time collaboration among providers, leading to
+personalized experiences, increased member satisfaction, and improved health outcomes,
+including a decrease in avoidable readmissions.
+● Operational Efficiency Across the Organization: Overall, a single, integrated platform driven
+by AI and automation would boost operational efficiency across all teams, including sales,
+service, marketing, and care coordination. It would reduce the need for employees to toggle
+between disconnected systems and manually enter information, which hinders productivity. This
+allows healthcare workers to spend more time on valuable, patient-centered tasks.
+c. Were there particular data types, such as x-rays or specific test results, that were unavailable?
+What are the obstacles to accessing your own or your loved ones' complete health information
+electronically and using it for managing health conditions or finding the best care (for example,
+limitations in functionality, user friendliness, or access to basic technology infrastructure)?
+Electronic health records (EHRs) are designed to log every medical interaction a patient has with a
+provider and contain clinical information about them, facilitating safe care delivery and supporting
+regulatory compliance. However, EHRs are primarily encounter-focused, and their regulatory-linked
+nature and medicolegal risks make innovation and changes difficult, leading to potential stagnancy in
+healthcare technology. This means that while EHRs are crucial for clinical data, they may not readily
+provide access to a comprehensive view of a patient that includes non-clinical data, or be easily
+adaptable to integrate with other systems for a holistic patient experience.
+A robust CRM, especially one integrated with an EHR, addresses these limitations by centralizing both
+clinical and non-clinical data, offering a complete view of the patient. This integration is not just beneficial
+for patient relationships but also for providers, who often deal with fragmented technology stacks
+alongside their EHRs. By integrating with a CRM, healthcare organizations can overcome challenges like
+fragmented provider network management and centralize data for a unified view, which is valuable for
+onboarding providers and new clinicians, and for populating accurate provider directories.
+The integration of an EHR with an AI-powered CRM eliminates data silos, harmonizing and organizing all
+available data, including clinical, non-clinical, and insurance information. This unified data provides a full
+view of the patient, enabling more collaborative care delivery. Furthermore, centralizing data management
+ensures industry compliance and provides alerts for regulatory updates. This integrated approach
+ensures that AI capabilities draw from clean, high-quality data, leading to optimal insights for patient care
+and operations.
+Obstacles to accessing complete health information and using it for managing health conditions or finding
+the best care often stem from limitations in EHR functionality and the lack of a unified view of patient data.
+The traditional EHR, while essential for clinical records, isn't designed to evolve at the pace of consumer
+expectations or integrate seamlessly with the broader healthcare ecosystem. This can make it difficult for
+patients to engage with the healthcare system and for providers to offer personalized experiences.
+9
+
+A comprehensive health engagement platform that combines clinical and non-clinical data, along with
+automation, analytics, and AI capabilities, is crucial for digital transformation and improving patient
+engagement. This type of platform creates a "digital front door" providing 24/7 service and personalized
+engagement across all channels. The flexibility and configurability of CRM technologies, unlike EHRs,
+allow them to evolve with consumer needs and expectations, providing a differentiated experience and
+competitive edge.
+The current healthcare landscape, where 70% of U.S. adults feel their needs aren't being met and 65%
+find care coordination confusing, highlights the need for improved data access and user-friendliness. The
+lack of a robust CRM can lead to increased costs due to limited capabilities, time-consuming vendor
+selection, resource-intensive administration, and delayed time to value. By adopting a platform that
+integrates all necessary capabilities, healthcare organizations can enhance privacy and security by
+consolidating data management.
+PC-3. Are you aware of health management, care navigation, or personal health record
+apps that would be useful to Medicare beneficiaries and their caregivers?
+The full power of the Salesforce platform (including Agentforce, Tableau, Health Cloud, Mulesoft, and
+more!) offers a comprehensive ecosystem of integrated health management, care navigation, and
+personal health record solutions specifically designed to benefit Medicare beneficiaries and their
+caregivers. Our platform leverages the power of AI-driven CRM, advanced data integration, and
+healthcare analytics to deliver personalized, coordinated care experiences.
+Core Solution Components
+Salesforce Health Cloud with Agentforce
+Our flagship healthcare CRM platform provides:
+● 360-degree patient views integrating clinical and non-clinical data
+● AI-powered care coordination with autonomous agents available 24/7
+● Member engagement tools for benefits verification, provider search, and care navigation
+● Integrated care management with personalized care plans aligned to industry standards
+● HIPAA-compliant platform ensuring data security and privacy for Medicare beneficiaries
+MuleSoft Healthcare Integration Platform
+MuleSoft's healthcare integration solutions enable providers to securely unlock and integrate data from
+core systems of records to achieve a 360, real-time view of your patient's data and personalize patient
+care and outreach through connected patient experiences. Key capabilities include:
+● FHIR-standard integration for seamless EHR connectivity
+● Real-time data synchronization across multiple healthcare systems
+● Pre-built healthcare accelerators reducing implementation time
+● Secure API management ensuring compliance with healthcare regulations
+● MuleSoft Direct for Health Cloud offering easier implementation and faster time to value
+Tableau Healthcare Analytics
+10
+
+Tableau's healthcare analytics platform provides a complete intelligence platform offering healthcare
+organizations a native analytics experience to surface intelligent, actionable insights—right within their
+workflow. This includes:
+● Medicare enrollment tracking with demographic and age cohort analysis
+● Population health insights for proactive care management
+● Care gap identification to improve health outcomes
+● HIPAA-compliant cloud analytics ensuring data security
+Specific Benefits for Medicare Beneficiaries
+Care Navigation and Access
+● Automated appointment scheduling and provider matching
+● Real-time benefits verification and coverage information
+● Care coordination across multiple providers and health systems
+● Emergency access to comprehensive health records
+● Multi-channel communication (phone, email, chat, mobile app)
+Personal Health Record Management
+● Unified health data from multiple sources (EHRs, claims, wearables)
+● Medication management with automated reminders and drug interaction alerts
+● Care plan tracking with progress monitoring and goal setting
+● Family caregiver access with appropriate permissions and controls
+● Portable health records accessible anywhere, anytime
+Predictive and Proactive Care
+● AI-powered health insights identifying potential health risks
+● Preventive care reminders for screenings and vaccinations
+● Chronic disease management with personalized intervention strategies
+● Non-clinical patient information integration, considering housing, transportation, and social factors
+● Care gap closure improving health outcomes and Star Ratings
+Value Proposition for Medicare Program
+For Beneficiaries:
+● Simplified access to comprehensive health information
+● Improved care coordination reducing duplicate services
+● Proactive health management preventing costly complications
+● Enhanced communication with providers and care teams
+● Better health outcomes through data-driven insights
+For Caregivers:
+● Real-time access to patient health status and history
+● Coordination tools for managing complex care scenarios
+● Communication platforms for provider collaboration
+● Emergency access to critical health information
+● Family health management capabilities
+11
+
+For Medicare Administration:
+● Improved Star Ratings through better care coordination
+● Reduced administrative costs through automation
+● Enhanced compliance monitoring and reporting
+● Population health insights for program optimization
+● Fraud detection and prevention capabilities
+Salesforce's integrated ecosystem provides a comprehensive solution addressing the complex needs of
+Medicare beneficiaries and their caregivers. Our platform combines the power of AI-driven care
+management, seamless data integration, and advanced analytics to deliver personalized, coordinated,
+and effective healthcare experiences while maintaining the highest standards of security and compliance
+required for Medicare.
+PC-4. What features are missing from apps you use or that you are aware of today?
+a. What apps should exist but do not yet? Why do you believe they do not exist yet?
+b. What set of workflows do you believe CMS is uniquely positioned to offer?
+To make digital health products accessible and easy to use for Medicare beneficiaries and their
+caregivers, especially those with limited prior digital experience, the most important features should focus
+on simplicity, clear guidance, and robust support.
+Key features include:
+● Intuitive User Interface (UI): The design should be clean, uncluttered, and easy to navigate with
+large, clearly labeled buttons and readable fonts. Minimizing the number of steps to complete a
+task and using familiar icons will enhance ease of use.
+● Guided Workflows and Automation: Implement step-by-step processes for common tasks like
+scheduling appointments, refilling prescriptions, or accessing information. Automated reminders
+and pre-filled forms can reduce manual effort and potential errors.
+● Omni-channel Engagement: Offer various communication channels (email, SMS, bots, chat,
+push messages, etc.) to cater to different preferences and technological comfort levels. This
+ensures beneficiaries and caregivers can interact using their preferred method.
+● Easy Access to Support: Provide readily available and clear pathways to support, such as a
+prominent help button, a clearly visible phone number for a call center, or a chat function with live
+agents. For example, a call center employee should be able to easily help schedule follow-ups
+and confirm insurance coverage.
+● Personalized Engagement: Leverage non-clinical data to tailor experiences to individual needs.
+This makes interactions more relevant and less overwhelming.
+● Accessibility Features: Incorporate features like voice commands, screen readers, adjustable
+font sizes, and high-contrast modes to assist users with visual or motor impairments.
+● Centralized Information and "Single Source of Truth": Consolidate all relevant patient
+information, both clinical and non-clinical, into a single, easily accessible interface. This
+eliminates the need for users to navigate multiple systems to find what they need, reducing
+confusion and frustration.
+● Security and Trust: Clearly communicate how sensitive health information is protected to build
+trust, especially since many people remain wary of AI and new technologies in healthcare. A
+12
+
+robust platform that integrates all necessary capabilities directly within its system reduces risks
+associated with fragmented data management.
+● Education and Onboarding: Offer clear tutorials, guides, and educational resources to help
+users understand how to use the digital tools. This could include step-by-step processes for
+employee training, onboarding, and education that guide users through a predetermined
+workflow.
+PC-5. What can CMS and its partners do to encourage patient and caregiver interest in
+these digital health products?
+a. What role, if any, should CMS have in reviewing or approving digital health products
+on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the
+sense of a coverage determination)? What criteria should be used if there is a review process?
+What technology solutions, policy changes, or program design changes can increase patient and
+caregiver adoption of digital health products (for example, enhancements to data access,
+reimbursement adjustments, or new beneficiary communications)?
+b. What changes would enable timely access to high quality CMS and provider
+generated data on patients?
+In the rapidly evolving healthcare landscape, the integration of advanced technologies is crucial for
+bridging data gaps between healthcare providers and payers, unlocking essential information, and
+delivering better, lower-cost care. Salesforce Health Cloud, Data Cloud, Agentforce, Experience Cloud,
+Tableau, MuleSoft, and Slack collectively offer a comprehensive solution to these challenges, fostering a
+more connected and efficient healthcare ecosystem.
+Salesforce Health Cloud serves as the cornerstone of patient-centric care, providing a unified platform
+that consolidates patient information from various sources. By integrating Health Cloud with Data Cloud,
+healthcare providers and payers can aggregate and analyze vast amounts of data, creating a holistic view
+of each patient. This comprehensive data aggregation helps in identifying care gaps, predicting health
+risks, and personalizing treatment plans, ultimately leading to improved patient outcomes and reduced
+healthcare costs.
+Agentforce enhances this ecosystem by empowering healthcare agents and case managers with the tools
+they need to deliver personalized support. With access to detailed patient profiles and histories, agents
+can proactively engage with patients, ensuring they adhere to treatment plans and receive timely
+interventions. This proactive approach not only improves patient health but also reduces the likelihood of
+costly hospital readmissions.
+Experience Cloud plays a pivotal role in enhancing patient and provider engagement. By creating
+customized portals and communities, Experience Cloud facilitates seamless communication and
+collaboration between patients, providers, and payers. Patients can easily access their health information,
+schedule appointments, and communicate with their care teams, while providers and payers can share
+critical updates and resources. This transparent and efficient communication streamlines care
+coordination and enhances patient satisfaction.
+Tableau, a powerful data visualization tool, transforms complex healthcare data into intuitive, actionable
+insights. By integrating Tableau with Health Cloud and Data Cloud, healthcare organizations can create
+dynamic dashboards that highlight key performance indicators, track patient outcomes, and identify
+trends. These visualizations enable providers and payers to make data-driven decisions, optimize
+resource allocation, and monitor the effectiveness of care interventions. The ability to quickly interpret and
+act on data insights is crucial for improving care quality and reducing costs.
+13
+
+MuleSoft, a leading integration platform, ensures seamless connectivity between disparate healthcare
+systems and applications. By leveraging MuleSoft’s API-led connectivity, healthcare organizations can
+integrate electronic health records (EHRs), claims systems, and other critical applications with Salesforce
+solutions. This integration eliminates data silos, ensuring that providers and payers have access to
+real-time, accurate information. The result is a more cohesive and efficient healthcare ecosystem where
+data flows seamlessly across systems, enhancing care coordination and reducing administrative burdens.
+Slack, a collaboration and communication platform, further enhances the integration by facilitating
+real-time communication and collaboration among healthcare teams. By integrating Slack with Health
+Cloud and other Salesforce solutions, care teams can quickly share updates, discuss patient cases, and
+coordinate care plans. Slack’s channels and direct messaging features ensure that critical information is
+communicated promptly, reducing delays and improving response times. This real-time collaboration is
+essential for delivering timely and effective care.
+The integration of Salesforce Health Cloud, Data Cloud, Agentforce, Experience Cloud, Tableau,
+MuleSoft, and Slack creates a powerful ecosystem that bridges data gaps between healthcare providers
+and payers. By aggregating and analyzing data, these solutions unlock essential information, enabling
+personalized and proactive care. The seamless communication and collaboration facilitated by
+Experience Cloud and Slack enhance care coordination, while Tableau’s data visualizations provide
+actionable insights for data-driven decision-making. MuleSoft’s integration capabilities ensure that data
+flows seamlessly across systems, reducing administrative burdens and enhancing efficiency. Together,
+these technologies empower healthcare organizations to deliver better, lower-cost care and improve
+patient outcomes in an increasingly complex healthcare environment.
+PC-6. What features are most important to make digital health products accessible and
+easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior
+experience using digital tools and services?
+For patients and caregivers, accessing a comprehensive and easily understandable view of their health
+information presents a significant hurdle. While EHRs are essential for clinical data, they are primarily
+designed around individual encounters, logging every medical interaction a patient has with a provider.
+This encounter-centric design means that valuable non-clinical data—such as communication
+preferences, non-clinical patient information, and other information useful to providers—is often hard for
+patients and caregivers to access directly through traditional EHRs. Furthermore, the strict regulatory and
+medicolegal oversight of EHRs makes it challenging to innovate and adapt these systems quickly, limiting
+the availability of dynamic and patient-centric information.
+For app developers and other technical vendors, the main challenge in accessing valuable healthcare
+data stems from the fragmented nature of existing systems. Healthcare providers frequently operate with
+a complex array of disparate technologies. This fragmentation means that data is spread across various
+specialized solutions, complicating efforts to harmonize, unify, and integrate it for effective use. These
+challenges can hinder the development of comprehensive, bidirectional data flows. The absence of a
+unified data platform, or "single source of truth," also makes it difficult to reconcile multiple patient profiles
+and ensure data cleanliness, which is crucial for effective analytics and AI applications. This widespread
+data fragmentation also elevates the risk of security breaches.
+2. Data Access and Integration
+PC-10. How is the Trusted Exchange Framework and Common AgreementTM
+(TEFCATM) currently helping to advance patient access to health information in the real world?
+a. Please provide specific examples.
+b. What changes would you suggest?
+c. What use cases could have a significant impact if implemented through TEFCA?
+d. What standards are you aware of that are currently working well to advance access
+14
+
+and existing exchange purposes?
+e. What standards are you aware of that are not currently in wide use, but could improve
+data access and integration?
+f. Are there redundant standards, protocols, or channels that should be consolidated?
+g. Are there adequate alternatives outside of TEFCA for achieving widespread patient
+access to their health information?
+The Trusted Exchange Framework and Common Agreement (TEFCA) is currently advancing patient
+access to health information in the real world by establishing a unified and secure framework for
+nationwide health information exchange.
+Key ways TEFCA is helping include:
+● Creating a Standardized Interoperability Framework: TEFCA provides a set of guidelines to
+ensure a consistent and secure approach to data exchange across the United States. This
+framework aims to achieve true interoperability at scale for various use cases, including patient
+access.
+● Leveraging Qualified Health Information Networks (QHINs): Organizations designated as
+QHINs, act as central nodes that facilitate the secure sharing of health information among diverse
+healthcare entities.
+● Enabling Data Integration and Harmonization: TEFCA supports bringing harmonized clinical
+data directly into application workflows. This process creates a single, unified patient profile,
+which is crucial for delivering personalized patient experiences.
+● Streamlining Patient Onboarding and Workflows: The framework and its associated
+integrations streamline processes such as patient onboarding and enable the automation of
+various everyday workflows, allowing access to information from across the continuum of care.
+● Connecting to Existing National Networks: QHINs also serve as gateways to existing national
+networks, further expanding the reach of TEFCA-based exchange as it grows.
+a. Please provide specific examples.
+Real-World Implementation Through QHINs:
+TEFCA has been successfully implemented through seven federally Qualified Health Information
+Networks (QHINs) named by the Office of the National Coordinator (ONC). This represents a concrete
+step from policy framework to operational reality.
+Streamlined Patient Onboarding and Care Coordination
+The TEFCA framework is enabling practical improvements in patient care through:
+● Automated Patient Information Retrieval: Healthcare organizations can now streamline patient
+onboarding and improve patient experience by retrieving critical patient information at the time of
+registration and scheduling. This eliminates manual data entry and reduces administrative
+burden.
+● Cross-Network Data Access: The framework enables organizations to search for patient
+information across a vast network of healthcare organizations and ingest relevant records into
+their systems, removing the need for manual data entry.
+● Cross-Organizational Referral Management: TEFCA significantly enhances the ability to manage
+patient referrals seamlessly across different healthcare organizations, a function gaining
+considerable traction due to improved information flow and care coordination.
+Technical Integration and Interoperability
+15
+
+TEFCA is advancing patient access through sophisticated technical solutions:
+● Unified Patient Profiles: The integration helps healthcare organizations bring connected and
+harmonized clinical data right into their application workflows, giving them a single, unified profile
+that enables personalized experiences for every patient or member.
+● Standardized Data Exchange: TEFCA establishes a standardized and secure framework for
+data exchange across the United States with QHINs serving as nodes facilitating the sharing of
+information across organizations.
+Comprehensive Clinical Information Sharing
+The framework supports exchange of critical clinical data including:
+● Allergy Intolerances, Conditions, Procedures, and Medication Requests
+● Document conversion from C-CDA format to FHIR bundles for broader system compatibility
+Beyond Treatment Use Cases
+TEFCA addresses interoperability challenges for use cases beyond treatment, including public health,
+benefits determination, and patient access, representing a more comprehensive approach to health
+information exchange than previous frameworks.
+The integration of TEFCA through platforms like MuleSoft and Salesforce Health Cloud demonstrates
+how the framework is moving from theoretical policy to practical, operational solutions that directly benefit
+patient care and healthcare efficiency.
+PC-12. What are the most valuable operational health data use cases for patients and
+caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to
+competition among providers or both?
+a. Examples may include the following:
+(1) Binding cost estimates for pre-defined periods.
+(2) Viewing provider schedule availability.
+(3) Using third-party apps for appointment management.
+(4) Accessing patient-facing quality metrics.
+(5) Finding the right provider for specific healthcare needs.
+b. What use cases are possible today?
+c. What should be possible in the near future?
+d. What would be very valuable but may be very hard to achieve?
+Using a unified platform that can aggregate and analyze vast amounts of data, creating a holistic view of
+each patient, would greatly increase the efficiency of healthcare and break down silos in data. This
+comprehensive data aggregation helps in identifying care gaps, predicting health risks, and personalizing
+treatment plans, ultimately leading to improved patient outcomes and reduced healthcare costs.
+Additionally, using and maintaining real-time dashboard visualizations enable providers and payers to
+make data-driven decisions, optimize resource allocation, and monitor the effectiveness of care
+interventions. The ability to quickly interpret and act on data insights is crucial for improving care quality
+and reducing costs.
+16
+
+C. Providers
+1. Digital Health Apps
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural
+areas that all data in an EHR system be accessible for exchange, regardless of storage format (for
+example, scanned documents, faxed records, lab results, free text notes, structured data fields)?
+Please address all of the following:
+a. Current challenges in accessing different data formats.
+b. Impact on patient care quality.
+c. Technical barriers to full data accessibility.
+d. Cost or privacy implications of making all data formats interoperable.
+e. Priority level compared to other interoperability needs.
+By leveraging MuleSoft's API-led connectivity, healthcare organizations can integrate various EHR
+systems, ensuring that all data, regardless of format, is accessible and interoperable. Health Cloud and
+Data Cloud can aggregate and standardize this data, while Agentforce and Experience Cloud facilitate
+efficient communication and collaboration among care teams. Tableau's data visualization capabilities
+enable the analysis and presentation of comprehensive patient data, enhancing decision-making. Slack
+further supports real-time communication, ensuring that critical information is promptly shared. However,
+technical barriers such as legacy systems and data silos, along with cost and privacy implications, must
+be addressed to achieve full data accessibility. Ensuring data interoperability can be resource-intensive
+and requires robust security measures to protect patient privacy. Despite these challenges, making all
+data formats interoperable is a high priority compared to other interoperability needs, as it directly impacts
+patient care quality and operational efficiency. By integrating these Salesforce solutions, healthcare
+organizations can overcome these barriers, ensuring that comprehensive and accurate patient data is
+readily available for exchange, ultimately improving patient outcomes and reducing costs.
+2. Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or
+utilize in your provider organization’s systems, directly or through an intermediary? For each,
+describe the transaction model, use case, whether you use individual queries or bulk transactions,
+and any constraints:
+a. Patient Access API
+b. Standardized API for Patient and Population Services
+c. Provider Directory API
+d. Provider Access API
+e. Payer-to-Payer API
+f. Prior Authorization API
+g. Bulk FHIR – Do you support Group ID-based access filtering for population-specific
+queries?
+h. SMART on FHIR – Do you support both EHR-launched and standalone app access?
+What does the process for application deployment entail?
+i. CDS Hooks (for clinical decision support integrations)
+Our organization has developed comprehensive specifications for all relevant FHIR APIs. We have
+successfully deployed and demonstrated our capability in implementing Patient Access, Provider
+Directory, and Provider Access APIs across various customer environments, consistently meeting
+stringent requirements. Furthermore, we are actively engaged in the strategic implementation of the Prior
+Authorization API, based on the DaVinci IG, signifying our commitment to advancing automated prior
+authorization workflows.
+Additionally, the Salesforce Platform provides programmatic access to organization’s information using
+simple, powerful, and secure application programming interfaces. Central to the ability to integrate and
+extend Salesforce is the powerful and modern Web Services API. Architected around the latest
+17
+
+standards, including SOAP, WSDL and WS-I Basic Profile, this Web service provides the complete set of
+operations necessary to complete ever demanding integration projects. As an open Web service, we
+provide our complete object model, and the API is available to all platforms that support the core Web
+services standards, including Java, .NET and Perl.
+Out-of-the-box, Salesforce provides powerful APIs such as:
+● REST API - Access objects in your organization using REST. The Salesforce Platform REST API
+lets you integrate with Salesforce applications using simple HTTP methods, in either XML or
+JSON formats, making this an ideal API for developing mobile applications or external clients.
+You can now use JSON Web Token (JWT)-based access tokens for granting access to REST
+APIs
+● SOAP API - Integrate your organization’s data with other applications using SOAP. The
+Salesforce Platform SOAP API lets you integrate Salesforce applications that can create, retrieve,
+update or delete records managed by Salesforce
+● Chatter REST API - Access Chatter feeds and social data such as users, groups, followers, and
+files using REST. Use Chatter REST API to integrate mobile apps, intranet sites, and 3rd party
+Web applications with Salesforce. Chatter REST API provides resources for feeds, comments,
+likes, users, groups, private messages, recommendations, topics, and more. Chatter REST API is
+on by default in all organizations and editions that have Chatter.
+● CRM Analytics REST API - You can access CRM Analytics datasets and lenses programmatically
+using the Einstein REST API. Using the Einstein REST API you can: Send queries directly to the
+Einstein Platform; Access datasets that have been imported into the Einstein Platform; Create
+and retrieve CRM Analytics lenses; Access XMD information; Retrieve a list of dataset versions;
+Create and retrieve CRM Analytics applications; Create, update, and retrieve CRM Analytics
+dashboards; Retrieve a list of dependencies for an application; Determine what features are
+available to the user; Work with snapshots; Manipulate replicated datasets.
+● Bulk API - Load or delete large numbers of records. The Bulk API is a RESTful API that is optimal
+for loading or deleting large sets of data. You can use it to query, insert, update, upsert, or delete
+a large number of records asynchronously by submitting batches that Salesforce processes in the
+background.
+● Metadata API - Manage customizations in your org and build tools that manage the metadata
+model (not the data, itself). The Salesforce Platform exposes a Metadata API—a SOAP-based
+Web service—that lets you access metadata in the same way you can access any of your
+Salesforce Platform applications, from any location on the Web.
+● Streaming API - Provide a stream of data reflecting data changes in your organization. Salesforce
+Platform Streaming API lets you expose a near real-time stream of data from the Salesforce
+Platform. Administrators can create topics, to which applications can subscribe, receiving
+asynchronous notifications of changes to data in Salesforce. The streaming API includes a subset
+of functionality such as Change Data Capture that allows near-real time capturing changes for
+specific Salesforce objects and synchronizing them to remote system, and Platform Events which
+allows creation of custom events that can be sent in near-real time to remote system. Further
+details can be found here:
+○ Streaming API:
+https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intr
+o_stream.htm
+○ Change Data Capture:
+https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_da
+ta_capture/cdc_intro.htm
+○ Platform Events:
+https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/
+platform_events_intro.htm
+● Apex REST API - Build your own REST API in Apex. This API exposes Apex classes and
+methods as RESTful Web services.
+● Apex SOAP API - Create custom SOAP Web services in Apex. This API exposes Apex classes
+as SOAP Web services, allowing an external application to invoke Apex methods through SOAP
+Web services.
+18
+
+● Tooling API - Build custom development tools for Salesforce Platform applications. Tooling API
+provides SOAP and REST interfaces that allow you to build custom development tools for
+Salesforce applications. While other Salesforce APIs can handle deployment, Tooling API was
+designed from the ground up to support the entire development lifecycle, including design,
+implementation, deployment, and maintenance.
+More information about Salesforce APIs is available at:
+https://developer.salesforce.com/page/Salesforce_APIs. A list of APIs can be reviewed here:
+https://developer.salesforce.com/docs/apis.
+Anypoint Exchange provides significant features for API providers to easily publish and share APIs with
+developers inside and outside of an organization. To register a client application to an existing API
+instance or API Group instance, the client application requests access. When the owner of the instance
+approves the request, a contract is created between the client application and the instance, and the client
+application is registered.
+Instances that are protected by a client ID enforcement policy require client applications to provide a client
+ID and optional client secret. The client ID and client secret credentials are automatically created when
+the client application is registered. Please refer to Request Access for further details.
+Anypoint API Experience Hub is an API management platform and digital experience that enables
+organizations to create vibrant API ecosystems within and outside the enterprise. API providers can
+share, promote, and engage with their developer community. Developers and partners can find, explore,
+and consume APIs designed anywhere from a single place.
+Using a self-service API portal, developers and partners can quickly access applications, interact with
+documentation, and build products from existing data. API Experience Hub portals enable developers to
+find, consume, and reuse APIs their are essential to building their products.
+From the API Details page, member users request access to an API instance to which to register a client
+application. They do this by selecting an API instance, selecting or creating a client application, and
+optionally selecting a service-level agreement (SLA). When the owner of the instance approves the
+request, a contract is created between the client application and the instance, and the client application is
+registered.
+PR-7. What strategies can CMS implement to support providers in making high-quality,
+timely, and comprehensive healthcare data available for interoperability in the digital product
+ecosystem? How can the burden of increasing data availability and sharing be mitigated for
+providers? Are there ways that workflows or metrics that providers are already motivated to
+optimize for that could be reused for, or combined with, efforts needed to support
+interoperability?
+CMS can consider products that collectively empower the organization to make high-quality, timely, and
+comprehensive healthcare data available for interoperability in the digital product ecosystem.
+Health Cloud serves as the central hub for patient data, aggregating information from various sources
+such as electronic health records (EHRs), wearable devices, and patient-reported outcomes. This creates
+a unified and comprehensive view of each patient's health record, facilitating seamless care coordination
+among healthcare providers and ensuring that all relevant health information is consistently updated and
+accessible.
+Ideally, CMS needs to consider a solution adept at managing large volumes of healthcare data, ensuring
+data consistency, accuracy, and security, like Salesforce Data Cloud. It includes advanced analytics tools
+that enable CMS to identify trends, predict health outcomes, and generate actionable insights. These
+19
+
+insights can inform policy decisions, optimize resource allocation, and improve patient care by identifying
+areas that require intervention or improvement.
+Agentforce empowers agents and case managers with robust tools to provide personalized support and
+manage patient interactions efficiently. By having access to detailed patient profiles and histories, agents
+can engage with patients proactively, ensuring they adhere to treatment plans and receive timely
+interventions. This proactive engagement can significantly improve patient adherence to care plans and
+overall health outcomes.
+CMS should also consider customized portals for patients and providers, facilitating easy access to health
+records, appointment scheduling, and secure communication. These portals enhance patient engagement
+by allowing them to actively participate in their healthcare management.
+By integrating with Health Cloud and Data Cloud, a visualization tool like Tableau enables CMS and
+healthcare providers to create dynamic dashboards that highlight key performance indicators, track
+patient outcomes, and identify trends. These visualizations help stakeholders quickly interpret data, make
+informed decisions, and monitor the effectiveness of care interventions. Tableau's ability to present data in
+a clear and understandable format is crucial for driving data-driven decision-making and improving
+healthcare delivery.
+An API integration tool like MuleSoft ensures seamless integration of disparate healthcare systems and
+applications through its API-led connectivity approach. By connecting EHR systems, claims systems, and
+other critical applications, MuleSoft facilitates the flow of comprehensive and accurate data across the
+digital product ecosystem. This interoperability eliminates data silos, ensuring that healthcare providers
+have access to real-time information, which is essential for effective care coordination and
+decision-making.
+Slack enhances real-time communication and collaboration among healthcare teams. By integrating with
+Salesforce, Slack provides a unified platform where updates, alerts, and patient information can be easily
+accessed and discussed. This real-time communication ensures that critical information is promptly
+shared and acted upon, reducing delays and improving response times. Slack's channels and direct
+messaging features enable healthcare teams to coordinate care more effectively, ensuring that patients
+receive timely and appropriate interventions.
+By leveraging these Salesforce solutions, CMS can ensure that high-quality, timely, and comprehensive
+healthcare data is available for interoperability. This integrated approach enhances data accuracy,
+improves care coordination, and supports data-driven decision-making. It also fosters a more connected
+and efficient digital product ecosystem, ultimately leading to better patient outcomes, more effective
+healthcare delivery, and optimized resource utilization.
+3. Digital Identity
+PR-9. How might CMS encourage providers to accept digital identity credentials (for
+example, CLEAR, ID.me, Login.gov) from patients and their partners instead of proprietary
+logins that need to be tracked for each provider relationship?
+a. What would providers need help with to accelerate the transition to a single set of
+trusted digital identity credentials for the patient to keep track of, instead of one for each
+provider?
+b. How might CMS balance patient privacy with convenience and access to digital health
+products and services that may lead to significant improvements in health?
+Requiring digital identity credentials, such as those provided by CLEAR, Login.gov, ID.me, and other
+NIST 800-63-3 IAL2/AAL2 certified credential service providers (CSPs), could enhance cybersecurity and
+data exchange from the perspective of a cloud SaaS provider. Implementing these high-assurance digital
+identity credentials ensures that only verified and authenticated users can access sensitive data and
+services, thereby reducing the risk of unauthorized access and potential data breaches. These credentials
+20
+
+adhere to stringent identity proofing and authentication standards, providing a robust layer of security that
+helps protect against identity theft, phishing attacks, and other cyber threats. Additionally, the use of
+standardized digital identity credentials facilitates seamless and secure data exchange across different
+platforms and services, promoting interoperability and trust within the digital ecosystem. For a cloud SaaS
+provider, this means enhanced confidence in the security of user identities and data transactions, leading
+to improved compliance with regulatory requirements and industry standards. Furthermore, the
+streamlined authentication process provided by these credentials can enhance user experience by
+reducing the need for multiple logins and passwords, thereby increasing user satisfaction and adoption of
+the SaaS platform.
+PR-10. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me,
+other NIST 800-63-3 IAL2/AAL2 CSPs):
+a. What are the challenges and benefits for providers?
+b. How would requiring their use improve access to health information?
+c. What are the potential downsides?
+d. What impact would mandatory credentials have on a nationwide provider directory?
+e. How could digital identity implementation improve provider data flow?
+f. Would combining FHIR addresses and identity improve data flow?
+Salesforce offers OTB SSO integration with OpenID Connect and SAML 2.0 identity providers, along with
+flexible login experiences for both patients and providers via Experience Cloud portals. Its Customer
+Identity and Access Management (CIAM) features support seamless external identity federation while
+enforcing fine-grained access controls. Providers can accelerate adoption using low-code tools, prebuilt
+identity components, and hybrid login options that allow existing proprietary credentials to coexist during
+transition. With built-in consent management, purpose-based access, and audit-ready privacy controls,
+Salesforce helps balance security, convenience, and compliance—empowering patients to use a single
+digital identity while reducing overhead for providers.
+To encourage widespread adoption, CMS can leverage Salesforce’s ability to create secure, consistent
+identity experiences across provider networks, while offering guidance, technical support, and education
+on the benefits of using federated identity providers.
+E. Technology Vendors, Data Providers, and Networks
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits?
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov,
+ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange?
+c. What impact would mandatory use of the OpenID Connect identity protocol have?
+Requiring digital identity credentials, such as those provided by CLEAR, Login.gov, ID.me, and other
+NIST 800-63-3 IAL2/AAL2 certified credential service providers (CSPs), could enhance cybersecurity and
+data exchange from the perspective of a cloud SaaS provider. Implementing these high-assurance digital
+identity credentials ensures that only verified and authenticated users can access sensitive data and
+services, thereby reducing the risk of unauthorized access and potential data breaches. These credentials
+adhere to stringent identity proofing and authentication standards, providing a robust layer of security that
+helps protect against identity theft, phishing attacks, and other cyber threats. Additionally, the use of
+standardized digital identity credentials facilitates seamless and secure data exchange across different
+platforms and services, promoting interoperability and trust within the digital ecosystem. For a cloud SaaS
+provider, this means enhanced confidence in the security of user identities and data transactions, leading
+to improved compliance with regulatory requirements and industry standards. Furthermore, the
+streamlined authentication process provided by these credentials can enhance user experience by
+reducing the need for multiple logins and passwords, thereby increasing user satisfaction and adoption of
+21
+
+the SaaS platform. Overall, requiring digital identity credentials from trusted CSPs would bolster the
+security posture of a cloud SaaS provider while enabling efficient and secure data exchange.
+TD-6. What unique interoperability functions does TEFCA perform?
+a. What existing alternatives should be considered?
+b. Are there redundant standards, protocols or channels or both that should be
+consolidated?
+The Trusted Exchange Framework and Common Agreement (TEFCA) is currently advancing patient
+access to health information in the real world by establishing a unified and secure framework for
+nationwide health information exchange.
+Key ways TEFCA is helping include:
+● Creating a Standardized Interoperability Framework: TEFCA provides a set of guidelines to
+ensure a consistent and secure approach to data exchange across the United States. This
+framework aims to achieve true interoperability at scale for various use cases, including patient
+access.
+● Leveraging Qualified Health Information Networks (QHINs): Organizations designated as
+QHINs act as central nodes that facilitate the secure sharing of health information among diverse
+healthcare entities.
+● Enabling Data Integration and Harmonization: TEFCA supports bringing harmonized clinical
+data directly into application workflows. This process creates a single, unified patient profile,
+which is crucial for delivering personalized patient experiences.
+● Streamlining Patient Onboarding and Workflows: The framework and its associated
+integrations streamline processes such as patient onboarding and enable the automation of
+various everyday workflows, allowing access to information from across the continuum of care.
+● Connecting to Existing National Networks: QHINs also serve as gateways to existing national
+networks, further expanding the reach of TEFCA-based exchange as it grows.
+a. Please provide specific examples.
+Real-World Implementation Through QHINs:
+TEFCA has been successfully implemented through seven federally Qualified Health Information
+Networks (QHINs) named by the Office of the National Coordinator (ONC) This represents a concrete
+step from policy framework to operational reality.
+Streamlined Patient Onboarding and Care Coordination
+The TEFCA framework is enabling practical improvements in patient care through:
+● Automated Patient Information Retrieval: Healthcare organizations can now streamline patient
+onboarding and improve patient experience by retrieving critical patient information at the time of
+registration and scheduling. This eliminates manual data entry and reduces administrative
+burden.
+● Cross-Network Data Access: The framework enables organizations to search for patient
+information across a vast network of healthcare organizations and ingest relevant records into
+their systems, removing the need for manual data entry.
+● Cross-Organizational Referral Management: TEFCA significantly enhances the ability to manage
+patient referrals seamlessly across different healthcare organizations, a function gaining
+considerable traction due to improved information flow and care coordination.
+22
+
+Technical Integration and Interoperability
+TEFCA is advancing patient access through sophisticated technical solutions:
+● Unified Patient Profiles: The integration helps healthcare organizations bring connected and
+harmonized clinical data right into their application workflows, giving them a single, unified profile
+that enables personalized experiences for every patient or member.
+● Standardized Data Exchange: TEFCA establishes a standardized and secure framework for
+data exchange across the United States with QHINs serving as nodes facilitating the sharing of
+information across organizations.
+Comprehensive Clinical Information Sharing
+The framework supports exchange of critical clinical data including:
+● Allergy Intolerances, Conditions, Procedures, and Medication Requests
+● Document conversion from C-CDA format to FHIR bundles for broader system compatibility
+Beyond Treatment Use Cases
+TEFCA addresses interoperability challenges for use cases beyond treatment, including public health,
+benefits determination, and patient access, representing a more comprehensive approach to health
+information exchange than previous frameworks.
+The integration of TEFCA through platforms like MuleSoft and Salesforce Health Cloud demonstrates
+how the framework is moving from theoretical policy to practical, operational solutions that directly benefit
+patient care and healthcare efficiency.
+5. Compliance
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices you
+have experienced that may constitute information blocking. Please include both situations of
+non-responsiveness as well as situations that may cause a failure or unusable response?
+b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+c. Are there specific categories of healthcare actors covered under the definition of
+information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack
+information blocking disincentives?
+a. Could you, as a technology vendor, provide examples for the types of practices you
+have experienced that may constitute information blocking. Please include both situations of
+non-responsiveness as well as situations that may cause a failure or unusable response?
+As a technology vendor operating in the healthcare sector, we have encountered various practices that
+impede the seamless flow and usability of health information. These experiences fall broadly into
+situations of non-responsiveness and those that lead to data failure or rendering it unusable.
+Situations of Non-Responsiveness:
+23
+
+● Unmet Requests for Data Access or Integration: We frequently face instances where requests
+for standard data access pathways or integration points with foundational health information
+systems are met with slow or no response, unexplained delays, or access denial. These requests
+are essential for our applications to ingest or contribute critical patient information, impacting our
+ability to deliver features that enable patient access, more efficiently coordinate care, and improve
+quality.
+● Lack of Technical Specifications for Interoperability: A significant hurdle is the absence of
+publicly available or adequately documented technical specifications, APIs, or integration
+protocols from established platform providers. This forces our development teams to engage in
+costly and time-consuming reverse-engineering efforts, or in many cases, makes integration
+impossible, effectively isolating critical data within proprietary environments.
+● Unwillingness to Establish Necessary Data Exchange Pathways: Despite clear clinical or
+operational needs for data exchange, we sometimes encounter a reluctance to collaborate on
+establishing necessary technical interfaces or data pathways. This can manifest as a lack of
+engagement from the incumbent vendor or the healthcare provider, leading to stalled projects
+aimed at enhancing data liquidity.
+Situations that Cause a Failure or Unusable Response:
+● Provision of Data in Incompatible or Proprietary Formats: When data is eventually provided,
+it often arrives in formats that are highly specific to the originating system, requiring extensive
+transformation, manual reconciliation, or custom coding to be consumable by our standard-based
+applications. This increases implementation costs, introduces data integrity risks, and often
+renders automated data exchange impractical or unreliable.
+● Restrictive Agreements, Unreasonable Pricing, or Data Blocking: Our ability to fully leverage
+health information is frequently hampered by contractual clauses, licensing agreements, or the
+imposition of unreasonable prices for access to or distribution of EHR data, crucial for running or
+maintaining healthcare operations. These agreements or prohibitive costs can severely limit a
+customer's legitimate use of their own data with third-party solutions, effectively constituting hard
+data blocking and creating barriers to innovation even when the technical means for data access
+might exist.
+● Consequences of Vendor Influence and Lack of Interoperability: We have observed
+situations where the significant influence of a primary platform vendor on a healthcare
+organization's technology strategy can sometimes lead to the deferral or discontinuation of
+integration efforts with alternative solutions. In the absence of robust interoperability, this dynamic
+can contribute to vendor lock-in, potentially limiting a healthcare organization's agility to innovate
+and optimize care delivery.
+b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+● Promote Vendor-Agnostic Health IT Platforms and Data Portability: ASTP/ONC and CMS
+should provide clear guidance encouraging the adoption of health IT platforms that are inherently
+vendor-agnostic. This means moving away from single-vendor, closed ecosystems towards open
+architectures that facilitate seamless data portability and exchange across disparate systems,
+regardless of the originating vendor. Policies should actively discourage practices that lead to
+"vendor lock-in," where providers become excessively reliant on one vendor due to technical or
+contractual barriers to switching. This would foster a competitive marketplace, drive innovation,
+and ensure that healthcare organizations can choose the best-of-breed solutions without fear of
+data entrapment.
+24
+
+F. Value-Based Care Organizations
+1. Digital Health Adoption
+VB-2. How can key themes and technologies such as artificial intelligence, population
+health analytics, risk stratification, care coordination, usability, quality measurement, and patient
+engagement be better integrated into APM requirements?
+● Artificial Intelligence (AI): AI can be integrated into APM requirements by using it for predictive
+analytics to identify patients at high risk of adverse health events or hospital readmissions. This
+allows for proactive interventions, which can be incentivized under APMs. Salesforce's AI
+capabilities can analyze vast datasets to pinpoint these risks, enabling care teams to focus
+resources where they're most needed. AI can also automate administrative tasks related to APM
+reporting, ensuring accuracy and efficiency.
+● Population Health Analytics: APM requirements can mandate the use of population health
+analytics to identify and manage patient cohorts based on chronic conditions, socioeconomic
+determinants of health, and care gaps. Salesforce Health Cloud, with its robust data platform, can
+aggregate data from various sources (EHRs, wearables, non-clinical patient information) to
+provide a holistic view of a population's health. This allows for targeted interventions and
+measurement of health outcomes across the population, aligning with APM goals of improving
+overall health.
+● Risk Stratification: Integrating risk stratification into APM requirements involves tying
+reimbursement to the accurate identification and management of patient risk levels. AI-powered
+risk stratification tools can analyze clinical and non-clinical data to categorize patients into
+different risk groups. Salesforce's analytical capabilities can help organizations operationalize
+these risk groups, allowing care teams to prioritize outreach and tailor care plans, which directly
+impacts the cost and quality metrics emphasized by APMs.
+● Care Coordination: APM requirements should emphasize and incentivize robust care
+coordination, facilitated by digital tools. Salesforce Health Cloud offers features for shared care
+plans, secure communication among care team members, and task management. By integrating
+these capabilities, APMs can reward providers for effective transitions of care, reduced
+duplicative services, and improved patient outcomes through collaborative care.
+● Usability: For digital health tools to effectively support APMs, they must be highly usable for both
+providers and patients. APM requirements could include metrics related to user adoption and
+satisfaction with digital tools. Salesforce prioritizes user-friendly interfaces and mobile
+accessibility, which encourages consistent use by care teams and patients for tasks like
+appointment scheduling, communication, and accessing educational resources. This usability
+directly contributes to efficient care delivery and patient engagement, both critical for APMs.
+● Patient Engagement: APM success is heavily reliant on active patient engagement.
+Requirements can tie incentives to quantifiable patient engagement metrics, such as portal
+usage, adherence to care plans, and participation in health education programs. Salesforce's
+comprehensive CRM capabilities enable personalized patient journeys, omni-channel
+communication (email, SMS, chat, patient portals), and self-service options. These features
+empower patients to take a more active role in their health, which is a key driver for achieving the
+improved outcomes and cost efficiencies sought by APMs.
+VB-3. What are essential health IT capabilities for value-based care arrangements?
+25
+
+a. Examples (not comprehensive) may include: care planning, patient event notification,
+data extraction/normalization, quality performance measurement, access to claims data,
+attribution and patient ID matching, remote device interoperability, or other patient
+empowerment tools.
+b. What other health IT capabilities have proven valuable to succeeding in value-based
+care arrangements?
+Essential health IT capabilities for value-based care arrangements revolve around robust data
+management, seamless integration, advanced analytics, and enhanced patient and provider experiences:
+● Unified Data View and Integration: The ability to integrate clinical data from EHRs with
+non-clinical data from CRM systems is paramount. This provides a full and complete view of the
+patient beyond just what is on their medical record, allowing for personalized experiences. It
+centralizes data from various disparate systems, like labs and surgical suites , creating a "single
+source of truth" that is invaluable for tasks such as managing provider networks and clinician
+onboarding.
+● Comprehensive Interoperability: Health IT systems must be able to connect multiple EHRs and
+a wide array of clinical and non-clinical systems onto a single platform to achieve ultimate
+interoperability. This fosters "data sharing, accessibility, and harmonization" , which is increasingly
+facilitated by regulatory changes that encourage EHRs to share data more openly.
+● AI-Powered Analytics and Insights: AI capabilities are crucial for value-based care, as they can
+"simplify or speed up processes and boost operational efficiencies". When combined with
+centralized, high-quality data, AI provides optimal insights into patient care and operations ,
+supporting data-driven decision-making.
+● Workflow Automation and Dynamic Processes: Automation built into health IT platforms
+significantly increases productivity and efficiency. This includes dynamic workflows that provide
+"information and insight at employee fingertips" , allowing healthcare workers to focus more on
+patient-centered tasks by reducing manual input.
+● Omni-channel Patient Engagement: A robust health IT system should enable "omni-channel
+engagement (email, SMS, bots, chat, push messages, etc.), contact center management, [and]
+digital marketing". This creates a "digital front door that provides 24/7 service and access along
+with hyperpersonalized engagement across all channels", which is vital for patient retention and
+satisfaction.
+● Patient-Centric Functionality: Capabilities like patient access portals, self-scheduling, smart
+scheduling, easy benefits confirmation, and simplified pre-appointment activities are essential for
+meeting evolving patient expectations and enhancing satisfaction.
+● Scalability and Flexibility: The chosen health IT solution should offer a "scalable, flexible
+platform that IT teams can use to optimize a wide range of business needs". This includes the
+ability to rapidly develop and deploy new solutions without extensive coding.
+● Robust Security and Compliance: Centralized data management is key to maintaining industry
+compliance. A comprehensive health IT platform that integrates all necessary capabilities directly
+within its system mitigates security risks associated with dispersed data, ensuring greater privacy
+and security of sensitive information.
+These capabilities empower organizations to deliver superior experiences, speed time to outcomes, grow
+their business, and improve efficiency, all while reducing the cost to serve, directly supporting the goals of
+value-based care.
+26
+
+Customer Success
+With the world’s leading cloud platform, Salesforce is freeing government data from legacy systems and
+unleashing staff, partners, and citizens to administer government in powerful new ways. In the public
+sector, Salesforce’s trusted cloud platform and applications help government employees and agencies
+collaborate easily and connect with citizens and partners like never before. Organizations around the
+globe are leveraging Salesforce’s leading cloud solutions and experiencing incredible results ranging from
+more connected customer service, to streamlined operations, better performance, and overall cost
+savings. A few representative customer success stories are provided below:
+Humana, a leading health and well-being company, has leveraged Salesforce to enhance patient trust
+and improve healthcare outcomes. By integrating Salesforce Health Cloud, Humana has been able to
+create a more personalized and efficient healthcare experience for its members. The platform allows
+Humana to consolidate patient data from various sources, providing a comprehensive view of each
+member's health journey. This holistic approach enables healthcare providers to deliver more targeted
+and effective care. Additionally, Salesforce's robust data security measures ensure that patient
+information is protected, fostering trust between Humana and its members. The implementation of
+Salesforce has also streamlined administrative processes, reducing the burden on healthcare providers
+and allowing them to focus more on patient care. Overall, Humana's partnership with Salesforce
+exemplifies how technology can be harnessed to build stronger patient relationships and drive better
+health outcomes. Full Story Here
+Community Health Choice (CHC), a local, non-profit, managed care organization in Texas, is working to
+help provide whole-person care to its members. By fully integrating Health Cloud (and eliminating the
+need for multiple systems and screens) they are able to get a 360-degree view of a member's health
+needs, non-clinical patient information, and communication preferences in one central location. This has
+allowed them to proactively address barriers to care, achieve state regulatory compliance, and ensure
+patients receive appropriate services regardless of their socio-economic circumstances. A 360-degree
+view has enabled Community Health Choice to:
+● CHC workers can identify non-clinical patient information, proactively address barriers to care,
+and ensure better health outcomes for its members
+● CHC offers members better self-service capabilities, including a self-service portal to easily
+address claims and common questions
+● CHC simplified first call resolution by incorporating intelligent automation to more effectively triage
+member questions and recommend next best answers
+● CHC engages members via text and email to offer a more connected member journey
+Fully integrating their existing IT systems with a connected platform gives CHC teams instant access to
+member information. This creates a more connected experience, easier agent transactions, reduced wait
+times, and faster call resolution. The creation of a single connected system reduces operating expenses
+and improves member engagement. CHC teams are more efficient due to no longer needing to use
+various systems and screens to find the information needed to serve each member. Digital transformation
+has made it possible for CHC to recover lost revenues through the implementation of digital shop, enroll
+and broker channels.
+Transcend, a company dedicated to providing high-quality education, has transformed its operations
+using Salesforce, particularly through the implementation of Agentforce. By leveraging Salesforce's
+Education Cloud and Agentforce, Transcend has streamlined its processes, enabling more effective
+collaboration and communication among its team members. Agentforce has been instrumental in
+managing data more efficiently, providing a unified view of operations and facilitating better
+decision-making. With the combined power of Salesforce and Agentforce, Transcend can track and
+analyze key metrics, ensuring they meet their goals and continuously improve their services. The
+integration of Agentforce has also enhanced Transcend's ability to engage with its community, fostering
+stronger relationships with educators, partners, and stakeholders. Overall, Salesforce and Agentforce
+27
+
+have empowered Transcend to scale its impact, driving innovation and excellence in education. Full
+Story Here
+UChicago Medicine (UCM), is on a mission to use AI to deliver healthcare on their patients’ terms. Yet
+while UCM leads in care innovation and clinical excellence, patient engagement fell short. Data was
+siloed in their EHR and other systems, limiting their ability to offer omnichannel experiences and
+personalized communications. Meanwhile, limited patient self-service options resulted in high access
+center call volumes, giving reps less time to focus on complex cases.
+UCM is going all-in on Data Cloud and Agentforce, starting with a bold goal: create 100 data-driven
+marketing segments in five months, all built on Data Cloud. New segments will enable personalized
+healthcare experiences at scale, with early success fueling UCM’s investment in Agentforce. Their first
+agent is being stood up in the access center to answer common patient questions like, “Where should I
+park?” or “Do you have a dermatology clinic?” By using AI to handle non-clinical FAQs, reps can focus
+on more complex patient needs. UCM is also part of the Agentforce Voice pilot, paving the way for
+seamless, omnichannel patient support across phone and web.
+University of California, San Francisco’s (UCSF) Medicine Service has transitioned from a legacy
+pager-based solution to CareWeb Messenger, a revolutionary approach to patient care team
+collaboration that both improves patient outcomes and lowers operational costs. At the core of this
+solution is Salesforce, which enables communication between UCSF Medical Center staff and
+MuleSoft’s Anypoint Platform™, which seamlessly connects on-premise, cloud and mobile applications
+in a highly available and HIPAA compliant environment. Using Salesforce and MuleSoft, UCSF Medical
+Center developed CareWeb Messenger, a next-generation messaging platform, which securely
+integrates patient information across key systems.
+In order to build CareWeb Messenger, UCSF Medical Center needed to connect the Epic EMR to
+non-clinical systems. They also needed a place to store and access patient information and messages
+being sent between UCSF Medical Center staff. They selected Salesforce to provide them with a single
+view of the communications about the patient and test results. Salesforce also enabled communication
+between patients and their attending doctors and nurses. This revolutionary approach to patient care
+messaging combines aspects of social networking sites like Twitter and Facebook, in a safe, secure,
+and HIPAA-compliant environment.
+CareWeb Messenger now works as a paging system for UCSF Medical Center staff across web and
+mobile platforms. CareWeb Messenger tags all messages to the sender, recipient and patient and
+stores this information, both text and images, under the patient account. Multiple threading and indexing
+of messages enable the care team to see, in one place, all messages that have been exchanged. Since
+Salesforce meets all patient health information standards, UCSF Medical Center is able to collaborate
+around this patient data in a HIPAA-compliant environment.
+In order to provide a single view of the patient, it was necessary to integrate data from a number of
+different systems, both on-premises and in the cloud. Anypoint Platform was able to meet UCSF’S
+Medical Center integration needs with a hybrid approach, connecting to on-premises and cloud
+applications, within UCSF’S Medical Center secure environment.
+“The solution we have developed together has made a tremendous difference to how our patient care
+teams interact with one another,” concluded Dr. Raman Khanna, MD, a faculty member in the UCSF
+Medical Center Department of Hospital Medicine and team lead for CareWeb.. “Increasing the flow of
+rich information in real time will ultimately improve patient outcomes.” Full Story Here
+The State of Colorado has significantly improved its ability to collaborate across health systems by
+leveraging MuleSoft's Anypoint Platform. Faced with the challenge of integrating disparate systems and
+data sources, Colorado's Office of eHealth Innovation (OeHI) turned to MuleSoft to create a more
+connected and efficient healthcare ecosystem. By using MuleSoft's Anypoint Platform, the state was
+able to integrate over 700 healthcare systems, including electronic health records (EHRs), public health
+databases, and other critical applications.
+28
+
+This integration has enabled seamless data sharing and communication between various health
+systems, improving the coordination of care and enhancing patient outcomes. Healthcare providers can
+now access comprehensive patient information in real-time, leading to more informed decision-making
+and personalized care. The platform's ability to connect different systems has also reduced
+administrative burdens, allowing healthcare professionals to focus more on patient care rather than
+managing data silos.
+Additionally, MuleSoft's Anypoint Platform has provided the State of Colorado with the flexibility to adapt
+to changing healthcare needs and regulatory requirements. The platform's scalability and ease of use
+have empowered the state to continuously innovate and improve its healthcare services. By breaking
+down data silos and enabling real-time information sharing, MuleSoft has played a pivotal role in
+transforming Colorado's healthcare landscape.
+MuleSoft has empowered the State of Colorado to create a more connected and collaborative
+healthcare ecosystem. The integration of various health systems has led to improved communication,
+better patient outcomes, and a more efficient use of resources. MuleSoft's Anypoint Platform has proven
+to be a critical tool in the state's efforts to enhance healthcare delivery and respond to public health
+challenges. Full Story Here
+29

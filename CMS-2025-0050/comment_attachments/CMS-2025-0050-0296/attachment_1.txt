@@ -1,9 +1,302 @@
-SUMMARY: Effective and responsible adoption of technology can empower patients to make better decisions for their health and well -being. This request for information (RFI) seeks input from the public regarding the market of digital health products for Medicare bene ficiaries as well as the state of data interoperability and broader health technology infrastructure. Responses to this RFI may be used to inform CMS and ASTP/ONC efforts to lead infrastructure progress to cultivate this market, increasing beneficiary acce ss to effective digital capabilities needed to make informed health decisions, and increasing data availability for all stakeholders contributing to health outcomes. 1. Patient Needs PC-1. What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? a. What are the top things you would like to be able to do for your or your loved ones' health that can be enabled by digital health products? I would like the ability to request a correction of my own or my loved ones' health information when we see something is incorrect or missing. I would also like a way to track the status of the request. Providers make decisions based on healthcare data. Incorrect or missing data in the EHR is a patient safety issue. I would like this ability to be provided directly within the PHR app where I am viewing the data. Each health system has its own methods for patients to report problems. It is confusing and frustrating. We need a consistent and easy method to report errors in our EHR. There is also usually no follow-up provided after a request for correction is submitted to a health system . Interoperability among different health systems is exacerbating this problem. Incorrect data in one system can quickly replicate to many other systems. A real example of what happens when records are wrong : My mother was admitted to a hospital in Oklahoma City for hip surgery. I gave the intake nurse all correct/complete information about her …including that she was not on any medications. When I called the hospital after her surgery to see how she was doing, the nurse said, “I was just on my way to administer her medications.” When I asked her what medications she was going to give her, she said it was the list they pulled down from another health system in Louisiana. I explained that I already told the intake nurse that she was on NO medications, and that the medications she was about to administer were from 2 years ago and had 
-been removed by her more recent provider (at another health system than the one she was querying ) due to adverse reactions to those medications . Had I not caught her in time, this could have been a very serious and deadly adverse event. I have attached a pdf of the HL7 FHIR project that was started years ago in the HL7 Patient Empowerment Workgroup. I was a project lead on this. We worked with several EHR vendors and HL7 workgro ups on this initiative. b. If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? In your response, please consider tasks that could be supported or facilitated by software solutions in the future. I would ask the assistant to check the records in my health organization s to make sure they are correct and complete. I would requ est a report of where data was missing from a health system and where data that I previously tagged as incorrect was s till listed in an EHR. Once I confirmed the accuracy of the report, I would ask the software to facilitate the request for corrections and monitor compliance with my request. PC-2. Do you have easy access to your own and all your loved ones' health information in one location (for example, in a single patient portal or another software system)? Yes, in MyLinks. a. If so, what are some examples of benefits it has provided? It has allowed me to monitor my parents ’ health (even when they are in the hospital). It also provides the ability for me to view longitudinal stats for labs that are important to their care (and my care). I really like the ability to get clinical notes. This is often more information than what my healthcare provider gives me. I have also found that FHIR will sometimes give me more information than the health organization’s portal. FHIR also gives me more timely information. I don’t like waiting to be contacted by a provider to learn about test results. I want to see the results as soon as they are available. There are many times when I don’t get a notification of results and the ability for me to proactively retrieve and view my results is important to me. b. If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? c. Were there particular data types, such as x -rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones' complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic 
-technology infrastructure)? X-rays are not usually shared with FHIR apps by the health system. Those would be nice to have. PC-3. Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? Yes, MyLinks. PC-4. What features are missing from apps you use or that you are aware of today? Ability to see x-rays. a. What apps should exist but do not yet? Why do you believe they do not exist yet? b. What set of workflows do you believe CMS is uniquely positioned to offer? Since CMS has a list of all the providers where a Medicare patient received care (based on the insurance claims), it would be nice to have those health org names and addresses listed in a single location on the Medicare portal . (Though the “claims” section does give some information, the provider listed is often not the provider that we are familiar with and the location seems to constantly say “Not listed”. ) Knowing where data is stored is a major issue. Medicare’s list will simplify the research. PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? There are three main barriers: • Patients/caregivers need a single list of all locations where data can be found . o Have a list of locations within the Medicare site where a patient has been seen. (Note: the health organization names need to match what the EHR vendor is giving the FHIR app builders . Those lists are currentl y messy and incorrect. ) • The requirement to sign up for multiple portals and remember each set of credentials is a huge barrier to the patient/caregiver’s success . o Consider providing another method for patients to authenticate to their health org. Perhaps allowing Medicare patients the option to use their Medicare ID as the portal’s username and having the health org send a code to the patient’s email address or a text to the patient’s phone number on file that allows the patient to enter a code instead of a password to get access. This method of sending a code for access is used in many use cases (Medicare.com is one of them). • So far, all EHR vendors are not supplying accurate data for the health organization names and locations to consumer FHIR applications . This causes the information that is displayed within the FHIR applications to patient s to be 
-wrong / incomplete/ missing. This discourages the use of digital health products. o Setting specific standards for data format and validation would enable patients to locate their health organization within FHIR applications. • The indifference EHR vendors have toward patient access when consumer FHIR application developers report an issue with their endpoint needs to be addressed. The EHR vendor blames the health org and the health org blames the vendor…no resolution . This frustrates patients and discourages the use of digital health products. There needs to be real consequences for non - compliance . a. What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if t here is a review process? What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary communications)? There should be a requirement that all apps display clearly their use of patient data (not buried deep in hidden links to privacy policy pages). A link directly to the data use section should be on the application ’s website. If a developer has any ties to a country outside of the US, they should be required to sign a government endorsed/enforced document stating they adhere to the laws of the US concerning data privacy. Easy access to data will always be the deciding factor for the success of digital health products. There is still a huge struggle for FHIR app developers to get correct and complete information from EHR vendors. This directly impacts patient/caregiver adoption. There needs to be an easier way to provide Consumer app developers with the ability to report non -compliance AND have that be visible to the public…just like BBB, Google, and Amazon reviews. Perhaps this will encourage compliance. b. What changes would enable timely access to high quality CMS and provider generated data on patients? PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? (answered in PC -5) 
-PC-7. If CMS were to collect real -world data on digital health products' impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? Perhaps a questionnaire on the Medicare website. 2. Data Access and Integration PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? a. What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, p rices)? Many things come in nicely. - Care plans are a bit of a mess…no apparent standard among EHR vendors. - Appointments don’t come in because they are not part of USCDI and EHR vendors have been very vocal about only giving consumers what is required by mandates. - Device data would be really nice, but the way it comes in to a FHIR app is not standardized . The biggest issue is that health orgs are not mandated to collect the information in the EHR. This is unfortunate because if an internal device is recalled, patients rarely know if the recall impacts them because they don’t have the information. (I asked the surgery department to give me the information for my mom’s hip replacement. They promised they would, then forgot and threw the box away. The information was entered into their surgery database and not s hared with the EHR. ) - Mandating that assisted living organizations keep records in a certified EHR. This would allow family member access via a portal or FHIR app . Assisted living organizations often keep sloppy records written on paper files that are not easily accessible to family members. It is very difficult to really know what is going on with a family member, even when visiting them regularly. Many families live far away from their elderly loved ones and have no idea what is going on. In my mother’s care facility, all the other residents were medicated and placed in fron t of the TV. (This facility charged $6,000+/month for care .) I refused to allow them to medicate my mother and often wondered how many family members knew how their elderly loved ones were being “cared for”. With the aging population, we need a way to protect this population by allowing loved ones the ability to monitor their care from a distance. b. What are specific sources, other than claims and clinical data, that would be of highest value, and why? It would be nice to have s tate Immunization records available via FHIR apps to provide parents with easy access to their children’s records. 
-c. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? The mandate of FHIR has opened many doors to opportunities . Patients are now able to gather and share their information with whomever they want. We now need the FDA to be fully FHIR-enabled to allow the submission of data to the FDA via FHIR. The challenges are: • Trust (are data holders sharing data according to my wishes) • Ease of gathering data (locating data holders, remembering multiple login credentials ) • Compliance of health organizations to provide the consumer facing FHIR API to FHIR applications. PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? All USCDI elements are important , but I would not feel comfortable with my insurance company having access to all this data. I believe the EHR and my own PHR that I choose should be the holder of clinical data. a. What difficulties are there in accessing or utilizing these data sources today? Claims data are often wrong. The purpose of claims data is for reimbursement. It is not uncommon for providers to include diagnoses or other information simply to get a test paid for. b. What suggestions do you have to improve the Blue Button 2.0 API experience? c. Is there non -CMS data that should be included in the API? PC-10. How is the Trusted Exchange Framework and Common AgreementTM (TEFCATM) currently helping to advance patient access to health information in the real world? a. Please provide specific examples. I really don’t see a benefit to patient access via TEFCA at this point. Though the process claims to let patients know where the ir data is located, this happen s only if all patient demographic elements are identified a s a 100% match. This restriction is due to privacy. Showing a patient that they may have data at a HIV clinic could be considered a HIPAA violation if the patient is not 100% matched to that clinic. After the list of possible locations is presented , the patient s still must log into each portal using their login credentials. I saw a presentation where 
-a user previously signed up for a n identity provider (I believe it was Clear) to theoretically make it easier to log into the different portals presented , but that is not realistic for the general population , and it would not solve the problem of the requirement for 100% ma tch. The issue of health organizations having to pay to participate in TEFCA is a huge barrier, especially for smaller or less funded organizations . This may widen the gap for patient access in lower income communities . “Pay to play” was a problem with HIEs and it has not been solved with TEFCA. Consumer health apps must pay tens of thousands of dollars to participate in TEFCA plus pay transaction fees , making it unattainable for most consumer apps which are either free or very low cost. This barrier will cause large health systems to have more ability to control patient access to their data. For this reason, I think TEFCA will be a detriment to consumer health apps. b. What changes would you suggest? Mandate that consumer apps cannot be charged to participate in TEFCA. c. What use cases could have a significant impact if implemented through TEFCA? I have been told that easy access to all their data in one spot is the perfect use case for patient access. My experience is that is not accurate : Data is limited to organizations who can afford to pay to participate , there is no accurate list of where a patient’s data is held, the requirement to log onto each healthcare’s portal, the huge costs for consumer health apps to join . d. What standards are you aware of that are currently working well to advance access and existing exchange purposes? FHIR standards are working well. We still have issues with compliance by health organizations and EHR vendors, but I am hoping that will get better. e. What standards are you aware of that are not currently in wide use, but could improve data access and integration? f. Are there redundant standards, protocols, or channels that should be consolidated? g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? 
-a. How valuable, available, and accurate do you find the data they share to be? Because I have sometimes received bills that were obviously for another patient, I was concerned that my HIE had my data blended with another patient…possibly putting me at risk if I were admitted to an ER who access ed incorrect data. When I called my HIE to learn how to access my data in the HIE to review it , I was told that I could not have access to it because of their rules (pay to play). I asked if they could mail me a copy…”no” was the response. I was told the only way for me to know what was in my HIE record was for someone to get on a call and read the information to me. As awkward as it was to have a male stranger read me the data in my record, I followed this course bec ause I had no alternati ve. (Yes…this really happened!) b. What changes would you suggest? Mandate that all HIEs have porta ls for patient access to their re cords and require them to have the FHIR API for patients to use any FHIR application to retrieve their data. c. Are there particular examples of high -performing HIE models that you believe should be propagated across markets? d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? PC-12. What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? Using third -party apps for appointment management. Allowing patients to requ est a correction to their data via third -party apps. Ability to retrieve data in HIE s via FHIR applications. a. Examples may include the following: (1) Binding cost estimates for pre -defined periods. (2) Viewing provider schedule availability. (3) Using third -party apps for appointment management. (4) Accessing patient -facing quality metrics. (5) Finding the right provider for specific healthcare needs. b. What use cases are possible today? c. What should be possible in the near future? 
-d. What would be very valuable but may be very hard to achieve? We have a FHIR IG for patient re quest for corrections. This would be very valuable in providing a consistent way for patients to request a correction. This IG was coordinated with several EHR vendors and the Argonaut Workgroup. It may be hard to implement, but will save lives (as well as lessen law suits due to chart errors that cause deaths/injuries ). 3. Information Blocking and Digital Identity PC-13. How can CMS encourage patients and caregivers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? Perhaps mandating that all health orgs place a link to the Information Blocking Portal on their home page and main page of their portal would have a dual effect: Make orgs aware that patients will know how to submit a complaint , and also provide patients with the education and links they need. What would be the impact? Would increasing reporting of complaints advance or negatively impact data exchange? I do not think increasing reporting will negatively impact data exchange. Hopefully, it will remove barriers by forcing compliance with regulations. PC-14. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 credentialing service providers (CSP)): a. What are the challenges today in getting patients/caregivers to sign up and use digital identity credentials? Education and trust are key. I was initially reluctant to sign up for Login.gov due to trust and concern th at it would be too cumbersome to set up. I have used it to log into several site s and really like it now. b. What could be the benefits to patients/caregivers if digital identity credentials were more widely used? Ease in getting their data from multi ple sites. c. What are the potential downsides? We need to make sure security is strong. d. How would encouraging the use of CSPs improve access to health information? e. What role should CMS/payers, providers, and app developers have in driving adoption? Links to education al resources (managed by CMS) could be provided on health org websites, within portals , and within third-party applications. f. How can CMS encourage patients to get digital identity credentials? Educate patients on the benefits and security. Make it easy. 
+SUMMARY:
+Effective and responsible adoption of technology can empower patients to make better
+decisions for their health and well-being. This request for information (RFI) seeks input
+from the public regarding the market of digital health products for Medicare beneficiaries
+as well as the state of data interoperability and broader health technology infrastructure.
+Responses to this RFI may be used to inform CMS and ASTP/ONC efforts to lead
+infrastructure progress to cultivate this market, increasing beneficiary access to effective
+digital capabilities needed to make informed health decisions, and increasing data
+availability for all stakeholders contributing to health outcomes.
+1. Patient Needs
+PC-1. What health management or care navigation apps would help you understand and
+manage your (or your loved ones) health needs, as well as the actions you should take?
+a. What are the top things you would like to be able to do for your or your loved ones'
+health that can be enabled by digital health products? I would like the ability to
+request a correction of my own or my loved ones' health information when we
+see something is incorrect or missing. I would also like a way to track the status
+of the request. Providers make decisions based on healthcare data. Incorrect or
+missing data in the EHR is a patient safety issue.
+I would like this ability to be provided directly within the PHR app where I am
+viewing the data. Each health system has its own methods for patients to report
+problems. It is confusing and frustrating. We need a consistent and easy
+method to report errors in our EHR. There is also usually no follow-up provided
+after a request for correction is submitted to a health system.
+Interoperability among different health systems is exacerbating this problem.
+Incorrect data in one system can quickly replicate to many other systems. A
+real example of what happens when records are wrong: My mother was
+admitted to a hospital in Oklahoma City for hip surgery. I gave the intake nurse
+all correct/complete information about her…including that she was not on any
+medications. When I called the hospital after her surgery to see how she was
+doing, the nurse said, “I was just on my way to administer her medications.”
+When I asked her what medications she was going to give her, she said it was
+the list they pulled down from another health system in Louisiana. I explained
+that I already told the intake nurse that she was on NO medications, and that
+the medications she was about to administer were from 2 years ago and had
+
+been removed by her more recent provider (at another health system than the
+one she was querying) due to adverse reactions to those medications. Had I not
+caught her in time, this could have been a very serious and deadly adverse
+event.
+I have attached a pdf of the HL7 FHIR project that was started years ago in the HL7
+Patient Empowerment Workgroup. I was a project lead on this. We worked with several
+EHR vendors and HL7 workgroups on this initiative.
+b. If you had a personal assistant to support your health needs, what are the top things you
+would ask them to help with? In your response, please consider tasks that could be
+supported or facilitated by software solutions in the future.
+I would ask the assistant to check the records in my health organizations to make sure
+they are correct and complete. I would request a report of where data was missing
+from a health system and where data that I previously tagged as incorrect was still
+listed in an EHR. Once I confirmed the accuracy of the report, I would ask the software
+to facilitate the request for corrections and monitor compliance with my request.
+PC-2. Do you have easy access to your own and all your loved ones' health information in
+one location (for example, in a single patient portal or another software system)? Yes, in
+MyLinks.
+a. If so, what are some examples of benefits it has provided? It has allowed me to monitor
+my parents’ health (even when they are in the hospital). It also provides the ability for
+me to view longitudinal stats for labs that are important to their care (and my care). I
+really like the ability to get clinical notes. This is often more information than what my
+healthcare provider gives me. I have also found that FHIR will sometimes give me
+more information than the health organization’s portal. FHIR also gives me more
+timely information. I don’t like waiting to be contacted by a provider to learn about test
+results. I want to see the results as soon as they are available. There are many times
+when I don’t get a notification of results and the ability for me to proactively retrieve
+and view my results is important to me.
+b. If not, in what contexts or for what workflows would it be most valuable to use one portal
+or system to access all such health information?
+c. Were there particular data types, such as x-rays or specific test results, that were
+unavailable? What are the obstacles to accessing your own or your loved ones' complete
+health information electronically and using it for managing health conditions or finding the
+best care (for example, limitations in functionality, user friendliness, or access to basic
+
+technology infrastructure)? X-rays are not usually shared with FHIR apps by the health
+system. Those would be nice to have.
+PC-3. Are you aware of health management, care navigation, or personal health record
+apps that would be useful to Medicare beneficiaries and their caregivers? Yes, MyLinks.
+PC-4. What features are missing from apps you use or that you are aware of today? Ability
+to see x-rays.
+a. What apps should exist but do not yet? Why do you believe they do not exist yet?
+b. What set of workflows do you believe CMS is uniquely positioned to offer? Since CMS
+has a list of all the providers where a Medicare patient received care (based on the
+insurance claims), it would be nice to have those health org names and addresses
+listed in a single location on the Medicare portal. (Though the “claims” section does
+give some information, the provider listed is often not the provider that we are familiar
+with and the location seems to constantly say “Not listed”.) Knowing where data is
+stored is a major issue. Medicare’s list will simplify the research.
+PC-5. What can CMS and its partners do to encourage patient and caregiver interest in
+these digital health products? There are three main barriers:
+• Patients/caregivers need a single list of all locations where data can be found.
+o Have a list of locations within the Medicare site where a patient has been
+seen. (Note: the health organization names need to match what the EHR
+vendor is giving the FHIR app builders. Those lists are currently messy
+and incorrect.)
+• The requirement to sign up for multiple portals and remember each set of
+credentials is a huge barrier to the patient/caregiver’s success.
+o Consider providing another method for patients to authenticate to their
+health org. Perhaps allowing Medicare patients the option to use their
+Medicare ID as the portal’s username and having the health org send a
+code to the patient’s email address or a text to the patient’s phone
+number on file that allows the patient to enter a code instead of a
+password to get access. This method of sending a code for access is
+used in many use cases (Medicare.com is one of them).
+• So far, all EHR vendors are not supplying accurate data for the health
+organization names and locations to consumer FHIR applications. This causes
+the information that is displayed within the FHIR applications to patients to be
+
+wrong / incomplete/ missing. This discourages the use of digital health
+products.
+o Setting specific standards for data format and validation would enable
+patients to locate their health organization within FHIR applications.
+• The indifference EHR vendors have toward patient access when consumer FHIR
+application developers report an issue with their endpoint needs to be
+addressed. The EHR vendor blames the health org and the health org blames
+the vendor…no resolution. This frustrates patients and discourages the use of
+digital health products. There needs to be real consequences for non-
+compliance.
+a. What role, if any, should CMS have in reviewing or approving digital health products on
+the basis of their efficacy, quality or impact or both on health outcomes (not approving in
+the sense of a coverage determination)? What criteria should be used if there is a review
+process? What technology solutions, policy changes, or program design changes can
+increase patient and caregiver adoption of digital health products (for example,
+enhancements to data access, reimbursement adjustments, or new beneficiary
+communications)? There should be a requirement that all apps display clearly their use
+of patient data (not buried deep in hidden links to privacy policy pages). A link directly
+to the data use section should be on the application’s website.
+If a developer has any ties to a country outside of the US, they should be required to
+sign a government endorsed/enforced document stating they adhere to the laws of the
+US concerning data privacy.
+Easy access to data will always be the deciding factor for the success of digital health
+products. There is still a huge struggle for FHIR app developers to get correct and
+complete information from EHR vendors. This directly impacts patient/caregiver
+adoption. There needs to be an easier way to provide Consumer app developers with
+the ability to report non-compliance AND have that be visible to the public…just like
+BBB, Google, and Amazon reviews. Perhaps this will encourage compliance.
+b. What changes would enable timely access to high quality CMS and provider generated
+data on patients?
+PC-6. What features are most important to make digital health products accessible and
+easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior
+experience using digital tools and services? (answered in PC-5)
+
+PC-7. If CMS were to collect real-world data on digital health products' impact on health
+outcomes and related costs once they are released into the market, what would be the
+best means of doing so? Perhaps a questionnaire on the Medicare website.
+2. Data Access and Integration
+PC-8. In your experience, what health data is readily available and valuable to patients or
+their caregivers or both?
+a. What data is valuable, but hard for patients and caregivers, or app developers and other
+technical vendors, to access for appropriate and valuable use (for example, claims data,
+clinical data, encounter notes, operative reports, appointment schedules, prices)? Many
+things come in nicely.
+- Care plans are a bit of a mess…no apparent standard among EHR vendors.
+- Appointments don’t come in because they are not part of USCDI and EHR vendors
+have been very vocal about only giving consumers what is required by mandates.
+- Device data would be really nice, but the way it comes into a FHIR app is not
+standardized. The biggest issue is that health orgs are not mandated to collect the
+information in the EHR. This is unfortunate because if an internal device is recalled,
+patients rarely know if the recall impacts them because they don’t have the
+information. (I asked the surgery department to give me the information for my mom’s
+hip replacement. They promised they would, then forgot and threw the box away. The
+information was entered into their surgery database and not shared with the EHR.)
+- Mandating that assisted living organizations keep records in a certified EHR. This
+would allow family member access via a portal or FHIR app. Assisted living
+organizations often keep sloppy records written on paper files that are not easily
+accessible to family members. It is very difficult to really know what is going on with a
+family member, even when visiting them regularly. Many families live far away from
+their elderly loved ones and have no idea what is going on. In my mother’s care facility,
+all the other residents were medicated and placed in front of the TV. (This facility
+charged $6,000+/month for care.) I refused to allow them to medicate my mother and
+often wondered how many family members knew how their elderly loved ones were
+being “cared for”. With the aging population, we need a way to protect this population
+by allowing loved ones the ability to monitor their care from a distance.
+b. What are specific sources, other than claims and clinical data, that would be of highest
+value, and why? It would be nice to have state Immunization records available via FHIR
+apps to provide parents with easy access to their children’s records.
+
+c. What specific opportunities and challenges exist to improve accessibility,
+interoperability and integration of clinical data from different sources to enable more
+meaningful clinical research and generation of actionable evidence?
+The mandate of FHIR has opened many doors to opportunities. Patients are now able
+to gather and share their information with whomever they want. We now need the FDA
+to be fully FHIR-enabled to allow the submission of data to the FDA via FHIR.
+The challenges are:
+• Trust (are data holders sharing data according to my wishes)
+• Ease of gathering data (locating data holders, remembering multiple login
+credentials)
+• Compliance of health organizations to provide the consumer facing FHIR API to
+FHIR applications.
+PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic,
+Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do
+developers view as most valuable for inclusion in the API to enable more useful digital
+products for patients and caretakers? All USCDI elements are important, but I would not
+feel comfortable with my insurance company having access to all this data. I believe
+the EHR and my own PHR that I choose should be the holder of clinical data.
+a. What difficulties are there in accessing or utilizing these data sources today? Claims
+data are often wrong. The purpose of claims data is for reimbursement. It is not
+uncommon for providers to include diagnoses or other information simply to get a test
+paid for.
+b. What suggestions do you have to improve the Blue Button 2.0 API experience?
+c. Is there non-CMS data that should be included in the API?
+PC-10. How is the Trusted Exchange Framework and Common AgreementTM (TEFCATM)
+currently helping to advance patient access to health information in the real world?
+a. Please provide specific examples. I really don’t see a benefit to patient access via
+TEFCA at this point. Though the process claims to let patients know where their data is
+located, this happens only if all patient demographic elements are identified as a
+100% match. This restriction is due to privacy. Showing a patient that they may have
+data at a HIV clinic could be considered a HIPAA violation if the patient is not 100%
+matched to that clinic. After the list of possible locations is presented, the patients
+still must log into each portal using their login credentials. I saw a presentation where
+
+a user previously signed up for an identity provider (I believe it was Clear) to
+theoretically make it easier to log into the different portals presented, but that is not
+realistic for the general population, and it would not solve the problem of the
+requirement for 100% match.
+The issue of health organizations having to pay to participate in TEFCA is a huge
+barrier, especially for smaller or less funded organizations. This may widen the gap for
+patient access in lower income communities. “Pay to play” was a problem with HIEs
+and it has not been solved with TEFCA.
+Consumer health apps must pay tens of thousands of dollars to participate in TEFCA
+plus pay transaction fees, making it unattainable for most consumer apps which are
+either free or very low cost. This barrier will cause large health systems to have more
+ability to control patient access to their data. For this reason, I think TEFCA will be a
+detriment to consumer health apps.
+b. What changes would you suggest? Mandate that consumer apps cannot be charged to
+participate in TEFCA.
+c. What use cases could have a significant impact if implemented through TEFCA? I have
+been told that easy access to all their data in one spot is the perfect use case for
+patient access. My experience is that is not accurate: Data is limited to organizations
+who can afford to pay to participate, there is no accurate list of where a patient’s data
+is held, the requirement to log onto each healthcare’s portal, the huge costs for
+consumer health apps to join.
+d. What standards are you aware of that are currently working well to advance access and
+existing exchange purposes? FHIR standards are working well. We still have issues with
+compliance by health organizations and EHR vendors, but I am hoping that will get
+better.
+e. What standards are you aware of that are not currently in wide use, but could improve
+data access and integration?
+f. Are there redundant standards, protocols, or channels that should be consolidated?
+g. Are there adequate alternatives outside of TEFCA for achieving widespread patient
+access to their health information?
+PC-11. How are health information exchanges (HIEs) currently helping to advance patient
+access to health information in the real world?
+
+a. How valuable, available, and accurate do you find the data they share to be? Because I
+have sometimes received bills that were obviously for another patient, I was
+concerned that my HIE had my data blended with another patient…possibly putting
+me at risk if I were admitted to an ER who accessed incorrect data. When I called my
+HIE to learn how to access my data in the HIE to review it, I was told that I could not
+have access to it because of their rules (pay to play). I asked if they could mail me a
+copy…”no” was the response. I was told the only way for me to know what was in my
+HIE record was for someone to get on a call and read the information to me. As
+awkward as it was to have a male stranger read me the data in my record, I followed
+this course because I had no alternative. (Yes…this really happened!)
+b. What changes would you suggest? Mandate that all HIEs have portals for patient
+access to their records and require them to have the FHIR API for patients to use any
+FHIR application to retrieve their data.
+c. Are there particular examples of high-performing HIE models that you believe should be
+propagated across markets?
+d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and
+broader frameworks for data exchange (for example, vendor health information networks,
+TEFCA, private exchange networks, etc.)?
+PC-12. What are the most valuable operational health data use cases for patients and
+caregivers that, if addressed, would create more efficient care navigation or eliminate
+barriers to competition among providers or both? Using third-party apps for appointment
+management. Allowing patients to request a correction to their data via third-party
+apps. Ability to retrieve data in HIEs via FHIR applications.
+a. Examples may include the following:
+(1) Binding cost estimates for pre-defined periods.
+(2) Viewing provider schedule availability.
+(3) Using third-party apps for appointment management.
+(4) Accessing patient-facing quality metrics.
+(5) Finding the right provider for specific healthcare needs.
+b. What use cases are possible today?
+c. What should be possible in the near future?
+
+d. What would be very valuable but may be very hard to achieve? We have a FHIR IG for
+patient request for corrections. This would be very valuable in providing a consistent
+way for patients to request a correction. This IG was coordinated with several EHR
+vendors and the Argonaut Workgroup. It may be hard to implement, but will save lives
+(as well as lessen law suits due to chart errors that cause deaths/injuries).
+3. Information Blocking and Digital Identity
+PC-13. How can CMS encourage patients and caregivers to submit information blocking
+complaints to ASTP/ONC's Information Blocking Portal? Perhaps mandating that all
+health orgs place a link to the Information Blocking Portal on their home page and
+main page of their portal would have a dual effect: Make orgs aware that patients will
+know how to submit a complaint, and also provide patients with the education and
+links they need. What would be the impact? Would increasing reporting of complaints
+advance or negatively impact data exchange? I do not think increasing reporting will
+negatively impact data exchange. Hopefully, it will remove barriers by forcing
+compliance with regulations.
+PC-14. Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 credentialing service providers (CSP)):
+a. What are the challenges today in getting patients/caregivers to sign up and use digital
+identity credentials? Education and trust are key. I was initially reluctant to sign up for
+Login.gov due to trust and concern that it would be too cumbersome to set up. I have
+used it to log into several sites and really like it now.
+b. What could be the benefits to patients/caregivers if digital identity credentials were more
+widely used? Ease in getting their data from multiple sites.
+c. What are the potential downsides? We need to make sure security is strong.
+d. How would encouraging the use of CSPs improve access to health information?
+e. What role should CMS/payers, providers, and app developers have in driving adoption?
+Links to educational resources (managed by CMS) could be provided on health org
+websites, within portals, and within third-party applications.
+f. How can CMS encourage patients to get digital identity credentials? Educate patients on
+the benefits and security. Make it easy.

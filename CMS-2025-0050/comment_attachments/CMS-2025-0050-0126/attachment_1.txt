@@ -1,5 +1,141 @@
-Centers for Medicare & Medicaid Services (CMS) Office of the National Coordinator for Health Information Technology (ONC) Docket No.: CMS-0042-NC – Request for Information: Health Technology Ecosystem Cover Letter xCures, Inc. appreciates the opportunity to respond to CMS and ONC’s Request for Information on strengthening the nation’s health-technology ecosystem. We are an AI-first health-data Software-as-a-Service company that converts structured data, free-text clinical notes, scanned documents, radiology, and pathology images into compute-ready FHIR++ outputs in near real time. To date, we have normalized more than 36 million clinical documents originating from over 327,000 care sites nationwide, supporting clinical care, patient access, clinical decision support, value-based payment programs, and program-integrity initiatives. Many big ideas in healthcare interoperability are no longer aspirational; they are fully achievable with today’s production-ready technologies. We now have the tools to consolidate and transfer a patient’s complete medical record in real time, ensuring that new providers can deliver faster, better-informed, and safer care from day one. These same records can serve as the authoritative source for claims adjudication at the individual level, enabling fraud detection and eliminating vast administrative waste, producing immediate financial savings across the system. A national clearinghouse for EHR data would allow us to strategically optimize healthcare resources, guiding dollars toward what works and away from duplicative or ineffective interventions. Critically, this transformation does not require futuristic infrastructure or sweeping regulatory overhaul; it can be implemented today with minimal disruption. The long-term vision is clear: a learning health system that pays for what delivers results, not just what gets used, the true promise of value-based care and performance-driven payment. Primary contact: Mika Newton Chief Executive Officer 
-Executive Summary • The majority of clinically relevant facts, including cancer staging, biomarkers, social-risk factors, and imaging findings, remain hidden in unstructured notes and embedded image files. Unlocking that data is a prerequisite for quality care, accurate risk adjustment, timely gap closure, addressing health disparities, and detection of fraud or waste, which are all critical components of a modern, equitable healthcare system. • AI-driven data extraction is production-ready, supporting data modernization. We have published validation for AI-based extraction yielding very high accuracy for clinically relevant details, yielding up to a five-fold information gain compared with document-level C-CDA alone and even larger improvements over current FHIR data exchange. Our customers are using these enhancements to close care gaps and fix the data-quality gap that hinders value-based contracts. • CMS should treat computable, patient-level data, not just the envelope documents, as the default payload for TEFCA, Blue Button, and Bulk-FHIR transactions to effectively drive health equity, support value-based care, and enhance program integrity. 1. Patient & Caregiver Needs – PC-8 and PC-9 Comment Beneficiaries, especially in underserved populations, still lack ready access to unstructured clinical notes and diagnostic images, even when their payers already hold these files for prior authorization or payment review. Ensuring equitable access to complete medical records is crucial for addressing health disparities. Recommendations • Require Blue Button endpoints to expose either a Bulk-FHIR ImagingStudy & DiagnosticReport bundle or a pointer to a TEFCA-connected image node. This will give patients parity with providers who obtain images via NwHIN/IHE workflows and thus improve health equity. • Support creation of a public test suite that scores vendors’ note- and image-extraction accuracy against a reference standard, establishing a “nutrition label” for data quality similar to existing interoperability test harnesses. 2. Data Access & Integration – PC-10 and PC-11 Comment Current limitations in data exchange, where vital clinical information like images and detailed notes are often excluded, hinder our ability to drive health equity, accurately implement value-based care, and maintain program integrity. Large-scale data exchange often excludes PDFs and images, leaving 
-payer and provider analytics blind to crucial context such as staging or social determinants. Recommendations • Define an optional “Imaging/Radiomics Exchange” capability in future TEFCA QTF releases, standardizing DICOM-web endpoints to unlock AI-ready images for quality, safety, and program-integrity analytics. • Introduce a delta-token parameter for Bulk-FHIR exports so exchanges can return only newly added or changed resources, reducing redundant payloads, improving timeliness, and supporting efficient data modernization. 3. Provider-Centric Digital Health Applications – PR-4 and PR-5 Comment Clinicians spend significant time opening outside records that arrive as static PDFs, time that does not directly benefit patient care and hinders efficiency. This adds to provider burden and can affect the delivery of timely care. Recommendations • Certify a FHIR Task-based Prior Authorization Status API that contains links to normalized documentation bundles, eliminating fax-based chart chases. • Incentivize note-level provenance tags in EHR export certification so that downstream CDS engines can surface only verified facts and preserve an auditable chain of custody. 4. Technology Developers – TD-13 and TD-15 Comment Current Bulk-FHIR job flows re-export entire document sets, including unstructured attachments, on every request, wasting bandwidth and compute cycles and hindering the modernization of data sharing mechanisms. Recommendations • Extend the Bulk-FHIR specification with an incremental refresh mechanism (delta token or web-subscription) that returns only resources changed since the previous export, improving efficiency and decreasing latency for real-time applications. 
-5. Technology Developers - TD-18.b Comment A significant disparity exists in how Healthcare Providers (HCPs) respond within TEFCA, depending on the purpose of the data exchange. Treatment-related inquiries receive significantly higher response rates than Individual Access Services (IAS) requests, which remain minimal. While current CMS penalties for information blocking are comprehensive, they lack specific focus on motivating prompt, proactive responses to IAS queries. Recommendation • To further enhance data exchange and complement existing information blocking policies, we propose the establishment of targeted Medicare reimbursement penalty reductions separately tied to HCP responsiveness to IAS queries. Such a focused mechanism would provide a clear impetus for HCPs to engage with IAS requests, thereby significantly improving the availability of data crucial for research, comprehensive care coordination, and the overall advancement of the health technology ecosystem outlined in this RFI. 6. Value-Based Care Organizations – VB-1 and VB-4 Comment Value-based contracts can only succeed when they are supported by comprehensive patient data. Accurate risk stratification and quality measurement depend on having complete patient information. Value-based contracts depend on timely, high-fidelity data to stratify risk, close quality gaps, and confirm that billed services match documented care. Recommendations • Tie shared-savings reconciliation to the percentage of encounters delivered with complete multimodal documentation. e.g., require that at least 90 percent of qualifying encounters include both note and key imaging elements in FHIR format. • Encourage a CMS-sponsored pilot that cross-checks real-time chart extracts against submitted claims and encounter files, with early studies indicating savings of $11–$17 per member per month in avoidable over-payments, while also reinforcing program integrity. (CMS HFPP Biennial Report 2023 and HHS OIG OEI-03-23-00380, 2024) Overarching Policy Recommendations 1. Define “complete electronic health information” to include unstructured text and imaging objects, ensuring that TEFCA and future CEHRT rules go beyond document envelopes, supporting health equity and effective value-based care. 
-2. Publish an open performance benchmark for note and image extraction so vendors compete on accuracy and latency rather than merely on transport compliance, facilitating data modernization. 3. Mandate incremental (delta-friendly) Bulk-FHIR exports to eliminate redundant payloads and support real-time analytics, streamlining data access and integration. 4. Launch a Fraud & Waste pilot leveraging multimodal data streams to verify that billed services align with documented care, strengthening program integrity across Medicare Advantage and other CMS programs. 5. Establight targeted Medicare reimbursement penalty reductions for information blocking separately tied to HCP responsiveness to IAS queries to ensure equitable patient access to their healthcare data. Closing xCures stands ready to support CMS and ONC in demonstration projects that highlight how real-time, multimodal, AI-ready data can expand beneficiary access, improve clinician usability, boost value-based performance, enhance program integrity, and drive health equity. We welcome further discussion and the opportunity to provide technical reference implementations. Respectfully submitted, Mika Newton Chief Executive Officer xCures, Inc. 
+Centers for Medicare & Medicaid Services (CMS)
+Office of the National Coordinator for Health Information Technology (ONC)
+Docket No.: CMS-0042-NC – Request for Information: Health Technology Ecosystem
+Cover Letter
+xCures, Inc. appreciates the opportunity to respond to CMS and ONC’s Request for Information on
+strengthening the nation’s health-technology ecosystem. We are an AI-first health-data
+Software-as-a-Service company that converts structured data, free-text clinical notes, scanned
+documents, radiology, and pathology images into compute-ready FHIR++ outputs in near real time.
+To date, we have normalized more than 36 million clinical documents originating from over 327,000
+care sites nationwide, supporting clinical care, patient access, clinical decision support, value-based
+payment programs, and program-integrity initiatives.
+Many big ideas in healthcare interoperability are no longer aspirational; they are fully achievable
+with today’s production-ready technologies. We now have the tools to consolidate and transfer a
+patient’s complete medical record in real time, ensuring that new providers can deliver faster,
+better-informed, and safer care from day one. These same records can serve as the authoritative
+source for claims adjudication at the individual level, enabling fraud detection and eliminating vast
+administrative waste, producing immediate financial savings across the system. A national
+clearinghouse for EHR data would allow us to strategically optimize healthcare resources, guiding
+dollars toward what works and away from duplicative or ineffective interventions. Critically, this
+transformation does not require futuristic infrastructure or sweeping regulatory overhaul; it can be
+implemented today with minimal disruption. The long-term vision is clear: a learning health system
+that pays for what delivers results, not just what gets used, the true promise of value-based care and
+performance-driven payment.
+Primary contact:
+Mika Newton
+Chief Executive Officer
+
+Executive Summary
+• The majority of clinically relevant facts, including cancer staging, biomarkers, social-risk factors,
+and imaging findings, remain hidden in unstructured notes and embedded image files. Unlocking
+that data is a prerequisite for quality care, accurate risk adjustment, timely gap closure, addressing
+health disparities, and detection of fraud or waste, which are all critical components of a modern,
+equitable healthcare system.
+• AI-driven data extraction is production-ready, supporting data modernization. We have published
+validation for AI-based extraction yielding very high accuracy for clinically relevant details, yielding
+up to a five-fold information gain compared with document-level C-CDA alone and even larger
+improvements over current FHIR data exchange. Our customers are using these enhancements to
+close care gaps and fix the data-quality gap that hinders value-based contracts.
+• CMS should treat computable, patient-level data, not just the envelope documents, as the default
+payload for TEFCA, Blue Button, and Bulk-FHIR transactions to effectively drive health equity,
+support value-based care, and enhance program integrity.
+1. Patient & Caregiver Needs – PC-8 and PC-9
+Comment
+Beneficiaries, especially in underserved populations, still lack ready access to unstructured clinical
+notes and diagnostic images, even when their payers already hold these files for prior authorization
+or payment review. Ensuring equitable access to complete medical records is crucial for addressing
+health disparities.
+Recommendations
+• Require Blue Button endpoints to expose either a Bulk-FHIR ImagingStudy & DiagnosticReport
+bundle or a pointer to a TEFCA-connected image node. This will give patients parity with providers
+who obtain images via NwHIN/IHE workflows and thus improve health equity.
+• Support creation of a public test suite that scores vendors’ note- and image-extraction accuracy
+against a reference standard, establishing a “nutrition label” for data quality similar to existing
+interoperability test harnesses.
+2. Data Access & Integration – PC-10 and PC-11
+Comment
+Current limitations in data exchange, where vital clinical information like images and detailed notes
+are often excluded, hinder our ability to drive health equity, accurately implement value-based care,
+and maintain program integrity. Large-scale data exchange often excludes PDFs and images, leaving
+
+payer and provider analytics blind to crucial context such as staging or social determinants.
+Recommendations
+• Define an optional “Imaging/Radiomics Exchange” capability in future TEFCA QTF releases,
+standardizing DICOM-web endpoints to unlock AI-ready images for quality, safety, and
+program-integrity analytics.
+• Introduce a delta-token parameter for Bulk-FHIR exports so exchanges can return only newly
+added or changed resources, reducing redundant payloads, improving timeliness, and supporting
+efficient data modernization.
+3. Provider-Centric Digital Health Applications – PR-4 and PR-5
+Comment
+Clinicians spend significant time opening outside records that arrive as static PDFs, time that does
+not directly benefit patient care and hinders efficiency. This adds to provider burden and can affect
+the delivery of timely care.
+Recommendations
+• Certify a FHIR Task-based Prior Authorization Status API that contains links to normalized
+documentation bundles, eliminating fax-based chart chases.
+• Incentivize note-level provenance tags in EHR export certification so that downstream CDS
+engines can surface only verified facts and preserve an auditable chain of custody.
+4. Technology Developers – TD-13 and TD-15
+Comment
+Current Bulk-FHIR job flows re-export entire document sets, including unstructured attachments,
+on every request, wasting bandwidth and compute cycles and hindering the modernization of data
+sharing mechanisms.
+Recommendations
+• Extend the Bulk-FHIR specification with an incremental refresh mechanism (delta token or
+web-subscription) that returns only resources changed since the previous export, improving
+efficiency and decreasing latency for real-time applications.
+
+5. Technology Developers - TD-18.b
+Comment
+A significant disparity exists in how Healthcare Providers (HCPs) respond within TEFCA, depending
+on the purpose of the data exchange. Treatment-related inquiries receive significantly higher
+response rates than Individual Access Services (IAS) requests, which remain minimal. While current
+CMS penalties for information blocking are comprehensive, they lack specific focus on motivating
+prompt, proactive responses to IAS queries.
+Recommendation
+• To further enhance data exchange and complement existing information blocking policies, we
+propose the establishment of targeted Medicare reimbursement penalty reductions separately tied
+to HCP responsiveness to IAS queries. Such a focused mechanism would provide a clear impetus for
+HCPs to engage with IAS requests, thereby significantly improving the availability of data crucial for
+research, comprehensive care coordination, and the overall advancement of the health technology
+ecosystem outlined in this RFI.
+6. Value-Based Care Organizations – VB-1 and VB-4
+Comment
+Value-based contracts can only succeed when they are supported by comprehensive patient data.
+Accurate risk stratification and quality measurement depend on having complete patient
+information. Value-based contracts depend on timely, high-fidelity data to stratify risk, close quality
+gaps, and confirm that billed services match documented care.
+Recommendations
+• Tie shared-savings reconciliation to the percentage of encounters delivered with complete
+multimodal documentation. e.g., require that at least 90 percent of qualifying encounters include
+both note and key imaging elements in FHIR format.
+• Encourage a CMS-sponsored pilot that cross-checks real-time chart extracts against submitted
+claims and encounter files, with early studies indicating savings of $11–$17 per member per month
+in avoidable over-payments, while also reinforcing program integrity. (CMS HFPP Biennial Report
+2023 and HHS OIG OEI-03-23-00380, 2024)
+Overarching Policy Recommendations
+1. Define “complete electronic health information” to include unstructured text and imaging
+objects, ensuring that TEFCA and future CEHRT rules go beyond document envelopes,
+supporting health equity and effective value-based care.
+
+2. Publish an open performance benchmark for note and image extraction so vendors compete
+on accuracy and latency rather than merely on transport compliance, facilitating data
+modernization.
+3. Mandate incremental (delta-friendly) Bulk-FHIR exports to eliminate redundant payloads
+and support real-time analytics, streamlining data access and integration.
+4. Launch a Fraud & Waste pilot leveraging multimodal data streams to verify that billed
+services align with documented care, strengthening program integrity across Medicare
+Advantage and other CMS programs.
+5. Establight targeted Medicare reimbursement penalty reductions for information blocking
+separately tied to HCP responsiveness to IAS queries to ensure equitable patient access to
+their healthcare data.
+Closing
+xCures stands ready to support CMS and ONC in demonstration projects that highlight how
+real-time, multimodal, AI-ready data can expand beneficiary access, improve clinician usability,
+boost value-based performance, enhance program integrity, and drive health equity. We welcome
+further discussion and the opportunity to provide technical reference implementations.
+Respectfully submitted,
+Mika Newton
+Chief Execu tive Officer
+xCures, Inc.

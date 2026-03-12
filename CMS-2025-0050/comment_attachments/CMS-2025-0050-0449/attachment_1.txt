@@ -1,9 +1,345 @@
- June 16, 2025 Firely USA Inc. 228 East 45th Street, Suite 9E New York, NY 10017 USA Firely B.V. Westerdok 442 1013 BH Amsterdam The Netherlands +1 (857) 263 -3112 +31 20 2461 241 info@fire.ly www.fire.ly IBAN NL85 ABNA 0626400198 BICCODE: ABNANL2A VAT no NL855366151B01 Department of Health and Human Services Centers for Medicare & Medicaid Services ASTP / ONC Attention: CMS-0042 -NC Mail Stop C4 -26-05 7500 Security Boulevard Baltimore, MD 21244 -1850 Reference: CMS -0042-NC Subject: CMS -0042 -NC - Comments on the Health Technology Ecosystem Dear CMS & AST P/ONC : Thank you for the opportunity to comment on the Request for Information regarding the Health Technology Ecosystem . On behalf of Firely USA Inc ., we strongly support CMS and ASTP/ONC’s vision to advance a patient - centered, digitally enabled healthcare system. We are pleased to offer insights and recommendations to help drive progress in data interoperability, patient access, and the equitable adopti on of digital health technologies across the Medicare ecosystem . Firely has been deeply engaged in the development and promotion of HL7® Fast Healthcare Interoperability Resources (FHIR®) since its inception. Our Chief Technology Officer, Ewout Kramer, has been a key contributor to HL7 since 2011, helping shape the global FHIR community. Over the past 13 years, Firely has become a leading international entity within the FHIR ecosystem, and proudly host s HL7 FHIR DevDays, the world’s largest FHIR -focused event. Our team is actively involved in HL7 FHIR boards and committe es globally. As a dedicated group of software engineers, support specialists, and FHIR® consultants, we focus exclusively on advancing health interoperability. With offices in New York, NY, and Amsterdam, the Netherland s, and a distributed workforce across the U.S. , we serve a broad range of clients including payers, providers, state health programs, and health tech vendors. Our solutions include the Certified Health IT 170.315(g)(10) Firely Server, a FHIR SDK, a Clinical Quality Language (CQL) SDK, authoring and publishing tools for FHIR Implementation Guides, and more. Many of our tools, including all SDKs, are open source and freely available to the FHIR community, underscoring our commitment to collaborative, interoperable, and standards -based hea lth IT. We view this RFI as a significant step toward modernizing how patients, caregivers, providers, and technology developers interact with health data. This initiative aligns closely with our mission and values. Firely USA Inc. is committed to supporting CMS and ASTP/ONC in building a digital health ecosystem that is open, secure, and truly interoperable. Kind regards, Richard Almeida Vice President, Product Strategy & Compliance 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 2/9 Introduction While all topics addressed in this RFI are important, Firely USA Inc. has chosen to focus on those areas where, as an HL7 FHIR -focused health technology vendor, we are best positioned to contribute meaningful insights and advance progress. In that spirit, we would like to highlight a key consideration that is woven throughout our responses but deserves particular attention. We believe it is best addressed in a dedicated section to provide clarity and context: Intersection of Regulation and the Evolving HL7 FHIR Implementation Guide Firely recognizes and supports CMS and ONC/ASTP’s efforts to establish a baseline version for FHIR Implementation Guides (IGs). We also appreciate that, in prior rulemaking such as CMS -0057 -F, CMS has strategically referenced certain IGs as “strongly recom mended,” signaling their importance without mandating adoption before sufficient real -world maturity. As HL7 and the broader FHIR community evolve these IGs, updates occur frequently to address newly identified use cases, correct inconsistencies, and streamline interoperability by reducing redundancy across IGs. While this evolution can sometimes result in breaking changes, in most cases these refinements enhance the IG’s goals and usability in real -world implementations. We acknowledge the Standards Advancement Process (SVAP) as an important mechanism employed by ONC to manage this evolution while maintaining regulatory consistency. However, the annual cadence of SVAP updates can lag behind the pace of innovation in the FHIR ecosystem. As a result, implementer s, particularly those aligned with rapidly changing IG s, may find themselves constrained by outdated regulatory references or limited flexibility in certification. The transition toward fully interoperable health data exchange is both necessary and aspirational. Still, it comes with inevitable growing pains for vendors, providers, and payers alike. While we expect to soon enter the stabilized period , as the ecosystem matures flexibility during this transitional phase is essential. Prematurely locking in specific IG versions could stifle innovation and increase implementation burden. Firely does not propose a singular solution to this challenge, as the strength of the FHIR movement lies in its collaborative, community -driven nature. Instead, we respectfully recommend that CMS and ONC continue to work closely with HL7, Da Vinci, and oth er Accelerators to explore sustainable paths forward. To that end, we propose the following guiding principles: • Continue to recommend, but not require, a specific IG version during early phases of implementation, especially when an IG is undergoing rapid iteration. • Adopt a modular certification approach that focuses on core FHIR API capabilities, rather than requiring complete adherence to an entire IG, particularly where IGs include optional or situational elements. • Allow for contextual flexibility in certification criteria, recognizing the diversity of EHR system architectures and use cases across different healthcare stakeholders. • Consider increasing the frequency or responsiveness of SVAP updates or exploring complementary processes to keep pace with the FHIR community's development cycles. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 3/9 Responses to RFI Questions: C. Providers PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization's systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries o r bulk transactions, and any constraints: a. Patient Access API. b. Standardized API for Patient and Population Services. c. Provider Directory API. d. Provider Access API. e. Payer -to-Payer API. f. Prior Authorization API. Firely works with both providers and payers who use our software to meet FHIR API requirements across these domains. Our FHIR server supports all relevant Implementation Guides referenced in CMS -9115 -F and CMS - 0057 -F and is certified under §170.315(g)(10). Across these APIs, we support both individual FHIR queries and bulk data access (Flat FHIR/Bulk Data IG) depending on the client’s use case and data exchange needs. Implementations var y. Some are direct integrations, others go through intermediaries. Firely also participates in the HL7 Da Vinci Accelerator and contributes feedback to evolving Implementation Guides, particularly those related to provider access and prior authorization. We continue to collaborate closely with our customers and the broader FHIR community to refine transaction models and ensure real -world alignment with these API capabilities. g. Bulk FHIR —Do you support Group ID -based access filtering for population -specific queries? Yes, Firely Server fully supports Group ID -based access filtering for population -specific queries in accordance with the FHIR Bulk Data Export (Flat FHIR) specification. We require that each Group contains an explicit patient list. We anticipate and support future advancements where Groups for quality measure cohorts, research study enrollees, and public health surveillance populations are defined using Clinical Quality Language (CQL). Standardizing these definitions would greatly en hance interoperability, reproducibility, and automation in population -based data exchange. We encourage and endorse ongoing efforts to establish such standards across the FHIR ecosystem. h. SMART on FHIR —Do you support both EHR -launched and standalone app access? What does the process for application deployment entail? Yes. Firely supports the backend functionality required for SMART on FHIR, enabling both EHR -launched and standalone application access to work seamlessly with our server. Customers are free to integrate any SMART - compliant application of their choice. We are currently collaborating with our customers to design streamlined functionality for registering and pre -approving applications for deployment with their licensed Firely Server. i. CDS Hooks (for clinical decision support integrations). We support the use of CDS Hooks as part of the CMS -0057 Prior Authorization process to enable real -time, standards -based clinical decision support at the point of care. To facilitate broader adoption and reliable implementation, we strongly encourage the i ntegration of generic CDS Hooks testing capabilities into the Inferno testing platform. This would help standardize validation workflows, promote vendor alignment, and accelerate readiness across the ecosystem. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 4/9 E. Technology Vendors, Data Providers, and Networks TD-1. What short term (in the next 2 years) and longer -term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? • CMS/ASTP should create aware ness and promote products that provide a clear benefit to beneficiaries and caregivers. • Provide development sandboxes and testing tools for CMS /ASTP related API requirements . • Incentivize payers/providers for utilizing digital health products that fulfill certain requirements as dictated by CMS/ASTP , provid ing a trickle down effect for developers . • Provide a clear timeline for implementation r equirements. • As was done in the past, clearly state the FHIR Implementation Guide baseline versions , but allow flexibility to incorpor ate fixes as a result of the HL7 balloting process. TD–2. Regarding CMS Data, to stimulate developer interest — d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? • As rulings progress, begin to harmonize US Core, QI -Core, USCDI+ Quality, etc , to simplify implementation complexity and standarize the versions and data elements that are necessary to achi eve the “suite ” of CMS & ASTP /ONC related programs. • Additional APIs for CMS/ASTP/ONC to consider include those quality reporting . Inline with our support for CMS -1833-P, calculating and submitting quality measures using FHIR would reduce burden and improve data quality . TD-3. Regarding digital identity implementation: b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 –63– 3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? Requiring digital identity credentials significantly enhances cybersecurity by enabling stronger authentication and reducing identity spoofing risks. However, if implemented in a fragmented manner, it could introduce usability challenges for patients and p artners. For example, supporting shared identity verification across applications and enabling true single sign -on (SSO) experiences would promote ease of use and data liquidity. Conversely, maintaining siloed identity models with multiple login requiremen ts would hinder adoption and fragment access across platforms. A coordinated, standards -based approach is essential to maximize security benefits without compromising user experience. c. What impact would mandatory use of the OpenID Connect identity protocol have? OpenID is a clear ly established standard that we fully support and re commend . TD–4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? • Mandate FHIR API compliance in ONC certification and tie reimbursement to API adoption. • Penalize proprietary API use through reduced payments or audits. • Build solid use cases for providers on top of these APIs that provide high -value , e.g. prior Auth, clinical decision support. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 5/9 TD–5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? Providers : Patient -facing apps often struggle to integrate with provider systems because FHIR endpoints are not consistently discoverable, despite the g(10) requirements. Payers : The challenge is even greater for payer endpoints, as there is currently no mandate for publishing or maintaining them. A centralized, publicly accessible director y, regularly validated for endpoint availability and accurac y, would significantly reduce these barriers. CMS or a trusted neutral entity should publish and maintain the directory, and access should remain free and as open as possible to encourage broad adoption and interoperability. TD–6. What unique interoperability functions does TEFCA perform? a. What existing alternatives should be considered? CMS and ASTP/ONC could consider adopting the FAST Security Implementation Guide for Scalable Registration with UDAP support as an intermediate step. This approach would enhance access to FHIR endpoints without the operational and governance overhead associated with TEFCA’s SOPs. Importantly, this would not eliminate the need for a trust framework. Rather, it would shift the decision -making to individual payers and providers, who could determine which partners to trust and allow for registration , maintaining flexibility while improving scalability. TD–7. To what degree has USCDI improved interoperability and exchange and what are its limitations? USCDI has had a significant positive impact on interoperability. It establishes a clear, technology -independent baseline of data elements, which facilitates the mapping and implementation of concrete standards ; such as exposing proprietary data through FHIR. Additionally, it supports the use of interoperable ValueSets to codify data that might otherwise remain uncoded, providing a pathway to standardize proprietary EHR values. a. Does it contain the full extent of data elements you need? Not entirely. As additional use cases and programs —such as Quality Improvement initiatives and USCDI+ Quality (QI-Core) emerge, we continue to identify necessary data elements that are not yet part of the core USCDI. b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized? Neither. USCDI is a growing specification and its current limitations are expected as it evolves. Its expansion reflects the natural progression of emerging interoperability use cases. c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such challenges be addressed? While adding more data elements would provide value, it could also introduce scoping and implementation challenges. Not all systems will need to support every data element. One solution would be to enable certification to subsets of USCDI based on relevant use cases. Firely supports categorizing and harmonizing USCDI with intersecting initiatives to clarify overlapping needs. This "Venn diagram" approach can help stakeholders prioritize high -impact data elements. It would also assist the FHIR community and ONC certific ation programs in implementing the kind of flexibility we advocated for in our introduction ; allowing tailored interoperability pathways while maintaining alignment with national standards. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 6/9 d. Given improvements in language models, would you prefer a non -proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? Firely looks forward to how LLMs will improve interoperabil ity and patient care. This que stion is use case specific. While modern LLMs offer impressive capabilities for extracting meaning from free -text or semi - structured inputs, we believe that the primary interchange format for health data should remain a well - structured, standards -based representation . Deterministic Processing Structured formats enable reliable, repeatable parsing and validation. There’s zero ambiguity about what “CodeableConcept” or “Observation.valueQuantity” means eliminating the variability inherent in natural -language interpretation. Regulatory & Audit Needs Clinical and billing workflows often have strict audit, compliance, and traceability requirements. Machine -readable structure with explicit data types (timestamps, codified values, references) supports downstream use cases —quality measurement, clinical dec ision support, claims adjudication —without ad hoc NLP quality checks. Efficiency & Scale Offloading heavy unstructured -to-structured transformation to each receiver would multiply cost and complexity across the ecosystem. A common, pre -validated structured payload reduces redundant processing and minimizes the risk of inconsistent interpretati ons. A hybrid approach could work best , using FHIR as the backbone for structured, interoperable data exchange while supplementing it with less structured formats for additional context. TD–9. Regarding certification of health IT: a. What are the benefits of redefining certification to prioritize API -enabled capabilities over software functionality? Focusing on API -enabled capabilities allows for greater flexibility, scalability, and interoperability. APIs can be abstracted or implemented via “relied upon software,” reducing redundancy while still meeting certification requirements. This enables modul ar solutions and fosters a more open ecosystem for innovation. b. What would be the drawbacks? Shifting focus away from software functionality could lead to gaps in usability or workflow integration if APIs exist but are not well -supported in practice. There’s also a risk of inconsistencies in how data is surfaced if not carefully aligned with under lying application logic. c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient’s chart (e.g., faxed records, free text, discrete data)? ONC could expand certification to include conformance testing for structured representations of traditionally unstructured data. This might include requirements to: • Tag and categorize unstructured content (e.g., scanned documents, narrative text) using FHIR standards like DocumentReference and Observation . • Support natural language processing (NLP) integration or structured wrappers to facilitate data extraction and use. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 7/9 d. What policy changes could CMS make to motivate providers to respond to API -based data requests with best possible coverage and quality? • Tie API responsiveness and data completeness to incentive programs (e.g., MIPS, ACOs). • Encourage real -time or near -real-time responses rather than batching or delays. • Provide reporting transparency around API performance, completeness, and error rates to drive improvement. e. How could EHRs capable of bulk data transfer reduce provider burden for quality performance reporting? What capabilities are needed? What concerns exist? Bulk FHIR APIs reduce the need for manual queries and custom extracts. With daily or ongoing submissions: • Providers offload the reporting burden. • Data quality APIs can validate continuously. • Costs decrease as point -in-time extracts are replaced by automated feeds. However, concerns include: • Validation complexity (FHIR data is often incomplete or invalid). • Need for more granular filters to avoid overwhelming data volumes. • Ensuring data relevance and timeliness across systems. TD–10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act’s API condition of certification (42 U.S.C. 300jj –11(c)(5)(D)(iv)) that requires a d eveloper’s APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient’s electronic health record to the extent permissible under applicable privacy laws? To further implement the Cures Act API certification condition, Firely recommends ONC consider the following: • Incentivize developers to support APIs that go beyond USCDI to include full EHI where feasible, using FHIR as the preferred standard. As FHIR mappings mature, more of the full patient record can be made available in a structured and computable way. • Standardize EHI export/import through FHIR -based APIs to improve portability. • Clarify “without special effort” by discouraging proprietary barriers and requiring clear, public API documentation. • Promote SMART app integration with streamlined workflows for app registration and approval. TD–11. As of January 1, 2024, many health IT developers with products certified through the ONC Health IT Certification Program are required to include the capability to perform an electronic health information export or ‘‘EHI export’’ for a single patient .... Now that this capability has been in production for over a year, CMS and ASTP/ONC seek input on the following: a. Should this capability be revised to specify standardized API requirements for EHI export? Firely commends ONC for taking the first step by requiring the §170.315(b)(10) export capability, even while allowing flexibility in format. This approach enabled innovation and rapid implementation but understandably resulted in a lack of consistency acro ss vendors. Over time, we believe this capability should evolve into a standardized API -based model, ideally using FHIR , particularly FHIR Bulk Data Export , as the foundation. However, achieving this will require significant work, particularly in mapping legacy, unstructured, and proprietary data into usable FHIR resources. As noted in our response to TD –13(a), without structure, much of the exported data rema ins difficult to interpret or utilize effectively. A phased approach, guided by maturity of FHIR mappings for broader EHI elements, would help strike a balance between immediate utility and long -term interoperability. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 8/9 TD–12. Should CMS endorse non -CMS data sources and networks, and if so, what criteria or metrics should CMS consider? Based on feedback from the FHIR community and our customer base, we believe maximum healthcare value is achieved when providers, caregivers, and payers have seamless access to a comprehensive, unified record of Electronic Health Information (EHI), enriched with relevant social, administrative, patient -generated , and other appr opriate data. TD–13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient’s electronic health information (EHI)? APIs that provide access to a patient’s full EHI , beyond the USCDI -defined element s, create opportunities for deeper clinical decision support, improved care coordination, advanced analytics, and enhanced patient engagement. Full EHI access could also accelerate innovation in areas such as personalized medicine, population health managemen t, and research by enabling richer, more context -aware datasets. a. What are the primary obstacles to this? Exporting a patient’s full EHI is not likely to be broadly useful unless the data is mostly structured using FHIR. While unstructured data (e.g., PDFs, clinical notes, scanned images) will always be part of the healthcare ecosystem, it would benefit signif icantly from being organized within FHIR resources using categorization and metadata standards. Without the structure and semantics that FHIR provides, we risk perpetuating the same interoperability challenges we’ve faced for decades , namely , fragmented data in proprietary formats that are difficult for systems to interpret and act on programmatically. Additional obstacles include: • Data quality and completeness variability across systems • Performance and scalability concerns exporting large volumes of data • Legal and compliance concerns around broad data sharing • Consent and access management complexity b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing capabilities today? USCDI provides a carefully curated and standardized set of data elements that can be relied upon across use cases and systems. It offers predictability, reduces implementation complexity, and facilitates certification and regulatory alignment. In contrast, full EHI offers broader access but introduces variability in data format, structure, and quality. While modern computing and AI tools can increasingly handle unstructured or semi -structured data, this still requires significant investment in n ormalization, interpretation, and governance. Assuming that full EHI can eventually be expressed consistently in FHIR, the tradeoff shifts from technical feasibility to operational complexity , balancing data usefulness with burden, privacy, and the risk of information overload for both clinicians and patients. 
- CMS -0042 -NC - Comments on the Health Technology Ecosystem June 16, 2025 9/9 TD–15. Regarding bulk FHIR APIs: Advantages of increased use: • Enables scalable data exchange for all stakeho lders. • Supports population health, research, data migration, quality measures and other analy tics. • Allows asynchronous data sharing. Disadvantages: • Need for improved patient search and filtering for Bulk requests to minimize data sizes . • Performance and data sizes are a concern . • Challenges with managing consent and attribution. 
+June 16, 2025
+Department of Health and Human Services
+Centers for Medicare & Medicaid Services
+ASTP/ ONC
+Attention: CMS-0042-NC
+Mail Stop C4-26-05
+7500 Security Boulevard
+Baltimore, MD 21244-1850
+Reference: CMS-0042-NC
+Subject: CMS-0042-NC - Comments on the Health Technology Ecosystem
+Dear CMS & ASTP/ONC:
+Thank you for the opportunity to comment on the Request for Information regarding the Health Technology
+Ecosystem. On behalf of Firely USA Inc., we strongly support CMS and ASTP/ONC’s vision to advance a patient-
+centered, digitally enabled healthcare system. We are pleased to offer insights and recommendations to help
+drive progress in data interoperability, patient access, and the equitable adoption of digital health technologies
+across the Medicare ecosystem.
+Firely has been deeply engaged in the development and promotion of HL7® Fast Healthcare Interoperability
+Resources (FHIR®) since its inception. Our Chief Technology Officer, Ewout Kramer, has been a key contributor
+to HL7 since 2011, helping shape the global FHIR community. Over the past 13 years, Firely has become a
+leading international entity within the FHIR ecosystem, and proudly hosts HL7 FHIR DevDays, the world’s largest
+FHIR-focused event. Our team is actively involved in HL7 FHIR boards and committees globally.
+As a dedicated group of software engineers, support specialists, and FHIR® consultants, we focus exclusively on
+advancing health interoperability. With offices in New York, NY, and Amsterdam, the Netherlands, and a
+distributed workforce across the U.S., we serve a broad range of clients including payers, providers, state health
+programs, and health tech vendors.
+Our solutions include the Certified Health IT 170.315(g)(10) Firely Server, a FHIR SDK, a Clinical Quality Language
+(CQL) SDK, authoring and publishing tools for FHIR Implementation Guides, and more. Many of our tools,
+including all SDKs, are open source and freely available to the FHIR community, underscoring our commitment
+to collaborative, interoperable, and standards-based health IT.
+We view this RFI as a significant step toward modernizing how patients, caregivers, providers, and technology
+developers interact with health data. This initiative aligns closely with our mission and values. Firely USA Inc. is
+committed to supporting CMS and ASTP/ONC in building a digital health ecosystem that is open, secure, and
+truly interoperable.
+Kind regards,
+Richard Almeida
+Vice President, Product Strategy & Compliance
+Firely USA Inc. Firely B.V. +1 (857) 263-3112 IBAN NL85 ABNA 0626400198
+228 East 45th Street, Suite 9E Westerdok 442 +31 20 2461 241 BICCODE: ABNANL2A
+New York, NY 10017 1013 BH Amsterdam info@fire.ly VAT no NL855366151B01
+USA The Netherlands www.fire.ly
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+Introduction
+While all topics addressed in this RFI are important, Firely USA Inc. has chosen to focus on those areas where, as
+an HL7 FHIR-focused health technology vendor, we are best positioned to contribute meaningful insights and
+advance progress.
+In that spirit, we would like to highlight a key consideration that is woven throughout our responses but
+deserves particular attention. We believe it is best addressed in a dedicated section to provide clarity and
+context:
+Intersection of Regulation and the Evolving HL7 FHIR Implementation Guide
+Firely recognizes and supports CMS and ONC/ASTP’s efforts to establish a baseline version for FHIR
+Implementation Guides (IGs). We also appreciate that, in prior rulemaking such as CMS-0057-F, CMS has
+strategically referenced certain IGs as “strongly recommended,” signaling their importance without mandating
+adoption before sufficient real-world maturity.
+As HL7 and the broader FHIR community evolve these IGs, updates occur frequently to address newly identified
+use cases, correct inconsistencies, and streamline interoperability by reducing redundancy across IGs. While this
+evolution can sometimes result in breaking changes, in most cases these refinements enhance the IG’s goals and
+usability in real-world implementations.
+We acknowledge the Standards Advancement Process (SVAP) as an important mechanism employed by ONC to
+manage this evolution while maintaining regulatory consistency. However, the annual cadence of SVAP updates
+can lag behind the pace of innovation in the FHIR ecosystem. As a result, implementers, particularly those
+aligned with rapidly changing IGs, may find themselves constrained by outdated regulatory references or limited
+flexibility in certification.
+The transition toward fully interoperable health data exchange is both necessary and aspirational. Still, it comes
+with inevitable growing pains for vendors, providers, and payers alike. While we expect to soon enter the
+stabilized period, as the ecosystem matures flexibility during this transitional phase is essential. Prematurely
+locking in specific IG versions could stifle innovation and increase implementation burden.
+Firely does not propose a singular solution to this challenge, as the strength of the FHIR movement lies in its
+collaborative, community-driven nature. Instead, we respectfully recommend that CMS and ONC continue to
+work closely with HL7, Da Vinci, and other Accelerators to explore sustainable paths forward.
+To that end, we propose the following guiding principles:
+• Continue to recommend, but not require, a specific IG version during early phases of implementation,
+especially when an IG is undergoing rapid iteration.
+• Adopt a modular certification approach that focuses on core FHIR API capabilities, rather than requiring
+complete adherence to an entire IG, particularly where IGs include optional or situational elements.
+• Allow for contextual flexibility in certification criteria, recognizing the diversity of EHR system
+architectures and use cases across different healthcare stakeholders.
+• Consider increasing the frequency or responsiveness of SVAP updates or exploring complementary
+processes to keep pace with the FHIR community's development cycles.
+June 16, 2025 2/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+Responses to RFI Questions:
+C. Providers
+PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider
+organization's systems, directly or through an intermediary? For each, describe the transaction model, use
+case, whether you use individual queries or bulk transactions, and any constraints:
+a. Patient Access API.
+b. Standardized API for Patient and Population Services.
+c. Provider Directory API.
+d. Provider Access API.
+e. Payer-to-Payer API.
+f. Prior Authorization API.
+Firely works with both providers and payers who use our software to meet FHIR API requirements across these
+domains. Our FHIR server supports all relevant Implementation Guides referenced in CMS-9115-F and CMS-
+0057-F and is certified under §170.315(g)(10).
+Across these APIs, we support both individual FHIR queries and bulk data access (Flat FHIR/Bulk Data IG)
+depending on the client’s use case and data exchange needs. Implementations vary. Some are direct
+integrations, others go through intermediaries. Firely also participates in the HL7 Da Vinci Accelerator and
+contributes feedback to evolving Implementation Guides, particularly those related to provider access and prior
+authorization.
+We continue to collaborate closely with our customers and the broader FHIR community to refine transaction
+models and ensure real-world alignment with these API capabilities.
+g. Bulk FHIR—Do you support Group ID-based access filtering for population-specific queries?
+Yes, Firely Server fully supports Group ID-based access filtering for population-specific queries in accordance
+with the FHIR Bulk Data Export (Flat FHIR) specification. We require that each Group contains an explicit patient
+list. We anticipate and support future advancements where Groups for quality measure cohorts, research study
+enrollees, and public health surveillance populations are defined using Clinical Quality Language (CQL).
+Standardizing these definitions would greatly enhance interoperability, reproducibility, and automation in
+population-based data exchange. We encourage and endorse ongoing efforts to establish such standards across
+the FHIR ecosystem.
+h. SMART on FHIR—Do you support both EHR-launched and standalone app access? What does the process
+for application deployment entail?
+Yes. Firely supports the backend functionality required for SMART on FHIR, enabling both EHR-launched and
+standalone application access to work seamlessly with our server. Customers are free to integrate any SMART-
+compliant application of their choice. We are currently collaborating with our customers to design streamlined
+functionality for registering and pre-approving applications for deployment with their licensed Firely Server.
+i. CDS Hooks (for clinical decision support integrations).
+We support the use of CDS Hooks as part of the CMS-0057 Prior Authorization process to enable real-time,
+standards-based clinical decision support at the point of care. To facilitate broader adoption and reliable
+implementation, we strongly encourage the integration of generic CDS Hooks testing capabilities into the
+Inferno testing platform. This would help standardize validation workflows, promote vendor alignment, and
+accelerate readiness across the ecosystem.
+June 16, 2025 3/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+E. Technology Vendors, Data Providers, and Networks
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer
+interest in building digital health products for Medicare beneficiaries and caregivers?
+• CMS/ASTP should create awareness and promote products that provide a clear benefit to beneficiaries
+and caregivers.
+• Provide development sandboxes and testing tools for CMS/ASTP related API requirements.
+• Incentivize payers/providers for utilizing digital health products that fulfill certain requirements as
+dictated by CMS/ASTP, providing a trickle down effect for developers.
+• Provide a clear timeline for implementation requirements.
+• As was done in the past, clearly state the FHIR Implementation Guide baseline versions, but allow
+flexibility to incorporate fixes as a result of the HL7 balloting process.
+TD–2. Regarding CMS Data, to stimulate developer interest—
+d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation
+and support patients and providers?
+• As rulings progress, begin to harmonize US Core, QI-Core, USCDI+ Quality, etc, to simplify
+implementation complexity and standarize the versions and data elements that are necessary to achieve
+the “suite” of CMS & ASTP/ONC related programs.
+• Additional APIs for CMS/ASTP/ONC to consider include those quality reporting. Inline with our support
+for CMS-1833-P, calculating and submitting quality measures using FHIR would reduce burden and
+improve data quality.
+TD-3. Regarding digital identity implementation:
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800–63–
+3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange?
+Requiring digital identity credentials significantly enhances cybersecurity by enabling stronger authentication
+and reducing identity spoofing risks. However, if implemented in a fragmented manner, it could introduce
+usability challenges for patients and partners. For example, supporting shared identity verification across
+applications and enabling true single sign-on (SSO) experiences would promote ease of use and data liquidity.
+Conversely, maintaining siloed identity models with multiple login requirements would hinder adoption and
+fragment access across platforms. A coordinated, standards-based approach is essential to maximize security
+benefits without compromising user experience.
+c. What impact would mandatory use of the OpenID Connect identity protocol have?
+OpenID is a clearly established standard that we fully support and recommend.
+TD–4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary
+APIs?
+• Mandate FHIR API compliance in ONC certification and tie reimbursement to API adoption.
+• Penalize proprietary API use through reduced payments or audits.
+• Build solid use cases for providers on top of these APIs that provide high-value, e.g. prior Auth, clinical
+decision support.
+June 16, 2025 4/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+TD–5. How could a nationwide provider directory of FHIR endpoints improve access to health information for
+patients, providers, and payers? Who should publish such a directory, and should users bear a cost?
+Providers: Patient-facing apps often struggle to integrate with provider systems because FHIR endpoints are not
+consistently discoverable, despite the g(10) requirements.
+Payers: The challenge is even greater for payer endpoints, as there is currently no mandate for publishing or
+maintaining them.
+A centralized, publicly accessible directory, regularly validated for endpoint availability and accuracy, would
+significantly reduce these barriers. CMS or a trusted neutral entity should publish and maintain the directory,
+and access should remain free and as open as possible to encourage broad adoption and interoperability.
+TD–6. What unique interoperability functions does TEFCA perform?
+a. What existing alternatives should be considered?
+CMS and ASTP/ONC could consider adopting the FAST Security Implementation Guide for Scalable Registration
+with UDAP support as an intermediate step. This approach would enhance access to FHIR endpoints without the
+operational and governance overhead associated with TEFCA’s SOPs.
+Importantly, this would not eliminate the need for a trust framework. Rather, it would shift the decision-making
+to individual payers and providers, who could determine which partners to trust and allow for registration,
+maintaining flexibility while improving scalability.
+TD–7. To what degree has USCDI improved interoperability and exchange and what are its limitations?
+USCDI has had a significant positive impact on interoperability. It establishes a clear, technology-independent
+baseline of data elements, which facilitates the mapping and implementation of concrete standards; such as
+exposing proprietary data through FHIR. Additionally, it supports the use of interoperable ValueSets to codify
+data that might otherwise remain uncoded, providing a pathway to standardize proprietary EHR values.
+a. Does it contain the full extent of data elements you need?
+Not entirely. As additional use cases and programs—such as Quality Improvement initiatives and USCDI+ Quality
+(QI-Core) emerge, we continue to identify necessary data elements that are not yet part of the core USCDI.
+b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized?
+Neither. USCDI is a growing specification and its current limitations are expected as it evolves. Its expansion
+reflects the natural progression of emerging interoperability use cases.
+c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such
+challenges be addressed?
+While adding more data elements would provide value, it could also introduce scoping and implementation
+challenges. Not all systems will need to support every data element. One solution would be to enable
+certification to subsets of USCDI based on relevant use cases.
+Firely supports categorizing and harmonizing USCDI with intersecting initiatives to clarify overlapping needs. This
+"Venn diagram" approach can help stakeholders prioritize high-impact data elements. It would also assist the
+FHIR community and ONC certification programs in implementing the kind of flexibility we advocated for in our
+introduction; allowing tailored interoperability pathways while maintaining alignment with national standards.
+June 16, 2025 5/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+d. Given improvements in language models, would you prefer a non-proprietary but less structured format
+that might improve data coverage even if it requires more processing by the receiver?
+Firely looks forward to how LLMs will improve interoperability and patient care. This question is use case
+specific. While modern LLMs offer impressive capabilities for extracting meaning from free-text or semi-
+structured inputs, we believe that the primary interchange format for health data should remain a well-
+structured, standards-based representation.
+Deterministic Processing
+Structured formats enable reliable, repeatable parsing and validation. There’s zero ambiguity about
+what “CodeableConcept” or “Observation.valueQuantity” means eliminating the variability inherent in
+natural-language interpretation.
+Regulatory & Audit Needs
+Clinical and billing workflows often have strict audit, compliance, and traceability requirements.
+Machine-readable structure with explicit data types (timestamps, codified values, references) supports
+downstream use cases—quality measurement, clinical decision support, claims adjudication—without
+ad hoc NLP quality checks.
+Efficiency & Scale
+Offloading heavy unstructured-to-structured transformation to each receiver would multiply cost and
+complexity across the ecosystem. A common, pre-validated structured payload reduces redundant
+processing and minimizes the risk of inconsistent interpretations.
+A hybrid approach could work best, using FHIR as the backbone for structured, interoperable data exchange
+while supplementing it with less structured formats for additional context.
+TD–9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled capabilities over software
+functionality?
+Focusing on API-enabled capabilities allows for greater flexibility, scalability, and interoperability. APIs can be
+abstracted or implemented via “relied upon software,” reducing redundancy while still meeting certification
+requirements. This enables modular solutions and fosters a more open ecosystem for innovation.
+b. What would be the drawbacks?
+Shifting focus away from software functionality could lead to gaps in usability or workflow integration if APIs
+exist but are not well-supported in practice. There’s also a risk of inconsistencies in how data is surfaced if not
+carefully aligned with underlying application logic.
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support
+exchanging data from all aspects of the patient’s chart (e.g., faxed records, free text, discrete data)?
+ONC could expand certification to include conformance testing for structured representations of traditionally
+unstructured data. This might include requirements to:
+• Tag and categorize unstructured content (e.g., scanned documents, narrative text) using FHIR standards
+like DocumentReference and Observation.
+• Support natural language processing (NLP) integration or structured wrappers to facilitate data
+extraction and use.
+June 16, 2025 6/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+d. What policy changes could CMS make to motivate providers to respond to API-based data requests with
+best possible coverage and quality?
+• Tie API responsiveness and data completeness to incentive programs (e.g., MIPS, ACOs).
+• Encourage real-time or near-real-time responses rather than batching or delays.
+• Provide reporting transparency around API performance, completeness, and error rates to drive
+improvement.
+e. How could EHRs capable of bulk data transfer reduce provider burden for quality performance reporting?
+What capabilities are needed? What concerns exist?
+Bulk FHIR APIs reduce the need for manual queries and custom extracts. With daily or ongoing submissions:
+• Providers offload the reporting burden.
+• Data quality APIs can validate continuously.
+• Costs decrease as point-in-time extracts are replaced by automated feeds.
+However, concerns include:
+• Validation complexity (FHIR data is often incomplete or invalid).
+• Need for more granular filters to avoid overwhelming data volumes.
+• Ensuring data relevance and timeliness across systems.
+TD–10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps
+should ASTP/ONC consider to implement the 21st Century Cures Act’s API condition of certification (42 U.S.C.
+300jj–11(c)(5)(D)(iv)) that requires a developer’s APIs to allow health information to be accessed, exchanged,
+and used without special effort, including providing access to all data elements of a patient’s electronic health
+record to the extent permissible under applicable privacy laws?
+To further implement the Cures Act API certification condition, Firely recommends ONC consider the following:
+• Incentivize developers to support APIs that go beyond USCDI to include full EHI where feasible, using
+FHIR as the preferred standard. As FHIR mappings mature, more of the full patient record can be made
+available in a structured and computable way.
+• Standardize EHI export/import through FHIR-based APIs to improve portability.
+• Clarify “without special effort” by discouraging proprietary barriers and requiring clear, public API
+documentation.
+• Promote SMART app integration with streamlined workflows for app registration and approval.
+TD–11. As of January 1, 2024, many health IT developers with products certified through the ONC Health IT
+Certification Program are required to include the capability to perform an electronic health information
+export or ‘‘EHI export’’ for a single patient.... Now that this capability has been in production for over a year,
+CMS and ASTP/ONC seek input on the following:
+a. Should this capability be revised to specify standardized API requirements for EHI export?
+Firely commends ONC for taking the first step by requiring the §170.315(b)(10) export capability, even while
+allowing flexibility in format. This approach enabled innovation and rapid implementation but understandably
+resulted in a lack of consistency across vendors.
+Over time, we believe this capability should evolve into a standardized API-based model, ideally using FHIR,
+particularly FHIR Bulk Data Export, as the foundation. However, achieving this will require significant work,
+particularly in mapping legacy, unstructured, and proprietary data into usable FHIR resources. As noted in our
+response to TD–13(a), without structure, much of the exported data remains difficult to interpret or utilize
+effectively.
+A phased approach, guided by maturity of FHIR mappings for broader EHI elements, would help strike a balance
+between immediate utility and long-term interoperability.
+June 16, 2025 7/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+TD–12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should
+CMS consider?
+Based on feedback from the FHIR community and our customer base, we believe maximum healthcare value is
+achieved when providers, caregivers, and payers have seamless access to a comprehensive, unified record of
+Electronic Health Information (EHI), enriched with relevant social, administrative, patient-generated, and other
+appropriate data.
+TD–13. What new opportunities and advancements could emerge with APIs providing access to the entirety of
+a patient’s electronic health information (EHI)?
+APIs that provide access to a patient’s full EHI, beyond the USCDI-defined elements, create opportunities for
+deeper clinical decision support, improved care coordination, advanced analytics, and enhanced patient
+engagement. Full EHI access could also accelerate innovation in areas such as personalized medicine, population
+health management, and research by enabling richer, more context-aware datasets.
+a. What are the primary obstacles to this?
+Exporting a patient’s full EHI is not likely to be broadly useful unless the data is mostly structured using FHIR.
+While unstructured data (e.g., PDFs, clinical notes, scanned images) will always be part of the healthcare
+ecosystem, it would benefit significantly from being organized within FHIR resources using categorization and
+metadata standards.
+Without the structure and semantics that FHIR provides, we risk perpetuating the same interoperability
+challenges we’ve faced for decades, namely, fragmented data in proprietary formats that are difficult for
+systems to interpret and act on programmatically.
+Additional obstacles include:
+• Data quality and completeness variability across systems
+• Performance and scalability concerns exporting large volumes of data
+• Legal and compliance concerns around broad data sharing
+• Consent and access management complexity
+b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing
+capabilities today?
+USCDI provides a carefully curated and standardized set of data elements that can be relied upon across use
+cases and systems. It offers predictability, reduces implementation complexity, and facilitates certification and
+regulatory alignment.
+In contrast, full EHI offers broader access but introduces variability in data format, structure, and quality. While
+modern computing and AI tools can increasingly handle unstructured or semi-structured data, this still requires
+significant investment in normalization, interpretation, and governance.
+Assuming that full EHI can eventually be expressed consistently in FHIR, the tradeoff shifts from technical
+feasibility to operational complexity, balancing data usefulness with burden, privacy, and the risk of information
+overload for both clinicians and patients.
+June 16, 2025 8/9
+
+CMS-0042-NC - Comments on the Health Technology Ecosystem
+TD–15. Regarding bulk FHIR APIs:
+Advantages of increased use:
+• Enables scalable data exchange for all stakeholders.
+• Supports population health, research, data migration, quality measures and other analytics.
+• Allows asynchronous data sharing.
+Disadvantages:
+• Need for improved patient search and filtering for Bulk requests to minimize data sizes.
+• Performance and data sizes are a concern.
+• Challenges with managing consent and attribution.
+June 16, 2025 9/9

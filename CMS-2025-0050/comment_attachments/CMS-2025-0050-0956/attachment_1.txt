@@ -1,32 +1,1019 @@
- 1 June 16, 2025 Mehmet Oz, M.D. Administrator, Centers for Medicare &Medicaid Services Department of Health and Human Services 200 Independence Avenue SW Washington, DC 20201 [CMS-0042-NC] RIN 0938 -AV68 Re: Request for Information ; Health Technology Ecosystem Dear Administrator Oz, The Sequoia Project is pleased to submit comments to the Center s for Medicare & Medicaid Services (CMS) and Assistant Secretary for Technology P olicy (ASTP)/Office of the National Coor dinator for Health Information Technology (ONC) on the Request for Information ; Health Technology Ecosystem . The Sequoia Project is a non -profit, 501(c)(3) public -private collaborative dedicated to advancing the interoperability of electronic health information for the public good. With a longstanding history of enabling nationwide interoperability , The Sequoia Project works with stakeholders from across healthcare and healthcare IT to identify, prioritize, and collaboratively address the most pressing and discrete barriers to nationwide health information sharing. Through our Interoperability Matters cooperativ e, we convene diverse stakeholders , including providers, payers, caregivers, health IT developers, health information networks , public health agencies, and federal partners , to develop practical, consensus -driven solutions that meet the needs of the broader healthcare ecosystem. Our workgroups address a wide range of topics, including consumer strategy, privacy and consent, payer- to-payer API Implementation (for CMS -0057), data usability, public health, and information blocking compliance to promote information sharing. We currently convene the following Interoperability Matters Workgroups to address many of the questions raised in the RFI : • The Consumer Engagement Strategy Workgroup gathers input from consumer s and subject matter experts to develop short - and long-term strategies that promote consumer engagement, education, access, and interoperability policy. 
- 2 • The Data Usability Workgroup creates actionable implementation guidance to improve clinical content usability and semantic interoperability. Building on standards like FHIR ®, C-CDA, and USCDI, the group targets priority use cases to ensure health data is meaningful and usable within workflows. With more than 300 workgroup members, broad stakeholder input is key to the guides ’ successes. • The Payer-to-Payer FHIR API Implementation Workgroup develops business, governance, and operational best practices for data exchange between and among payers using HL7® standards. It identifies barriers to interoperability, leverages work from HL7 Da Vinci and CARIN . Initially focused on payer-to-payer exchange, this workgroup has the potential to expand to other payer exchange partners. • The Pharmacy Workgroup supports a nation wide community of practice aimed at advancing pharmacy interoperability. It addresses data exchange challenges, co - develops data usability priorities, and shares best practices to enable scalable clinical services and improved integration across the pharmacy s ector. • The Privacy & Consent Workgroup tackles challenges in secure data sharing, focusing on Consent Management and Data Segmentation for Privacy . It seeks to standardize computable consent processes and improve adoption of granular data segmentation through HL7 standards to ensure privacy while enabling seamless and appropriate interoperability. • The Public Health Workgroup addresses interoperability issues affecting public health authorities, including regulatory misalignment, modernization, funding, and data privacy. It emphasizes collaboration across S tate, Tribal, Local , and Territorial (STLT) public health agencies , and other public health entities to align modernization efforts and make the most of current funding opportunities. • The Information Sharing Workgroup (formerly the Information Blocking Workgroup) focuses on implementing and complying with information sharing rules under the 21st Century Cures Act. It evaluates regulatory guidance, offers implementation insights, and develops materials to help stakeholders navigate and comply with evolving federal requirements. We are also honored to serve as the Recognized Coordinating Entity ® (RCE®) for the Trusted Exchange Framework and Common AgreementTM (TEFCATM). Since TEFCA’s go -live in December 2023, nine Qualified Health Information Networks® (QHINsTM) have been Designated , with two additional organizations currently in Candidate status. As of June 2025, 6,213 organizations are actively participating in TEFCA , with over 20 million documents exchanged to date , and exchange increasing significantly each month . 
- 3 As the RCE , we are looking forward to learning from the responses to the RFI as we work with our federal partners to expand nationwide TEFCA exchange to improve health and healthcare . With over a decade of experience leading public -private collaborations and implementing successful , sustainable nationwide health IT initiatives, The Sequoia Project brings a unique perspective to this RFI. Our recommendations reflect the perspectives of our membership and community of stakeholders . We appreciate the opportunity to offer our comments and thank CMS and ASTP for their continued leadership and collaboration in advancing interoperability. Mariann Yeager CEO, The Sequoia Project 
- 4 Contents Key Recommendations ................................ ................................ ......................... 5 Patients and Caregivers (PC) ................................ ................................ ................. 7 PC-1. ................................ ................................ ................................ ................. 7 PC-2 ................................ ................................ ................................ ................. 9 PC-5 ................................ ................................ ................................ ............... 10 PC-6 ................................ ................................ ................................ ............... 10 PC-9 ................................ ................................ ................................ ............... 12 PC-10 ................................ ................................ ................................ .............. 13 PC-11 ................................ ................................ ................................ .............. 14 PC-13 ................................ ................................ ................................ .............. 15 Providers (PR) ................................ ................................ ................................ ..... 15 PR-1 ................................ ................................ ................................ ................ 16 PR-6 ................................ ................................ ................................ ................ 17 PR-11 ................................ ................................ ................................ .............. 18 PR-12 ................................ ................................ ................................ .............. 20 PR-13 ................................ ................................ ................................ .............. 20 PR-14. ................................ ................................ ................................ ............. 21 Payers (PA) ................................ ................................ ................................ .......... 22 PA-1 ................................ ................................ ................................ ................ 22 Technology Vendors, Data Providers, and Networks (TD) ................................ ....... 23 TD-4 ................................ ................................ ................................ ................ 23 TD-6 ................................ ................................ ................................ ................ 26 TD-14 ................................ ................................ ................................ .............. 27 TD-16 ................................ ................................ ................................ .............. 28 TD-17 ................................ ................................ ................................ .............. 29 TD-18 ................................ ................................ ................................ .............. 31 
- 5 Key Recommendations The Sequoia Project supports CMS and ASTP’s focus on improving interoperability , increasing patient access to data , and reducing provider burden. Our recommendations reflect the perspectives of our membership and community of stakeholders, which spans a wide range of actors, including providers, payers, technology vendors, health information networks, governmental agencies, and patient advocates . Given this cross -cutting representation, we have focused our comments on select questions that reflect the diverse perspectives of our community and the insights gained through our collective work . To summarize our answers to the RFI questions , we offer the following key recommendations to help advance CMS and ASTP’s goals and strengthen the nation’s health data infrastructure. • Increase f ederal participation in national interoperability frameworks: The best way to increase adoption of nationwide data sharing frameworks, like TEFCA, is for CMS and other federal agencies to actively participate. As a major payer and regulator, CMS should lead on design and adoption of use cases and capabilities for TEFCA where the private sector has not been able to drive adoption and that require governmental engagement . CMS participation in TEFCA, as both a payer and regulator, will be essential i n ensuring that federal policy aligns with operational realities and supports trusted, scalable health information exchange. • Modernize and align privacy rules: One of the barriers to the success of national frameworks stems from the need to modernize the HIPAA Privacy and Security Rule to clarify its application within the context of a national exchange framework . Further, t he patchwork of privacy rules across federal, state, and local levels causes ongoing confusion and uncertainty . To overcome th ese barriers, we strongly encourage CMS and ASTP to work in close coordination with the HHS Office for Civil Rights to modernize the HIPAA Rules and to hel p provide guidance for managing conflicting federal, state, and local laws . • Meet the market where it is : We recognize the importance and value of FHIR, while also recognizing that many current use cases and entities involved in exchange have not yet adopted FHIR. For example, in many public health reporting use cases, existing solutions may be more effective than FHIR at this time. There will continue to be a need for document -based exchange even as we continue to a ccelerate implementation of FHIR-based exchange. We recommend that CMS and ASTP 
- 6 promote and support solutions at the local, regional, and national levels, and facilitate coordination across these approaches to achie ve meaningful outcomes from data exchange. • Support consumer and provider education of data sharing requirements : While national frameworks and technology tools have the potential to strengthen consumer engagement, there remain notable knowledge gaps across consumers, providers, and payers regarding the applicable rules and how to consistently interpret and apply them . Additional educational efforts are needed, including by HHS. CMS and ASTP should prioritize education and implementation support for both consumers and providers on existing interopera bility technologies, privacy protections, and applicable federal rules and regulations . • Advance federated i dentity management: TEFCA and Car equality require the use of IAL2 for patients to access their information. We support CMS’ goal of implementing a modern, federated identity verification solution for Medicare beneficiaries. The Sequoia Project monitors updates on the development and progress of federated identity management solutions in the industry. As solutions mature, the RCE and Car equality will evaluate their readiness for inclusion in the data sharing frameworks . • Develop minimally acceptable patient matching rules : CMS and ASTP can help to alleviate critical patient matching and identity management rules by collaborating with other federal agencies and industry stakeholders to develop and maintain minimally acceptable patient -matching rules, including suggested matching traits and a framework for method ical improvement . • Lead on n ational endpoint directory : We’re supportive of the direction and need for an authoritati ve endpoint director y. The Sequoia Project is developing a product strategy for a health care directory that supports an industrial strength approach to national directory services. We recommend that CMS engage a broad array of stakeholders in its exploration of ways to improve health care directories and create nationwide linkages in a way that leverages existing directory initiatives. • Support individual and caregiver access: The Sequoia Project is committed to enhancing individuals’ access to their health information and supporting their ability to gather and manage it in one place . We encourage CMS, ONC, and other federal partners to promote policies and infrastructure that empower individuals and caregivers to be active participants in their care. 
- 7 Patients and Caregivers (PC) The Sequoia Project applauds CMS and ASTP for taking steps to improve individuals’ access to their information. Launched by The Sequoia Project in 2018, the Interoperability Matters cooperative engages experts from across the healthcare and healthcare IT communities to identify, prioritize, and collaborate on the most pressing, discrete challenges to nationwide health information sharing. Solving “the last mile problem” for patient data access is a priority area of focus. Our Consumer Workgroup of patient data advocates, health IT vendors, health information management companies and clinical centers of excellence are addressing the operational barriers that keep patients from accessing the data they need when and how they need it. Our responses to select Patient and Caregiver questions below reflect discussions of our Consumer Workgroup in addition to our broad experience in implementing interoperability. We stand ready to further share our work and learnings with CMS and ASTP and w elcome both agencies to participate in our Consumer Workgroup. PC-1. What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? a) What are the top things you would like to be able to do for your or your loved ones’ health that can be enabled by digital health products? b) If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? In your response, please consider tasks that could be supported or facilitated by software solutions in the future. Our discussions with consumers and caregivers highlight the following needs : • Access all health records in one place . Barriers to interoperability affect all patient populations but are more painfully evident for patients with multiple co - morbidities and complex health conditions predominant in Medicare populations. People with chronic or complex medical conditions have multiple providers using multiple EHRs, all with their own portals, user IDs, passwords, authentications, navigations, functionalities, and content. Navigating the fragmented system for effective care coordination is especially challenging for the Medicare population and their caregivers. Tools to gather and manage health records from across providers that can also include patient -generated data would better support individuals’ ability to manage their health. • Reduce the amount of paper and patient administrative burden. Despite broader use of digital registration and check -in solutions, patients and caregivers are 
- 8 repeatedly asked to fill out often duplicative paperwork at every visit. Further, differing state privacy laws result in a multitude of consent forms to complete that all provide consent for slightly different things. Technology tools should be leveraged to reduce the administrative burden on patients and caregivers, which remains heavy, complicated , and frustrating. • Digitally share images with providers . Our work in the consumer space finds that images and other diagnostic test results are not commonly exchanged between providers and health systems , even though technology exists to do so. Remarkably, results (e.g., x -rays, EEGs, ECGs, EKGs) are often saved on thumb drives and CDs and patients are sometimes required to pick them up in person and deliver them to their providers. Efforts to expand provi der use of existing interoperable solutions to share images would redu ce patient and caregiver administrative burden. • Self-direct sharing of specific health records . Consumers want the choice to send discrete information from the patient portal or the EHR to specific doctors or authorized individuals, rather than the current share everything or nothing options. Technology tools to segment data for privacy and provide granular consent to share data by type of data or provider would support this. • Increase access to user -friendly tools . Despite the many patient portals offered today, many consumers and providers don’t take full advantage of the services offered because the tools are not user friendly or accessible. In particular, consumers want improved functionality across all their providers for managing prescriptions, paying fees, receiving alerts about test results, and correcting medical errors in the record. • Support access by caregivers . In many instances, individuals rely on caregivers to support their care journeys, including scheduling appointments, tracking authorizations, and managing bills. However, systems do not currently easily facilitate proxy access by caregivers based on indiv iduals’ authorization. In fact, some payers require the downloading, printing, faxing , or mailing of paper forms that are then only kept for a year. Electronic tools to authorize caregiver access and to share those permissions across providers and payers would reduce burden and improve care. 
- 9 PC-2. Do you have easy access to your own and all your loved ones’ health information in one location (for example, in a single patient portal or another software system)? a. If so, what are some examples of benefits it has provided? b. If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? c. Were there particular data types, such as x -rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones’ complete health information electronically and using it for managing health conditions or fin ding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? Our work in the consumer space suggests access to health information is rarely easy and data is rarely consolidated in one place. Most patient portals only offer access to a single or narrow group of providers, forcing individuals to subscribe to multiple portals to access all their health data. This disproportionately affects individuals with multiple chronic conditions and Medicare populations . For many of these individuals, it is common to see more than one clinician, which means that their health data is fragmented across multiple EHRs and vendors. This can result in unnecessar ily repeating costly tests and other diagnostics . CMS should encourage electronic health record vendors to work together to improve the availability of records across networks and participate in trusted exchange frameworks. Providing easier , electronic proxy access to information by caregivers would also be incredibly valuable. Challenges in getting proxy access prevent those simply hoping to help care for their loved ones from accessing needed information to make appointments, manage complications, and pay bills. Having a secure and interoperable method to link patients and their caregivers to both payer and provider systems, while ensuring appropriate authorization, could reduce patient burden and support timely care . As noted in our answer to PC -1, imaging results are often not shared electronically, leading to patient burden. 
- 10 PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? a) What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if there is a review process? What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary comm unications)? b) What changes would enable timely access to high quality CMS and provider generated data on patients? CMS and ASTP have an important opportunity to work alongside other federal agencies and industry stakeholders to promote a trusted, standards -based, and interoperable ecosystem. This includes coordinating with agencies responsible for privacy and security oversight (including the HHS Office for Civil Rights) and collaborating with the private sector to advance voluntary standards, implementation guidance, and best practices for health applications, particularly those that enable patient access to their heal th information . Providers are highly trusted figures in the healthcare system and should be positively incentivized to guide patients in understanding and utilizing their digital health information , and helping to bridge the gap between technology and everyday care. The Sequoia Project is actively contributing to this work by convening a Consumer Engagement Strategy Workgroup to identify barriers to electronic health information access and recommend strategies for equitable engagement, education, and facilitation. CMS should support and complement these efforts by partnering across HHS and the broader health IT community to implement a consistent, agency -wide approach to educating individuals on how to access and use their health data. PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? 
- 11 Ensuring digital tools are understandable, interoperable, and supportive of equitable access is essential to delivering person -centered care. To that end, we urge CMS and ASTP to consider four foundational areas for improvement: 1. Clear Communication Beneficiaries and caregivers must clearly understand their rights and options for accessing health information. CMS should work with industry to ensure individuals are informed about: (1) how to access their data in usable formats, (2) what data they are entitled to, and (3) the privacy and security implications o f access methods. This information should be delivered in plain language and in formats that accommodate diverse literacy levels and accessibility needs. 2. Interoperability and Ease of Use Digital health tools should be interoperable with all EHRs a patient uses, allow for selective data sharing, and work across all devices. Single sign -on capabilities across systems can reduce barriers. Products should also implement data standards so that information shared by patients is meaningful and usable for providers within their workflows. 3. Simplified Caregiver Access Caregivers often encounter outdated, paper -based processes to gain access to health and payer data. Some payers do not accept verbal consent or require forms that must be faxed or mailed. CMS should promote streamlined, digital processes that reduce admini strative burden and support timely caregiver involvement in care coordination , with the appropriate authorization. 4. Tools to Manage Privacy and Consent Privacy and consent capabilities are also critical to earning patient trust and enabling meaningful control over health information. Digital health tools should support flexible , granular consent mechanisms that allow individuals to decide what information to share, with whom, and under what circumstances. These tools should include data segmentation features that enable granular control over specific data elements, as well as options to review, modify, or revoke consent in collaboration with clinicians. Eff ective consent management should also accommodate varying levels of digital literacy, offer clear explanations , and minimi ze disruption to provider workflows. Technology that supports electronic consent and identity verification can further streamline access while protecting privacy. 
- 12 The Sequoia Project’s Privacy and Consent Workgroup recently pushed a white paper titled “Moving Toward Computable Consent: A Landscape Review ” that highlights current challenges and the urgent need for standardized and interoperable consent management approaches. PC-9. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? The Sequoia Project supports CMS’s and ASTP’s commitment to improving access to interoperable clinical data to advance research and evidence generation. While significant opportunities exist, key challenges must be addressed to fully realize this potential. A primary challenge is limited access to real -world clinical data for research purposes. Current barriers delay studies, restrict data availability, and complicate research design. While research isn’t an exchange purpose supported within national frameworks, like TEFCA and Car equality today , there are plans to explore adding it in the future , which would directly improve the accessibility, interoperability and integration of clinical data from different sources to advance and enable more meaningful clinical research. As a start, we would suggest developing a use case to support clinical trials and other treatment - related research for adoption in national frameworks. In the meantime, patients that are interested in participating in clinical research can utilize the Individual Access Service s (IAS) Exchange Purpose on TEFCA or the Patient Request permitted purpose on Car equality to retrieve their own records and use them to inform clinical research . CMS and ASTP can help bridge the gap between consumers and research by supporting digital health literacy and incentivizing providers to engage patients in accessing and sharing their data. Cross-agency coordination within HHS would further align research, policy, and practice. 
- 13 PC-10. How is the Trusted Exchange Framework and Common Agreement ™ (TEFCA™) currently helping to advance patient access to health information in the real world? a. Please provide specific examples. b. What changes would you suggest? c. What use cases could have a significant impact if implemented through TEFCA? d. What standards are you aware of that are currently working well to advance access and existing exchange purposes? e. What standards are you aware of that are not currently in wide use, but could improve data access and integration? f. Are there redundant standards, protocols, or channels that should be consolidated? g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? TEFCA is advancing patient access by providing a nationwide infrastructure that enables individuals to request and receive their health information from a wide range of healthcare organizations through a single connection. For example , it enables patient -facing apps or other Individual Access Service (IAS) Providers, with patient permission, to query for and obtain their health information from across the network in one place . IAS was one of the first successful exchanges in TEFCA and QHINs are currently testing the IAS use case using FHIR . The biggest challenge with I AS exchange is when a non -HIPAA covered entity offering IAS submits an IAS query using demographic data fields . In this instance, it is possible the information may be insufficient to produce the correct matched record. In that circumstance, the sender of the record risks a HIPAA breach by sending the wrong record to the app. The threat of potential penalties in the event of a breach is an obstacle to facilitating the required IAS Exchange Purpose both w ithin and outside of TEFC A. CMS and ASTP should work with OCR to provide guidance on how to minimize these risks and provide safe harbors for HIPAA covered entities that share in good faith, based on the information available. For example, TEFCA requires that IAS Providers identity proof individuals using the NIST IAL2 specification (see our answer in PR -11 for more details). CMS and ASTP could recommen d to OCR that they issue enforcement discretion in certain circumstances when a non-HIPAA entity requests information on 
- 14 an individual using certain identity proofing standards, like IAL2, but the response results in a breach based on an incorrect patient match . TEFCA supports the IAS workflow using both FHIR -based exchange and IHE -based SOAP exchange. While IHE -based exchange relies on patient demographics for matching, with the concerns noted above, FHIR also allows IAS Providers to request patient information leveraging provider -issued portal credential s. This method helps to alleviate the problems with patient matching , but it creates other problems by forcing individuals to remember all the providers they’ve seen and remember individual portal credentials for each provider . Without national frameworks, patients can use provider portals or p atient-facing apps to access their information electronically. However, t hese solutions exist at the individual provider-level; even patient -facing apps generally have to connect to individual provider organizations or leverage EHR -based app services . National frameworks, like TEFCA and Carequality, provide a scalable approach by providing one connection point to all of a patient’s providers. PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? a. How valuable, available, and accurate do you find the data they share to be? b. What changes would you suggest? c. Are there particular examples of high -performing HIE models that you believe should be propagated across markets? d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? HIEs are a critical part of the interoperability landscape with strong ties to local provider organizations, public health departments, and community -based services, enabling them to tailor data exchange to the specific needs of their populations. HIEs support a range of use cases , including: • Facilitating treatment and care coordination through real -time data sharing between providers ; • Supporting public health reporting and response efforts ; • Enhancing data quality ; • Assisting in quality measurement and reporting for value -based care programs ; and • Responding to patient requests for access to their health records 
- 15 TEFCA is designed to complement this critical infrastructure by connecting HIEs with other health information networks and data exchange stakeholders to leverage the network-of-networks and benefit from its nationwide scale. PC-13. How can CMS encourage patients and caregivers to submit information blocking complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would increasing reporting of complaints advance or negatively impact data exchange? The Sequoia Project encourages CMS to focus on patient and caregiver education as the most effective strategy to address potential information blocking. Rather than solely increasing complaint submissions, CMS should collaborate with the private sector to raise awareness about individuals’ rights under HIPAA and the Cures Act, including how to access health information and what constitutes information blocking. Improved education supports meaningful engagement, enhances trust, and ultimately advances data exchange by addressing root causes of confusion and access barriers. CMS can amplify its efforts by leveraging existing educational resources from The Sequoia Project’s Interoperability Matters initiative . Our Interoperability Matters Information Sharing Workgroup has convened providers, developers, health information networks (HINs) and data requestors since 2019, to discuss real-world solutions and challenges to compliance with the information blocking rules. The workgroup has proactively created a set of good pr actices and other resources to educate the community on how best to share information and be in compliance with the information blocking rules. The group has also identified remaining policy issues that would support compliance, including the need for additional educational efforts by federal agencies Providers (PR) The Sequoia Project supports providers across the care continuum through our Data Sharing Workgroup, Privacy & Consent Workgroup , Pharmacy Workgroup, and Information Sharing Workgroup. All these groups facilitate provider collaboration with other stakeholders to decrease burden , share knowledge, and improve access to data at the point of care. Our responses to select Provider questions below reflect discussions of these Workgroups in addition to our broad experience in implementing interoperability. 
- 16 PR-1. What can CMS and its partners do to encourage providers, including those in rural areas, to leverage approved (see description in PC -5) digital health products for their patients? a) What are the current obstacles? b) What information should providers share with patients when using digital products in the provision of their care? c) What responsibilities do providers have when recommending use of a digital product by a patient? The Sequoia Project supports CMS’ continued focus on advancing interoperability, patient access, and reducing provider burden. To fully realize these goals, CMS must address persistent barriers , particularly in rural and underserved communities , including low digital literacy, limited awareness of data access rights, inadequate internet access, and concerns about privacy and security with third-party apps. Fragmented records, high data access fees, and burdensome identity verification also remain significant challenges. Addressing these issues requires coordinated support for both patients and providers. To address these challenges, we recommend CMS take the following actions: • Support provider readiness through targeted funding, technical assistance, and regulatory flexibility to enable transition from paper -based systems to interoperable digital infrastructure, including FHIR APIs. • Empower patients by requiring providers to clearly communicate rights under HIPAA and the Cures Act, explain access options (portals, third -party apps), and provide information in accessible, plain language formats. • Incentivize engagement by encouraging providers to promote portal use and patient access through positive incentives tied to patient education and support. • Strengthen interoperability by promoting TEFCA as an option for data exchange within CMS programs for care delivery, administration, and reporting. • Foster trust and reduce access barriers by addressing costs, data fragmentation, and identity verification challenges, and by increasing public awareness of privacy protections. By aligning policy, infrastructure, and education, CMS can create a more inclusive and effective digital health ecosystem that benefits all patients and providers. 
- 17 PR-6. Is TEFCA currently helping to advance provider access to health information? a. Please provide specific examples. b. What changes would you suggest? c. What other options are available outside of TEFCA? d. Are there redundant standards, protocols or channels or both that could be consolidated? Yes, the Trusted Exchange Framework and Common Agreement (TEFCA) is helping to advance provider access to health information. While the framework is still in the early stages of implementation, it is already enabling more efficient, standardized, and secur e data exchange among healthcare providers across the country. The Sequoia Project believes this initiative will be most successful if there is widespread participation across the public and private sectors. As TEFCA grows , we believe CMS’s participation in the health information network ecosystem will be critical to ensuring that TEFCA meets the needs of federal health programs. Federal agency participation in TEFCA would accelerate its success and benefit the interoperability landscape in the following ways: 1) enhance the volume and quality of the data exchanged across the network; 2) improve the scalability of use cases that involve federal agency participation; and 3) drive alignment between national interoperability solutions and federal laws and regulations. TEFCA enables providers to : • Improve Care : Providers will have access to a fuller array of information for clinical decision-making because they will be able to access a patient’s electronic health information from more providers. This is especially beneficial for providers that serve patients that see multiple specialists for multiple conditions. Further, accessing test results and diagnostics performed by other care providers can limit the need for repeat and redundant services, saving costs and enhancing convenience for patients. • Improve Care Coordination : With fewer barriers to connection and greater access to information, a broader range of provider types and health care organizations may be interested in sharing health information through the network based on the Common Agreement. This includes ambulato ry providers, federally qualified health centers, behavioral health professionals, long -term or post -acute care facilities, and other care settings. The network based on the Common Agreement will support 
- 18 sharing of data during transitions of care, such as from a hospital to a post -acute setting, or from a nursing home to the emergency department. This will also provide a mechanism for primary care providers to know about the care their patients receive in other settings. • Access information needed to support value -based care, care management, and population health : As providers take on more responsibility to manage the care of populations, they need information from outside their own organizations to have a more complete picture of the care a patient has received to help close care gaps (such as missing immunizations or diagnostic tests), gather information for quality metrics, and develop analytics regarding trends in chronic disease and other factors. • Reduce the need to participate in multiple health information exchange initiatives : The network based on the Common Agreement will connect networks to one another, allowing providers to access and exchange information from varied sources through a single or limited set of connections. The scope of directory services available through this network will also facilitate exchange, both locally and nationally so that information follows the individual. One of the barriers to the success of national frameworks stems from the need to modernize the HIPAA Privacy and Security Rule to clarify its application within the context of a national exchange framework . For example, to maintain alignment with existing exchange , data sharing networks often apply the definitions of the HIPAA permitted purposes of Treatment, Payment, and Health Care Operations to the framework . These definitions were not drafted with the national framework model in mind , which causes tension when applied in that environment. To overcome this barrier, we strongly encourage CMS to work in close coordination with the HHS Office for Civil Rights to modernize the HIPAA Privacy and Security Rules. PR-11. How could members of trust communities (for example, QHINs, Participants and Subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential Service Providers (CSPs)) better support the goals of reduced provider and patient burden while also enhancing identity management and security? The answer to this question also applies to PR -9, PC-14, and PR-10. 
- 19 TEFCA requires that Individual Access Services ( IAS) Providers identity proof patients to NIST Identity Assurance Level 2 (IAL2) using a Credential Service Provider (CSP) before initiating an (IAS) request for that individual . TEFCA adopted this policy from Carequality, which leveraged its extensive community , along with several CSPs, to design and pilot the approach that requires the inclusion of a secure identity token to be passed as part of the query transaction. The combination of authenticating patients to IAL2, along with the technical token, allows IAS to be supported securely at a national scale with minim al burden. Based on conversations with our community, this approach has a few benefits and a potential drawback: Pros • IAL2 is a reliable standard for authentication : This NIST standard is widely used and provides a high level of security without requiring an in -person step that can be burdensome . • Secure Technical Tokens: The technical token , which is built on the Open ID Connect (OIDC) token, includes the demographics that were verified during the IAL2 authentication, which can be trusted by the responder to use in patient matching . • Vetted CSP List : TEFCA points to a trusted third -party list of vetted CSPs to determine which are allowed to provide IAL2 services. Leveraging their expertise to vet the CSPs’ processes ensures security and encourages trust between networks . Cons • IAL2 verification may be a challenge for some : IAL2 requires multiple evidence documents , some of which may not be easily accessible for every individua l (e.g., utility bills for the unhoused or minors). Many CSPs mitigate this burden by accepting a variety of evidence types to satisfy the requirements . We support CMS ’ goal of implementing a modern, federated identity verification solution for Medicare beneficiaries. The Sequoia Project monitors updates on the development and progress of federated identity management solutions in the industry . As solutions mature, the RCE and Carequality will evaluate their readiness for inclusion in the data sharing frameworks. In the meantime, CMS and ASTP can help to alleviate some of the concerns with patients using digital health apps by collaborating with other federal agencies and 
- 20 industry stakeholders to develop and maintain minimally acceptable patient - matching rules, including suggested matching traits and a framework for methodical improvement . PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions or conditions within the exceptions (45 CFR part 171, subparts B through D) to further the access, exchange, and use of electronic health information (EHI) and to pro mote market competition? Overall, t he Sequoia Project supports the existing information blocking exceptions and conditions, including the recent updates finalized in HTI -3. We support the finalized updates to the information blocking rule in HTI-2 and HTI-3, including the addition of the Protecting Care Access Exception, which offers healthcare providers a clear pathway to protect themselves and their patients from potential legal risks related to reproductive health care. By allowing actors to restrict the exchange of specific EHI when they believe it could expose individuals to legal action, this proposal ensures that providers can continue offering critical care without fea r of legal repercussions. We encourage ASTP to work with the community to craft additional guidance and create tools to make the rules simpler and easier to understand and comply with. The Sequoia Project’s Information Sharing Workgroup often provides feedback to ASTP to request guidance and clarification on certain aspects of the Information Sharing rules . The workgroup would welcome the opportunity to share lessons learned from implementation and thoughts on making the rules easier to navigate. PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3)), without a current information blocking disincentive established by CMS, what would be the most effective disincentive for that category of provider? The Sequoia Project strongly supports equitable enforcement of information blocking provisions across all healthcare provider categories. Establishing specific penalties for only a subset of the provider community creates a fragmented regulatory landscape and undermines the consistent implementation of the information blocking rules. To strengthen and expand enforcement in a balanced and practical manner, we recommend the following: • Expand enforcement to additional provider types through an iterative and phased approach, with a particular focus on laboratories and post -acute care facilities. These 
- 21 provider types play a critical role in care coordination and data sharing but often represent persistent gaps in interoperability. • Establish appropriately tailored disincentives for newly included providers to encourage compliance without imposing undue burden . Since gaps in these settings are often due to resource limitations or insufficient technological infrastructure and not necessarily deliberate information blocking , it’s important to offer these provider types tailored assistance and guidance • Ensure reasonable timelines and sufficient educational outreach to support providers before any disincentives take effect. Providers must be equipped with the resources, guidance, and technical assistance necessary to comply with information blocking rules. This is especially important given the variation in provider size, patient volume, and resource availability, particularly among smaller or rural facilities. We support CMS’s current focus on ensuring readiness and urge continued emphasis on supporting p roviders through this transition. • Focus disincentives on egregious or repeated violations, rather than isolat ed or unintentional acts. • Preserve due process protections by allowing providers to retain the right to appeal any finding of information blocking. • Encourage further clarity from the Office of Inspector General (OIG) on how investigations will be conducted and how the knowledge standard will be assessed, either through formal guidance or further rulemaking PR-14. How can CMS encourage providers to submit information blocking complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? Drawing on The Sequoia Project’s experience leading the Information Sharing Workgroup we have found that provider engagement is most effective when supported by clear education, practical tools, and transparent communication around enforcement expectations. Our Info rmation Sharing Toolkit, released in 2024, offers actionable compliance resources , including sample policies, exception workflows, and project planning templates that have been well received by stakeholders across the health IT ecosystem. We recommend CMS collaborat e with industry partners to host targeted educational sessions that help providers understand when and how to submit complaints, and why these actions are critical to ensuring a fair and effective regulatory environment. 
- 22 Encouraging providers to use the Information Blocking Portal with appropriate guidance and support may yield significant benefits, including the identification of recurring implementation challenges, more consistent application of exceptions, and greater accountability among all actors. It is equally important to address provider concerns around burden, re gulatory uncertainty, or fear of reprisal. Framing complaint submission as a constructive mechanism for policy refinement and ecosystem -wide improvement c an help mitigate these concerns. We support CMS and ASTP in advancing a thoughtful approach that balances robust enforcement with practical support, and we welcome continued collaboration to promote trusted, transparent, and interoperable data exchange. Payers (PA) The Sequoia Project supports Payers through our Payer -to-Payer FHIR® API Implementation Workgroup , which develops business, governance, and operational best practices for data exchange between payers using HL7® standards. As the TEFCA Recognized Coordinating Entity (RCE), t he Sequoia Project is actively working with HHS and the payer community to facilitate the exchange of information between payers and providers in support of electronic prior authorization, quality reporting, risk adjustment and other needs. PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to address those limitations? To what degree do you expect these limitations to hinder participation in TEFCA? TEFCA is a critical step towards nationwide interoperability, but certain policy and regulatory limitations may hinder broader participation, particularly for payers and organizations operating outside of traditional HIPAA -covered roles. Many of these challenges stem from the need to modernize the HIPAA Privacy and Security Rule to clarify their application within the context of a national exchange framework . In order to address these limitations, we need federal support and alignment on regulations that im pact interoperability. Key Limitations: 1. Lack of Clarity on HIPAA “Minimum Necessary” Standard : TEFCA enables exchange for a range of exchange purposes beyond treatment including payment, public health, and health care operations. When data is exchanged outside of Treatment use cases , providers and payers face uncertainty around how to comply 
- 23 with HIPAA’s “minimum necessary” requirement. The ambiguity leads to hesitancy and underutilization of exchange purposes for non-treatment purposes. • HIPAA not Designed for National Frameworks : HIPAA is designed to give Covered Entities discretion over whether they respond to a data request. National frameworks , like TEFCA, often use a model where responses are required by all participating data holders . This causes tension when applying the HIPAA definitions of Treatment, Payment, and Health Care Operations to exchanges under the framework s. Additional clarity and guidance on the boundaries of the definitions would have a major impact towards improving trust in nationwide data sharing frameworks . • Fear of Breach when disclosing to non -HIPAA Entity : TEFCA allows for participation by non -HIPAA entities and contractually obligates those non -HIPAA entities to comply with HIPAA. However, providers are concerned about the risk of patient mismatch es and potential breaches when responding to queries initiated by a non-HIPAA entity. This obstacle largely impacts responses to Individual Access Services queries. CMS should work with OCR to provide clear, risk -based guidance for disclosure involving non -HIPAA entities when the request was made using agreed-upon rules. We encourage CMS to work closely with the OCR to identify updates to the HIPAA Privacy and Security Rule that promote trusted data sharing . Given its role as a payer and a regulator of health plans through Medicare, Medicaid, and the Health Insurance Marketplace, CMS participation in TEFCA is key to ensuring federal regulations work for those they regulate. Technology Vendors, Data Providers, and Networks (TD) All of the Sequoia Project Interoperability Matters Workgroups have avid participation across technology vendors, data providers, and networks. Our responses to select Technology Vendor, Data Provider, and Network questions below reflect discussions of these Workgroups in addition to our broad experience in implementing interoperability. TD-4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? CMS has an important opportunity to encourage open, standards -based, publicly available APIs by participating in and promoting participation in nationwide interoperability frameworks like TEFCA. CMS participation will engender use of the framework by others 
- 24 who want to exchange with CMS. Further, CMS should continue providing incentives for CMS regulated payers and providers to participate in national framework s with open, standards -based, publicly available APIs by explicitly naming TEFCA as an option for compliance in the CMS Interoperability and Prior Authorization final rule (CMS -0057-F) and Promoting Interoperability program. CMS can also support the use of open, standards -based, publicly available APIs by providing tools and resources to help regulated entities adopt APIs. For example, The Sequoia Project’s Payer-to-Payer FHIR API Implementation Workgroup created a resource to help payers comply with the payer -to-payer API requirements in the CMS -0057-F. This editable checklist provides an easy -to-use framework that helps identify both explicit and implicit regulatory and operational requirements, ensuring payers are well -prepared to meet compliance standards. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? The answer to this question also applies to VB-15. We’re supportive of the direction and need for an authoritative endpoint directory. A nationwide provider directory of FHIR endpoints could improve access to patient data and enhance understanding of claims data sources by streamlining how health care entities discover, connect, and exchange data. For the directory to be effective and meaningful, the data must be complete and accurate. Based on our considerable experience managing directories to support nationwide exchange , it is increasingly difficult to maintain the accuracy of directory data the further removed the data from its source. The accuracy of the data is more assured when the entity maintaining the data is also the source of truth for that information . CMS will need to identify a clear governance process with policies and procedures for maintaining directory integrity. Processes for data submission, validation, regular updates , and maintenance must be established to ensure accuracy and timeliness. Ideally, the key data elements necessary in a nationwide FHIR endpoint directory would include: • Name of individual providers and organizations, with identifiers (e.g., NPI) • Type of provider (e.g., hospital, clinic , single-provider practice ) 
- 25 • The purposes for which the provider initiates and responds to requests for information • Information about areas/geographies that are served by the provider • Contact information • Publicly accessible electronic service endpoint information (e.g., FHIR API base URLs for patient access, organization -level endpoints) We also note that i t’s not enough to have a directory of providers - it needs to include payers, public health agencies, health information networks, and other players in interoperability. If we want exchange to grow beyond treatment, directories will need to be inclusive of all exchange actors. Another option for CMS to consider is an approach that defines uniform standards for directories , facilitate information sharing and standardize the way directories interoperate with each other. This approach would allow those closer to the source of truth to both maintain the data on an ongoing basis and manage electronic exchange of directory information efficiently. This approach also allows individual directories to be more specified with the information they need to maintain, and thus more responsive t o shifting needs. It is also important to recognize the magnitude of clinical data being exchanged today through networks and frameworks that do not primarily use FHIR (TEFCA, Carequality, Direct Secure Messaging, etc.) A national provider directory of FHIR endpoints should support linkage to other directories to provide a complete picture of each provider’s multiple paths of connectivity. Directories today are typically either provider focused , or organization focused . A provider directory of FHIR endpoints will also need to consider how an individual provider can be linked to multiple organizations , each with unique FHIR endpoints. We recommend that CMS engage a broad array of stakeholders in its exploration of ways to improve health care directories and create nationwide linkages in a way that leverages existing directory initiatives. 
- 26 TD-6. What unique interoperability functions does TEFCA perform? a) What existing alternatives should be considered? b) Are there redundant standards, protocols or channels or both that should be consolidated? TEFCA has advanced the development of nationwide exchange infrastructure, with nine (9) organizations already designated as QHINs , and more on the way . TEFCA leveraged previous experiences, policies, and lessons learned from Carequality to support its development. This includes functions like: 1. Unified Nationwide Exchange : TEFCA connects a fragmented ecosystem by establishing a single, government -endorsed network -of-networks, enabling trusted data sharing across different models , including vendor networks, regional HIEs, and federal agencies. 2. Common Agreement and Governance : The Common Agreement and framework documents for TEFCA provide standardized legal , technical, and operational expectations across all participants. The trust framework and representative governance model help to build trust and mediate differences that currently limit data exchange across networks. 3. Querying Unknown Data Sources : A key function is TEFCA’s ability to query for data from unknown sources across participating QHINs using patient discovery and record location services. This functionality combined with the Common Agreement and governance structure enables patients and providers to access information across all providers seen across their lifetime. 4. Ability to Support FHIR at Scale: TEFCA QHINs are currently testing Facilitated FHIR functionality on a network scale to support use cases like individual access services and care coordination. The QHINs are pioneers in industry as some of the leading groups testing the registration and authentication protocols , including the HL7 Security for Scalable Registration , Authentication, and Authorization Implementation Guide1. While Car equality also provides the interoperability functions present in TEFCA, TEFCA is the only nationwide framework with the support and backing of the federal government. As a government -endorsed approach to nationwide interoperability, 1 HL7.FHIR.US.UDAP -SECURITY \Home - FHIR v4.0.1 
- 27 TEFCA can advance interoperability in a way that no other data sharing framework has done before. The government has a unique ability to harmonize stakeholder expectations and galvanize participation across the healthcare system, especially for payment, health care operations, public health, and government benefits use cases. Although much work remains to move to greater use of TEFCA exchange widespread use of FHIR, TEFCA is live and driving progress and accelerating data sharing today. TD-14. Regarding networks’ use of FHIR APIs: a) How many endpoints is your network connected to for patient data sharing? What types, categories, geographies of endpoints do you cover? Are they searchable by National Provider Identifier (NPI) or organizational ID? b) How are these connections established (for example, FHIR (g)(10) endpoints, TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)? c) Do you interconnect with other networks? Under what frameworks (for example, TEFCA, private agreements)? Today, the TEFCA ecosystem is laying the groundwork for scalable FHIR -based exchange through practical implementation, thoughtful policy alignment, and scalable, standards - based infrastructure. The network is currently connected to a growing number of endpoints for patient data sharing, spanning a wide range of organizations and geographies across the country. These include hospitals, health systems, physician practices, and other care providers. As the Recognized Coordinating Entity (RCE) for TEFCA , The Sequoia Project maintains a directory designed to support endpoint discovery for FHIR -based exchange. This directory includes QHINs, Participants, and Subparticipants , and is structured to enable search by National Provider Identifier (NPI) and other organizational identifiers . As the directory becomes more fully populated, it will incorporate comprehensive NPI data to support more efficient network discovery and connectivity. The number of active ly participating organizations is updated monthly on our website, where we also maintain a dynamic map that illustrates the geographic distribution of connectivity nationwide. Connections are established through a variety of technical methods including FHIR endpoints, Integrating the Health Enterprise (IHE) XCPD/XCA standards, as well as proprietary APIs or other standards offered through individual QHIN translation . While current exchange primarily occurs via IHE -based document exchange, TEFCA has begun 
- 28 facilitating FHIR exchange through its Facilitated FHIR2 approach and has developed a FHIR Roadmap to support expanded adoption. The Sequoia Project Healthcare Directory Implementation Guide that supports FHIR , underpins two separate directories: one for TEFCA and another for Car equality. This guide supports the standardization needed for scalable FHIR implementation. We are seeing strong alignment between TEFCA and Car equality, with many Participants engaged in both frameworks. As a steward of the Car equality Interoperability Framework and the RCE for TEFCA, The Sequoia Project is uniquely positioned to foster this alignment and ensure consistency across policy and technical infrastructure. In parallel, our strategic collaboration with HL7 continues to accelerate FHIR adoption across the industry through initiatives such as the HL7 FHIR Accelerator program, including the FHIR at-Scale Task Force ( FAST). Together, we are driving the implementation of real - world FHIR -based exchange, supporting standards development, and promoting broad - based industry education , all of which are critical to enabling scalable, production -level interoperability. TD-16. What are the tradeoffs of maintaining point -to-point models vs. shared network infrastructure? a. Do current rules encourage scalable network participation? b. What changes would improve alignment (for example, API unification, reciprocal access)? A key value proposition of the Common Agreement is its ability to reduce fragmentation across the ecosystem by offering a standardized, scalable alternative to traditional point - to-point models. Although point-to-point exchange allows for direct relationships between trading partners , which can support clearer patient attribution and more controlled trust arrangements , it also creates significant administrative and technical burden. Organizations must maintain separate technical connections, negotiate multiple data use agreements, ensure authorization and authentication protocols are in place for each connection, and address disparate privacy requirements, all of which increase operat ional complexity and cost. These one -off arrangements are particularly burdensome when reporting to numerous 2 https://rce.sequoiaproject.org/wp -content/uploads/2024/07/SOP -Facilitated -FHIR-Implementation_508 - 1.pdf 
- 29 public health agencies, each with their own technical and policy specifications, or when establishing new connections with organizations outside existing networks. In contrast, a shared network infrastructure , like TEFCA, significantly reduces these burdens. By connecting participants through a common framework, TEFCA enables entities to send, receive, and query for standardized electronic health information across a broad array of sources via a single or limited set of co nnections. This model reduces the need for multiple exchange agreements, streamlines technical onboarding, and supports a consistent approach to privacy and security. Moreover, the inclusion of a sta ndards-based directory service and uniform policy expectations addresses longstanding gaps in discoverability and trust establishment. Ultimately, while point -to-point models may retain utility in specific, high -trust use cases, TEFCA’s shared infrastructure offers a path toward more scalable, efficient, and equitable health information exchange nationwide. We believe TEFCA's approach is well-positioned to reduce the complexity and burden of exchange, while maintaining the flexibility necessary to meet the diverse needs of healthcare and public health communities. TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? Federal government engagement in nationwide data sharing frameworks serves to provide certainty for participants, increase the return on investment for all participants, and promote the adoption of new use cases over time. The support and eventual participation in a nationwide data sharing framework by federal agencies provides r eassurance to other health sector entities that their participation will be worthwhile. One of the challenges facing health information exchange to date has been the multiplicity of efforts that are not generally compatible and may not meet the needs of a ll participants . This leads to organizations such as health systems and payers having to choose among unconnected health information networks or participate in multiple efforts, leading to higher costs without universa l access to information they have a legal right to request. In addition, histori cal data sharing has been limited to treatment –based exchange, with only some exchang es supporting access to data by public health, payers, and patient s. 
- 30 Federal agency support and participation reduces uncertainty about whether a framework will succeed over the long term and adds value through exchange across private sector entities and the federal government. For example, CMS participation in a nationwide data sharing framework could allow for private sector entities to report to CMS for quality measures, medical necessity reviews, and other requirements through the nationwide framework . This level of participation could also reduce the burden for both CMS and the entities it regulates by limiting the need for single purpose, one -off connections across programs. Given the large number of federal payment, privacy, and information sharing regulations that apply to health c are entities, federal participation in nationwide information sharing networks also provides a mechanism to ensure alignment with federal regulatory requirements . Data holders take seriously their obligations to abide by HIPAA, the information blocking rules, and other privacy requirements that apply to substance use disorder data and other sensitive data. Having the support of the federal agencies in understanding how these rules apply to nationwide data sharing creates more certainty among private sector actors that they can share d ata in a compliant manner. Existing private sector data sharing frameworks have found it hard to achieve widespread adoption of new uses, partly due to questions about compliance with the various rules noted above. Federal agency participation can help encourage dialogue and clarify the application of federal rules to new use cases, such as exchange across providers and payers or individual access to health information . Positive incentives for participation in nationwide exchange, such as those already included in the Promoting Interoperability Program, also encourage participation. 
- 31 TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non -responsiveness as well as situations that may cause a failure or unusable re sponse? b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? c. Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? To further discourage healthcare providers from engaging in information blocking practices, The Sequoia Project recommends that CMS and ASTP adopt a multi -faceted approach that combines expanded enforcement with education, transparency, and support . Establishing and enforcing disincentives across a broader spectrum of healthcare providers reinforces the significance of the information blocking regulations and fosters a culture of information sharing. However, penalties alone are insufficient. CMS and ASTP should significantly expand education and outreach efforts , particularly for smaller provider organizations , to clarify actors’ obligations and support compliance. Education for individuals on their rights to access health information under HIPAA is a lso essential, as it can empower patients and reduce the need for complaints. ASTP and OIG should engage regularly with the provider community, offering detailed guidance, real -world examples, and transparency into common complaint patterns and best practices. Enforcement should focus on egregious cases to preserve agency resources and target persistent noncompliance. Additionally, CMS should expand disincentives to include more innovation models and provider types currently not subject to enforcement, including laboratories and post-acute care facilities . However, because gaps in these settings often reflect resource constraints or limited technological infrastructure rather than intentional information blocking , it’s important to provide these provider types with targeted support. The Sequoia Project’s Interoperability Matters Information Sharing Workgroup offers a valuable forum for surfacing real -world challenges and practical implementation strategies to inform ongoing policy development and operational guidance. Leveraging these insights 
- 32 can help ensure that future policies are grounded in on -the-ground realities and promote meaningful, equitable data access for all. 
+June 16, 2025
+Mehmet Oz, M.D.
+Administrator, Centers for Medicare &Medicaid Services
+Department of Health and Human Services
+200 Independence Avenue SW
+Washington, DC 20201
+[CMS-0042-NC]
+RIN 0938-AV68
+Re: Request for Information; Health Technology Ecosystem
+Dear Administrator Oz,
+The Sequoia Project is pleased to submit comments to the Centers for Medicare &
+Medicaid Services (CMS) and Assistant Secretary for Technology Policy (ASTP)/Office of the
+National Coordinator for Health Information Technology (ONC) on the Request for
+Information; Health Technology Ecosystem.
+The Sequoia Project is a non-profit, 501(c)(3) public-private collaborative dedicated to
+advancing the interoperability of electronic health information for the public good. With a
+longstanding history of enabling nationwide interoperability, The Sequoia Project works
+with stakeholders from across healthcare and healthcare IT to identify, prioritize, and
+collaboratively address the most pressing and discrete barriers to nationwide health
+information sharing.
+Through our Interoperability Matters cooperative, we convene diverse stakeholders,
+including providers, payers, caregivers, health IT developers, health information networks,
+public health agencies, and federal partners, to develop practical, consensus-driven
+solutions that meet the needs of the broader healthcare ecosystem. Our workgroups
+address a wide range of topics, including consumer strategy, privacy and consent, payer-
+to-payer API Implementation (for CMS-0057), data usability, public health, and information
+blocking compliance to promote information sharing.
+We currently convene the following Interoperability Matters Workgroups to address many of
+the questions raised in the RFI:
+• The Consumer Engagement Strategy Workgroup gathers input from consumers and
+subject matter experts to develop short- and long-term strategies that promote
+consumer engagement, education, access, and interoperability policy.
+1
+
+• The Data Usability Workgroup creates actionable implementation guidance to
+improve clinical content usability and semantic interoperability. Building on standards
+like FHIR®, C-CDA, and USCDI, the group targets priority use cases to ensure health
+data is meaningful and usable within workflows. With more than 300 workgroup
+members, broad stakeholder input is key to the guides’ successes.
+• The Payer-to-Payer FHIR API Implementation Workgroup develops business,
+governance, and operational best practices for data exchange between and among
+payers using HL7® standards. It identifies barriers to interoperability, leverages work
+from HL7 Da Vinci and CARIN. Initially focused on payer-to-payer exchange, this
+workgroup has the potential to expand to other payer exchange partners.
+• The Pharmacy Workgroup supports a nationwide community of practice aimed at
+advancing pharmacy interoperability. It addresses data exchange challenges, co-
+develops data usability priorities, and shares best practices to enable scalable clinical
+services and improved integration across the pharmacy sector.
+• The Privacy & Consent Workgroup tackles challenges in secure data sharing, focusing
+on Consent Management and Data Segmentation for Privacy. It seeks to standardize
+computable consent processes and improve adoption of granular data segmentation
+through HL7 standards to ensure privacy while enabling seamless and appropriate
+interoperability.
+• The Public Health Workgroup addresses interoperability issues affecting public health
+authorities, including regulatory misalignment, modernization, funding, and data
+privacy. It emphasizes collaboration across State, Tribal, Local, and Territorial (STLT)
+public health agencies, and other public health entities to align modernization efforts
+and make the most of current funding opportunities.
+• The Information Sharing Workgroup (formerly the Information Blocking Workgroup)
+focuses on implementing and complying with information sharing rules under the 21st
+Century Cures Act. It evaluates regulatory guidance, offers implementation insights,
+and develops materials to help stakeholders navigate and comply with evolving federal
+requirements.
+We are also honored to serve as the Recognized Coordinating Entity® (RCE®) for the Trusted
+Exchange Framework and Common AgreementTM (TEFCATM). Since TEFCA’s go-live in
+December 2023, nine Qualified Health Information Networks® (QHINsTM) have been
+Designated, with two additional organizations currently in Candidate status. As of June
+2025, 6,213 organizations are actively participating in TEFCA, with over 20 million
+documents exchanged to date, and exchange increasing significantly each month.
+2
+
+As the RCE, we are looking forward to learning from the responses to the RFI as we work
+with our federal partners to expand nationwide TEFCA exchange to improve health and
+healthcare.
+With over a decade of experience leading public-private collaborations and implementing
+successful, sustainable nationwide health IT initiatives, The Sequoia Project brings a
+unique perspective to this RFI. Our recommendations reflect the perspectives of our
+membership and community of stakeholders.
+We appreciate the opportunity to offer our comments and thank CMS and ASTP for their
+continued leadership and collaboration in advancing interoperability.
+Mariann Yeager
+CEO, The Sequoia Project
+3
+
+Contents
+Key Recommendations ......................................................................................... 5
+Patients and Caregivers (PC) ................................................................................. 7
+PC-1. ................................................................................................................. 7
+PC-2 ................................................................................................................. 9
+PC-5 ............................................................................................................... 10
+PC-6 ............................................................................................................... 10
+PC-9 ............................................................................................................... 12
+PC-10 .............................................................................................................. 13
+PC-11 .............................................................................................................. 14
+PC-13 .............................................................................................................. 15
+Providers (PR) ..................................................................................................... 15
+PR-1 ................................................................................................................ 16
+PR-6 ................................................................................................................ 17
+PR-11 .............................................................................................................. 18
+PR-12 .............................................................................................................. 20
+PR-13 .............................................................................................................. 20
+PR-14. ............................................................................................................. 21
+Payers (PA).......................................................................................................... 22
+PA-1 ................................................................................................................ 22
+Technology Vendors, Data Providers, and Networks (TD) ....................................... 23
+TD-4 ................................................................................................................ 23
+TD-6 ................................................................................................................ 26
+TD-14 .............................................................................................................. 27
+TD-16 .............................................................................................................. 28
+TD-17 .............................................................................................................. 29
+TD-18 .............................................................................................................. 31
+4
+
+Key Recommendations
+The Sequoia Project supports CMS and ASTP’s focus on improving interoperability,
+increasing patient access to data, and reducing provider burden.
+Our recommendations reflect the perspectives of our membership and community of
+stakeholders, which spans a wide range of actors, including providers, payers, technology
+vendors, health information networks, governmental agencies, and patient advocates.
+Given this cross-cutting representation, we have focused our comments on select
+questions that reflect the diverse perspectives of our community and the insights gained
+through our collective work.
+To summarize our answers to the RFI questions, we offer the following key
+recommendations to help advance CMS and ASTP’s goals and strengthen the nation’s
+health data infrastructure.
+• Increase federal participation in national interoperability frameworks: The best
+way to increase adoption of nationwide data sharing frameworks, like TEFCA, is for
+CMS and other federal agencies to actively participate. As a major payer and
+regulator, CMS should lead on design and adoption of use cases and capabilities for
+TEFCA where the private sector has not been able to drive adoption and that require
+governmental engagement. CMS participation in TEFCA, as both a payer and
+regulator, will be essential in ensuring that federal policy aligns with operational
+realities and supports trusted, scalable health information exchange.
+• Modernize and align privacy rules: One of the barriers to the success of national
+frameworks stems from the need to modernize the HIPAA Privacy and Security Rule
+to clarify its application within the context of a national exchange framework.
+Further, the patchwork of privacy rules across federal, state, and local levels causes
+ongoing confusion and uncertainty. To overcome these barriers, we strongly
+encourage CMS and ASTP to work in close coordination with the HHS Office for Civil
+Rights to modernize the HIPAA Rules and to help provide guidance for managing
+conflicting federal, state, and local laws.
+• Meet the market where it is: We recognize the importance and value of FHIR, while
+also recognizing that many current use cases and entities involved in exchange have
+not yet adopted FHIR. For example, in many public health reporting use cases,
+existing solutions may be more effective than FHIR at this time. There will continue
+to be a need for document-based exchange even as we continue to accelerate
+implementation of FHIR-based exchange. We recommend that CMS and ASTP
+5
+
+promote and support solutions at the local, regional, and national levels, and
+facilitate coordination across these approaches to achieve meaningful outcomes
+from data exchange.
+• Support consumer and provider education of data sharing requirements: While
+national frameworks and technology tools have the potential to strengthen
+consumer engagement, there remain notable knowledge gaps across consumers,
+providers, and payers regarding the applicable rules and how to consistently
+interpret and apply them. Additional educational efforts are needed, including by
+HHS. CMS and ASTP should prioritize education and implementation support for
+both consumers and providers on existing interoperability technologies, privacy
+protections, and applicable federal rules and regulations.
+• Advance federated identity management: TEFCA and Carequality require the use
+of IAL2 for patients to access their information. We support CMS’ goal of
+implementing a modern, federated identity verification solution for Medicare
+beneficiaries. The Sequoia Project monitors updates on the development and
+progress of federated identity management solutions in the industry. As solutions
+mature, the RCE and Carequality will evaluate their readiness for inclusion in the
+data sharing frameworks.
+• Develop minimally acceptable patient matching rules: CMS and ASTP can help
+to alleviate critical patient matching and identity management rules by collaborating
+with other federal agencies and industry stakeholders to develop and maintain
+minimally acceptable patient-matching rules, including suggested matching traits
+and a framework for methodical improvement.
+• Lead on national endpoint directory: We’re supportive of the direction and need
+for an authoritative endpoint directory. The Sequoia Project is developing a product
+strategy for a health care directory that supports an industrial strength approach to
+national directory services. We recommend that CMS engage a broad array of
+stakeholders in its exploration of ways to improve health care directories and create
+nationwide linkages in a way that leverages existing directory initiatives.
+• Support individual and caregiver access: The Sequoia Project is committed to
+enhancing individuals’ access to their health information and supporting their ability
+to gather and manage it in one place. We encourage CMS, ONC, and other federal
+partners to promote policies and infrastructure that empower individuals and
+caregivers to be active participants in their care.
+6
+
+Patients and Caregivers (PC)
+The Sequoia Project applauds CMS and ASTP for taking steps to improve individuals’
+access to their information. Launched by The Sequoia Project in 2018, the Interoperability
+Matters cooperative engages experts from across the healthcare and healthcare IT
+communities to identify, prioritize, and collaborate on the most pressing, discrete
+challenges to nationwide health information sharing.
+Solving “the last mile problem” for patient data access is a priority area of focus. Our
+Consumer Workgroup of patient data advocates, health IT vendors, health information
+management companies and clinical centers of excellence are addressing the operational
+barriers that keep patients from accessing the data they need when and how they need it.
+Our responses to select Patient and Caregiver questions below reflect discussions of our
+Consumer Workgroup in addition to our broad experience in implementing interoperability.
+We stand ready to further share our work and learnings with CMS and ASTP and welcome
+both agencies to participate in our Consumer Workgroup.
+PC-1. What health management or care navigation apps would help you understand and
+manage your (or your loved ones) health needs, as well as the actions you should take?
+a) What are the top things you would like to be able to do for your or your loved ones’
+health that can be enabled by digital health products?
+b) If you had a personal assistant to support your health needs, what are the top things
+you would ask them to help with? In your response, please consider tasks that could
+be supported or facilitated by software solutions in the future.
+Our discussions with consumers and caregivers highlight the following needs:
+• Access all health records in one place. Barriers to interoperability affect all
+patient populations but are more painfully evident for patients with multiple co-
+morbidities and complex health conditions predominant in Medicare populations.
+People with chronic or complex medical conditions have multiple providers using
+multiple EHRs, all with their own portals, user IDs, passwords, authentications,
+navigations, functionalities, and content. Navigating the fragmented system for
+effective care coordination is especially challenging for the Medicare population
+and their caregivers. Tools to gather and manage health records from across
+providers that can also include patient-generated data would better support
+individuals’ ability to manage their health.
+• Reduce the amount of paper and patient administrative burden. Despite broader
+use of digital registration and check-in solutions, patients and caregivers are
+7
+
+repeatedly asked to fill out often duplicative paperwork at every visit. Further,
+differing state privacy laws result in a multitude of consent forms to complete that
+all provide consent for slightly different things. Technology tools should be leveraged
+to reduce the administrative burden on patients and caregivers, which remains
+heavy, complicated, and frustrating.
+• Digitally share images with providers. Our work in the consumer space finds that
+images and other diagnostic test results are not commonly exchanged between
+providers and health systems, even though technology exists to do so. Remarkably,
+results (e.g., x-rays, EEGs, ECGs, EKGs) are often saved on thumb drives and CDs
+and patients are sometimes required to pick them up in person and deliver them to
+their providers. Efforts to expand provider use of existing interoperable solutions to
+share images would reduce patient and caregiver administrative burden.
+• Self-direct sharing of specific health records. Consumers want the choice to
+send discrete information from the patient portal or the EHR to specific doctors or
+authorized individuals, rather than the current share everything or nothing options.
+Technology tools to segment data for privacy and provide granular consent to share
+data by type of data or provider would support this.
+• Increase access to user-friendly tools. Despite the many patient portals offered
+today, many consumers and providers don’t take full advantage of the services
+offered because the tools are not user friendly or accessible. In particular,
+consumers want improved functionality across all their providers for managing
+prescriptions, paying fees, receiving alerts about test results, and correcting
+medical errors in the record.
+• Support access by caregivers. In many instances, individuals rely on caregivers to
+support their care journeys, including scheduling appointments, tracking
+authorizations, and managing bills. However, systems do not currently easily
+facilitate proxy access by caregivers based on individuals’ authorization. In fact,
+some payers require the downloading, printing, faxing, or mailing of paper forms
+that are then only kept for a year. Electronic tools to authorize caregiver access and
+to share those permissions across providers and payers would reduce burden and
+improve care.
+8
+
+PC-2. Do you have easy access to your own and all your loved ones’ health information in
+one location (for example, in a single patient portal or another software system)?
+a. If so, what are some examples of benefits it has provided?
+b. If not, in what contexts or for what workflows would it be most valuable to use one
+portal or system to access all such health information?
+c. Were there particular data types, such as x-rays or specific test results, that were
+unavailable? What are the obstacles to accessing your own or your loved ones’
+complete health information electronically and using it for managing health
+conditions or finding the best care (for example, limitations in functionality, user
+friendliness, or access to basic technology infrastructure)?
+Our work in the consumer space suggests access to health information is rarely easy and
+data is rarely consolidated in one place. Most patient portals only offer access to a single or
+narrow group of providers, forcing individuals to subscribe to multiple portals to access all
+their health data. This disproportionately affects individuals with multiple chronic
+conditions and Medicare populations.
+For many of these individuals, it is common to see more than one clinician, which means
+that their health data is fragmented across multiple EHRs and vendors. This can result in
+unnecessarily repeating costly tests and other diagnostics. CMS should encourage
+electronic health record vendors to work together to improve the availability of
+records across networks and participate in trusted exchange frameworks.
+Providing easier, electronic proxy access to information by caregivers would also be
+incredibly valuable. Challenges in getting proxy access prevent those simply hoping to
+help care for their loved ones from accessing needed information to make appointments,
+manage complications, and pay bills. Having a secure and interoperable method to link
+patients and their caregivers to both payer and provider systems, while ensuring
+appropriate authorization, could reduce patient burden and support timely care.
+As noted in our answer to PC-1, imaging results are often not shared electronically, leading
+to patient burden.
+9
+
+PC-5. What can CMS and its partners do to encourage patient and caregiver interest in
+these digital health products?
+a) What role, if any, should CMS have in reviewing or approving digital health products
+on the basis of their efficacy, quality or impact or both on health outcomes (not
+approving in the sense of a coverage determination)? What criteria should be used if
+there is a review process? What technology solutions, policy changes, or program
+design changes can increase patient and caregiver adoption of digital health
+products (for example, enhancements to data access, reimbursement adjustments,
+or new beneficiary communications)?
+b) What changes would enable timely access to high quality CMS and provider
+generated data on patients?
+CMS and ASTP have an important opportunity to work alongside other federal agencies and
+industry stakeholders to promote a trusted, standards-based, and interoperable
+ecosystem. This includes coordinating with agencies responsible for privacy and security
+oversight (including the HHS Office for Civil Rights) and collaborating with the private
+sector to advance voluntary standards, implementation guidance, and best practices for
+health applications, particularly those that enable patient access to their health
+information.
+Providers are highly trusted figures in the healthcare system and should be positively
+incentivized to guide patients in understanding and utilizing their digital health information,
+and helping to bridge the gap between technology and everyday care.
+The Sequoia Project is actively contributing to this work by convening a Consumer
+Engagement Strategy Workgroup to identify barriers to electronic health information
+access and recommend strategies for equitable engagement, education, and facilitation.
+CMS should support and complement these efforts by partnering across HHS and the
+broader health IT community to implement a consistent, agency-wide approach to
+educating individuals on how to access and use their health data.
+PC-6. What features are most important to make digital health products accessible and
+easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior
+experience using digital tools and services?
+10
+
+Ensuring digital tools are understandable, interoperable, and supportive of equitable
+access is essential to delivering person-centered care. To that end, we urge CMS and ASTP
+to consider four foundational areas for improvement:
+1. Clear Communication
+Beneficiaries and caregivers must clearly understand their rights and options for accessing
+health information. CMS should work with industry to ensure individuals are informed
+about: (1) how to access their data in usable formats, (2) what data they are entitled to, and
+(3) the privacy and security implications of access methods. This information should be
+delivered in plain language and in formats that accommodate diverse literacy levels and
+accessibility needs.
+2. Interoperability and Ease of Use
+Digital health tools should be interoperable with all EHRs a patient uses, allow for selective
+data sharing, and work across all devices. Single sign-on capabilities across systems can
+reduce barriers. Products should also implement data standards so that information
+shared by patients is meaningful and usable for providers within their workflows.
+3. Simplified Caregiver Access
+Caregivers often encounter outdated, paper-based processes to gain access to health and
+payer data. Some payers do not accept verbal consent or require forms that must be faxed
+or mailed. CMS should promote streamlined, digital processes that reduce administrative
+burden and support timely caregiver involvement in care coordination, with the appropriate
+authorization.
+4. Tools to Manage Privacy and Consent
+Privacy and consent capabilities are also critical to earning patient trust and enabling
+meaningful control over health information. Digital health tools should support flexible,
+granular consent mechanisms that allow individuals to decide what information to share,
+with whom, and under what circumstances. These tools should include data segmentation
+features that enable granular control over specific data elements, as well as options to
+review, modify, or revoke consent in collaboration with clinicians. Effective consent
+management should also accommodate varying levels of digital literacy, offer clear
+explanations, and minimize disruption to provider workflows. Technology that supports
+electronic consent and identity verification can further streamline access while protecting
+privacy.
+11
+
+The Sequoia Project’s Privacy and Consent Workgroup recently pushed a white paper titled
+“Moving Toward Computable Consent: A Landscape Review” that highlights current
+challenges and the urgent need for standardized and interoperable consent management
+approaches.
+PC-9. What specific opportunities and challenges exist to improve accessibility,
+interoperability and integration of clinical data from different sources to enable more
+meaningful clinical research and generation of actionable evidence?
+The Sequoia Project supports CMS’s and ASTP’s commitment to improving access to
+interoperable clinical data to advance research and evidence generation. While significant
+opportunities exist, key challenges must be addressed to fully realize this potential.
+A primary challenge is limited access to real-world clinical data for research purposes.
+Current barriers delay studies, restrict data availability, and complicate research design.
+While research isn’t an exchange purpose supported within national frameworks, like
+TEFCA and Carequality today, there are plans to explore adding it in the future, which would
+directly improve the accessibility, interoperability and integration of clinical data from
+different sources to advance and enable more meaningful clinical research. As a start, we
+would suggest developing a use case to support clinical trials and other treatment-
+related research for adoption in national frameworks.
+In the meantime, patients that are interested in participating in clinical research can utilize
+the Individual Access Services (IAS) Exchange Purpose on TEFCA or the Patient Request
+permitted purpose on Carequality to retrieve their own records and use them to inform
+clinical research.
+CMS and ASTP can help bridge the gap between consumers and research by
+supporting digital health literacy and incentivizing providers to engage patients in
+accessing and sharing their data. Cross-agency coordination within HHS would further
+align research, policy, and practice.
+12
+
+PC-10. How is the Trusted Exchange Framework and Common Agreement™ (TEFCA™)
+currently helping to advance patient access to health information in the real world?
+a. Please provide specific examples.
+b. What changes would you suggest?
+c. What use cases could have a significant impact if implemented through TEFCA?
+d. What standards are you aware of that are currently working well to advance
+access and existing exchange purposes?
+e. What standards are you aware of that are not currently in wide use, but could
+improve data access and integration?
+f. Are there redundant standards, protocols, or channels that should be
+consolidated?
+g. Are there adequate alternatives outside of TEFCA for achieving widespread
+patient access to their health information?
+TEFCA is advancing patient access by providing a nationwide infrastructure that enables
+individuals to request and receive their health information from a wide range of healthcare
+organizations through a single connection. For example, it enables patient-facing apps or
+other Individual Access Service (IAS) Providers, with patient permission, to query for and
+obtain their health information from across the network in one place.
+IAS was one of the first successful exchanges in TEFCA and QHINs are currently testing the
+IAS use case using FHIR.
+The biggest challenge with IAS exchange is when a non-HIPAA covered entity offering IAS
+submits an IAS query using demographic data fields. In this instance, it is possible the
+information may be insufficient to produce the correct matched record. In that
+circumstance, the sender of the record risks a HIPAA breach by sending the wrong record
+to the app. The threat of potential penalties in the event of a breach is an obstacle to
+facilitating the required IAS Exchange Purpose both within and outside of TEFCA.
+CMS and ASTP should work with OCR to provide guidance on how to minimize these
+risks and provide safe harbors for HIPAA covered entities that share in good faith,
+based on the information available. For example, TEFCA requires that IAS Providers
+identity proof individuals using the NIST IAL2 specification (see our answer in PR-11 for
+more details). CMS and ASTP could recommend to OCR that they issue enforcement
+discretion in certain circumstances when a non-HIPAA entity requests information on
+13
+
+an individual using certain identity proofing standards, like IAL2, but the response
+results in a breach based on an incorrect patient match.
+TEFCA supports the IAS workflow using both FHIR-based exchange and IHE-based SOAP
+exchange. While IHE-based exchange relies on patient demographics for matching, with
+the concerns noted above, FHIR also allows IAS Providers to request patient information
+leveraging provider-issued portal credentials. This method helps to alleviate the problems
+with patient matching, but it creates other problems by forcing individuals to remember all
+the providers they’ve seen and remember individual portal credentials for each provider.
+Without national frameworks, patients can use provider portals or patient-facing apps to
+access their information electronically. However, these solutions exist at the individual
+provider-level; even patient-facing apps generally have to connect to individual provider
+organizations or leverage EHR-based app services. National frameworks, like TEFCA and
+Carequality, provide a scalable approach by providing one connection point to all of a
+patient’s providers.
+PC-11. How are health information exchanges (HIEs) currently helping to advance patient
+access to health information in the real world?
+a. How valuable, available, and accurate do you find the data they share to be?
+b. What changes would you suggest?
+c. Are there particular examples of high-performing HIE models that you believe
+should be propagated across markets?
+d. What is the ongoing role of HIEs amidst other entities facilitating data exchange
+and broader frameworks for data exchange (for example, vendor health information
+networks, TEFCA, private exchange networks, etc.)?
+HIEs are a critical part of the interoperability landscape with strong ties to local provider
+organizations, public health departments, and community-based services, enabling them
+to tailor data exchange to the specific needs of their populations.
+HIEs support a range of use cases, including:
+• Facilitating treatment and care coordination through real-time data sharing between
+providers;
+• Supporting public health reporting and response efforts;
+• Enhancing data quality;
+• Assisting in quality measurement and reporting for value-based care programs; and
+• Responding to patient requests for access to their health records
+14
+
+TEFCA is designed to complement this critical infrastructure by connecting HIEs with
+other health information networks and data exchange stakeholders to leverage the
+network-of-networks and benefit from its nationwide scale.
+PC-13. How can CMS encourage patients and caregivers to submit information blocking
+complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would
+increasing reporting of complaints advance or negatively impact data exchange?
+The Sequoia Project encourages CMS to focus on patient and caregiver education as
+the most effective strategy to address potential information blocking. Rather than
+solely increasing complaint submissions, CMS should collaborate with the private sector
+to raise awareness about individuals’ rights under HIPAA and the Cures Act, including how
+to access health information and what constitutes information blocking.
+Improved education supports meaningful engagement, enhances trust, and ultimately
+advances data exchange by addressing root causes of confusion and access barriers.
+CMS can amplify its efforts by leveraging existing educational resources from The Sequoia
+Project’s Interoperability Matters initiative.
+Our Interoperability Matters Information Sharing Workgroup has convened providers,
+developers, health information networks (HINs) and data requestors since 2019, to discuss
+real-world solutions and challenges to compliance with the information blocking rules. The
+workgroup has proactively created a set of good practices and other resources to educate
+the community on how best to share information and be in compliance with the
+information blocking rules. The group has also identified remaining policy issues that
+would support compliance, including the need for additional educational efforts by federal
+agencies
+Providers (PR)
+The Sequoia Project supports providers across the care continuum through our Data
+Sharing Workgroup, Privacy & Consent Workgroup, Pharmacy Workgroup, and Information
+Sharing Workgroup. All these groups facilitate provider collaboration with other
+stakeholders to decrease burden, share knowledge, and improve access to data at the
+point of care. Our responses to select Provider questions below reflect discussions of these
+Workgroups in addition to our broad experience in implementing interoperability.
+15
+
+PR-1. What can CMS and its partners do to encourage providers, including those in rural
+areas, to leverage approved (see description in PC-5) digital health products for their
+patients?
+a) What are the current obstacles?
+b) What information should providers share with patients when using digital products
+in the provision of their care?
+c) What responsibilities do providers have when recommending use of a digital
+product by a patient?
+The Sequoia Project supports CMS’ continued focus on advancing interoperability, patient
+access, and reducing provider burden. To fully realize these goals, CMS must address
+persistent barriers, particularly in rural and underserved communities, including low digital
+literacy, limited awareness of data access rights, inadequate internet access, and
+concerns about privacy and security with third-party apps. Fragmented records, high data
+access fees, and burdensome identity verification also remain significant challenges.
+Addressing these issues requires coordinated support for both patients and providers.
+To address these challenges, we recommend CMS take the following actions:
+• Support provider readiness through targeted funding, technical assistance, and
+regulatory flexibility to enable transition from paper-based systems to interoperable
+digital infrastructure, including FHIR APIs.
+• Empower patients by requiring providers to clearly communicate rights under
+HIPAA and the Cures Act, explain access options (portals, third-party apps), and
+provide information in accessible, plain language formats.
+• Incentivize engagement by encouraging providers to promote portal use and
+patient access through positive incentives tied to patient education and support.
+• Strengthen interoperability by promoting TEFCA as an option for data exchange
+within CMS programs for care delivery, administration, and reporting.
+• Foster trust and reduce access barriers by addressing costs, data fragmentation,
+and identity verification challenges, and by increasing public awareness of privacy
+protections.
+By aligning policy, infrastructure, and education, CMS can create a more inclusive and
+effective digital health ecosystem that benefits all patients and providers.
+16
+
+PR-6. Is TEFCA currently helping to advance provider access to health information?
+a. Please provide specific examples.
+b. What changes would you suggest?
+c. What other options are available outside of TEFCA?
+d. Are there redundant standards, protocols or channels or both that could be
+consolidated?
+Yes, the Trusted Exchange Framework and Common Agreement (TEFCA) is helping to
+advance provider access to health information. While the framework is still in the early
+stages of implementation, it is already enabling more efficient, standardized, and secure
+data exchange among healthcare providers across the country.
+The Sequoia Project believes this initiative will be most successful if there is widespread
+participation across the public and private sectors. As TEFCA grows, we believe CMS’s
+participation in the health information network ecosystem will be critical to ensuring that
+TEFCA meets the needs of federal health programs.
+Federal agency participation in TEFCA would accelerate its success and benefit the
+interoperability landscape in the following ways: 1) enhance the volume and quality of
+the data exchanged across the network; 2) improve the scalability of use cases that
+involve federal agency participation; and 3) drive alignment between national
+interoperability solutions and federal laws and regulations.
+TEFCA enables providers to:
+• Improve Care: Providers will have access to a fuller array of information for clinical
+decision-making because they will be able to access a patient’s electronic health
+information from more providers. This is especially beneficial for providers that
+serve patients that see multiple specialists for multiple conditions. Further,
+accessing test results and diagnostics performed by other care providers can limit
+the need for repeat and redundant services, saving costs and enhancing
+convenience for patients.
+• Improve Care Coordination: With fewer barriers to connection and greater access
+to information, a broader range of provider types and health care organizations may
+be interested in sharing health information through the network based on the
+Common Agreement. This includes ambulatory providers, federally qualified health
+centers, behavioral health professionals, long-term or post-acute care facilities, and
+other care settings. The network based on the Common Agreement will support
+17
+
+sharing of data during transitions of care, such as from a hospital to a post-acute
+setting, or from a nursing home to the emergency department. This will also provide
+a mechanism for primary care providers to know about the care their patients
+receive in other settings.
+• Access information needed to support value-based care, care management,
+and population health: As providers take on more responsibility to manage the
+care of populations, they need information from outside their own organizations to
+have a more complete picture of the care a patient has received to help close care
+gaps (such as missing immunizations or diagnostic tests), gather information for
+quality metrics, and develop analytics regarding trends in chronic disease and other
+factors.
+• Reduce the need to participate in multiple health information exchange
+initiatives: The network based on the Common Agreement will connect networks to
+one another, allowing providers to access and exchange information from varied
+sources through a single or limited set of connections. The scope of directory
+services available through this network will also facilitate exchange, both locally and
+nationally so that information follows the individual.
+One of the barriers to the success of national frameworks stems from the need to
+modernize the HIPAA Privacy and Security Rule to clarify its application within the context
+of a national exchange framework. For example, to maintain alignment with existing
+exchange, data sharing networks often apply the definitions of the HIPAA permitted
+purposes of Treatment, Payment, and Health Care Operations to the framework. These
+definitions were not drafted with the national framework model in mind, which causes
+tension when applied in that environment.
+To overcome this barrier, we strongly encourage CMS to work in close coordination
+with the HHS Office for Civil Rights to modernize the HIPAA Privacy and Security
+Rules.
+PR-11. How could members of trust communities (for example, QHINs, Participants and
+Subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential
+Service Providers (CSPs)) better support the goals of reduced provider and patient burden
+while also enhancing identity management and security?
+The answer to this question also applies to PR-9, PC-14, and PR-10.
+18
+
+TEFCA requires that Individual Access Services (IAS) Providers identity proof patients to
+NIST Identity Assurance Level 2 (IAL2) using a Credential Service Provider (CSP) before
+initiating an (IAS) request for that individual.
+TEFCA adopted this policy from Carequality, which leveraged its extensive community,
+along with several CSPs, to design and pilot the approach that requires the inclusion of a
+secure identity token to be passed as part of the query transaction. The combination of
+authenticating patients to IAL2, along with the technical token, allows IAS to be supported
+securely at a national scale with minimal burden.
+Based on conversations with our community, this approach has a few benefits and a
+potential drawback:
+Pros
+• IAL2 is a reliable standard for authentication: This NIST standard is widely used
+and provides a high level of security without requiring an in-person step that can be
+burdensome.
+• Secure Technical Tokens: The technical token, which is built on the OpenID
+Connect (OIDC) token, includes the demographics that were verified during the IAL2
+authentication, which can be trusted by the responder to use in patient matching.
+• Vetted CSP List: TEFCA points to a trusted third-party list of vetted CSPs to
+determine which are allowed to provide IAL2 services. Leveraging their expertise to
+vet the CSPs’ processes ensures security and encourages trust between networks.
+Cons
+• IAL2 verification may be a challenge for some: IAL2 requires multiple evidence
+documents, some of which may not be easily accessible for every individual (e.g.,
+utility bills for the unhoused or minors). Many CSPs mitigate this burden by
+accepting a variety of evidence types to satisfy the requirements.
+We support CMS’ goal of implementing a modern, federated identity verification solution
+for Medicare beneficiaries. The Sequoia Project monitors updates on the development and
+progress of federated identity management solutions in the industry. As solutions mature,
+the RCE and Carequality will evaluate their readiness for inclusion in the data sharing
+frameworks.
+In the meantime, CMS and ASTP can help to alleviate some of the concerns with
+patients using digital health apps by collaborating with other federal agencies and
+19
+
+industry stakeholders to develop and maintain minimally acceptable patient-
+matching rules, including suggested matching traits and a framework for methodical
+improvement.
+PR-12. Should ASTP/ONC consider removing or revising any of the information blocking
+exceptions or conditions within the exceptions (45 CFR part 171, subparts B through D) to
+further the access, exchange, and use of electronic health information (EHI) and to promote
+market competition?
+Overall, the Sequoia Project supports the existing information blocking exceptions and
+conditions, including the recent updates finalized in HTI-3.
+We support the finalized updates to the information blocking rule in HTI-2 and HTI-3,
+including the addition of the Protecting Care Access Exception, which offers healthcare
+providers a clear pathway to protect themselves and their patients from potential legal
+risks related to reproductive health care. By allowing actors to restrict the exchange of
+specific EHI when they believe it could expose individuals to legal action, this proposal
+ensures that providers can continue offering critical care without fear of legal
+repercussions.
+We encourage ASTP to work with the community to craft additional guidance and
+create tools to make the rules simpler and easier to understand and comply with. The
+Sequoia Project’s Information Sharing Workgroup often provides feedback to ASTP to
+request guidance and clarification on certain aspects of the Information Sharing rules. The
+workgroup would welcome the opportunity to share lessons learned from implementation
+and thoughts on making the rules easier to navigate.
+PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3)), without a
+current information blocking disincentive established by CMS, what would be the most
+effective disincentive for that category of provider?
+The Sequoia Project strongly supports equitable enforcement of information blocking
+provisions across all healthcare provider categories. Establishing specific penalties for only
+a subset of the provider community creates a fragmented regulatory landscape and
+undermines the consistent implementation of the information blocking rules. To strengthen
+and expand enforcement in a balanced and practical manner, we recommend the
+following:
+• Expand enforcement to additional provider types through an iterative and phased
+approach, with a particular focus on laboratories and post-acute care facilities. These
+20
+
+provider types play a critical role in care coordination and data sharing but often
+represent persistent gaps in interoperability.
+• Establish appropriately tailored disincentives for newly included providers to
+encourage compliance without imposing undue burden. Since gaps in these settings
+are often due to resource limitations or insufficient technological infrastructure and not
+necessarily deliberate information blocking, it’s important to offer these provider types
+tailored assistance and guidance
+• Ensure reasonable timelines and sufficient educational outreach to support
+providers before any disincentives take effect. Providers must be equipped with the
+resources, guidance, and technical assistance necessary to comply with information
+blocking rules. This is especially important given the variation in provider size, patient
+volume, and resource availability, particularly among smaller or rural facilities. We
+support CMS’s current focus on ensuring readiness and urge continued emphasis on
+supporting providers through this transition.
+• Focus disincentives on egregious or repeated violations, rather than isolated or
+unintentional acts.
+• Preserve due process protections by allowing providers to retain the right to appeal
+any finding of information blocking.
+• Encourage further clarity from the Office of Inspector General (OIG) on how
+investigations will be conducted and how the knowledge standard will be assessed,
+either through formal guidance or further rulemaking
+PR-14. How can CMS encourage providers to submit information blocking complaints to
+ASTP/ONC’s Information Blocking Portal? What would be the impact? Would it advance or
+negatively impact data exchange?
+Drawing on The Sequoia Project’s experience leading the Information Sharing Workgroup
+we have found that provider engagement is most effective when supported by clear
+education, practical tools, and transparent communication around enforcement
+expectations. Our Information Sharing Toolkit, released in 2024, offers actionable
+compliance resources, including sample policies, exception workflows, and project
+planning templates that have been well received by stakeholders across the health IT
+ecosystem.
+We recommend CMS collaborate with industry partners to host targeted educational
+sessions that help providers understand when and how to submit complaints, and
+why these actions are critical to ensuring a fair and effective regulatory environment.
+21
+
+Encouraging providers to use the Information Blocking Portal with appropriate guidance
+and support may yield significant benefits, including the identification of recurring
+implementation challenges, more consistent application of exceptions, and greater
+accountability among all actors. It is equally important to address provider concerns
+around burden, regulatory uncertainty, or fear of reprisal. Framing complaint submission as
+a constructive mechanism for policy refinement and ecosystem-wide improvement can
+help mitigate these concerns.
+We support CMS and ASTP in advancing a thoughtful approach that balances robust
+enforcement with practical support, and we welcome continued collaboration to promote
+trusted, transparent, and interoperable data exchange.
+Payers (PA)
+The Sequoia Project supports Payers through our Payer-to-Payer FHIR® API Implementation
+Workgroup, which develops business, governance, and operational best practices for data
+exchange between payers using HL7® standards. As the TEFCA Recognized Coordinating
+Entity (RCE), the Sequoia Project is actively working with HHS and the payer community to
+facilitate the exchange of information between payers and providers in support of
+electronic prior authorization, quality reporting, risk adjustment and other needs.
+PA-1. What policy or technical limitations do you see in TEFCA? What changes would you
+suggest to address those limitations? To what degree do you expect these limitations to
+hinder participation in TEFCA?
+TEFCA is a critical step towards nationwide interoperability, but certain policy and
+regulatory limitations may hinder broader participation, particularly for payers and
+organizations operating outside of traditional HIPAA-covered roles. Many of these
+challenges stem from the need to modernize the HIPAA Privacy and Security Rule to clarify
+their application within the context of a national exchange framework. In order to address
+these limitations, we need federal support and alignment on regulations that impact
+interoperability.
+Key Limitations:
+1. Lack of Clarity on HIPAA “Minimum Necessary” Standard: TEFCA enables
+exchange for a range of exchange purposes beyond treatment including payment,
+public health, and health care operations. When data is exchanged outside of
+Treatment use cases, providers and payers face uncertainty around how to comply
+22
+
+with HIPAA’s “minimum necessary” requirement. The ambiguity leads to hesitancy
+and underutilization of exchange purposes for non-treatment purposes.
+• HIPAA not Designed for National Frameworks: HIPAA is designed to give Covered
+Entities discretion over whether they respond to a data request. National
+frameworks, like TEFCA, often use a model where responses are required by all
+participating data holders. This causes tension when applying the HIPAA definitions
+of Treatment, Payment, and Health Care Operations to exchanges under the
+frameworks. Additional clarity and guidance on the boundaries of the definitions
+would have a major impact towards improving trust in nationwide data sharing
+frameworks.
+• Fear of Breach when disclosing to non-HIPAA Entity: TEFCA allows for
+participation by non-HIPAA entities and contractually obligates those non-HIPAA
+entities to comply with HIPAA. However, providers are concerned about the risk of
+patient mismatches and potential breaches when responding to queries initiated by
+a non-HIPAA entity. This obstacle largely impacts responses to Individual Access
+Services queries. CMS should work with OCR to provide clear, risk-based guidance
+for disclosure involving non-HIPAA entities when the request was made using
+agreed-upon rules.
+We encourage CMS to work closely with the OCR to identify updates to the HIPAA Privacy
+and Security Rule that promote trusted data sharing.
+Given its role as a payer and a regulator of health plans through Medicare, Medicaid, and
+the Health Insurance Marketplace, CMS participation in TEFCA is key to ensuring federal
+regulations work for those they regulate.
+Technology Vendors, Data Providers, and Networks (TD)
+All of the Sequoia Project Interoperability Matters Workgroups have avid participation
+across technology vendors, data providers, and networks. Our responses to select
+Technology Vendor, Data Provider, and Network questions below reflect discussions of
+these Workgroups in addition to our broad experience in implementing interoperability.
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+CMS has an important opportunity to encourage open, standards-based, publicly available
+APIs by participating in and promoting participation in nationwide interoperability
+frameworks like TEFCA. CMS participation will engender use of the framework by others
+23
+
+who want to exchange with CMS. Further, CMS should continue providing incentives for
+CMS regulated payers and providers to participate in national frameworks with open,
+standards-based, publicly available APIs by explicitly naming TEFCA as an option for
+compliance in the CMS Interoperability and Prior Authorization final rule (CMS-0057-F)
+and Promoting Interoperability program.
+CMS can also support the use of open, standards-based, publicly available APIs by
+providing tools and resources to help regulated entities adopt APIs. For example, The
+Sequoia Project’s Payer-to-Payer FHIR API Implementation Workgroup created a resource
+to help payers comply with the payer-to-payer API requirements in the CMS-0057-F. This
+editable checklist provides an easy-to-use framework that helps identify both explicit and
+implicit regulatory and operational requirements, ensuring payers are well-prepared to
+meet compliance standards.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to
+health information for patients, providers, and payers? Who should publish such a
+directory, and should users bear a cost?
+The answer to this question also applies to VB-15.
+We’re supportive of the direction and need for an authoritative endpoint directory. A
+nationwide provider directory of FHIR endpoints could improve access to patient data and
+enhance understanding of claims data sources by streamlining how health care entities
+discover, connect, and exchange data.
+For the directory to be effective and meaningful, the data must be complete and accurate.
+Based on our considerable experience managing directories to support nationwide
+exchange, it is increasingly difficult to maintain the accuracy of directory data the further
+removed the data from its source. The accuracy of the data is more assured when the entity
+maintaining the data is also the source of truth for that information. CMS will need to
+identify a clear governance process with policies and procedures for maintaining
+directory integrity. Processes for data submission, validation, regular updates, and
+maintenance must be established to ensure accuracy and timeliness.
+Ideally, the key data elements necessary in a nationwide FHIR endpoint directory would
+include:
+• Name of individual providers and organizations, with identifiers (e.g., NPI)
+• Type of provider (e.g., hospital, clinic, single-provider practice)
+24
+
+• The purposes for which the provider initiates and responds to requests for
+information
+• Information about areas/geographies that are served by the provider
+• Contact information
+• Publicly accessible electronic service endpoint information (e.g., FHIR API base
+URLs for patient access, organization-level endpoints)
+We also note that it’s not enough to have a directory of providers- it needs to include
+payers, public health agencies, health information networks, and other players in
+interoperability. If we want exchange to grow beyond treatment, directories will need to
+be inclusive of all exchange actors.
+Another option for CMS to consider is an approach that defines uniform standards for
+directories, facilitate information sharing and standardize the way directories
+interoperate with each other. This approach would allow those closer to the source of
+truth to both maintain the data on an ongoing basis and manage electronic exchange of
+directory information efficiently. This approach also allows individual directories to be
+more specified with the information they need to maintain, and thus more responsive to
+shifting needs.
+It is also important to recognize the magnitude of clinical data being exchanged today
+through networks and frameworks that do not primarily use FHIR (TEFCA, Carequality,
+Direct Secure Messaging, etc.) A national provider directory of FHIR endpoints should
+support linkage to other directories to provide a complete picture of each provider’s
+multiple paths of connectivity.
+Directories today are typically either provider focused, or organization focused. A provider
+directory of FHIR endpoints will also need to consider how an individual provider can
+be linked to multiple organizations, each with unique FHIR endpoints.
+We recommend that CMS engage a broad array of stakeholders in its exploration of
+ways to improve health care directories and create nationwide linkages in a way that
+leverages existing directory initiatives.
+25
+
+TD-6. What unique interoperability functions does TEFCA perform?
+a) What existing alternatives should be considered?
+b) Are there redundant standards, protocols or channels or both that should be
+consolidated?
+TEFCA has advanced the development of nationwide exchange infrastructure, with nine (9)
+organizations already designated as QHINs, and more on the way. TEFCA leveraged
+previous experiences, policies, and lessons learned from Carequality to support its
+development. This includes functions like:
+1. Unified Nationwide Exchange: TEFCA connects a fragmented ecosystem by
+establishing a single, government-endorsed network-of-networks, enabling trusted
+data sharing across different models, including vendor networks, regional HIEs, and
+federal agencies.
+2. Common Agreement and Governance: The Common Agreement and framework
+documents for TEFCA provide standardized legal, technical, and operational
+expectations across all participants. The trust framework and representative
+governance model help to build trust and mediate differences that currently limit
+data exchange across networks.
+3. Querying Unknown Data Sources: A key function is TEFCA’s ability to query for
+data from unknown sources across participating QHINs using patient discovery and
+record location services. This functionality combined with the Common Agreement
+and governance structure enables patients and providers to access information
+across all providers seen across their lifetime.
+4. Ability to Support FHIR at Scale: TEFCA QHINs are currently testing Facilitated
+FHIR functionality on a network scale to support use cases like individual access
+services and care coordination. The QHINs are pioneers in industry as some of the
+leading groups testing the registration and authentication protocols, including the
+HL7 Security for Scalable Registration, Authentication, and Authorization
+Implementation Guide1.
+While Carequality also provides the interoperability functions present in TEFCA, TEFCA
+is the only nationwide framework with the support and backing of the federal
+government. As a government-endorsed approach to nationwide interoperability,
+1 HL7.FHIR.US.UDAP-SECURITY\Home - FHIR v4.0.1
+26
+
+TEFCA can advance interoperability in a way that no other data sharing framework
+has done before.
+The government has a unique ability to harmonize stakeholder expectations and
+galvanize participation across the healthcare system, especially for payment, health
+care operations, public health, and government benefits use cases. Although much
+work remains to move to greater use of TEFCA exchange widespread use of FHIR,
+TEFCA is live and driving progress and accelerating data sharing today.
+TD-14. Regarding networks’ use of FHIR APIs:
+a) How many endpoints is your network connected to for patient data sharing? What
+types, categories, geographies of endpoints do you cover? Are they searchable by
+National Provider Identifier (NPI) or organizational ID?
+b) How are these connections established (for example, FHIR (g)(10) endpoints,
+TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)?
+c) Do you interconnect with other networks? Under what frameworks (for example,
+TEFCA, private agreements)?
+Today, the TEFCA ecosystem is laying the groundwork for scalable FHIR-based exchange
+through practical implementation, thoughtful policy alignment, and scalable, standards-
+based infrastructure. The network is currently connected to a growing number of endpoints
+for patient data sharing, spanning a wide range of organizations and geographies across the
+country. These include hospitals, health systems, physician practices, and other care
+providers.
+As the Recognized Coordinating Entity (RCE) for TEFCA, The Sequoia Project maintains a
+directory designed to support endpoint discovery for FHIR-based exchange. This directory
+includes QHINs, Participants, and Subparticipants, and is structured to enable search by
+National Provider Identifier (NPI) and other organizational identifiers. As the directory
+becomes more fully populated, it will incorporate comprehensive NPI data to support more
+efficient network discovery and connectivity. The number of actively participating
+organizations is updated monthly on our website, where we also maintain a dynamic map
+that illustrates the geographic distribution of connectivity nationwide.
+Connections are established through a variety of technical methods including FHIR
+endpoints, Integrating the Health Enterprise (IHE) XCPD/XCA standards, as well as
+proprietary APIs or other standards offered through individual QHIN translation. While
+current exchange primarily occurs via IHE-based document exchange, TEFCA has begun
+27
+
+facilitating FHIR exchange through its Facilitated FHIR2 approach and has developed a FHIR
+Roadmap to support expanded adoption. The Sequoia Project Healthcare Directory
+Implementation Guide that supports FHIR, underpins two separate directories: one for
+TEFCA and another for Carequality. This guide supports the standardization needed for
+scalable FHIR implementation.
+We are seeing strong alignment between TEFCA and Carequality, with many Participants
+engaged in both frameworks. As a steward of the Carequality Interoperability
+Framework and the RCE for TEFCA, The Sequoia Project is uniquely positioned to
+foster this alignment and ensure consistency across policy and technical
+infrastructure.
+In parallel, our strategic collaboration with HL7 continues to accelerate FHIR adoption
+across the industry through initiatives such as the HL7 FHIR Accelerator program, including
+the FHIR at-Scale Task Force (FAST). Together, we are driving the implementation of real-
+world FHIR-based exchange, supporting standards development, and promoting broad-
+based industry education, all of which are critical to enabling scalable, production-level
+interoperability.
+TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure?
+a. Do current rules encourage scalable network participation?
+b. What changes would improve alignment (for example, API unification, reciprocal
+access)?
+A key value proposition of the Common Agreement is its ability to reduce fragmentation
+across the ecosystem by offering a standardized, scalable alternative to traditional point-
+to-point models.
+Although point-to-point exchange allows for direct relationships between trading partners,
+which can support clearer patient attribution and more controlled trust arrangements, it
+also creates significant administrative and technical burden. Organizations must maintain
+separate technical connections, negotiate multiple data use agreements, ensure
+authorization and authentication protocols are in place for each connection, and address
+disparate privacy requirements, all of which increase operational complexity and cost.
+These one-off arrangements are particularly burdensome when reporting to numerous
+2 https://rce.sequoiaproject.org/wp-content/uploads/2024/07/SOP-Facilitated-FHIR-Implementation_508-
+1.pdf
+28
+
+public health agencies, each with their own technical and policy specifications, or when
+establishing new connections with organizations outside existing networks.
+In contrast, a shared network infrastructure, like TEFCA, significantly reduces these
+burdens. By connecting participants through a common framework, TEFCA enables
+entities to send, receive, and query for standardized electronic health information across a
+broad array of sources via a single or limited set of connections. This model reduces the
+need for multiple exchange agreements, streamlines technical onboarding, and supports a
+consistent approach to privacy and security. Moreover, the inclusion of a standards-based
+directory service and uniform policy expectations addresses longstanding gaps in
+discoverability and trust establishment.
+Ultimately, while point-to-point models may retain utility in specific, high-trust use
+cases, TEFCA’s shared infrastructure offers a path toward more scalable, efficient,
+and equitable health information exchange nationwide. We believe TEFCA's approach is
+well-positioned to reduce the complexity and burden of exchange, while maintaining the
+flexibility necessary to meet the diverse needs of healthcare and public health
+communities.
+TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in
+ensuring viability of healthcare data sharing networks, including enough supply and
+demand, that results in usage and outcomes?
+Federal government engagement in nationwide data sharing frameworks serves to
+provide certainty for participants, increase the return on investment for all
+participants, and promote the adoption of new use cases over time.
+The support and eventual participation in a nationwide data sharing framework by federal
+agencies provides reassurance to other health sector entities that their participation will be
+worthwhile. One of the challenges facing health information exchange to date has been the
+multiplicity of efforts that are not generally compatible and may not meet the needs of all
+participants. This leads to organizations such as health systems and payers having to
+choose among unconnected health information networks or participate in multiple efforts,
+leading to higher costs without universal access to information they have a legal right to
+request. In addition, historical data sharing has been limited to treatment–based
+exchange, with only some exchanges supporting access to data by public health, payers,
+and patients.
+29
+
+Federal agency support and participation reduces uncertainty about whether a
+framework will succeed over the long term and adds value through exchange across
+private sector entities and the federal government. For example, CMS participation in
+a nationwide data sharing framework could allow for private sector entities to report
+to CMS for quality measures, medical necessity reviews, and other requirements
+through the nationwide framework. This level of participation could also reduce the
+burden for both CMS and the entities it regulates by limiting the need for single
+purpose, one-off connections across programs.
+Given the large number of federal payment, privacy, and information sharing regulations
+that apply to health care entities, federal participation in nationwide information sharing
+networks also provides a mechanism to ensure alignment with federal regulatory
+requirements. Data holders take seriously their obligations to abide by HIPAA, the
+information blocking rules, and other privacy requirements that apply to substance use
+disorder data and other sensitive data. Having the support of the federal agencies in
+understanding how these rules apply to nationwide data sharing creates more certainty
+among private sector actors that they can share data in a compliant manner.
+Existing private sector data sharing frameworks have found it hard to achieve widespread
+adoption of new uses, partly due to questions about compliance with the various rules
+noted above. Federal agency participation can help encourage dialogue and clarify the
+application of federal rules to new use cases, such as exchange across providers and
+payers or individual access to health information. Positive incentives for participation in
+nationwide exchange, such as those already included in the Promoting Interoperability
+Program, also encourage participation.
+30
+
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices you
+have experienced that may constitute information blocking. Please include both
+situations of non-responsiveness as well as situations that may cause a failure or
+unusable response?
+b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+c. Are there specific categories of healthcare actors covered under the definition of
+information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA)
+that lack information blocking disincentives?
+To further discourage healthcare providers from engaging in information blocking practices,
+The Sequoia Project recommends that CMS and ASTP adopt a multi-faceted approach
+that combines expanded enforcement with education, transparency, and support.
+Establishing and enforcing disincentives across a broader spectrum of healthcare
+providers reinforces the significance of the information blocking regulations and fosters a
+culture of information sharing. However, penalties alone are insufficient. CMS and ASTP
+should significantly expand education and outreach efforts, particularly for smaller
+provider organizations, to clarify actors’ obligations and support compliance.
+Education for individuals on their rights to access health information under HIPAA is also
+essential, as it can empower patients and reduce the need for complaints.
+ASTP and OIG should engage regularly with the provider community, offering detailed
+guidance, real-world examples, and transparency into common complaint patterns and
+best practices. Enforcement should focus on egregious cases to preserve agency
+resources and target persistent noncompliance.
+Additionally, CMS should expand disincentives to include more innovation models and
+provider types currently not subject to enforcement, including laboratories and post-acute
+care facilities. However, because gaps in these settings often reflect resource constraints
+or limited technological infrastructure rather than intentional information blocking, it’s
+important to provide these provider types with targeted support.
+The Sequoia Project’s Interoperability Matters Information Sharing Workgroup offers a
+valuable forum for surfacing real-world challenges and practical implementation strategies
+to inform ongoing policy development and operational guidance. Leveraging these insights
+31
+
+can help ensure that future policies are grounded in on-the-ground realities and promote
+meaningful, equitable data access for all.
+32

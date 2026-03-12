@@ -1,8 +1,222 @@
-B. Patients and Caregivers 2. Data Access and Integration PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? a. What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, p rices)? b. What are specific sources, other than claims and clinical data, that would be of highest value, and why? c. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from differe nt sources to enable more meaningful clinical research and generation of actionable evidence? a. Valuable but hard -to-access data: Claims data: Valuable for understanding care patterns and costs, but current formats are designed for billing, not patient understanding. Patients need contextualized claims data that explains what happened and why. Clinical data: Progress notes and care plans are incredibly valuable but often locked in proprietary EHR formats. When available, they're frequently in formats that require medical training to interpret. Encounter notes: These contain the "why" behind medical decisions but are rarely accessible in patient -friendly formats. The clinical reasoning is often more valuable than the structured data. Operative reports: Critical for patients managing complex conditions, but typically only available as PDFs through patient portals, not as structured, searchable data. Appointment schedules: Real -time scheduling data with provider availability would enable better care coordination, but most systems don't expose this through APIs. b. High-value non -claims/clinical sources: • Care team communications: Messages between providers, care coordinators, and patients reveal care coordination effectiveness • Community context data: Housing stability, transportation access, food security - these predict health outcomes better than many clinical measures and can be aggregated and shared through data dissemination interfaces 
-• Patient-reported outcomes: Functional status, quality of life, symptom tracking from patient perspective • Care plan adherence data: Not just whether medications were filled, but whether care plans were actually followed • Provider network data: Current provider contact information, specialties, availability, and care team relationships c. Clinical data integration opportunities and challenges: Opportunities: • Patient engagement improves dramatically when they can see their complete care story across providers • Care coordination becomes possible when all providers can see the full picture Challenges: • Provider incentives aren't aligned with data sharing - sharing data creates work without compensation • Technical standards exist but implementation varies wildly across systems PC-9. Blue Button 2.0 API Enhancement PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic, Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do developers view as most valuable for inclusion in the API to enable more useful digital products for patients and caretakers? a. What difficulties are there in accessing or utilizing these data sources today? b. What suggestions do you have to improve the Blue Button 2.0 API experience? c. Is there non -CMS data that should be included in the API? Most valuable additional CMS data sources: Provider performance data: Quality scores, patient satisfaction ratings, and outcome measures help patients make informed choices about their care. Care coordination data: Which providers are working together on a patient's care, care team roles and responsibilities, care plan status. Utilization patterns: Not just what services were used, but patterns that indicate care gaps or overutilization. 
-Prior authorization data: Current status, historical patterns, approval/denial reasons to help patients and providers navigate the system. Risk adjustment and quality measures: Patient -specific risk scores and quality measure performance to enable personalized care recommendations. a. Current access difficulties: • Data freshness: Claims data is months old by the time it's available, limiting care decisions • Context missing: Claims tell you what happened, not why or what alternatives were considered • Fragmentation: Each data source requires different API calls, authentication, and format handling b. Blue Button 2.0 API improvements: • Real-time data streams: Push notifications when new data is available rather than requiring polling • Standardized error handling: Consistent error codes and messages across all data types • Bulk data access: Allow developers to request comprehensive patient data in single API calls • Data freshness indicators: Timestamp and confidence levels for each data element • Patient consent management: APIs that allow patients to grant and revoke specific data access permissions c. Non-CMS data for inclusion: • State Medicaid data: Critical for dual -eligible beneficiaries to understand complete coverage • Community support data: Housing assistance, food programs, transportation services that impact health • Pharmacy benefit manager data: Prescription pricing and alternatives • Provider directory data: Current contact information, specialties, network participation status 
-• Patient-generated health data: Data from wearables, patient -reported outcomes, home monitoring devices The biggest value would come from longitudinal, contextualized data that enables applications to identify care patterns and predict needs. Current APIs provide snapshots, but healthcare is a continuous story. We need APIs that support narrative understandi ng, not just transactional reporting. E. Technology Vendors, Data Providers, and Networks This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve technology vendors, data providers, and networks. While we certainly want technology vendors, data providers, and networks to answer questions in this section (and in other sections) from their point of view, we also invite all stakeholders to provide their viewpoints on the technology vendor, data provider, and network use cas es as appropriate. 1. Ecosystem TD-1. What short term (in the next 2 years) and longer -term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? Short-term: • Create a streamlined sandbox environment with real (anonymized) Medicare data samples, not synthetic data that doesn't reflect actual data quality issues • Establish clear, predictable approval pathways - developers need to know timeline and requirements upfront • Offer technical office hours with CMS staff who understand both policy and implementation Longer-term: • Implement outcome -based incentives rather than process -based compliance requirements • Create a "fast track" program for solutions that demonstrate measurable patient outcomes • The biggest barrier isn't technical - it's regulatory uncertainty. Developers avoid Medicare markets because they can't predict what will be required or approved 
- TD-2. Regarding CMS Data, to stimulate developer interest — a. What additional data would be most valuable if made available through CMS APIs? b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? c. What obstacles prevent accessing these data sources today? d. What ot her APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? a. • Community context data (housing, transportation, food security) • Care coordination data across settings (who's involved in a patient's care team) • Patient-reported outcomes and functional status measures • Real-time utilization data, not just claims after the fact b. • Provider directory data with current contact methods and specialties • Quality measure data at the provider level • Prescription data that includes adherence and outcomes • Care plan data that shows intended vs. actual care delivery c. • Data freshness - by the time claims data is available, clinical decisions have already been made • Fragmentation - having to integrate multiple APIs with different formats and update schedules • Limited context - claims data tells you what happened, not why or what the alternatives were d. • State Medicaid APIs for dual -eligible coordination • Social services APIs for comprehensive care management • Patient engagement platforms that capture patient -generated health data 
- 2. Digital Identity TD-4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? • Tie Medicare Advantage and quality bonus payments to open API adoption • Create public dashboards showing which systems support open standards • Establish "API first" requirements for any Medicare -funded health IT • Require proprietary API providers to justify why open standards don't meet their needs Proprietary APIs create vendor lock -in that stifles innovation. Every proprietary integration requires custom development that doesn't scale. Open standards enable a competitive ecosystem where the best solutions win, not just those with the largest integr ation budgets. TD-7. USCDI Limitations and AI Applications To what degree has USCDI improved interoperability and exchange and what are its limitations? a. Does it contain the full extent of data elements you need? b. If not, is it because of limitations in the definition of the USCDI format or the way it is utili zed? c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such challenges be addressed? d. Given improvements in language models, would you prefer a non -proprietary but less structured format that might impro ve data coverage even if it requires more processing by the receiver? a. Current limitations: USCDI has improved baseline interoperability, but it's designed for human consumption, not AI processing. The structured approach works for simple data exchange but limits the richness needed for effective AI applications. b. Missing data elements: • Clinical decision -making context • Patient conversations and care team communications • Longitudinal care patterns and care coordination efforts 
-• Patient functional status and quality of life measures c. Format limitations vs. utilization: The issue isn't USCDI definition - it's that the format prioritizes human readability over computational utility. Adding more structured elements creates diminishing returns. d. Preference for less structured format: Yes, absolutely. Given current language model capabilities, we'd prefer comprehensive, less structured data over limited structured data. Modern AI can extract meaningful patterns from unstructured clinical notes, care team communications, and patient narratives that structured fields can't capture. The processing burden on receivers is now manageable and the insight gain is significant. TD-13. Full EHI Access Opportunities What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? a. What are the primary obstacles to this? b. What are the primary tradeoffs between USCDI and full EHI, esp ecially given more flexible data processing capabilities today? New opportunities with complete EHI access: • Predictive care gap identification using comprehensive patient narratives • Care team coordination optimization using communication patterns • Personalized care pathway recommendations based on similar patient journeys • Real-time care quality monitoring using all available patient data a. Primary obstacles: • Privacy concerns that go beyond HIPAA compliance to patient comfort levels • Provider workflow disruption - full EHI access requires different clinical processes • Technical infrastructure that wasn't designed for comprehensive data sharing • Liability questions when AI recommendations are based on complete patient data b. USCDI vs. full EHI tradeoffs: USCDI provides consistency but limits innovation. Full EHI enables breakthrough applications but requires sophisticated processing capabilities. The tradeoff isn't just technical - it's whether we optimize for current capab ilities or future potential. 
-TD-17. Network Viability and CMS/ONC Role Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? Networks fail when there's insufficient demand or supply. CMS and ONC should focus on creating sustainable market conditions rather than funding individual networks. The key is ensuring that networks provide value to both data providers and consumers. This requires outcome -based success metrics, not just connectivity metrics. Recommended approach: • Create incentives that reward network participation in Medicare programs • Establish minimum network connectivity requirements for Medicare providers • Support interoperability standards development but let markets determine specific implementations • Monitor network performance and outcomes, not just technical compliance 
+B. Patients and Caregivers
+2. Data Access and Integration
+PC-8. In your experience, what health data is readily available and valuable to patients or
+their caregivers or both?
+a. What data is valuable, but hard for patients and caregivers, or app developers and other
+technical vendors, to access for appropriate and valuable use (for example, claims data,
+clinical data, encounter notes, operative reports, appointment schedules, prices)? b. What
+are specific sources, other than claims and clinical data, that would be of highest value,
+and why? c. What specific opportunities and challenges exist to improve accessibility,
+interoperability and integration of clinical data from different sources to enable more
+meaningful clinical research and generation of actionable evidence?
+a. Valuable but hard-to-access data:
+Claims data: Valuable for understanding care patterns and costs, but current formats are
+designed for billing, not patient understanding. Patients need contextualized claims data
+that explains what happened and why.
+Clinical data: Progress notes and care plans are incredibly valuable but often locked in
+proprietary EHR formats. When available, they're frequently in formats that require medical
+training to interpret.
+Encounter notes: These contain the "why" behind medical decisions but are rarely
+accessible in patient-friendly formats. The clinical reasoning is often more valuable than
+the structured data.
+Operative reports: Critical for patients managing complex conditions, but typically only
+available as PDFs through patient portals, not as structured, searchable data.
+Appointment schedules: Real-time scheduling data with provider availability would enable
+better care coordination, but most systems don't expose this through APIs.
+b. High-value non-claims/clinical sources:
+• Care team communications: Messages between providers, care coordinators, and
+patients reveal care coordination effectiveness
+• Community context data: Housing stability, transportation access, food security -
+these predict health outcomes better than many clinical measures and can be
+aggregated and shared through data dissemination interfaces
+
+• Patient-reported outcomes: Functional status, quality of life, symptom tracking from
+patient perspective
+• Care plan adherence data: Not just whether medications were filled, but whether
+care plans were actually followed
+• Provider network data: Current provider contact information, specialties,
+availability, and care team relationships
+c. Clinical data integration opportunities and challenges:
+Opportunities:
+• Patient engagement improves dramatically when they can see their complete care
+story across providers
+• Care coordination becomes possible when all providers can see the full picture
+Challenges:
+• Provider incentives aren't aligned with data sharing - sharing data creates work
+without compensation
+• Technical standards exist but implementation varies wildly across systems
+PC-9. Blue Button 2.0 API Enhancement
+PC-9. Given that the Blue Button 2.0 API only includes basic patient demographic,
+Medicare coverage, and claims data (Part A, B, D), what additional CMS data sources do
+developers view as most valuable for inclusion in the API to enable more useful digital
+products for patients and caretakers? a. What difficulties are there in accessing or utilizing
+these data sources today? b. What suggestions do you have to improve the Blue Button 2.0
+API experience? c. Is there non-CMS data that should be included in the API?
+Most valuable additional CMS data sources:
+Provider performance data: Quality scores, patient satisfaction ratings, and outcome
+measures help patients make informed choices about their care.
+Care coordination data: Which providers are working together on a patient's care, care
+team roles and responsibilities, care plan status.
+Utilization patterns: Not just what services were used, but patterns that indicate care gaps
+or overutilization.
+
+Prior authorization data: Current status, historical patterns, approval/denial reasons to
+help patients and providers navigate the system.
+Risk adjustment and quality measures: Patient-specific risk scores and quality measure
+performance to enable personalized care recommendations.
+a. Current access difficulties:
+• Data freshness: Claims data is months old by the time it's available, limiting care
+decisions
+• Context missing: Claims tell you what happened, not why or what alternatives were
+considered
+• Fragmentation: Each data source requires different API calls, authentication, and
+format handling
+b. Blue Button 2.0 API improvements:
+• Real-time data streams: Push notifications when new data is available rather than
+requiring polling
+• Standardized error handling: Consistent error codes and messages across all data
+types
+• Bulk data access: Allow developers to request comprehensive patient data in single
+API calls
+• Data freshness indicators: Timestamp and confidence levels for each data element
+• Patient consent management: APIs that allow patients to grant and revoke specific
+data access permissions
+c. Non-CMS data for inclusion:
+• State Medicaid data: Critical for dual-eligible beneficiaries to understand complete
+coverage
+• Community support data: Housing assistance, food programs, transportation
+services that impact health
+• Pharmacy benefit manager data: Prescription pricing and alternatives
+• Provider directory data: Current contact information, specialties, network
+participation status
+
+• Patient-generated health data: Data from wearables, patient-reported outcomes,
+home monitoring devices
+The biggest value would come from longitudinal, contextualized data that enables
+applications to identify care patterns and predict needs. Current APIs provide snapshots,
+but healthcare is a continuous story. We need APIs that support narrative understanding,
+not just transactional reporting.
+E. Technology Vendors, Data Providers, and Networks This section is intended for all
+stakeholders to provide input on questions as they relate to use cases and workflows that
+involve technology vendors, data providers, and networks. While we certainly want
+technology vendors, data providers, and networks to answer questions in this section (and
+in other sections) from their point of view, we also invite all stakeholders to provide their
+viewpoints on the technology vendor, data provider, and network use cases as appropriate.
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to
+stimulate developer interest in building digital health products for Medicare beneficiaries
+and caregivers?
+Short-term:
+• Create a streamlined sandbox environment with real (anonymized) Medicare data
+samples, not synthetic data that doesn't reflect actual data quality issues
+• Establish clear, predictable approval pathways - developers need to know timeline
+and requirements upfront
+• Offer technical office hours with CMS staff who understand both policy and
+implementation
+Longer-term:
+• Implement outcome-based incentives rather than process-based compliance
+requirements
+• Create a "fast track" program for solutions that demonstrate measurable patient
+outcomes
+• The biggest barrier isn't technical - it's regulatory uncertainty. Developers avoid
+Medicare markets because they can't predict what will be required or approved
+
+TD-2. Regarding CMS Data, to stimulate developer interest—
+a. What additional data would be most valuable if made available through CMS APIs? b.
+What data sources are most valuable alongside the data available through the Blue Button
+2.0 API? c. What obstacles prevent accessing these data sources today? d. What other
+APIs should CMS and ASTP/ONC consider including in program policies to unleash
+innovation and support patients and providers?
+a.
+• Community context data (housing, transportation, food security)
+• Care coordination data across settings (who's involved in a patient's care team)
+• Patient-reported outcomes and functional status measures
+• Real-time utilization data, not just claims after the fact
+b.
+• Provider directory data with current contact methods and specialties
+• Quality measure data at the provider level
+• Prescription data that includes adherence and outcomes
+• Care plan data that shows intended vs. actual care delivery
+c.
+• Data freshness - by the time claims data is available, clinical decisions have already
+been made
+• Fragmentation - having to integrate multiple APIs with different formats and update
+schedules
+• Limited context - claims data tells you what happened, not why or what the
+alternatives were
+d.
+• State Medicaid APIs for dual-eligible coordination
+• Social services APIs for comprehensive care management
+• Patient engagement platforms that capture patient-generated health data
+
+2. Digital Identity
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+• Tie Medicare Advantage and quality bonus payments to open API adoption
+• Create public dashboards showing which systems support open standards
+• Establish "API first" requirements for any Medicare-funded health IT
+• Require proprietary API providers to justify why open standards don't meet their
+needs
+Proprietary APIs create vendor lock-in that stifles innovation. Every proprietary integration
+requires custom development that doesn't scale. Open standards enable a competitive
+ecosystem where the best solutions win, not just those with the largest integration
+budgets.
+TD-7. USCDI Limitations and AI Applications
+To what degree has USCDI improved interoperability and exchange and what are its
+limitations? a. Does it contain the full extent of data elements you need? b. If not, is it
+because of limitations in the definition of the USCDI format or the way it is utilized? c. If so,
+would adding more data elements to USCDI add value or create scoping challenges? How
+could such challenges be addressed? d. Given improvements in language models, would
+you prefer a non-proprietary but less structured format that might improve data coverage
+even if it requires more processing by the receiver?
+a. Current limitations: USCDI has improved baseline interoperability, but it's designed for
+human consumption, not AI processing. The structured approach works for simple data
+exchange but limits the richness needed for effective AI applications.
+b. Missing data elements:
+• Clinical decision-making context
+• Patient conversations and care team communications
+• Longitudinal care patterns and care coordination efforts
+
+• Patient functional status and quality of life measures
+c. Format limitations vs. utilization: The issue isn't USCDI definition - it's that the format
+prioritizes human readability over computational utility. Adding more structured elements
+creates diminishing returns.
+d. Preference for less structured format: Yes, absolutely. Given current language model
+capabilities, we'd prefer comprehensive, less structured data over limited structured data.
+Modern AI can extract meaningful patterns from unstructured clinical notes, care team
+communications, and patient narratives that structured fields can't capture. The
+processing burden on receivers is now manageable and the insight gain is significant.
+TD-13. Full EHI Access Opportunities
+What new opportunities and advancements could emerge with APIs providing access to
+the entirety of a patient's electronic health information (EHI)? a. What are the primary
+obstacles to this? b. What are the primary tradeoffs between USCDI and full EHI, especially
+given more flexible data processing capabilities today?
+New opportunities with complete EHI access:
+• Predictive care gap identification using comprehensive patient narratives
+• Care team coordination optimization using communication patterns
+• Personalized care pathway recommendations based on similar patient journeys
+• Real-time care quality monitoring using all available patient data
+a. Primary obstacles:
+• Privacy concerns that go beyond HIPAA compliance to patient comfort levels
+• Provider workflow disruption - full EHI access requires different clinical processes
+• Technical infrastructure that wasn't designed for comprehensive data sharing
+• Liability questions when AI recommendations are based on complete patient data
+b. USCDI vs. full EHI tradeoffs: USCDI provides consistency but limits innovation. Full EHI
+enables breakthrough applications but requires sophisticated processing capabilities. The
+tradeoff isn't just technical - it's whether we optimize for current capabilities or future
+potential.
+
+TD-17. Network Viability and CMS/ONC Role
+Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring
+viability of healthcare data sharing networks, including enough supply and demand, that
+results in usage and outcomes?
+Networks fail when there's insufficient demand or supply. CMS and ONC should focus on
+creating sustainable market conditions rather than funding individual networks. The key is
+ensuring that networks provide value to both data providers and consumers. This requires
+outcome-based success metrics, not just connectivity metrics.
+Recommended approach:
+• Create incentives that reward network participation in Medicare programs
+• Establish minimum network connectivity requirements for Medicare providers
+• Support interoperability standards development but let markets determine specific
+implementations
+• Monitor network performance and outcomes, not just technical compliance

@@ -1,9 +1,292 @@
- Comments on CMS-0042-NC: Health Technology Ecosystem For additional information on this response, please contact: Sam Roosz Co-Founder / CEO Crescendo Health, Inc. 18 Bartol Street #980 San Francisco, CA 94133 sam@crescendohealth.co About Crescendo Health Crescendo Health is a public benefit corporation that provides researchers with a window into a study participant’s comprehensive care journey, both historical and ongoing. Patients have a legal right to access their data held by insurance companies, health systems, and labs. Crescendo provides the tools and support to seamlessly collect patient data with participant consent and authorization. Crescendo then facilitates the contribution of this data into sponsor systems in ways that integrate with existing clinical research infrastructure. Crescendo supports sponsors in building upon their trust relationships with study participants to expand data collection in medical research, providing researchers with new tools to decipher long-term outcomes, demonstrate health economics, and improve clinical operations. Introduction and Overarching Recommendations The 21st Century Cures Act and recent rules from ONC and CMS have afforded a valuable opportunity to implement new models of clinical research that leverage data already being generated in routine clinical care for research. Of particular interest are recent advancements a patient’s right to access their own health data at locations across the United States. Patient access APIs mandated for many health plans and all certified EMRs through CMS and ONC rulemaking means that for the first time it is feasible to efficiently assemble a comprehensive and longitudinal health journey for consenting trial participants. Furthermore, the Office for Civil Right’s enforcement actions against covered entities engaged in information blocking means that phone/fax-based methods of data collection are truly reliable to cover any gaps APIs can’t fill. In spite of these rules, information blocking remains an obstacle for patients' access to their health data, and creates undue challenges for research – meaningfully slowing innovation. 
-Crescendo has the following targeted recommendations that will reduce barriers to data access for patients while accelerating clinical research. Enforcement and clarity on obligations for covered entities Given the systemic barriers in collecting patient data, Crescendo urges ASTP/ONC to: Prioritize complete, real-time, digital access to electronic health payor data through standardized APIs Patients should not have to rely on outdated, offline methods such as paper forms or faxed requests to access their own health information. Policy should clearly prioritize and require the provision of real-time access to electronic health payor data via standards-based, interoperable APIs. Covered entities should be expected to deliver structured data to patients and their authorized representatives on demand, rather than relying on legacy workflows that allow up to 15 or 30 days for fulfillment. By promoting real-time access as the default expectation, rather than the exception, policy can better align with both the capabilities of modern health IT systems and the rights of patients under the 21st Century Cures Act. This approach not only advances transparency and patient empowerment but also reduces administrative burden and supports a more efficient, equitable health data ecosystem. Create a more standardized and efficient process for non-electronic data delivery While real-time, digital access to health data should be the default, policy must also recognize that non-electronic data delivery will sometimes remain necessary – particularly for populations with limited digital access or in scenarios where legacy systems are still in use. To ensure that even these offline workflows are patient-centered, efficient, and scalable, Crescendo recommends establishing standardized, streamlined processes for submitting data access requests including to: ● Standardize forms for patient right of access requests and third party HIPAA authorizations ● Require a designated and publicly listed email address at covered entities for right of access requests ● Require affirmative confirmation of request receipts for patients right to access requests within five business days These actions by CMS and ASTP/ONC would support the stated goals of reducing barriers to health data access and exchange, realizing the potential of innovations in healthcare that promote better health outcomes, and accelerating progress towards a patient-centric health system. 
-Information blocking via delay and disregard of patient right of access Despite the regulatory protections granted under the HIPAA Privacy Rule, Crescendo regularly encounters delays when requesting data on behalf of patients. These practices may not always meet the formal definition of information blocking, but the effect is the same – patients are prevented from obtaining timely access to their own health data. Some of the ways this information blocking appears in practice: Covered entities create friction for verifying a patient’s right of access by: ● Requiring company specific right of access and third party authorization forms even when the content of the standard form is identical ● Requiring “wet” signatures or notarized forms ● Requiring live confirmation with the patient even when identity is appropriately verified ● Requiring data be delivered in a non-machine readable format (e.g., PDF or mailed) when it is available on the covered entity's system as machine readable data ● Requiring patients to provide information they would not reasonably have to access data (e.g., a former group number for insurance) Covered entities return incomplete data or delay responses by: ● Failing to meet required timelines or provide rationale for non-compliance ● Failing to make asynchronous modes of communication available for submitting / following up with right of access data requests ● Indicating that a business associate holds the patient data, but failing to pursue the data themselves ● FHIR-formatted data delivered via patient access APIs that are technically non-conformant with the FHIR standard ● Returning only partial data (such as omitting precise treatment and procedure codes), despite explicit requests for these codes which describe the actual services the patient has utilized and impact billing. Carriers sometimes state they do not have a way to provide this information even though it is part of the designated record set and EOBs often state that it is available upon request. Crescendo suggests that all treatment and diagnosis codes be provided as part standard Explanation of Benefits documents. The role of payor patient access APIs in reducing friction of data collection and the need for stronger enforcement While Crescendo praises CMS for its leadership in implementing the CMS-9115-F patient access rule – allowing patients to collect their own payor data into a third party personal health record of their choosing – inadequate enforcement of the patient access APIs for health payors has become a significant barrier to complete, useful, and timely usage. While there has been 
-meaningful progress enforcing API requirements for providers via ONC, enforcement on the payor side has lagged behind and Crescendo has felt this in practice – a small but significant number of payor APIs are technically non-functional or inaccessible. To address these gaps and reduce the unnecessary friction for patients, we recommend the following: ● Rigorous validation and enforcement for payor API access: Regulators should conduct proactive validation of payor APIs and levy fines or other penalties when APIs are non-functional or fail to meet access requirements. This validation can take place as part of health plan approval or annual compliance ● Clarify the ease of patient access requirements: Patients should not be required to create new credentials to access their data via payor APIs. Use of existing login credentials (e.g., patient portal accounts) should be enforced as a standard ● Transparency and documentation of data connections: ONC or CMS should create a publicly accessible, standardized registry of payor API endpoints, supporting documentation, and an up to date list of covered health plans – then require each payor submit updated information quarterly ● Sandbox and production test environments: Mandate payors provide sandbox APIs with sample data and test credentials on their production environments to allow full validation ● Pre-adjudicated claims feeds to enable real-time use cases: Require payors to make pre-adjudicated claims data available through patient access APIs. Delays in claims adjudication should not prevent patients and their authorized representatives from receiving accurate and up to date insights into care and spending Responses to Select Questions Posed in RFI TD-18(a) Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? Crescendo engages in online API based data retrieval from payors and providers as well as offline data collection practices at the direction of the patients’ right of access. Information blocking is experienced in both cases and the methods are described here: Online/API-based information blocking: ● APIs that do not directly allow the patient to provide an authorization with their existing patient portal username and password ● Inability to find the API documentation or to provide contact information for API-related questions or issues ● APIs that do not work for certain plans 
-● Lack of production test credentials and test data make it extremely difficult to validate API functionality – such that often a patient will report an error and the payor cannot tell if their API works or not because they have no way to test fixes ● Returning non-conformant FHIR data through APIs, and a slow or incomplete response from the entities hosting the API when there is a request to address these non-conformance issues. ● API hosting entities informing Crescendo that they are electing not to conform to specific FHIR requirements such as missing data elements Offline data retrieval information blocking practices: ● Requiring company specific right of access forms even when the content of the standard form is identical ● Requiring “wet” signatures or notarized forms ● Requiring live confirmation with the patient even when identity is appropriately verified ● Requiring data be delivered in a non-machine readable format (e.g., PDF or mailed) ● Requiring patients to provide information they would not reasonably have to access data (e.g., a former group number for insurance) ● Failing to meet required timelines or provide rationale for non-compliance ● Failing to make asynchronous modes of communication available for submitting / following up with right of access data requests ● Returning only partial data (e.g., denying codes) TD-18(b) What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? ASTP/ONC and CMS can directly influence these information blocking practices and foster a more robust competitive ecosystem while better supporting patient access to EHI. Crescendo recommends policies that do the following: ● Mandate payor APIs for patient right of access requests for all plans – including commercial plans – to streamline data acquisition while reducing the opportunities for information blocking ● Establish a standard right of access form that must be universally accepted by providers and payors ● Require a designated and publicly listed email contact for patient right of access requests ● Require affirmative confirmation of receipt for patient right of access requests ● Allow patients to activate right of access API tokens for extended periods. ● Following the lead of Blue Button 2.0, patients should be able to select “no expiration” for requests with research use cases in IRB-governed research ● In all cases, patients should be allowed to provide ongoing access without requiring regular re-authorization. While patients can always revoke access, they shouldn't be forced to keep re-authorizing if they desire longer term access 
-TD-18(c) Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? Yes, in addition to the actors already covered in section 3022(a)(1) of PHSA, Crescendo recommends adding disincentives for: ● Payors ● Clearinghouses Crescendo recommends ASTP/ONC and CMS clarify: ● That the Health IT provision of the "actor” definition makes virtually all extant payors "actors" with regards to information blocking ● That clearinghouses have an independent duty to fulfill data access requests and may not redirect patients to another covered entity PR-12 . Should ASTP/ONC consider removing or revising any of the information blocking exceptions or conditions within the exceptions ( 45 CFR part 171, subparts B through D ) to further the access, exchange, and use of electronic health information (EHI) and to promote market competition? Yes, ASTP/ONC should revise or remove the “infeasibility exception” (§171.204) because its current structure poses a significant risk of abuse and undermines the policy goals of promoting EHI access, interoperability, and market competition. The infeasibility exception, particularly under §171.204(a)(5) (“Infeasible under the circumstances”), creates an overly broad and subjective pathway for healthcare entities and vendors to justify noncompliance with data sharing obligations. While intended to account for genuine barriers to fulfilling right of access requests, the provision enables actors to: ● Intentionally create a technically infeasible solution and cite this exception ● Self certify infeasibility without meaningful external oversight or objective benchmarks ● Cite technical or cost burdens without proving a consistent standard or demonstrating actual incapacity This not only undermines patient access and interoperability but could also support anti-competitive practices, such as withholding data from digital health competitors or unaffiliated providers. If not removed entirely, the infeasibility exception should be significantly narrowed, with these reforms: ● Require independent verification or third party audit of infeasibility claims ● Provide a stated timeline to address the blockers for future requests 
-● Establish objective, timely thresholds for what constitutes infeasibility due to cost, technology, or segmentation ● Mandate public transparency of infeasibility claims, including publication of how often and under what circumstances they are invoked PR-13 . For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3) ), without a current information blocking disincentive established by CMS, what would be the most effective disincentive for that category of provider? To further the goals of interoperability, transparency, and patient empowerment, CMS and ONC should establish clear, enforceable disincentives for payors who engage in information blocking but are not currently subject to CMS sanctions. Suggested disincentives include: Tying participation in key federal programs to clean compliance records Healthcare payors with repeat violations and documented patterns of information blocking could be deemed ineligible to participate in federally subsidized programs, including: ● Medicare Advantage (MA) ● Federally Facilitated Exchanges (FFEs) Participation in programs like MA and FFEs is voluntary and tied to public funding and trust. Payors who obstruct access to electronic health information compromise the integrity and transparency of these programs, harming patients and reducing competition. Imposing civil penalties per case with escalating consequences for systemic behavior Introduce high financial penalties for each verified instance of information blocking, similar to those used under the False Claims Act, and escalate to a percentage of revenue fines for repeat violations. Small, predictable fines are seen as a cost of doing business by large systems. But meaningful financial consequences, especially tied to revenue, create accountability. Higher revenue actors should face proportional consequences when they repeatedly undermine data access for patients. Certification and public disclosure to drive compliance for payors Establish a certification requirement for payors that mandates the implementation and maintenance of standardized APIs for patient access to health information. Certification could require: ● Demonstrated compliance with interoperability standards ● Public listing of accessible API documentation and endpoint directories ● Routine reporting on availability and performance metrics 
-Additionally, HHS could maintain a public directory of certified entities, highlighting compliant organizations. PC-8 (c). What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? Research and analytics of health data is hampered by the absence of a single generally-accepted drug class terminology that is integrated with RxNorm (or to which RxNorm is mapped). This would be a worthwhile area of standards development for CMS and ASTP/ONC to support. Many FHIR data elements have loose terminology requirements, even in the FHIR US Core Implementation Guide. The result is that data from different organizations often includes unnecessary variation in data values for a given element. Tightening this up would be helpful, and should be as high a priority for FHIR US Core development as expansion of the scope of data elements covered. Since FHIR US Core directly mirrors the requirements of USCDI, this is something that ASTP/ONC on which could exert significant influence. PC-11 (b). What changes would you suggest [regarding health information exchanges]? Crescendo proposes that HIEs be subject to the same patient access API requirements as other holders of patient health data, e.g. providers. PC-13 . How can CMS encourage patients and caregivers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would increasing reporting of complaints advance or negatively impact data exchange? Crescendo supports efforts by CMS and ONC to encourage patients, caregivers, and their authorized representatives to report information blocking as a necessary step toward meaningful enforcement and widespread interoperability. The complaint process should be patient centered, transparent, and safe. Specifically: Make reporting simple and trustworthy ● The information blocking portal must be easy to find, mobile-friendly, written in plain language, and contain clear examples of what constitutes information blocking ● Allow complaints to be submitted by authorized representatives, such as caregivers, family members, or designated advocates Prioritize confidentiality and anti-retaliation protections ● CMS should ensure robust confidentiality protections for complainants and clearly communicate these protections up front 
-● Consider adopting explicit anti-retaliation policies and publicizing enforcement of them when violations occur Increased reporting of information blocking will advance data exchange and compliance, as long as the process is intentionally managed and focused on remediation as much as enforcement. Public reporting will clarify what’s expected under the rules, help identify repeat offenders, and send a signal that patients have real rights when information access is blocked. Thank you for the opportunity to comment on these important topics and please don’t hesitate to reach out if there are further questions. 
+Comments on CMS-0042-NC: Health Technology Ecosystem
+For additional information on this response, please contact:
+Sam Roosz
+Co-Founder / CEO
+Crescendo Health, Inc.
+18 Bartol Street #980
+San Francisco, CA 94133
+sam@crescendohealth.co
+About Crescendo Health
+Crescendo Health is a public benefit corporation that provides researchers with a window into a
+study participant’s comprehensive care journey, both historical and ongoing. Patients have a
+legal right to access their data held by insurance companies, health systems, and labs.
+Crescendo provides the tools and support to seamlessly collect patient data with participant
+consent and authorization. Crescendo then facilitates the contribution of this data into sponsor
+systems in ways that integrate with existing clinical research infrastructure. Crescendo supports
+sponsors in building upon their trust relationships with study participants to expand data
+collection in medical research, providing researchers with new tools to decipher long-term
+outcomes, demonstrate health economics, and improve clinical operations.
+Introduction and Overarching Recommendations
+The 21st Century Cures Act and recent rules from ONC and CMS have afforded a valuable
+opportunity to implement new models of clinical research that leverage data already being
+generated in routine clinical care for research. Of particular interest are recent advancements a
+patient’s right to access their own health data at locations across the United States. Patient
+access APIs mandated for many health plans and all certified EMRs through CMS and ONC
+rulemaking means that for the first time it is feasible to efficiently assemble a comprehensive
+and longitudinal health journey for consenting trial participants. Furthermore, the Office for Civil
+Right’s enforcement actions against covered entities engaged in information blocking means
+that phone/fax-based methods of data collection are truly reliable to cover any gaps APIs can’t
+fill.
+In spite of these rules, information blocking remains an obstacle for patients' access to their
+health data, and creates undue challenges for research – meaningfully slowing innovation.
+
+Crescendo has the following targeted recommendations that will reduce barriers to data access
+for patients while accelerating clinical research.
+Enforcement and clarity on obligations for covered entities
+Given the systemic barriers in collecting patient data, Crescendo urges ASTP/ONC to:
+Prioritize complete, real-time, digital access to electronic health payor data through
+standardized APIs
+Patients should not have to rely on outdated, offline methods such as paper forms or faxed
+requests to access their own health information. Policy should clearly prioritize and require the
+provision of real-time access to electronic health payor data via standards-based, interoperable
+APIs. Covered entities should be expected to deliver structured data to patients and their
+authorized representatives on demand, rather than relying on legacy workflows that allow up to
+15 or 30 days for fulfillment.
+By promoting real-time access as the default expectation, rather than the exception, policy can
+better align with both the capabilities of modern health IT systems and the rights of patients
+under the 21st Century Cures Act. This approach not only advances transparency and patient
+empowerment but also reduces administrative burden and supports a more efficient, equitable
+health data ecosystem.
+Create a more standardized and efficient process for non-electronic data delivery
+While real-time, digital access to health data should be the default, policy must also recognize
+that non-electronic data delivery will sometimes remain necessary – particularly for populations
+with limited digital access or in scenarios where legacy systems are still in use. To ensure that
+even these offline workflows are patient-centered, efficient, and scalable, Crescendo
+recommends establishing standardized, streamlined processes for submitting data access
+requests including to:
+● Standardize forms for patient right of access requests and third party HIPAA
+authorizations
+● Require a designated and publicly listed email address at covered entities for right of
+access requests
+● Require affirmative confirmation of request receipts for patients right to access requests
+within five business days
+These actions by CMS and ASTP/ONC would support the stated goals of reducing barriers to
+health data access and exchange, realizing the potential of innovations in healthcare that
+promote better health outcomes, and accelerating progress towards a patient-centric health
+system.
+
+Information blocking via delay and disregard of patient right of
+access
+Despite the regulatory protections granted under the HIPAA Privacy Rule, Crescendo regularly
+encounters delays when requesting data on behalf of patients. These practices may not always
+meet the formal definition of information blocking, but the effect is the same – patients are
+prevented from obtaining timely access to their own health data. Some of the ways this
+information blocking appears in practice:
+Covered entities create friction for verifying a patient’s right of access by:
+● Requiring company specific right of access and third party authorization forms even
+when the content of the standard form is identical
+● Requiring “wet” signatures or notarized forms
+● Requiring live confirmation with the patient even when identity is appropriately verified
+● Requiring data be delivered in a non-machine readable format (e.g., PDF or mailed)
+when it is available on the covered entity's system as machine readable data
+● Requiring patients to provide information they would not reasonably have to access data
+(e.g., a former group number for insurance)
+Covered entities return incomplete data or delay responses by:
+● Failing to meet required timelines or provide rationale for non-compliance
+● Failing to make asynchronous modes of communication available for submitting /
+following up with right of access data requests
+● Indicating that a business associate holds the patient data, but failing to pursue the data
+themselves
+● FHIR-formatted data delivered via patient access APIs that are technically
+non-conformant with the FHIR standard
+● Returning only partial data (such as omitting precise treatment and procedure codes),
+despite explicit requests for these codes which describe the actual services the patient
+has utilized and impact billing. Carriers sometimes state they do not have a way to
+provide this information even though it is part of the designated record set and EOBs
+often state that it is available upon request. Crescendo suggests that all treatment and
+diagnosis codes be provided as part standard Explanation of Benefits documents.
+The role of payor patient access APIs in reducing friction of data
+collection and the need for stronger enforcement
+While Crescendo praises CMS for its leadership in implementing the CMS-9115-F patient
+access rule – allowing patients to collect their own payor data into a third party personal health
+record of their choosing – inadequate enforcement of the patient access APIs for health payors
+has become a significant barrier to complete, useful, and timely usage. While there has been
+
+meaningful progress enforcing API requirements for providers via ONC, enforcement on the
+payor side has lagged behind and Crescendo has felt this in practice – a small but significant
+number of payor APIs are technically non-functional or inaccessible.
+To address these gaps and reduce the unnecessary friction for patients, we recommend the
+following:
+● Rigorous validation and enforcement for payor API access: Regulators should
+conduct proactive validation of payor APIs and levy fines or other penalties when APIs
+are non-functional or fail to meet access requirements. This validation can take place as
+part of health plan approval or annual compliance
+● Clarify the ease of patient access requirements: Patients should not be required to
+create new credentials to access their data via payor APIs. Use of existing login
+credentials (e.g., patient portal accounts) should be enforced as a standard
+● Transparency and documentation of data connections: ONC or CMS should create
+a publicly accessible, standardized registry of payor API endpoints, supporting
+documentation, and an up to date list of covered health plans – then require each payor
+submit updated information quarterly
+● Sandbox and production test environments: Mandate payors provide sandbox APIs
+with sample data and test credentials on their production environments to allow full
+validation
+● Pre-adjudicated claims feeds to enable real-time use cases: Require payors to make
+pre-adjudicated claims data available through patient access APIs. Delays in claims
+adjudication should not prevent patients and their authorized representatives from
+receiving accurate and up to date insights into care and spending
+Responses to Select Questions Posed in RFI
+TD-18(a) Could you, as a technology vendor, provide examples for the types of practices you
+have experienced that may constitute information blocking. Please include both situations of
+non-responsiveness as well as situations that may cause a failure or unusable response?
+Crescendo engages in online API based data retrieval from payors and providers as well as
+offline data collection practices at the direction of the patients’ right of access. Information
+blocking is experienced in both cases and the methods are described here:
+Online/API-based information blocking:
+● APIs that do not directly allow the patient to provide an authorization with their existing
+patient portal username and password
+● Inability to find the API documentation or to provide contact information for API-related
+questions or issues
+● APIs that do not work for certain plans
+
+● Lack of production test credentials and test data make it extremely difficult to validate
+API functionality – such that often a patient will report an error and the payor cannot tell if
+their API works or not because they have no way to test fixes
+● Returning non-conformant FHIR data through APIs, and a slow or incomplete response
+from the entities hosting the API when there is a request to address these
+non-conformance issues.
+● API hosting entities informing Crescendo that they are electing not to conform to specific
+FHIR requirements such as missing data elements
+Offline data retrieval information blocking practices:
+● Requiring company specific right of access forms even when the content of the standard
+form is identical
+● Requiring “wet” signatures or notarized forms
+● Requiring live confirmation with the patient even when identity is appropriately verified
+● Requiring data be delivered in a non-machine readable format (e.g., PDF or mailed)
+● Requiring patients to provide information they would not reasonably have to access data
+(e.g., a former group number for insurance)
+● Failing to meet required timelines or provide rationale for non-compliance
+● Failing to make asynchronous modes of communication available for submitting /
+following up with right of access data requests
+● Returning only partial data (e.g., denying codes)
+TD-18(b) What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+ASTP/ONC and CMS can directly influence these information blocking practices and foster a
+more robust competitive ecosystem while better supporting patient access to EHI. Crescendo
+recommends policies that do the following:
+● Mandate payor APIs for patient right of access requests for all plans – including
+commercial plans – to streamline data acquisition while reducing the opportunities for
+information blocking
+● Establish a standard right of access form that must be universally accepted by providers
+and payors
+● Require a designated and publicly listed email contact for patient right of access
+requests
+● Require affirmative confirmation of receipt for patient right of access requests
+● Allow patients to activate right of access API tokens for extended periods.
+● Following the lead of Blue Button 2.0, patients should be able to select “no
+expiration” for requests with research use cases in IRB-governed research
+● In all cases, patients should be allowed to provide ongoing access without
+requiring regular re-authorization. While patients can always revoke access, they
+shouldn't be forced to keep re-authorizing if they desire longer term access
+
+TD-18(c) Are there specific categories of healthcare actors covered under the definition of
+information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack
+information blocking disincentives?
+Yes, in addition to the actors already covered in section 3022(a)(1) of PHSA, Crescendo
+recommends adding disincentives for:
+● Payors
+● Clearinghouses
+Crescendo recommends ASTP/ONC and CMS clarify:
+● That the Health IT provision of the "actor” definition makes virtually all extant payors
+"actors" with regards to information blocking
+● That clearinghouses have an independent duty to fulfill data access requests and may
+not redirect patients to another covered entity
+PR-12. Should ASTP/ONC consider removing or revising any of the information blocking
+exceptions or conditions within the exceptions (45 CFR part 171, subparts B through D) to
+further the access, exchange, and use of electronic health information (EHI) and to promote
+market competition?
+Yes, ASTP/ONC should revise or remove the “infeasibility exception” (§171.204) because its
+current structure poses a significant risk of abuse and undermines the policy goals of promoting
+EHI access, interoperability, and market competition.
+The infeasibility exception, particularly under §171.204(a)(5) (“Infeasible under the
+circumstances”), creates an overly broad and subjective pathway for healthcare entities and
+vendors to justify noncompliance with data sharing obligations. While intended to account for
+genuine barriers to fulfilling right of access requests, the provision enables actors to:
+● Intentionally create a technically infeasible solution and cite this exception
+● Self certify infeasibility without meaningful external oversight or objective benchmarks
+● Cite technical or cost burdens without proving a consistent standard or demonstrating
+actual incapacity
+This not only undermines patient access and interoperability but could also support
+anti-competitive practices, such as withholding data from digital health competitors or
+unaffiliated providers.
+If not removed entirely, the infeasibility exception should be significantly narrowed, with these
+reforms:
+● Require independent verification or third party audit of infeasibility claims
+● Provide a stated timeline to address the blockers for future requests
+
+● Establish objective, timely thresholds for what constitutes infeasibility due to cost,
+technology, or segmentation
+● Mandate public transparency of infeasibility claims, including publication of how often
+and under what circumstances they are invoked
+PR-13. For any category of healthcare provider (as defined in 42 U.S.C. 300jj(3)), without a
+current information blocking disincentive established by CMS, what would be the most effective
+disincentive for that category of provider?
+To further the goals of interoperability, transparency, and patient empowerment, CMS and ONC
+should establish clear, enforceable disincentives for payors who engage in information blocking
+but are not currently subject to CMS sanctions. Suggested disincentives include:
+Tying participation in key federal programs to clean compliance records
+Healthcare payors with repeat violations and documented patterns of information blocking could
+be deemed ineligible to participate in federally subsidized programs, including:
+● Medicare Advantage (MA)
+● Federally Facilitated Exchanges (FFEs)
+Participation in programs like MA and FFEs is voluntary and tied to public funding and trust.
+Payors who obstruct access to electronic health information compromise the integrity and
+transparency of these programs, harming patients and reducing competition.
+Imposing civil penalties per case with escalating consequences for systemic behavior
+Introduce high financial penalties for each verified instance of information blocking, similar to
+those used under the False Claims Act, and escalate to a percentage of revenue fines for
+repeat violations.
+Small, predictable fines are seen as a cost of doing business by large systems. But meaningful
+financial consequences, especially tied to revenue, create accountability. Higher revenue actors
+should face proportional consequences when they repeatedly undermine data access for
+patients.
+Certification and public disclosure to drive compliance for payors
+Establish a certification requirement for payors that mandates the implementation and
+maintenance of standardized APIs for patient access to health information. Certification could
+require:
+● Demonstrated compliance with interoperability standards
+● Public listing of accessible API documentation and endpoint directories
+● Routine reporting on availability and performance metrics
+
+Additionally, HHS could maintain a public directory of certified entities, highlighting compliant
+organizations.
+PC-8(c). What specific opportunities and challenges exist to improve accessibility,
+interoperability and integration of clinical data from different sources to enable more meaningful
+clinical research and generation of actionable evidence?
+Research and analytics of health data is hampered by the absence of a single
+generally-accepted drug class terminology that is integrated with RxNorm (or to which RxNorm
+is mapped). This would be a worthwhile area of standards development for CMS and
+ASTP/ONC to support.
+Many FHIR data elements have loose terminology requirements, even in the FHIR US Core
+Implementation Guide. The result is that data from different organizations often includes
+unnecessary variation in data values for a given element. Tightening this up would be helpful,
+and should be as high a priority for FHIR US Core development as expansion of the scope of
+data elements covered. Since FHIR US Core directly mirrors the requirements of USCDI, this is
+something that ASTP/ONC on which could exert significant influence.
+PC-11(b). What changes would you suggest [regarding health information exchanges]?
+Crescendo proposes that HIEs be subject to the same patient access API requirements as other
+holders of patient health data, e.g. providers.
+PC-13. How can CMS encourage patients and caregivers to submit information blocking
+complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would
+increasing reporting of complaints advance or negatively impact data exchange?
+Crescendo supports efforts by CMS and ONC to encourage patients, caregivers, and their
+authorized representatives to report information blocking as a necessary step toward
+meaningful enforcement and widespread interoperability.
+The complaint process should be patient centered, transparent, and safe. Specifically:
+Make reporting simple and trustworthy
+● The information blocking portal must be easy to find, mobile-friendly, written in plain
+language, and contain clear examples of what constitutes information blocking
+● Allow complaints to be submitted by authorized representatives, such as caregivers,
+family members, or designated advocates
+Prioritize confidentiality and anti-retaliation protections
+● CMS should ensure robust confidentiality protections for complainants and clearly
+communicate these protections up front
+
+● Consider adopting explicit anti-retaliation policies and publicizing enforcement of them
+when violations occur
+Increased reporting of information blocking will advance data exchange and compliance, as long
+as the process is intentionally managed and focused on remediation as much as enforcement.
+Public reporting will clarify what’s expected under the rules, help identify repeat offenders, and
+send a signal that patients have real rights when information access is blocked.
+Thank you for the opportunity to comment on these important topics and please don’t hesitate to
+reach out if there are further questions.

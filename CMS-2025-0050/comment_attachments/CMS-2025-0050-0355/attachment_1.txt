@@ -1,23 +1,1307 @@
- Centers for Medicare and Medicaid Services (CMS ) Assistant Secretary for Technology Policy (ASTP) Office of the National Coordinator for Health Information Technology (ONC HIT ) Health Technology Ecosystem —Request for Information (RFI) June 16, 2025 This document is submitted in response to the specific RFI referenced herein and intended solely for the use of the U.S. Government. The information contained in this RFI Response is proprietary and confidential to Cogent People. Any unauthorized disclosure, distribution, or use of this information is strictly prohibited. Integrity | Trust | Commitment to Excellence DUNS 957077980 | UEI ZDLJGBDWKZX7 | CAGE 761Y8 GSA MAS Contract #47QTCA21D0041 | SINs 54151S, 54151HEAL, 541611 NAICS CODES 541512, 541511, 541513, 541519, 518210, 541611 Point of Contact: Joshua Rosenthal , Director of Growth & Innovation Email: jrosenthal @cogentpeople.com | 10400 Little Patuxent PKWY , Suite 250, Columbia, MD 21044 cogentpeople .com | Phone: (410) 696 -7025 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 1 Cogent People Introduction Since 2009, Cogent People has delivered a broad spectrum of IT and Business consulting services, specializing in Data Innovation, Software Engineering, and System Integration. Recognized as a trusted Federal Government Contractor, we have earned the appreciation and respect of both our government customers and industry partners for our visionary thought -leadership approach, providing long -lasting value, designing progressive solutions, and delivering superior operational results on every project. Our work span s multiple federal agencies, including the Department of Housing and Urban Development (HUD), Centers for Medicare and Medicaid Services (CMS), Department of Health and Human Services (HHS), and the Federal Railroad Administration (FRA). We bring over a decade of direct experience delivering high -impact data solutions for CMS, where we have played a pivotal role in the development, modernization, and sustainment of the Affordable Care Act (ACA) data platforms and key mission -critical systems si nce the inception of the Health Insurance Marketplace. This longstanding engagement has deepened our subject matter expertise across Center for Consumer Information and Insurance Oversight (CCIIO) Marketplace systems and datasets, while fostering effective collaboration with a wide array of internal and external stakeholders. As part of the original team that stood up the Marketplace System Integrator (MSI) in 2012 , Cogent People collaborated with nearly every Marketplace stakeholder, gaining significant insights into the entire marketplace ecosystem and data challenges. We helped establish the Data Services Hub (DSH), built the core data platform on the Marketplace Integrated Data Collaboration and Analytics Platform (MIDCAP), developed the data catalog on the Multidimensional Insurance Data Analytics System (MIDAS), and modernized the data infrastructure on Eligibility Support (ES) at CMS’s request. In addition, we developed the CMS enterprise -wide data strategy for OIT and have supported key CCIIO programs such as the Federally Facilitated Exchange (FFE) and Marketplace Assister Technical Support (MATS). We currently serve as the prime contractor on the Federal Marketplace Operational Analytics (FMOA) program, a mission -critical CCIIO Marketplace system, where we lead efforts to ensure the accuracy, integrity, and reliability of financial and operational data to support enterprise -wide decision -making in the Marketplace . This role reflects our ability to lead complex, enterprise -scale data analytics programs, and our trusted partnership with CMS in supporting mission -critical systems and data services. Our core capabilities are in Data Innovation (which includes data modernization, data analytics & reporting, data management & governance, and data quality and performance improvement), Software Engineering, and System Integration. We have earned our reputation for exceeding expectations, which we uphold with our values by operating with integrity and committing to excellence. As an 8(a) Small Disadvantaged Business (SDB), we continually seek ways to better serve our CMS customers and the American public. More information about Cogent People can be found on our website: www.cogentpeople.com 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 2 Patient Needs PC-7. If CMS were to collect real -world data on digital health products' impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? To accurately assess the real -world impact of digital health products (DHPs) on beneficiary outcomes and costs, CMS must expand its data strategy beyond traditional provider -reported and claims -based sources. While provider -generated data such as claims and quality reports are foundational, they can be limited by reporting biases and conflicts of interest , particularly when reporting outcomes for services they provided themselves. To ensure objectivity, CMS must incorporate independent data sources, including beneficiary -reported outcomes and consumer -generated data, alongside rigorous data management and analytics. Traditional sources , such as Medicare claims, MIPS, and Hospital Compare , offer insights into utilization and clinical performance but may not fully capture the actual effectiveness of digital health technologies. Providers, incentivized by reimbursement models, may unintentionally overstate the benefits of digital interventions. As CMS evaluates tools like remote monitoring devices and AI -enabled diagnostics, it must validate provider -reported outcomes with independent evidence to guide policy and payment decisions. A promising strategy involves incorporating health data from consumer -facing platforms. Wearable devices and mobile apps from Apple, Fitbit, Google , etc. generate continuous biometric data , such as heart rate, activity, and sleep metrics , that can offer real -time insight into health outcomes. CMS could incorporate voluntary beneficiary data -sharing agreements or pilot programs to securely integrate such data with claims and EHRs. In parallel, CMS should engage digital health vendors used by ACOs and Medicare Advantage plans to access device data collected through care protocols. Most critically, CMS must center its assessments on patient -reported outcomes. Beneficiary -reported measures offer direct insight into quality of life, functional improvement, and satisfaction. CMS should implement scalable tools , such as secure digital surveys and mobile apps , to collect this data at regular intervals (e.g., 30, 90, 180 days post -intervention), enabling longitudinal analysis of DHP effectiveness. Stratified sampling would allow CMS to assess specific populations and programs, including chronic condition management and digital therapeutics. To manage this diverse data ecosystem, CMS must invest in a robust data infrastructure. Data from claims, providers, devices, and patients must be harmonized using standard models (e.g., FHIR, OMOP) and supported by automated quality controls, privacy safeguards, and clear data stewardship protocols. Governance must ensure secure compliance with HIPAA, CMS IS2P , and federal data protection standards. CMS will require experienced partners to build, integrate, and analyze this data ecosystem. Cogent People brings over a decade of experience delivering data ingestion, management, analytics, and governance solutions for CMS programs, including MIDAS, MIDCAP , CCIIO, and FMOA. We specialize in large -scale data integration, data quality assurance, and data reporting that power decision -making across CMS. With proven expertise in data strategy, system architecture, and federal health programs, Cogent People is uniquely qualified to support CMS in evaluating the real -world impact of digital health products on beneficiary outcomes and program performance. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 3 Data Access and Integration PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? Beneficiary and Caregiver Health Data Access: Beneficiaries and caregivers increasingly depend on health data to manage conditions, coordinate care, and make informed decisions. The most readily accessible and useful data today includes lab results, medication lists, immunization records, allergies, and visit summaries , typically available through EHR - linked patient portals or FHIR -based APIs like Blue Button 2.0. These data support medication adherence, chronic condition management, and basic patient engagement. However, critical gaps remain. Patients often lack access to complete claims data, clinical notes, operative reports, and discharge summaries, which are frequently siloed, unstructured, or hidden behind proprietary systems. Real -time data , such as provider availability, wait times, or personalized cost estimates , is generally absent. Additionally, important non -clinical factors like social determinants of health (e.g., housing, transportation, air quality) are inconsistently collected and rarely shared with patients, limiting their ability to manage care comprehensively. Beyond clinical and claims data, high -value sources include pharmacy benefit data (e.g., medication costs and coverage), patient -generated health data from wearables and apps, and public health records like immunization registries and exposure alerts. These sources are essential to drive patient empowerment, personalized care, and informed navigation of the healthcare system. To fully support beneficiaries, CMS should consolidate these fragmented datasets into a single, user - friendly platform that provides a comprehensive, real -time view of a patient’s health. The current ecosystem of disconnected portals and inconsistent formats places an undue burden on patients. A centralized, integrated solution would improve engagement, decision -making, and self -advocacy. Provider and Technical Stakeholder Perspectives on Data Integration and Interoperability From the provider and systems integrator perspective, seamless data exchange remains hindered by persistent challenges. Clinical data is fragmented across EHR platforms, with inconsistent terminology, documentation standards, and incomplete fields, undermining data quality and limiting the potential of health analytics and research. Consent and privacy regulations , such as HIPAA and 42 CFR Part 2 , further complicate data sharing. Robust consent management and dynamic privacy controls are not yet universally implemented, making compliant, patient -centered exchange difficult. At the same time, providers and developers face high technical burdens in managing disparate EHR interfaces, proprietary APIs, and secure data pipelines , which demand specialized expertise and sustained investment. The current ecosystem also lacks infrastructure to support emerging data types, such as patient - generated health data and environmental exposure data. While essential for personalized and population health strategies, these sources lack consistent integration standards. Despite these barriers, opportunities are emerging. Broader adoption of HL7 FHIR APIs, implementation of TEFCA, and alignment with data models like USCDI and OMOP can enable more consistent and secure 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 4 data exchange. Strategic collaboration among federal agencies, providers, vendors, and integrators is critical to improve access, support real -world evidence generation, and strengthen care delivery. A nationwide FHIR endpoint directory would serve as foundational infrastructure for real -time interoperability and integration . It would enable reliable discovery and connection across systems, supporting care coordination, streamlining payer -provider data exchange, and enhancing third -party app functionality. To be effective, such a directory should include provider identifiers (e.g., NPI, TIN), FHIR endpoint URLs, supported versions and resources, endpoint roles, authentication protocols, technical contacts, organizational relationships, and indicators of regulatory compliance (e.g., TEFCA, ONC certification). This structured, authoritative resource would accelerate implementation of the 21st Century Cures Act and CMS interoperability mandates, while also supporting research, public health, and patient engagement. A contractor with experience in large -scale federal health data infrastructure , such as Cogent People , would be critical to lead this development and long -term sustainment. PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? HIEs play a pivotal role in improving clinical data access by securely aggregating and sharing lab results, medication histories, and encounter summaries across healthcare organizations. This supports care coordination, reduces redundant testing, and enables timely decision -making , especially for patients with complex conditions who engage with multiple providers. However, HIE effectiveness is often constrained by uneven provider participation, inconsistent data formats, and lack of real -time exchange capabilities. Many HIEs face sustainability challenges due to fragmented funding and continue to operate on outdated technical infrastructures. Interoperability gaps across HIEs, vendors, and national networks , along with complex consent and privacy regulations , further hinder timely and reliable data exchange. Moreover, patient access remains limited, as few HIEs offer user -friendly tools that empower individuals to view or manage their health information. Addressing these challenges requires greater standardization, investment in modern infrastructure, and expanded stakeholder participation. HIEs must adopt national interoperability standards , such as HL7 FHIR and USCDI , and implement systems that enable real -time data exchange, quality monitoring, and scalable governance. Enhanced patient -facing features, including mobile apps and web portals, are essential to increasing individual engagement. Encouraging participation from both providers and payers through policy or incentive mechanisms will be critical to achieving data completeness and continuity of care. Looking ahead, a more scalable approach lies in building a national, standards -based, cloud -native data ecosystem. Operated under frameworks like TEFCA and powered by FHIR APIs, such a platform would support secure, real -time data exchange across all care settings. It would integrate a broader range of data types , including clinical, claims, social determinants of health (SDOH), and patient -generated health data (PGHD) , to create comprehensive, longitudinal patient records. A national system would also incorporate federated provider and FHIR endpoint directories, enabling dynamic data discovery and trusted routing, while offering scalable tools for quality reporting and decision support. Robust governance and interoperable consent frameworks are necessary to ensure patient privacy and trust. Unlike many regional HIEs, this scalable architecture would support continuous, nationwide data 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 5 exchange, enabling value -based care and population health management. HIEs would remain vital within this national ecosystem by serving as regional data stewards with localized governance and provider relationships. To enable this evolution, organizations must modernize infrastructure and align with national standards. To support this evolution, healthcare data experts like Cogent People offer specialized capabilities in integrating, standardizing, and governing extremely large, complex data sources. Cogent People applies proven methodologies in data quality management, metadata harmonization , real -time analytics , data sharing infrastructures (like Event -Based Processing), and API development to bridge technical gaps between legacy systems and modern platforms. With this expertise, we can help HIEs (like we currently do for CMS) to modernize infrastructure, integrate data governance, enhance data quality, and implement tools that support care delivery, compliance, and patient engagement , enabling HIEs to scale as interoperable components of a national health data framework. Digital Health Apps PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? Please address all of the following: From Cogent People’s perspective, ensuring that all data within an Electronic Health Record (EHR) , regardless of format is accessible for exchange is not only a matter of interoperability, but a foundational requirement for comprehensive data integration, data management, and data governance. Access to diverse data types , structured fields, scanned documents, lab results, faxed records, and free -text notes , is essential to achieving a unified, high -quality data ecosystem that enables consistent ingestion and interpretation across healthcare systems. However, the current reality is fragmented: disparate data formats, inconsistent standards, and legacy system constraints impede seamless integration. Rural providers are often at a disadvantage, operating with limited infrastructure that makes digitization of unstructured formats particularly burdensome, while urban systems face data volume and infrastructure complexity challenges that strain interoperability solutions. The inability to standardize and integrate all available health data undermines not only data sharing, but also the quality and reliability of downstream analytics and reporting. Without high -quality, consistently structured data ; providers, payers, and public health agencies face challenges in generating actionable insights, performing population health analysis, or tracking care outcomes. These issues degrade decision -making, increase administrative burdens, and weaken the impact of health interventions. From Cogent People’s experience supporting CMS Marketplace systems, we found that in some cases, achieving meaningful integration requires moving beyond transport -level API exchange, and toward robust data normalization pipelines and event -based processing models that allow data to be cleansed, transformed, and mapped to common semantic standards before integration. Technical barriers remain substantial. Many legacy systems store clinical content in static or proprietary formats that do not align with HL7 FHIR or USCDI data classes. Moreover, unstructured data lacks the metadata needed for effective indexing or search. Integrating such content into data platforms requires advanced tooling, such as Natural Language Processing (NLP), Optical Character Recognition (OCR), and standardized metadata tagging , each of which must be governed under rigorous data quality 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 6 management frameworks to ensure accuracy and usability. Additionally, large -scale data ingestion across formats cannot occur without clear governance models for consent, provenance, and versioning, which enable trusted, policy -compliant data exchange and consumption. Furthermore, p rivacy and cost concerns arise when scaling data accessibility. While expanding access to all data formats improves care coordination and system -wide insight, it must be balanced with appropriate privacy controls and financial feasibility , especially for small or rural organizations. Cogent People supports models that embed governance into architecture, enabling role -based access, consent - aware exchange, and automated compliance monitoring to safeguard sensitive information. Therefore , we advocate for a strategic, phased modernization approach that prioritiz es high -value use cases, standardizing interfaces, and using cloud -native, event -driven infrastructure to reduce the total cost of ownership and improve maintainability. In our view, enabling consistent, reliable ingestion of all data types is a top -tier priority within the broader interoperability landscape. It is the linchpin of effective data analytics, population health management, and performance reporting. By applying our extensive expertise in data integration, governance, and modernization, Cogent People works with agencies and stakeholders to help them move beyond fragmented exchange and toward a cohesive, insight -driven health data environment that ultimately support s better outcomes, lower costs, and more informed policy and clinical decision - making. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization's systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: The CMS CCIIO E ligibility Support (ES) program had organically grown into a convoluted ecosystem comprising multiple Commercial Off -The-Shelf (COTS) products, custom systems, and dozens of middleware components and services - all interconnected through many unmanaged point -to-point HTTP API integrations. This “spaghetti” architecture became less and less manageable and sustainable in terms of infrastructure costs, labor required to maintain and operate, and adaptability changes dictated by the ever -changing regul ations and eligibility process business requirements. When CMS mandated the program switch from a batch -based ingestion of Marketplace eligibility support data to a real -time event -based approach , the existing system could not support the change To correct this , Cogent People successfully executed a phased migration to an event -driven AWS cloud - native architecture leveraging serverless infrastructure. By integrating multiple microservices through an asynchronous publisher -subscriber event bus, we eliminated the need for point -to-point APIs. We integrated multiple microservices, following the domain -driven design paradigm, all connected via same save asynchronous publisher -subscriber event bus , avoiding the need for point -to-point HTTP APIs. We used industry -proven design patterns such as Events Sourcing, Command/Query Responsibility Segregation and structured our solution around a highly scalable and performant event store. High Availability, Scalability, and Security were key components from the early design phase. The technology stack (EventBridge, Elastic Container Service, Lambda, FarGate, and DynamoDB) maximized use of AWS native services optimizing costs and minimizing complexity. Where HTTP APIs were still the optimal 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 7 solution, they were standardized and centrally managed by API Gateway to add a layer of security, versioning, and manageability, and drastically simplify development, testing, deployment, and operation. This strategic transformation resulted in a substantial 90% reduction in IT costs and a 40% decrease in overall program costs , showcasing our expertise in delivering innovative and cost -effective technological solutions. Our implementation revolutionized system responsiveness, reducing consumer (beneficiary) wait times from 2 -10 days to mere minutes . This improvement ensures compliance with Service Level Agreements (SLAs) and provides customers with immediate eligibility responses to their healthcare enrollment submissions, significantly enhancing user experience and satisfaction. On ES, Cogent People’s team also integrated multiple heterogenous data sources (Oracle, MarkLogic, DynamoDB, SQL Server, RedShift, and others) into a single data ecosystem, using data streaming technologies such as Kafka, EventBridge, and Kinesis, as well as multiple APIs and ETL pipelines. Our design resulted in highly performant and resilient architecture capable of processing millions of data transactions daily without any unscheduled downtimes, exceeding the industry standard of 99.999% of system uptime per year and system recovery under one minute when downtimes do occur. We designed data integrations around the functional requirements of the complicated business processes involved in eligibility support, maximizing efficiency and maintainability, while operating well below the program’s budget constraints. In Summary, Cogent People has demonstrated technical expertise in designing, managing, and optimizing API integrations across CMS Marketplace mission -critical systems. Our experience on the ES program highlights not only our proficiency in modern API management , including secure, standardized deployment through tools like AWS API Gateway , but also our strategic capability to recognize when alternative architectural solutions provide greater value. In some cases, event -driven architectures offer superior scalability, resilience, and operational efficiency compared to traditional point -to-point APIs. By replacing API dependencies in some ecosystems with event -based processing models, we delivered transformative results in performance, cost savings, system reliability , and most importantly in beneficiary experiences and outcomes . This dual capability , API expertise coupled with architectural innovation , positions Cogent People as a trusted CMS partner in modernizing federal health IT systems to meet evolving regulatory, operational, and user demands. PR-7. What strategies can CMS implement to support providers in making high -quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? CMS can support providers in advancing interoperability by aligning policy, technical infrastructure, and data governance to reduce the burden of data sharing while improving overall data quality. A key strategy is to standardize data formats and exchange protocols , such as HL7 FHIR, USCDI, and TEFCA , and provide clear implementation guidance tailored to providers of varying sizes and technical maturity. CMS should also invest in shared integration frameworks and centralized services to reduce infrastructure costs and complexity for providers, especially in rural and underserved areas. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 8 To further minimize provider burden, interoperability efforts should be embedded into existing clinical workflows and aligned with metrics already used in programs like MIPS, QPP , and ACO initiatives. By integrating data sharing into quality reporting and EHR workflows, providers can meet interoperability goals as part of their routine operations. CMS can also support these efforts through targeted funding, technical assistance, and performance feedback tools that highlight the value of data sharing in improving outcomes and reducing administrative workload. To accelerate the transition to a fully interoperable digital health ecosystem, CMS should establish and structure incentives that support provider , payers, and other stakeholders to moderniz e legacy systems and adopt nationally recognized data standards such as HL7 FHIR, USCDI, and standardized terminologies (e.g., SNOMED CT , LOINC, ICD -10). Many providers , particularly small practices and rural health systems , face financial and technical barriers in upgrading outdated infrastructure or re -engineering workflows to align with modern interoperability requirements. CMS can help alleviate these challenges through targeted funding programs, technical assistance, and streamlined certification pathways that reward early adoption and conformance with standards -based data exchange. In parallel, CMS should expand provider incentives that directly reward meaningful participation in data sharing and quality improvement initiatives. Financial incentives tied to successful data exchange, improved data quality, and timely reporting , such as those offered through value -based care models , can motivate providers to prioritize interoperability. Additionally, non -financial incentives such as public recognition, performance benchmarking, and reduced compliance burden can further drive engagement. Aligning these incentives with existing quality and performance measures minimizes redundancy and promotes sustained investment in the data infrastructure, governance, and workflows needed to ensure high -quality, structured, and shareable health data. Cogent People supports incentive models that reinforce a culture of data stewardship and empower providers to contribute meaningfully to a more connected and data - driven healthcare system. Ultimately, CMS should foster a data ecosystem focused not only on access but also on consistency and quality , ensuring that shared data is structured, actionable, and useful for analytics, reporting, and decision -making. Cogent People stands ready to support this transformation by leveraging our expertise in data integration, governance, and modernization to help CMS and its stakeholders build a scalable, high -value interoperability infrastructure. PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? Simplifying the clinical quality data responsibilities of providers requires a strategic shift toward standards -based data exchange, centralized computation of quality measures, and consolidation of interoperability and reporting workflows. As a company with extensive experience in analyzing, managing, governing, integrating, and migrating large -scale , complex healthcare datasets across CMS Marketplace mission -critical systems , we recognize that Bulk FHIR data exports represent a pivotal opportunity to modernize quality measurement infrastructure while reducing provider burden. Bulk FHIR exports from EHRs to CMS offer a scalable, standards -aligned mechanism to offload the complexity of quality metric calculation from provider systems. By extracting structured clinical data in standardized formats, CMS can perform centralized, consistent quality analytics that reduce discrepancies across provider submissions and ensure a uniform interpretation of measure logic. Cogent 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 9 People has implemented enterprise -scale data integration pipelines that move and transform hundreds of millions of data points across systems , and we recommend that CMS leverage similar approaches to ingest, normalize, and analyze Bulk FHIR data across diverse EHR systems. While benefits include reduced provider reporting overhead, improved data consistency, and real -time analytic capability, potential downsides include the upfront costs of enabling FHIR Bulk Data export features within legacy systems and ensuring robust data governance frameworks for privacy, security, and consent management. These risks can be mitigated through technical assistance, incentives for standards adoption, and shared infrastructure investments. To further streamline the provider experience, CMS should consolidate interoperability and quality reporting workflows wherever feasible. Currently, providers are required to meet multiple overlapping regulatory requirements, leading to fragmented investments in health IT systems. CMS can reduce redundancy by aligning data submission requirements for promoting interoperability, MIPS, and ACO programs, and enabling shared data feeds that serve both care delivery and quality reporting needs. By building upon existing provider workflows , such as clinical documentation and patient encounter capture , CMS can enable dual -purpose data streams that reduce manual entry and duplicative effort. Cogent People recommends adopting reusable data services and modular reporting architectures that enable providers to use a single data pipeline for multiple compliance functions. With regard to data registries, CMS should establish clear requirements to support real -time digital quality measurement and clinical decision -making. Registries must be capable of ingesting FHIR -based data in near real -time, applying consistent measure logic, and feeding insights back to providers at the point of care. Cogent People advocates for registries that offer open APIs, support standardized terminologies (e.g., SNOMED CT , LOINC), and provide analytic dashboards that allow providers to monitor performance and address gaps proactively. Registries should also support federated data models, enabling decentralized access while ensuring centralized oversight and measure computation consistency. In summary, Cogent People recommends that CMS invest in centralized quality computation using Bulk FHIR exports, streamline interoperability and reporting workflows through shared infrastructure, and require data registries to support real -time analytics and digital quality measurement. These strategies will reduce provider burden, improve data quality, and accelerate the transition to a learning health system. Payers PA-4. What would be the value to payers of a nationwide provider directory that included FHIR end points and used digital identity credentials? A nationwide provider directory built on HL7 FHIR standards and secured through digital identity credentials would provide foundational infrastructure to support the next generation of scalable, standards -driven healthcare interoperability. From Cogent People’s perspective , shaped by over a decade of implementing payment data, payer -facing data platforms , and cross -issuer integrations in the CMS Marketplace , such a solution would enable payers to more effectively manage provider data across the lifecycle of eligibility, claims processing, payment reconciliation, and network adequacy. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 10 By establishing a single authoritative source of truth for provider information, a centralized FHIR -enabled directory would replace costly, error -prone batch processes and proprietary data formats with standardized, machine -readable interfaces. Cogent People has implemented integration strategies across complex issuer datasets within the CMS Marketplace, improving the accuracy and consistency of enrollment and financial data. These efforts , combined with data validation automation and dictionary standardization , have significantly reduced the need for manual data remediation and positioned CMS for more scalable, high -quality data operations. Digital identity credentials further enhance data reliability by ensuring that only authenticated, verified users can modify or update provider records. In our implementations, this has helped eliminate redundant credentialing checks and improved data stewardship by establishing clear audit trails and traceable data lineage , an essential capability in an increasingly regulated data environment. These safeguards help payers meet the growing compliance obligations introduced by federal mandates such as the No Surprises Act and CMS interoperability rules. Accurate, real -time provider data also translates into meaningful improvements in the member experience. Providers also benefit from reduced disputes and enhanced alignment with payers, strengthening collaboration across the ecosystem. Importantly, a FHIR -based, identity -enabled directory lays the groundwork for future innovations. Such infrastructure is not an endpoint, but a strategic enabler for high -value use cases such as automated prior authorization, digital quality reporting, real -time referrals, and streamlined value -based care models. These capabilities require trusted, standardized data exchange , precisely the foundation our solutions have delivered across Marketplace systems. With proven experience in payer data architecture, integration across Marketplace stakeholders and data environments (on MSI and DSH), and identity governance, Cogent People is well -positioned to support CMS and its partners in operationalizing a nationwide provider directory. We strongly recommend coupling this effort with robust governance frameworks, shared data standards, and performance monitoring to ensure consistency, reliability, and long -term impact across the healthcare ecosystem. PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of providers? Payers play a critical role in simplifying the clinical quality data reporting responsibilities faced by providers. Advances in EHR technology enabling bulk extraction of clinical quality data present a promising opportunity to reduce provider burden by shifting quality metric calculations from provider - side systems to payer -managed platforms. Many payers express strong interest in these technologies, particularly when they facilitate standardized, automated data flows that improve accuracy and timeliness of quality reporting. Providers, especially smaller practices and rural entities, often face resource constraints and technical limitations that make bulk data extraction a valuable tool for easing compliance demands. However, challenges remain, including variability in EHR system capabilities, data quality inconsistencies, and the need to ensure that bulk data exports align with national standards such as HL7 FHIR and USCDI. To address these issues, CMS and its partners should promote the adoption of interoperable data standards and provide clear implementation guidance. Additionally, targeted technical assistance and funding support can enable providers and payers to upgrade infrastructure and workflows accordingly. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 11 Consolidation of interoperability and quality reporting responsibilities across CMS and multiple payers offers substantial efficiency gains and cost savings. Cogent People advocates for coordinated data exchange frameworks that allow providers to submit clinical quality data once, leveraging data reuse across programs and payers. Payers can further support this consolidation by investing in scalable analytics platforms capable of ingesting bulk clinical data and performing centralized quality calculations. These platforms should incorporate robust data governance, privacy safeguards, and real -time data processing capabilities to support both reporting and clinical decision -making at the point of care. Technologies such as cloud -based data lakes, FHIR -enabled APIs, and event -driven data streaming present viable means to provide healthcare providers with near real -time quality data insights. This integration supports clinical workflows by enabling timely interventions while simultaneously streamlining reporting requirements. By aligning quality measurement with clinical care processes, payers can help reduce duplication of effort and enhance the overall value of data exchanged. From Cogent People’s extensive experience in the CMS Marketplace environment , where we have integrated payer and payment data and eligibility and enrollment data across diverse issuer systems using standardized data frameworks , we understand the practical benefits of interoperability -driven efficiencies. We recommend that CMS continue to incentivize adoption of standardized bulk data export capabilities and foster collaborative payer -provider data governance models. Additionally, CMS should consider establishing certification criteria that ensure data registries and analytics platforms meet stringent requirements for data quality, security, and real -time access to facilitate both quality reporting and clinical care improvements. In summary, payers can significantly simplify clinical quality data responsibilities for providers by leveraging bulk data technologies, fostering interoperability, and investing in data platforms that serve dual purposes of reporting and care support. Cogent People stands ready to assist CMS and partners in designing and implementing these solutions to reduce provider burden while advancing high -quality, data -driven healthcare outcomes. PA-7. How can CMS encourage payers to submit information blocking complaints to ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance or negatively impact data exchange? Filing information blocking complaints through the ASTP/ONC Information Blocking Portal offers important benefits but also presents challenges that CMS must carefully manage. Benefits Complaints help identify and address violations of the 21st Century Cures Act and HIPAA, improving the timely exchange of Electronic Health Information (EHI). This enhances patient care by ensuring providers access complete, accurate data when needed. Additionally, complaints expose systemic interoperability barriers, enabling targeted regulatory and industry action. They also reduce legal risks by promoting accountability and raise awareness about information blocking across stakeholders. Risks However, active payer complaint submissions can trigger resource -intensive investigations and increase adversarial tensions between payers and providers, potentially hindering collaboration essential for 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 12 interoperability. Ambiguities in enforcement criteria risk flooding regulators with low -value complaints, creating administrative burdens and discouraging innovation due to fear of penalties. Balanced Approach : While payer engagement in information blocking enforcement can advance transparency and compliance, it must be carefully managed to avoid escalating conflict or administrative burdens that could slow interoperability progress. Combining enforcement with partnership strategies is essential to achieve secure, equitable, and patient -centered health data exchange. As experts in healthcare data management and integration , Cogent People emphasizes the need for a balanced approach. We support precise, data -driven criteria for identifying true information blocking and advocate for proactive standards -based integration and open communication to reduce blocking behaviors. Enabling technologies and shared infrastructure should simplify compliance and promote real-time data exchange. CMS should provide clear, payer -specific guidance, streamlined submission processes, and confidentiality protections to focus enforcement on meaningful issues. At the same time, CMS must foster collaborative, incentive -driven partnerships among payers, providers, and developers to build trust and shared responsibility. Ecosystem TD-1. What short term (in the next 2 years) and longer -term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? In the short term, CMS can stimulate developer interest by expanding secure (credentialing and identity managed) access to standardized, high -quality Medicare data through well -documented APIs and sandbox environments, alongside targeted challenge grants and innovation prizes focused on beneficiary needs. In the longer term, CMS should establish clear regulatory frameworks that support interoperability, data privacy, security, identity management, and credentialing, invest in scalable infrastructure for real -time data exchange, and foster public -private partnerships that align incentives for sustainable digital health product development benefiting Medicare beneficiaries and caregivers. Additionally, CMS must implement comprehensive IT data modernization and governance across all CMS systems to embed integration and interoperability principles, values, and standards. Achieving this requires strong partnerships with IT service partners possessing extensive expertise in CMS data , such as Cogent People , to ensure successful integration, secure data exchange, and sustainment of these modernization efforts. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 13 TD-2. Regarding CMS Data, to stimulate developer interest , What additional data would be most valuable if made available through CMS APIs? What data sources are most valuable alongside the data available through the Blue Button 2.0 API? What obstacles prevent accessing these data sources today? What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? To stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers, CMS should expand both the breadth and depth of data made accessible through its API ecosystem. As a trusted CMS partner with extensive experience managing, governing, and integrating CMS datasets , including those supporting the ACA Marketplace and complex payer infrastructures , Cogent People understands the foundational role data accessibility plays in driving innovation across the digital health landscape. While the Blue Button 2.0 API provides a valuable starting point by enabling access to beneficiary data and historical claims information from Medicare Parts A, B, and D, it remains limited in scope. To further advance the utility of CMS data, APIs should be extended to include additional data classes such as clinical records derived from EHRs (e.g., lab results, imaging, care plans), Medicare Advantage encounter data, Medicaid claims and eligibility information, and key administrative data including prior authorizations, appeals, and care management documentation. Making these data classes available in real-time or near real -time would significantly enhance their utility for developers building applications for patient engagement, population health management, and care coordination. Beyond CMS’s internal datasets, developers would benefit from access to external data sources that are commonly used in tandem with CMS data. These include immunization registries, public health databases, social determinants of health indicators, provider network directories, and state Medicaid systems. Having supported the construction of cross -issuer data linkages and shared infrastructure in the ACA Marketplace, Cogent People has seen the operational and analytical value that results from breaking down data silos and standardizing interfaces. Facilitating multi -source integration through standardized APIs is critical to achieving the longitudinal, person -centered view of care that CMS seeks to promote. Several persistent challenges currently limit the accessibility and usefulness of these data sources. These include siloed systems with proprietary data formats, lack of unified data standards across CMS programs, latency in claims processing, and inconsistent identity and consent management practices. Technical constraints such as the absence of robust metadata registries, limited API versioning protocols, and fragmented governance further complicate integration. Based on our work supporting data modernization and governance initiatives across CMS systems, Cogent People recommends CMS invest in consolidated FHIR profiles, consistent data dictionaries, and identity -first access models that support scalable and secure integration. To complement these foundational enhancements, CMS and ONC should consider supporting new APIs that empower developers and providers to more effectively utilize digital health data. Priority areas include Bulk FHIR API exports to support population -level analytics, digital quality measurement APIs (dQMs), eligibility verification APIs, prior authorization APIs aligned with HL7 Da Vinci standards, and FHIR -based credentialing and provider directory APIs. These APIs should enable bi -directional data flow 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 14 and operate within a trust framework supported by robust identity management and credentialing protocols. Finally, CMS must implement a long -term data modernization strategy that embeds interoperability principles across all program systems. These principles include the use of HL7 FHIR standards, OAuth2 for secure authentication, and digital credentialing for identity validation. Achieving this vision will require collaboration with partners who possess both domain knowledge and technical acumen. Cogent People offers proven experience integrating and modernizing CMS data environments with a focus on governance, quality, and standardization. By prioritizing strategic modernization and API expansion, CMS can unlock the next generation of data -driven healthcare tools, foster greater innovation in the developer community, and improve outcomes for Medicare beneficiaries and their caregivers. Technical Standards and Certification TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? A nationwide provider directory of HL7 FHIR endpoints would establish essential infrastructure for secure, real -time health information exchange across the healthcare ecosystem. Drawing from Cogent People’s experience integrating payer and provider systems in CMS programs such as the ACA Marketplace, a centralized, standards -based directory would automate interoperability across disparate health IT systems, reducing fragmentation and improving care coordination. For patients, verified endpoints would enable timely and secure data sharing with new providers and third -party apps, supporting informed decisions and reducing risks like surprise billing or referral errors. Providers would benefit from reduced administrative burden, improved referral workflows, and stronger compliance through automated endpoint discovery and credentialed identity verification , an area where Cogent People has observed persistent inefficiencies in legacy systems. For payers, the directory would streamline integration for quality reporting, prior authorization, and care coordination. Our work connecting insurance issuer systems confirms that FHIR -based architectures reduce redundant interfaces and support scalable, standards -aligned data exchange. Digital identity credentials further ensure data integrity, auditability, and trust. While the promise of a nationwide FHIR endpoint directory is substantial, it also introduces heightened security risks that must be proactively addressed. Centralizing access to provider endpoints and digital identities creates a potential target for malicious actors seeking to exploit vulnerabilities in authentication workflows, endpoint misconfigurations, or unauthorized data access. Without proper safeguards, the very infrastructure designed to promote interoperability could expose the healthcare ecosystem to breaches, fraud, or misuse. Cogent People brings extensive experience implementing secure, identity -first data architectures across CMS programs, with an emphasis on credentialing, access control, and auditability. Our teams have led efforts to operationalize digital identity frameworks and enforce data integrity protocols at scale, ensuring that trusted data exchange does not come at the expense of patient privacy or organizational security. CMS , potentially in coordination with ONC , is best positioned to publish and maintain the national provider directory, leveraging its regulatory authority and oversight of interoperability compliance. To 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 15 encourage broad adoption, directory access should be offered at no cost or at minimal cost to providers, developers, and patients, with optional fee -based commercial services to support long -term sustainability. CMS could initiate the directory using existing datasets and infrastructure, and provider participation could be streamlined by integrating directory enrollment into established PECOS and NPPES provider enrollment workflows. A national FHIR endpoint directory would significantly improve interoperability, trust, and data quality. Cogent People is prepared to assist CMS in designing and implementing this infrastructure, applying our expertise in identity -first integration, data governance, and CMS enterprise data modernization. TD-9. Regarding API certification of health IT: Redefining health IT certification to prioritize API -enabled capabilities over traditional software functionality offers significant benefits across the healthcare ecosystem. From a provider perspective, APIs enable more seamless, real -time data exchange that reduces manual workflows and administrative burden. For patients, APIs facilitate greater access and control over their health data, empowering engagement and improving care coordination. From an innovation standpoint, focusing certification on standardized, interoperable APIs encourages a more competitive market with greater vendor flexibility and faster deployment of new features. However, shifting to API -first certification introduces challenges. Smaller EHR vendors may face financial and technical hurdles adapting their products to new standards, potentially narrowing market options if support is insufficient. The variability in API maturity across vendors can lead to inconsistent user experiences and interoperability gaps. Moreover, APIs present increased security and privacy risks that must be carefully managed with robust identity management, credentialing, and data governance frameworks. Without strong safeguards, increased data exchange could expose sensitive information or create vulnerabilities. CMS can motivate providers to respond to API -based data requests with high -quality coverage by incorporating explicit incentives and penalties into value -based programs such as MIPS and APMs. Clear certification criteria should require not only API availability but also demonstrated responsiveness, data completeness, and timeliness. Additionally, CMS could offer technical assistance and funding support to providers and vendors to accelerate API adoption and address resource disparities. Aligning these policies with ONC’s certification and TEFCA frameworks will help ensure consistent standards and reduce fragmentation. EHR systems capable of bulk data transfer offer a promising approach to reducing provider burden in quality performance reporting. By enabling direct, automated export of large datasets, providers can avoid repetitive manual submissions and minimize errors. To realize these benefits, capabilities such as data normalization, validation, audit trails, and user -friendly interfaces for error resolution are essential. However, concerns remain around data accuracy, standardization across diverse EHR systems, and ensuring interoperability between sending and receiving platforms. There is also a need for clear governance on data use, patient consent, and security to prevent misuse or breaches. Ultimately, redefining certification with an API focus, supported by thoughtful policy incentives and technical safeguards, can accelerate interoperability and empower all stakeholders , providers, payers, and patients. CMS’s leadership, in partnership with ONC and experienced contractors like Cogent People, 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 16 is vital to designing scalable, secure, and equitable systems that enhance data usability while protecting privacy and promoting trust. Data Exchange TD-12. Should CMS endorse non -CMS data sources and networks, and if so, what criteria or metrics should CMS consider? Benefits of Endorsing Non -CMS Data Sources and Networks Endorsing non -CMS data sources and networks can significantly enhance data richness, completeness, and timeliness, thereby improving care coordination, quality measurement, and payment accuracy. Non - CMS sources , such as state immunization registries, health information exchanges (HIEs), payer databases, and social determinants of health (SDOH) data platforms , often contain valuable clinical and contextual information not fully captured within CMS systems alone. Leveraging these external sources could reduce data silos, fill gaps in beneficiary records, and support more holistic, patient -centered care. Furthermore, endorsing trusted non -CMS networks can stimulate innovation by encouraging broader data sharing ecosystems that operate on standardized interoperability frameworks like HL7 FHIR. This aligns with CMS’s strategic goals under the 21st Century Cures Act and interoperability rulemaking to foster a competitive, transparent health IT marketplace. It also helps CMS scale data collection and reporting efforts without duplicative investments, leveraging existing infrastructure managed by public - private partnerships or states. To ensure data quality and security, CMS should apply clear criteria in endorsing external sources, including data accuracy, timeliness, completeness, standardization adherence, and compliance with privacy and security regulations such as HIPAA. Metrics around network reliability, governance transparency, patient consent mechanisms, and equitable data access should also be considered. Establishing certification or attestation processes could further safeguard data integrity and trustworthiness. Concerns About Endorsing Non -CMS Data Sources and Networks On the other hand, endorsing non -CMS data sources and networks introduces several risks and challenges. Data quality and consistency can vary widely across external sources, complicating CMS’s ability to ensure equitable and accurate program administration. Without rigorous oversight, integrating heterogeneous data may increase the risk of errors, misclassification, or unintended bias in quality metrics, risk adjustment, and payment determinations. Security and privacy concerns are heightened when data flows through multiple third -party networks. CMS’s direct control over data stewardship diminishes, raising vulnerabilities to breaches or unauthorized uses. The operational complexity and cost of onboarding, certifying, and monitoring numerous external data providers could strain CMS resources and divert focus from existing modernization initiatives. Moreover, endorsement of non -CMS networks might unintentionally fragment data governance or create competitive tensions among stakeholders, potentially undermining interoperability goals. It may also introduce confusion for providers and beneficiaries about data sources’ trustworthiness or increase administrative burdens related to consent management and data correction. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 17 Recommendations on Non -CMS Data Source and Network Endorsement If CMS chooses to endorse non -CMS data sources and networks, it should implement robust vetting criteria focusing on data quality, security, interoperability standards compliance, and governance transparency. Piloting phased integrations with well -established and proven networks could mitigate risk while building experience. CMS should also consider mechanisms for ongoing monitoring, auditability, and the ability to revoke endorsements if standards are not maintained. While endorsing non -CMS sources offers substantial opportunities to enrich data and accelerate interoperability, it demands careful balancing against risks to data integrity, privacy, and operational feasibility. CMS’s role as a trusted steward requires that any expansion of data networks be deliberate, transparent, and grounded in rigorous standards. Cogent People, with our extensive experience in CMS data integration, governance, and interoperability across diverse healthcare programs, is well-positioned to support CMS in developing and implementing these endorsement frameworks. Our expertise in data quality assurance, security compliance, and system integration can help ensure that any expansion to non -CMS data sources strengthens CMS’s mission while safeguarding data integrity and stakeholder trust. TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? APIs providing access to the entirety of a patient’s electronic health information (EHI) open significant opportunities for advancing personalized care, care coordination, and patient empowerment. Comprehensive EHI access can enable more accurate clinical decision -making, seamless transitions across providers, and richer data for research and population health management. It also supports innovative digital health tools that leverage the full scope of patient data to deliver tailored interventions and improve outcomes. However, several obstacles challenge this vision. Data privacy and security remain paramount concerns, as broader data access increases potential vulnerabilities, risks of unauthorized access, and misuse of sensitive information. Ensuring robust safeguards, including encryption, identity management, and access controls, is critical to maintaining patient trust. Variability in data quality, completeness, and standardization can also impede interoperability and create inconsistent user experiences. Technical challenges, such as legacy system limitations and the need for scalable, performant APIs, also require substantial investment and coordination. Additionally, patients and providers may face complexity in managing, securing, and interpreting extensive data sets, further underscoring the need for clear privacy protections and user -friendly data governance frameworks. Regarding tradeoffs between using the US Core Data for Interoperability (USCDI) standard versus full EHI access, USCDI offers a focused, standardized dataset designed for essential interoperability needs, which simplifies data exchange and reduces processing overhead. Full EHI access, while more comprehensive, demands advanced data processing capabilities to manage complexity, potential noise, and relevance filtering. Flexible processing enables more tailored insights but introduces challenges around data governance, consistency, and ensuring clinically meaningful information is prioritized. From Cogent People’s perspective, our expertise in CMS data management, governance, and integration equips us to help navigate these complexities. We can support CMS in designing secure, standards -based 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 18 API frameworks that balance comprehensive access with data quality and privacy safeguards, enabling innovation while maintaining trust and compliance. Compliance TD-19. Regarding price transparency implementation: Despite regulatory advances, significant shortcomings remain in price transparency content, format, delivery, and timeliness. Price information is often incomplete, inconsistent, and presented in formats that are difficult for patients and even providers to interpret. Many price lists are outdated, exclude negotiated rates or patient -specific costs, and are scattered across multiple platforms, creating confusion and limiting practical usefulness. This fragmented and inaccessible pricing landscape contributes directly to rising healthcare costs by preventing beneficiaries from shopping for better prices or making informed care decisions. Functional price transparency would most benefit workflows involving patient care planning, pre - authorization, billing reconciliation, and care coordination. Patients would gain the ability to compare costs before selecting providers or scheduling services, reducing surprise bills, and the overall cost of healthcare nationwide. Providers would improve billing accuracy and communication with patients, while payers could better manage networks and promote cost -effective care. CMS could leverage transparent pricing to enhance oversight, support beneficiaries, and drive value -based care. To maximize value, price transparency must deliver standardized, machine -readable data accessible through APIs, reflecting not just list prices but actual negotiated rates and individualized out -of-pocket costs. This would reduce administrative burdens, improve cost estimation accuracy, and enable integration into EHRs, payer systems, and consumer apps that beneficiaries and patients could use to shop for better prices. For CMS, transparent pricing supports compliance monitoring and program design aligned with affordability goals. Without transparency, healthcare prices remain artificially high because patients cannot shop or make cost -conscious choices. CMS can accelerate progress by establishing clear standards and enforceable requirements for comprehensive, timely, and patient -friendly price disclosures. Incentives tied to value -based program participation and targeted funding for interoperability solutions would spur innovation, while meaningful penalties for non -compliance ensure accountability. Collaborative engagement among patients, providers, payers, and technology vendors is essential to develop practical, equitable solutions that address real -world needs without exacerbating disparities. In summary, addressing price transparency is critical to empowering consumers, controlling costs, and fostering a competitive healthcare market. CMS must lead by setting the regulatory framework and standards that enable reliable, accessible pricing data. Cogent People, with our extensive expertise in CMS data programs, system integration, and secure information exchange, is well positioned to partner with CMS in building scalable, standards -based price transparency solutions that safeguard privacy and improve healthcare affordability. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 19 Digital Health Adoption VB-2. How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? From Cogent People’s perspective, advanced data analytics, machine learning (ML), and artificial intelligence (AI) are transformative technologies that should be deeply integrated into Alternative Payment Models (APMs) to enhance care quality, efficiency, and patient outcomes. CMS can incorporate AI and ML to analyze large -scale clinical, claims, and operational datasets for improved risk stratification and predictive modeling. These technologies enable early identification of high -risk patients and targeted intervention strategies, which are essential for population health management and cost containment within APMs. AI -driven analytics can also streamline quality measurement by automating data extraction and identifying patterns that traditional methods may miss, improving both accuracy and timeliness. To realize these benefits, APM requirements must promote standardized, interoperable data environments that support real -time analytics and seamless integration into provider workflows. Usability is critical; AI tools should deliver actionable insights in an intuitive manner that enhances care coordination without increasing administrative burden. Patient engagement can be amplified through AI - powered personalized communication and decision support systems, encouraging adherence and shared decision -making. Data governance and privacy considerations are paramount when leveraging AI and ML in APMs. CMS policies must ensure secure, ethical use of sensitive health data while addressing potential biases in algorithms to promote the most effective care delivery , that result in the best health outcomes for beneficiaries and patients . Cogent People’s extensive experience with data analytics and reporting on CMS payment, clinical, and operational data best position s us to design and implement APM frameworks that leverage AI and machine learning effectively. We emphasize strong data governance, security, integration, and interoperability to maximize the value of these advanced analytics within CMS programs. In summary, embedding AI, ML, and advanced analytics into APMs requires clear policy direction, robust standards, and incentives aligned to encourage innovation and adoption. Cogent People is prepared to collaborate with CMS to operationalize these capabilities and drive measurable improvements in healthcare delivery. VB-3. What are essential health IT capabilities for value -based care arrangements? Success in value -based care (VBC) requires a modern health IT ecosystem centered on advanced data infrastructure, AI -driven analytics, and real -time interoperability. Drawing from our experience supporting CMS programs, we view data normalization, enrichment, and exchange as essential to powering capabilities such as risk stratification, predictive modeling, quality measurement, and care coordination. Machine learning and AI can accelerate insights from claims and clinical data, enabling proactive interventions for high -risk patients. When combined with standardized APIs, patient identity resolution, 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 20 and attribution logic, these tools streamline operations and enhance accuracy in tracking outcomes. Cogent People has deployed these solutions across complex CMS environments, demonstrating measurable improvements in data quality and performance reporting. Real -time event notifications, remote device integration, and patient -facing tools also play key roles in closing care gaps and improving engagement. These technologies empower patients while enabling providers and payers to act on timely, actionable data. To succeed in VBC, health IT must be intelligent, interoperable, and analytics -ready. Cogent People brings proven experience in building scalable, identity -driven architectures that can help CMS and partners realize the full promise of data -driven value -based care. VB-4. What are the essential data types needed for successful participation in value -based care arrangements? Successful participation in value -based care arrangements requires access to comprehensive, high - quality data across several essential types: 1. Clinical Data: Includes patient diagnoses, lab results, medication histories, procedures, and encounter notes. This data is critical for risk stratification, care management, and clinical quality measurement. 2. Claims Data: Contains billing information, service utilization, and payment records. Claims data supports cost analysis, utilization management, and outcome measurement. 3. Patient -Reported Outcomes: Data on patient health status, functional status, and satisfaction collected directly from patients, which helps assess care effectiveness and quality from the patient perspective. 4. Payment Data: Detailed information on reimbursements, incentives, shared savings, and penalties. Payment data is essential for tracking financial flows, aligning incentives, and evaluating the economic impact of value -based care. 5. Social Determinants of Health (SDOH): Information on factors such as housing, income, education, and access to food or transportation, which impact health outcomes and care needs. 6. Care Coordination Data: Includes referral patterns, care team communications, and transitions of care information necessary to manage patient journeys and reduce duplicative or fragmented care. 7. Quality and Performance Metrics: Standardized measures related to clinical outcomes, patient safety, and process adherence used to evaluate provider performance against value -based care goals. 8. Financial Data: Cost and reimbursement data to assess spending relative to outcomes, enabling value analysis and incentive calculations. 9. Behavioral Health Data: Information related to mental health diagnoses and treatments, as integrated behavioral health is often a critical component in value -based care. Together, these data types enable providers and payers to monitor performance, identify gaps, and improve both clinical and financial outcomes in value -based care models. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 21 Compliance and Certification VB-9. What technology requirements should be different for APM organizations when comparing to non -APM organizations (for example, quality reporting, and interoperability)? APM organizations, operating under value -based payment models, require a distinctly more advanced and integrated technology and data infrastructure compared to traditional fee -for-service organizations. To succeed in these models, APM entities must implement robust data governance frameworks that go beyond compliance and ensure data integrity, stewardship, and trust across all levels of the organization. This includes clearly defined data ownership, access policies, and data -use agreements that support secure and compliant exchange of clinical, claims, pharmacy, and patient -generated health data. Effective governance enables consistent population attribution, longitudinal tracking, and timely quality reporting , core functions in any APM environment. In parallel, APM organizations must prioritize data modernization to support real -time analytics and scalable insights. This requires investment in cloud -native data platforms capable of ingesting, normalizing, and transforming diverse datasets using standards. Automated data pipelines with embedded identity resolution and data quality checks ensure consistency and traceability across systems. These modern platforms enable organizations to merge EHR, claims, social determinants of health (SDOH), and patient -reported data to generate actionable intelligence that supports proactive, coordinated care. Interoperability is another foundational requirement for APM success. While non -APM organizations may rely solely on internal systems, APM participants must maintain bi -directional data exchange capabilities across multiple networks and vendors. This includes publishing and consuming FHIR APIs, integrating with TEFCA -aligned QHINs, and maintaining connections with state and regional Health Information Exchanges (HIEs). Seamless data sharing across care settings allows providers to close care gaps, reduce duplicative services, and improve the accuracy of performance measurement and risk stratification. Data quality is equally critical. APM organizations must implement continuous data quality assurance processes, including validation rules, anomaly detection, and reconciliation across clinical and billing systems. Inaccuracies in coding, documentation, or patient attribution can directly affect financial reconciliation, shared savings distribution, and clinical performance scores. A strong data quality program ensures that analytics are trusted, timely, and reflective of true care delivery patterns. Finally, advanced analytics and reporting capabilities are essential to enable data -driven decision -making and support clinical and operational excellence. APM organizations must leverage predictive analytics, risk scoring, and real -time dashboards to empower care teams with insights that guide interventions, reduce unnecessary utilization, and drive performance against CMS -defined metrics. These tools should support automated quality reporting, benchmark comparisons, and care gap closure strategies that improve outcomes while containing costs. Unlike non -APM entities, which may only report retrospectively, APM organizations must sustain a proactive, intelligence -driven approach to care management, powered by sophisticated, integrated data systems. 
- CMS ASTP/ONC Response to Health Technology Ecosystem RFI The data on this page are subject to the restrictions described on the cover of this document . Page 22 Meeting these comprehensive technology requirements poses significant challenges for APM organizations, many of which lack the internal expertise and resources to manage complex data integration, maintain interoperability, ensure the high data quality necessary for accurate analytics and reporting , and performing those analytics themselves . Aligning diverse data sources, implementing standardized data models, and sustaining continuous data governance and security programs demand specialized skills and substantial technical investment. Government contracting partners like Cogent People, with experience in data analytics, data management, and governance, play a critical role in supporting APMs by building scalable, secure data infrastructures and delivering advanced analytic capabilities. These kinds of partnerships and expertise sharing enables APM organizations to navigate regulatory requirements, streamline data processes, and generate actionable insights that drive improved health outcomes and financial performance. 
+Centers for Medicare and Medicaid Services (CMS)
+Assistant Secretary for Technology Policy (ASTP)
+Office of the National Coordinator for Health Information Technology (ONC HIT)
+Health Technology Ecosystem—Request for Information (RFI)
+June 16, 2025
+e
+c
+n
+e
+lle
+c
+x
+E
+o
+t
+t
+n
+e
+m
+t
+im
+m
+o
+C
+|
+t
+s
+u
+r
+T
+|
+y
+t
+i
+r
+g
+e
+t
+n
+I
+Em
+T
+G
+dh
+io
+sia
+v
+cs
+e
+l
+i
+d
+ol r:
+o
+sn
+ucj
+m
+rur eo
+em
+,n
+s
+e
+dte
+.n
+i
+sTtn
+th
+iG
+rt
+s
+e
+i
+bh
+sS
+i
+uu
+nP
+aA
+tfb
+olo
+iN
+m
+@
+orM
+i
+nmiA
+n
+t
+,c
+a
+tA
+tI
+oo
+te
+C
+i
+roS
+odg
+D
+S
+un
+f
+e
+iC
+sn
+U
+cC
+C
+eno
+o
+r
+ON
+o
+nt
+oen
+tp
+fsnDS
+at
+p
+te
+ir
+t
+nc
+hoE9
+a
+a
+o
+eo
+inS5
+sc
+dc
+sp
+g
+t7
+i
+et5
+i
+nl
+e
+n:
+0
+e#
+4
+ft
+otnJ
+o7
+.4
+1
+ho
+r
+c
+t7
+mit7
+5
+so
+ps
+h9
+Q
+1
+R
+ah
+em
+e8
+tF2
+uT
+iso0
+I
+o,
+p
+C
+Ra
+|
+np
+e5
+e
+A
+|
+clR
+is14
+e
+si
+p
+2
+foU
+01
+o
+si.1
+c
+tc4s5
+nE
+r
+D
+oe
+s0
+R
+i1I
+ceF0
+m
+0n1
+t
+Z
+iI
+l0
+s
+,
+yt
+L
+rD
+p
+h4
+e|i
+p5
+rtL
+f1
+a
+roet4J
+P
+o
+pl
+rlG
+1
+e|
+,
+heh
+r i
+i5
+nD
+eB
+o
+bPS
+c
+t1
+iD
+i
+an
+eI
+tar3
+rN
+edeW
+e
+yt,
+d
+u
+cs
+h
+a:
+.5
+n
+K
+t
+ex
+(5
+o4
+dr4eZ
+4
+e
+1
+cr
+1X
+n
+i1
+o
+n5
+o
+07
+t
+n5
+1
+)
+a
+f
+f
+1
+P
+i
+|
+n9
+d6GS
+dK
+e,
+9C
+,
+nr
+W
+i
+65A
+n
+to5
+i-
+t
+a1
+w4G
+Y
+e7
+l
+8
+,
+t1
+n0
+E
+ot2
+S
+d5
+h
+2
+C1
+eu7
+1
+5
+od0
+&6
+iH
+g
+t
+,1
+s
+ee
+E
+oI
+nY
+5
+nA
+l
+t2
+e8
+4
+PnL
+l5
+y
+e1,
+o
+0
+o
+6
+fov
+p,5
+1
+r
+la
+C4
+e
+1
+t
+.t1
+o
+h
+Ai6
+o
+el
+nu1
+n
+yum
+1
+s
+u
+e
+nb aoi ufa tt,
+hh
+oM
+e
+r
+iU
+zD
+e.S
+d2
+.
+1044
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Cogent People Introduction
+Since 2009, Cogent People has delivered a broad spectrum of IT and Business consulting services,
+specializing in Data Innovation, Software Engineering, and System Integration. Recognized as a trusted
+Federal Government Contractor, we have earned the appreciation and respect of both our government
+customers and industry partners for our visionary thought-leadership approach, providing long-lasting
+value, designing progressive solutions, and delivering superior operational results on every project. Our
+work spans multiple federal agencies, including the Department of Housing and Urban Development
+(HUD), Centers for Medicare and Medicaid Services (CMS), Department of Health and Human Services
+(HHS), and the Federal Railroad Administration (FRA).
+We bring over a decade of direct experience delivering high-impact data solutions for CMS, where we
+have played a pivotal role in the development, modernization, and sustainment of the Affordable Care
+Act (ACA) data platforms and key mission-critical systems since the inception of the Health Insurance
+Marketplace. This longstanding engagement has deepened our subject matter expertise across Center
+for Consumer Information and Insurance Oversight (CCIIO) Marketplace systems and datasets, while
+fostering effective collaboration with a wide array of internal and external stakeholders.
+As part of the original team that stood up the Marketplace System Integrator (MSI) in 2012, Cogent
+People collaborated with nearly every Marketplace stakeholder, gaining significant insights into the
+entire marketplace ecosystem and data challenges. We helped establish the Data Services Hub (DSH),
+built the core data platform on the Marketplace Integrated Data Collaboration and Analytics Platform
+(MIDCAP), developed the data catalog on the Multidimensional Insurance Data Analytics System
+(MIDAS), and modernized the data infrastructure on Eligibility Support (ES) at CMS’s request. In addition,
+we developed the CMS enterprise-wide data strategy for OIT and have supported key CCIIO programs
+such as the Federally Facilitated Exchange (FFE) and Marketplace Assister Technical Support (MATS).
+We currently serve as the prime contractor on the Federal Marketplace Operational Analytics (FMOA)
+program, a mission-critical CCIIO Marketplace system, where we lead efforts to ensure the accuracy,
+integrity, and reliability of financial and operational data to support enterprise-wide decision-making in
+the Marketplace. This role reflects our ability to lead complex, enterprise-scale data analytics programs,
+and our trusted partnership with CMS in supporting mission-critical systems and data services.
+Our core capabilities are in Data Innovation (which includes data modernization, data analytics &
+reporting, data management & governance, and data quality and performance improvement), Software
+Engineering, and System Integration. We have earned our reputation for exceeding expectations, which
+we uphold with our values by operating with integrity and committing to excellence. As an 8(a) Small
+Disadvantaged Business (SDB), we continually seek ways to better serve our CMS customers and the
+American public.
+More information about Cogent People can be found on our website: www.cogentpeople.com
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 1
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Patient Needs
+PC-7. If CMS were to collect real-world data on digital health products' impact on health
+outcomes and related costs once they are released into the market, what would be the
+best means of doing so?
+To accurately assess the real-world impact of digital health products (DHPs) on beneficiary outcomes and
+costs, CMS must expand its data strategy beyond traditional provider-reported and claims-based
+sources. While provider-generated data such as claims and quality reports are foundational, they can be
+limited by reporting biases and conflicts of interest, particularly when reporting outcomes for services
+they provided themselves. To ensure objectivity, CMS must incorporate independent data sources,
+including beneficiary-reported outcomes and consumer-generated data, alongside rigorous data
+management and analytics.
+Traditional sources, such as Medicare claims, MIPS, and Hospital Compare, offer insights into utilization
+and clinical performance but may not fully capture the actual effectiveness of digital health technologies.
+Providers, incentivized by reimbursement models, may unintentionally overstate the benefits of digital
+interventions. As CMS evaluates tools like remote monitoring devices and AI-enabled diagnostics, it must
+validate provider-reported outcomes with independent evidence to guide policy and payment decisions.
+A promising strategy involves incorporating health data from consumer-facing platforms. Wearable
+devices and mobile apps from Apple, Fitbit, Google, etc. generate continuous biometric data, such as
+heart rate, activity, and sleep metrics, that can offer real-time insight into health outcomes. CMS could
+incorporate voluntary beneficiary data-sharing agreements or pilot programs to securely integrate such
+data with claims and EHRs. In parallel, CMS should engage digital health vendors used by ACOs and
+Medicare Advantage plans to access device data collected through care protocols.
+Most critically, CMS must center its assessments on patient-reported outcomes. Beneficiary-reported
+measures offer direct insight into quality of life, functional improvement, and satisfaction. CMS should
+implement scalable tools, such as secure digital surveys and mobile apps, to collect this data at regular
+intervals (e.g., 30, 90, 180 days post-intervention), enabling longitudinal analysis of DHP effectiveness.
+Stratified sampling would allow CMS to assess specific populations and programs, including chronic
+condition management and digital therapeutics.
+To manage this diverse data ecosystem, CMS must invest in a robust data infrastructure. Data from
+claims, providers, devices, and patients must be harmonized using standard models (e.g., FHIR, OMOP)
+and supported by automated quality controls, privacy safeguards, and clear data stewardship protocols.
+Governance must ensure secure compliance with HIPAA, CMS IS2P, and federal data protection
+standards.
+CMS will require experienced partners to build, integrate, and analyze this data ecosystem. Cogent
+People brings over a decade of experience delivering data ingestion, management, analytics, and
+governance solutions for CMS programs, including MIDAS, MIDCAP, CCIIO, and FMOA. We specialize in
+large-scale data integration, data quality assurance, and data reporting that power decision-making
+across CMS. With proven expertise in data strategy, system architecture, and federal health programs,
+Cogent People is uniquely qualified to support CMS in evaluating the real-world impact of digital health
+products on beneficiary outcomes and program performance.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 2
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Data Access and Integration
+PC-8. In your experience, what health data is readily available and valuable to patients or
+their caregivers or both?
+Beneficiary and Caregiver Health Data Access:
+Beneficiaries and caregivers increasingly depend on health data to manage conditions, coordinate care,
+and make informed decisions. The most readily accessible and useful data today includes lab results,
+medication lists, immunization records, allergies, and visit summaries, typically available through EHR-
+linked patient portals or FHIR-based APIs like Blue Button 2.0. These data support medication adherence,
+chronic condition management, and basic patient engagement.
+However, critical gaps remain. Patients often lack access to complete claims data, clinical notes,
+operative reports, and discharge summaries, which are frequently siloed, unstructured, or hidden
+behind proprietary systems. Real-time data, such as provider availability, wait times, or personalized cost
+estimates, is generally absent. Additionally, important non-clinical factors like social determinants of
+health (e.g., housing, transportation, air quality) are inconsistently collected and rarely shared with
+patients, limiting their ability to manage care comprehensively.
+Beyond clinical and claims data, high-value sources include pharmacy benefit data (e.g., medication costs
+and coverage), patient-generated health data from wearables and apps, and public health records like
+immunization registries and exposure alerts. These sources are essential to drive patient empowerment,
+personalized care, and informed navigation of the healthcare system.
+To fully support beneficiaries, CMS should consolidate these fragmented datasets into a single, user-
+friendly platform that provides a comprehensive, real-time view of a patient’s health. The current
+ecosystem of disconnected portals and inconsistent formats places an undue burden on patients. A
+centralized, integrated solution would improve engagement, decision-making, and self-advocacy.
+Provider and Technical Stakeholder Perspectives on Data Integration and Interoperability
+From the provider and systems integrator perspective, seamless data exchange remains hindered by
+persistent challenges. Clinical data is fragmented across EHR platforms, with inconsistent terminology,
+documentation standards, and incomplete fields, undermining data quality and limiting the potential of
+health analytics and research.
+Consent and privacy regulations, such as HIPAA and 42 CFR Part 2, further complicate data sharing.
+Robust consent management and dynamic privacy controls are not yet universally implemented, making
+compliant, patient-centered exchange difficult. At the same time, providers and developers face high
+technical burdens in managing disparate EHR interfaces, proprietary APIs, and secure data pipelines,
+which demand specialized expertise and sustained investment.
+The current ecosystem also lacks infrastructure to support emerging data types, such as patient-
+generated health data and environmental exposure data. While essential for personalized and
+population health strategies, these sources lack consistent integration standards.
+Despite these barriers, opportunities are emerging. Broader adoption of HL7 FHIR APIs, implementation
+of TEFCA, and alignment with data models like USCDI and OMOP can enable more consistent and secure
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 3
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+data exchange. Strategic collaboration among federal agencies, providers, vendors, and integrators is
+critical to improve access, support real-world evidence generation, and strengthen care delivery.
+A nationwide FHIR endpoint directory would serve as foundational infrastructure for real-time
+interoperability and integration. It would enable reliable discovery and connection across systems,
+supporting care coordination, streamlining payer-provider data exchange, and enhancing third-party app
+functionality. To be effective, such a directory should include provider identifiers (e.g., NPI, TIN), FHIR
+endpoint URLs, supported versions and resources, endpoint roles, authentication protocols, technical
+contacts, organizational relationships, and indicators of regulatory compliance (e.g., TEFCA, ONC
+certification).
+This structured, authoritative resource would accelerate implementation of the 21st Century Cures Act
+and CMS interoperability mandates, while also supporting research, public health, and patient
+engagement. A contractor with experience in large-scale federal health data infrastructure, such as
+Cogent People, would be critical to lead this development and long-term sustainment.
+PC-11. How are health information exchanges (HIEs) currently helping to advance patient
+access to health information in the real world?
+HIEs play a pivotal role in improving clinical data access by securely aggregating and sharing lab results,
+medication histories, and encounter summaries across healthcare organizations. This supports care
+coordination, reduces redundant testing, and enables timely decision-making, especially for patients
+with complex conditions who engage with multiple providers. However, HIE effectiveness is often
+constrained by uneven provider participation, inconsistent data formats, and lack of real-time exchange
+capabilities. Many HIEs face sustainability challenges due to fragmented funding and continue to operate
+on outdated technical infrastructures. Interoperability gaps across HIEs, vendors, and national networks,
+along with complex consent and privacy regulations, further hinder timely and reliable data exchange.
+Moreover, patient access remains limited, as few HIEs offer user-friendly tools that empower individuals
+to view or manage their health information.
+Addressing these challenges requires greater standardization, investment in modern infrastructure, and
+expanded stakeholder participation. HIEs must adopt national interoperability standards, such as HL7
+FHIR and USCDI, and implement systems that enable real-time data exchange, quality monitoring, and
+scalable governance. Enhanced patient-facing features, including mobile apps and web portals, are
+essential to increasing individual engagement. Encouraging participation from both providers and payers
+through policy or incentive mechanisms will be critical to achieving data completeness and continuity of
+care.
+Looking ahead, a more scalable approach lies in building a national, standards-based, cloud-native data
+ecosystem. Operated under frameworks like TEFCA and powered by FHIR APIs, such a platform would
+support secure, real-time data exchange across all care settings. It would integrate a broader range of
+data types, including clinical, claims, social determinants of health (SDOH), and patient-generated health
+data (PGHD), to create comprehensive, longitudinal patient records. A national system would also
+incorporate federated provider and FHIR endpoint directories, enabling dynamic data discovery and
+trusted routing, while offering scalable tools for quality reporting and decision support. Robust
+governance and interoperable consent frameworks are necessary to ensure patient privacy and trust.
+Unlike many regional HIEs, this scalable architecture would support continuous, nationwide data
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 4
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+exchange, enabling value-based care and population health management. HIEs would remain vital within
+this national ecosystem by serving as regional data stewards with localized governance and provider
+relationships. To enable this evolution, organizations must modernize infrastructure and align with
+national standards.
+To support this evolution, healthcare data experts like Cogent People offer specialized capabilities in
+integrating, standardizing, and governing extremely large, complex data sources. Cogent People applies
+proven methodologies in data quality management, metadata harmonization, real-time analytics, data
+sharing infrastructures (like Event-Based Processing), and API development to bridge technical gaps
+between legacy systems and modern platforms. With this expertise, we can help HIEs (like we currently
+do for CMS) to modernize infrastructure, integrate data governance, enhance data quality, and
+implement tools that support care delivery, compliance, and patient engagement, enabling HIEs to scale
+as interoperable components of a national health data framework.
+Digital Health Apps
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas
+that all data in an EHR system be accessible for exchange, regardless of storage format
+(for example, scanned documents, faxed records, lab results, free text notes, structured
+data fields)? Please address all of the following:
+From Cogent People’s perspective, ensuring that all data within an Electronic Health Record (EHR),
+regardless of format is accessible for exchange is not only a matter of interoperability, but a foundational
+requirement for comprehensive data integration, data management, and data governance. Access to
+diverse data types, structured fields, scanned documents, lab results, faxed records, and free-text notes,
+is essential to achieving a unified, high-quality data ecosystem that enables consistent ingestion and
+interpretation across healthcare systems. However, the current reality is fragmented: disparate data
+formats, inconsistent standards, and legacy system constraints impede seamless integration. Rural
+providers are often at a disadvantage, operating with limited infrastructure that makes digitization of
+unstructured formats particularly burdensome, while urban systems face data volume and infrastructure
+complexity challenges that strain interoperability solutions.
+The inability to standardize and integrate all available health data undermines not only data sharing, but
+also the quality and reliability of downstream analytics and reporting. Without high-quality, consistently
+structured data; providers, payers, and public health agencies face challenges in generating actionable
+insights, performing population health analysis, or tracking care outcomes. These issues degrade
+decision-making, increase administrative burdens, and weaken the impact of health interventions. From
+Cogent People’s experience supporting CMS Marketplace systems, we found that in some cases,
+achieving meaningful integration requires moving beyond transport-level API exchange, and toward
+robust data normalization pipelines and event-based processing models that allow data to be cleansed,
+transformed, and mapped to common semantic standards before integration.
+Technical barriers remain substantial. Many legacy systems store clinical content in static or proprietary
+formats that do not align with HL7 FHIR or USCDI data classes. Moreover, unstructured data lacks the
+metadata needed for effective indexing or search. Integrating such content into data platforms requires
+advanced tooling, such as Natural Language Processing (NLP), Optical Character Recognition (OCR), and
+standardized metadata tagging, each of which must be governed under rigorous data quality
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 5
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+management frameworks to ensure accuracy and usability. Additionally, large-scale data ingestion across
+formats cannot occur without clear governance models for consent, provenance, and versioning, which
+enable trusted, policy-compliant data exchange and consumption.
+Furthermore, privacy and cost concerns arise when scaling data accessibility. While expanding access to
+all data formats improves care coordination and system-wide insight, it must be balanced with
+appropriate privacy controls and financial feasibility, especially for small or rural organizations. Cogent
+People supports models that embed governance into architecture, enabling role-based access, consent-
+aware exchange, and automated compliance monitoring to safeguard sensitive information. Therefore,
+we advocate for a strategic, phased modernization approach that prioritizes high-value use cases,
+standardizing interfaces, and using cloud-native, event-driven infrastructure to reduce the total cost of
+ownership and improve maintainability.
+In our view, enabling consistent, reliable ingestion of all data types is a top-tier priority within the
+broader interoperability landscape. It is the linchpin of effective data analytics, population health
+management, and performance reporting. By applying our extensive expertise in data integration,
+governance, and modernization, Cogent People works with agencies and stakeholders to help them
+move beyond fragmented exchange and toward a cohesive, insight-driven health data environment that
+ultimately supports better outcomes, lower costs, and more informed policy and clinical decision-
+making.
+Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in
+your provider organization's systems, directly or through an intermediary? For each,
+describe the transaction model, use case, whether you use individual queries or bulk
+transactions, and any constraints:
+The CMS CCIIO Eligibility Support (ES) program had organically grown into a convoluted ecosystem
+comprising multiple Commercial Off-The-Shelf (COTS) products, custom systems, and dozens of
+middleware components and services - all interconnected through many unmanaged point-to-point
+HTTP API integrations. This “spaghetti” architecture became less and less manageable and sustainable in
+terms of infrastructure costs, labor required to maintain and operate, and adaptability changes dictated
+by the ever-changing regulations and eligibility process business requirements. When CMS mandated
+the program switch from a batch-based ingestion of Marketplace eligibility support data to a real-time
+event-based approach, the existing system could not support the change
+To correct this, Cogent People successfully executed a phased migration to an event-driven AWS cloud-
+native architecture leveraging serverless infrastructure. By integrating multiple microservices through an
+asynchronous publisher-subscriber event bus, we eliminated the need for point-to-point APIs. We
+integrated multiple microservices, following the domain-driven design paradigm, all connected via same
+save asynchronous publisher-subscriber event bus, avoiding the need for point-to-point HTTP APIs. We
+used industry-proven design patterns such as Events Sourcing, Command/Query Responsibility
+Segregation and structured our solution around a highly scalable and performant event store. High
+Availability, Scalability, and Security were key components from the early design phase. The technology
+stack (EventBridge, Elastic Container Service, Lambda, FarGate, and DynamoDB) maximized use of AWS
+native services optimizing costs and minimizing complexity. Where HTTP APIs were still the optimal
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 6
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+solution, they were standardized and centrally managed by API Gateway to add a layer of security,
+versioning, and manageability, and drastically simplify development, testing, deployment, and operation.
+This strategic transformation resulted in a substantial 90% reduction in IT costs and a 40% decrease in
+overall program costs, showcasing our expertise in delivering innovative and cost-effective technological
+solutions. Our implementation revolutionized system responsiveness, reducing consumer (beneficiary)
+wait times from 2-10 days to mere minutes. This improvement ensures compliance with Service Level
+Agreements (SLAs) and provides customers with immediate eligibility responses to their healthcare
+enrollment submissions, significantly enhancing user experience and satisfaction.
+On ES, Cogent People’s team also integrated multiple heterogenous data sources (Oracle, MarkLogic,
+DynamoDB, SQL Server, RedShift, and others) into a single data ecosystem, using data streaming
+technologies such as Kafka, EventBridge, and Kinesis, as well as multiple APIs and ETL pipelines. Our
+design resulted in highly performant and resilient architecture capable of processing millions of data
+transactions daily without any unscheduled downtimes, exceeding the industry standard of 99.999% of
+system uptime per year and system recovery under one minute when downtimes do occur. We designed
+data integrations around the functional requirements of the complicated business processes involved in
+eligibility support, maximizing efficiency and maintainability, while operating well below the program’s
+budget constraints.
+In Summary, Cogent People has demonstrated technical expertise in designing, managing, and
+optimizing API integrations across CMS Marketplace mission-critical systems. Our experience on the ES
+program highlights not only our proficiency in modern API management, including secure, standardized
+deployment through tools like AWS API Gateway, but also our strategic capability to recognize when
+alternative architectural solutions provide greater value. In some cases, event-driven architectures offer
+superior scalability, resilience, and operational efficiency compared to traditional point-to-point APIs. By
+replacing API dependencies in some ecosystems with event-based processing models, we delivered
+transformative results in performance, cost savings, system reliability, and most importantly in
+beneficiary experiences and outcomes. This dual capability, API expertise coupled with architectural
+innovation, positions Cogent People as a trusted CMS partner in modernizing federal health IT systems to
+meet evolving regulatory, operational, and user demands.
+PR-7. What strategies can CMS implement to support providers in making high-quality, timely,
+and comprehensive healthcare data available for interoperability in the digital product
+ecosystem? How can the burden of increasing data availability and sharing be mitigated
+for providers? Are there ways that workflows or metrics that providers are already
+motivated to optimize for that could be reused for, or combined with, efforts needed to
+support interoperability?
+CMS can support providers in advancing interoperability by aligning policy, technical infrastructure, and
+data governance to reduce the burden of data sharing while improving overall data quality. A key
+strategy is to standardize data formats and exchange protocols, such as HL7 FHIR, USCDI, and TEFCA, and
+provide clear implementation guidance tailored to providers of varying sizes and technical maturity. CMS
+should also invest in shared integration frameworks and centralized services to reduce infrastructure
+costs and complexity for providers, especially in rural and underserved areas.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 7
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+To further minimize provider burden, interoperability efforts should be embedded into existing clinical
+workflows and aligned with metrics already used in programs like MIPS, QPP, and ACO initiatives. By
+integrating data sharing into quality reporting and EHR workflows, providers can meet interoperability
+goals as part of their routine operations. CMS can also support these efforts through targeted funding,
+technical assistance, and performance feedback tools that highlight the value of data sharing in
+improving outcomes and reducing administrative workload.
+To accelerate the transition to a fully interoperable digital health ecosystem, CMS should establish and
+structure incentives that support provider, payers, and other stakeholders to modernize legacy systems
+and adopt nationally recognized data standards such as HL7 FHIR, USCDI, and standardized terminologies
+(e.g., SNOMED CT, LOINC, ICD-10). Many providers, particularly small practices and rural health systems,
+face financial and technical barriers in upgrading outdated infrastructure or re-engineering workflows to
+align with modern interoperability requirements. CMS can help alleviate these challenges through
+targeted funding programs, technical assistance, and streamlined certification pathways that reward
+early adoption and conformance with standards-based data exchange. In parallel, CMS should expand
+provider incentives that directly reward meaningful participation in data sharing and quality
+improvement initiatives. Financial incentives tied to successful data exchange, improved data quality,
+and timely reporting, such as those offered through value-based care models, can motivate providers to
+prioritize interoperability. Additionally, non-financial incentives such as public recognition, performance
+benchmarking, and reduced compliance burden can further drive engagement. Aligning these incentives
+with existing quality and performance measures minimizes redundancy and promotes sustained
+investment in the data infrastructure, governance, and workflows needed to ensure high-quality,
+structured, and shareable health data. Cogent People supports incentive models that reinforce a culture
+of data stewardship and empower providers to contribute meaningfully to a more connected and data-
+driven healthcare system.
+Ultimately, CMS should foster a data ecosystem focused not only on access but also on consistency and
+quality, ensuring that shared data is structured, actionable, and useful for analytics, reporting, and
+decision-making. Cogent People stands ready to support this transformation by leveraging our expertise
+in data integration, governance, and modernization to help CMS and its stakeholders build a scalable,
+high-value interoperability infrastructure.
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers?
+Simplifying the clinical quality data responsibilities of providers requires a strategic shift toward
+standards-based data exchange, centralized computation of quality measures, and consolidation of
+interoperability and reporting workflows. As a company with extensive experience in analyzing,
+managing, governing, integrating, and migrating large-scale, complex healthcare datasets across CMS
+Marketplace mission-critical systems, we recognize that Bulk FHIR data exports represent a pivotal
+opportunity to modernize quality measurement infrastructure while reducing provider burden.
+Bulk FHIR exports from EHRs to CMS offer a scalable, standards-aligned mechanism to offload the
+complexity of quality metric calculation from provider systems. By extracting structured clinical data in
+standardized formats, CMS can perform centralized, consistent quality analytics that reduce
+discrepancies across provider submissions and ensure a uniform interpretation of measure logic. Cogent
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 8
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+People has implemented enterprise-scale data integration pipelines that move and transform hundreds
+of millions of data points across systems, and we recommend that CMS leverage similar approaches to
+ingest, normalize, and analyze Bulk FHIR data across diverse EHR systems. While benefits include
+reduced provider reporting overhead, improved data consistency, and real-time analytic capability,
+potential downsides include the upfront costs of enabling FHIR Bulk Data export features within legacy
+systems and ensuring robust data governance frameworks for privacy, security, and consent
+management. These risks can be mitigated through technical assistance, incentives for standards
+adoption, and shared infrastructure investments.
+To further streamline the provider experience, CMS should consolidate interoperability and quality
+reporting workflows wherever feasible. Currently, providers are required to meet multiple overlapping
+regulatory requirements, leading to fragmented investments in health IT systems. CMS can reduce
+redundancy by aligning data submission requirements for promoting interoperability, MIPS, and ACO
+programs, and enabling shared data feeds that serve both care delivery and quality reporting needs. By
+building upon existing provider workflows, such as clinical documentation and patient encounter
+capture, CMS can enable dual-purpose data streams that reduce manual entry and duplicative effort.
+Cogent People recommends adopting reusable data services and modular reporting architectures that
+enable providers to use a single data pipeline for multiple compliance functions.
+With regard to data registries, CMS should establish clear requirements to support real-time digital
+quality measurement and clinical decision-making. Registries must be capable of ingesting FHIR-based
+data in near real-time, applying consistent measure logic, and feeding insights back to providers at the
+point of care. Cogent People advocates for registries that offer open APIs, support standardized
+terminologies (e.g., SNOMED CT, LOINC), and provide analytic dashboards that allow providers to
+monitor performance and address gaps proactively. Registries should also support federated data
+models, enabling decentralized access while ensuring centralized oversight and measure computation
+consistency.
+In summary, Cogent People recommends that CMS invest in centralized quality computation using Bulk
+FHIR exports, streamline interoperability and reporting workflows through shared infrastructure, and
+require data registries to support real-time analytics and digital quality measurement. These strategies
+will reduce provider burden, improve data quality, and accelerate the transition to a learning health
+system.
+Payers
+PA-4. What would be the value to payers of a nationwide provider directory that included
+FHIR end points and used digital identity credentials?
+A nationwide provider directory built on HL7 FHIR standards and secured through digital identity
+credentials would provide foundational infrastructure to support the next generation of scalable,
+standards-driven healthcare interoperability. From Cogent People’s perspective, shaped by over a decade
+of implementing payment data, payer-facing data platforms, and cross-issuer integrations in the CMS
+Marketplace, such a solution would enable payers to more effectively manage provider data across the
+lifecycle of eligibility, claims processing, payment reconciliation, and network adequacy.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 9
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+By establishing a single authoritative source of truth for provider information, a centralized FHIR-enabled
+directory would replace costly, error-prone batch processes and proprietary data formats with
+standardized, machine-readable interfaces.
+Cogent People has implemented integration strategies across complex issuer datasets within the CMS
+Marketplace, improving the accuracy and consistency of enrollment and financial data. These efforts,
+combined with data validation automation and dictionary standardization, have significantly reduced the
+need for manual data remediation and positioned CMS for more scalable, high-quality data operations.
+Digital identity credentials further enhance data reliability by ensuring that only authenticated, verified
+users can modify or update provider records. In our implementations, this has helped eliminate
+redundant credentialing checks and improved data stewardship by establishing clear audit trails and
+traceable data lineage, an essential capability in an increasingly regulated data environment. These
+safeguards help payers meet the growing compliance obligations introduced by federal mandates such
+as the No Surprises Act and CMS interoperability rules. Accurate, real-time provider data also translates
+into meaningful improvements in the member experience. Providers also benefit from reduced disputes
+and enhanced alignment with payers, strengthening collaboration across the ecosystem.
+Importantly, a FHIR-based, identity-enabled directory lays the groundwork for future innovations. Such
+infrastructure is not an endpoint, but a strategic enabler for high-value use cases such as automated
+prior authorization, digital quality reporting, real-time referrals, and streamlined value-based care
+models. These capabilities require trusted, standardized data exchange, precisely the foundation our
+solutions have delivered across Marketplace systems.
+With proven experience in payer data architecture, integration across Marketplace stakeholders and data
+environments (on MSI and DSH), and identity governance, Cogent People is well-positioned to support
+CMS and its partners in operationalizing a nationwide provider directory. We strongly recommend
+coupling this effort with robust governance frameworks, shared data standards, and performance
+monitoring to ensure consistency, reliability, and long-term impact across the healthcare ecosystem.
+PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of
+providers?
+Payers play a critical role in simplifying the clinical quality data reporting responsibilities faced by
+providers. Advances in EHR technology enabling bulk extraction of clinical quality data present a
+promising opportunity to reduce provider burden by shifting quality metric calculations from provider-
+side systems to payer-managed platforms. Many payers express strong interest in these technologies,
+particularly when they facilitate standardized, automated data flows that improve accuracy and
+timeliness of quality reporting. Providers, especially smaller practices and rural entities, often face
+resource constraints and technical limitations that make bulk data extraction a valuable tool for easing
+compliance demands.
+However, challenges remain, including variability in EHR system capabilities, data quality inconsistencies,
+and the need to ensure that bulk data exports align with national standards such as HL7 FHIR and USCDI.
+To address these issues, CMS and its partners should promote the adoption of interoperable data
+standards and provide clear implementation guidance. Additionally, targeted technical assistance and
+funding support can enable providers and payers to upgrade infrastructure and workflows accordingly.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 10
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Consolidation of interoperability and quality reporting responsibilities across CMS and multiple payers
+offers substantial efficiency gains and cost savings. Cogent People advocates for coordinated data
+exchange frameworks that allow providers to submit clinical quality data once, leveraging data reuse
+across programs and payers. Payers can further support this consolidation by investing in scalable
+analytics platforms capable of ingesting bulk clinical data and performing centralized quality calculations.
+These platforms should incorporate robust data governance, privacy safeguards, and real-time data
+processing capabilities to support both reporting and clinical decision-making at the point of care.
+Technologies such as cloud-based data lakes, FHIR-enabled APIs, and event-driven data streaming
+present viable means to provide healthcare providers with near real-time quality data insights. This
+integration supports clinical workflows by enabling timely interventions while simultaneously
+streamlining reporting requirements. By aligning quality measurement with clinical care processes,
+payers can help reduce duplication of effort and enhance the overall value of data exchanged.
+From Cogent People’s extensive experience in the CMS Marketplace environment, where we have
+integrated payer and payment data and eligibility and enrollment data across diverse issuer systems
+using standardized data frameworks, we understand the practical benefits of interoperability-driven
+efficiencies. We recommend that CMS continue to incentivize adoption of standardized bulk data export
+capabilities and foster collaborative payer-provider data governance models. Additionally, CMS should
+consider establishing certification criteria that ensure data registries and analytics platforms meet
+stringent requirements for data quality, security, and real-time access to facilitate both quality reporting
+and clinical care improvements.
+In summary, payers can significantly simplify clinical quality data responsibilities for providers by
+leveraging bulk data technologies, fostering interoperability, and investing in data platforms that serve
+dual purposes of reporting and care support. Cogent People stands ready to assist CMS and partners in
+designing and implementing these solutions to reduce provider burden while advancing high-quality,
+data-driven healthcare outcomes.
+PA-7. How can CMS encourage payers to submit information blocking complaints to
+ASTP/ONC's Information Blocking Portal? What would be the impact? Would it advance
+or negatively impact data exchange?
+Filing information blocking complaints through the ASTP/ONC Information Blocking Portal offers
+important benefits but also presents challenges that CMS must carefully manage.
+Benefits
+Complaints help identify and address violations of the 21st Century Cures Act and HIPAA, improving the
+timely exchange of Electronic Health Information (EHI). This enhances patient care by ensuring providers
+access complete, accurate data when needed. Additionally, complaints expose systemic interoperability
+barriers, enabling targeted regulatory and industry action. They also reduce legal risks by promoting
+accountability and raise awareness about information blocking across stakeholders.
+Risks
+However, active payer complaint submissions can trigger resource-intensive investigations and increase
+adversarial tensions between payers and providers, potentially hindering collaboration essential for
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 11
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+interoperability. Ambiguities in enforcement criteria risk flooding regulators with low-value complaints,
+creating administrative burdens and discouraging innovation due to fear of penalties.
+Balanced Approach:
+While payer engagement in information blocking enforcement can advance transparency and
+compliance, it must be carefully managed to avoid escalating conflict or administrative burdens that
+could slow interoperability progress. Combining enforcement with partnership strategies is essential to
+achieve secure, equitable, and patient-centered health data exchange.
+As experts in healthcare data management and integration, Cogent People emphasizes the need for a
+balanced approach. We support precise, data-driven criteria for identifying true information blocking
+and advocate for proactive standards-based integration and open communication to reduce blocking
+behaviors. Enabling technologies and shared infrastructure should simplify compliance and promote
+real-time data exchange. CMS should provide clear, payer-specific guidance, streamlined submission
+processes, and confidentiality protections to focus enforcement on meaningful issues. At the same time,
+CMS must foster collaborative, incentive-driven partnerships among payers, providers, and developers to
+build trust and shared responsibility.
+Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate
+developer interest in building digital health products for Medicare beneficiaries and
+caregivers?
+In the short term, CMS can stimulate developer interest by expanding secure (credentialing and identity
+managed) access to standardized, high-quality Medicare data through well-documented APIs and
+sandbox environments, alongside targeted challenge grants and innovation prizes focused on beneficiary
+needs.
+In the longer term, CMS should establish clear regulatory frameworks that support interoperability, data
+privacy, security, identity management, and credentialing, invest in scalable infrastructure for real-time
+data exchange, and foster public-private partnerships that align incentives for sustainable digital health
+product development benefiting Medicare beneficiaries and caregivers.
+Additionally, CMS must implement comprehensive IT data modernization and governance across all CMS
+systems to embed integration and interoperability principles, values, and standards. Achieving this
+requires strong partnerships with IT service partners possessing extensive expertise in CMS data, such as
+Cogent People, to ensure successful integration, secure data exchange, and sustainment of these
+modernization efforts.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 12
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+TD-2. Regarding CMS Data, to stimulate developer interest, What additional data would be
+most valuable if made available through CMS APIs? What data sources are most
+valuable alongside the data available through the Blue Button 2.0 API? What obstacles
+prevent accessing these data sources today? What other APIs should CMS and
+ASTP/ONC consider including in program policies to unleash innovation and support
+patients and providers?
+To stimulate developer interest in building digital health products for Medicare beneficiaries and
+caregivers, CMS should expand both the breadth and depth of data made accessible through its API
+ecosystem. As a trusted CMS partner with extensive experience managing, governing, and integrating
+CMS datasets, including those supporting the ACA Marketplace and complex payer infrastructures,
+Cogent People understands the foundational role data accessibility plays in driving innovation across the
+digital health landscape.
+While the Blue Button 2.0 API provides a valuable starting point by enabling access to beneficiary data
+and historical claims information from Medicare Parts A, B, and D, it remains limited in scope. To further
+advance the utility of CMS data, APIs should be extended to include additional data classes such as
+clinical records derived from EHRs (e.g., lab results, imaging, care plans), Medicare Advantage encounter
+data, Medicaid claims and eligibility information, and key administrative data including prior
+authorizations, appeals, and care management documentation. Making these data classes available in
+real-time or near real-time would significantly enhance their utility for developers building applications
+for patient engagement, population health management, and care coordination.
+Beyond CMS’s internal datasets, developers would benefit from access to external data sources that are
+commonly used in tandem with CMS data. These include immunization registries, public health
+databases, social determinants of health indicators, provider network directories, and state Medicaid
+systems. Having supported the construction of cross-issuer data linkages and shared infrastructure in the
+ACA Marketplace, Cogent People has seen the operational and analytical value that results from
+breaking down data silos and standardizing interfaces. Facilitating multi-source integration through
+standardized APIs is critical to achieving the longitudinal, person-centered view of care that CMS seeks to
+promote.
+Several persistent challenges currently limit the accessibility and usefulness of these data sources. These
+include siloed systems with proprietary data formats, lack of unified data standards across CMS
+programs, latency in claims processing, and inconsistent identity and consent management practices.
+Technical constraints such as the absence of robust metadata registries, limited API versioning protocols,
+and fragmented governance further complicate integration. Based on our work supporting data
+modernization and governance initiatives across CMS systems, Cogent People recommends CMS invest
+in consolidated FHIR profiles, consistent data dictionaries, and identity-first access models that support
+scalable and secure integration.
+To complement these foundational enhancements, CMS and ONC should consider supporting new APIs
+that empower developers and providers to more effectively utilize digital health data. Priority areas
+include Bulk FHIR API exports to support population-level analytics, digital quality measurement APIs
+(dQMs), eligibility verification APIs, prior authorization APIs aligned with HL7 Da Vinci standards, and
+FHIR-based credentialing and provider directory APIs. These APIs should enable bi-directional data flow
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 13
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+and operate within a trust framework supported by robust identity management and credentialing
+protocols.
+Finally, CMS must implement a long-term data modernization strategy that embeds interoperability
+principles across all program systems. These principles include the use of HL7 FHIR standards, OAuth2 for
+secure authentication, and digital credentialing for identity validation. Achieving this vision will require
+collaboration with partners who possess both domain knowledge and technical acumen. Cogent People
+offers proven experience integrating and modernizing CMS data environments with a focus on
+governance, quality, and standardization. By prioritizing strategic modernization and API expansion, CMS
+can unlock the next generation of data-driven healthcare tools, foster greater innovation in the
+developer community, and improve outcomes for Medicare beneficiaries and their caregivers.
+Technical Standards and Certification
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health
+information for patients, providers, and payers? Who should publish such a directory,
+and should users bear a cost?
+A nationwide provider directory of HL7 FHIR endpoints would establish essential infrastructure for
+secure, real-time health information exchange across the healthcare ecosystem. Drawing from Cogent
+People’s experience integrating payer and provider systems in CMS programs such as the ACA
+Marketplace, a centralized, standards-based directory would automate interoperability across disparate
+health IT systems, reducing fragmentation and improving care coordination.
+For patients, verified endpoints would enable timely and secure data sharing with new providers and
+third-party apps, supporting informed decisions and reducing risks like surprise billing or referral errors.
+Providers would benefit from reduced administrative burden, improved referral workflows, and stronger
+compliance through automated endpoint discovery and credentialed identity verification, an area where
+Cogent People has observed persistent inefficiencies in legacy systems.
+For payers, the directory would streamline integration for quality reporting, prior authorization, and care
+coordination. Our work connecting insurance issuer systems confirms that FHIR-based architectures
+reduce redundant interfaces and support scalable, standards-aligned data exchange. Digital identity
+credentials further ensure data integrity, auditability, and trust.
+While the promise of a nationwide FHIR endpoint directory is substantial, it also introduces heightened
+security risks that must be proactively addressed. Centralizing access to provider endpoints and digital
+identities creates a potential target for malicious actors seeking to exploit vulnerabilities in
+authentication workflows, endpoint misconfigurations, or unauthorized data access. Without proper
+safeguards, the very infrastructure designed to promote interoperability could expose the healthcare
+ecosystem to breaches, fraud, or misuse. Cogent People brings extensive experience implementing
+secure, identity-first data architectures across CMS programs, with an emphasis on credentialing, access
+control, and auditability. Our teams have led efforts to operationalize digital identity frameworks and
+enforce data integrity protocols at scale, ensuring that trusted data exchange does not come at the
+expense of patient privacy or organizational security.
+CMS, potentially in coordination with ONC, is best positioned to publish and maintain the national
+provider directory, leveraging its regulatory authority and oversight of interoperability compliance. To
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 14
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+encourage broad adoption, directory access should be offered at no cost or at minimal cost to providers,
+developers, and patients, with optional fee-based commercial services to support long-term
+sustainability. CMS could initiate the directory using existing datasets and infrastructure, and provider
+participation could be streamlined by integrating directory enrollment into established PECOS and NPPES
+provider enrollment workflows.
+A national FHIR endpoint directory would significantly improve interoperability, trust, and data quality.
+Cogent People is prepared to assist CMS in designing and implementing this infrastructure, applying our
+expertise in identity-first integration, data governance, and CMS enterprise data modernization.
+TD-9. Regarding API certification of health IT:
+Redefining health IT certification to prioritize API-enabled capabilities over traditional software
+functionality offers significant benefits across the healthcare ecosystem. From a provider perspective,
+APIs enable more seamless, real-time data exchange that reduces manual workflows and administrative
+burden. For patients, APIs facilitate greater access and control over their health data, empowering
+engagement and improving care coordination. From an innovation standpoint, focusing certification on
+standardized, interoperable APIs encourages a more competitive market with greater vendor flexibility
+and faster deployment of new features.
+However, shifting to API-first certification introduces challenges. Smaller EHR vendors may face financial
+and technical hurdles adapting their products to new standards, potentially narrowing market options if
+support is insufficient. The variability in API maturity across vendors can lead to inconsistent user
+experiences and interoperability gaps. Moreover, APIs present increased security and privacy risks that
+must be carefully managed with robust identity management, credentialing, and data governance
+frameworks. Without strong safeguards, increased data exchange could expose sensitive information or
+create vulnerabilities.
+CMS can motivate providers to respond to API-based data requests with high-quality coverage by
+incorporating explicit incentives and penalties into value-based programs such as MIPS and APMs. Clear
+certification criteria should require not only API availability but also demonstrated responsiveness, data
+completeness, and timeliness. Additionally, CMS could offer technical assistance and funding support to
+providers and vendors to accelerate API adoption and address resource disparities. Aligning these
+policies with ONC’s certification and TEFCA frameworks will help ensure consistent standards and reduce
+fragmentation.
+EHR systems capable of bulk data transfer offer a promising approach to reducing provider burden in
+quality performance reporting. By enabling direct, automated export of large datasets, providers can
+avoid repetitive manual submissions and minimize errors. To realize these benefits, capabilities such as
+data normalization, validation, audit trails, and user-friendly interfaces for error resolution are essential.
+However, concerns remain around data accuracy, standardization across diverse EHR systems, and
+ensuring interoperability between sending and receiving platforms. There is also a need for clear
+governance on data use, patient consent, and security to prevent misuse or breaches.
+Ultimately, redefining certification with an API focus, supported by thoughtful policy incentives and
+technical safeguards, can accelerate interoperability and empower all stakeholders, providers, payers,
+and patients. CMS’s leadership, in partnership with ONC and experienced contractors like Cogent People,
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 15
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+is vital to designing scalable, secure, and equitable systems that enhance data usability while protecting
+privacy and promoting trust.
+Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or
+metrics should CMS consider?
+Benefits of Endorsing Non-CMS Data Sources and Networks
+Endorsing non-CMS data sources and networks can significantly enhance data richness, completeness,
+and timeliness, thereby improving care coordination, quality measurement, and payment accuracy. Non-
+CMS sources, such as state immunization registries, health information exchanges (HIEs), payer
+databases, and social determinants of health (SDOH) data platforms, often contain valuable clinical and
+contextual information not fully captured within CMS systems alone. Leveraging these external sources
+could reduce data silos, fill gaps in beneficiary records, and support more holistic, patient-centered care.
+Furthermore, endorsing trusted non-CMS networks can stimulate innovation by encouraging broader
+data sharing ecosystems that operate on standardized interoperability frameworks like HL7 FHIR. This
+aligns with CMS’s strategic goals under the 21st Century Cures Act and interoperability rulemaking to
+foster a competitive, transparent health IT marketplace. It also helps CMS scale data collection and
+reporting efforts without duplicative investments, leveraging existing infrastructure managed by public-
+private partnerships or states.
+To ensure data quality and security, CMS should apply clear criteria in endorsing external sources,
+including data accuracy, timeliness, completeness, standardization adherence, and compliance with
+privacy and security regulations such as HIPAA. Metrics around network reliability, governance
+transparency, patient consent mechanisms, and equitable data access should also be considered.
+Establishing certification or attestation processes could further safeguard data integrity and
+trustworthiness.
+Concerns About Endorsing Non-CMS Data Sources and Networks
+On the other hand, endorsing non-CMS data sources and networks introduces several risks and
+challenges. Data quality and consistency can vary widely across external sources, complicating CMS’s
+ability to ensure equitable and accurate program administration. Without rigorous oversight, integrating
+heterogeneous data may increase the risk of errors, misclassification, or unintended bias in quality
+metrics, risk adjustment, and payment determinations.
+Security and privacy concerns are heightened when data flows through multiple third-party networks.
+CMS’s direct control over data stewardship diminishes, raising vulnerabilities to breaches or
+unauthorized uses. The operational complexity and cost of onboarding, certifying, and monitoring
+numerous external data providers could strain CMS resources and divert focus from existing
+modernization initiatives.
+Moreover, endorsement of non-CMS networks might unintentionally fragment data governance or
+create competitive tensions among stakeholders, potentially undermining interoperability goals. It may
+also introduce confusion for providers and beneficiaries about data sources’ trustworthiness or increase
+administrative burdens related to consent management and data correction.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 16
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Recommendations on Non-CMS Data Source and Network Endorsement
+If CMS chooses to endorse non-CMS data sources and networks, it should implement robust vetting
+criteria focusing on data quality, security, interoperability standards compliance, and governance
+transparency. Piloting phased integrations with well-established and proven networks could mitigate risk
+while building experience. CMS should also consider mechanisms for ongoing monitoring, auditability,
+and the ability to revoke endorsements if standards are not maintained.
+While endorsing non-CMS sources offers substantial opportunities to enrich data and accelerate
+interoperability, it demands careful balancing against risks to data integrity, privacy, and operational
+feasibility. CMS’s role as a trusted steward requires that any expansion of data networks be deliberate,
+transparent, and grounded in rigorous standards.
+Cogent People, with our extensive experience in CMS data integration, governance, and interoperability
+across diverse healthcare programs, is well-positioned to support CMS in developing and implementing
+these endorsement frameworks. Our expertise in data quality assurance, security compliance, and
+system integration can help ensure that any expansion to non-CMS data sources strengthens CMS’s
+mission while safeguarding data integrity and stakeholder trust.
+TD-13. What new opportunities and advancements could emerge with APIs providing access
+to the entirety of a patient's electronic health information (EHI)?
+APIs providing access to the entirety of a patient’s electronic health information (EHI) open significant
+opportunities for advancing personalized care, care coordination, and patient empowerment.
+Comprehensive EHI access can enable more accurate clinical decision-making, seamless transitions
+across providers, and richer data for research and population health management. It also supports
+innovative digital health tools that leverage the full scope of patient data to deliver tailored interventions
+and improve outcomes.
+However, several obstacles challenge this vision. Data privacy and security remain paramount concerns,
+as broader data access increases potential vulnerabilities, risks of unauthorized access, and misuse of
+sensitive information. Ensuring robust safeguards, including encryption, identity management, and
+access controls, is critical to maintaining patient trust. Variability in data quality, completeness, and
+standardization can also impede interoperability and create inconsistent user experiences. Technical
+challenges, such as legacy system limitations and the need for scalable, performant APIs, also require
+substantial investment and coordination. Additionally, patients and providers may face complexity in
+managing, securing, and interpreting extensive data sets, further underscoring the need for clear privacy
+protections and user-friendly data governance frameworks.
+Regarding tradeoffs between using the US Core Data for Interoperability (USCDI) standard versus full EHI
+access, USCDI offers a focused, standardized dataset designed for essential interoperability needs, which
+simplifies data exchange and reduces processing overhead. Full EHI access, while more comprehensive,
+demands advanced data processing capabilities to manage complexity, potential noise, and relevance
+filtering. Flexible processing enables more tailored insights but introduces challenges around data
+governance, consistency, and ensuring clinically meaningful information is prioritized.
+From Cogent People’s perspective, our expertise in CMS data management, governance, and integration
+equips us to help navigate these complexities. We can support CMS in designing secure, standards-based
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 17
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+API frameworks that balance comprehensive access with data quality and privacy safeguards, enabling
+innovation while maintaining trust and compliance.
+Compliance
+TD-19. Regarding price transparency implementation:
+Despite regulatory advances, significant shortcomings remain in price transparency content, format,
+delivery, and timeliness. Price information is often incomplete, inconsistent, and presented in formats
+that are difficult for patients and even providers to interpret. Many price lists are outdated, exclude
+negotiated rates or patient-specific costs, and are scattered across multiple platforms, creating confusion
+and limiting practical usefulness. This fragmented and inaccessible pricing landscape contributes directly
+to rising healthcare costs by preventing beneficiaries from shopping for better prices or making informed
+care decisions.
+Functional price transparency would most benefit workflows involving patient care planning, pre-
+authorization, billing reconciliation, and care coordination. Patients would gain the ability to compare
+costs before selecting providers or scheduling services, reducing surprise bills, and the overall cost of
+healthcare nationwide. Providers would improve billing accuracy and communication with patients,
+while payers could better manage networks and promote cost-effective care. CMS could leverage
+transparent pricing to enhance oversight, support beneficiaries, and drive value-based care.
+To maximize value, price transparency must deliver standardized, machine-readable data accessible
+through APIs, reflecting not just list prices but actual negotiated rates and individualized out-of-pocket
+costs. This would reduce administrative burdens, improve cost estimation accuracy, and enable
+integration into EHRs, payer systems, and consumer apps that beneficiaries and patients could use to
+shop for better prices. For CMS, transparent pricing supports compliance monitoring and program design
+aligned with affordability goals. Without transparency, healthcare prices remain artificially high because
+patients cannot shop or make cost-conscious choices.
+CMS can accelerate progress by establishing clear standards and enforceable requirements for
+comprehensive, timely, and patient-friendly price disclosures. Incentives tied to value-based program
+participation and targeted funding for interoperability solutions would spur innovation, while meaningful
+penalties for non-compliance ensure accountability. Collaborative engagement among patients,
+providers, payers, and technology vendors is essential to develop practical, equitable solutions that
+address real-world needs without exacerbating disparities.
+In summary, addressing price transparency is critical to empowering consumers, controlling costs, and
+fostering a competitive healthcare market. CMS must lead by setting the regulatory framework and
+standards that enable reliable, accessible pricing data. Cogent People, with our extensive expertise in
+CMS data programs, system integration, and secure information exchange, is well positioned to partner
+with CMS in building scalable, standards-based price transparency solutions that safeguard privacy and
+improve healthcare affordability.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 18
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Digital Health Adoption
+VB-2. How can key themes and technologies such as artificial intelligence, population health
+analytics, risk stratification, care coordination, usability, quality measurement, and
+patient engagement be better integrated into APM requirements?
+From Cogent People’s perspective, advanced data analytics, machine learning (ML), and artificial
+intelligence (AI) are transformative technologies that should be deeply integrated into Alternative
+Payment Models (APMs) to enhance care quality, efficiency, and patient outcomes.
+CMS can incorporate AI and ML to analyze large-scale clinical, claims, and operational datasets for
+improved risk stratification and predictive modeling. These technologies enable early identification of
+high-risk patients and targeted intervention strategies, which are essential for population health
+management and cost containment within APMs. AI-driven analytics can also streamline quality
+measurement by automating data extraction and identifying patterns that traditional methods may miss,
+improving both accuracy and timeliness.
+To realize these benefits, APM requirements must promote standardized, interoperable data
+environments that support real-time analytics and seamless integration into provider workflows.
+Usability is critical; AI tools should deliver actionable insights in an intuitive manner that enhances care
+coordination without increasing administrative burden. Patient engagement can be amplified through AI-
+powered personalized communication and decision support systems, encouraging adherence and shared
+decision-making.
+Data governance and privacy considerations are paramount when leveraging AI and ML in APMs. CMS
+policies must ensure secure, ethical use of sensitive health data while addressing potential biases in
+algorithms to promote the most effective care delivery, that result in the best health outcomes for
+beneficiaries and patients.
+Cogent People’s extensive experience with data analytics and reporting on CMS payment, clinical, and
+operational data best positions us to design and implement APM frameworks that leverage AI and
+machine learning effectively. We emphasize strong data governance, security, integration, and
+interoperability to maximize the value of these advanced analytics within CMS programs.
+In summary, embedding AI, ML, and advanced analytics into APMs requires clear policy direction, robust
+standards, and incentives aligned to encourage innovation and adoption. Cogent People is prepared to
+collaborate with CMS to operationalize these capabilities and drive measurable improvements in
+healthcare delivery.
+VB-3. What are essential health IT capabilities for value-based care arrangements?
+Success in value-based care (VBC) requires a modern health IT ecosystem centered on advanced data
+infrastructure, AI-driven analytics, and real-time interoperability. Drawing from our experience
+supporting CMS programs, we view data normalization, enrichment, and exchange as essential to
+powering capabilities such as risk stratification, predictive modeling, quality measurement, and care
+coordination.
+Machine learning and AI can accelerate insights from claims and clinical data, enabling proactive
+interventions for high-risk patients. When combined with standardized APIs, patient identity resolution,
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 19
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+and attribution logic, these tools streamline operations and enhance accuracy in tracking outcomes.
+Cogent People has deployed these solutions across complex CMS environments, demonstrating
+measurable improvements in data quality and performance reporting.
+Real-time event notifications, remote device integration, and patient-facing tools also play key roles in
+closing care gaps and improving engagement. These technologies empower patients while enabling
+providers and payers to act on timely, actionable data.
+To succeed in VBC, health IT must be intelligent, interoperable, and analytics-ready. Cogent People brings
+proven experience in building scalable, identity-driven architectures that can help CMS and partners
+realize the full promise of data-driven value-based care.
+VB-4. What are the essential data types needed for successful participation in value-based
+care arrangements?
+Successful participation in value-based care arrangements requires access to comprehensive, high-
+quality data across several essential types:
+1. Clinical Data: Includes patient diagnoses, lab results, medication histories, procedures, and
+encounter notes. This data is critical for risk stratification, care management, and clinical quality
+measurement.
+2. Claims Data: Contains billing information, service utilization, and payment records. Claims data
+supports cost analysis, utilization management, and outcome measurement.
+3. Patient-Reported Outcomes: Data on patient health status, functional status, and satisfaction
+collected directly from patients, which helps assess care effectiveness and quality from the
+patient perspective.
+4. Payment Data: Detailed information on reimbursements, incentives, shared savings, and
+penalties. Payment data is essential for tracking financial flows, aligning incentives, and
+evaluating the economic impact of value-based care.
+5. Social Determinants of Health (SDOH): Information on factors such as housing, income,
+education, and access to food or transportation, which impact health outcomes and care needs.
+6. Care Coordination Data: Includes referral patterns, care team communications, and transitions
+of care information necessary to manage patient journeys and reduce duplicative or fragmented
+care.
+7. Quality and Performance Metrics: Standardized measures related to clinical outcomes, patient
+safety, and process adherence used to evaluate provider performance against value-based care
+goals.
+8. Financial Data: Cost and reimbursement data to assess spending relative to outcomes, enabling
+value analysis and incentive calculations.
+9. Behavioral Health Data: Information related to mental health diagnoses and treatments, as
+integrated behavioral health is often a critical component in value-based care.
+Together, these data types enable providers and payers to monitor performance, identify gaps, and
+improve both clinical and financial outcomes in value-based care models.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 20
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Compliance and Certification
+VB-9. What technology requirements should be different for APM organizations when
+comparing to non-APM organizations (for example, quality reporting, and
+interoperability)?
+APM organizations, operating under value-based payment models, require a distinctly more advanced
+and integrated technology and data infrastructure compared to traditional fee-for-service organizations.
+To succeed in these models, APM entities must implement robust data governance frameworks that go
+beyond compliance and ensure data integrity, stewardship, and trust across all levels of the organization.
+This includes clearly defined data ownership, access policies, and data-use agreements that support
+secure and compliant exchange of clinical, claims, pharmacy, and patient-generated health data.
+Effective governance enables consistent population attribution, longitudinal tracking, and timely quality
+reporting, core functions in any APM environment.
+In parallel, APM organizations must prioritize data modernization to support real-time analytics and
+scalable insights. This requires investment in cloud-native data platforms capable of ingesting,
+normalizing, and transforming diverse datasets using standards. Automated data pipelines with
+embedded identity resolution and data quality checks ensure consistency and traceability across
+systems. These modern platforms enable organizations to merge EHR, claims, social determinants of
+health (SDOH), and patient-reported data to generate actionable intelligence that supports proactive,
+coordinated care.
+Interoperability is another foundational requirement for APM success. While non-APM organizations
+may rely solely on internal systems, APM participants must maintain bi-directional data exchange
+capabilities across multiple networks and vendors. This includes publishing and consuming FHIR APIs,
+integrating with TEFCA-aligned QHINs, and maintaining connections with state and regional Health
+Information Exchanges (HIEs). Seamless data sharing across care settings allows providers to close care
+gaps, reduce duplicative services, and improve the accuracy of performance measurement and risk
+stratification.
+Data quality is equally critical. APM organizations must implement continuous data quality assurance
+processes, including validation rules, anomaly detection, and reconciliation across clinical and billing
+systems. Inaccuracies in coding, documentation, or patient attribution can directly affect financial
+reconciliation, shared savings distribution, and clinical performance scores. A strong data quality
+program ensures that analytics are trusted, timely, and reflective of true care delivery patterns.
+Finally, advanced analytics and reporting capabilities are essential to enable data-driven decision-making
+and support clinical and operational excellence. APM organizations must leverage predictive analytics,
+risk scoring, and real-time dashboards to empower care teams with insights that guide interventions,
+reduce unnecessary utilization, and drive performance against CMS-defined metrics. These tools should
+support automated quality reporting, benchmark comparisons, and care gap closure strategies that
+improve outcomes while containing costs. Unlike non-APM entities, which may only report
+retrospectively, APM organizations must sustain a proactive, intelligence-driven approach to care
+management, powered by sophisticated, integrated data systems.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 21
+
+CMS ASTP/ONC
+Response to Health Technology Ecosystem RFI
+Meeting these comprehensive technology requirements poses significant challenges for APM
+organizations, many of which lack the internal expertise and resources to manage complex data
+integration, maintain interoperability, ensure the high data quality necessary for accurate analytics and
+reporting, and performing those analytics themselves. Aligning diverse data sources, implementing
+standardized data models, and sustaining continuous data governance and security programs demand
+specialized skills and substantial technical investment. Government contracting partners like Cogent
+People, with experience in data analytics, data management, and governance, play a critical role in
+supporting APMs by building scalable, secure data infrastructures and delivering advanced analytic
+capabilities. These kinds of partnerships and expertise sharing enables APM organizations to navigate
+regulatory requirements, streamline data processes, and generate actionable insights that drive
+improved health outcomes and financial performance.
+The data on this page are subject to the restrictions described on the cover of this document.
+Page 22

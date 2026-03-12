@@ -1,6 +1,182 @@
-Date: June 16, 2025 To: Centers for Medicare & Medicaid Services (CMS) Assistant Secretary for Technology Policy / Office of the National Coordinator for Health Information Technology (ASTP/ONC) Department of Health and Human Services (HHS) Re: Request for Information; Health Technology Ecosystem (File Code: CMS-0042-NC) 1. Introduction This document is submitted by FHIR IQ in response to the for Information (RFI) regarding the health technology ecosystem. As a health information technology company with extensive experience in developing and implementing FHIR-based solutions, we have a direct and informed perspective on the current state of healthcare interoperability. Our experience has shown that the United States has reached the limit of what a compliance-driven, market-led approach can achieve. The persistent failures—superficial standards adoption, entrenched data-hoarding business models, and stagnant innovation—are not incidental bugs. They are predictable features of a market that structurally rewards the creation of data silos. A fundamental strategic pivot is required. This RFI presents a critical opportunity to move beyond incremental rules and toward the deliberate construction of a national health data infrastructure. We offer the following analysis, structured as direct responses to the questions posed in the RFI, and a cohesive set of recommendations to aid CMS and ONC in this essential work. 2. Analysis and Responses to RFI Questions This section provides direct responses to the questions posed in the RFI, organized by the designated categories. B. Patients and Caregivers PC-5a. What role, if any, should CMS have in reviewing or approving digital health products? What criteria should be used? CMS should not be in the business of approving individual applications. Instead, its role should be to foster a trustworthy ecosystem. This can be achieved by: 1) Publishing transparent, aggregate data on FHIR adoption, data quality, and API performance by providers, payers, and vendors. This allows the market to assess the reliability of the underlying data sources. 2) Publishing clear AI assessment standards and guidelines to provide a framework for evaluating the safety and efficacy of new technologies. PC-8a, PC-8c. What health data is valuable but hard to access? What are the obstacles to accessibility and integration? Two of the most valuable but inaccessible data types are: 
-● Actionable Price and Cost-Sharing Data: This is difficult to access because it is often published in non-standard, non-computable formats that prevent true comparison shopping. ● Longitudinal Clinical Data: Integrating clinical data from different sources is profoundly challenging due to a lack of semantic consistency. Different providers use different terminologies and codes for the same concepts, making data aggregation nearly impossible. This can only be solved by a single, federally mandated terminology service. PC-12a(4). What operational health data use cases would create more efficient care navigation? The most valuable use case is access to consumer-facing, prospective quality metrics. Current quality measures are retrospective and provider-focused. Patients need forward-looking metrics that reflect their experience, such as ease of scheduling, care plan accessibility, and a provider's validated performance on patient-reported outcomes. This would empower patients to find the right provider based on what matters most to them. C. Providers PR-2, PR-8a, PR-8c. What are obstacles to physician workflows like quality reporting? How can CMS simplify these responsibilities? The primary obstacle is the immense administrative burden of manual data extraction and reporting. CMS can simplify this by: ● Mandating Bulk FHIR data exports. This would allow quality data to be extracted automatically and at scale, eliminating manual chart abstraction. ● Mandating FHIR CQL for quality submissions. This allows CMS or payers to perform the quality calculations, removing that burden from providers entirely. ● Creating a Quality Measure Marketplace. This would foster innovation in measurement and allow providers to select measures that are most relevant to their practice and easiest to report on digitally. PR-7. What strategies can CMS implement to support providers in making high-quality data available? The most effective strategy is to create market transparency. CMS should publish aggregate data on the FHIR API performance and data quality of certified EHR vendors. When providers can see which systems produce high-quality, conformant data and which do not, it creates a powerful market incentive for them to choose better products and demand improvement from underperforming vendors. PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions? Yes. ASTP/ONC should revise the exceptions to prevent their use as a pretext for anti-competitive behavior. The "Infeasibility of Segmentation" and "Content and Manner" exceptions, for example, can be invoked to avoid providing full EHI access via modern APIs. The bar for invoking an exception should be significantly raised, and the burden of proof should be on the actor to demonstrate that not sharing the data was the only feasible option to prevent a specific, demonstrable harm. D. Payers 
-PA-4. What would be the value to payers of a nationwide provider directory? The value would be immense. A single, authoritative directory of providers that includes their validated FHIR endpoints and network affiliations would dramatically simplify network management, claims processing, and care coordination. It would eliminate the need for each payer to build and maintain its own costly and duplicative directory, reducing administrative waste across the system. PA-5a. How interested are payers and providers in having payers do quality calculations? Both payers and providers are highly interested in this model. For providers, it offloads a significant administrative burden. For payers, receiving clinical quality data via Bulk FHIR allows them to perform more accurate, timely, and comprehensive quality analysis and risk stratification for their members, which is essential for success in value-based care. E. Technology Vendors, Data Providers, and Networks TD-1, TD-4, TD-16. How can CMS stimulate developer interest and encourage open APIs over proprietary ones? The obstacle for developers is not a lack of interest, but a lack of usable data at scale. Proprietary APIs and point-to-point models thrive in a fragmented market. CMS can make them irrelevant by building a public infrastructure that makes data access a commodity. When every provider's data is accessible via a standardized, low-cost mechanism (Bulk FHIR, National Directory), developers will naturally build to that open standard, and the business case for proprietary, walled-garden APIs will collapse. TD-5, VB-15. How could a nationwide provider directory improve access? Who should publish it? A nationwide directory of FHIR endpoints would function as a "GPS for health data," dramatically improving access by solving the endpoint discovery problem. It is essential infrastructure that should be published and maintained by CMS as a free, public utility to ensure equitable access and prevent the creation of private data monopolies. TD-7, TD-13b. To what degree has USCDI improved interoperability? What are its limitations? USCDI has been a necessary and positive step in creating a floor for data exchange, but it is insufficient. Its primary limitation is that it only defines a minimum dataset, leaving the vast majority of a patient's electronic health information (EHI) unstructured and unexchanged. While expanding USCDI is helpful, the ultimate goal should be access to the full EHI via Bulk FHIR. Furthermore, USCDI does not solve the problem of semantic inconsistency. For true interoperability, it must be paired with a mandated National Terminology Server. TD-9, TD-10. How could ASTP/ONC revise health IT certification? Certification must evolve from a focus on features to a focus on performance and data quality. ● Require Public Testing: Mandate that EHR vendors publicly publish the results of standardized tests that measure the quality, completeness, and conformance of the data their systems export via FHIR APIs. 
-● Mandate Full EHI Access: Update the API condition of certification to explicitly require that certified APIs provide access to all data elements of a patient's record via Bulk FHIR, not just the USCDI dataset. TD-11a. Should the EHI export capability be revised? Yes. The current EHI export capability should be revised to specify the use of the Bulk FHIR API standard. Leaving the format to the developer's discretion has resulted in a variety of non-standard formats that are not truly interoperable. A single, mandated standard is required. TD-15. How would increased use of bulk FHIR improve use cases and data flow? Bulk FHIR is the key to unlocking modern, data-intensive use cases. Single-patient APIs are useful for individual tasks, but Bulk FHIR is necessary for population health analytics, value-based care, clinical research, and the training of AI models. It enables a shift from transactional data exchange to ecosystem-level data liquidity. TD-18. What additional policies could discourage information blocking? The most potent disincentive is to neutralize the source of market power: proprietary control over data. CMS should tie full participation and payment in Medicare programs to attested, validated, and transparent data sharing via the mandated national infrastructure. When data sharing is a non-negotiable condition of doing business with the federal government, the incentives for information blocking will evaporate. TD-19. What are the current shortcomings in price transparency? The primary shortcomings are in content format and delivery. Data is often delivered in non-standard, non-computable files that are useless for automated processing. The most valuable improvement would be to mandate that all price and cost-sharing data be delivered via standardized FHIR APIs, such as the Da Vinci Patient Cost Transparency Implementation Guide. F. Value-Based Care Organizations VB-2, VB-4. How can APM requirements better integrate technologies like AI and population health? What are the essential data types? APM requirements can best integrate these technologies by focusing on the underlying data infrastructure. The essential data type for VBC is the complete, longitudinal patient record. By mandating that this full dataset is available via Bulk FHIR, CMS would enable APMs to use best-of-breed technology for population health analytics, AI-driven risk stratification, and care coordination without being locked into the limited tools of a single EHR vendor. VB-5, VB-6, VB-7. How do current certification criteria support VBC? What is missing? Current criteria are poorly aligned with VBC needs because they focus on individual user-facing features rather than scalable data export. To support VBC, certification must prioritize a vendor's demonstrated ability to export high-quality, complete clinical data for an entire patient population via Bulk FHIR. Additionally, creating a single directory of accredited boards and providers would simplify network creation and management for VBC entities. 
-3. Recommendations Based on the analysis above, we propose the following concrete recommendations for CMS and ONC action. These steps, taken together, form a cohesive blueprint for a national health data infrastructure. 1. Utilize a single data standard for all CMS reporting (FHIR USCDI). 2. Mandate all data submitted to CMS be available via Bulk FHIR. 3. Standardize terminology services via a single US national terminology server. 4. Incorporate price and cost-sharing data in FHIR format via an open platform. 5. Create a single national provider directory with mandated FHIR endpoints. 6. Mandate quality measurement submission in FHIR CQL format. 7. Publish aggregate data on FHIR adoption by providers, payers, and vendors. 8. Mandate Data Quality reporting standards for all CMS-submitted information. 9. Mandate EHR vendors publish data testing and assessment results. 10. Create a single directory of accredited boards and providers. 11. Create a Quality Measure Marketplace. 12. Add consumer-facing, prospective quality measures to CMS/HEDIS. 13. Publish AI assessment standards and guidelines. 14. Unlock Epic and Oracle Health monopolies in the EHR market. 4. Conclusion The current health technology ecosystem is not suffering from a lack of standards or a lack of rules; it is suffering from a lack of a coherent, functional market. The existing market structure actively rewards data hoarding and punishes innovation. This RFI signals a recognition that this paradigm has failed. The recommendations outlined in this document provide a bold but necessary framework for a new approach. By building a foundational layer of public digital infrastructure, CMS and ONC can fundamentally restructure the market, neutralizing proprietary control over data and unleashing the forces of competition. We urge you to seize this mandate and build the modern, open, and equitable healthcare infrastructure that Americans deserve. Respectfully submitted, FHIR IQ Eugene Vestel Pittsburgh PA FHIRIQ.com 
- 
+Date: June 16, 2025
+To: Centers for Medicare & Medicaid Services (CMS) Assistant Secretary for Technology Policy
+/ Office of the National Coordinator for Health Information Technology (ASTP/ONC) Department
+of Health and Human Services (HHS)
+Re: Request for Information; Health Technology Ecosystem (File Code: CMS-0042-NC)
+1. Introduction
+This document is submitted by FHIR IQ in response to the for Information (RFI) regarding the
+health technology ecosystem. As a health information technology company with extensive
+experience in developing and implementing FHIR-based solutions, we have a direct and
+informed perspective on the current state of healthcare interoperability.
+Our experience has shown that the United States has reached the limit of what a
+compliance-driven, market-led approach can achieve. The persistent failures—superficial
+standards adoption, entrenched data-hoarding business models, and stagnant innovation—are
+not incidental bugs. They are predictable features of a market that structurally rewards the
+creation of data silos.
+A fundamental strategic pivot is required. This RFI presents a critical opportunity to move
+beyond incremental rules and toward the deliberate construction of a national health data
+infrastructure. We offer the following analysis, structured as direct responses to the questions
+posed in the RFI, and a cohesive set of recommendations to aid CMS and ONC in this essential
+work.
+2. Analysis and Responses to RFI Questions
+This section provides direct responses to the questions posed in the RFI, organized by the
+designated categories.
+B. Patients and Caregivers
+PC-5a. What role, if any, should CMS have in reviewing or approving digital health
+products? What criteria should be used? CMS should not be in the business of approving
+individual applications. Instead, its role should be to foster a trustworthy ecosystem. This can be
+achieved by: 1) Publishing transparent, aggregate data on FHIR adoption, data quality, and API
+performance by providers, payers, and vendors. This allows the market to assess the reliability
+of the underlying data sources. 2) Publishing clear AI assessment standards and guidelines to
+provide a framework for evaluating the safety and efficacy of new technologies.
+PC-8a, PC-8c. What health data is valuable but hard to access? What are the obstacles to
+accessibility and integration? Two of the most valuable but inaccessible data types are:
+
+● Actionable Price and Cost-Sharing Data: This is difficult to access because it is often
+published in non-standard, non-computable formats that prevent true comparison
+shopping.
+● Longitudinal Clinical Data: Integrating clinical data from different sources is profoundly
+challenging due to a lack of semantic consistency. Different providers use different
+terminologies and codes for the same concepts, making data aggregation nearly
+impossible. This can only be solved by a single, federally mandated terminology service.
+PC-12a(4). What operational health data use cases would create more efficient care
+navigation? The most valuable use case is access to consumer-facing, prospective quality
+metrics. Current quality measures are retrospective and provider-focused. Patients need
+forward-looking metrics that reflect their experience, such as ease of scheduling, care plan
+accessibility, and a provider's validated performance on patient-reported outcomes. This would
+empower patients to find the right provider based on what matters most to them.
+C. Providers
+PR-2, PR-8a, PR-8c. What are obstacles to physician workflows like quality reporting?
+How can CMS simplify these responsibilities? The primary obstacle is the immense
+administrative burden of manual data extraction and reporting. CMS can simplify this by:
+● Mandating Bulk FHIR data exports. This would allow quality data to be extracted
+automatically and at scale, eliminating manual chart abstraction.
+● Mandating FHIR CQL for quality submissions. This allows CMS or payers to perform
+the quality calculations, removing that burden from providers entirely.
+● Creating a Quality Measure Marketplace. This would foster innovation in
+measurement and allow providers to select measures that are most relevant to their
+practice and easiest to report on digitally.
+PR-7. What strategies can CMS implement to support providers in making high-quality
+data available? The most effective strategy is to create market transparency. CMS should
+publish aggregate data on the FHIR API performance and data quality of certified EHR vendors.
+When providers can see which systems produce high-quality, conformant data and which do
+not, it creates a powerful market incentive for them to choose better products and demand
+improvement from underperforming vendors.
+PR-12. Should ASTP/ONC consider removing or revising any of the information blocking
+exceptions? Yes. ASTP/ONC should revise the exceptions to prevent their use as a pretext for
+anti-competitive behavior. The "Infeasibility of Segmentation" and "Content and Manner"
+exceptions, for example, can be invoked to avoid providing full EHI access via modern APIs.
+The bar for invoking an exception should be significantly raised, and the burden of proof should
+be on the actor to demonstrate that not sharing the data was the only feasible option to prevent
+a specific, demonstrable harm.
+D. Payers
+
+PA-4. What would be the value to payers of a nationwide provider directory? The value
+would be immense. A single, authoritative directory of providers that includes their validated
+FHIR endpoints and network affiliations would dramatically simplify network management,
+claims processing, and care coordination. It would eliminate the need for each payer to build
+and maintain its own costly and duplicative directory, reducing administrative waste across the
+system.
+PA-5a. How interested are payers and providers in having payers do quality calculations?
+Both payers and providers are highly interested in this model. For providers, it offloads a
+significant administrative burden. For payers, receiving clinical quality data via Bulk FHIR allows
+them to perform more accurate, timely, and comprehensive quality analysis and risk stratification
+for their members, which is essential for success in value-based care.
+E. Technology Vendors, Data Providers, and Networks
+TD-1, TD-4, TD-16. How can CMS stimulate developer interest and encourage open APIs
+over proprietary ones? The obstacle for developers is not a lack of interest, but a lack of
+usable data at scale. Proprietary APIs and point-to-point models thrive in a fragmented market.
+CMS can make them irrelevant by building a public infrastructure that makes data access a
+commodity. When every provider's data is accessible via a standardized, low-cost mechanism
+(Bulk FHIR, National Directory), developers will naturally build to that open standard, and the
+business case for proprietary, walled-garden APIs will collapse.
+TD-5, VB-15. How could a nationwide provider directory improve access? Who should
+publish it? A nationwide directory of FHIR endpoints would function as a "GPS for health data,"
+dramatically improving access by solving the endpoint discovery problem. It is essential
+infrastructure that should be published and maintained by CMS as a free, public utility to ensure
+equitable access and prevent the creation of private data monopolies.
+TD-7, TD-13b. To what degree has USCDI improved interoperability? What are its
+limitations? USCDI has been a necessary and positive step in creating a floor for data
+exchange, but it is insufficient. Its primary limitation is that it only defines a minimum dataset,
+leaving the vast majority of a patient's electronic health information (EHI) unstructured and
+unexchanged. While expanding USCDI is helpful, the ultimate goal should be access to the full
+EHI via Bulk FHIR. Furthermore, USCDI does not solve the problem of semantic inconsistency.
+For true interoperability, it must be paired with a mandated National Terminology Server.
+TD-9, TD-10. How could ASTP/ONC revise health IT certification? Certification must evolve
+from a focus on features to a focus on performance and data quality.
+● Require Public Testing: Mandate that EHR vendors publicly publish the results of
+standardized tests that measure the quality, completeness, and conformance of the data
+their systems export via FHIR APIs.
+
+● Mandate Full EHI Access: Update the API condition of certification to explicitly require
+that certified APIs provide access to all data elements of a patient's record via Bulk
+FHIR, not just the USCDI dataset.
+TD-11a. Should the EHI export capability be revised? Yes. The current EHI export capability
+should be revised to specify the use of the Bulk FHIR API standard. Leaving the format to the
+developer's discretion has resulted in a variety of non-standard formats that are not truly
+interoperable. A single, mandated standard is required.
+TD-15. How would increased use of bulk FHIR improve use cases and data flow? Bulk
+FHIR is the key to unlocking modern, data-intensive use cases. Single-patient APIs are useful
+for individual tasks, but Bulk FHIR is necessary for population health analytics, value-based
+care, clinical research, and the training of AI models. It enables a shift from transactional data
+exchange to ecosystem-level data liquidity.
+TD-18. What additional policies could discourage information blocking? The most potent
+disincentive is to neutralize the source of market power: proprietary control over data. CMS
+should tie full participation and payment in Medicare programs to attested, validated, and
+transparent data sharing via the mandated national infrastructure. When data sharing is a
+non-negotiable condition of doing business with the federal government, the incentives for
+information blocking will evaporate.
+TD-19. What are the current shortcomings in price transparency? The primary
+shortcomings are in content format and delivery. Data is often delivered in non-standard,
+non-computable files that are useless for automated processing. The most valuable
+improvement would be to mandate that all price and cost-sharing data be delivered via
+standardized FHIR APIs, such as the Da Vinci Patient Cost Transparency Implementation
+Guide.
+F. Value-Based Care Organizations
+VB-2, VB-4. How can APM requirements better integrate technologies like AI and
+population health? What are the essential data types? APM requirements can best integrate
+these technologies by focusing on the underlying data infrastructure. The essential data type for
+VBC is the complete, longitudinal patient record. By mandating that this full dataset is available
+via Bulk FHIR, CMS would enable APMs to use best-of-breed technology for population health
+analytics, AI-driven risk stratification, and care coordination without being locked into the limited
+tools of a single EHR vendor.
+VB-5, VB-6, VB-7. How do current certification criteria support VBC? What is missing?
+Current criteria are poorly aligned with VBC needs because they focus on individual user-facing
+features rather than scalable data export. To support VBC, certification must prioritize a vendor's
+demonstrated ability to export high-quality, complete clinical data for an entire patient population
+via Bulk FHIR. Additionally, creating a single directory of accredited boards and providers would
+simplify network creation and management for VBC entities.
+
+3. Recommendations
+Based on the analysis above, we propose the following concrete recommendations for CMS
+and ONC action. These steps, taken together, form a cohesive blueprint for a national health
+data infrastructure.
+1. Utilize a single data standard for all CMS reporting (FHIR USCDI).
+2. Mandate all data submitted to CMS be available via Bulk FHIR.
+3. Standardize terminology services via a single US national terminology server.
+4. Incorporate price and cost-sharing data in FHIR format via an open platform.
+5. Create a single national provider directory with mandated FHIR endpoints.
+6. Mandate quality measurement submission in FHIR CQL format.
+7. Publish aggregate data on FHIR adoption by providers, payers, and vendors.
+8. Mandate Data Quality reporting standards for all CMS-submitted information.
+9. Mandate EHR vendors publish data testing and assessment results.
+10. Create a single directory of accredited boards and providers.
+11. Create a Quality Measure Marketplace.
+12. Add consumer-facing, prospective quality measures to CMS/HEDIS.
+13. Publish AI assessment standards and guidelines.
+14. Unlock Epic and Oracle Health monopolies in the EHR market.
+4. Conclusion
+The current health technology ecosystem is not suffering from a lack of standards or a lack of
+rules; it is suffering from a lack of a coherent, functional market. The existing market structure
+actively rewards data hoarding and punishes innovation.
+This RFI signals a recognition that this paradigm has failed. The recommendations outlined in
+this document provide a bold but necessary framework for a new approach. By building a
+foundational layer of public digital infrastructure, CMS and ONC can fundamentally restructure
+the market, neutralizing proprietary control over data and unleashing the forces of competition.
+We urge you to seize this mandate and build the modern, open, and equitable healthcare
+infrastructure that Americans deserve.
+Respectfully submitted,
+FHIR IQ
+Eugene Vestel
+Pittsburgh PA
+FHIRIQ.com

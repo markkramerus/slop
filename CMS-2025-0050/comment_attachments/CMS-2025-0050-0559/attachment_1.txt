@@ -1,19 +1,724 @@
- Restricted CMS -0042 -NC Request for Information : Health Technology Ecosystem Centers for Medicare & Medicaid Services (CMS) Assistant Secretary for Technology Policy (ASTP)/Office of the National Coordinator for Health Information Technology ( ASTP/ONC ) (collectively, ASTP/ ASTP/ONC ) Department of Health and Human Services (DHHS) June 16, 2025 
-CMS -0042 -NC Battelle | June 16, 2025 | Restricted i Table of Contents Page Introduction ................................ ................................ ................................ ............................ 1 Summary Recommendations ................................ ................................ ................................ ...... 1 Individual RFI Question Responses ................................ ................................ ............................ 3 Question PR -2 ................................ ................................ ................................ .................... 3 Question PR -8 ................................ ................................ ................................ .................... 5 Question PA -5 ................................ ................................ ................................ .................... 9 Question VB -2 ................................ ................................ ................................ .................. 12 Question VB -4 ................................ ................................ ................................ .................. 13 Points of Contact ................................ ................................ ................................ ....................... 15 List of Tables Page Table 1. Technologies and Practices That Generate Value ................................ ................................ ......... 2 Table 2. APM Requirements to Recognize the Functions that Generate Value ................................ ......... 12 Table 3. Core Clinical and Administrative Data (for Accountability and Risk Adjustment) ......................... 14 Table 4 . Transformation -Enabling Data (for Learning and Care Improvement) ................................ ........ 14 Table 5. Utilization and Outcome Data (for Accountability and Feedback) ................................ ................ 15 Table 6. Infrastructure and Governance Metadata ................................ ................................ ..................... 15 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 1 Introduction Battelle Memorial Institute (Battelle) welcomes the opportunity to provide input to CMS and ASTP/ONC on strategies to advance interoperability and health data infrastructure in support of value -based care. As the current CMS -contracted Consensus -based Entity (CBE) we write from the perspective of stakeholders implementing clinical quality measures (CQM) both for payment models focused on accountability and for payment models focused on care transformation, structural investment, and evidence generation. In these latter models , provid ers and communities are empowered to generate value through transformation infrastructure , including tools like SCAMPs (Standardized Clinical Assessment and Management Plans)1, FHIR standards for positive deviation reporting2, and registries that support learning from local variation3. Summary Recommendations In response to the RFI, we offer the following summary recommendations . Detailed responses to individual questions are included below. 1. Addressing Provider Obstacles to Quality Measurement and Workflow Optimization Key Recommendation: CMS and ASTP/ONC should consider invest ing in standards -based infrastructure that supports both accountability and transformation , including: • Adoption of Fast Healthcare Interoperability Resources (FHIR ®)-native artifacts (e.g., PlanDefinition, ActivityDefinition, Measure, MeasureReport), • Development of SCAMPs registries and transformation -focused decision support, • Infrastructure for capturing override reasons and positive deviations to support learning health systems. Mitigation Strategy: Prioritize Electronic Health Record ( EHR ) certification criteria, implementation guides (e.g., Making EHR Data More Available for Research and Public Health or MedMorph), and funding that encourage clinical workflows to support both outcome measurement and innovation tracking . 2. Use of Bulk FHIR to Simplify Quality Reporting Key Recommendation: CMS should consider leverag ing Bulk FHIR exports to assume responsibility for computing standardized outcome measures , reducing labor intensive reporting burdens on providers. 1 Farias M, Jenkins K, Lock J, Rathod R, Newburger J, Bates DW, Safran DG, Friedman K, Greenberg J. Standardized Clinical Assessment And Management Plans (SCAMPs) provide a better alternative to clinical practice guidelines. Health Aff (Millwood). 2013 May;3 2(5):911 -20. doi: 10.1377/hlthaff.2012.0667. PMID: 23650325; PMCID: PMC3990928. 2 [PSS -2633] Positive Deviance Reporting and Analysis - Jira (accessed June 12, 2025) 3 Community Based Care Coordination | Pathways Community HUB Institute (accessed June 12, 2025) 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 2 Benefits: • Consistent, centralized measure calculation, • Reduces EHR customization and data mapping , • Facilitates equality -focused measurement and subgroup analysis. Caution: Bulk FHIR must be paired with timely feedback to providers and should not displace investments in transformation infrastructure (e.g., SCAMPs registries, learning systems). 3. Consolidating Reporting Responsibilities for Dual -Purpose Use Key Recommendation: Establish a unified FHIR -based quality data framework that serves both CMS and commercial payers using shared standards such as Data Exchange for Quality Measures ( DEQM ), Quality Improvement Core ( QI-Core ), and US Core. Strategies: • Certify multi -payer digital registries capable of computing and reporting quality metrics once for multiple stakeholders. • Recognize SCAMPs and similar registries as dual-purpose intermediaries that serve both accountability and transformation needs. Technologies to Leverage: • Substitutable Medical Applications and Reusable Technologies (SMART ) on FHIR apps for provider -facing feedback, • FHIR Subscriptions for near -real-time event tracking, • Clinical Decision Support Hooks ( CDS Hooks ) for integrating payer insights into clinical workflows. 4. Payer Responsibilities to Support Transformation Key Recommendation: Payers, including CMS, should use Bulk FHIR data to calculate accountability measures, while also: • Returning results in clinically actionable formats , • Funding dual -purpose tools (e.g., transformation registries, CDS infrastructure), • Supporting data reciprocity and real-time feedback for providers. Payers can further reduce burden by enabling claims + clinical hybrid data models and supporting federated analytics environments where provider networks retain control over transformation metrics. 5. APM Requirements Should Incentivize Enabling Capabilities Key Recommendation: APMs should integrate not only performance expectations, but also explicit support for technologies and practices that generate value , including: Table 1. Technologies and Practices That Generate Value Capability APM Alignment AI-enabled care pathways Allow use of shared savings to fund algorithmic transformation tools Population analytics Require submission of a transformation strategy 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 3 SCAMPs/standardized pathways Reward adherence or learning from deviations PROs and patient engagement tools Count toward transformation credits CMS should consider also a “Transformation Enablement” track that rewards infrastructure development, even in advance of measurable outcome shifts. 6. Essential Data Types for Value -Based Care To successfully participate in modern VBC models, providers and intermediaries must have access to a core set of data types supporting both accountability and transformation . These include: • Core clinical data (conditions, medications, labs), • Utilization outcomes (readmissions, ED visits, mortality), • Transformation data (care plans, override reasons, PROs, SDOH), • Governance metadata (Provenance, Measure definitions, audit trails). CMS should consider ensur ing these data types are prioritized in United States Core Data for Interoperability (USCDI ), and that FHIR profiles are defined to ensure consistency across vendors. Conclusion A transformation -focused health IT infrastructure offers a blueprint for aligning federal policy with local agency and innovation. CMS and ASTP/ONC can accelerate meaningful value -based care by: • Consolidating measurement infrastructure using FHIR, • Separating outcome -based accountability from care transformation responsibilities, • Supporting bi -directional data flows, and • Recognizing and funding registries, tools, and applications that enable continuous improvement. We thank you for the opportunity to provide input and would welcome the chance to engage further in developing implementation strategies. Our responses to individual RFI questions are included below. Individual RFI Question Responses Question PR -2 What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obsta cles be mitigated?" Obstacles: 1. Fragmented and Siloed Data Infrastructure: 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 4 o Clinical data necessary for both SCAMPs implementation and population -level outcome tracking (e.g., NAM Vital Signs) is often distributed across disparate systems without interoperability. o Providers cannot easily retrieve or integrate data needed for both patient -level decision support and community -level impact measurement. 2. Lack of Standardized Support for Transformation Activities: o Most health IT systems optimize for documentation and billing, not for continuous improvement, innovation, or care planning (e.g., SCAMPs). o Transformation -oriented artifacts (e.g., PlanDefinitions, ActivityDefinitions) are not standard EHR features. 3. Quality Measurement Overhead: o Providers are burdened by data element mapping and poorly integrated measurement tools. o Current systems do not distinguish between outcome -based metrics for VBP and quality -improvement -oriented metrics for transformation. 4. Inadequate Support for Local Innovation and Feedback Loops: o SCAMPs depend on learning from local practice variation (positive deviation), which requires infrastructure for override tracking and outcome monitoring — features that are largely unavailable. 5. Poor Integration of Social and Community Data: o Measures such as "Vital Signs" depend on data about social determinants, community resources, and public health status, which are typically not captured in clinical workflows or supported by standard application programming interface (APIs ). Mitigation Strategies: 1. Expand USCDI to Include Transformation - and Community -Oriented Data Classes: o Include fields for care plan variation (e.g., CDS override reason), positive deviation capture, and community -linked outcomes. o Align with National Academy of Medicine ( NAM ) Vital Signs4 and Core Metrics5 for population health surveillance. 2. Create a Certification Pathway for Transformation -Supportive HIT: o Encourage vendors to support artifacts like SCAMPs (PlanDefinition/ActivityDefinition), override reason capture, and local practice innovation tracking through FHIR -based infrastructure (e.g., CDS Hooks, vSubscription, MedMorph). 3. Differentiate Quality Reporting Pipelines: o Separate outcome -based VBP measurement from learning -oriented transformation measures (e.g., avoidable utilization, care appropriateness). o Provide infrastructure for community -level aggregation and benchmarking that supports the transformation infrastructure vision. 4. Invest in “Transformation Registries” and Learning Health Networks: o Analogous to Qualified Clinical Data Registries ( QCDRs ), but focused on tracking care path variation, patient outcomes, and feedback loops. o Support decentralized SCAMP execution and local analytics. 5. Promote APIs for Social Determinants and Community Health Data Integration: 4 Vital Signs Initiative - NAM (accessed June 12, 2025) 5 Vital Signs Core Metrics: Reducing Measurement Burden (Webinar) - NAM (accessed June 12, 2025) 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 5 o Standardize exchange of data on housing, food insecurity, transportation, and local health system capacity using FHIR and public health interoperability standards. 6. Support Clinical Workflow Integration of Improvement Activities: o Incentivize incorporation of SCAMPs like tools into physician workflows through EHR -embedded decision support, order sets, and documentation aids. o Provide grants or shared services to implement SCAMPs on FHIR within under - resourced systems. Question PR-8 What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? For example, a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? I. Key Ways CMS Can Simplify Clinical Quality Data Responsibilities for Providers 1. Separate Accountability and Transformation Workflows: o Use CMS -centralized calculation (via Bulk FHIR) for accountability -focused quality metrics (e.g., outcomes, equality , utilization). o Delegate transformation -focused measurement (e.g., appropriateness, shared decision -making, SCAMPs adherence) to provider networks using FHIR -based registries and local analytics infrastructure. 2. Adopt FHIR -Based Quality Measure APIs (e.g., DEQM, Quality Measure IG ( QMIG )): o Reduce documentation and data element mapping burden by automating computable CQMs from standardized FHIR data using CMS infrastructure. o Encourage vendors to natively support FHIR profiles aligned to CMS quality reporting programs. 3. Standardize FHIR Artifacts for Measurement Contexts: o Promote uniform FHIR representations of measurement metadata (e.g., Measure, MeasureReport) to ensure semantic consistency across sites and vendors. 4. Support Population -Level Data Use Agreements: o Enable delegated intermediaries (e.g., Health Information Exchanges or SCAMPs registries) to handle transformation -related data flows, reducing the number of reporting endpoints for providers. II. Bulk FHIR Export: Benefits and Downsides Benefits: 1. Reduces Provider Reporting Burden: o Eliminates the need for redundant data mapping , customized report generation, or vendor -specific interfaces for CMS submissions. 2. Enables Centralized Measure Calculation: o CMS can run consistent, transparent calculations across all providers using a shared measure library (e.g., Clinical Quality Framework (CQF) -ruler, Clinical Quality Language ( CQL) engine). o Reduces variation and errors due to site -specific interpretation. 3. Leverages Existing Standards Infrastructure: 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 6 o Bulk FHIR is an emerging requirement under Trusted Exchange Framework and Common Agreement (TEFCA) , USCDI+, and payer interoperability rules — leveraging it aligns with the broader federal ecosystem. 4. Supports Equality and Population Monitoring: o Allows CMS to calculate subgroup performance and equality metrics at scale without imposing new provider workflows. Downsides / Limitations: 1. Limited Local Context: o Bulk FHIR lacks the ability to capture contextual features critical for transformation (e.g., reasons for deviations, SDH variables not in EHRs). 2. Lag in Data Readiness and Mapping: o Many EHRs still lack full support for US Core profiles, let alone accurate and complete mapping to the FHIR resources needed for high -quality CQM computation. 3. Privacy and Trust Barriers: o Providers may resist data exports to CMS without tight control over how data will be used, interpreted, or audited. 4. One-Way Flow Undermines Learning Loops: o Centralized calculation benefits to CMS but offers little immediate feedback to providers unless results are returned quickly and with actionable insights (e.g., as part of transformation dashboards). Recommendation: Hybrid Model - CMS should consider perform ing centralized quality measurement for accountability purposes using Bulk FHIR, but delegate responsibility for transformation metrics and improvement feedback loops to trusted local or regional partners (e.g., SCAMPs registries, collaboratives, or state transformation entities). This hybrid approach ensures: • Equality in oversight (federal -level accountability) • Agency in improvement (local -level transformation) • Simplification of reporting (automatic data export, fewer labor intensive burdens) • Feedback -driven learning (looping insights back through SCAMPs on FHIR) b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? I. Dual -Purposing Interoperability Investments Across Accountability and Transformation Goals 1. Consolidate Around Shared FHIR Infrastructure • Use shared FHIR APIs and Bulk FHIR exports to serve both: o CMS accountability programs (e.g., outcome reporting, disparities monitoring), o and provider -led transformation initiatives (e.g., SCAMPs adherence tracking, local learning systems). • Invest in a common pipeline using US Core , DEQM , and Clinical Quality Framework (CQF) standards , enabling data extraction once and reuse many times. Example: A ServiceRequest, Encounter, and Condition resource exported via FHIR can be used to: • Compute 30 -day readmission rate (CMS), 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 7 • Evaluate local SCAMP protocol adherence (provider), • Analyze variance from SCAMPs as signals of positive deviation (registry). 2. Align Quality Measure Computation with Clinical Decision Support Infrastructure • Use shared artifacts (e.g., PlanDefinition, Measure, Library resources) for both measurement and care planning. • transformation infrastructure 's SCAMPs on FHIR already reuses decision logic for both clinical workflow guidance and quality tracking —this should be incentivized. Strategy: CMS could require or fund dual -purpose CDS artifacts that produce: • Real-time guidance (via CDS Hooks, SMART on FHIR), and • Computable audit logs that support retrospective measure calculation (e.g., MeasureReport, Provenance). 3. Enable Feedback Loop Infrastructure • Consolidate reporting with feedback: Transformational efforts rely on timely feedback , while CMS typically uses retrospective data . • Require that investments in interoperability support bi-directional data flows so quality reporting systems also serve as clinical learning systems . Implementation model: A regional registry (e.g., SCAMPs collaborative or ACO) receives data via FHIR Subscription, produces quality reports, and feeds transformation insights (e.g., variation, positive deviation) back into care pathways. 4. Support Intermediaries that Serve Both Federal and Local Needs • Encourage development of “shared services” or delegated intermediaries (e.g., Health Information Exchanges ( HIEs ), SCAMPs registries, or CQMs -as-a-Service platforms). • These partners can handle reporting requirements on behalf of providers while also supporting local QI and decision support. Policy lever: CMS could recognize these intermediaries in payment or certification pathways and offer data use agreements that accommodate both regulatory and improvement use cases. 5. Focus USCDI and Standards Development on Dual -Use Data • Prioritize inclusion of data elements that support both: o Population -level metrics (e.g., NAM Vital Signs , community health data, social determinants of health ( SDH )), and o Clinical transformation data (e.g., care plan override reasons, CDS usage, patient -reported outcomes). II. Transformation Infrastructure Policy Recommendation: CMS and ASTP/ONC should consider explicitly promot ing a “Dual -Use Data Infrastructure” approach —investments in interoperability must support both: • Accountability (reporting, benchmarking, payment), and • Agency (local learning, care innovation, and improvement). This shift reduces duplicative documentation, increases provider buy -in, and aligns federal oversight with real transformation on the ground. 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 8 c. Are there requirements CMS should consider for data registries to support digital quality measurement in a more efficient manner? Are there requirements CMS should consider for data registries that would support access to real -time quality data for healthc are providers to inform clinical care in addition to simplifying reporting processes? I. CMS Should Recognize and Certify “Dual -Purpose Digital Registries” CMS should consider moving beyond static QCDRs and support registries that serve both real-time care improvement and retrospective accountability. Under transformation infrastructure , such registries would: • Support digital quality measurement (dQM) using structured EHR data (via FHIR) • Provide feedback to clinicians in near -real time to inform care • Capture variation and learning from positive deviations • Support federally endorsed outcomes and local improvement priorities II. Recommended CMS Requirements for Digital Registries 1. Standards -Based Data Ingestion • Must support US Core and Bulk FHIR ingestion , including Subscriptions and CDS Hooks for real -time data. • Accept structured EHR data without custom mapping or interfaces. • Should implement DEQM (Data Exchange for Quality Measures) and QI-Core profiles for computability. 2. Real -Time Feedback Capabilities • Must deliver timely, actionable quality insights to providers (e.g., performance summaries, outlier detection, guideline adherence). • Should support SCAMPs -like feedback loops by detecting variation and suggesting protocol refinements. 3. Provenance and Auditability • Require FHIR Provenance to trace data lineage (who entered what, when, in what context). • Ensure transparency for both CMS and providers in how data supports measure computation and decision -making. 4. Local Adaptability and Positive Deviation Reporting • Registries should support capture and tracking of protocol deviations (e.g., via ActivityDefinition, OverrideReason, or custom FHIR extensions). • Must be able to distinguish between protocol exceptions and improvement -driven local innovation . 5. Delegated Computation and Measure Certification • Allow registries to perform certified measure calculations (e.g., using CQL, CMS - approved libraries). • Support submission of MeasureReports directly to CMS via FHIR APIs or TEFCA - designated endpoints. 6. Multidimensional Measurement Capacity • Must accommodate person -level, facility -level, and community -level metrics , including: o Outcomes (e.g., avoidable utilization, health equality ), o Behaviors (e.g., protocol adherence, SCAMP uptake), o Experiences (e.g., PROs, patient decision quality). 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 9 7. Consent and Data Use Governance • Require registries to implement transparent data use agreements that clarify: o Provider obligations, o CMS access rights, o Local reuse for learning health systems. III. Additional Considerations: CMS Should Promote Use of SCAMPs Registries as Exemplars SCAMPs -based registries are well -suited to support transformation infrastructure because they: • Allow local tailoring of care pathways • Capture evidence from variation • Support rapid -cycle learning • Enable provider feedback and federated reporting Example: A registry receives a FHIR ServiceRequest for ECMO cannulation, tracks associated decisions and overrides, monitors patient outcomes, and feeds data to both: • A CMS -calculated outcome quality measure (e.g., mortality, bleeding), • A local SCAMP learning loop for refining anticoagulation protocols. Policy Recommendation: CMS should consider defin ing and fund ing Next -Generation Digital Registries that: • Use FHIR -native architectures, • Support real -time provider -facing quality insights, • Enable federated transformation infrastructure like SCAMPs, • And are accountable for submitting certified quality measurement outputs to CMS. Question PA-5 What are ways payers can help with simplifying clinical quality data responsibilities of providers? For example, a. How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider -side technology? I. Ways Payers Can Help Simplify Provider Responsibilities 1. Offload Accountability Measurement via Bulk FHIR • Payers—particularly CMS and managed care organizations —can take primary responsibility for computing outcome -based quality metrics (e.g., readmissions, mortality, disparities) from Bulk FHIR data exports . • Providers focus on care transformation , not formatting data for measure submission. 2. Promote Shared Intermediaries for Reporting • Payers can contract with or certify data intermediaries (e.g., registries, HIEs) that collect and transform data once, then serve both payer and provider needs. • This reduces the number of separate data extracts, interfaces, and reporting burdens on clinical organizations. 3. Provide Transparent Measure Logic and Benchmarking Tools 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 10 • When payers calculate measures, they must offer: o Access to CQL logic and data definitions , o Performance dashboards that mirror internal calculations, o Provider -level benchmarking to support transformation. 4. Fund Dual -Purpose Infrastructure • Payers should offer technical assistance grants, shared tools, or per -member infrastructure payments for FHIR -based registries, CDS tools, and SCAMPs implementation. • Investments in transformation support their accountability contracts downstream. 5. Use Claims + FHIR Clinical Data Hybrid Models • Instead of pushing all data responsibility to providers, payers can supplement EHR - based clinical data with claims data (already in hand), closing gaps in utilization, pharmacy, and longitudinal views. II. Interest in Bulk FHIR Extraction: Payer Perspective: • Strong interest in bulk extraction, particularly for: o Standardized calculation of measures across provider types and platforms, o Reduction of chart chase and data mapping in HEDIS or Stars reporting , o Better integration of clinical detail with longitudinal claims history . Provider Perspective (under transformation infrastructure ): • Conditional interest in bulk FHIR export if paired with reduced reporting burden , and: o Results are returned to providers quickly and usefully , o Data are not used punitively or opaquely, o Transformation activities remain provider -driven (e.g., SCAMPs adherence, local variation feedback), o Payers support dual -use data flows (e.g., investment in learning health system tools, not just payer -side analytics). Policy Recommendation: CMS should consider encourag ing payer -side calculation of outcome measures using Bulk FHIR but require dual commitments : 1. Transparency and reciprocity : Return useful, timely results to providers for transformation. 2. Dual -purpose investment : Support tools and intermediaries that providers use for SCAMPs, learning, and care improvement —not just accountability. This model matches the transformation infrastructure vision: payers recognize and reward value through shared infrastructure, and providers generate value through community -based innovation and learning. b. In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real tim e quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? I. Consolidating Responsibilities: Dual -Purposing Investments 1. Consolidate on FHIR -Based Infrastructure 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 11 • Require or incentivize all payers (CMS, MA plans, commercial insurers) to adopt and support FHIR -based quality reporting standards , including: o Bulk FHIR for data extraction (e.g., Patient, Encounter, Observation, ServiceRequest), o MeasureReport , DEQM , and QI-Core profiles for computable, standards -based measurement. • This enables "report once, use many" approaches and reduces custom extracts per payer. 2. Support Certified Intermediaries for Reporting • Establish multi -payer certified registries or shared analytics platforms that: o Receive FHIR data from providers, o Compute quality measures once using CMS -published CQL logic, o Report standardized outputs to CMS and commercial payers , o Feed insights back to providers. Example: A SCAMPs -enabled regional registry could support measure calculation for CMS, Medicaid MCOs, and commercial plans, while giving providers actionable data on care plan adherence and variation. 3. Require Data Reciprocity for Quality Feedback • Payers receiving FHIR data from providers should be required to return actionable, real-time or near -real-time feedback —not just use the data for retrospective scoring or audits. • This feedback should align with the transformation loop in transformation infrastructure (e.g., identifying avoidable utilization, variation from expected pathways). II. Technologies Payers Can Leverage to Support Real -Time Data Use 1. SMART on FHIR Applications • Payers can fund or certify SMART apps embedded within EHRs that: o Surface quality gaps, o Display performance trends, o Suggest SCAMP -aligned interventions at the point of care. 2. CDS Hooks and Clinical Quality APIs • Use CDS Hooks to trigger payer -generated quality guidance (e.g., reminders, risk warnings) during clinical encounters. • Enable providers to query their own quality performance data via FHIR -based APIs. 3. FHIR Subscriptions and Event Notifications • Payers can subscribe to clinical events (e.g., admissions, discharges, SCAMP deviations) using FHIR Subscription and SubscriptionStatus. • This supports near real-time monitoring of care pathways and enables faster intervention or case management. 4. Federated Quality Analytics Platforms • Use federated learning or distributed query models (e.g., via FHIRPath or CQL) to calculate quality metrics within provider -controlled environments . • This reduces data movement and preserves control while meeting payer needs. Policy Recommendation: CMS should consider establish ing a multi -payer quality data alignment framework that includes: • Unified use of FHIR standards for both reporting and clinical transformation, 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 12 • Support for certified digital registries that serve CMS, Medicaid, and commercial plans, • Requirements for payers to return real -time quality insights as a condition of receiving provider -generated clinical data, • Investment in shared tools (e.g., SCAMPs infrastructure, SMART apps, CDS Hooks) that support bidirectional learning . This dual -purpose model reduces redundancy, increases utility, and aligns with the transformation infrastructure principle: recognize value centrally, generate value locally. Question VB-2 How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? I. Reorient APM Requirements to Recognize the Functions that Generate Value Most current APMs reward observed performance (e.g., measured outcomes, utilization), but do not explicitly require or support the upstream actions, resources, and tools that actually produce transformation . Under transformation infrastructure , CMS should consider : Table 2. APM Requirements to Recognize the Functions that Generate Value Theme/Technology Integration Strategy in APM Requirements Artificial Intelligence (AI) Allow or encourage the use of AI-enabled care standardization tools (e.g., SCAMPs), AI -based risk prediction, and decision support systems that identify positive deviations or optimize care pathways. APMs should allow shared savings to be used to fund algorithmic infrastructure . Population Health Analytics Require ACOs and APM entities to submit a transformation strategy that describes how population -level insights (e.g., preventable utilization patterns, equality disparities) are used to guide improvement investments. Risk Stratification APMs should incentivize stratification not only for identifying high -cost patients , but also for tailoring care transformation interventions (e.g., specific SCAMPs pathways for subpopulations). Care Coordination APMs should support funding for coordination infrastructure (e.g., closed -loop referral tracking, community partner integration) as an allowable transformation expense . Usability Require that APMs invest in tools that are integrated into workflows via SMART on FHIR, CDS Hooks, or EHR -native modules —not just external portals. CMS could define a "minimum usability certification" for tech used in care improvement. Quality Measurement Promote dual -use measurement systems: same data feeds (via FHIR) used for both CMS accountability measures and local transformation feedback . Registries or SCAMPs platforms should be recognized as reporting intermediaries . Patient Engagement Require that APMs incorporate shared decision -making , PROs, and tools like decision quality measures as core transformation 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 13 components . Patient -facing apps or survey tools should be subsidizable under APM shared savings . II. Structural Changes CMS Could Make to APMs 1. Create a “Transformation Enablement” Track Within APMs • Parallel to risk -bearing and performance tracks, APMs should include a track focused on building the infrastructure for transformation (e.g., technology deployment, SCAMPs uptake, AI feedback loops). • Participants would earn credit for implementing systems that enable future high performance , even before measurable outcomes shift. 2. Define a Set of CMS -Approved “Enabling Capabilities” • Similar to "meaningful use", CMS could define a menu of enabling capabilities that APM entities must adopt or report progress on: o AI-enabled decision support, o Positive deviation reporting, o FHIR -based feedback tools, o Subgroup -specific analytics. 3. Fund Shared Transformation Infrastructure • Recognize that ACOs and smaller entities cannot build transformation capabilities in isolation. • Allow CMS or states to fund shared infrastructure (e.g., SCAMPs registries, federated learning networks, equality analytics hubs) on behalf of participating organizations. III. Transformation Infrastructure Policy Recommendation: To truly support transformation under APMs, CMS must: 1. Incentivize not just outcomes but the mechanisms that produce them (e.g., standardized care, learning from variation), 2. Invest in technologies and analytics that support community - and provider -led improvement , not just payer oversight, 3. Define clear pathways for using AI, FHIR infrastructure, and patient engagement tools within accountable care models. This approach aligns CMS requirements with the dual goals of transformation infrastructure : federally recognized value, locally generated transformation. Question VB-4 What are the essential data types needed for successful participation in value -based care arrangements? From the perspective of a transformation infrastructure and value -based care arrangements — including ACOs, clinically integrated networks, and transformation collaboratives —the essential data types must support both: 1. Accountability requirements (e.g., payment, benchmarking, CMS reporting), and 2. Transformation activities (e.g., local improvement, learning health system feedback, shared decision -making). Below is a structured list of essential data types , organized by their function in value -based care and mapped to relevant interoperability standards (e.g., USCDI, FHIR). 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 14 I. Core Clinical and Administrative Data (for Accountability and Risk Adjustment) Table 3. Core Clinical and Administrative Data (for Accountability and Risk Adjustment) Data Type Purpose Standard Representation Demographics (incl. race, ethnicity, language, SOGI) Risk stratification, equality measurement, subgroup analysis Patient (US Core) Encounter data Attribution, cost benchmarking, care transitions Encounter (US Core) Problem list / diagnoses Case -mix adjustment, cohort identification Condition (US Core) Procedures and interventions Measure numerator/denominator logic, care pathway analysis Procedure (US Core) Medications and orders Care intensity, medication reconciliation, adherence metrics Medication, MedicationRequest Vitals and lab results Clinical quality measures (e.g., blood pressure control), treatment response Observation, DiagnosticReport II. Transformation -Enabling Data (for Learning and Care Improvement) Table 4 . Transformation -Enabling Data (for Learning and Care Improvement) Data Type Purpose Standard Representation / Notes Plan of care / care pathways Evaluate pathway adherence (e.g., SCAMPs); enable care standardization CarePlan, PlanDefinition, ActivityDefinition Override reason / deviation documentation Identify positive deviation; support learning from variation Task.reasonCode or custom Extension (e.g., diversion -reason) Patient -reported outcomes (PROs) Shared decision -making, quality of life, symptom tracking QuestionnaireResponse, Observation (LOINC -coded) Social determinants of health (SDOH) Contextualize care decisions, stratify by need Observation, Condition, ServiceRequest (e.g., Gravity Project) Care team and referral coordination data Track care continuity, closed - loop referrals CareTeam, PractitionerRole, Task Intervention exposure / transformation activities Attribution of change to specific local actions Procedure, ServiceRequest, or custom transformation logs III. Utilization and Outcome Data (for Accountability and Feedback) 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 15 Table 5. Utilization and Outcome Data (for Accountability and Feedback) Data Type Purpose Standard Representation / Source Utilization data (ED visits, hospitalizations, readmissions) Avoidable utilization measures, cost control Encounter (with class/type codes), claims Mortality / vital status Core population outcome (e.g., length of life) Observation (e.g., date of death), claims, SSA Disparity stratifiers (e.g., dual eligibility, ZIP code, disability status) Equality monitoring, subgroup reporting Patient.address, Coverage, Observation Patient experience / decision quality measures Capture perceived value and choice alignment QuestionnaireResponse, CAHPS, shared decision -making tools IV. Infrastructure and Governance Metadata Table 6. Infrastructure and Governance Metadata Data Type Purpose Standard Representation / Comments Provenance Trace data lineage and trustworthiness Provenance resource (FHIR requirement for dQM) Measure metadata Track logic, definitions, population criteria Measure, Library (CQL/ELM) Performance feedback Close learning loop, enable adjustment MeasureReport, dashboards, analytics exports Policy Recommendation ( transformation infrastructure perspective): CMS and payers should: 1. Prioritize USCDI expansion to include transformation -relevant data types (e.g., override reasons, PROs, care pathway variation), 2. Require FHIR -native reporting for dual use —same data types serve quality measurement and improvement, 3. Fund data infrastructure that supports feedback loops , not just reporting (e.g., registries like SCAMPs, SMART apps), 4. Allow APM participants to count transformation data flows as part of performance reporting (e.g., evidence of pathway adherence, variation learning, equality interventions). Point s of Contact Again, w e thank you for the opportunity to provide input on the health IT ecosystem to support both accountability and transformation and we would welcome the chance to engage further in developing implementation strategies. 
-CMS -0042 -NC Battelle | June 16 2025 | Restricted 16 Nicole Brennan, MPH, DrPH Director, Health Research and Healthcare Quality Improvement Office: 614.424.3590 Direct: 614.746.8041 brennan@battelle.org Darlene Wells Director, Health Analytics Office: 614.424.3590 Direct : 614.424.7692 wells@battelle.org Battelle 505 King Ave Columbus, OH 43201 -2693 http://www.battelle.org 
- 
+CMS-0042-NC
+Request for Information:
+Health Technology
+Ecosystem
+Centers for Medicare & Medicaid Services (CMS)
+Assistant Secretary for Technology Policy (ASTP)/Office of the National
+Coordinator for Health Information Technology (ASTP/ONC) (collectively,
+ASTP/ASTP/ONC)
+Department of Health and Human Services (DHHS)
+June 16, 2025
+Restricted
+
+CMS-0042-NC
+Table of Contents
+Page
+Introduction ............................................................................................................................ 1
+Summary Recommendations ...................................................................................................... 1
+Individual RFI Question Responses ............................................................................................ 3
+Question PR-2 .................................................................................................................... 3
+Question PR-8 .................................................................................................................... 5
+Question PA-5 .................................................................................................................... 9
+Question VB-2 .................................................................................................................. 12
+Question VB-4 .................................................................................................................. 13
+Points of Contact ....................................................................................................................... 15
+List of Tables
+Page
+Table 1. Technologies and Practices That Generate Value ......................................................................... 2
+Table 2. APM Requirements to Recognize the Functions that Generate Value ......................................... 12
+Table 3. Core Clinical and Administrative Data (for Accountability and Risk Adjustment) ......................... 14
+Table 4 . Transformation-Enabling Data (for Learning and Care Improvement) ........................................ 14
+Table 5. Utilization and Outcome Data (for Accountability and Feedback) ................................................ 15
+Table 6. Infrastructure and Governance Metadata ..................................................................................... 15
+Battelle | June 16, 2025 | Restricted i
+
+CMS-0042-NC
+Introduction
+Battelle Memorial Institute (Battelle) welcomes the opportunity to provide input to CMS and
+ASTP/ONC on strategies to advance interoperability and health data infrastructure in support of
+value-based care. As the current CMS-contracted Consensus-based Entity (CBE) we write from
+the perspective of stakeholders implementing clinical quality measures (CQM) both for payment
+models focused on accountability and for payment models focused on care transformation,
+structural investment, and evidence generation. In these latter models, providers and
+communities are empowered to generate value through transformation infrastructure, including
+tools like SCAMPs (Standardized Clinical Assessment and Management Plans)1, FHIR
+standards for positive deviation reporting2, and registries that support learning from local
+variation3.
+Summary Recommendations
+In response to the RFI, we offer the following summary recommendations. Detailed responses
+to individual questions are included below.
+1. Addressing Provider Obstacles to Quality Measurement and Workflow Optimization
+Key Recommendation: CMS and ASTP/ONC should consider investing in standards-based
+infrastructure that supports both accountability and transformation, including:
+• Adoption of Fast Healthcare Interoperability Resources (FHIR®)-native artifacts
+(e.g., PlanDefinition, ActivityDefinition, Measure, MeasureReport),
+• Development of SCAMPs registries and transformation-focused decision support,
+• Infrastructure for capturing override reasons and positive deviations to support
+learning health systems.
+Mitigation Strategy: Prioritize Electronic Health Record (EHR) certification criteria,
+implementation guides (e.g., Making EHR Data More Available for Research and Public Health
+or MedMorph), and funding that encourage clinical workflows to support both outcome
+measurement and innovation tracking.
+2. Use of Bulk FHIR to Simplify Quality Reporting
+Key Recommendation: CMS should consider leveraging Bulk FHIR exports to assume
+responsibility for computing standardized outcome measures, reducing labor intensive
+reporting burdens on providers.
+1 Farias M, Jenkins K, Lock J, Rathod R, Newburger J, Bates DW, Safran DG, Friedman K, Greenberg J. Standardized Clinical
+Assessment And Management Plans (SCAMPs) provide a better alternative to clinical practice guidelines. Health Aff (Millwood).
+2013 May;32(5):911-20. doi: 10.1377/hlthaff.2012.0667. PMID: 23650325; PMCID: PMC3990928.
+2 [PSS-2633] Positive Deviance Reporting and Analysis - Jira (accessed June 12, 2025)
+3 Community Based Care Coordination | Pathways Community HUB Institute (accessed June 12, 2025)
+Battelle | June 16 2025 | Restricted 1
+
+CMS-0042-NC
+Benefits:
+• Consistent, centralized measure calculation,
+• Reduces EHR customization and data mapping,
+• Facilitates equality-focused measurement and subgroup analysis.
+Caution: Bulk FHIR must be paired with timely feedback to providers and should not displace
+investments in transformation infrastructure (e.g., SCAMPs registries, learning systems).
+3. Consolidating Reporting Responsibilities for Dual-Purpose Use
+Key Recommendation: Establish a unified FHIR-based quality data framework that serves
+both CMS and commercial payers using shared standards such as Data Exchange for Quality
+Measures (DEQM), Quality Improvement Core (QI-Core), and US Core.
+Strategies:
+• Certify multi-payer digital registries capable of computing and reporting quality metrics
+once for multiple stakeholders.
+• Recognize SCAMPs and similar registries as dual-purpose intermediaries that serve
+both accountability and transformation needs.
+Technologies to Leverage:
+• Substitutable Medical Applications and Reusable Technologies (SMART) on FHIR
+apps for provider-facing feedback,
+• FHIR Subscriptions for near-real-time event tracking,
+• Clinical Decision Support Hooks (CDS Hooks) for integrating payer insights into
+clinical workflows.
+4. Payer Responsibilities to Support Transformation
+Key Recommendation: Payers, including CMS, should use Bulk FHIR data to calculate
+accountability measures, while also:
+• Returning results in clinically actionable formats,
+• Funding dual-purpose tools (e.g., transformation registries, CDS infrastructure),
+• Supporting data reciprocity and real-time feedback for providers.
+Payers can further reduce burden by enabling claims + clinical hybrid data models and
+supporting federated analytics environments where provider networks retain control over
+transformation metrics.
+5. APM Requirements Should Incentivize Enabling Capabilities
+Key Recommendation: APMs should integrate not only performance expectations, but also
+explicit support for technologies and practices that generate value, including:
+Table 1. Technologies and Practices That Generate Value
+Capability APM Alignment
+AI-enabled care pathways Allow use of shared savings to fund algorithmic
+transformation tools
+Population analytics Require submission of a transformation strategy
+Battelle | June 16 2025 | Restricted 2
+
+CMS-0042-NC
+SCAMPs/standardized pathways Reward adherence or learning from deviations
+PROs and patient engagement Count toward transformation credits
+tools
+CMS should consider also a “Transformation Enablement” track that rewards infrastructure
+development, even in advance of measurable outcome shifts.
+6. Essential Data Types for Value-Based Care
+To successfully participate in modern VBC models, providers and intermediaries must have
+access to a core set of data types supporting both accountability and transformation. These
+include:
+• Core clinical data (conditions, medications, labs),
+• Utilization outcomes (readmissions, ED visits, mortality),
+• Transformation data (care plans, override reasons, PROs, SDOH),
+• Governance metadata (Provenance, Measure definitions, audit trails).
+CMS should consider ensuring these data types are prioritized in United States Core Data for
+Interoperability (USCDI), and that FHIR profiles are defined to ensure consistency across
+vendors.
+Conclusion
+A transformation-focused health IT infrastructure offers a blueprint for aligning federal policy
+with local agency and innovation. CMS and ASTP/ONC can accelerate meaningful value-based
+care by:
+• Consolidating measurement infrastructure using FHIR,
+• Separating outcome-based accountability from care transformation responsibilities,
+• Supporting bi-directional data flows, and
+• Recognizing and funding registries, tools, and applications that enable continuous
+improvement.
+We thank you for the opportunity to provide input and would welcome the chance to engage
+further in developing implementation strategies. Our responses to individual RFI questions are
+included below.
+Individual RFI Question Responses
+Question PR-2
+What are obstacles that prevent development, deployment, or effective utilization of the
+most useful and innovative applications for physician workflows, such as quality
+measurement reporting, clinical documentation, and billing tasks? How could these
+obstacles be mitigated?"
+Obstacles:
+1. Fragmented and Siloed Data Infrastructure:
+Battelle | June 16 2025 | Restricted 3
+
+CMS-0042-NC
+o Clinical data necessary for both SCAMPs implementation and population-level
+outcome tracking (e.g., NAM Vital Signs) is often distributed across disparate
+systems without interoperability.
+o Providers cannot easily retrieve or integrate data needed for both patient-level
+decision support and community-level impact measurement.
+2. Lack of Standardized Support for Transformation Activities:
+o Most health IT systems optimize for documentation and billing, not for continuous
+improvement, innovation, or care planning (e.g., SCAMPs).
+o Transformation-oriented artifacts (e.g., PlanDefinitions, ActivityDefinitions) are
+not standard EHR features.
+3. Quality Measurement Overhead:
+o Providers are burdened by data element mapping and poorly integrated
+measurement tools.
+o Current systems do not distinguish between outcome-based metrics for VBP and
+quality-improvement-oriented metrics for transformation.
+4. Inadequate Support for Local Innovation and Feedback Loops:
+o SCAMPs depend on learning from local practice variation (positive deviation),
+which requires infrastructure for override tracking and outcome monitoring—
+features that are largely unavailable.
+5. Poor Integration of Social and Community Data:
+o Measures such as "Vital Signs" depend on data about social determinants,
+community resources, and public health status, which are typically not captured
+in clinical workflows or supported by standard application programming interface
+(APIs).
+Mitigation Strategies:
+1. Expand USCDI to Include Transformation- and Community-Oriented Data Classes:
+o Include fields for care plan variation (e.g., CDS override reason), positive
+deviation capture, and community-linked outcomes.
+o Align with National Academy of Medicine (NAM) Vital Signs4 and Core Metrics5
+for population health surveillance.
+2. Create a Certification Pathway for Transformation-Supportive HIT:
+o Encourage vendors to support artifacts like SCAMPs
+(PlanDefinition/ActivityDefinition), override reason capture, and local practice
+innovation tracking through FHIR-based infrastructure (e.g., CDS Hooks,
+vSubscription, MedMorph).
+3. Differentiate Quality Reporting Pipelines:
+o Separate outcome-based VBP measurement from learning-oriented
+transformation measures (e.g., avoidable utilization, care appropriateness).
+o Provide infrastructure for community-level aggregation and benchmarking that
+supports the transformation infrastructure vision.
+4. Invest in “Transformation Registries” and Learning Health Networks:
+o Analogous to Qualified Clinical Data Registries (QCDRs), but focused on tracking
+care path variation, patient outcomes, and feedback loops.
+o Support decentralized SCAMP execution and local analytics.
+5. Promote APIs for Social Determinants and Community Health Data Integration:
+4 Vital Signs Initiative - NAM (accessed June 12, 2025)
+5 Vital Signs Core Metrics: Reducing Measurement Burden (Webinar) - NAM (accessed June 12, 2025)
+Battelle | June 16 2025 | Restricted 4
+
+CMS-0042-NC
+o Standardize exchange of data on housing, food insecurity, transportation, and
+local health system capacity using FHIR and public health interoperability
+standards.
+6. Support Clinical Workflow Integration of Improvement Activities:
+o Incentivize incorporation of SCAMPs like tools into physician workflows through
+EHR-embedded decision support, order sets, and documentation aids.
+o Provide grants or shared services to implement SCAMPs on FHIR within under-
+resourced systems.
+Question PR-8
+What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers? For example,
+a. What would be the benefits and downsides of using Bulk FHIR data exports from
+EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the
+burden on providers by performing quality metrics calculations leveraging Bulk
+FHIR data exports?
+I. Key Ways CMS Can Simplify Clinical Quality Data Responsibilities for Providers
+1. Separate Accountability and Transformation Workflows:
+o Use CMS-centralized calculation (via Bulk FHIR) for accountability-focused
+quality metrics (e.g., outcomes, equality, utilization).
+o Delegate transformation-focused measurement (e.g., appropriateness, shared
+decision-making, SCAMPs adherence) to provider networks using FHIR-based
+registries and local analytics infrastructure.
+2. Adopt FHIR-Based Quality Measure APIs (e.g., DEQM, Quality Measure IG (QMIG)):
+o Reduce documentation and data element mapping burden by automating
+computable CQMs from standardized FHIR data using CMS infrastructure.
+o Encourage vendors to natively support FHIR profiles aligned to CMS quality
+reporting programs.
+3. Standardize FHIR Artifacts for Measurement Contexts:
+o Promote uniform FHIR representations of measurement metadata (e.g.,
+Measure, MeasureReport) to ensure semantic consistency across sites and
+vendors.
+4. Support Population-Level Data Use Agreements:
+o Enable delegated intermediaries (e.g., Health Information Exchanges or
+SCAMPs registries) to handle transformation-related data flows, reducing the
+number of reporting endpoints for providers.
+II. Bulk FHIR Export: Benefits and Downsides
+Benefits:
+1. Reduces Provider Reporting Burden:
+o Eliminates the need for redundant data mapping, customized report generation,
+or vendor-specific interfaces for CMS submissions.
+2. Enables Centralized Measure Calculation:
+o CMS can run consistent, transparent calculations across all providers using a
+shared measure library (e.g., Clinical Quality Framework (CQF)-ruler, Clinical
+Quality Language (CQL) engine).
+o Reduces variation and errors due to site-specific interpretation.
+3. Leverages Existing Standards Infrastructure:
+Battelle | June 16 2025 | Restricted 5
+
+CMS-0042-NC
+o Bulk FHIR is an emerging requirement under Trusted Exchange Framework and
+Common Agreement (TEFCA), USCDI+, and payer interoperability rules—
+leveraging it aligns with the broader federal ecosystem.
+4. Supports Equality and Population Monitoring:
+o Allows CMS to calculate subgroup performance and equality metrics at scale
+without imposing new provider workflows.
+Downsides / Limitations:
+1. Limited Local Context:
+o Bulk FHIR lacks the ability to capture contextual features critical for
+transformation (e.g., reasons for deviations, SDH variables not in EHRs).
+2. Lag in Data Readiness and Mapping:
+o Many EHRs still lack full support for US Core profiles, let alone accurate and
+complete mapping to the FHIR resources needed for high-quality CQM
+computation.
+3. Privacy and Trust Barriers:
+o Providers may resist data exports to CMS without tight control over how data will
+be used, interpreted, or audited.
+4. One-Way Flow Undermines Learning Loops:
+o Centralized calculation benefits to CMS but offers little immediate feedback to
+providers unless results are returned quickly and with actionable insights (e.g., as
+part of transformation dashboards).
+Recommendation: Hybrid Model - CMS should consider performing centralized quality
+measurement for accountability purposes using Bulk FHIR, but delegate responsibility
+for transformation metrics and improvement feedback loops to trusted local or regional
+partners (e.g., SCAMPs registries, collaboratives, or state transformation entities). This hybrid
+approach ensures:
+• Equality in oversight (federal-level accountability)
+• Agency in improvement (local-level transformation)
+• Simplification of reporting (automatic data export, fewer labor intensive burdens)
+• Feedback-driven learning (looping insights back through SCAMPs on FHIR)
+b. In what ways can the interoperability and quality reporting responsibilities of
+providers be consolidated so investments can be dually purposed?
+I. Dual-Purposing Interoperability Investments Across Accountability and
+Transformation Goals
+1. Consolidate Around Shared FHIR Infrastructure
+• Use shared FHIR APIs and Bulk FHIR exports to serve both:
+o CMS accountability programs (e.g., outcome reporting, disparities monitoring),
+o and provider-led transformation initiatives (e.g., SCAMPs adherence tracking,
+local learning systems).
+• Invest in a common pipeline using US Core, DEQM, and Clinical Quality Framework
+(CQF) standards, enabling data extraction once and reuse many times.
+Example: A ServiceRequest, Encounter, and Condition resource exported via FHIR can be
+used to:
+• Compute 30-day readmission rate (CMS),
+Battelle | June 16 2025 | Restricted 6
+
+CMS-0042-NC
+• Evaluate local SCAMP protocol adherence (provider),
+• Analyze variance from SCAMPs as signals of positive deviation (registry).
+2. Align Quality Measure Computation with Clinical Decision Support Infrastructure
+• Use shared artifacts (e.g., PlanDefinition, Measure, Library resources) for both
+measurement and care planning.
+• transformation infrastructure's SCAMPs on FHIR already reuses decision logic for both
+clinical workflow guidance and quality tracking—this should be incentivized.
+Strategy: CMS could require or fund dual-purpose CDS artifacts that produce:
+• Real-time guidance (via CDS Hooks, SMART on FHIR), and
+• Computable audit logs that support retrospective measure calculation (e.g.,
+MeasureReport, Provenance).
+3. Enable Feedback Loop Infrastructure
+• Consolidate reporting with feedback: Transformational efforts rely on timely
+feedback, while CMS typically uses retrospective data.
+• Require that investments in interoperability support bi-directional data flows so quality
+reporting systems also serve as clinical learning systems.
+Implementation model: A regional registry (e.g., SCAMPs collaborative or ACO) receives
+data via FHIR Subscription, produces quality reports, and feeds transformation insights
+(e.g., variation, positive deviation) back into care pathways.
+4. Support Intermediaries that Serve Both Federal and Local Needs
+• Encourage development of “shared services” or delegated intermediaries (e.g.,
+Health Information Exchanges (HIEs), SCAMPs registries, or CQMs-as-a-Service
+platforms).
+• These partners can handle reporting requirements on behalf of providers while also
+supporting local QI and decision support.
+Policy lever: CMS could recognize these intermediaries in payment or certification pathways
+and offer data use agreements that accommodate both regulatory and improvement use
+cases.
+5. Focus USCDI and Standards Development on Dual-Use Data
+• Prioritize inclusion of data elements that support both:
+o Population-level metrics (e.g., NAM Vital Signs, community health data, social
+determinants of health (SDH)), and
+o Clinical transformation data (e.g., care plan override reasons, CDS usage,
+patient-reported outcomes).
+II. Transformation Infrastructure Policy Recommendation:
+CMS and ASTP/ONC should consider explicitly promoting a “Dual-Use Data
+Infrastructure” approach—investments in interoperability must support both:
+• Accountability (reporting, benchmarking, payment), and
+• Agency (local learning, care innovation, and improvement).
+This shift reduces duplicative documentation, increases provider buy-in, and aligns federal
+oversight with real transformation on the ground.
+Battelle | June 16 2025 | Restricted 7
+
+CMS-0042-NC
+c. Are there requirements CMS should consider for data registries to support digital
+quality measurement in a more efficient manner? Are there requirements CMS
+should consider for data registries that would support access to real-time quality
+data for healthcare providers to inform clinical care in addition to simplifying
+reporting processes?
+I. CMS Should Recognize and Certify “Dual-Purpose Digital Registries”
+CMS should consider moving beyond static QCDRs and support registries that serve both
+real-time care improvement and retrospective accountability. Under transformation
+infrastructure, such registries would:
+• Support digital quality measurement (dQM) using structured EHR data (via FHIR)
+• Provide feedback to clinicians in near-real time to inform care
+• Capture variation and learning from positive deviations
+• Support federally endorsed outcomes and local improvement priorities
+II. Recommended CMS Requirements for Digital Registries
+1. Standards-Based Data Ingestion
+• Must support US Core and Bulk FHIR ingestion, including Subscriptions and CDS
+Hooks for real-time data.
+• Accept structured EHR data without custom mapping or interfaces.
+• Should implement DEQM (Data Exchange for Quality Measures) and QI-Core profiles
+for computability.
+2. Real-Time Feedback Capabilities
+• Must deliver timely, actionable quality insights to providers (e.g., performance
+summaries, outlier detection, guideline adherence).
+• Should support SCAMPs-like feedback loops by detecting variation and suggesting
+protocol refinements.
+3. Provenance and Auditability
+• Require FHIR Provenance to trace data lineage (who entered what, when, in what
+context).
+• Ensure transparency for both CMS and providers in how data supports measure
+computation and decision-making.
+4. Local Adaptability and Positive Deviation Reporting
+• Registries should support capture and tracking of protocol deviations (e.g., via
+ActivityDefinition, OverrideReason, or custom FHIR extensions).
+• Must be able to distinguish between protocol exceptions and improvement-driven
+local innovation.
+5. Delegated Computation and Measure Certification
+• Allow registries to perform certified measure calculations (e.g., using CQL, CMS-
+approved libraries).
+• Support submission of MeasureReports directly to CMS via FHIR APIs or TEFCA-
+designated endpoints.
+6. Multidimensional Measurement Capacity
+• Must accommodate person-level, facility-level, and community-level metrics,
+including:
+o Outcomes (e.g., avoidable utilization, health equality),
+o Behaviors (e.g., protocol adherence, SCAMP uptake),
+o Experiences (e.g., PROs, patient decision quality).
+Battelle | June 16 2025 | Restricted 8
+
+CMS-0042-NC
+7. Consent and Data Use Governance
+• Require registries to implement transparent data use agreements that clarify:
+o Provider obligations,
+o CMS access rights,
+o Local reuse for learning health systems.
+III. Additional Considerations:
+CMS Should Promote Use of SCAMPs Registries as Exemplars
+SCAMPs-based registries are well-suited to support transformation infrastructure because they:
+• Allow local tailoring of care pathways
+• Capture evidence from variation
+• Support rapid-cycle learning
+• Enable provider feedback and federated reporting
+Example:
+A registry receives a FHIR ServiceRequest for ECMO cannulation, tracks associated decisions
+and overrides, monitors patient outcomes, and feeds data to both:
+• A CMS-calculated outcome quality measure (e.g., mortality, bleeding),
+• A local SCAMP learning loop for refining anticoagulation protocols.
+Policy Recommendation:
+CMS should consider defining and funding Next-Generation Digital Registries that:
+• Use FHIR-native architectures,
+• Support real-time provider-facing quality insights,
+• Enable federated transformation infrastructure like SCAMPs,
+• And are accountable for submitting certified quality measurement outputs to CMS.
+Question PA-5
+What are ways payers can help with simplifying clinical quality data responsibilities of
+providers? For example,
+a. How interested are payers and providers in EHR technology advances that enable
+bulk extraction of clinical quality data from EHRs to payers to allow them to do the
+calculations instead of the provider-side technology?
+I. Ways Payers Can Help Simplify Provider Responsibilities
+1. Offload Accountability Measurement via Bulk FHIR
+• Payers—particularly CMS and managed care organizations—can take primary
+responsibility for computing outcome-based quality metrics (e.g., readmissions,
+mortality, disparities) from Bulk FHIR data exports.
+• Providers focus on care transformation, not formatting data for measure submission.
+2. Promote Shared Intermediaries for Reporting
+• Payers can contract with or certify data intermediaries (e.g., registries, HIEs) that
+collect and transform data once, then serve both payer and provider needs.
+• This reduces the number of separate data extracts, interfaces, and reporting burdens on
+clinical organizations.
+3. Provide Transparent Measure Logic and Benchmarking Tools
+Battelle | June 16 2025 | Restricted 9
+
+CMS-0042-NC
+• When payers calculate measures, they must offer:
+o Access to CQL logic and data definitions,
+o Performance dashboards that mirror internal calculations,
+o Provider-level benchmarking to support transformation.
+4. Fund Dual-Purpose Infrastructure
+• Payers should offer technical assistance grants, shared tools, or per-member
+infrastructure payments for FHIR-based registries, CDS tools, and SCAMPs
+implementation.
+• Investments in transformation support their accountability contracts downstream.
+5. Use Claims + FHIR Clinical Data Hybrid Models
+• Instead of pushing all data responsibility to providers, payers can supplement EHR-
+based clinical data with claims data (already in hand), closing gaps in utilization,
+pharmacy, and longitudinal views.
+II. Interest in Bulk FHIR Extraction:
+Payer Perspective:
+• Strong interest in bulk extraction, particularly for:
+o Standardized calculation of measures across provider types and platforms,
+o Reduction of chart chase and data mapping in HEDIS or Stars reporting,
+o Better integration of clinical detail with longitudinal claims history.
+Provider Perspective (under transformation infrastructure):
+• Conditional interest in bulk FHIR export if paired with reduced reporting burden,
+and:
+o Results are returned to providers quickly and usefully,
+o Data are not used punitively or opaquely,
+o Transformation activities remain provider-driven (e.g., SCAMPs adherence,
+local variation feedback),
+o Payers support dual-use data flows (e.g., investment in learning health system
+tools, not just payer-side analytics).
+Policy Recommendation:
+CMS should consider encouraging payer-side calculation of outcome measures using Bulk
+FHIR but require dual commitments:
+1. Transparency and reciprocity: Return useful, timely results to providers for
+transformation.
+2. Dual-purpose investment: Support tools and intermediaries that providers use for
+SCAMPs, learning, and care improvement—not just accountability.
+This model matches the transformation infrastructure vision: payers recognize and reward
+value through shared infrastructure, and providers generate value through community-based
+innovation and learning.
+b. In what ways can the interoperability and quality reporting responsibilities of
+providers to both CMS and other payers be consolidated so investments can be
+dually purposed? Are there technologies payers might leverage that would
+support access to real time quality data for healthcare providers to inform clinical
+care in addition to simplifying reporting processes?
+I. Consolidating Responsibilities: Dual-Purposing Investments
+1. Consolidate on FHIR-Based Infrastructure
+Battelle | June 16 2025 | Restricted 10
+
+CMS-0042-NC
+• Require or incentivize all payers (CMS, MA plans, commercial insurers) to adopt and
+support FHIR-based quality reporting standards, including:
+o Bulk FHIR for data extraction (e.g., Patient, Encounter, Observation,
+ServiceRequest),
+o MeasureReport, DEQM, and QI-Core profiles for computable, standards-based
+measurement.
+• This enables "report once, use many" approaches and reduces custom extracts per
+payer.
+2. Support Certified Intermediaries for Reporting
+• Establish multi-payer certified registries or shared analytics platforms that:
+o Receive FHIR data from providers,
+o Compute quality measures once using CMS-published CQL logic,
+o Report standardized outputs to CMS and commercial payers,
+o Feed insights back to providers.
+Example: A SCAMPs-enabled regional registry could support measure calculation for CMS,
+Medicaid MCOs, and commercial plans, while giving providers actionable data on care plan
+adherence and variation.
+3. Require Data Reciprocity for Quality Feedback
+• Payers receiving FHIR data from providers should be required to return actionable,
+real-time or near-real-time feedback—not just use the data for retrospective scoring or
+audits.
+• This feedback should align with the transformation loop in transformation infrastructure
+(e.g., identifying avoidable utilization, variation from expected pathways).
+II. Technologies Payers Can Leverage to Support Real-Time Data Use
+1. SMART on FHIR Applications
+• Payers can fund or certify SMART apps embedded within EHRs that:
+o Surface quality gaps,
+o Display performance trends,
+o Suggest SCAMP-aligned interventions at the point of care.
+2. CDS Hooks and Clinical Quality APIs
+• Use CDS Hooks to trigger payer-generated quality guidance (e.g., reminders, risk
+warnings) during clinical encounters.
+• Enable providers to query their own quality performance data via FHIR-based APIs.
+3. FHIR Subscriptions and Event Notifications
+• Payers can subscribe to clinical events (e.g., admissions, discharges, SCAMP
+deviations) using FHIR Subscription and SubscriptionStatus.
+• This supports near real-time monitoring of care pathways and enables faster
+intervention or case management.
+4. Federated Quality Analytics Platforms
+• Use federated learning or distributed query models (e.g., via FHIRPath or CQL) to
+calculate quality metrics within provider-controlled environments.
+• This reduces data movement and preserves control while meeting payer needs.
+Policy Recommendation:
+CMS should consider establishing a multi-payer quality data alignment framework that
+includes:
+• Unified use of FHIR standards for both reporting and clinical transformation,
+Battelle | June 16 2025 | Restricted 11
+
+CMS-0042-NC
+• Support for certified digital registries that serve CMS, Medicaid, and commercial
+plans,
+• Requirements for payers to return real-time quality insights as a condition of
+receiving provider-generated clinical data,
+• Investment in shared tools (e.g., SCAMPs infrastructure, SMART apps, CDS Hooks)
+that support bidirectional learning.
+This dual-purpose model reduces redundancy, increases utility, and aligns with the
+transformation infrastructure principle: recognize value centrally, generate value locally.
+Question VB-2
+How can key themes and technologies such as artificial intelligence, population health
+analytics, risk stratification, care coordination, usability, quality measurement, and
+patient engagement be better integrated into APM requirements?
+I. Reorient APM Requirements to Recognize the Functions that Generate Value
+Most current APMs reward observed performance (e.g., measured outcomes, utilization), but do
+not explicitly require or support the upstream actions, resources, and tools that actually
+produce transformation. Under transformation infrastructure, CMS should consider:
+Table 2. APM Requirements to Recognize the Functions that Generate Value
+Theme/Technology Integration Strategy in APM Requirements
+Artificial Intelligence Allow or encourage the use of AI-enabled care standardization
+(AI) tools (e.g., SCAMPs), AI-based risk prediction, and decision
+support systems that identify positive deviations or optimize care
+pathways. APMs should allow shared savings to be used to fund
+algorithmic infrastructure.
+Population Health Require ACOs and APM entities to submit a transformation
+Analytics strategy that describes how population-level insights (e.g.,
+preventable utilization patterns, equality disparities) are used to
+guide improvement investments.
+Risk Stratification APMs should incentivize stratification not only for identifying
+high-cost patients, but also for tailoring care transformation
+interventions (e.g., specific SCAMPs pathways for subpopulations).
+Care Coordination APMs should support funding for coordination infrastructure (e.g.,
+closed-loop referral tracking, community partner integration) as an
+allowable transformation expense.
+Usability Require that APMs invest in tools that are integrated into
+workflows via SMART on FHIR, CDS Hooks, or EHR-native
+modules—not just external portals. CMS could define a "minimum
+usability certification" for tech used in care improvement.
+Quality Promote dual-use measurement systems: same data feeds (via
+Measurement FHIR) used for both CMS accountability measures and local
+transformation feedback. Registries or SCAMPs platforms should
+be recognized as reporting intermediaries.
+Patient Engagement Require that APMs incorporate shared decision-making, PROs,
+and tools like decision quality measures as core transformation
+Battelle | June 16 2025 | Restricted 12
+
+CMS-0042-NC
+components. Patient-facing apps or survey tools should be
+subsidizable under APM shared savings.
+II. Structural Changes CMS Could Make to APMs
+1. Create a “Transformation Enablement” Track Within APMs
+• Parallel to risk-bearing and performance tracks, APMs should include a track focused
+on building the infrastructure for transformation (e.g., technology deployment,
+SCAMPs uptake, AI feedback loops).
+• Participants would earn credit for implementing systems that enable future high
+performance, even before measurable outcomes shift.
+2. Define a Set of CMS-Approved “Enabling Capabilities”
+• Similar to "meaningful use", CMS could define a menu of enabling capabilities that APM
+entities must adopt or report progress on:
+o AI-enabled decision support,
+o Positive deviation reporting,
+o FHIR-based feedback tools,
+o Subgroup-specific analytics.
+3. Fund Shared Transformation Infrastructure
+• Recognize that ACOs and smaller entities cannot build transformation capabilities in
+isolation.
+• Allow CMS or states to fund shared infrastructure (e.g., SCAMPs registries, federated
+learning networks, equality analytics hubs) on behalf of participating organizations.
+III. Transformation Infrastructure Policy Recommendation:
+To truly support transformation under APMs, CMS must:
+1. Incentivize not just outcomes but the mechanisms that produce them (e.g.,
+standardized care, learning from variation),
+2. Invest in technologies and analytics that support community- and provider-led
+improvement, not just payer oversight,
+3. Define clear pathways for using AI, FHIR infrastructure, and patient engagement
+tools within accountable care models.
+This approach aligns CMS requirements with the dual goals of transformation infrastructure:
+federally recognized value, locally generated transformation.
+Question VB-4
+What are the essential data types needed for successful participation in value-based care
+arrangements?
+From the perspective of a transformation infrastructure and value-based care arrangements—
+including ACOs, clinically integrated networks, and transformation collaboratives—the essential
+data types must support both:
+1. Accountability requirements (e.g., payment, benchmarking, CMS reporting), and
+2. Transformation activities (e.g., local improvement, learning health system feedback,
+shared decision-making).
+Below is a structured list of essential data types, organized by their function in value-based
+care and mapped to relevant interoperability standards (e.g., USCDI, FHIR).
+Battelle | June 16 2025 | Restricted 13
+
+CMS-0042-NC
+I. Core Clinical and Administrative Data (for Accountability and Risk Adjustment)
+Table 3. Core Clinical and Administrative Data (for Accountability and Risk Adjustment)
+Data Type Purpose Standard
+Representation
+Demographics (incl. race, Risk stratification, equality Patient (US Core)
+ethnicity, language, measurement, subgroup analysis
+SOGI)
+Encounter data Attribution, cost benchmarking, care Encounter (US Core)
+transitions
+Problem list / diagnoses Case-mix adjustment, cohort Condition (US Core)
+identification
+Procedures and Measure numerator/denominator Procedure (US Core)
+interventions logic, care pathway analysis
+Medications and orders Care intensity, medication Medication,
+reconciliation, adherence metrics MedicationRequest
+Vitals and lab results Clinical quality measures (e.g., blood Observation,
+pressure control), treatment response DiagnosticReport
+II. Transformation-Enabling Data (for Learning and Care Improvement)
+Table 4 . Transformation-Enabling Data (for Learning and Care Improvement)
+Data Type Purpose Standard Representation /
+Notes
+Plan of care / care Evaluate pathway adherence CarePlan, PlanDefinition,
+pathways (e.g., SCAMPs); enable care ActivityDefinition
+standardization
+Override reason / Identify positive deviation; Task.reasonCode or custom
+deviation support learning from Extension (e.g., diversion-reason)
+documentation variation
+Patient-reported Shared decision-making, QuestionnaireResponse,
+outcomes (PROs) quality of life, symptom Observation (LOINC-coded)
+tracking
+Social determinants of Contextualize care decisions, Observation, Condition,
+health (SDOH) stratify by need ServiceRequest (e.g., Gravity
+Project)
+Care team and referral Track care continuity, closed- CareTeam, PractitionerRole, Task
+coordination data loop referrals
+Intervention exposure / Attribution of change to Procedure, ServiceRequest, or
+transformation specific local actions custom transformation logs
+activities
+III. Utilization and Outcome Data (for Accountability and Feedback)
+Battelle | June 16 2025 | Restricted 14
+
+CMS-0042-NC
+Table 5. Utilization and Outcome Data (for Accountability and Feedback)
+Data Type Purpose Standard Representation /
+Source
+Utilization data (ED visits, Avoidable utilization Encounter (with class/type codes),
+hospitalizations, measures, cost claims
+readmissions) control
+Mortality / vital status Core population Observation (e.g., date of death),
+outcome (e.g., claims, SSA
+length of life)
+Disparity stratifiers (e.g., dual Equality monitoring, Patient.address, Coverage,
+eligibility, ZIP code, disability subgroup reporting Observation
+status)
+Patient experience / decision Capture perceived QuestionnaireResponse, CAHPS,
+quality measures value and choice shared decision-making tools
+alignment
+IV. Infrastructure and Governance Metadata
+Table 6. Infrastructure and Governance Metadata
+Data Type Purpose Standard Representation /
+Comments
+Provenance Trace data lineage and Provenance resource (FHIR
+trustworthiness requirement for dQM)
+Measure metadata Track logic, definitions, Measure, Library (CQL/ELM)
+population criteria
+Performance Close learning loop, enable MeasureReport, dashboards,
+feedback adjustment analytics exports
+Policy Recommendation (transformation infrastructure perspective):
+CMS and payers should:
+1. Prioritize USCDI expansion to include transformation-relevant data types (e.g.,
+override reasons, PROs, care pathway variation),
+2. Require FHIR-native reporting for dual use—same data types serve quality
+measurement and improvement,
+3. Fund data infrastructure that supports feedback loops, not just reporting (e.g.,
+registries like SCAMPs, SMART apps),
+4. Allow APM participants to count transformation data flows as part of performance
+reporting (e.g., evidence of pathway adherence, variation learning, equality
+interventions).
+Points of Contact
+Again, we thank you for the opportunity to provide input on the health IT ecosystem to support
+both accountability and transformation and we would welcome the chance to engage further in
+developing implementation strategies.
+Battelle | June 16 2025 | Restricted 15
+
+CMS-0042-NC
+Nicole Brennan, MPH, DrPH
+Director, Health Research and Healthcare Quality Improvement
+Office: 614.424.3590
+Direct: 614.746.8041
+brennan@battelle.org
+Darlene Wells
+Director, Health Analytics
+Office: 614.424.3590
+Direct: 614.424.7692
+wells@battelle.org
+Battelle
+505 King Ave
+Columbus, OH 43201-2693
+http://www.battelle.org
+Battelle | June 16 2025 | Restricted 16

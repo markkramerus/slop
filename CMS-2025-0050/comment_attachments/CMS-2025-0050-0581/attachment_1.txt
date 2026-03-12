@@ -1,17 +1,676 @@
- RESTRICTION ON DISCLOSURE AND USE OF DATA This RFI response includes data that shall not be disclosed outside the Government and shall not be duplicated, used or disclosed—in whole or in part—for any purpose other than to evaluate this RFI response. This restriction does not limit the Government’s rights to use information contained in this data if it is obtained from another source without restriction. The data subject to this restriction are embedded in the RFI response and contain trade secrets and commercial or financial information voluntarily submitted by IBM that are either specifically, exempted from disclosure by statute or privileged or confidential within the meaning of the exemption set forth in Sections 552(b)(3) and (4), respectively, of the Freedom of Information Act, 5 U.S.C. 552, the disclosure of which could invoke criminal sanctions of 18 U.S.C. 1905. International Business Machines (IBM) Corporation Request for Information (RFI) File Code: CMS-0042-NC June 16, 2025 Department of Health and Human Services (HHS) Centers for Medicare & Medicaid Services (CMS) Health Technology Ecosystem Submitted by: International Business Machines (IBM) Corporation 6710 Rockledge Drive Bethesda, MD 20817 Contract POC: Paul Bury Contracts and Negotiations Manager pbury@us.ibm.com Cell: 720-841-7984 eFAX: 845-463-5012 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-i Table of Contents Section Page Executive Summary .......................................................................................................................1 1 Digital Identity (Question TD-3)..........................................................................................1 2 Technical Standards and Certification (Questions TD-4, TD-7 & TD-10)......................2 3 Data Exchange (Questions TD-12, TD-13, TD-15, TD-16 & TD-17) ...............................6 Table of Figures Figure 1. Pre-Certified API Gateway & Patterns .....................................................................10 Table of Tables Table 1. Tradeoffs between USCDI and Full EHI ....................................................................10 Table 2. Challenges with Bulk FHIR APIs ................................................................................12 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-1 Executive Summary IBM appreciates the opportunity to respond to the CMS Request for Information (RFI) on the future of the health technology ecosystem. Our recommendations focus on advancing interoperability, strengthening infrastructure, and promoting secure, patient-centered innovation. To unlock the full potential of health data, CMS should continue to expand access to electronic health information (EHI) through standardized, open APIs based on HL7® FHIR® and aligned with USCDI. APIs reduce administrative burden, improve care coordination, and enable real-time data access for providers, patients, and developers. Incentives should be tied to measurable outcomes, with support for smaller organizations to adopt these tools. We propose evolving USCDI into a modular framework, defining a required core and optional modules, to support program-specific needs. Expanding USCDI to include richer clinical, genomic, and real-world data will enhance public health surveillance, precision medicine, and care for complex patients. CMS should also endorse trusted non-CMS data networks that meet high standards for security, quality, and public health utility. Identity assurance protocols, patient consent management, and app transparency tools will be critical to building trust. In addition, CMS should invest in scalable bulk FHIR APIs to support population-level analytics. Standardized API patterns, audit logging, and shared infrastructure will address performance and reliability concerns. IBM brings decades of experience supporting CMS, HHS, and other agencies, and has led in the development of FHIR-based tools, including the LinuxForHealth FHIR Server, clinical trial matching platforms, post-market safety systems, patient engagement and survey tool, in addition to developing data standards leveraging FHIR for a variety of data types, including Real-world Data (RWD), Structured Product Labeling (SPL), and Pharmaceutical Quality and Chemistry & Manufacturing Controls (PQ/CMC). We propose a centralized infrastructure strategy featuring consent-based data pipelines, a Federated Digital Identity Hub, pre-certified API toolkits, and automated “Security as Code” practices. This approach enables CMS to act as both regulator and enabler, offering foundational identity, consent, and monitoring services to scale innovation without placing undue burden on providers or app developers. 1 Digital Identity (Question TD-3) 1.1 TD-3. Regarding digital identity implementation, what are the challenges and benefits? How would requiring digital identity credentials impact cybersecurity and data exchange? Many of the digital identity credential services, such as Login.gov, ID.me, and CLEAR support NIST 800-63-3 standards to varying degrees, however, the absence of a uniform identity assurance framework introduces inconsistencies in how patients and providers authenticate across different platforms. CMS should consider:  Requiring use of NIST 800-63-3 compliant Identity Assurance Level 2 (IAL2) and Authentication Assurance Level 2 (AAL2) for both patient- and provider-facing digital identity services. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-2  Exploring options for centralizing trusted identity credentialing via Medicare.gov or TEFCA-connected services to streamline access across multiple systems.  Providing financial or technical support for low-resource providers and health systems to adopt compliant identity solutions without burdening operational capacity. A consistent identity model would strengthen digital access, limit duplication across systems, and support patient trust in third-party health applications. 2 Technical Standards and Certification (Questions TD-4, TD-7 & TD-10) 2.1 TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? Since 2021, U.S. payers have been required to comply with CMS interoperability mandates, which include the use of open, standards-based APIs to support scalable and secure data exchange. At first glance, these requirements may appear to be regulatory obligations; however, they are intended to serve as the foundation for a modern, API-driven health data ecosystem. When implemented strategically, open APIs, especially those based on HL7 FHIR, can reduce administrative friction, improve data liquidity, and enhance patient and provider experiences, leading to measurable return on investment for payers. Despite these benefits, adoption remains uneven. Some payers treat open APIs as strategic enablers, while others continue to rely on proprietary systems that limit interoperability, stifle innovation, and create long-term costs. To accelerate widespread adoption and reduce dependency on closed platforms, CMS should take the following actions: 1. Reframe API mandates as strategic investments Communicate that open APIs are not merely compliance checkboxes, but key building blocks for care transformation, innovation, and operational efficiency. Highlight success stories where open APIs reduced prior authorization time, improved member access to data, or enabled new value- based care models. 2. Tie financial incentives to open API usage Expand CMS bonus programs, rebates, and grants to explicitly reward payers and vendors that adopt and implement open, standards-based APIs. This includes those certified under the Assistant Secretary for Technology Policy and Office of the National Coordinator for Health Information Technology (ASTP/ONC) Health IT Certification Program and aligned with FHIR R4 or higher. Provide targeted technical assistance to help small and mid-sized payers transition away from proprietary interfaces. 3. Increase transparency through benchmarking Develop and publish comparative dashboards showing payer-level adoption and performance of open APIs. Track metrics and use public benchmarks such as the following to motivate lagging organizations while showcasing leaders:  Percentage of member records accessible via open APIs  Third-party application integration rates 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-3  Average response time for patient data requests via open APIs 4. Invest in shared FHIR-based infrastructure Support regional or national FHIR-based utilities that reduce duplicative efforts and make API adoption more accessible. Multi-stakeholder collaboratives, including payers, providers, vendors, and consumer advocates, can co-develop these utilities to standardize implementations and reduce fragmentation. 5. Link open API outcomes to CMS Stars and value-based care programs Tie a portion of CMS quality ratings, bonus calculations, and innovation model participation to measurable outcomes derived from open API adoption. Metrics could include:  Percent reduction in manual data exchange workflows  Percent improvement in care coordination metrics  Patient satisfaction with digital access tools 2.2 TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? The USCDI has improved interoperability and health data exchange across the U.S. healthcare system by defining a standardized set of health data classes and constituent data elements. To support evolving public health needs over time, USCDI releases updated versions of their data standard featuring new data classes and/or elements. Adoption of these additions is embedded in ASTP/ONC’s certification criteria so that electronic health record (EHR) vendors are required to adopt the standard. However, several limitations of USCDI still need to be addressed in order to support more ubiquitous data usage by patients, providers, and federal agencies. 2.2.1 Examples of USCDI Limitations for CMS Given the USCDI format only accounts for the minimum data necessary for interoperability, the dataset is incomplete as many clinically relevant data elements are missing from their respective classes. Some examples of this are detailed below. 1. Lack of Death Information While patient death date is included within the current version of USCDI (v5), other death details such as causation, manner, mechanism, and location are not present. Incorporating more detailed patient death information into USCDI adds significant value to the standardized set of data by supporting richer, more holistic patient care and coordination. These enhancements would also improve post-market medical product surveillance efforts, provide additional epidemiological insights to track trends in disease, and reveal geospatial insights to understand patterns (e.g., environmental exposures based on geographic location). 2. Handling of Chronic Disease Further expansion of the data elements in existing data classes, such as the elements defined within the Problems data class, would greatly benefit the researchers that rely on USCDI. For example, certain details on patient problems and conditions are not included, such as data elements specific to the identification and analysis of chronic diseases, conditions, and/or disorders. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-4 Better tracking of chronic diseases can substantially drive down healthcare utilization and costs. Given that chronic conditions including diabetes, hypertension, heart disease, cancer, and Chronic Obstructive Pulmonary Disease (COPD) account for the majority of morbidity, mortality, and healthcare spending in the U.S.1 Currently, USCDI includes general problem lists and vital signs, but does not include condition-specific markers (e.g., HbA1c for diabetes, ejection fraction for heart failure, spirometry results for COPD). Addressing these gaps by expanding the data elements available in USCDI would better support chronic disease management and outcome tracking for patients. These updates would also reduce costs, given that CMS spending would ultimately decrease due to early patient intervention which can reduce costly hospitalizations and procedures needed due to lack of treatment. 3. Need for Additional Data Classes Furthermore, the USCDI data classes need to be continuously expanded to account for advancements in health care as technology modernizes the way patients and providers interact with each other and their data. Certain data domain areas that do not yet exist in USCDI include those for data on genomics, imaging, and digital health technologies (DHTs) such as wearables. These technologies and associated data represent a new frontier that support clinical research and enable more patient-centered healthcare. For example, genomic data enables precision medicine and personalized, tailored treatments for patients based on their individual genetic variations. Integrating standardized genomic data into EHRs can make clinicians aware of gene-drug interactions and certain types of hereditary risks. Similarly, imaging data is central to the diagnosis and treatment of disease. By standardizing imaging data within USCDI, other approaches such as AI can be used for imaging (e.g., approaches for tumor detection or fracture classification) to more quickly diagnose and treat patients. Last, the inclusion of continuous, longitudinal data from DHTs enables real-time, patient-centered care and early intervention by allowing clinicians to detect deterioration and progression faster and ultimately treating patients earlier. Longitudinal, real- world data collection from DHTs also fuels investigation and innovation by researchers, allowing for long-term continuous monitoring in a patient’s everyday environment which can inform predictive models and other AI applications. 2.2.2 Use of Language Models to Support Data Standardization While recent improvements in language models have enhanced our ability to process and interpret unstructured or semi-structured data, this does not eliminate the need for well-defined data standards, especially in high-stakes environments such as healthcare. A non-proprietary, less structured format might offer broader data coverage and flexibility, but it comes at the cost of increased ambiguity, inconsistency, and processing complexity. Language models can help interpret unstructured data, but their interpretations are probabilistic, not deterministic, resulting in higher risks of introducing error, bias, or misalignment, especially when data elements lack consistent meaning across sources. This creates risks when integrating data, training AI models, or conducting regulatory reviews. 1 https://pmc.ncbi.nlm.nih.gov/articles/PMC10830426/#:~:text=of%20chronic%20disease.- ,Chronic%20diseases%20like%20diabetes%2C%20heart%20disease%2C%20stroke%2C%20and%20cancer,mortali ty%20in%20the%20United%20States. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-5 Standardized data formats, in contrast, enable shared meaning and interoperability across systems which brings about more reliable aggregation, model training, and oversight. In healthcare, where trust, transparency, and accountability are critical, standards enable clear documentation of data provenance and model development processes, making it easier to audit, validate, and govern AI systems responsibly. While there may be a role for more flexible formats to enhance data availability, they should be used in a complementary way, not as a replacement for structured, standards-based approaches. 2.2.3 Recommendations to Enhance USCDI for CMS ASTP/ONC and CMS may consider a tiered approach to expanding USCDI, by opting for a ‘core’ module with ‘optional’ modules, where mandatory core elements are defined and optional modules are created based on specific use cases. This strategy is similar to how USCDI+ defines data elements that operate as extensions to the existing USCDI in order to meet specific programmatic and/or use case requirements. A pilot program could be launched to evaluate this tiered approach and test new data elements specific to CMS. IBM brings deep expertise and significant experience in developing, testing, and implementing data standards for structured data from DHTs and real- world data (RWD) sourced from EHRs, along with the development of corresponding implementation guides. IBM can support CMS in identifying and refining new data elements for inclusion in USCDI. Expanding standardized data elements within USCDI will enhance consistency, diversity, and completeness across vendors and institutions, enabling CMS to gain a more comprehensive view of patient health, uncover actionable insights, improve outcomes, and reduce costs. 2.3 TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certification that requires a developer's APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable privacy laws? Many digital health applications that patients use to access their health data may fall outside of HIPAA’s regulatory scope, creating potential for inadvertent misuse or overcollection of sensitive health information. To protect patient trust and promote responsible data use, CMS should consider:  Requiring explicit, role-based patient consent for data access via third-party applications. This consent should be time-bound, logged, and aligned with HIPAA’s minimum necessary standard.  Encouraging transparency by maintaining a CMS-approved registry or voluntary certification program for third-party digital health apps, enabling patients to better understand which tools meet federal privacy and security benchmarks. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-6 3 Data Exchange (Questions TD-12, TD-13, TD-15, TD-16 & TD-17) 3.1 TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? There is a strong case for CMS to endorse non-CMS data sources and networks, provided certain conditions are met. The following points provide some rationale for endorsement: 1. Accelerating Interoperability : Endorsing non-CMS data sources can accelerate the realization of nationwide interoperability, enabling patient data to follow the individual across payers, providers, and care settings. 2. Supporting Patient-Centered Care : CMS policy already encourages patient access to data through third-party applications and APIs, as mandated by the CMS Interoperability and Patient Access Final Rule. Endorsing trusted non-CMS networks aligns with the goal of putting patients at the center of care by broadening access to their health information. 3. Leveraging Innovation : Many non-CMS networks and data sources are at the forefront of innovation, piloting new interoperability standards (such as FHIR) and use cases. To ensure that endorsement of non-CMS data sources and networks advances public health goals and maintains trust, CMS should consider the following criteria and metrics: 1. Standards Compliance : Adherence to established interoperability standards, such as HL7 FHIR and USCDI, and the use of standardized, openly published APIs will facilitate secure, real-time data exchange. Sample metrics include percentage of API transactions conforming to FHIR R4 or higher or use of certified Health IT products listed in the ASTP/ONC Cures Act Certification Program. 2. Data Quality and Completeness : Demonstrating proven ability to provide accurate, timely, and complete datasets, including claims, clinical, encounter, and social determinants of health data as well as usage of mechanisms for regular data validation and quality assurance. Sample metrics include percentage of missing data elements or accuracy rate from quarterly data audits. 3. Patient Access and Usability : Support for patient-directed access to data, including the ability for patients to use third-party apps of their choice, and transparent consent management and clear patient education on data use. Sample metrics include percentage of members able to access their data through certified third-party apps or percentage of patients surveyed reporting understanding of data sharing practices. 4. Public Health Utility : Demonstrated value in supporting public health reporting, surveillance, and emergency response needs plus alignment with public health accreditation criteria for data sharing and interoperability. Sample metrics include the number of public health initiatives or registries participated in or average response time to public health data inquires. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-7 3.2 TD–13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient’s electronic health information (EHI)? 3.2.1 New Opportunities and Advancements APIs that enable access to the full scope of a patient’s electronic health information (EHI), leveraging standards and data sets such as FHIR and USCDI, are transforming healthcare data interoperability. This shift opens up a wide range of opportunities and advancements across clinical care, patient engagement, research, and operational efficiency. 1. Enhanced Care Coordination and Real-Time Data Exchange APIs that provide access to the full scope of a patient’s electronic health information help break down data silos across disparate healthcare systems, including EHRs, labs, imaging, and billing platforms. They enable real-time, seamless data exchange among providers, payers, and patients. This interoperability gives clinicians timely access to comprehensive patient records, reducing redundant testing, minimizing medical errors, and enhancing clinical decision-making throughout the care continuum. It also supports smoother care transitions, referrals, and coordinated care planning, particularly for individuals with complex or chronic conditions. 2. Patient Empowerment and Engagement Patients can aggregate their data from multiple providers and EHRs into a single, unified record using consumer-facing apps, empowering them to manage their health more proactively. APIs enable patients to contribute self-generated health data (e.g., from wearables or remote monitoring devices) directly into their EHR, fostering more personalized and continuous care. 3. Innovation in Healthcare Applications and AI Integration APIs providing access to the entirety of EHIs create a fertile environment for third-party developers to build innovative apps for clinical decision support, medication management, care coordination, and remote monitoring. AI and machine learning can be layered on top of FHIR APIs to automate data mapping, quality checks, and deliver real-time, personalized insights for both clinicians and patients. Frameworks like SMART on FHIR enable secure, standardized integration of these apps with EHRs, accelerating the adoption of advanced digital health tools. 4. Improved Administrative Efficiency and Reduced Burden APIs providing access to the entirety of EHIs streamline administrative processes such as claims, billing, and prior authorizations by enabling automated, real-time data exchange between providers and payers. This reduces manual data entry, minimizes errors, and speeds up reimbursement cycles, contributing to a more efficient healthcare system. 5. Advancements in Research and Population Health Researchers can access richer, more comprehensive datasets (with appropriate consent), facilitating large-scale studies, real-world evidence generation, and public health surveillance. Harmonized data standards (USCDI, FHIR) ensure that information is consistent and comparable across sources, supporting more robust analytics and outcomes measurement. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-8 6. Regulatory Alignment and Futureproofing The adoption of USCDI as a standardized data set ensures that APIs expose a harmonized, evolving core of essential health information, supporting regulatory compliance and adaptability to future policy changes. CMS and the ASTP/ONC policies are driving the expansion of API-enabled access, setting the stage for nationwide interoperability and patient-centric care. IBM is a global leader in advancing API-based access to the full scope of a patient’s EHI. As long- time proponents of HL7® FHIR® standards, we are proud contributors to the open-source LinuxForHealth FHIR Server, which enables secure, scalable data exchange across systems. In addition, we have developed a range of FHIR-based applications and tools accessing the entirety of a patient’s EHI to address diverse enterprise needs, including:  Seamless data transformation from HL7 to FHIR, and from FHIR to various other formats  Clinical trial matching platform leveraging Electronic Health Record (EHR) data  Integration and analysis of genomic and clinical data for precision medicine  Patient engagement and survey tool for the Food and Drug Administration (FDA)  Large-scale, active post-market surveillance system for biologic products at FDA With deep technical expertise and hands-on experience, IBM is well-positioned to help scale API adoption and deliver on the promise of truly interoperable, patient-centered care. 3.2.2 Primary Obstacles While APIs for comprehensive EHI access offer transformative potential, significant barriers hinder their adoption and effectiveness. These challenges span technical, regulatory, financial, and cultural domains. 1. Technical and Structural Barriers Many healthcare organizations rely on outdated EHRs and proprietary systems that lack native FHIR/API support, requiring costly middleware or full replacements. Inconsistent adoption of FHIR, USCDI, and HL7 across vendors creates fragmented data formats, complicating cross- system integration. Building compliant APIs that meet HHS/CMS technical specifications demands specialized expertise, which many organizations lack. 2. Financial and Resource Constraints API development, cloud migration, and staff training strain budgets, especially for rural/small practices. Sustaining interoperability infrastructure (e.g., FHIR server updates, security patches) requires dedicated funding. Organizations often deprioritize interoperability investments in favor of immediate clinical or financial needs. 3. Cultural and Organizational Resistance Proprietary EHR vendors discourage open data sharing to retain market dominance, perpetuating data silos. Clinicians resist changes to documentation practices or new data-sharing workflows. Limited FHIR/USCDI expertise among IT teams and providers slows adoption. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-9 4. Regulatory and Compliance Challenges USCDI and FHIR versions are frequently updated, requiring continuous system adaptations to maintain compliance. Balancing HIPAA/regulatory requirements with data-sharing mandates increases implementation complexity (e.g., consent management, encryption). HHS API certification processes are time-consuming, particularly for smaller providers. 5. Security and Trust Concerns Expanded API surfaces increase vulnerability to breaches, requiring advanced authentication and monitoring tools. Granular control over data-sharing permissions remains technically challenging at scale. As CMS expands API-based access to patient data through initiatives like Blue Button 2.0, the Provider Access API, and Prior Authorization APIs, the integrity and security of these endpoints become increasingly critical to adoption and trust. To support secure and scalable integration:  CMS should adopt SMART on FHIR and OAuth 2.0 as foundational standards for third- party application access.  All API implementations should align with HIPAA Technical Safeguards (45 CFR §164.312), with published technical guidance mapped to NIST SP 800-53 control families. These recommendations promote consistent security practices across platforms, reduce implementation friction for developers, and help mitigate risks related to unauthorized access or data misuse. 3.2.3 Case Study: Standardize with Pre-Certified API Gateways & Patterns (AWS) Context: A CMS-aligned health plan is integrating multiple digital health applications that require access to Medicare beneficiary data via FHIR APIs. Each integration must comply with SMART on FHIR authentication, enforce API rate limits, and support detailed audit logging. Challenge: Integrations were inconsistent, and each app required a separate security review — increasing risk, slowing onboarding, and creating redundant effort across security and operations teams. Solution: The organization deploys a pre-certified pattern using AWS API Gateway, tightly integrated with:  Cognito for OAuth 2.0 Authorization Code Flow and ID token issuance  Lambda authorizers to enforce FHIR-specific access scopes and JWT validation  AWS WAF to provide protection against injection attacks and bots  CloudWatch Logs for API access logging, traceability, and anomaly detection  IAM policy boundaries for backend services accessing protected data (e.g., DynamoDB, RDS, HealthLake) 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-10 Figure 1. Pre-Certified API Gateway & Patterns All configuration is defined as Infrastructure-as-Code (IaC) using Terraform, including version- controlled gateway policies and pre-approved endpoints. App developers are issued Software Development Kit (SDK) templates that conform to the pattern. Result: App onboarding timelines drop from 4 weeks to under 5 days; the security team only needs to validate deviations from the pattern; and CMS interoperability mandates are met, and data access requests are more predictable and auditable. 3.2.4 Primary Tradeoffs between USCDI and Full EHI The distinction between the USCDI and the broader concept of full EHI is fundamental to current interoperability strategies. As data processing capabilities advance, the tradeoffs between these two approaches become increasingly significant. Table 1. Tradeoffs between USCDI and Full EHI Aspect USCDI Full EHI Scope Standardized, limited set of data elements All electronic health information Interoperability High (within defined elements) Variable (depends on data type/format) Implementation Simpler, lower technical burden Complex, requires advanced infrastructure Regulatory Clarity High (mandated, well-defined) Lower (broader, less standardized) Innovation Support Moderate (incremental updates) High (enables advanced analytics, AI, etc.) Risk of Overload Low High (without filtering/curation) Patient Impact Reliable access to core data Potentially richer, more comprehensive view 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-11 The primary tradeoff is between the predictability, simplicity, and interoperability of USCDI versus the completeness, flexibility, and innovation potential of full EHI. As data processing technologies mature, organizations are better positioned to leverage full EHI, but they must still balance these benefits against the risks and complexities of broader data exchange. USCDI provides a stable, standardized starting point, while full EHI unlocks the next generation of patient- centered, data-driven healthcare. 3.3 TD-15. Bulk FHIR APIs: 3.3.1 How would increased use of bulk FHIR improve use cases and data flow? Increased use of bulk FHIR will fundamentally improve healthcare data interoperability by enabling efficient, secure, and scalable data flows for population-level use cases. This will drive better clinical outcomes, support regulatory compliance, and foster innovation in analytics and care delivery. Several key improvements emerge as the use of bulk FHIR expands. Population-Level Data Exchange and Analytics  Bulk FHIR enables efficient extraction and transfer of large healthcare datasets, which is essential for use cases involving population health management, quality measurement, and research. For example, payers can use bulk FHIR to obtain data on all patients in a cohort to identify care gaps, track chronic conditions, or plan outreach for preventive care.  This approach replaces the need for thousands of individual API calls with asynchronous, parallel data processing, drastically reducing latency and boosting performance for large- scale exports. Regulatory Alignment and Compliance  CMS and ASTP/ONC are actively involved in initiatives and coalitions to test and standardize bulk FHIR data exchange.  Bulk FHIR supports compliance with the 21st Century Cures Act, which mandates standardized APIs for patient and population-level access to electronic health records (EHRs). CMS programs like Data at the Point of Care and the Beneficiary Claims Data API already leverage bulk FHIR to provide providers and accountable care organizations with computable, cross-system data. Improved Data Flow and Integration  Bulk FHIR streamlines the process of extracting, transforming, and importing large volumes of healthcare data, making integration across EHRs, payers, and analytics platforms more straightforward and cost-effective.  The use of standardized FHIR resources ensures that data is discrete, computable, and easily accessible, facilitating real-time integration with applications such as clinical decision support, quality reporting, and patient engagement tools.  Advanced features such as type filtering and group-based exports allow organizations to tailor data extraction to specific cohorts or resource types, reducing unnecessary data transfer and enhancing privacy controls. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-12 Performance and Scalability  Real-world testing shows that bulk FHIR APIs can handle millions of resources efficiently, especially when optimized or implemented in custom solutions (e.g., HIEs). However, performance can vary between EHR vendors, highlighting the need for ongoing optimization and the inclusion of performance metrics in certification processes.  The scalability of bulk FHIR is crucial for supporting diverse use cases, from clinical research and public health surveillance to regulatory reporting and value-based care analytics. Enhanced Security and Automation  Bulk FHIR leverages SMART Backend Services Authorization, enabling secure, system- to-system data exchange without manual intervention. This is particularly important for large-scale, automated data flows between organizations.  By supporting robust authorization and granular access controls, bulk FHIR helps maintain patient privacy while enabling broader data sharing for legitimate use cases It is noteworthy that the widespread use of bulk FHIR APIs introduces several notable challenges that must be addressed for successful, scalable implementation. Table 2. Challenges with Bulk FHIR APIs Disadvantage Area Description/Impact Performance & Scalability Slow exports, system errors, limited cohort sizes Infrastructure & Cost High server/network/storage requirements, significant investment Data Quality & Standardization Inconsistent formats, need for extensive data cleaning/mapping Implementation Complexity Difficult integration with legacy systems, need for skilled personnel Security & Privacy Complex access management, de-identification challenges Vendor Readiness Inconsistent support and optimization across EHR vendors 3.3.2 What are the potential disadvantages of their use? While bulk FHIR is a promising standard for large-scale healthcare data exchange, its current limitations, ranging from technical performance and infrastructure costs to data quality, implementation complexity, and inconsistent vendor support, pose significant challenges. Addressing these disadvantages will require ongoing collaboration among EHR vendors, healthcare organizations, and regulatory bodies to ensure bulk FHIR can fulfill its potential for advancing interoperability and population health. As bulk FHIR APIs enable population-level data movement, there’s a corresponding need to strengthen accountability and traceability across endpoints. Without comprehensive audit 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-13 logging, it becomes difficult to validate appropriate use or detect misuse — especially in high- volume transactions. CMS should consider:  Mandating API-level audit logging that captures user ID, timestamp, accessed data elements, and system of origin, in alignment with HIPAA Audit Controls (45 CFR §164.312(b)).  Encouraging the use of automated anomaly detection systems to flag unusual or high-risk data access behaviors (e.g., excessive record pulls from a single IP or abnormal export timing). These practices promote operational transparency, support investigations of inappropriate access, and build confidence in the security of FHIR-based exchange models. 3.4 TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network infrastructure? 3.4.1 Do current rules encourage scalable network participation? The move toward shared network infrastructure aligns with CMS and ASTP/ONC priorities for nationwide interoperability, improved patient access, and system efficiency. While point-to-point models may suffice for limited, bilateral exchanges, they become unsustainable at scale and hinder the realization of a connected, learning health system. Shared networks, leveraging standards like FHIR and robust governance, are better suited to meet the demands of modern healthcare data exchange, though they require careful planning and collaboration to address policy, legal, and operational complexities. CMS policies, by prioritizing standardized, API-driven, and patient-centered data exchange, effectively steer the industry away from point-to-point models and toward shared network infrastructure. This approach aligns with broader federal goals for nationwide interoperability, efficiency, and patient empowerment. Organizations that invest in shared network models will be better positioned to comply with current and future CMS requirements and to deliver on the promise of interoperable, value-based care. Key Points from CMS Policy that Encourage Scalable Network Participation  API-Centric Approach: CMS rules, including the Interoperability and Patient Access Final Rule and the Interoperability and Prior Authorization Final Rule, require payers and providers to implement standardized APIs (notably FHIR-based). These APIs are built for broad, repeatable connectivity, making it easier for many parties to participate in data exchange without the need for custom, point-to-point integrations.  Network-Agnostic, But Scalable: While CMS does not currently require participation in a single "trusted exchange network" (such as TEFCA), the rules are intentionally structured to support scalable participation in any network infrastructure that adopts these standards. This allows organizations to connect once and exchange data with multiple entities, promoting scalability.  Patient and Provider Access: The rules mandate that data be made available to patients and providers in near real-time and through any third-party application of the patient’s 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-14 choosing, further reinforcing the need for scalable, open infrastructure rather than closed, bilateral connections.  Payer-to-Payer and Provider Directory APIs: Requirements for payer-to-payer data exchange and provider directory APIs are specifically intended to facilitate seamless data movement as patients transition between payers and providers, which is only practical with scalable, interoperable networks.  Burden Reduction and Long-Term Vision: CMS’s explicit objectives include reducing administrative and technical burden, which is only achievable through scalable, standardized approaches rather than bespoke, point-to-point models. 3.4.2 What changes would improve alignment (for example, API unification, reciprocal access)? Despite the policy direction, implementation remains challenging for many organizations, especially smaller providers and payers, due to funding, workflow, and technical hurdles. To accelerate progress and encourage more equitable participation, CMS should consider the following measures: 1. Provide targeted technical assistance and implementation blueprints and fund public- private shared utilities (e.g., FHIR endpoint directories, master patient indexes) to lower entry barriers. 2. Standardize minimum API and FHIR implementation requirements for participation in shared networks to reduce variability in API behavior across organizations and facilitate more seamless connectivity. 3. Strengthen incentives for participation in shared frameworks, such as TEFCA or regional health information exchanges, to promote broader adoption while maintaining a network- agnostic stance. Many stakeholders view TEFCA and CMS’s API-based requirements as parallel but disconnected tracks. CMS should issue clear policy alignment statements, integration pathways, or timelines explaining how participation in TEFCA and implementation of FHIR APIs complement each other. 4. Require large organizations to regularly report network affiliations, FHIR API capabilities, and key interoperability metrics, such as data exchange volume and response times, to drive accountability and encourage lagging entities to invest in scalable, standards-based infrastructure. As clinical and claims data move across health information networks, FHIR endpoints, and third- party systems, maintaining data integrity and consistency becomes foundational to interoperability. CMS should consider:  Promoting adoption of digital signatures or cryptographic hashing to validate the integrity of FHIR payloads and prevent tampering during transmission.  Encouraging the implementation of validation protocols across HIEs and exchange networks to verify schema conformance and data completeness. 
- CMS Health Technology Ecosystem RFI June 16, 2025 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this response. Volume I-15 These practices help preserve the accuracy of exchanged health records, especially when data transformations occur between heterogeneous platforms. 3.5 TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? Ensuring the operational and financial viability of healthcare data sharing networks—while achieving sufficient supply (participation) and demand (usage) that translate into improved outcomes—requires coordinated action from both CMS and ASTP/ONC. Their roles are distinct but complementary, leveraging regulatory authority, standard-setting, incentives, and technical support to create a robust ecosystem for interoperable health data exchange. How CMS and ASTP/ONC Policies Can Incentivize Healthcare Data Sharing Networks  Standardization and Certification Requirements: ONC can mature technical standards (such as FHIR and USCDI) and certification criteria for health IT systems, ensuring that data exchange is not only possible but also efficient, secure, and outcomes oriented.  Payment and Participation Incentives Tied to Data Exchange: CMS can continue leveraging its payment programs (such as the Promoting Interoperability Program and value-based care models) to reward hospitals and clinicians for the meaningful use of certified EHR technology and for participating in robust health information exchange (HIE) networks.  Reducing Administrative Burden and Streamlining Processes: CMS policies are increasingly focused on reducing administrative friction—such as through electronic prior authorization requirements and streamlined payer-to-payer data exchange—making it easier for providers to participate in data sharing initiatives and focus on delivering better outcomes. By further simplifying compliance and reporting requirements for those who participate in robust, standardized exchange networks, CMS can encourage greater adoption and sustained use of interoperable systems.  Addressing Information Blocking and Transparency: ASTP/ONC should continue enforcing information blocking regulations to ensure that providers, payers, and health IT developers do not unreasonably restrict access to, exchange of, or use of electronic health information. At the same time, CMS can reinforce transparency by publicly reporting instances of information blocking and requiring data availability for patients and providers, thereby incentivizing organizations to prioritize outcomes-driven data exchange.  Continuous Stakeholder Engagement and Policy Evolution CMS and ASTP/ONC should regularly seek public input to identify barriers and opportunities for outcomes- driven data exchange, ensuring that policies remain responsive to evolving needs and technologies. By combining these approaches, CMS and ASTP/ONC create a comprehensive framework that not only incentivizes the adoption of interoperable health IT but also ensures that data exchange initiatives are tightly linked to improved patient and population health outcomes. Together, their coordinated actions are essential to the operational and financial viability of healthcare data sharing networks, ensuring these networks are widely used and deliver improved health outcomes. 
+International Business Machines (IBM) Corporation
+Request for Information (RFI)
+File Code: CMS-0042-NC
+June 16, 2025
+Department of Health and Human Services (HHS)
+Centers for Medicare & Medicaid Services (CMS)
+Health Technology Ecosystem
+Submitted by: International Business Machines (IBM) Corporation
+6710 Rockledge Drive
+Bethesda, MD 20817
+Contract POC: Paul Bury
+Contracts and Negotiations Manager
+pbury@us.ibm.com
+Cell: 720-841-7984
+eFAX: 845-463-5012
+RESTRICTION ON DISCLOSURE AND USE OF DATA
+This RFI response includes data that shall not be disclosed outside the Government and shall not be duplicated, used or
+disclosed—in whole or in part—for any purpose other than to evaluate this RFI response. This restriction does not limit the
+Government’s rights to use information contained in this data if it is obtained from another source without restriction. The data
+subject to this restriction are embedded in the RFI response and contain trade secrets and commercial or financial information
+voluntarily submitted by IBM that are either specifically, exempted from disclosure by statute or privileged or confidential within
+the meaning of the exemption set forth in Sections 552(b)(3) and (4), respectively, of the Freedom of Information Act, 5 U.S.C.
+552, the disclosure of which could invoke criminal sanctions of 18 U.S.C. 1905.
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+Table of Contents
+Section Page
+Executive Summary .......................................................................................................................1
+1 Digital Identity (Question TD-3)..........................................................................................1
+2 Technical Standards and Certification (Questions TD-4, TD-7 & TD-10)......................2
+3 Data Exchange (Questions TD-12, TD-13, TD-15, TD-16 & TD-17) ...............................6
+Table of Figures
+Figure 1. Pre-Certified API Gateway & Patterns .....................................................................10
+Table of Tables
+Table 1. Tradeoffs between USCDI and Full EHI ....................................................................10
+Table 2. Challenges with Bulk FHIR APIs ................................................................................12
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-i
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+Executive Summary
+IBM appreciates the opportunity to respond to the CMS Request for Information (RFI) on the
+future of the health technology ecosystem. Our recommendations focus on advancing
+interoperability, strengthening infrastructure, and promoting secure, patient-centered innovation.
+To unlock the full potential of health data, CMS should continue to expand access to electronic
+health information (EHI) through standardized, open APIs based on HL7® FHIR® and aligned
+with USCDI. APIs reduce administrative burden, improve care coordination, and enable real-time
+data access for providers, patients, and developers. Incentives should be tied to measurable
+outcomes, with support for smaller organizations to adopt these tools.
+We propose evolving USCDI into a modular framework, defining a required core and optional
+modules, to support program-specific needs. Expanding USCDI to include richer clinical,
+genomic, and real-world data will enhance public health surveillance, precision medicine, and care
+for complex patients.
+CMS should also endorse trusted non-CMS data networks that meet high standards for security,
+quality, and public health utility. Identity assurance protocols, patient consent management, and
+app transparency tools will be critical to building trust.
+In addition, CMS should invest in scalable bulk FHIR APIs to support population-level analytics.
+Standardized API patterns, audit logging, and shared infrastructure will address performance and
+reliability concerns.
+IBM brings decades of experience supporting CMS, HHS, and other agencies, and has led in the
+development of FHIR-based tools, including the LinuxForHealth FHIR Server, clinical trial
+matching platforms, post-market safety systems, patient engagement and survey tool, in addition
+to developing data standards leveraging FHIR for a variety of data types, including Real-world
+Data (RWD), Structured Product Labeling (SPL), and Pharmaceutical Quality and Chemistry &
+Manufacturing Controls (PQ/CMC). We propose a centralized infrastructure strategy featuring
+consent-based data pipelines, a Federated Digital Identity Hub, pre-certified API toolkits, and
+automated “Security as Code” practices. This approach enables CMS to act as both regulator and
+enabler, offering foundational identity, consent, and monitoring services to scale innovation
+without placing undue burden on providers or app developers.
+1 Digital Identity (Question TD-3)
+1.1 TD-3. Regarding digital identity implementation, what are the challenges and
+benefits? How would requiring digital identity credentials impact
+cybersecurity and data exchange?
+Many of the digital identity credential services, such as Login.gov, ID.me, and CLEAR support
+NIST 800-63-3 standards to varying degrees, however, the absence of a uniform identity assurance
+framework introduces inconsistencies in how patients and providers authenticate across different
+platforms. CMS should consider:
+ Requiring use of NIST 800-63-3 compliant Identity Assurance Level 2 (IAL2) and
+Authentication Assurance Level 2 (AAL2) for both patient- and provider-facing digital
+identity services.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-1
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+ Exploring options for centralizing trusted identity credentialing via Medicare.gov or
+TEFCA-connected services to streamline access across multiple systems.
+ Providing financial or technical support for low-resource providers and health systems to
+adopt compliant identity solutions without burdening operational capacity.
+A consistent identity model would strengthen digital access, limit duplication across systems, and
+support patient trust in third-party health applications.
+2 Technical Standards and Certification (Questions TD-4, TD-7 & TD-10)
+2.1 TD-4. How can CMS better encourage use of open, standards-based, publicly
+available APIs over proprietary APIs?
+Since 2021, U.S. payers have been required to comply with CMS interoperability mandates, which
+include the use of open, standards-based APIs to support scalable and secure data exchange. At
+first glance, these requirements may appear to be regulatory obligations; however, they are
+intended to serve as the foundation for a modern, API-driven health data ecosystem. When
+implemented strategically, open APIs, especially those based on HL7 FHIR, can reduce
+administrative friction, improve data liquidity, and enhance patient and provider experiences,
+leading to measurable return on investment for payers.
+Despite these benefits, adoption remains uneven. Some payers treat open APIs as strategic
+enablers, while others continue to rely on proprietary systems that limit interoperability, stifle
+innovation, and create long-term costs. To accelerate widespread adoption and reduce dependency
+on closed platforms, CMS should take the following actions:
+1. Reframe API mandates as strategic investments
+Communicate that open APIs are not merely compliance checkboxes, but key building blocks for
+care transformation, innovation, and operational efficiency. Highlight success stories where open
+APIs reduced prior authorization time, improved member access to data, or enabled new value-
+based care models.
+2. Tie financial incentives to open API usage
+Expand CMS bonus programs, rebates, and grants to explicitly reward payers and vendors that
+adopt and implement open, standards-based APIs. This includes those certified under the Assistant
+Secretary for Technology Policy and Office of the National Coordinator for Health Information
+Technology (ASTP/ONC) Health IT Certification Program and aligned with FHIR R4 or higher.
+Provide targeted technical assistance to help small and mid-sized payers transition away from
+proprietary interfaces.
+3. Increase transparency through benchmarking
+Develop and publish comparative dashboards showing payer-level adoption and performance of
+open APIs. Track metrics and use public benchmarks such as the following to motivate lagging
+organizations while showcasing leaders:
+ Percentage of member records accessible via open APIs
+ Third-party application integration rates
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-2
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+ Average response time for patient data requests via open APIs
+4. Invest in shared FHIR-based infrastructure
+Support regional or national FHIR-based utilities that reduce duplicative efforts and make API
+adoption more accessible. Multi-stakeholder collaboratives, including payers, providers, vendors,
+and consumer advocates, can co-develop these utilities to standardize implementations and reduce
+fragmentation.
+5. Link open API outcomes to CMS Stars and value-based care programs
+Tie a portion of CMS quality ratings, bonus calculations, and innovation model participation to
+measurable outcomes derived from open API adoption. Metrics could include:
+ Percent reduction in manual data exchange workflows
+ Percent improvement in care coordination metrics
+ Patient satisfaction with digital access tools
+2.2 TD-7. To what degree has USCDI improved interoperability and exchange and
+what are its limitations?
+The USCDI has improved interoperability and health data exchange across the U.S. healthcare
+system by defining a standardized set of health data classes and constituent data elements. To
+support evolving public health needs over time, USCDI releases updated versions of their data
+standard featuring new data classes and/or elements. Adoption of these additions is embedded in
+ASTP/ONC’s certification criteria so that electronic health record (EHR) vendors are required to
+adopt the standard. However, several limitations of USCDI still need to be addressed in order to
+support more ubiquitous data usage by patients, providers, and federal agencies.
+2.2.1 Examples of USCDI Limitations for CMS
+Given the USCDI format only accounts for the minimum data necessary for interoperability, the
+dataset is incomplete as many clinically relevant data elements are missing from their respective
+classes. Some examples of this are detailed below.
+1. Lack of Death Information
+While patient death date is included within the current version of USCDI (v5), other death details
+such as causation, manner, mechanism, and location are not present. Incorporating more detailed
+patient death information into USCDI adds significant value to the standardized set of data by
+supporting richer, more holistic patient care and coordination. These enhancements would also
+improve post-market medical product surveillance efforts, provide additional epidemiological
+insights to track trends in disease, and reveal geospatial insights to understand patterns (e.g.,
+environmental exposures based on geographic location).
+2. Handling of Chronic Disease
+Further expansion of the data elements in existing data classes, such as the elements defined within
+the Problems data class, would greatly benefit the researchers that rely on USCDI. For example,
+certain details on patient problems and conditions are not included, such as data elements specific
+to the identification and analysis of chronic diseases, conditions, and/or disorders.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-3
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+Better tracking of chronic diseases can substantially drive down healthcare utilization and costs.
+Given that chronic conditions including diabetes, hypertension, heart disease, cancer, and Chronic
+Obstructive Pulmonary Disease (COPD) account for the majority of morbidity, mortality, and
+healthcare spending in the U.S.1 Currently, USCDI includes general problem lists and vital signs,
+but does not include condition-specific markers (e.g., HbA1c for diabetes, ejection fraction for
+heart failure, spirometry results for COPD). Addressing these gaps by expanding the data elements
+available in USCDI would better support chronic disease management and outcome tracking for
+patients. These updates would also reduce costs, given that CMS spending would ultimately
+decrease due to early patient intervention which can reduce costly hospitalizations and procedures
+needed due to lack of treatment.
+3. Need for Additional Data Classes
+Furthermore, the USCDI data classes need to be continuously expanded to account for
+advancements in health care as technology modernizes the way patients and providers interact with
+each other and their data. Certain data domain areas that do not yet exist in USCDI include those
+for data on genomics, imaging, and digital health technologies (DHTs) such as wearables. These
+technologies and associated data represent a new frontier that support clinical research and enable
+more patient-centered healthcare. For example, genomic data enables precision medicine and
+personalized, tailored treatments for patients based on their individual genetic variations.
+Integrating standardized genomic data into EHRs can make clinicians aware of gene-drug
+interactions and certain types of hereditary risks. Similarly, imaging data is central to the diagnosis
+and treatment of disease. By standardizing imaging data within USCDI, other approaches such as
+AI can be used for imaging (e.g., approaches for tumor detection or fracture classification) to more
+quickly diagnose and treat patients. Last, the inclusion of continuous, longitudinal data from DHTs
+enables real-time, patient-centered care and early intervention by allowing clinicians to detect
+deterioration and progression faster and ultimately treating patients earlier. Longitudinal, real-
+world data collection from DHTs also fuels investigation and innovation by researchers, allowing
+for long-term continuous monitoring in a patient’s everyday environment which can inform
+predictive models and other AI applications.
+2.2.2 Use of Language Models to Support Data Standardization
+While recent improvements in language models have enhanced our ability to process and interpret
+unstructured or semi-structured data, this does not eliminate the need for well-defined data
+standards, especially in high-stakes environments such as healthcare. A non-proprietary, less
+structured format might offer broader data coverage and flexibility, but it comes at the cost of
+increased ambiguity, inconsistency, and processing complexity. Language models can help
+interpret unstructured data, but their interpretations are probabilistic, not deterministic, resulting
+in higher risks of introducing error, bias, or misalignment, especially when data elements lack
+consistent meaning across sources. This creates risks when integrating data, training AI models,
+or conducting regulatory reviews.
+1 https://pmc.ncbi.nlm.nih.gov/articles/PMC10830426/#:~:text=of%20chronic%20disease.-
+,Chronic%20diseases%20like%20diabetes%2C%20heart%20disease%2C%20stroke%2C%20and%20cancer,mortali
+ty%20in%20the%20United%20States.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-4
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+Standardized data formats, in contrast, enable shared meaning and interoperability across systems
+which brings about more reliable aggregation, model training, and oversight. In healthcare, where
+trust, transparency, and accountability are critical, standards enable clear documentation of data
+provenance and model development processes, making it easier to audit, validate, and govern AI
+systems responsibly. While there may be a role for more flexible formats to enhance data
+availability, they should be used in a complementary way, not as a replacement for structured,
+standards-based approaches.
+2.2.3 Recommendations to Enhance USCDI for CMS
+ASTP/ONC and CMS may consider a tiered approach to expanding USCDI, by opting for a ‘core’
+module with ‘optional’ modules, where mandatory core elements are defined and optional modules
+are created based on specific use cases. This strategy is similar to how USCDI+ defines data
+elements that operate as extensions to the existing USCDI in order to meet specific programmatic
+and/or use case requirements. A pilot program could be launched to evaluate this tiered approach
+and test new data elements specific to CMS. IBM brings deep expertise and significant experience
+in developing, testing, and implementing data standards for structured data from DHTs and real-
+world data (RWD) sourced from EHRs, along with the development of corresponding
+implementation guides. IBM can support CMS in identifying and refining new data elements for
+inclusion in USCDI. Expanding standardized data elements within USCDI will enhance
+consistency, diversity, and completeness across vendors and institutions, enabling CMS to gain a
+more comprehensive view of patient health, uncover actionable insights, improve outcomes, and
+reduce costs.
+2.3 TD-10. For EHR and other developers subject to the ONC Health IT
+Certification Program, what further steps should ASTP/ONC consider to
+implement the 21st Century Cures Act's API condition of certification that
+requires a developer's APIs to allow health information to be accessed,
+exchanged, and used without special effort, including providing access to all
+data elements of a patient's electronic health record to the extent permissible
+under applicable privacy laws?
+Many digital health applications that patients use to access their health data may fall outside of
+HIPAA’s regulatory scope, creating potential for inadvertent misuse or overcollection of sensitive
+health information. To protect patient trust and promote responsible data use, CMS should
+consider:
+ Requiring explicit, role-based patient consent for data access via third-party applications.
+This consent should be time-bound, logged, and aligned with HIPAA’s minimum
+necessary standard.
+ Encouraging transparency by maintaining a CMS-approved registry or voluntary
+certification program for third-party digital health apps, enabling patients to better
+understand which tools meet federal privacy and security benchmarks.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-5
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+3 Data Exchange (Questions TD-12, TD-13, TD-15, TD-16 & TD-17)
+3.1 TD-12. Should CMS endorse non-CMS data sources and networks, and if so,
+what criteria or metrics should CMS consider?
+There is a strong case for CMS to endorse non-CMS data sources and networks, provided certain
+conditions are met. The following points provide some rationale for endorsement:
+1. Accelerating Interoperability: Endorsing non-CMS data sources can accelerate the
+realization of nationwide interoperability, enabling patient data to follow the individual
+across payers, providers, and care settings.
+2. Supporting Patient-Centered Care: CMS policy already encourages patient access to
+data through third-party applications and APIs, as mandated by the CMS Interoperability
+and Patient Access Final Rule. Endorsing trusted non-CMS networks aligns with the goal
+of putting patients at the center of care by broadening access to their health information.
+3. Leveraging Innovation: Many non-CMS networks and data sources are at the forefront of
+innovation, piloting new interoperability standards (such as FHIR) and use cases.
+To ensure that endorsement of non-CMS data sources and networks advances public health goals
+and maintains trust, CMS should consider the following criteria and metrics:
+1. Standards Compliance: Adherence to established interoperability standards, such as HL7
+FHIR and USCDI, and the use of standardized, openly published APIs will facilitate
+secure, real-time data exchange. Sample metrics include percentage of API transactions
+conforming to FHIR R4 or higher or use of certified Health IT products listed in the
+ASTP/ONC Cures Act Certification Program.
+2. Data Quality and Completeness: Demonstrating proven ability to provide accurate,
+timely, and complete datasets, including claims, clinical, encounter, and social
+determinants of health data as well as usage of mechanisms for regular data validation and
+quality assurance. Sample metrics include percentage of missing data elements or accuracy
+rate from quarterly data audits.
+3. Patient Access and Usability: Support for patient-directed access to data, including the
+ability for patients to use third-party apps of their choice, and transparent consent
+management and clear patient education on data use. Sample metrics include percentage
+of members able to access their data through certified third-party apps or percentage of
+patients surveyed reporting understanding of data sharing practices.
+4. Public Health Utility: Demonstrated value in supporting public health reporting,
+surveillance, and emergency response needs plus alignment with public health
+accreditation criteria for data sharing and interoperability. Sample metrics include the
+number of public health initiatives or registries participated in or average response time to
+public health data inquires.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-6
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+3.2 TD–13. What new opportunities and advancements could emerge with APIs
+providing access to the entirety of a patient’s electronic health information
+(EHI)?
+3.2.1 New Opportunities and Advancements
+APIs that enable access to the full scope of a patient’s electronic health information (EHI),
+leveraging standards and data sets such as FHIR and USCDI, are transforming healthcare data
+interoperability. This shift opens up a wide range of opportunities and advancements across
+clinical care, patient engagement, research, and operational efficiency.
+1. Enhanced Care Coordination and Real-Time Data Exchange
+APIs that provide access to the full scope of a patient’s electronic health information help break
+down data silos across disparate healthcare systems, including EHRs, labs, imaging, and billing
+platforms. They enable real-time, seamless data exchange among providers, payers, and patients.
+This interoperability gives clinicians timely access to comprehensive patient records, reducing
+redundant testing, minimizing medical errors, and enhancing clinical decision-making throughout
+the care continuum. It also supports smoother care transitions, referrals, and coordinated care
+planning, particularly for individuals with complex or chronic conditions.
+2. Patient Empowerment and Engagement
+Patients can aggregate their data from multiple providers and EHRs into a single, unified record
+using consumer-facing apps, empowering them to manage their health more proactively. APIs
+enable patients to contribute self-generated health data (e.g., from wearables or remote monitoring
+devices) directly into their EHR, fostering more personalized and continuous care.
+3. Innovation in Healthcare Applications and AI Integration
+APIs providing access to the entirety of EHIs create a fertile environment for third-party
+developers to build innovative apps for clinical decision support, medication management, care
+coordination, and remote monitoring. AI and machine learning can be layered on top of FHIR
+APIs to automate data mapping, quality checks, and deliver real-time, personalized insights for
+both clinicians and patients. Frameworks like SMART on FHIR enable secure, standardized
+integration of these apps with EHRs, accelerating the adoption of advanced digital health tools.
+4. Improved Administrative Efficiency and Reduced Burden
+APIs providing access to the entirety of EHIs streamline administrative processes such as claims,
+billing, and prior authorizations by enabling automated, real-time data exchange between providers
+and payers. This reduces manual data entry, minimizes errors, and speeds up reimbursement
+cycles, contributing to a more efficient healthcare system.
+5. Advancements in Research and Population Health
+Researchers can access richer, more comprehensive datasets (with appropriate consent),
+facilitating large-scale studies, real-world evidence generation, and public health surveillance.
+Harmonized data standards (USCDI, FHIR) ensure that information is consistent and comparable
+across sources, supporting more robust analytics and outcomes measurement.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-7
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+6. Regulatory Alignment and Futureproofing
+The adoption of USCDI as a standardized data set ensures that APIs expose a harmonized, evolving
+core of essential health information, supporting regulatory compliance and adaptability to future
+policy changes. CMS and the ASTP/ONC policies are driving the expansion of API-enabled
+access, setting the stage for nationwide interoperability and patient-centric care.
+IBM is a global leader in advancing API-based access to the full scope of a patient’s EHI. As long-
+time proponents of HL7® FHIR® standards, we are proud contributors to the open-source
+LinuxForHealth FHIR Server, which enables secure, scalable data exchange across systems. In
+addition, we have developed a range of FHIR-based applications and tools accessing the entirety
+of a patient’s EHI to address diverse enterprise needs, including:
+ Seamless data transformation from HL7 to FHIR, and from FHIR to various other formats
+ Clinical trial matching platform leveraging Electronic Health Record (EHR) data
+ Integration and analysis of genomic and clinical data for precision medicine
+ Patient engagement and survey tool for the Food and Drug Administration (FDA)
+ Large-scale, active post-market surveillance system for biologic products at FDA
+With deep technical expertise and hands-on experience, IBM is well-positioned to help scale API
+adoption and deliver on the promise of truly interoperable, patient-centered care.
+3.2.2 Primary Obstacles
+While APIs for comprehensive EHI access offer transformative potential, significant barriers
+hinder their adoption and effectiveness. These challenges span technical, regulatory, financial, and
+cultural domains.
+1. Technical and Structural Barriers
+Many healthcare organizations rely on outdated EHRs and proprietary systems that lack native
+FHIR/API support, requiring costly middleware or full replacements. Inconsistent adoption of
+FHIR, USCDI, and HL7 across vendors creates fragmented data formats, complicating cross-
+system integration. Building compliant APIs that meet HHS/CMS technical specifications
+demands specialized expertise, which many organizations lack.
+2. Financial and Resource Constraints
+API development, cloud migration, and staff training strain budgets, especially for rural/small
+practices. Sustaining interoperability infrastructure (e.g., FHIR server updates, security patches)
+requires dedicated funding. Organizations often deprioritize interoperability investments in favor
+of immediate clinical or financial needs.
+3. Cultural and Organizational Resistance
+Proprietary EHR vendors discourage open data sharing to retain market dominance, perpetuating
+data silos. Clinicians resist changes to documentation practices or new data-sharing workflows.
+Limited FHIR/USCDI expertise among IT teams and providers slows adoption.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-8
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+4. Regulatory and Compliance Challenges
+USCDI and FHIR versions are frequently updated, requiring continuous system adaptations to
+maintain compliance. Balancing HIPAA/regulatory requirements with data-sharing mandates
+increases implementation complexity (e.g., consent management, encryption). HHS API
+certification processes are time-consuming, particularly for smaller providers.
+5. Security and Trust Concerns
+Expanded API surfaces increase vulnerability to breaches, requiring advanced authentication and
+monitoring tools. Granular control over data-sharing permissions remains technically challenging
+at scale.
+As CMS expands API-based access to patient data through initiatives like Blue Button 2.0, the
+Provider Access API, and Prior Authorization APIs, the integrity and security of these endpoints
+become increasingly critical to adoption and trust. To support secure and scalable integration:
+ CMS should adopt SMART on FHIR and OAuth 2.0 as foundational standards for third-
+party application access.
+ All API implementations should align with HIPAA Technical Safeguards (45 CFR
+§164.312), with published technical guidance mapped to NIST SP 800-53 control
+families.
+These recommendations promote consistent security practices across platforms, reduce
+implementation friction for developers, and help mitigate risks related to unauthorized access or
+data misuse.
+3.2.3 Case Study: Standardize with Pre-Certified API Gateways & Patterns (AWS)
+Context: A CMS-aligned health plan is integrating multiple digital health applications that
+require access to Medicare beneficiary data via FHIR APIs. Each integration must comply with
+SMART on FHIR authentication, enforce API rate limits, and support detailed audit logging.
+Challenge: Integrations were inconsistent, and each app required a separate security review —
+increasing risk, slowing onboarding, and creating redundant effort across security and operations
+teams.
+Solution: The organization deploys a pre-certified pattern using AWS API Gateway, tightly
+integrated with:
+ Cognito for OAuth 2.0 Authorization Code Flow and ID token issuance
+ Lambda authorizers to enforce FHIR-specific access scopes and JWT validation
+ AWS WAF to provide protection against injection attacks and bots
+ CloudWatch Logs for API access logging, traceability, and anomaly detection
+ IAM policy boundaries for backend services accessing protected data (e.g., DynamoDB,
+RDS, HealthLake)
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-9
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+Figure 1. Pre-Certified API Gateway & Patterns
+All configuration is defined as Infrastructure-as-Code (IaC) using Terraform, including version-
+controlled gateway policies and pre-approved endpoints. App developers are issued Software
+Development Kit (SDK) templates that conform to the pattern.
+Result: App onboarding timelines drop from 4 weeks to under 5 days; the security team only
+needs to validate deviations from the pattern; and CMS interoperability mandates are met, and
+data access requests are more predictable and auditable.
+3.2.4 Primary Tradeoffs between USCDI and Full EHI
+The distinction between the USCDI and the broader concept of full EHI is fundamental to
+current interoperability strategies. As data processing capabilities advance, the tradeoffs between
+these two approaches become increasingly significant.
+Table 1. Tradeoffs between USCDI and Full EHI
+Aspect USCDI Full EHI
+Scope Standardized, limited set of data All electronic health information
+elements
+Interoperability High (within defined elements) Variable (depends on data
+type/format)
+Implementation Simpler, lower technical burden Complex, requires advanced
+infrastructure
+Regulatory High (mandated, well-defined) Lower (broader, less standardized)
+Clarity
+Innovation Moderate (incremental updates) High (enables advanced analytics,
+Support AI, etc.)
+Risk of Overload Low High (without filtering/curation)
+Patient Impact Reliable access to core data Potentially richer, more
+comprehensive view
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-10
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+The primary tradeoff is between the predictability, simplicity, and interoperability of USCDI
+versus the completeness, flexibility, and innovation potential of full EHI. As data processing
+technologies mature, organizations are better positioned to leverage full EHI, but they must still
+balance these benefits against the risks and complexities of broader data exchange. USCDI
+provides a stable, standardized starting point, while full EHI unlocks the next generation of patient-
+centered, data-driven healthcare.
+3.3 TD-15. Bulk FHIR APIs:
+3.3.1 How would increased use of bulk FHIR improve use cases and data flow?
+Increased use of bulk FHIR will fundamentally improve healthcare data interoperability by
+enabling efficient, secure, and scalable data flows for population-level use cases. This will drive
+better clinical outcomes, support regulatory compliance, and foster innovation in analytics and
+care delivery. Several key improvements emerge as the use of bulk FHIR expands.
+Population-Level Data Exchange and Analytics
+ Bulk FHIR enables efficient extraction and transfer of large healthcare datasets, which is
+essential for use cases involving population health management, quality measurement, and
+research. For example, payers can use bulk FHIR to obtain data on all patients in a cohort
+to identify care gaps, track chronic conditions, or plan outreach for preventive care.
+ This approach replaces the need for thousands of individual API calls with asynchronous,
+parallel data processing, drastically reducing latency and boosting performance for large-
+scale exports.
+Regulatory Alignment and Compliance
+ CMS and ASTP/ONC are actively involved in initiatives and coalitions to test and
+standardize bulk FHIR data exchange.
+ Bulk FHIR supports compliance with the 21st Century Cures Act, which mandates
+standardized APIs for patient and population-level access to electronic health records
+(EHRs). CMS programs like Data at the Point of Care and the Beneficiary Claims Data
+API already leverage bulk FHIR to provide providers and accountable care organizations
+with computable, cross-system data.
+Improved Data Flow and Integration
+ Bulk FHIR streamlines the process of extracting, transforming, and importing large
+volumes of healthcare data, making integration across EHRs, payers, and analytics
+platforms more straightforward and cost-effective.
+ The use of standardized FHIR resources ensures that data is discrete, computable, and
+easily accessible, facilitating real-time integration with applications such as clinical
+decision support, quality reporting, and patient engagement tools.
+ Advanced features such as type filtering and group-based exports allow organizations to
+tailor data extraction to specific cohorts or resource types, reducing unnecessary data
+transfer and enhancing privacy controls.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-11
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+Performance and Scalability
+ Real-world testing shows that bulk FHIR APIs can handle millions of resources efficiently,
+especially when optimized or implemented in custom solutions (e.g., HIEs). However,
+performance can vary between EHR vendors, highlighting the need for ongoing
+optimization and the inclusion of performance metrics in certification processes.
+ The scalability of bulk FHIR is crucial for supporting diverse use cases, from clinical
+research and public health surveillance to regulatory reporting and value-based care
+analytics.
+Enhanced Security and Automation
+ Bulk FHIR leverages SMART Backend Services Authorization, enabling secure, system-
+to-system data exchange without manual intervention. This is particularly important for
+large-scale, automated data flows between organizations.
+ By supporting robust authorization and granular access controls, bulk FHIR helps maintain
+patient privacy while enabling broader data sharing for legitimate use cases
+It is noteworthy that the widespread use of bulk FHIR APIs introduces several notable challenges
+that must be addressed for successful, scalable implementation.
+Table 2. Challenges with Bulk FHIR APIs
+Disadvantage Area Description/Impact
+Performance & Scalability Slow exports, system errors, limited cohort sizes
+High server/network/storage requirements, significant
+Infrastructure & Cost
+investment
+Data Quality & Inconsistent formats, need for extensive data
+Standardization cleaning/mapping
+Difficult integration with legacy systems, need for skilled
+Implementation Complexity
+personnel
+Security & Privacy Complex access management, de-identification challenges
+Vendor Readiness Inconsistent support and optimization across EHR vendors
+3.3.2 What are the potential disadvantages of their use?
+While bulk FHIR is a promising standard for large-scale healthcare data exchange, its current
+limitations, ranging from technical performance and infrastructure costs to data quality,
+implementation complexity, and inconsistent vendor support, pose significant challenges.
+Addressing these disadvantages will require ongoing collaboration among EHR vendors,
+healthcare organizations, and regulatory bodies to ensure bulk FHIR can fulfill its potential for
+advancing interoperability and population health.
+As bulk FHIR APIs enable population-level data movement, there’s a corresponding need to
+strengthen accountability and traceability across endpoints. Without comprehensive audit
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-12
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+logging, it becomes difficult to validate appropriate use or detect misuse — especially in high-
+volume transactions.
+CMS should consider:
+ Mandating API-level audit logging that captures user ID, timestamp, accessed data
+elements, and system of origin, in alignment with HIPAA Audit Controls (45 CFR
+§164.312(b)).
+ Encouraging the use of automated anomaly detection systems to flag unusual or high-risk
+data access behaviors (e.g., excessive record pulls from a single IP or abnormal export
+timing).
+These practices promote operational transparency, support investigations of inappropriate access,
+and build confidence in the security of FHIR-based exchange models.
+3.4 TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared
+network infrastructure?
+3.4.1 Do current rules encourage scalable network participation?
+The move toward shared network infrastructure aligns with CMS and ASTP/ONC priorities for
+nationwide interoperability, improved patient access, and system efficiency. While point-to-point
+models may suffice for limited, bilateral exchanges, they become unsustainable at scale and hinder
+the realization of a connected, learning health system. Shared networks, leveraging standards like
+FHIR and robust governance, are better suited to meet the demands of modern healthcare data
+exchange, though they require careful planning and collaboration to address policy, legal, and
+operational complexities.
+CMS policies, by prioritizing standardized, API-driven, and patient-centered data exchange,
+effectively steer the industry away from point-to-point models and toward shared network
+infrastructure. This approach aligns with broader federal goals for nationwide interoperability,
+efficiency, and patient empowerment. Organizations that invest in shared network models will be
+better positioned to comply with current and future CMS requirements and to deliver on the
+promise of interoperable, value-based care.
+Key Points from CMS Policy that Encourage Scalable Network Participation
+ API-Centric Approach: CMS rules, including the Interoperability and Patient Access
+Final Rule and the Interoperability and Prior Authorization Final Rule, require payers and
+providers to implement standardized APIs (notably FHIR-based). These APIs are built for
+broad, repeatable connectivity, making it easier for many parties to participate in data
+exchange without the need for custom, point-to-point integrations.
+ Network-Agnostic, But Scalable: While CMS does not currently require participation in
+a single "trusted exchange network" (such as TEFCA), the rules are intentionally structured
+to support scalable participation in any network infrastructure that adopts these standards.
+This allows organizations to connect once and exchange data with multiple entities,
+promoting scalability.
+ Patient and Provider Access: The rules mandate that data be made available to patients
+and providers in near real-time and through any third-party application of the patient’s
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-13
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+choosing, further reinforcing the need for scalable, open infrastructure rather than closed,
+bilateral connections.
+ Payer-to-Payer and Provider Directory APIs: Requirements for payer-to-payer data
+exchange and provider directory APIs are specifically intended to facilitate seamless data
+movement as patients transition between payers and providers, which is only practical with
+scalable, interoperable networks.
+ Burden Reduction and Long-Term Vision: CMS’s explicit objectives include reducing
+administrative and technical burden, which is only achievable through scalable,
+standardized approaches rather than bespoke, point-to-point models.
+3.4.2 What changes would improve alignment (for example, API unification, reciprocal
+access)?
+Despite the policy direction, implementation remains challenging for many organizations,
+especially smaller providers and payers, due to funding, workflow, and technical hurdles. To
+accelerate progress and encourage more equitable participation, CMS should consider the
+following measures:
+1. Provide targeted technical assistance and implementation blueprints and fund public-
+private shared utilities (e.g., FHIR endpoint directories, master patient indexes) to lower
+entry barriers.
+2. Standardize minimum API and FHIR implementation requirements for participation in
+shared networks to reduce variability in API behavior across organizations and facilitate
+more seamless connectivity.
+3. Strengthen incentives for participation in shared frameworks, such as TEFCA or regional
+health information exchanges, to promote broader adoption while maintaining a network-
+agnostic stance. Many stakeholders view TEFCA and CMS’s API-based requirements as
+parallel but disconnected tracks. CMS should issue clear policy alignment statements,
+integration pathways, or timelines explaining how participation in TEFCA and
+implementation of FHIR APIs complement each other.
+4. Require large organizations to regularly report network affiliations, FHIR API capabilities,
+and key interoperability metrics, such as data exchange volume and response times, to drive
+accountability and encourage lagging entities to invest in scalable, standards-based
+infrastructure.
+As clinical and claims data move across health information networks, FHIR endpoints, and third-
+party systems, maintaining data integrity and consistency becomes foundational to
+interoperability.
+CMS should consider:
+ Promoting adoption of digital signatures or cryptographic hashing to validate the integrity
+of FHIR payloads and prevent tampering during transmission.
+ Encouraging the implementation of validation protocols across HIEs and exchange
+networks to verify schema conformance and data completeness.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-14
+
+CMS Health Technology Ecosystem RFI
+June 16, 2025
+These practices help preserve the accuracy of exchanged health records, especially when data
+transformations occur between heterogeneous platforms.
+3.5 TD-17. Given operational costs, what role should CMS or ASTP/ONC or both
+have in ensuring viability of healthcare data sharing networks, including
+enough supply and demand, that results in usage and outcomes?
+Ensuring the operational and financial viability of healthcare data sharing networks—while
+achieving sufficient supply (participation) and demand (usage) that translate into improved
+outcomes—requires coordinated action from both CMS and ASTP/ONC. Their roles are distinct
+but complementary, leveraging regulatory authority, standard-setting, incentives, and technical
+support to create a robust ecosystem for interoperable health data exchange.
+How CMS and ASTP/ONC Policies Can Incentivize Healthcare Data Sharing Networks
+ Standardization and Certification Requirements: ONC can mature technical standards
+(such as FHIR and USCDI) and certification criteria for health IT systems, ensuring that
+data exchange is not only possible but also efficient, secure, and outcomes oriented.
+ Payment and Participation Incentives Tied to Data Exchange: CMS can continue
+leveraging its payment programs (such as the Promoting Interoperability Program and
+value-based care models) to reward hospitals and clinicians for the meaningful use of
+certified EHR technology and for participating in robust health information exchange
+(HIE) networks.
+ Reducing Administrative Burden and Streamlining Processes: CMS policies are
+increasingly focused on reducing administrative friction—such as through electronic prior
+authorization requirements and streamlined payer-to-payer data exchange—making it
+easier for providers to participate in data sharing initiatives and focus on delivering better
+outcomes. By further simplifying compliance and reporting requirements for those who
+participate in robust, standardized exchange networks, CMS can encourage greater
+adoption and sustained use of interoperable systems.
+ Addressing Information Blocking and Transparency: ASTP/ONC should continue
+enforcing information blocking regulations to ensure that providers, payers, and health IT
+developers do not unreasonably restrict access to, exchange of, or use of electronic health
+information. At the same time, CMS can reinforce transparency by publicly reporting
+instances of information blocking and requiring data availability for patients and providers,
+thereby incentivizing organizations to prioritize outcomes-driven data exchange.
+ Continuous Stakeholder Engagement and Policy Evolution CMS and ASTP/ONC
+should regularly seek public input to identify barriers and opportunities for outcomes-
+driven data exchange, ensuring that policies remain responsive to evolving needs and
+technologies.
+By combining these approaches, CMS and ASTP/ONC create a comprehensive framework that
+not only incentivizes the adoption of interoperable health IT but also ensures that data exchange
+initiatives are tightly linked to improved patient and population health outcomes. Together, their
+coordinated actions are essential to the operational and financial viability of healthcare data sharing
+networks, ensuring these networks are widely used and deliver improved health outcomes.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this response. Volume I-15

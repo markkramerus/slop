@@ -1,14 +1,333 @@
-CONFIDENTIAL AND PROPRIETARY Any use of this material without specific permission of McKinsey & Company is strictly prohibitedJune 2025Healthcare Data Expertise Qualifications
-McKinsey & Company 2 The perspective McKinsey brings… ▪McKinsey is a “power user” of CMS data – we hold 25+ seats within the Virtual Resource Data Center (VRDC), have licensed limited data set (LDS) and qualified entity (QE) files, and regularly ingest publicly available CMS files (e.g., Medicare Advantage enrollment and plan data) ▪Our experience building data products from CMS claims files – e.g., a deduplicated claims dataset for Dual Eligible beneficiaries – gives us a broad knowledge of data quality issues and potential improvements CMS could pursue ▪We have deep expertise standardizing and interpreting data , rooted in a proprietary data model and data enrichments used for both CMS -provided and other datasets (e.g., commercial claims data, EHR data) licensed from third parties ▪We understand the needs of a diverse set of healthcare entities , given our experience building tools for payers, health services firms, and healthcare providers – including value -based payment model participants ▪Our secure data platform enables consistent analyses for shorter -term, sprint -style projects and research that reveal insights for users 
-McKinsey & Company 3 SHaPE Tech is McKinsey’s healthcare product and technology unitAppendix Proprietary cloud - based platform Nebula – our proprietary HIPAA - and HITRUST -compliant cloud - based big data analytics platform – provides infrastructure, DevSecOps , and product and design excellence for thousands of users across the portfolioIndustry -leading data lake Comprehensive data lake built around multi -sourced, closed claims data integrated for longitudinal studies and linkable to other patient level data Leading proprietary enrichments accelerate insights across use cases 1.5 PB data currently handled by HIPAA - ready and HITRUST certified platform Insights Workspace offerings Direct -access tools that address the most challenging industry issues >12 signature products~220 M annual lives of payer -complete third -party claims data spanning all lines of business World class tech and data science talent To develop and support these products we have built an analogous tech company within McKinsey with dedicated colleagues and leadership across product, engineering, data science, delivery operations and security ~250 full-time FTEs dedicated to product portfolio build 3
-McKinsey & Company 4 McKinsey has created a foundational US Healthcare data lake that is curated to fuel insights across the value chain Broad and deep foundational datasets >219 million covered lives for all lines of business of closed claims data —100% of Medicare FFS, Medicare Advantage, and part D claims through CMS VRDC program —100% of Medicaid and CHIP claims through CMS VRDC program —Meaningful market coverage for all geographies with identifiable providers >200 million patients across all lines of business from open claims data —Low latency intelligence (updated bi-weekly) for emerging trends —Integrated with ambulatory EMR for clinical enrichmentCommercial and Government third party claims Compre - hensive market intelligence dataClinical and HRSN data Client claim and patient dataClinical risk score and patient segmentation models Affiliation data for all providers nationally Facility intelligence across continuum of care Detailed member enrollment data at the county and payer level for all lines of business nationally Market forecasts of service line growth, enrollment projections and demographic shiftsCore reference sources, including market intelligence and projection models Breadth of use -cases enabled via critical data sources Healthcare value analytics Population health analytics Provider productivity Clinical operations Market intelligence Market growth 4Reserved for individual client’s use
-McKinsey & Company 5 McKinsey’s proprietary and comprehensive common library of enhancements accelerates time to distinctive insight and value Our proprietary enrichments were conceived and prototyped together with real -world healthcare organizations from day one, and ensure that our analytics generate truly actionable insights and interventions Capabilities can be deployed in a stand -alone fashion via container, API, or other method to support direct on -prem analyticsEnrichments and customizations improve quality, accessibility, and distinctiveness of analytic outputs, including: Provider & Member EnrichmentIntuitive Groupings Distinctive Insights Provider Affiliation Health system and group practice affiliations for all providers in the US Encounter Logic Grouping of all claims into distinct patient interactions with the healthcare system Standard Episodes Gain insight into specific conditions with clinical, cost, and care perspective Provider Scope Machine Learning powered identifying physician specialtiesClinical concept library Allows for categorization of all procedure, diagnosis and pharmacy codes Journey Analytics Generating distinct patient journeys to better understand care patterns Risk scores & segmentation Risk score models and grouping into clinically relevant segmentsService Lines Categorization of service based on claims -level clinical and cost fields Health Related Social Need Augment member risk profiles with socioeconomic models
-McKinsey & Company 6Within the VRDC, McKinsey transforms “raw” CMS claims files using a standard data model and enriches data for simplified, consistent analysis Addition of enrichments Data warehouse preparationUsers can conduct analyses quickly and consistently across all claims data in the VRDC (Traditional Medicare, MA, and T - MSIS Medicaid) and link and deduplicate claims for dual - eligible members Output tables remain securely within the VRDC environmentMcKinsey’s claims data transformation and enrichment process Raw files are ETL’d into McKinsey’s standard claims data warehouse structure Table names, columns, and data types are constant across years and filesCode to add proprietary data enrichments is run on new data Example enrichments include service locations, encounter groupers, chronic condition flags, and risk scores Process description ▪A consistent data model ensures existing code can be easily adapted to run on all data ▪Quality assurance tests included in the ETL reveal data quality issues early ▪Enrichments facilitate common analyses (e.g., site of care shifts, adjusting for acuity, etc.)Benefits to users
-McKinsey & Company 7 McKinsey has a range of core healthcare analytic products built on our data platform and deployable into external environments Product overview Functional use case Healthcare Market Intelligence – Drill-down into geographic to see information about population and healthcare trendsMarket exploration (demographics, healthcare providers/payers); population projections Benchmark to Value (BTV) – comprehensive “value finder” across five key sources of valueMedical cost opportunity identification; provider insightsSelf-serve Business Intelligence Tool – Drag -and-drop interface for manipulating third -party claims dataAnswer utilization questions and patterns, PMPM costs by chronic condition/service location CareCUBE – helps providers understand the opportunity to improve quality of care, and reduce cost of care, while transitioning to VBCValue based care opportunity identificationReferral Mapping Insights – complete longitudinal view of physician referral pattern dynamics across USProvider strategy; provider growthDetails Follow
-McKinsey & Company 8BTV is a web -based application that can be delivered in the payer environment to facilitate decision making for medical cost optimization Unprecedented insight into medical value Get a comprehensive view of medical cost performance relative to benchmarks and rapidly identify the key cost of care drivers that directly translate into opportunities for improvement Data to action Turn insights into action by understanding drivers of performance: leverage timeseries data, drillable metrics and provider / procedure level insights to create go -forward plansOn prem delivery End-to-end pipeline automated in payer environment while connected to payer data lake for easy refresh with up -to-date information and opportunity to expand and integrate with other analytics use cases 
-McKinsey & Company 9Benchmark to Value: How it works 1Combine & interlink key datasetsRun concepts in analytics layer to evaluate spend & size potential4 Provider A Provider B Provider CBuild core spend cube to enable multi dimensional analysis3 2Apply enrichments (details follow) Analytics Layer Analytics Layer Claims Membership Billing Groupers Claims risk classification Policy coverage Agents McKinsey Clinical Concept Classification Member risk segments Provider cohorts Diagnosis Grouping Readmissions tagging Create most important indices (Unit Price, Surgical, ALOS) 
-McKinsey & Company 10BtV creates ability to ‘slice -and -dice’ claims along 5 dimensions Compare performance by member cohort (such as defined by health status or chronic condition profile) Identify claims spend by product to alter product policies and benefits as needed E.g., Are there specific members/ products that are not analogous with the rest of the cohort?Member/ product Which are the key markets within the country for deep dive Conduct regional analysis to enable recognition of patterns of performance variation that may have region -specific implications E.g., Which regions are driving majority spend – how can we optimize spend by driving patient channeling to preferred providers in these regions?Market geography Benchmark providers to identify key preferred providers with high quality of care, as well as optimal utilization and unit cost E.g., Which providers are driving higher IP admissions for conditions typically observed under OP elsewhere? Which providers are over charging across R&B, drug costs, physician fee etc.?Provider entities Identify key conditions to focus for driving reduction in claims spend (typically, top 50-60 conditions drive >70% of claims spend) E.g., Which conditions are driving majority of the claims spend? Are there major variations in spend across conditions for IP vs. OP care?Condition type Compare performance by agents and identify potential FWA activity by select agents E.g., Are there specific agents driving inordinately high spend? Are there combinations of agents, providers and members that are driving regular claims spend indicating potential for further analysis?Agent analysis 
-McKinsey & Company 11 Care Cube helps VBC operators understand the total opportunity associated with value -based care and how to act on those insights Giving VBC operators Transparency one integrated source of truth for clinical spendControl and accountability through direct integration into data feeds, scenario planning, total view of spendGreater clinical impact. The right patient. The right care plan. Find the inefficiencies to fuel the growth 11 McKinsey & CompanyA web -based tool that helps providers understand the opportunity to improve quality of care, and reduce cost of care, while transitioning to value -based payment Designed to deliver quality, revenue, and cost transparency ; insights and anomaly detection; and 500+ analyses that inform the detailed scenario planning required to run a sophisticated VBC strategy 
-McKinsey & Company 12Healthcare organizations use CareCUBE to power insights across multiple use cases and sources of value CareCUBE can help … Across the following sources of value… Highlight health -related social needs and address gaps in careAdvance health equity Shift care appropriately to cost-effective settings, incl. home care (SNF to HH, IP to ED, OP to ASC, etc.)Deliver care in the appropriate settings Reduce avoidable hospital readmissions, preventable exacerbations (e.g., COPD, asthma), and injuries/fallsReduce preventable complications Grow and retain members Boost patient retention Unlock capacity by shifting lower acuity visits to appropriate channelsOptimize capacity Close care gaps and Improve performance on HEDIS and CMS Stars measures, and commercial quality programsImprove quality performance Understand where your care model is today and where there are opportunities to improve1 Diagnose root causes and detailed specifics within each of those opportunities2 Generate patient specific, real -time insights and Next Best Actions for on-the-ground care teams to carry out care model changes3
-McKinsey & Company 13CareCUBE has multiple service offerings to accelerate your care model innovation and transformation effortsCareCUBE insights that can be integrated into a broader enterprise strategic effort , supported by collaborative thought partners with extensive experience in business and care models across payers, providers, MSOs, tech enablers, and public agenciesAdvisory Analytics and workflow platform that provides a comprehensive assessment of care model opportunities, delivering actionable insights across multiple organizational levels, including real- time patient -level recommendations for next-best actionsProduct Comprehensive approach that encompasses intervention design , implementation , performance management , and product support to drive consistent value realization across the entire organizationSupport
-McKinsey & Company 14 14Additional products available “as a Service” Asset and capability overview Impact and how it plugs into workflow Episode analytics – episodic algorithms covering 30+ patient journey pathways Enables the ability to make fair comparisons across providers including specialist -driven and facility - based episodes USD 45 M in savings over 3 years through implementation of a broad episode program Service line analytics Claims based utilization and market sizing by key demographics (e.g., year, state, MSA) and/or clinical information (specialty, service location, service line)Claims predictive volume Forecasts the claims volume by site of care, clinical categories, demographics accounting for utilization shifts, population growth, ageing, change in payor mix and other trends Consumer activation Understand how consumers are choosing providers; predictively model the impact of their choices; design interventions to influence behavior Care -at-home analytics Detailed breakdown of opportunities and feasibility of changing site of care to home Payer G&A benchmarking Holistic assessment of cost and operational performance across functional areas. Includes trend and peer analysis, as well KPI assessment. Future of Payer View of payor’s potential future state through operational and organizational transformation, Medical cost - pharmacy opportunity (TEDS, biosimilars, reference based pricing)Opportunity analysis for pharmacy spend, including biosimilars and reference based pricing Profit pools Comprehensive, proprietary model analyzing current and evolving healthcare revenue & profit pools across five verticals (payer, provider, manufacturers, pharmacy & tech services) Enrollment projection Forecast enrollment changes at county level and by LOBs (commercial, Medicare, Medicaid etc.) ACA analytics Database of all ACA networks, products, benefits, pricing, financials etc. Also estimate price elasticity for ACA carriers and estimate market share impacts Claims predictive volume & claims market sizing Predict claims utilization by clinical categories and site of care by line of business and state; size Claims based market by key demographics (e.g., year, state, MSA, age) and/or clinical information (specialty, service location, service line, disease/condition) Denials excellence tool Identify denials Provider price benchmarking Assess competitiveness of negotiated rates and identify drivers of variabilityNon -exhaustive
+Healthcare Data
+Expertise
+Qualifications
+June 2025
+CONFIDENTIAL AND PROPRIETARY
+Any use of this material without specific permission
+of McKinsey & Company is strictly prohibited
+
+The perspective McKinsey brings…
+▪ McKinsey is a “power user” of CMS data – we hold 25+ seats within the Virtual Resource Data Center
+(VRDC), have licensed limited data set (LDS) and qualified entity (QE) files, and regularly ingest publicly
+available CMS files (e.g., Medicare Advantage enrollment and plan data)
+▪ Our experience building data products from CMS claims files – e.g., a deduplicated claims dataset for Dual
+Eligible beneficiaries – gives us a broad knowledge of data quality issues and potential
+improvements CMS could pursue
+▪ We have deep expertise standardizing and interpreting data, rooted in a proprietary data model and
+data enrichments used for both CMS-provided and other datasets (e.g., commercial claims data, EHR
+data) licensed from third parties
+▪ We understand the needs of a diverse set of healthcare entities, given our experience building tools
+for payers, health services firms, and healthcare providers – including value-based payment model
+participants
+▪ Our secure data platform enables consistent analyses for shorter-term, sprint-style projects and
+research that reveal insights for users
+McKinsey & Company 2
+
+Appendix
+SHaPE Tech is McKinsey’s healthcare product and technology unit
+Proprietary cloud- Industry-leading data World class tech and Insights Workspace
+based platform lake data science talent offerings
+Nebula – our proprietary HIPAA- Comprehensive data lake built To develop and support these Direct-access tools that address
+and HITRUST-compliant cloud- around multi-sourced, closed products we have built an the most challenging industry
+based big data analytics claims data integrated for analogous tech company within issues
+platform – provides longitudinal studies and linkable McKinsey with dedicated
+infrastructure, DevSecOps, and to other patient level data colleagues and leadership
+product and design excellence across product, engineering,
+Leading proprietary enrichments
+for thousands of users across data science, delivery
+accelerate insights across use
+the portfolio operations and security
+cases
+1.5 PB ~220 M ~250 >12
+annual lives
+of payer-complete third-party claims
+data currently handled by HIPAA- full-time FTEs dedicated to product signature products
+data spanning all lines of business
+ready and HITRUST certified platform portfolio build
+3 McKinsey & Company 3
+
+McKinsey has created a foundational US Healthcare data lake that
+is curated to fuel insights across the value chain
+Broad and deep foundational Core reference sources, including market
+datasets intelligence and projection models
+Commercial and
+ >219 million covered lives for all lines of Government third  Clinical risk score and patient segmentation models
+business of closed claims data party claims
+ Affiliation data for all providers nationally
+— 100% of Medicare FFS, Medicare
+Advantage, and part D claims  Facility intelligence across continuum of care
+through CMS VRDC program
+Compre-  Detailed member enrollment data at the county and
+— 100% of Medicaid and CHIP claims hensive payer level for all lines of business nationally
+through CMS VRDC program Clinical and
+market
+ Market forecasts of service line growth, enrollment
+HRSN data
+— Meaningful market coverage for all
+intelligence projections and demographic shifts
+geographies with identifiable
+data
+providers
+Breadth of use-cases enabled via critical
+ >200 million patients across all lines of
+data sources
+business from open claims data
+ Healthcare value analytics
+— Low latency intelligence (updated
+bi-weekly) for emerging trends
+ Population health analytics
+— Integrated with ambulatory EMR for
+ Provider productivity
+clinical enrichment Client claim
+and patient
+ Clinical operations
+data
+ Market intelligence
+Reserved for
+individual client’s use  Market growth
+McKinsey & Company 44
+
+McKinsey’s proprietary and comprehensive
+common library of enhancements accelerates
+time to distinctive insight and value
+Enrichments and customizations improve quality, accessibility, and distinctiveness of
+analytic outputs, including:
+Our proprietary
+Intuitive
+enrichments were
+Groupings
+conceived and prototyped
+Clinical concept library Encounter Logic Service Lines
+together with real-world
+Allows for categorization of Grouping of all claims into Categorization of service
+healthcare organizations
+all procedure, diagnosis and distinct patient interactions based on claims-level clinical
+pharmacy codes with the healthcare system and cost fields from day one, and ensure
+that our analytics generate
+Provider &
+truly actionable insights
+Member
+and interventions
+Enrichment
+Provider Scope Provider Affiliation Risk scores & segmentation
+Machine Learning powered Health system and group Risk score models and
+identifying physician practice affiliations for all grouping into clinically relevant Capabilities can be
+specialties providers in the US segments
+deployed in a stand-alone
+Distinctive fashion via container, API,
+Insights or other method to support
+Journey Analytics Standard Episodes Health Related Social Need direct on-prem analytics
+Generating distinct patient Gain insight into specific Augment member risk profiles
+journeys to better conditions with clinical, cost, with socioeconomic models
+understand care patterns and care perspective
+McKinsey & Company 5
+
+Within the VRDC, McKinsey transforms “raw” CMS claims files using a
+standard data model and enriches data for simplified, consistent analysis
+McKinsey’s claims data transformation and enrichment process
+Users can conduct
+analyses quickly and
+Data warehouse preparation Addition of enrichments
+consistently across
+all claims data in the
+Process Raw files are ETL’d into Code to add proprietary data
+VRDC (Traditional
+description McKinsey’s standard claims enrichments is run on new data
+Medicare, MA, and T-
+data warehouse structure
+Example enrichments include
+MSIS Medicaid) and
+Table names, columns, and data service locations, encounter
+link and deduplicate
+types are constant across years groupers, chronic condition
+claims for dual-
+and files flags, and risk scores
+eligible members
+Benefits to ▪ A consistent data model ▪ Enrichments facilitate
+Output tables remain
+users ensures existing code can common analyses (e.g.,
+securely within the
+be easily adapted to run on site of care shifts, adjusting
+all data for acuity, etc.) VRDC environment
+▪ Quality assurance tests
+included in the ETL reveal
+data quality issues early
+McKinsey & Company 6
+
+McKinsey has a range of core healthcare analytic products built on
+our data platform and deployable into external environments
+Details Follow
+Product overview Functional use case
+Healthcare Market Intelligence – Drill-down into geographic to see Market exploration (demographics, healthcare providers/payers);
+information about population and healthcare trends population projections
+Self-serve Business Intelligence Tool – Drag-and-drop interface for Answer utilization questions and patterns, PMPM costs by chronic
+manipulating third-party claims data condition/service location
+Benchmark to Value (BTV) – comprehensive “value finder” across five Medical cost opportunity identification; provider insights
+key sources of value
+Referral Mapping Insights – complete longitudinal view of physician Provider strategy; provider growth
+referral pattern dynamics across US
+CareCUBE– helps providers understand the opportunity to improve quality Value based care opportunity identification
+of care, and reduce cost of care, while transitioning to VBC
+McKinsey & Company 7
+
+BTV is a web-based
+application that can be
+delivered in the payer
+environment to facilitate
+decision making for medical
+cost optimization
+Unprecedented
+insight into Data to action On prem delivery
+medical value
+Turn insights into action by End-to-end pipeline automated in
+Get a comprehensive view of
+understanding drivers of performance: payer environment while connected
+medical cost performance relative
+leverage timeseries data, drillable to payer data lake for easy refresh
+to benchmarks and rapidly identify
+metrics and provider / procedure with up-to-date information and
+the key cost of care drivers that
+level insights to create go-forward opportunity to expand and integrate
+directly translate into opportunities
+plans with other analytics use cases
+for improvement
+McKinsey & Company 8
+
+Benchmark to Value: How it works
+1 Combine & 3 Build core spend cube to enable multi 4 Run concepts in analytics layer to
+interlink key datasets dimensional analysis evaluate spend & size potential
+ Claims
+Analytics Layer
+ Membership Analytics Layer
+ Billing Groupers
+ Claims risk classification
+ Policy coverage
+ Agents
+Apply enrichments Provider A
+2
+(details follow)
+ McKinsey Clinical Provider B
+Concept Classification
+ Member risk segments
+Provider C
+ Provider cohorts
+ Diagnosis Grouping
+ Readmissions tagging
+ Create most important
+indices (Unit Price,
+Surgical, ALOS)
+McKinsey & Company 9
+
+BtV creates ability to ‘slice-and-dice’ claims along 5 dimensions
+Condition type Provider entities Market geography Member/ product Agent analysis
+Identify key conditions to Benchmark providers to Which are the key markets Compare performance by Compare performance by
+focus for driving reduction in identify key preferred within the country for deep member cohort (such as agents and identify potential
+claims spend (typically, top providers with high quality dive defined by health status or FWA activity by select
+50-60 conditions drive of care, as well as optimal chronic condition profile) agents
+>70% of claims spend) utilization and unit cost Conduct regional analysis
+to enable recognition of Identify claims spend by E.g., Are there specific
+E.g., Which conditions are E.g., Which providers are patterns of performance product to alter product agents driving inordinately
+driving majority of the driving higher IP admissions variation that may have policies and benefits as high spend?
+claims spend? for conditions typically region-specific implications needed
+observed under OP Are there combinations of
+Are there major variations in elsewhere? E.g., Which regions are E.g., Are there specific agents, providers and
+spend across conditions for driving majority spend – members/ products that are members that are driving
+IP vs. OP care? Which providers are over how can we optimize spend not analogous with the rest regular claims spend
+charging across R&B, drug by driving patient of the cohort? indicating potential for
+costs, physician fee etc.? channeling to preferred further analysis?
+providers in these regions?
+McKinsey & Company 10
+
+Care Cube helps VBC operators understand the total opportunity
+associated with value-based care and how to act on those insights
+A web-based tool that helps providers understand the
+opportunity to improve quality of care, and reduce cost of care,
+while transitioning to value-based payment
+Designed to deliver quality, revenue, and cost transparency;
+insights and anomaly detection; and 500+ analyses that inform
+the detailed scenario planning required to run a sophisticated
+VBC strategy
+Giving VBC operators
+Transparency Control and Greater clinical
+one integrated accountability through impact. The right
+source of truth direct integration into patient. The right
+for clinical data feeds, scenario care plan. Find
+spend planning, total view of the inefficiencies
+spend to fuel the growth
+MMccKKiinnsseeyy && CCoommppaannyy 1111
+
+Healthcare organizations use CareCUBE to power insights across
+multiple use cases and sources of value
+CareCUBE can help … Across the following sources of value…
+Deliver care in Reduce
+Improve quality
+1 Understand where your care model the appropriate preventable
+performance
+is today and where there are settings complications
+opportunities to improve Close care gaps and Improve Shift care appropriately to Reduce avoidable hospital
+performance on HEDIS and cost-effective settings, incl. readmissions, preventable
+CMS Stars measures, and home care (SNF to HH, IP to exacerbations (e.g., COPD,
+commercial quality programs ED, OP to ASC, etc.) asthma), and injuries/falls
+2 Diagnose root causes and detailed
+Optimize Advance health Boost patient
+specifics within each of those capacity equity retention
+opportunities
+Unlock capacity by shifting Highlight health-related social Grow and retain members
+lower acuity visits to needs and address gaps in
+appropriate channels care
+3 Generate patient specific, real-time
+insights and Next Best Actions for
+on-the-ground care teams to carry
+out care model changes
+McKinsey & Company 12
+
+Product Advisory Support
+CareCUBE has
+multiple service
+Analytics and workflow CareCUBE insights Comprehensive
+offerings to platform that provides that can be integrated approach that
+a comprehensive into a broader encompasses
+accelerate your care
+assessment of care enterprise strategic intervention design,
+model innovation model opportunities, effort, supported by implementation,
+delivering actionable collaborative thought performance
+and transformation
+insights across partners with management, and
+efforts
+multiple organizational extensive experience product support to
+levels, including real- in business and care drive consistent value
+time patient-level models across payers, realization across the
+recommendations for providers, MSOs, tech entire organization
+next-best actions enablers, and public
+agencies
+McKinsey & Company 13
+
+Additional products available “as a Service”
+Non-exhaustive
+Asset and capability overview Impact and how it plugs into workflow
+Episode analytics – episodic algorithms covering Enables the ability to make fair comparisons across providers including specialist-driven and facility-
+30+ patient journey pathways based episodes
+USD 45 M in savings over 3 years through implementation of a broad episode program
+Claims predictive volume Forecasts the claims volume by site of care, clinical categories, demographics accounting for utilization
+shifts, population growth, ageing, change in payor mix and other trends
+Service line analytics Claims based utilization and market sizing by key demographics (e.g., year, state, MSA) and/or clinical
+information (specialty, service location, service line)
+Consumer activation Understand how consumers are choosing providers; predictively model the impact of their choices;
+design interventions to influence behavior
+Care-at-home analytics Detailed breakdown of opportunities and feasibility of changing site of care to home
+Payer G&A benchmarking Holistic assessment of cost and operational performance across functional areas. Includes trend and
+peer analysis, as well KPI assessment.
+Future of Payer View of payor’s potential future state through operational and organizational transformation,
+Medical cost- pharmacy opportunity (TEDS, Opportunity analysis for pharmacy spend, including biosimilars and reference based pricing
+biosimilars, reference based pricing)
+Profit pools Comprehensive, proprietary model analyzing current and evolving healthcare revenue & profit pools
+across five verticals (payer, provider, manufacturers, pharmacy & tech services)
+Enrollment projection Forecast enrollment changes at county level and by LOBs (commercial, Medicare, Medicaid etc.)
+ACA analytics Database of all ACA networks, products, benefits, pricing, financials etc. Also estimate price elasticity
+for ACA carriers and estimate market share impacts
+Claims predictive volume & claims market sizing Predict claims utilization by clinical categories and site of care by line of business and state; size
+Claims based market by key demographics (e.g., year, state, MSA, age) and/or clinical information
+(specialty, service location, service line, disease/condition)
+Denials excellence tool Identify denials
+Provider price benchmarking Assess competitiveness of negotiated rates and identify drivers of variability
+McKinsey & Company 1144

@@ -1,19 +1,857 @@
- 1 July 16, 2025 Dr. Mehmet Oz Centers for Medicare & Medicaid Services Department of Health and Human Services ATTN: CMS–0042–NC PO Box 8013 Baltimore, MD 21224-1850 RE: Request for Information; Health Technology Ecosystem (CMS–0042–NC) CRISP Shared Services, Inc. (“CSS”) appreciates the opportunity to provide input on the Request for Information; Health Technology Ecosystem (CMS–0042–NC) (the “RFI”). CSS is a not-for-proﬁt organization managing a shared infrastructure for Health Information Exchanges (“HIEs”) and Health Data Utilities (“HDUs”) across the country. CSS’s core tenets seek to preserve the independence and data governance of each HIE / HDU while achieving economies of scale – the whole should be greater than the sum of its parts. Currently, the states and territories CSS serves include HIEs and HDUs for Alaska, Connecticut, the District of Columbia, Maryland, Virigina, and West Virginia. CSS and its HIE / HDU partners stand as trusted third parties, providing governance, privacy and security, and data interoperability across providers, payers, and public and state health o Ưicials. CSS has the very experience the Centers for Medicare and Medicaid (“CMS”) is seeking to draw from in this RFI. Our technology connects providers, payers, and public health o Ưicials within and across states. We exchange data through the National Networks and frameworks, including TEFCA, Car equality, and eHealthExchange. We work across certiﬁed health information technology (“IT”) systems to normalize and de-duplicate data for users. We have experience implementing patient access solutions and have utilized the technologies CMS references throughout the RFI. Based on our experience, we are providing answers to select questions from the RFI. Throughout, we note the following themes for CMS and the O Ưice of the National Coordinator for Health Information Technology (“ONC”) / the Assistant Secretary for Technology Policy (“ASTP”).  We believe CMS and ONC / ASP should prioritize data exchange over data standards. Existing industry standards already enable appropriate data exchange without the cost and complexity of Bulk Fast Healthcare Interoperability Resources (“FHIR”) or other standards. Data parsing and ﬁltering can be performed more easily with current technologies and will soon be surpassed by artiﬁcial intelligence (“AI”) capabilities. Instead, CMS and ONC / ASTP should focus on ensuring data quality and that data is available at the right place, time, and level of detail. Rather than encouraging a standard that may, in the future, drive value, we encourage CMS and ONC / ASTP to incentivize the value itself.  We encourage CMS and ASTP / ONC to emphasize networks with available data functionality. The Trusted Exchange Framework and Common Agreement (“TEFCA”), now nearly two years old, 
- 2 has duplicated existing networks and frameworks, adding burden without value. CMS and ONC / ASTP should consider utilizing existing networks and frameworks like Car equality and eHealthExchange for TEFCA instead of creating a new network. Regardless of the network or framework used, CMS and ONC / ASTP should include mandatory responses for purposes beyond treatment, particularly focusing on operations, which would facilitate data exchange for care coordination and aid alternative payment models, and public health. In addition, to drive value, CMS and ONC / ASTP must include a mechanism for indicating where the data needed reside. Currently, networks and frameworks encourage numerous queries without indicating where data will be located. Simply creating a directory and encouraging open application program interfaces (“APIs”) without indicating data locations will create burdensome and duplicative data calls. HIEs and HDUs, which know where the data are located, should be used in concert with national networks and frameworks to drive e Ưiciency.  HIEs and HDUs are Key. Many questions in this RFI can be addressed by high-quality HDUs and HIEs in each state / territory; CSS’ HIE and HDU partners have done the very things this RFI suggests. We know what will work and what does not, what drives value and what is ine Ưicient, and how to utilize the best technology based on what end users want and need. We encourage CMS and ONC / ASTP to support state- and region-based HDUs as scalable, trusted intermediaries bridging clinical care, public health, Medicaid, and patient needs. Responses to Speciﬁc Questions PC-10. How is TEFCA currently helping to advance patient access to health information in the real world? a. Please provide speciﬁc examples. For the ﬁrst time, TEFCA mandates that all participants in a national framework must respond to Individual Access requests, meaning that any entity contributing to or querying the network is required to provide data if another participant indicates that a patient is requesting their information. This requirement is transformative for patients seeking access to their health data and represents one of the most innovative and signiﬁcant contributions of TEFCA. b. What changes would you suggest? To date, the implementation of TEFCA has not mandated contributors respond to data requests if the requestor indicates the data is needed for payment, operations, public health, or research purposes. Consequently, only treating providers and patients are fully beneﬁting from the framework. For instance, CSS has launched a querying portal for Public Health Authorities nationwide. However, when these entities use the TEFCA framework to query, they often ﬁnd no results or minimal data, leading them to abandon the portal quickly. Similar issues have been reported by payers and care coordinators, who are unable to access data and thus do not utilize the network. Apart from Individual Access, TEFCA has largely replicated existing 
- 3 frameworks and networks, thereby increasing administrative burden without o Ưering additional value beyond Individual Access. Therefore, we strongly recommend requiring responses for all purposes or, at the very least, establishing strict timelines and a clear roadmap for when responses will be mandatory. c. What use cases could have a signiﬁcant impact if implemented through TEFCA? As previously noted, CSS has implemented a querying portal for Public Health Authorities across the country. However, when these entities query using the TEFCA framework, they often see either no results or minimal data, leading them to stop using the portal. Many Public Health Authorities are still relying on fax machines and paper records to combat diseases and investigate adverse medical e Ưects. Providing access to electronic records would revolutionize their workﬂows and save billions of taxpayer dollars. HIEs / HDUs that CSS supports can directly connect Public Health Authorities with providers in their state to bridge this TEFCA gap. Even once TEFCA supports mandatory Public Health responses, it is important to note that having the right to access data through the TEFCA framework is not the same as possessing the infrastructure to access it. Local HIEs / HDUs play a critical role in health data exchange by providing the necessary infrastructure and governance to facilitate access and use of the data provided over TEFCA. HIEs / HDUs help ensure that data is accessible, secure, and usable by various stakeholders, including Public Health Authorities, payers, and care coordinators. Therefore, we implore CMS and ONC / ASTP not only to require responding to Public Health queries, but also to support and enhance local HIEs / HDUs. d. What standards are you aware of that are currently working well to advance access and existing exchange purposes? Health Level 7 (“HL7”) v2.x remains the gold standard for data exchange in healthcare. It is universally used and well understood, supports real-time messaging, and communicates most of the needed information through a well-known format. This standard is crucial for interoperability because it allows di Ưerent healthcare systems to exchange data seamlessly, ensuring that patient information is accessible and accurate across various platforms. Similarly, Consolidated Clinical Document Architecture (“C-CDA”) continues to be widely used and well understood. It provides a structured format for clinical documents, facilitating the sharing of patient information between di Ưerent healthcare providers. Both HL7 v2.x and C- CDA are robust standards that any reputable technology can parse and then move data elements where they need to be. Therefore, we do not recommend any initiative to move organizations away from these tried- and-true standards. The limitations of HL7 v2.x and C-CDA often lie in the mechanisms by which they are transported. HL7 v2.x exchange is often done over a site-to-site virtual private networks (“VPN”) instead of hypertext transfer protocol secure (“HTTPS”), which adds signiﬁcant overhead, infrastructure, and security footprint to a network. C-CDA uses Simple Objects Access Protocol (“SOAP”), which lacks some of the more modern capabilities of Representational State Transfer (“REST”). These limitations are not inherent to the data 
- 4 standards themselves but rather to the chosen communication mechanisms for these transactions, which could be improved. Therefore, we encourage CMS and ONC / ASTP to focus on and put resources behind the transport mechanisms rather than the standards of the data themselves. e. What standards are you aware of that are currently working well to advance access and existing exchange purposes? FHIR over REST APIs is often promoted as the future of healthcare interoperability, but it has yet to be widely adopted by healthcare systems. We have created FHIR endpoints and applications and asked healthcare entities to exchange data through them, only to be told by these entities – using Certiﬁed Health IT – to exchange data through HL7 and C-CDA. There are several challenges associated with FHIR. FHIR does not inherently improve the quality of data being exchanged; issues such as incomplete or inaccurate data can persist regardless of the standard used. While FHIR simpliﬁes data extraction, it does not address the underlying transport mechanisms, which may still be ine Ưicient or insecure. Additionally, healthcare systems may face signiﬁcant hurdles in adopting FHIR, including the cost and complexity of overhauling existing infrastructure. While FHIR can streamline the process of identifying and extracting discrete data elements from existing HL7 and C-CDA feeds, it will not improve data quality or transport capabilities. The current infrastructure, which works well today, should not be hastily replaced in favor of something that o Ưers only marginal improvements for tomorrow. In contrast, generative AI tools o Ưer promising solutions for enhancing interoperability and reducing administrative burden. AI technology in electronic health records (“EHR”) tools can facilitate seamless interaction between systems through prompts, potentially leading to a future where one EHR AI communicates directly with another EHR AI. This approach could improve data quality by helping clean and standardize data within a system, ensuring that the information exchanged is accurate and complete. AI- driven systems can simplify interoperability by extracting and providing the required data without the need for complex interoperable infrastructure. Furthermore, AI can enhance privacy and security by implementing better methods for anonymizing protected health information (“PHI”) and reducing the vulnerable footprint of large healthcare networks. Given these potential beneﬁts, overinvesting in an overhaul in favor of FHIR seems unnecessary and burdensome when it could soon be replaced by capabilities native to generative AI. Instead, we recommend that CMS and ONC / ASTOP focus on improving data quality within a system for exchange and ensuring the privacy and security of that data. f. Are there redundant standards, protocols, or channels that should be consolidated? As we previously noted, with the exception of Individual Access, TEFCA has thus far duplicated existing frameworks and networks, increasing overall administrative burden without providing additional value. TEFCA is almost entirely built on the framework of Car equality, which has established a robust network over 
- 5 the past decade, resulting in over 1 billion queries per month. Consequently, the same entities are using both networks, nearly doubling the overall administrative burden. We recommend that ONC / ASTP and CMS reconsider how Car equality could be employed in concert with TEFCA, rather than duplicating e Ưorts. By leveraging Car equality's established infrastructure, ONC / ASTP can reduce redundancy and enhance the eƯiciency and e Ưectiveness of data exchange. g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to their health information? Multiple CMS rules, along with Information Blocking regulations, require providers and payers to give patients access to their data. In addition, both Car equality and eHealthExchange are national networks or frameworks that o Ưer the same or better connectivity as TEFCA. Car equality and eHealthExchange allow responses to patient access requests and could mandate these responses, achieving the same result as TEFCA but with more data and connectivity. PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? HIEs, and particularly HDUs, can and should encompass a broad spectrum of data beyond clinical information, including data from Public Health Authorities, claims data, and social services data. Localized HDUs can signiﬁcantly enhance connectivity within healthcare by providing patient access to this comprehensive information, which extends far beyond the data available from providers and payers, thereby greatly increasing its value to users and consumers. a. How valuable, available, and accurate do you ﬁnd the data they share to be? In our experience, the availability and accuracy of these data are driven by the sophistication of the HIE or HDU. Localized HIEs and HDUs can tailor their services to meet the speciﬁc needs of their communities, ensuring that the data is relevant and actionable. This localized approach can improve patient outcomes by facilitating more coordinated and informed care and increase the amount of data accessible to patients. However, HIEs and HDUs are not uniformly codiﬁed or standardized, leading to considerable variability in their value and accuracy. We strongly encourage CMS and ONC / ASTP to support standardized state- and region-based HDUs as scalable, trusted intermediaries that can bridge clinical care, public health, Medicaid, and patient needs. Greater standardization would help ensure patient access to information from these disparate sources, fostering a more connected and e Ưicient healthcare system. b. What changes would you suggest? As previously noted, we strongly encourage CMS and ONC / ASTP to support standardized state- and region- based HDUs as scalable, trusted intermediaries that can bridge clinical care, public health, Medicaid, and 
- 6 patient needs. These HDUs serve as data infrastructure for the public good, not just routing hubs, and provide essential services including:  Master patient index matching and record linkage.  Data normalization, deduplication, and enrichment.  Jurisdiction-speciﬁc routing for case reporting and analytics.  Secure access for authorized clinical, public health, Medicaid, and patient stakeholders. While national frameworks and networks like TEFCA play an important role in establishing baseline connectivity, they are not su Ưicient on their own to meet the needs of patients, Public Health Authorities, and Medicaid agencies. Federal support for localized HDUs is crucial because these utilities can tailor their services to the speciﬁc needs of their communities, ensuring that the data is relevant, actionable, and secure. This localized approach can improve patient outcomes by facilitating more coordinated and informed care, while also reducing the burden of reporting to multiple places. Additionally, localized HDUs can address unique public health challenges and disparities within their regions, providing targeted solutions that a national framework might overlook. By supporting localized HDUs, the federal government can foster a more connected and e Ưicient healthcare system that is responsive to the diverse needs of its population. This support can also drive innovation in data management and interoperability, ultimately enhancing the quality and accessibility of healthcare across the nation. c. Are there particular examples of high-performing HIE models that you believe should be propagated across markets? CSS supports many HIEs throughout the country that provide both the governance and technology that support the type of data exchange CMS and ONC/ ASTP envision. Speciﬁcally, we suggest CMS speak with the Chesapeake Regional Information System for our Patients (“CRISP”), CRISP DC, the West Virginia Health Information Network, the Virginia Health Information, healtEconnect Alaksa, and Connie. Each of these HIEs / HDUs provides access across the health and health care system, including to providers, payers, and Public Health Authorities, and many are also providing connectivity to social services and community- based organizations. For each entity that sees and exchanges data, these HIEs / HDUs ensure role-based access that support federal and state laws and security standards. Put simply, these HIEs / HDUs are living the vision CMS and ONC / ASTP see for health data interoperability. CMS and ONC / ASTP should propagate these models across regions, states, and territories. Each state and territory deserve access to shared, trusted health data infrastructure, whether through a locally governed utility or a shared service model. To encourage these models, CMS and ONC / ASTP should advance policies that: 
- 7  Recognize HDUs as essential data infrastructure.  Fill the gaps that TEFCA does not address.  Enable equitable, scalable, and multi-use health data services.  Prioritize practical, provider-based patient access pathways. d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? For HIEs / HDUs that provide services beyond network-of-networks connection and data sharing, a future network-of-networks under TEFCA or another framework will not replace the value that HIE customers derive from participating in an HIE. In fact, the value such HIEs and HDUs provide to their customers will likely increase because HIEs / HDUS provide the following, which TEFCA cannot:  Local Governance and Privacy Protection . State and local laws vary across the country, as do localized privacy concerns and protections. As a federal framework, TEFCA does not account for these local laws, except to condition all exchanges on compliance with “Applicable Law” (including applicable state law). Therefore, HIEs need to continue enforcing localized privacy protections and downstream permitted uses for participants and patients to feel comfortable sharing data. Without HIEs / HDUs performing this function, data will not be returned to the TEFCA queriers by states with particular privacy laws because these providers cannot segment data subject to these laws from data that are not.  Granular Consent Management . Similar to privacy protections, HIEs manage granular consent (e.g., consent regarding behavioral health records, Part 2 data, HIV status, etc.) to allow speciﬁc data sharing from speciﬁc patients, according to state laws and regulations and consistent with patient choice. Again, without HIEs / HDUs that can assist in supporting consent models in a scalable format, many otherwise available and consented data will not be returned.  Advanced Patient Matching and Identity Resolution . Currently, the patient-matching rates for national networks are signiﬁcantly lower than those of local HIEs. HIEs have years of data and technological solutions that enable advanced patient-matching at the local level. If patients are not matched as they are queried across networks, they will not return data.  Public Health Integration. HIEs with existing relationships with their state and local health departments provide a logical “on-ramp” for public health agencies to participate in TEFCA. Most public health agencies do not have the technical capabilities to onboard to a Qualiﬁed Health Information Network (QHIN). Unlike many providers and payers, who will likely have access to a QHIN through their existing EHR system, public health agencies generally do not have this built-in option for QHIN connectivity. These agencies can utilize their HIEs / HDUs that participate in TEFCA for their connection points.  Rural Access . Many providers and payers have TEFCA connectivity through their EHR systems, as some large EHR companies are QHINs or are connected to QHINs. However, many smaller and/or 
- 8 rural providers may not have access to these EHR systems. Connecting to a QHIN is no small task, requiring many resources and advanced security capabilities, which many rural providers simply cannot aƯord. Therefore, these providers rely on entities like HIEs / HDUs, that already have these connection points, to participate in national networks and frameworks.  Research and Other Authorization-based Disclosures . TEFCA does not currently permit the exchange of information via a QHIN’s connectivity services for research or other authorization- based purposes. HIEs and HDUs, however, build trust locally and can provide access for these important use cases.  Data and Analytics . While TEFCA enables data exchange, it does not produce health data or analytics that can inform treatment interventions or population health initiatives. Many HIEs provide these services, targeted to the local needs and interests of their participants.  Scalability. TEFCA’s architecture is optimized for targeted query / retrieve transactions, which are ill-suited for high-volume event streaming, bulk data analytics, or case-based public health workﬂows like electronic case reporting (eCR). HIEs and HDUs, in contrast, intake large amounts of information to create actionable data for each of its user types. For all of these reasons, CMS and ONC / ASTP must continue supporting and propagating high-value HIEs and HDUs. PR-2. What are obstacles that prevent development, deployment, or e Ưective utilization of the most useful and innovative applications for physician workﬂows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated? As noted in the “More than Just 'Alerts' Tipsheet,” the usefulness of data for clinicians is not the data itself, but ensuring that the right information gets to the right people through the right channels in the right intervention formats at the rights points in the workﬂow. Obstacles result if these “ﬁve rights” are not a part of the design and implementation of the product, and these obstacles could be mitigated through intentional design inclusive of these “ﬁve rights.” (https://www.healthit.gov/sites/default/ﬁles/clinicaldecisionsupport_tipsheet.pdf) In addition, hospitals and health systems have other operational priorities such that innovative solutions must include strong value propositions directly tied to their return on investment “ROI.” Similarly, many EHRs do not have the ability to make changes in the workﬂow; the situation is even worse for small practices, who have less resources to implement innovative workﬂow solutions. Therefore, we recommend that CMS and ONC / ASTP provide resource support for smaller EHRs and smaller and less resourced practices to implement third party workﬂow solutions and also provide trustworthy validation of their e Ưectiveness and ROI. PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data ﬁelds)? 
- 9 In most EHR systems, structured data ﬁelds, free text notes, labs, and imaging are routinely available, the issue, instead is in data overload. Clinicians are already overwhelmed by the volume of patient data in their own system. Sharing all data for every patient encounter leads to additional overload. Clinicians only want to see the data that is relevant for them at that time - but often are either presented with too much information or data is buried. Rather than focusing on the amount and type of data available, we recommend that CMS and ONC / ASTP encourage the use of tolls and data ﬂow that can point clinicians to clinically relevant data. The relevant data and amount of data may be patient or diagnosis dependent; for example, patients who are experiencing cognitive issues such as dementia or who are unconscious would likely result in a need for more data, but EHRs and third-party workﬂows should be encouraged to create workﬂows and data visibility based on these situations as the arise. If privacy issues arise from sharing all data, HIEs and HDUs can and do provide resources for limiting access to data based on user roles and data tagging. Potential privacy implications can largely be solved through tagging and business rules. For example, CSS-supported HIEs only share certain data types with certain types of users – what a payer sees may be di Ưerent than what a provider or Public Health Authority sees based on legally computational rules that reproduce state and federal legal constructs. PR-6. Is TEFCA currently helping to advance provider access to health information? a. Please provide speciﬁc examples. As previously noted, except for Individual Access, TEFCA has duplicated existing frameworks and networks, increasing administrative burden without adding value. TEFCA is largely built on the Car equality framework, which already handles over 1 billion queries per month. Consequently, the same entities are using both networks, nearly doubling the administrative burden. This duplication has led to signiﬁcant challenges for providers and the healthcare system as a whole. Providers now face increased complexity in managing multiple networks, which can lead to confusion and ineƯiciencies, diverting time and resources away from patient care. Additionally, the administrative costs associated with maintaining compliance and interoperability across multiple networks can strain healthcare budgets, impacting the overall e Ưiciency and e Ưectiveness of the healthcare system. b. What changes would you suggest? Consistent with our recommendations above, we suggest that ONC/ASTP and CMS reconsider how Carequality could be employed in concert with TEFCA, rather than in duplication. Furthermore, currently, TEFCA does not require entities contributing data to respond to requests for payment, operations, public health, or research purposes. As a result, only treating providers and patients could be beneﬁting, if at all, from the framework. For example, CSS has implemented a querying portal for public health entities across the country, but when these entities use the TEFCA framework, they often see 
- 10 no results or very few results and stop using the portal. Similar issues have been reported by payers and care coordinators, who cannot access data and therefore do not use the network. To address these gaps, we suggest requiring responses for all purposes or, at the very least, issuing tight timelines and a comprehensive roadmap for when responses would be required. The roadmap should include:  Clear milestones for expanding mandatory use cases beyond individual access to include payment, operations, public health, and research purposes.  Deﬁned timelines for the implementation of these expanded use cases, ensuring that entities contributing data are required to respond to requests within speciﬁed periods.  Detailed guidelines for interoperability standards that facilitate seamless data exchange across diƯerent systems and networks, minimizing administrative burden.  Support mechanisms for smaller and rural providers to ensure they can participate in TEFCA and beneﬁt from the expanded use cases.  Training and resources for public health agencies and other stakeholders to enhance their technical capabilities and enable e Ưective participation in TEFCA.  Evaluation metrics to assess the e Ưectiveness of the expanded use cases and the overall impact on healthcare connectivity and outcomes. By incorporating these elements into the roadmap, ONC / ASTP and CMS can ensure that TEFCA provides meaningful value to all stakeholders, reduces administrative burden, and enhances the overall functionality of the healthcare system. c. What other options are available outside of TEFCA? There are several alternatives to TEFCA that focus on enhancing interoperability and data exchange. Most notably, TEFCA largely duplicated Car equality. Carequality supports a wide range of use cases, including treatment, payment, and operations, and has built a robust network over the years, handling over 1 billion queries per month. Additionally, eHealth Exchange provides a robust national network that includes data sharing for many federal government entities missed by other networks and frameworks. This network connects federal agencies, state and regional HIEs, and private sector organizations, supporting data sharing for many federal government entities. eHealth Exchange is particularly valuable for its inclusion of federal entities, which are often missed by other networks and frameworks. This network helps ensure that critical health information is available to providers and patients across the country. Regardless of the type of national networks or framework, local and regional HIEs / HDUs play a crucial role in bridging gaps left by these national networks and frameworks. They provide tailored solutions to meet the speciﬁc needs of their communities, ensuring relevant and actionable data exchange. HIEs can address unique public health challenges and disparities within their regions, o Ưering targeted solutions that a national framework might overlook. By focusing on local needs, HIEs enhance patient outcomes and support more coordinated care. 
- 11 PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? In the current system, each provider must submit data on each of their patients, but it is redundant to require each provider submit data for shared patients. Instead, an intermediary such as an HIE / HDU could submit clinical information that represents many patients across many providers. The data, regardless of the source, would demonstrate the quality of care experienced by individuals and populations, and existing attribution models will identify high achievers as well as gaps in care. a. What would be the beneﬁts and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? The burden related to clinical quality submissions is, in our experience, not based on the extract standards; many EHRs and IT vendors are able to extract, process, and report measures for individual providers. Rather than focusing on the export standards, we suggest considering models that enable reporting from intermediaries that source data from many providers. For example, a high functioning HIE / HDU could provide quality data on thousands of patients across hundreds of providers. The providers could then only be required to ﬁll gaps rather than each reporting their own data directly for every patient. b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? As discussed above, an HIE / HDU is a consolidated data aggregator already connected to most providers in a jurisdiction. This technology and data could provide quality reporting data to payers and government partners and entirely remove the burden from the provider community. CSS supports several examples of entities that do just this very function. We encourage CMS and ONC / ASTP to speak with us about these organizations and how to propagate them across markets. c. Are there requirements CMS should consider for data registries to support digital quality measurement in a more e Ưicient manner? Are there requirements CMS should consider for data registries that would support access to real-time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? CMS should consider the minimum standards for HDUs such that they could function as local, trusted data registries that exchange and store data for real-time treatment purposes and also for quality reporting purposes. Some states have these types of intermediaries already in place, and CSS would be glad to share details on capabilities and lessons-learned to help build universal guidelines. PR-11. How could members of trust communities ௗ(for example, QHINs, participants and subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential Service 
- 12 Providers (CSPs) better support the goals of reduced provider and patient burden while also enhancing identity management and security? For HIEs / HDUs that provide services beyond network-of-networks connection and data sharing, a future network-of-networks under TEFCA or another framework will not replace the value that HIE customers derive from participating in an HIE. In fact, the value such HIEs and HDUs provide to their customers will likely increase because HIEs / HDUS provide the following, which TEFCA cannot:  Local Governance and Privacy Protection . State and local laws vary across the country, as do localized privacy concerns and protections. As a federal framework, TEFCA does not account for these local laws, except to condition all exchanges on compliance with “Applicable Law” (including applicable state law). Therefore, HIEs need to continue enforcing localized privacy protections and downstream permitted uses for participants and patients to feel comfortable sharing data. Without HIEs / HDUs performing this function, data in will not be returned to the TEFCA queriers by states with particular privacy laws because these providers cannot segment data subject to these laws from data that are not.  Granular Consent Management . Similar to privacy protections, HIEs manage granular consent (e.g., consent regarding behavioral health records, Part 2 data, HIV status, etc.) to allow speciﬁc data sharing from speciﬁc patients, according to state laws and regulations and consistent with patient choice. Again, without HIEs / HDUs that can assist in supporting consent models in a scalable format, many otherwise available and consented data will not be returned.  Advanced Patient Matching and Identity Resolution . Currently, the patient-matching rates for national networks are signiﬁcantly lower than those of local HIEs. HIEs have years of data and technological solutions that enable advanced patient-matching at the local level. If patients are not matched as they are queried across networks, they will not return data.  Public Health Integration. HIEs with existing relationships with their state and local health departments provide a logical “on-ramp” for public health agencies to participate in TEFCA. Most public health agencies do not have the technical capabilities to onboard to a Qualiﬁed Health Information Network (QHIN). Unlike many providers and payers, who will likely have access to a QHIN through their existing EHR system, public health agencies generally do not have this built-in option for QHIN connectivity. These agencies can utilize their HIEs / HDUs that participate in TEFCA for their connection points.  Rural Access . Many providers and payers have TEFCA connectivity through their EHR systems, as some large EHR companies are QHINs or are connected to QHINs. However, many smaller and/or rural providers may not have access to these EHR systems. Connecting to a QHIN is no small task, requiring many resources and advanced security capabilities, which many rural providers simply cannot aƯord. Therefore, these providers rely on entities like HIEs / HDUs, that already have these connection points, to participate in national networks and frameworks.  Research and Other Authorization-based Disclosures . TEFCA does not currently permit the exchange of information via a QHIN’s connectivity services for research or other authorization-
- 13 based purposes. HIEs and HDUs, however, build trust locally and can provide access for these important use cases.  Data and Analytics . While TEFCA enables data exchange, it does not produce health data or analytics that can inform treatment interventions or population health initiatives. Many HIEs provide these services, targeted to the local needs and interests of their participants.  Scalability. TEFCA’s architecture is optimized for targeted query / retrieve transactions, which are ill-suited for high-volume event streaming, bulk data analytics, or case-based public health workﬂows like electronic case reporting (eCR). HIEs and HDUs, in contrast, intake large amounts of information to create actionable data for each of its user types. For all of these reasons, CMS and ONC / ASTP must continue supporting and propagating high-value HIEs and HDUs. PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions or conditions within the exceptions (45 CFR part 171, subparts B through D) to further the access, exchange, and use of electronic health information (EHI) and to promote market competition? In our experience, the Information Blocking exceptions and conditions are intuitive and straightforward. The larger issue is that they are not yet enforced to a degree that the market has responded. Instead of using resources to remove or revise Information Blocking exceptions, we encourage CMS and ONC/ASTP to both formally and informally enforce the regulations, including streamlined ways to report information blocking and mechanisms to provide ﬁndings and guidance based on formal and informal enforcement actions. PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to address those limitations? To what degree do you expect these limitations to hinder participation in TEFCA? Thus far in the implementation of TEFCA, no one contributing data to the network is required to respond to requests for data if the requestor states that the data is for a payment, operations, public health, or research purpose. As such, only treating providers and patients are fully beneﬁtting, if at all, from the framework so far. For example, CSS has implemented a querying portal for Public Health Authorities across the country, and when these entities query using the TEFCA framework, they see either no results or next to no results and quickly stop using the portal. We have heard similar stories from payers and care coordinators – they cannot access data and therefore are not using the network. With the exception of Individual Access, as discussed above, then TEFCA has thus far duplicated existing frameworks and networks, increasing overall administrative burden without providing additional value beyond Individual Access. Thus, we suggest requiring responses for all purposes, or at the very least, issuing tight timelines and a roadmap for when responses would be required. The roadmap should include:  Clear milestones for expanding mandatory use cases beyond individual access to include payment, operations, public health, and research purposes. 
- 14  Deﬁned timelines for the implementation of these expanded use cases, ensuring that entities contributing data are required to respond to requests within speciﬁed periods.  Detailed guidelines for interoperability standards that facilitate seamless data exchange across diƯerent systems and networks, minimizing administrative burden.  Support mechanisms for smaller and rural providers to ensure they can participate in TEFCA and beneﬁt from the expanded use cases.  Training and resources for public health agencies and other stakeholders to enhance their technical capabilities and enable e Ưective participation in TEFCA.  Evaluation metrics to assess the e Ưectiveness of the expanded use cases and the overall impact on healthcare connectivity and outcomes. By incorporating these elements into the roadmap, ONC / ASTP and CMS can ensure that TEFCA provides meaningful value to all stakeholders, reduces administrative burden, and enhances the overall functionality of the healthcare system. PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of providers? As shown above, a trusted intermediary that is collecting and repurposing data can remove many of the redundant data feeds for quality reporting and other uses. Payers should be allowed, and encouraged, to leverage this data ﬁrst and then only ask providers to ﬁll gaps if there is missing information for speciﬁc patients. Payers and capable HIEs / HDUs should be in a good position to innovate new workﬂows and standards to reduce the delays on quality data submissions and even leverage AI to have more complete and accurate reporting by analyzing unstructured documents. TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? CMS has encouraged the use of publicly available APIs to improve patient access, but this initiative has not led to signiﬁcant usage. In our experience, patient access via open Medicaid APIs is the lowest utilized API in our network, sometimes going months without any queries. The infrastructure built in states that support these APIs is not being reused e Ưectively, and the use cases for Medicaid departments remain unclear. Patients prefer using applications provided by their healthcare providers to interact with their data, and there is little incentive to choose di Ưerent apps. There are several barriers to the use of Medicaid APIs. First, there is a lack of awareness among patients about the existence of these APIs. Second, patients trust and prefer applications provided by their healthcare providers. Third, third-party developers of patient access applications for commercial use often monetize by selling patient data, which deters patients from using these applications. Finally, Medicaid departments lack clear use cases for reusing the infrastructure. Therefore, we encourage CMS, instead to 
- 15 focus on reuseable, impactful use cases for patients and the health care system that could be driven by this type of data exchange, rather than the APIs themselves. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? A directory is only helpful if its endpoints provide meaningful responses. Currently, TEFCA is expected to operate as a query everyone, everywhere, every-time network, leading to ine Ưiciency and unnecessary costs. National networks and frameworks should prioritize record location to query only endpoints where data exists. This can be achieved by networking each state’s local HIEs / HDUs using lightweight REST APIs. Local HIEs / HDUs often have excellent encounter data that can be linked to endpoint directories, creating powerful e Ưiciencies and reducing privacy risks associated with querying everyone all the time. Thus, instead of using resources on a nationwide provider directory, we encourage CMS and ASTP / ONC to work with HIEs and HDUs to create record location frameworks complementary to TEFCA and other national networks and frameworks. TD-6. What unique interoperability functions does TEFCA perform? As previously noted, except for mandatory exchange for Individual Access, TEFCA has duplicated existing frameworks and networks, increasing administrative burden without adding value. TEFCA is largely built on the Carequality framework, which handles over 1 billion queries per month. Consequently, the same entities are using both networks, nearly doubling the administrative burden. We recommend that ONC / ASTP and CMS reconsider how Carequality could be employed in concert with TEFCA, rather than duplicating e Ưorts. TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? a. Does it contain the full extent of data elements you need? Generally, the United States Core Data for Interoperability (“USCD”I) has helped to improve baseline data quality and structure in health information exchange. However, there are still instances where the category of data is present, but the actual data elements are either missing or miscoded. To address these issues, we encourage the continued growth and reﬁnement of USCDI as a baseline for the quality of data being exchanged. Enhancing USCDI should be a priority to ensure accurate and reliable data for various important use cases, such as patient care, public health reporting, and research. By improving the speciﬁcity and accuracy of data elements within USCDI, we can further enhance the e Ưectiveness of health exchange and support better health outcomes. d. Given improvements in language models, would you prefer a non-proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? 
- 16 It remains crucial to mandate the exchange of speciﬁc data elements, irrespective of their format or structure. Any good language model should have the capability to extract necessary information from both structured and unstructured health records. These advanced models can help analyze and interpret text, enabling them to identify and retrieve relevant data elements even when they are embedded within unstructured narratives. By leveraging the power of large language models, we can ensure that essential health information is accurately and e Ưiciently extracted, facilitating better data exchange and improving healthcare outcomes. As such, we recommend CMS and ONC / ASTP use resources on solutions that will work with such language models to extract necessary data for users. TD-9. Regarding certiﬁcation of health IT: a. What are the beneﬁts of redeﬁning certiﬁcation to prioritize API-enabled capabilities over software functionality? Certiﬁcation should be aligned with the expectations set by ONC / ASTP for Information Blocking, which provides the necessary infrastructure to access health data. Rather than enforcing speciﬁc software functionalities or API capabilities, the Information Blocking Rule already promotes good practices and can be adjusted to achieve the same objectives, ensuring that health data is accessible and shared appropriately, preventing practices that would inhibit the exchange of information. b. What would be the drawbacks? Overregulation in the Health IT sector increases the burden on providers and fosters an industry focused on enforcing certiﬁcation criteria rather than innovation. Excessive regulations can stiﬂe the development of new tools and solutions by diverting resources towards compliance rather than creativity. The fundamental principles should be straightforward and aligned with the Information Blocking Rule. Simplifying regulations can encourage the development of e Ưective Health IT solutions that prioritize patient care and data security without being bogged down by unnecessary regulatory hurdles. Put simply, CMS and ONC / ASTP should drive value rather than regulating standards and software and enforce its rules when those who should be sharing data do not. d. What policy changes could CMS make so providers are motivated to respond to API-based data requests with best possible coverage and quality of data? We recommend that CMS prioritize the capture of high-quality data over the methods through which that data is exchanged. As mentioned above the ONC Information Blocking Rule already encourages the exchange of data where appropriate. 
- 17 TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? For patients to understand their full health picture, they must have access to not only their CMS data, but also other clinical sources, private payers, and public health data. HIEs, and particularly HDUs should and do include data beyond clinical data, such as data from Public Health Authorities, claims data, and social services data. HDUs can provide patient access to all of this information, which goes far beyond the data available from providers and payers, signiﬁcantly increasing the value to users and consumers. In our experience, the availability and accuracy of these data are driven by the sophistication of the HIE / HDU. HIEs and HDUs are not codiﬁed or standardized, resulting in a great deal of variability in value and accuracy. Therefore, we strongly encourage CMS and ONC / ASTP to support standardized state- and region-based HDUs as scalable, trusted intermediaries that can bridge clinical care, public health, Medicaid, and patient needs, including patient access to information from these disparate sources. TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data ﬂow? Based on our experience, the standards used to exchange data are nearly immaterial. Instead, the method by which data is exchange is the area most in need of improvement. Instead of focusing on Bulk FHIR, CMS should encourage the elimination of SFTPs and ﬁle drop services as the method for bulk data exchange and require more modern, secured, approaches to bulk data exchange. b. What are the potential disadvantages of their use? Spending time and resources encouraging bulk FHIR could take away resources that could more directly impact interoperability and patient health. As noted above, bulk FHIR is not necessary, but the general encouragement of secure bulk data exchange is. Therefore, we recommend that CMS focus upon eliminating secure ﬁle transfer protocol (“SFTPs”) and ﬁle drop services as the method for bulk data exchange and require more modern, secured, approaches to bulk data exchange. TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? One of the largest issues in the use and proliferation of national networks and frameworks is the level of trust engendered by each network. For most of these networks, there are no dashboards or way to access who is providing and querying data, which creates a "black box" of data sharing. CMS or ASTP / ONC could engender more trust by encouraging transparency, showcasing high-level queries and returns for organizations participating in these networks. In addition, CMS and ASTP / ONC should encourage policies which allow patients to receive an Accounting of Disclosures for each time their data is queried or returned 
- 18 in the network. Such an Accounting would allow patients to understand not only where there data is going, but also what data may be missing or to whom they need to reach out to ensure they have access to all of their data. VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital health management and care navigation products more often and more e Ưectively with their patients? What are the current obstacles preventing broader digital product adoption for patients in ACOs? One successful approach can be found in Maryland. The Total Cost of Care Model, in the process of transitioning to AHEAD, is a statewide alternative payment model (“APM”) that created universal access to care coordination and reporting tools, including raw data extracts, through a central utility. This utility, CRISP, enables a level playing ﬁeld for all participants, reduces total cost because the technology is shared, and allows for competition to be focused on strategic approaches to care delivery rather than data capture. Based on the success of Maryland, we strongly encourage CMS and ONC / ASTP to support standardized state- and region-based HDUs as scalable, trusted intermediaries that can support APMs and ACOs. Thank you for the opportunity to comment. We would be delighted to speak with CMS and ASTP / ONC about the success of our HIEs / HDUs, speciﬁcally how they can directly impact the change this RFI seeks. Sincerely, Craig Behm CSS Chief Executive O Ưicer CRISP President 
- 19 Kendra Sticka, Executive Director healthEconnect, Alaska Jennifer Searls, Executive Director Connie, Connecticut Stephanie Brown, Executive Director CRISP DC, District of Columbia Kyle Russell, Chief Executive O Ưicer Virginia Health Information Sonia Chambers, Executive Director West Virginia Health Information Network, West Virginia 
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+July 16, 2025
+
+Dr. Mehmet Oz
+
+Centers for Medicare & Medicaid Services
+Department of Health and Human Services
+ATTN: CMS-0042-NC
+
+PO Box 8013
+
+Baltimore, MD 21224-1850
+
+RE: Request for Information; Health Technology Ecosystem (CMS-0042-NC)
+
+CRISP Shared Services, Inc. (“CSS”) appreciates the opportunity to provide input on the Request for
+Information; Health Technology Ecosystem (CMS-—0042-NC) (the “RFI”). CSS is a not-for-profit organization
+managing a shared infrastructure for Health Information Exchanges (“HIEs”) and Health Data Utilities
+(“HDUs”) across the country. CSS’s core tenets seek to preserve the independence and data governance of
+each HIE / HDU while achieving economies of scale — the whole should be greater than the sum of its parts.
+Currently, the states and territories CSS serves include HIEs and HDUs for Alaska, Connecticut, the District
+of Columbia, Maryland, Virigina, and West Virginia. CSS and its HIE / HDU partners stand as trusted third
+parties, providing governance, privacy and security, and data interoperability across providers, payers, and
+public and state health officials.
+
+CSS has the very experience the Centers for Medicare and Medicaid (“CMS”) is seeking to draw from in this
+RFI. Our technology connects providers, payers, and public health officials within and across states. We
+exchange data through the National Networks and frameworks, including TEFCA, Carequality, and
+eHealthExchange. We work across certified health information technology (“IT”) systems to normalize and
+de-duplicate data for users. We have experience implementing patient access solutions and have utilized
+the technologies CMS references throughout the RFI. Based on our experience, we are providing answers to
+select questions from the RFI. Throughout, we note the following themes for CMS and the Office of the
+National Coordinator for Health Information Technology (“ONC”) / the Assistant Secretary for Technology
+Policy (“ASTP”).
+
+e We believe CMS and ONC / ASP should prioritize data exchange over data standards. Existing
+industry standards already enable appropriate data exchange without the cost and complexity of
+Bulk Fast Healthcare Interoperability Resources (“FHIR”) or other standards. Data parsing and
+filtering can be performed more easily with current technologies and will soon be surpassed by
+artificial intelligence (“Al”) capabilities. Instead, CMS and ONC / ASTP should focus on ensuring
+data quality and that data is available at the right place, time, and level of detail. Rather than
+encouraging a standard that may, in the future, drive value, we encourage CMS and ONC / ASTP
+to incentivize the value itself.
+
+e We encourage CMS and ASTP / ONC to emphasize networks with available data functionality.
+The Trusted Exchange Framework and Common Agreement (“TEFCA”), now nearly two years old,
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+has duplicated existing networks and frameworks, adding burden without value. CMS and ONC /
+ASTP should consider utilizing existing networks and frameworks like Carequality and
+eHealthExchange for TEFCA instead of creating a new network. Regardless of the network or
+framework used, CMS and ONC / ASTP should include mandatory responses for purposes beyond
+treatment, particularly focusing on operations, which would facilitate data exchange for care
+coordination and aid alternative payment models, and public health. In addition, to drive value, CMS
+and ONC / ASTP must include a mechanism for indicating where the data needed reside. Currently,
+networks and frameworks encourage numerous queries without indicating where data will be
+located. Simply creating a directory and encouraging open application program interfaces (“APIs”)
+without indicating data locations will create burdensome and duplicative data calls. HIEs and
+HDUs, which know where the data are located, should be used in concert with national networks
+and frameworks to drive efficiency.
+
+e HIEs and HDUs are Key. Many questions in this RFI can be addressed by high-quality HDUs and
+HIEs in each state / territory; CSS’ HIE and HDU partners have done the very things this RFl suggests.
+We know what will work and what does not, what drives value and what is inefficient, and how to
+utilize the best technology based on what end users want and need. We encourage CMS and ONC
+/ ASTP to support state- and region-based HDUs as scalable, trusted intermediaries bridging clinical
+care, public health, Medicaid, and patient needs.
+
+Responses to Specific Questions
+
+PC-10. How is TEFCA currently helping to advance patient access to health information in the real
+world?
+a. Please provide specific examples.
+
+For the first time, TEFCA mandates that all participants in a national framework must respond to Individual
+Access requests, meaning that any entity contributing to or querying the network is required to provide data
+if another participant indicates that a patient is requesting their information. This requirement is
+transformative for patients seeking access to their health data and represents one of the most innovative
+and significant contributions of TEFCA.
+
+b. What changes would you suggest?
+
+To date, the implementation of TEFCA has not mandated contributors respond to data requests if the
+requestor indicates the data is needed for payment, operations, public health, or research purposes.
+Consequently, only treating providers and patients are fully benefiting from the framework. For instance, CSS
+has launched a querying portal for Public Health Authorities nationwide. However, when these entities use
+the TEFCA framework to query, they often find no results or minimal data, leading them to abandon the portal
+quickly. Similar issues have been reported by payers and care coordinators, who are unable to access data
+and thus do not utilize the network. Apart from Individual Access, TEFCA has largely replicated existing
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+frameworks and networks, thereby increasing administrative burden without offering additional value
+beyond Individual Access. Therefore, we strongly recommend requiring responses for all purposes or, at the
+very least, establishing strict timelines and a clear roadmap for when responses will be mandatory.
+
+c. Whatuse cases could have a significant impact if implemented through TEFCA?
+
+As previously noted, CSS has implemented a querying portal for Public Health Authorities across the
+country. However, when these entities query using the TEFCA framework, they often see either no results or
+minimal data, leading them to stop using the portal. Many Public Health Authorities are still relying on fax
+machines and paper records to combat diseases and investigate adverse medical effects. Providing access
+to electronic records would revolutionize their workflows and save billions of taxpayer dollars. HIEs / HDUs
+that CSS supports can directly connect Public Health Authorities with providers in their state to bridge this
+TEFCA gap.
+
+Even once TEFCA supports mandatory Public Health responses, it is important to note that having the right
+to access data through the TEFCA framework is not the same as possessing the infrastructure to access it.
+Local HIEs / HDUs play a critical role in health data exchange by providing the necessary infrastructure and
+governance to facilitate access and use of the data provided over TEFCA. HIEs / HDUs help ensure that data
+is accessible, secure, and usable by various stakeholders, including Public Health Authorities, payers, and
+care coordinators. Therefore, we implore CMS and ONC / ASTP not only to require responding to Public
+Health queries, but also to support and enhance local HIEs / HDUs.
+
+d. What standards are you aware of that are currently working well to advance access and
+existing exchange purposes?
+
+Health Level 7 (“HL7”) v2.x remains the gold standard for data exchange in healthcare. It is universally used
+and well understood, supports real-time messaging, and communicates most of the needed information
+through a well-known format. This standard is crucial for interoperability because it allows different
+healthcare systems to exchange data seamlessly, ensuring that patient information is accessible and
+accurate across various platforms. Similarly, Consolidated Clinical Document Architecture (“C-CDA”)
+continues to be widely used and well understood. It provides a structured format for clinical documents,
+facilitating the sharing of patient information between different healthcare providers. Both HL7 v2.x and C-
+CDA are robust standards that any reputable technology can parse and then move data elements where
+they need to be. Therefore, we do not recommend any initiative to move organizations away from these tried-
+and-true standards.
+
+The limitations of HL7 v2.x and C-CDA often lie in the mechanisms by which they are transported. HL7 v2.x
+exchange is often done over a site-to-site virtual private networks (“VPN”) instead of hypertext transfer
+protocol secure (“HTTPS”), which adds significant overhead, infrastructure, and security footprint to a
+network. C-CDA uses Simple Objects Access Protocol (“SOAP”), which lacks some of the more modern
+capabilities of Representational State Transfer (“REST”). These limitations are not inherent to the data
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+standards themselves but rather to the chosen communication mechanisms for these transactions, which
+
+could be improved. Therefore, we encourage CMS and ONC / ASTP to focus on and put resources behind
+the transport mechanisms rather than the standards of the data themselves.
+
+e. What standards are you aware of that are currently working well to advance access and
+existing exchange purposes?
+
+FHIR over REST APIs is often promoted as the future of healthcare interoperability, but it has yet to be widely
+adopted by healthcare systems. We have created FHIR endpoints and applications and asked healthcare
+entities to exchange data through them, only to be told by these entities — using Certified Health IT — to
+exchange data through HL7 and C-CDA.
+
+There are several challenges associated with FHIR. FHIR does not inherently improve the quality of data
+being exchanged; issues such as incomplete or inaccurate data can persist regardless of the standard used.
+While FHIR simplifies data extraction, it does not address the underlying transport mechanisms, which may
+still be inefficient or insecure. Additionally, healthcare systems may face significant hurdles in adopting
+FHIR, including the cost and complexity of overhauling existing infrastructure. While FHIR can streamline
+the process of identifying and extracting discrete data elements from existing HL7 and C-CDA feeds, it will
+not improve data quality or transport capabilities. The current infrastructure, which works well today, should
+not be hastily replaced in favor of something that offers only marginal improvements for tomorrow.
+
+In contrast, generative Al tools offer promising solutions for enhancing interoperability and reducing
+administrative burden. Al technology in electronic health records (“EHR”) tools can facilitate seamless
+interaction between systems through prompts, potentially leading to a future where one EHR Al
+communicates directly with another EHR Al. This approach could improve data quality by helping clean and
+standardize data within a system, ensuring that the information exchanged is accurate and complete. Al-
+driven systems can simplify interoperability by extracting and providing the required data without the need
+for complex interoperable infrastructure. Furthermore, Al can enhance privacy and security by implementing
+better methods for anonymizing protected health information (“PHI”) and reducing the vulnerable footprint
+of large healthcare networks.
+
+Given these potential benefits, overinvesting in an overhaul in favor of FHIR seems unnecessary and
+burdensome when it could soon be replaced by capabilities native to generative Al. Instead, we recommend
+that CMS and ONC / ASTOP focus on improving data quality within a system for exchange and ensuring the
+privacy and security of that data.
+
+f. Are there redundant standards, protocols, or channels that should be consolidated?
+As we previously noted, with the exception of Individual Access, TEFCA has thus far duplicated existing
+
+frameworks and networks, increasing overall administrative burden without providing additional value.
+TEFCA is almost entirely built on the framework of Carequality, which has established a robust network over
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+the past decade, resulting in over 1 billion queries per month. Consequently, the same entities are using both
+networks, nearly doubling the overall administrative burden. We recommend that ONC / ASTP and CMS
+reconsider how Carequality could be employed in concert with TEFCA, rather than duplicating efforts. By
+leveraging Carequality's established infrastructure, ONC / ASTP can reduce redundancy and enhance the
+efficiency and effectiveness of data exchange.
+
+g. Are there adequate alternatives outside of TEFCA for achieving widespread patient access to
+their health information?
+
+Multiple CMS rules, along with Information Blocking regulations, require providers and payers to give
+patients access to their data. In addition, both Carequality and eHealthExchange are national networks or
+frameworks that offer the same or better connectivity as TEFCA. Carequality and eHealthExchange allow
+responses to patient access requests and could mandate these responses, achieving the same result as
+TEFCA but with more data and connectivity.
+
+PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to
+health information in the real world?
+
+HIEs, and particularly HDUs, can and should encompass a broad spectrum of data beyond clinical
+information, including data from Public Health Authorities, claims data, and social services data. Localized
+HDUs can significantly enhance connectivity within healthcare by providing patient access to this
+comprehensive information, which extends far beyond the data available from providers and payers, thereby
+greatly increasing its value to users and consumers.
+
+a. Howvaluable, available, and accurate do you find the data they share to be?
+
+In our experience, the availability and accuracy of these data are driven by the sophistication of the HIE or
+HDU. Localized HIEs and HDUs can tailor their services to meet the specific needs of their communities,
+ensuring that the data is relevant and actionable. This localized approach can improve patient outcomes by
+facilitating more coordinated and informed care and increase the amount of data accessible to patients.
+
+However, HIEs and HDUs are not uniformly codified or standardized, leading to considerable variability in
+their value and accuracy. We strongly encourage CMS and ONC / ASTP to support standardized state- and
+region-based HDUs as scalable, trusted intermediaries that can bridge clinical care, public health, Medicaid,
+and patient needs. Greater standardization would help ensure patient access to information from these
+disparate sources, fostering a more connected and efficient healthcare system.
+
+b. What changes would you suggest?
+
+As previously noted, we strongly encourage CMS and ONC / ASTP to support standardized state- and region-
+based HDUs as scalable, trusted intermediaries that can bridge clinical care, public health, Medicaid, and
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+patient needs. These HDUs serve as data infrastructure for the public good, not just routing hubs, and
+provide essential services including:
+
+e Master patient index matching and record linkage.
+
+e Datanormalization, deduplication, and enrichment.
+
+e Jurisdiction-specific routing for case reporting and analytics.
+
+e Secure access for authorized clinical, public health, Medicaid, and patient stakeholders.
+
+While national frameworks and networks like TEFCA play an important role in establishing baseline
+connectivity, they are not sufficient on their own to meet the needs of patients, Public Health Authorities,
+and Medicaid agencies.
+
+Federal support for localized HDUs is crucial because these utilities can tailor their services to the specific
+needs of their communities, ensuring that the data is relevant, actionable, and secure. This localized
+approach can improve patient outcomes by facilitating more coordinated and informed care, while also
+reducing the burden of reporting to multiple places. Additionally, localized HDUs can address unique public
+health challenges and disparities within their regions, providing targeted solutions that a national framework
+might overlook.
+
+By supporting localized HDUs, the federal government can foster a more connected and efficient healthcare
+system that is responsive to the diverse needs of its population. This support can also drive innovation in
+data management and interoperability, ultimately enhancing the quality and accessibility of healthcare
+across the nation.
+
+c. Are there particular examples of high-performing HIE models that you believe should be
+propagated across markets?
+
+CSS supports many HIEs throughout the country that provide both the governance and technology that
+support the type of data exchange CMS and ONC/ ASTP envision. Specifically, we suggest CMS speak with
+the Chesapeake Regional Information System for our Patients (“CRISP”), CRISP DC, the West Virginia
+Health Information Network, the Virginia Health Information, healtEconnect Alaksa, and Connie. Each of
+these HIEs / HDUs provides access across the health and health care system, including to providers, payers,
+and Public Health Authorities, and many are also providing connectivity to social services and community-
+based organizations. For each entity that sees and exchanges data, these HIEs / HDUs ensure role-based
+access that support federal and state laws and security standards. Put simply, these HIEs / HDUs are living
+the vision CMS and ONC / ASTP see for health data interoperability.
+
+CMS and ONC / ASTP should propagate these models across regions, states, and territories. Each state and
+territory deserve access to shared, trusted health data infrastructure, whether through a locally governed
+utility or a shared service model. To encourage these models, CMS and ONC / ASTP should advance policies
+that:
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+
+e Recognize HDUs as essential data infrastructure.
+
+e Fill the gaps that TEFCA does not address.
+
+e Enable equitable, scalable, and multi-use health data services.
+e Prioritize practical, provider-based patient access pathways.
+
+d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader
+frameworks for data exchange (for example, vendor health information networks, TEFCA,
+private exchange networks, etc.)?
+
+For HIEs / HDUs that provide services beyond network-of-networks connection and data sharing, a future
+network-of-networks under TEFCA or another framework will not replace the value that HIE customers
+derive from participating in an HIE. In fact, the value such HIEs and HDUs provide to their customers will
+likely increase because HIEs / HDUS provide the following, which TEFCA cannot:
+
+e Local Governance and Privacy Protection. State and local laws vary across the country, as do
+localized privacy concerns and protections. As a federal framework, TEFCA does not account for
+these local laws, except to condition all exchanges on compliance with “Applicable Law” (including
+applicable state law). Therefore, HIEs need to continue enforcing localized privacy protections and
+downstream permitted uses for participants and patients to feel comfortable sharing data. Without
+HIEs / HDUs performing this function, data will not be returned to the TEFCA queriers by states with
+particular privacy laws because these providers cannot segment data subject to these laws from
+data that are not.
+
+e Granular Consent Management. Similar to privacy protections, HIES manage granular consent
+(e.g., consent regarding behavioral health records, Part 2 data, HIV status, etc.) to allow specific data
+sharing from specific patients, according to state laws and regulations and consistent with patient
+choice. Again, without HIEs / HDUs that can assist in supporting consent models in a scalable
+format, many otherwise available and consented data will not be returned.
+
+e Advanced Patient Matching and Identity Resolution. Currently, the patient-matching rates for
+national networks are significantly lower than those of local HIEs. HIEs have years of data and
+technological solutions that enable advanced patient-matching at the local level. If patients are not
+matched as they are queried across networks, they will not return data.
+
+e Public Health Integration. HIEs with existing relationships with their state and local health
+departments provide a logical “on-ramp” for public health agencies to participate in TEFCA. Most
+public health agencies do not have the technical capabilities to onboard to a Qualified Health
+Information Network (QHIN). Unlike many providers and payers, who will likely have access to a
+QHIN through their existing EHR system, public health agencies generally do not have this built-in
+option for QHIN connectivity. These agencies can utilize their HIEs / HDUs that participate in TEFCA
+for their connection points.
+
+e Rural Access. Many providers and payers have TEFCA connectivity through their EHR systems, as
+some large EHR companies are QHINs or are connected to QHINs. However, many smaller and/or
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+rural providers may not have access to these EHR systems. Connecting to a QHIN is no small task,
+requiring many resources and advanced security capabilities, which many rural providers simply
+cannot afford. Therefore, these providers rely on entities like HIEs / HDUs, that already have these
+connection points, to participate in national networks and frameworks.
+
+e Research and Other Authorization-based Disclosures. TEFCA does not currently permit the
+exchange of information via a QHIN’s connectivity services for research or other authorization-
+based purposes. HIEs and HDUs, however, build trust locally and can provide access for these
+important use cases.
+
+e Data and Analytics. While TEFCA enables data exchange, it does not produce health data or
+analytics that can inform treatment interventions or population health initiatives. Many HIEs provide
+these services, targeted to the local needs and interests of their participants.
+
+e Scalability. TEFCA’s architecture is optimized for targeted query / retrieve transactions, which are
+ill-suited for high-volume event streaming, bulk data analytics, or case-based public health
+workflows like electronic case reporting (eCR). HIES and HDUs, in contrast, intake large amounts of
+information to create actionable data for each of its user types.
+
+For all of these reasons, CMS and ONC / ASTP must continue supporting and propagating high-value HIEs
+and HDUs.
+
+PR-2. What are obstacles that prevent development, deployment, or effective utilization of the most
+useful and innovative applications for physician workflows, such as quality measurement reporting,
+clinical documentation, and billing tasks? How could these obstacles be mitigated?
+
+As noted in the “More than Just 'Alerts' Tipsheet,” the usefulness of data for clinicians is not the data itself,
+but ensuring that the right information gets to the right people through the right channels in the right
+intervention formats at the rights points in the workflow. Obstacles result if these “five rights” are not a part
+of the design and implementation of the product, and these obstacles could be mitigated through intentional
+design inclusive of these “five rights.”
+
+(https:/Awww.healthit.gov/sites/default/files/clinicaldecisionsupport_tipsheet. pdf)
+
+In addition, hospitals and health systems have other operational priorities such that innovative solutions
+must include strong value propositions directly tied to their return on investment “ROI.” Similarly, many
+EHRs do not have the ability to make changes in the workflow; the situation is even worse for small practices,
+who have less resources to implement innovative workflow solutions.
+
+Therefore, we recommend that CMS and ONC / ASTP provide resource support for smaller EHRs and
+smaller and less resourced practices to implement third party workflow solutions and also provide
+trustworthy validation of their effectiveness and ROI.
+
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all
+data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned
+documents, faxed records, lab results, free text notes, structured data fields)?
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+
+In most EHR systems, structured data fields, free text notes, labs, and imaging are routinely available, the
+issue, instead is in data overload. Clinicians are already overwhelmed by the volume of patient data in their
+own system. Sharing all data for every patient encounter leads to additional overload. Clinicians only want
+to see the data that is relevant for them at that time - but often are either presented with too much
+information or data is buried. Rather than focusing on the amount and type of data available, we recommend
+that CMS and ONC / ASTP encourage the use of tolls and data flow that can point clinicians to clinically
+relevant data. The relevant data and amount of data may be patient or diagnosis dependent; for example,
+patients who are experiencing cognitive issues such as dementia or who are unconscious would likely result
+in aneed for more data, but EHRs and third-party workflows should be encouraged to create workflows and
+data visibility based on these situations as the arise.
+
+If privacy issues arise from sharing all data, HIEs and HDUs can and do provide resources for limiting access
+to data based on user roles and data tagging. Potential privacy implications can largely be solved through
+tagging and business rules. For example, CSS-supported HIEs only share certain data types with certain
+types of users — what a payer sees may be different than what a provider or Public Health Authority sees
+based on legally computational rules that reproduce state and federal legal constructs.
+
+PR-6. Is TEFCA currently helping to advance provider access to health information?
+
+a. Please provide specific examples.
+
+As previously noted, except for Individual Access, TEFCA has duplicated existing frameworks and networks,
+increasing administrative burden without adding value. TEFCA is largely built on the Carequality framework,
+which already handles over 1 billion queries per month. Consequently, the same entities are using both
+networks, nearly doubling the administrative burden.
+
+This duplication has led to significant challenges for providers and the healthcare system as a whole.
+Providers now face increased complexity in managing multiple networks, which can lead to confusion and
+inefficiencies, diverting time and resources away from patient care. Additionally, the administrative costs
+associated with maintaining compliance and interoperability across multiple networks can strain healthcare
+budgets, impacting the overall efficiency and effectiveness of the healthcare system.
+
+b. What changes would you suggest?
+
+Consistent with our recommendations above, we suggest that ONC/ASTP and CMS reconsider how
+Carequality could be employed in concert with TEFCA, rather than in duplication.
+
+Furthermore, currently, TEFCA does not require entities contributing data to respond to requests for
+payment, operations, public health, or research purposes. As a result, only treating providers and patients
+could be benefiting, if at all, from the framework. For example, CSS has implemented a querying portal for
+public health entities across the country, but when these entities use the TEFCA framework, they often see
+
+9
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+no results or very few results and stop using the portal. Similar issues have been reported by payers and care
+coordinators, who cannot access data and therefore do not use the network. To address these gaps, we
+suggest requiring responses for all purposes or, at the very least, issuing tight timelines and a comprehensive
+roadmap for when responses would be required. The roadmap should include:
+
+e Clear milestones for expanding mandatory use cases beyond individual access to include payment,
+operations, public health, and research purposes.
+
+e Defined timelines for the implementation of these expanded use cases, ensuring that entities
+contributing data are required to respond to requests within specified periods.
+
+e Detailed guidelines for interoperability standards that facilitate seamless data exchange across
+different systems and networks, minimizing administrative burden.
+
+e Support mechanisms for smaller and rural providers to ensure they can participate in TEFCA and
+benefit from the expanded use cases.
+
+e Training and resources for public health agencies and other stakeholders to enhance their technical
+capabilities and enable effective participation in TEFCA.
+
+e Evaluation metrics to assess the effectiveness of the expanded use cases and the overall impact
+on healthcare connectivity and outcomes.
+
+By incorporating these elements into the roadmap, ONC / ASTP and CMS can ensure that TEFCA provides
+meaningful value to all stakeholders, reduces administrative burden, and enhances the overall functionality
+of the healthcare system.
+
+c. What other options are available outside of TEFCA?
+
+There are several alternatives to TEFCA that focus on enhancing interoperability and data exchange. Most
+notably, TEFCA largely duplicated Carequality. Carequality supports a wide range of use cases, including
+treatment, payment, and operations, and has built a robust network over the years, handling over 1 billion
+queries per month. Additionally, eHealth Exchange provides a robust national network that includes data
+sharing for many federal government entities missed by other networks and frameworks. This network
+connects federal agencies, state and regional HIEs, and private sector organizations, supporting data sharing
+for many federal government entities. eHealth Exchange is particularly valuable for its inclusion of federal
+entities, which are often missed by other networks and frameworks. This network helps ensure that critical
+health information is available to providers and patients across the country.
+
+Regardless of the type of national networks or framework, local and regional HIEs / HDUs play a crucial role
+in bridging gaps left by these national networks and frameworks. They provide tailored solutions to meet the
+specific needs of their communities, ensuring relevant and actionable data exchange. HIEs can address
+unique public health challenges and disparities within their regions, offering targeted solutions that a
+national framework might overlook. By focusing on local needs, HIEs enhance patient outcomes and
+support more coordinated care.
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of
+providers?
+
+In the current system, each provider must submit data on each of their patients, but it is redundant to require
+each provider submit data for shared patients. Instead, an intermediary such as an HIE / HDU could submit
+clinical information that represents many patients across many providers. The data, regardless of the
+source, would demonstrate the quality of care experienced by individuals and populations, and existing
+attribution models will identify high achievers as well as gaps in care.
+
+a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to
+CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers
+by performing quality metrics calculations leveraging Bulk FHIR data exports?
+
+The burden related to clinical quality submissions is, in our experience, not based on the extract standards;
+many EHRs and IT vendors are able to extract, process, and report measures for individual providers. Rather
+than focusing on the export standards, we suggest considering models that enable reporting from
+intermediaries that source data from many providers. For example, a high functioning HIE / HDU could
+provide quality data on thousands of patients across hundreds of providers. The providers could then only
+be required to fill gaps rather than each reporting their own data directly for every patient.
+
+b. In what ways can the interoperability and quality reporting responsibilities of providers be
+consolidated so investments can be dually purposed?
+
+As discussed above, an HIE / HDU is a consolidated data aggregator already connected to most providers in
+a jurisdiction. This technology and data could provide quality reporting data to payers and government
+partners and entirely remove the burden from the provider community. CSS supports several examples of
+entities that do just this very function. We encourage CMS and ONC / ASTP to speak with us about these
+organizations and how to propagate them across markets.
+
+c. Are there requirements CMS should consider for data registries to support digital quality
+measurement in a more efficient manner? Are there requirements CMS should consider for
+data registries that would support access to real-time quality data for healthcare providers to
+inform clinical care in addition to simplifying reporting processes?
+
+CMS should consider the minimum standards for HDUs such that they could function as local, trusted data
+registries that exchange and store data for real-time treatment purposes and also for quality reporting
+purposes. Some states have these types of intermediaries already in place, and CSS would be glad to share
+details on capabilities and lessons-learned to help build universal guidelines.
+
+PR-11. How could members of trust communities (for example, QHINs, participants and
+subparticipants in TEFCA, which requires Identity Assurance Level 2 (IAL2) via Credential Service
+
+11
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+Providers (CSPs) better support the goals of reduced provider and patient burden while also enhancing
+identity management and security?
+
+For HIEs / HDUs that provide services beyond network-of-networks connection and data sharing, a future
+network-of-networks under TEFCA or another framework will not replace the value that HIE customers
+derive from participating in an HIE. In fact, the value such HIEs and HDUs provide to their customers will
+likely increase because HIEs / HDUS provide the following, which TEFCA cannot:
+
+e Local Governance and Privacy Protection. State and local laws vary across the country, as do
+localized privacy concerns and protections. As a federal framework, TEFCA does not account for
+these local laws, except to condition all exchanges on compliance with “Applicable Law” (including
+applicable state law). Therefore, HIEs need to continue enforcing localized privacy protections and
+downstream permitted uses for participants and patients to feel comfortable sharing data. Without
+HIEs / HDUs performing this function, data in will not be returned to the TEFCA queriers by states
+with particular privacy laws because these providers cannot segment data subject to these laws
+from data that are not.
+
+e Granular Consent Management. Similar to privacy protections, HIES manage granular consent
+(e.g., consent regarding behavioral health records, Part 2 data, HIV status, etc.) to allow specific data
+sharing from specific patients, according to state laws and regulations and consistent with patient
+choice. Again, without HIEs / HDUs that can assist in supporting consent models in a scalable
+format, many otherwise available and consented data will not be returned.
+
+e Advanced Patient Matching and Identity Resolution. Currently, the patient-matching rates for
+national networks are significantly lower than those of local HIEs. HIEs have years of data and
+technological solutions that enable advanced patient-matching at the local level. If patients are not
+matched as they are queried across networks, they will not return data.
+
+e Public Health Integration. HIEs with existing relationships with their state and local health
+departments provide a logical “on-ramp” for public health agencies to participate in TEFCA. Most
+public health agencies do not have the technical capabilities to onboard to a Qualified Health
+Information Network (QHIN). Unlike many providers and payers, who will likely have access to a
+QHIN through their existing EHR system, public health agencies generally do not have this built-in
+option for QHIN connectivity. These agencies can utilize their HIEs / HDUs that participate in TEFCA
+for their connection points.
+
+e Rural Access. Many providers and payers have TEFCA connectivity through their EHR systems, as
+some large EHR companies are QHINs or are connected to QHINs. However, many smaller and/or
+rural providers may not have access to these EHR systems. Connecting to a QHIN is no small task,
+requiring many resources and advanced security capabilities, which many rural providers simply
+cannot afford. Therefore, these providers rely on entities like HIEs / HDUs, that already have these
+connection points, to participate in national networks and frameworks.
+
+e Research and Other Authorization-based Disclosures. TEFCA does not currently permit the
+exchange of information via a QHIN’s connectivity services for research or other authorization-
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+based purposes. HIEs and HDUs, however, build trust locally and can provide access for these
+important use cases.
+
+e Data and Analytics. While TEFCA enables data exchange, it does not produce health data or
+analytics that can inform treatment interventions or population health initiatives. Many HIEs provide
+these services, targeted to the local needs and interests of their participants.
+
+e Scalability. TEFCA’s architecture is optimized for targeted query / retrieve transactions, which are
+ill-suited for high-volume event streaming, bulk data analytics, or case-based public health
+workflows like electronic case reporting (eCR). HIES and HDUs, in contrast, intake large amounts of
+information to create actionable data for each of its user types.
+
+For all of these reasons, CMS and ONC / ASTP must continue supporting and propagating high-value HIEs
+and HDUs.
+
+PR-12. Should ASTP/ONC consider removing or revising any of the information blocking exceptions or
+conditions within the exceptions (45 CFR part 171, subparts B through D) to further the access,
+exchange, and use of electronic health information (EHI) and to promote market competition?
+
+In our experience, the Information Blocking exceptions and conditions are intuitive and straightforward. The
+larger issue is that they are not yet enforced to a degree that the market has responded. Instead of using
+resources to remove or revise Information Blocking exceptions, we encourage CMS and ONC/ASTP to both
+formally and informally enforce the regulations, including streamlined ways to report information blocking
+and mechanisms to provide findings and guidance based on formal and informal enforcement actions.
+
+PA-1. What policy or technical limitations do you see in TEFCA? What changes would you suggest to
+address those limitations? To what degree do you expect these limitations to hinder participation in
+TEFCA?
+
+Thus far in the implementation of TEFCA, no one contributing data to the network is required to respond to
+requests for data if the requestor states that the data is for a payment, operations, public health, or research
+purpose. As such, only treating providers and patients are fully benefitting, if at all, from the framework so
+far. For example, CSS has implemented a querying portal for Public Health Authorities across the country,
+and when these entities query using the TEFCA framework, they see either no results or next to no results
+and quickly stop using the portal. We have heard similar stories from payers and care coordinators — they
+cannot access data and therefore are not using the network. With the exception of Individual Access, as
+discussed above, then TEFCA has thus far duplicated existing frameworks and networks, increasing overall
+administrative burden without providing additional value beyond Individual Access. Thus, we suggest
+requiring responses for all purposes, or at the very least, issuing tight timelines and a roadmap for when
+responses would be required. The roadmap should include:
+
+e Clear milestones for expanding mandatory use cases beyond individual access to include payment,
+operations, public health, and research purposes.
+
+13
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+
+e Defined timelines for the implementation of these expanded use cases, ensuring that entities
+contributing data are required to respond to requests within specified periods.
+
+e Detailed guidelines for interoperability standards that facilitate seamless data exchange across
+different systems and networks, minimizing administrative burden.
+
+e Support mechanisms for smaller and rural providers to ensure they can participate in TEFCA and
+benefit from the expanded use cases.
+
+e Training and resources for public health agencies and other stakeholders to enhance their technical
+capabilities and enable effective participation in TEFCA.
+
+e Evaluation metrics to assess the effectiveness of the expanded use cases and the overall impact
+on healthcare connectivity and outcomes.
+
+By incorporating these elements into the roadmap, ONC / ASTP and CMS can ensure that TEFCA provides
+meaningful value to all stakeholders, reduces administrative burden, and enhances the overall functionality
+of the healthcare system.
+
+PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of
+providers?
+
+As shown above, a trusted intermediary that is collecting and repurposing data can remove many of the
+redundant data feeds for quality reporting and other uses. Payers should be allowed, and encouraged, to
+leverage this data first and then only ask providers to fill gaps if there is missing information for specific
+patients. Payers and capable HIEs / HDUs should be in a good position to innovate new workflows and
+standards to reduce the delays on quality data submissions and even leverage Al to have more complete
+and accurate reporting by analyzing unstructured documents.
+
+TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over
+proprietary APIs?
+
+CMS has encouraged the use of publicly available APIs to improve patient access, but this initiative has not
+led to significant usage. In our experience, patient access via open Medicaid APIs is the lowest utilized API
+in our network, sometimes going months without any queries. The infrastructure built in states that support
+these APIs is not being reused effectively, and the use cases for Medicaid departments remain unclear.
+Patients prefer using applications provided by their healthcare providers to interact with their data, and there
+is little incentive to choose different apps.
+
+There are several barriers to the use of Medicaid APIs. First, there is a lack of awareness among patients
+about the existence of these APls. Second, patients trust and prefer applications provided by their
+healthcare providers. Third, third-party developers of patient access applications for commercial use often
+monetize by selling patient data, which deters patients from using these applications. Finally, Medicaid
+departments lack clear use cases for reusing the infrastructure. Therefore, we encourage CMS, instead to
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+focus on reuseable, impactful use cases for patients and the health care system that could be driven by this
+type of data exchange, rather than the APIs themselves.
+
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health
+information for patients, providers, and payers? Who should publish such a directory, and should users
+bear a cost?
+
+A directory is only helpful if its endpoints provide meaningful responses. Currently, TEFCA is expected to
+Operate as a query everyone, everywhere, every-time network, leading to inefficiency and unnecessary
+costs. National networks and frameworks should prioritize record location to query only endpoints where
+data exists. This can be achieved by networking each state’s local HIEs / HDUs using lightweight REST APIs.
+Local HIEs / HDUs often have excellent encounter data that can be linked to endpoint directories, creating
+powerful efficiencies and reducing privacy risks associated with querying everyone all the time. Thus,
+instead of using resources on a nationwide provider directory, we encourage CMS and ASTP / ONC to work
+with HIEs and HDUs to create record location frameworks complementary to TEFCA and other national
+networks and frameworks.
+
+TD-6. What unique interoperability functions does TEFCA perform?
+
+As previously noted, except for mandatory exchange for Individual Access, TEFCA has duplicated existing
+frameworks and networks, increasing administrative burden without adding value. TEFCA is largely built on
+the Carequality framework, which handles over 1 billion queries per month. Consequently, the same entities
+are using both networks, nearly doubling the administrative burden. We recommend that ONC / ASTP and
+CMS reconsider how Carequality could be employed in concert with TEFCA, rather than duplicating efforts.
+
+TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations?
+a. Does it contain the full extent of data elements you need?
+
+Generally, the United States Core Data for Interoperability (“USCD”!) has helped to improve baseline data
+quality and structure in health information exchange. However, there are still instances where the category
+of data is present, but the actual data elements are either missing or miscoded. To address these issues, we
+encourage the continued growth and refinement of USCDI as a baseline for the quality of data being
+exchanged. Enhancing USCDI should be a priority to ensure accurate and reliable data for various important
+use cases, such as patient care, public health reporting, and research. By improving the specificity and
+accuracy of data elements within USCDI, we can further enhance the effectiveness of health exchange and
+support better health outcomes.
+
+d. Given improvements in language models, would you prefer a non-proprietary but less
+structured format that might improve data coverage even if it requires more processing by the
+receiver?
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+
+It remains crucial to mandate the exchange of specific data elements, irrespective of their format or
+structure. Any good language model should have the capability to extract necessary information from both
+structured and unstructured health records. These advanced models can help analyze and interpret text,
+enabling them to identify and retrieve relevant data elements even when they are embedded within
+unstructured narratives. By leveraging the power of large language models, we can ensure that essential
+health information is accurately and efficiently extracted, facilitating better data exchange and improving
+healthcare outcomes. As such, we recommend CMS and ONC / ASTP use resources on solutions that will
+work with such language models to extract necessary data for users.
+
+TD-9. Regarding certification of health IT:
+
+a. What are the benefits of redefining certification to prioritize APl-enabled capabilities over
+software functionality?
+
+Certification should be aligned with the expectations set by ONC / ASTP for Information Blocking, which
+provides the necessary infrastructure to access health data. Rather than enforcing specific software
+functionalities or API capabilities, the Information Blocking Rule already promotes good practices and can
+be adjusted to achieve the same objectives, ensuring that health data is accessible and shared
+appropriately, preventing practices that would inhibit the exchange of information.
+
+b. What would be the drawbacks?
+
+Overregulation in the Health IT sector increases the burden on providers and fosters an industry focused on
+enforcing certification criteria rather than innovation. Excessive regulations can stifle the development of
+new tools and solutions by diverting resources towards compliance rather than creativity. The fundamental
+principles should be straightforward and aligned with the Information Blocking Rule. Simplifying regulations
+can encourage the development of effective Health IT solutions that prioritize patient care and data security
+without being bogged down by unnecessary regulatory hurdles. Put simply, CMS and ONC / ASTP should
+drive value rather than regulating standards and software and enforce its rules when those who should be
+sharing data do not.
+
+d. What policy changes could CMS make so providers are motivated to respond to API-based
+data requests with best possible coverage and quality of data?
+
+We recommend that CMS prioritize the capture of high-quality data over the methods through which that
+data is exchanged. As mentioned above the ONC Information Blocking Rule already encourages the
+exchange of data where appropriate.
+
+Lieceeeueveeuceces Leeeewee bocce eeeuceueeuceuceucs @O@CcRISP
+
+Shared Services
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics
+should CMS consider?
+
+For patients to understand their full health picture, they must have access to not only their CMS data, but
+also other clinical sources, private payers, and public health data. HIEs, and particularly HDUs should and
+do include data beyond clinical data, such as data from Public Health Authorities, claims data, and social
+services data. HDUs can provide patient access to all of this information, which goes far beyond the data
+available from providers and payers, significantly increasing the value to users and consumers. In our
+experience, the availability and accuracy of these data are driven by the sophistication of the HIE / HDU.
+HIEs and HDUs are not codified or standardized, resulting in a great deal of variability in value and accuracy.
+Therefore, we strongly encourage CMS and ONC / ASTP to support standardized state- and region-based
+HDuUs as scalable, trusted intermediaries that can bridge clinical care, public health, Medicaid, and patient
+needs, including patient access to information from these disparate sources.
+
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+
+Based on our experience, the standards used to exchange data are nearly immaterial. Instead, the method
+by which data is exchange is the area most in need of improvement. Instead of focusing on Bulk FHIR, CMS
+should encourage the elimination of SFTPs and file drop services as the method for bulk data exchange and
+require more modern, secured, approaches to bulk data exchange.
+
+b. Whatare the potential disadvantages of their use?
+
+Spending time and resources encouraging bulk FHIR could take away resources that could more directly
+impact interoperability and patient health. As noted above, bulk FHIR is not necessary, but the general
+encouragement of secure bulk data exchange is. Therefore, we recommend that CMS focus upon eliminating
+secure file transfer protocol (“SFTPs”) and file drop services as the method for bulk data exchange and
+require more modern, secured, approaches to bulk data exchange.
+
+TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability
+of healthcare data sharing networks, including enough supply and demand, that results in usage and
+outcomes?
+
+One of the largest issues in the use and proliferation of national networks and frameworks is the level of trust
+engendered by each network. For most of these networks, there are no dashboards or way to access who is
+providing and querying data, which creates a "black box" of data sharing. CMS or ASTP / ONC could
+engender more trust by encouraging transparency, showcasing high-level queries and returns for
+organizations participating in these networks. In addition, CMS and ASTP / ONC should encourage policies
+which allow patients to receive an Accounting of Disclosures for each time their data is queried or returned
+
+17
+
+Lieceeeueveeuceces Leeeewee Loe eeeeeeceuceees Leeee @O@CcRISP
+
+Shared Services
+in the network. Such an Accounting would allow patients to understand not only where there data is going,
+but also what data may be missing or to whom they need to reach out to ensure they have access to all of
+their data.
+
+VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or
+participants in Medicare Shared Savings Program (MSSP) to leverage digital health management and
+care navigation products more often and more effectively with their patients? What are the current
+obstacles preventing broader digital product adoption for patients in ACOs?
+
+One successful approach can be found in Maryland. The Total Cost of Care Model, in the process of
+transitioning to AHEAD, is a statewide alternative payment model (“APM”) that created universal access to
+care coordination and reporting tools, including raw data extracts, through a central utility. This utility, CRISP,
+enables a level playing field for all participants, reduces total cost because the technology is shared, and
+allows for competition to be focused on strategic approaches to care delivery rather than data capture.
+Based on the success of Maryland, we strongly encourage CMS and ONC / ASTP to support standardized
+state- and region-based HDUs as scalable, trusted intermediaries that can support APMs and ACOs.
+
+Thank you for the opportunity to comment. We would be delighted to speak with CMS and ASTP / ONC about
+the success of our HIEs / HDUs, specifically how they can directly impact the change this RFI seeks.
+
+Sincerely,
+
+Craig Behm
+CSS Chief Executive Officer
+CRISP President
+
+Lecce ee eeeueucusucuueucueueeucueeucueecucueuens @O@CcRISP
+
+Shared Services
+
+Kindra icka
+
+Kendra Sticka, Executive Director
+healthEconnect, Alaska
+
+Seuun fer 6. Laan
+
+Jennifer Searls, Executive Director
+Connie, Connecticut
+
+Sfopin Err
+
+Stephanie Brown, Executive Director
+CRISP DC, District of Columbia
+
+Kyle Russell, Chief Executive Officer
+Virginia Health Information
+
+Spiive Cham bevg
+
+Sonia Chambers, Executive Director
+West Virginia Health Information Network, West Virginia

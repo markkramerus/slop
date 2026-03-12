@@ -1,3 +1,114 @@
-H1 Response to CMS-0042-NC (Health Technology Ecosystem RFI) – Provider Data and APIs for Digital Health H1 applauds CMS’s focus on data interoperability and value-based care. The RFI correctly identiﬁes provider directory and network data as essential for VBC, but current systems remain fragmented. We urge the agency to foster private-public partnerships that fuel innovation, open data across standardized frameworks and breakdown data barriers that inhibit value based care. H1’s platform provides one uniﬁed source of accurate provider information – including network aﬃliations, specialties, languages, locations, and credentialing status – delivered via open APIs. These capabilities directly address the RFI’s concerns, as illustrated below. We oﬀer recommendations to harness mature private-sector solutions (like H1’s) in CMS initiatives: endorse voluntary certiﬁcation of high-quality provider directory APIs, integrate such APIs in TEFCA/FHIR frameworks, and focus solutions on enabling interoperability in service of value based care. Provider Data for Value-Based Care (VB-4, VB-5) CMS’s RFI (Q   VB-4) asks about “essential data types” for participation in value-based care arrangements. In practice, VBC requires timely, accurate provider directory and credentialing data so that patients are linked with the right in-network providers, and care teams can coordinate across systems. Key data include provider names, specialties (including detailed information on areas of focus and procedures performed), practice locations, network aﬃliations (in-/out-of-network status), group memberships, availability (e.g. accepting new patients), and credentialing information (licensure, board status), quality and cost measures, and social determinants of health for risk stratiﬁcation. Regarding RFI question VB-5 (certiﬁcation standards), current ONC/ASTP certiﬁcation focuses on EHR functionality and patient-access APIs, not on provider directory APIs. We suggest CMS consider “API certiﬁcation” for private sector provider data services. A voluntary certiﬁcation or trustmark for high-performing provider directory APIs would set quality benchmarks (accuracy, completeness, timeliness) and encourage adoption of best practices (standard FHIR proﬁles, USCDI metadata) without duplicating mature commercial solutions. CMS could build on the National Directory of Healthcare Providers concept. The 2022 RFI envisioned an “API-enabled, centralized data hub” (NDH) that aggregates directory data and eliminates duplicate reporting. In our view, accrediting existing private-sector APIs (like H1’s) under a voluntary ONC program or TEFCA trust agreement would achieve these goals more quickly than building a new system from scratch. 
-FHIR Endpoint Directories & Digital Identity (TD-5) The RFI (TD-5) proposes a nationwide directory of FHIR endpoints for providers. H1 supports this concept and can contribute to it. In TEFCA and FHIR frameworks, every provider directory query (e.g. via an API) could leverage endpoint discovery. Our provider directory can be extended to include FHIR API endpoints published by payers and health systems. By linking provider NPI to up-to-date FHIR endpoints (point-of-care or patient-access APIs), CMS could greatly improve data ﬂow: apps and providers would automatically ﬁnd the correct system to query for any patient’s claims or clinical data. This data – including each provider’s aﬃliations and contracts – would help verify which endpoints are relevant for which patients. For example, if a beneﬁciary’s primary care provider has a certiﬁed patient-data API, H1’s directory could list that endpoint so any app can retrieve data via FHIR. This directly addresses the RFI’s TD-5 scenario and avoids point-to-point search: it “breaks down technological barriers” by aggregating needed directory data in one API-enabled service. CMS should clarify stewardship of the FHIR endpoint directory and embrace private public partnerships, fueling innovation that ultimately beneﬁts patients. APIs and Credentialing for Value-Based Care CMS’s interoperability rules now mandate several FHIR-based APIs (Patient Access, Provider Directory, Provider Access, Payer-to-Payer, Prior Auth) for payers. Private sector oﬀerings (like H1’s) directly complement these APIs by ensuring the underlying data quality and adding contextual data that enables patient choice and patient-provider concordance. For instance, H1 can feed a Payer’s Provider Directory API with veriﬁed, up-to-date network rosters, eliminating errors from providers listed on multiple payers or incorrectly labeled in-network. Similarly, data on cultural competency, race, ethnicity and languages a provider speaks can supplement core data elements made available within VBC apps to ensure patients have robust access without requiring federal resources to track these data points. For broader value-based use cases, private sector solutions can integrate with population health and care management tools via standard APIs. By exposing provider proﬁles through FHIR (Practitioner/PractitionerRole, OrganizationAﬃliation, Location, HealthcareService resources), the solutions enable downstream applications to ﬁlter by quality scores, network adequacy, language, etc. This drives smarter referrals and network design. For example, a Medicare ACO could query an API to ﬁnd all PCPs with diabetes expertise within the network (enhancing care coordination) or to verify which specialists are formally connected. In essence, private sector sources bridge silos between claims systems and clinical EHRs in VBC workﬂows. We also encourage CMS to adopt provider credentialing standards (e.g. using FHIR® R4 Provider resource). In fact, the success of VBC (“directing the right attention to the right patient”) hinges on this. Healthcare provider organizations, insurers and private sector developers would all beneﬁt from a uniﬁed federal standard for credentialing. 
-Policy Recommendations Based on the above, H1 respectfully oﬀers the following policy proposals to advance CMS’s interoperability and digital health goals: ● Voluntary API Certiﬁcation: Establish a voluntary ONC/ASTP certiﬁcation or approval program for high-quality provider directory APIs. Certiﬁcation criteria should address data accuracy, completeness, and API standards (e.g. FHIR-based responses with USCDI or NDH elements). This would give payers and vendors an incentive to meet benchmark performance (aligned with VB-5 goals) while avoiding heavy regulatory burden. It could mirror ONC’s existing voluntary certiﬁcation structure, extended beyond EHRs to include dedicated directory platforms like H1. ● Include Provider Directory Services in TEFCA/FHIR Frameworks: Explicitly integrate private provider directory APIs into TEFCA and national FHIR infrastructure. For instance, TEFCA’s Trust Framework could require QHINs to ingest certiﬁed provider directory feeds, and future QHIN connectivity criteria could list directory exchange as a use case. CMS might also support a FHIR Implementation Guide for a “ProviderDirectory” proﬁle that all networks adopt. Encouraging health plans to publish FHIR endpoint lists (as asked in TD-5) and linking them with provider data will complete the picture. H1 stands ready to share its provider database with TEFCA trust networks, treating CMS as an optional clearinghouse for “ground-truth” veriﬁcation rather than primary data source. This approach leverages market innovation and prevents duplication of directory eﬀorts. ● Leverage Existing Private Solutions: CMS should focus on policy to encourage industry-standard APIs and data sharing, while relying on established solutions (like H1’s) for implementation. Rather than rebuilding provider directories, CMS can make use of best-of-breed private data feeds. For example, CMS may recognize certiﬁed private directories as acceptable data sources in regulatory requirements (e.g. Conditions of Participation or pay-for-performance measures). This prevents duplication: the RFI and prior rulemakings note that private providers have already developed sophisticated directory exchanges (VB-5). CMS can complement rather than compete, for instance by requiring its contractors to use standardized APIs to obtain provider data, or by publishing its own Medicare provider updates as FHIR API endpoints that private platforms can subscribe to. Alignment with CMS Goals H1’s data services directly support CMS’s vision of a patient-centered digital ecosystem. By providing API-driven, high-quality provider data, we help achieve the 21st Century Cures Act aims: seamless information ﬂow, patient empowerment, and modern app enablement. Our solutions reduce the administrative burden on providers and improve patient experience . In value-based care, they prevent revenue leakage and denied claims by ensuring patients see the right in-network clinicians) and they enable care coordination by feeding correct attribution and referral networks into management platform 
+H1 Response to CMS-0042-NC (Health Technology Ecosystem RFI) –
+Provider Data and APIs for Digital Health
+H1 applauds CMS’s focus on data interoperability and value-based care. The RFI correctly
+identifies provider directory and network data as essential for VBC, but current systems remain
+fragmented. We urge the agency to foster private-public partnerships that fuel innovation, open
+data across standardized frameworks and breakdown data barriers that inhibit value based
+care.
+H1’s platform provides one unified source of accurate provider information – including network
+affiliations, specialties, languages, locations, and credentialing status – delivered via open APIs.
+These capabilities directly address the RFI’s concerns, as illustrated below.
+We offer recommendations to harness mature private-sector solutions (like H1’s) in CMS
+initiatives: endorse voluntary certification of high-quality provider directory APIs, integrate such
+APIs in TEFCA/FHIR frameworks, and focus solutions on enabling interoperability in service of
+value based care.
+Provider Data for Value-Based Care (VB-4, VB-5)
+CMS’s RFI (Q VB-4) asks about “essential data types” for participation in value-based care
+arrangements. In practice, VBC requires timely, accurate provider directory and credentialing
+data so that patients are linked with the right in-network providers, and care teams can
+coordinate across systems.
+Key data include provider names, specialties (including detailed information on areas of focus
+and procedures performed), practice locations, network affiliations (in-/out-of-network status),
+group memberships, availability (e.g. accepting new patients), and credentialing information
+(licensure, board status), quality and cost measures, and social determinants of health for risk
+stratification.
+Regarding RFI question VB-5 (certification standards), current ONC/ASTP certification focuses
+on EHR functionality and patient-access APIs, not on provider directory APIs. We suggest CMS
+consider “API certification” for private sector provider data services. A voluntary certification or
+trustmark for high-performing provider directory APIs would set quality benchmarks (accuracy,
+completeness, timeliness) and encourage adoption of best practices (standard FHIR profiles,
+USCDI metadata) without duplicating mature commercial solutions.
+CMS could build on the National Directory of Healthcare Providers concept. The 2022 RFI
+envisioned an “API-enabled, centralized data hub” (NDH) that aggregates directory data and
+eliminates duplicate reporting. In our view, accrediting existing private-sector APIs (like H1’s)
+under a voluntary ONC program or TEFCA trust agreement would achieve these goals more
+quickly than building a new system from scratch.
+
+FHIR Endpoint Directories & Digital Identity (TD-5)
+The RFI (TD-5) proposes a nationwide directory of FHIR endpoints for providers. H1 supports this
+concept and can contribute to it. In TEFCA and FHIR frameworks, every provider directory query
+(e.g. via an API) could leverage endpoint discovery. Our provider directory can be extended to
+include FHIR API endpoints published by payers and health systems. By linking provider NPI to
+up-to-date FHIR endpoints (point-of-care or patient-access APIs), CMS could greatly improve
+data flow: apps and providers would automatically find the correct system to query for any
+patient’s claims or clinical data.
+This data – including each provider’s affiliations and contracts – would help verify which
+endpoints are relevant for which patients. For example, if a beneficiary’s primary care provider
+has a certified patient-data API, H1’s directory could list that endpoint so any app can retrieve
+data via FHIR. This directly addresses the RFI’s TD-5 scenario and avoids point-to-point search:
+it “breaks down technological barriers” by aggregating needed directory data in one
+API-enabled service.
+CMS should clarify stewardship of the FHIR endpoint directory and embrace private public
+partnerships, fueling innovation that ultimately benefits patients.
+APIs and Credentialing for Value-Based Care
+CMS’s interoperability rules now mandate several FHIR-based APIs (Patient Access, Provider
+Directory, Provider Access, Payer-to-Payer, Prior Auth) for payers. Private sector offerings (like
+H1’s) directly complement these APIs by ensuring the underlying data quality and adding
+contextual data that enables patient choice and patient-provider concordance. For instance, H1
+can feed a Payer’s Provider Directory API with verified, up-to-date network rosters, eliminating
+errors from providers listed on multiple payers or incorrectly labeled in-network. Similarly, data
+on cultural competency, race, ethnicity and languages a provider speaks can supplement core
+data elements made available within VBC apps to ensure patients have robust access without
+requiring federal resources to track these data points.
+For broader value-based use cases, private sector solutions can integrate with population
+health and care management tools via standard APIs. By exposing provider profiles through
+FHIR (Practitioner/PractitionerRole, OrganizationAffiliation, Location, HealthcareService
+resources), the solutions enable downstream applications to filter by quality scores, network
+adequacy, language, etc. This drives smarter referrals and network design. For example, a
+Medicare ACO could query an API to find all PCPs with diabetes expertise within the network
+(enhancing care coordination) or to verify which specialists are formally connected. In essence,
+private sector sources bridge silos between claims systems and clinical EHRs in VBC workflows.
+We also encourage CMS to adopt provider credentialing standards (e.g. using FHIR® R4
+Provider resource). In fact, the success of VBC (“directing the right attention to the right patient”)
+hinges on this. Healthcare provider organizations, insurers and private sector developers would
+all benefit from a unified federal standard for credentialing.
+
+Policy Recommendations
+Based on the above, H1 respectfully offers the following policy proposals to advance CMS’s
+interoperability and digital health goals:
+● Voluntary API Certification: Establish a voluntary ONC/ASTP certification or approval
+program for high-quality provider directory APIs. Certification criteria should address
+data accuracy, completeness, and API standards (e.g. FHIR-based responses with
+USCDI or NDH elements). This would give payers and vendors an incentive to meet
+benchmark performance (aligned with VB-5 goals) while avoiding heavy regulatory
+burden. It could mirror ONC’s existing voluntary certification structure, extended beyond
+EHRs to include dedicated directory platforms like H1.
+● Include Provider Directory Services in TEFCA/FHIR Frameworks: Explicitly integrate
+private provider directory APIs into TEFCA and national FHIR infrastructure. For instance,
+TEFCA’s Trust Framework could require QHINs to ingest certified provider directory
+feeds, and future QHIN connectivity criteria could list directory exchange as a use case.
+CMS might also support a FHIR Implementation Guide for a “ProviderDirectory” profile
+that all networks adopt. Encouraging health plans to publish FHIR endpoint lists (as
+asked in TD-5) and linking them with provider data will complete the picture. H1 stands
+ready to share its provider database with TEFCA trust networks, treating CMS as an
+optional clearinghouse for “ground-truth” verification rather than primary data source.
+This approach leverages market innovation and prevents duplication of directory efforts.
+● Leverage Existing Private Solutions: CMS should focus on policy to encourage
+industry-standard APIs and data sharing, while relying on established solutions (like H1’s)
+for implementation. Rather than rebuilding provider directories, CMS can make use of
+best-of-breed private data feeds. For example, CMS may recognize certified private
+directories as acceptable data sources in regulatory requirements (e.g. Conditions of
+Participation or pay-for-performance measures). This prevents duplication: the RFI and
+prior rulemakings note that private providers have already developed sophisticated
+directory exchanges (VB-5). CMS can complement rather than compete, for instance by
+requiring its contractors to use standardized APIs to obtain provider data, or by
+publishing its own Medicare provider updates as FHIR API endpoints that private
+platforms can subscribe to.
+Alignment with CMS Goals
+H1’s data services directly support CMS’s vision of a patient-centered digital ecosystem. By
+providing API-driven, high-quality provider data, we help achieve the 21st Century Cures Act
+aims: seamless information flow, patient empowerment, and modern app enablement. Our
+solutions reduce the administrative burden on providers and improve patient experience . In
+value-based care, they prevent revenue leakage and denied claims by ensuring patients see the
+right in-network clinicians) and they enable care coordination by feeding correct attribution and
+referral networks into management platform

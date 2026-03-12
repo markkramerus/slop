@@ -1,35 +1,1178 @@
-Submitted by Eugene Vestel for CMS Request for Information; Health Technology Ecosystem Regulations.gov Founder FHIR IQ LLC Founder FHIR Goats Linkedin Group (450 Members) Eugene Vestel, MBA Contact Info linkedin.com/in/evestel Website fhiriq.com (Company) Phone 917-664-9186 (Mobile) Email eugene.vestel@gmail.com 
- From Checkbox to Catalyst: A Strategic Blueprint for Realizing Healthcare Interoperability Through Federal Action Introduction: The Promise Deferred and a Pivotal Moment for Action The United States healthcare system stands at an interoperability impasse. Decades of policy initiatives and hundreds of billions of dollars in public and private investment, from the Health Information Technology for Economic and Clinical Health (HITECH) Act to the 21st Century Cures Act, have yielded a digital infrastructure that remains fundamentally fragmented and dysfunctional. While these efforts have successfully driven the adoption of electronic health records (EHRs), they have failed to produce the seamless, secure, and semantic flow of information necessary to transform patient care, accelerate research, and foster a competitive innovation ecosystem. The promise of a learning health system, once a guiding vision, remains deferred. The Centers for Medicare & Medicaid Services (CMS) and the Office of the National Coordinator for Health Information Technology (ONC) have themselves acknowledged this gap between policy intent and real-world experience. In a recent Request for Information (RFI) on the Health Technology Ecosystem, the agencies concede that despite the establishment of foundational standards and application programming interfaces (APIs), "the experience of most patients, caregivers, and providers is neither seamless nor simple". 1 This candid admission signals a critical juncture. The convergence of new, more stringent regulations, such as the enforcement of information blocking disincentives 2 , the maturation of technical standards like HL7® Fast Healthcare Interoperability Resources (FHIR®), and the disruptive potential of artificial intelligence (AI) has created a unique, pivotal moment for a strategic reset. Incremental, market-driven, and compliance-focused approaches have proven insufficient. The path forward requires a fundamental shift in federal strategy: CMS must evolve from a rule-maker to an infrastructure-builder. Leveraging its immense regulatory and purchasing power, CMS can and must orchestrate the creation of a 
-national health data ecosystem—a set of public digital utilities built upon a foundation of mandatory, high-quality, and universally accessible FHIR-based services. This report provides a comprehensive blueprint for this strategic shift. It serves as a direct and detailed response to the CMS RFI 1 , diagnosing the systemic failures that perpetuate the interoperability impasse and presenting a cohesive set of actionable, interconnected policy mandates. By transforming data access from a proprietary, vendor-controlled asset into a public utility, these mandates will dismantle the market barriers that stifle innovation, constrain AI, and ultimately limit the quality and efficiency of American healthcare. The following table aligns the core recommendations of this report with the specific questions posed in the CMS RFI, framing this analysis as a direct contribution to the federal policymaking process. Table 1: Alignment of Proposed Mandates with CMS RFI (CMS-0042-NC) Proposed Mandate/Recommendation Relevant CMS RFI Question Codes 1 1. Utilize a single data standard for all CMS reporting (FHIR USCDI) TD-7, TD-7a, TD-7b, TD-7c, TD-13b 2. Mandate all data submitted to CMS be available via Bulk FHIR PR-8a, PA-5a, TD-9e, TD-11a, TD-15, TD-15a, TD-15b 3. Standardize terminology services via a single US national terminology server PC-8c, PR-3, TD-7 4. Incorporate price and cost-sharing data in FHIR format via open platform PC-8a, TD-19, TD-19a, TD-19b, TD-19c, TD-19d 5. Create a single national provider directory with mandated FHIR endpoints PA-4, TD-5, VB-15 6. Mandate quality measurement submission in FHIR CQL format PR-2, PR-8a, PR-8c, PA-5a, VB-2, VB-4 7. Publish aggregate data on FHIR adoption by providers, payers, and vendors PC-5a, PR-7 8. Mandate Data Quality reporting standards for all CMS-submitted information TD-9d, TD-18a 9. Mandate EHR vendors publish data testing and assessment results TD-9, TD-9d, TD-10 
-10. Create a single directory of accredited boards and providers VB-5, VB-6, VB-7 11. Create a Quality Measure Marketplace PR-8c, VB-2 12. Add consumer-facing, prospective quality measures to CMS/HEDIS PC-12a(4), VB-2 13. Publish AI assessment standards and guidelines PC-5a, PC-8c, VB-2 14. Unlock Epic and Oracle Health monopolies in the EHR market PR-12, TD-4, TD-10, TD-16 Part I: The Interoperability Impasse: A System-Wide Diagnosis Chapter 1: The Illusion of Interoperability: Superficial FHIR Adoption and "Checkbox Compliance" The current state of healthcare interoperability is largely an illusion, built upon a foundation of superficial standards adoption. Federal mandates, particularly the CMS Interoperability and Patient Access Final Rule, have successfully compelled providers and payers to deploy FHIR-based APIs. 4 However, this regulatory success has fostered a culture of "checkbox compliance," where the technical letter of the law is met, but the spirit of genuine, functional data exchange is not. 6 Organizations can claim to have a FHIR API, satisfying auditors and avoiding penalties, yet these endpoints often fail to deliver the high-quality, complete, and consistent data required for meaningful use. 8 This phenomenon represents compliance without interoperability, a technical achievement that is a functional failure. The Data Quality Chasm 
-At the heart of this failure lies a profound and pervasive data quality chasm. The FHIR APIs that form the supposed bedrock of the new digital ecosystem are plagued by systemic data integrity issues, rendering them unreliable for the very applications they were meant to enable. First, the data is frequently incomplete . A FHIR resource may be technically valid according to the standard's structure, but the data elements within it are often sparse or missing entirely. This is reflected in the ongoing need to expand the United States Core Data for Interoperability (USCDI), which represents the minimum dataset for exchange; the very need for expansion acknowledges the insufficiency of what is currently shared. 1 Innovators find that the APIs do not contain the full extent of data elements they need to build valuable applications, a direct response to the RFI's inquiry into USCDI's limitations. 1 Second, the data is chronically inconsistent . Healthcare providers often use varied terminologies and coding standards, leading to data mismatches that corrupt datasets and make aggregation and analysis impossible. 11 Without a shared semantic understanding, a lab result from one system cannot be reliably interpreted by another, undermining the core purpose of interoperability. Third, the data is rife with inaccuracy . The "garbage in, garbage out" principle is starkly evident in healthcare data systems. 12 Manual data entry errors, a high prevalence of duplicate patient records that fragment the medical history, and the persistence of outdated information are common. 11 Converting this poor-quality source data into a FHIR format does not cleanse it; it merely repackages the errors into a standardized container. The Developer's Dilemma This environment of superficial adoption and poor data quality creates a toxic and unsustainable dilemma for the application developers who were intended to be the primary consumers of these APIs. When the CMS RFI asks, "What apps should exist but do not yet? Why do you believe they do not exist yet?" 1 , the answer is clear: they do not exist because the data infrastructure required to build them is a mirage. Developers cannot build reliable, scalable, and clinically valuable products on a foundation of untrustworthy data. The checklist for a proper FHIR implementation is long and complex, covering everything from security protocols to profile conformance 
-and terminology binding. 14 When vendors and providers take shortcuts to meet deadlines, the result is an API that technically exists but is functionally useless to an innovator trying to build a business. The process for a developer to even get an app listed in a major EHR's marketplace, like Epic's App Orchard, involves numerous compliance steps, reinforcing a focus on meeting vendor requirements rather than fostering open innovation. 15 This situation has created a negative feedback loop that perpetuates stagnation. The process begins with regulatory mandates for FHIR APIs, intended to spur a vibrant application ecosystem. 1 However, providers and their EHR vendors face significant technical complexity and high costs to implement these APIs robustly. 9 Lacking a direct financial return on investment for creating high-quality data streams for third parties, the rational economic decision is to do the minimum necessary to check the compliance box. 6 Consequently, application developers encounter these low-quality, "checkbox" APIs. The data is too incomplete, inconsistent, and unreliable to support a viable product. 12 As a result, few compelling applications emerge, leading to a lack of patient and provider demand. This absence of market pull removes any incentive for providers and vendors to invest in improving their APIs beyond the bare minimum for compliance. The cycle repeats, with regulations technically being met while the ultimate policy goal—a thriving, innovative digital health ecosystem—fails completely. Chapter 2: The Walled Gardens of Healthcare: Persistent Interoperability Failures and Information Blocking The failure to achieve meaningful interoperability is not merely a technical shortcoming; it is a direct consequence of a market structure dominated by a duopoly of EHR vendors. This market concentration is the root cause of the "walled gardens" that define American healthcare, where data is held captive not by technological limitations, but by strategic business interests. Recent market analysis from KLAS Research paints a stark picture of this reality. In 2024, Epic Systems solidified its dominance, capturing nearly 70% of new hospital contracts and expanding its control to 42.3% of the total U.S. acute care hospital market and an astonishing 54.9% of all hospital beds. 18 Its closest rival, Oracle Health (formerly Cerner), holds 22.9% of the hospital market, meaning two vendors control the digital infrastructure for two-thirds of the nation's hospitals. 19 This is not a competitive market; it is a structural barrier to the free flow of health information. 
- Vendor Lock-In and Business Practices This market dominance is sustained and reinforced by business practices that create powerful vendor lock-in and discourage data exchange with outside entities. 21 These practices include the use of proprietary software architectures and data models that make it technically difficult and financially prohibitive to integrate with competing platforms. 21 The cost to a large health system to migrate from one major EHR to another can run into the billions of dollars, a figure that effectively locks them into their existing vendor for a decade or more and magnifies the penalties of being trapped. 24 Furthermore, dominant vendors have been heavily criticized for leveraging restrictive contracts and intellectual property claims to maintain control. Epic, in particular, has been accused of using its "App Orchard" marketplace not to foster innovation, but to control it, requiring partners to share intellectual property while restricting access to the underlying data needed to build truly competitive applications. 26 These practices ensure that while the vendor may publicly state they do not own the patient data, they maintain de facto control over a health system's ability to use and share that data, effectively creating a proprietary data asset. Information Blocking in Practice These business models manifest as the practice of "information blocking," a term that has moved from regulatory text to a tangible, everyday barrier for patients, providers, and innovators. While recent surveys suggest that the perceived rates of information blocking are slowly declining, likely due to new regulations, they remain a substantial and persistent problem. 27 The practice takes several forms: ● Economic Barriers: A common tactic reported by Health Information Exchanges (HIEs) is EHR vendors charging unreasonably high or cost-prohibitive fees for data access and exchange, making interoperability economically unfeasible for many. 28 ● Technical Barriers: Vendors and providers can implement their systems in non-standard ways that create artificial friction. A recent federal court case, for 
-example, found that an EHR company's use of indecipherable CAPTCHAs and the arbitrary blocking of user accounts likely constituted illegal information blocking, as these actions were not for legitimate security reasons but to interfere with a competitor's business. 29 This aligns with physicians' experiences of info blocking when trying to migrate from one EHR to another or connect to HIEs. 30 ● Behavioral Barriers: Perhaps the most insidious form of information blocking involves patterns of non-cooperation. In listening sessions with ONC, API developers have described a litany of such practices, including vendors providing unusable or incomplete API documentation, delaying application registration requests, and hiding provider systems behind generic endpoints to make direct connection difficult. 31 The Limits of Current Enforcement The federal government has attempted to combat these practices through the 21st Century Cures Act. As of 2024, new rules are in effect that establish financial penalties of up to $1 million per violation for health IT developers and HIEs, and create disincentives for healthcare providers who engage in information blocking, such as losing their "meaningful EHR user" status and facing payment reductions. 2 However, these enforcement mechanisms are fundamentally reactive. They are designed to investigate and punish bad actors after an infraction has occurred. They do not address the underlying market structure that makes information blocking a rational and profitable business strategy. Furthermore, the regulations contain nine specific exceptions—such as for preventing harm, protecting privacy, or ensuring security—that can be invoked to justify not sharing data. 32 The CMS RFI itself questions whether these exceptions should be revised, implicitly acknowledging that they may be overly broad and subject to misuse. 1 The court's finding that a vendor's claims of security and performance concerns were pretextual highlights how these exceptions can be used as a shield for anti-competitive behavior. 29 The persistence of information blocking is not an anomaly or a sign of a few bad actors. It is an emergent property of a market that rewards data siloing. The very business model of the dominant EHR vendors is predicated on providing a single, vertically integrated "mega-suite" of products. 37 The core value proposition of this model is its tight, internal integration. Allowing easy, low-cost, and high-quality data exchange with external, best-of-breed systems—such as a novel analytics platform or 
-a patient-facing app from a startup—directly undermines this value proposition. It threatens to commoditize the core EHR into a simple database, inviting competition on every front. Therefore, the most rational competitive strategy for an incumbent vendor is to control the flow of data out of its system. This is achieved through the very practices defined as information blocking: high fees, complex and poorly documented APIs, restrictive contracts, and slow-walking interoperability initiatives. The public feud between Oracle and Epic serves as a stark illustration; Oracle accuses Epic of using its market power to kill interoperability efforts that threaten its dominance, while Epic accuses competitors of misusing data exchange networks for improper purposes. 38 Both narratives point to the same central truth: control over data flow is the primary competitive battleground. As long as the market structure rewards the creation of "walled gardens," information blocking will persist as a feature, not a bug, of the system. Policies that merely punish blocking without fundamentally dismantling the walls are treating a symptom of the disease, not its underlying pathology. A true solution must alter the market dynamics themselves. Chapter 3: The Innovation Bottleneck: How Data Fragmentation Stifles Digital Health Advancement The "walled gardens" maintained by dominant EHR vendors have created a healthcare data landscape that is profoundly fragmented. Even within a single health system, patient information is often scattered across dozens of disparate, siloed systems—EHRs, lab systems, imaging archives, billing platforms, and more—that do not communicate with one another. 40 This data fragmentation is the single greatest bottleneck to innovation in digital health, creating an environment where good ideas fail not on their merits, but because of the immense friction involved in accessing the data needed to make them work. The Innovator's Burden This fragmented landscape places an almost insurmountable burden on the digital health startups and innovators who are meant to be the engines of progress. They are 
-forced into one of two equally inefficient and unsustainable development cycles. The first is the "whack-a-mole" approach, where they build a narrow, point-to-point solution designed to work with a single EHR vendor or even a single health system's specific implementation. This approach is not scalable and leads to a proliferation of disconnected applications that cannot be easily adopted by the broader market, contributing to further fragmentation. 44 The second approach is to "boil the ocean," attempting to build a complex and expensive integration engine capable of connecting to and normalizing data from dozens of different systems. This effort consumes a vast amount of time and venture capital, diverting resources away from developing the core product and delaying its entry into the market. 45 In either case, the innovator spends the majority of their effort not on innovation, but on the frustrating and duplicative task of data plumbing. Consequences for the Market This innovation bottleneck has severe and far-reaching consequences for the entire healthcare ecosystem. First, it leads to market stagnation . The digital health landscape is saturated with simple wellness and fitness trackers that do not require deep clinical data integration. Meanwhile, as the CMS RFI correctly observes, "digital products for health management or care navigation that can leverage patient health records are still rare". 1 The tools that could truly transform care for chronic diseases, improve diagnostic accuracy, or streamline complex care coordination are precisely the ones that are most difficult to build due to data fragmentation. 46 Second, it exacerbates inequity . The digital health tools that do manage to overcome these barriers are often only available to patients at large, well-resourced academic medical centers. This creates a digital divide, where the benefits of innovation are not accessible to all communities equally, particularly those in rural areas or those with poor health who could benefit the most. 47 Third, it results in wasted investment . When innovators cannot access reliable, high-quality data, even well-funded and promising projects fail to deliver on their value proposition. This leads to investor fatigue and creates a chilling effect on future investment in the sector, as the perceived risk and cost of data acquisition are simply too high. 40 
-The root of this problem can be understood as an "interoperability tax" that is levied on all digital health innovation. Before a startup can write a single line of code for its core, value-creating product, it must first pay a heavy tax in the form of time, money, and engineering resources just to acquire and normalize the necessary data. Consider a startup aiming to build a predictive model to identify patients at risk for sepsis in a hospital. The core innovation is the algorithm. However, to even begin, the startup must first pay the tax: it must negotiate a business agreement with the hospital; navigate the EHR vendor's complex and often costly API access program 26 ; build a custom technical integration to that specific hospital's API endpoint; and then develop a data pipeline capable of cleansing and normalizing the poor-quality, inconsistent data it receives. 12 This entire, expensive process must be repeated for every single new hospital customer. This "interoperability tax" is not a one-time fee; it is a recurring cost of doing business in a fragmented ecosystem. The work of integration is not the startup's core competency or value proposition; it is a massive, duplicative, and non-scalable prerequisite for market entry. 45 The tax is so high that it renders most truly innovative business models unviable from the start. The startup either fails, pivots to a simpler product that avoids the tax by not requiring deep data integration, or is forced to sell only to the largest and most sophisticated health systems, limiting its market reach and impact. The innovation is not killed by a lack of good ideas or a lack of funding, but by the crushing weight of the interoperability tax. Chapter 4: The Data Famine: Constrained AI Potential in a World of Siloed Health Information Artificial intelligence holds unprecedented potential to address some of healthcare's most intractable challenges. AI-powered tools can automate burdensome administrative tasks, enhance clinical decision support to improve diagnostic accuracy, and even help solve the interoperability problem itself by intelligently normalizing disparate data streams. 49 However, this immense potential is being severely constrained by a system-wide data famine. AI models are starved of the high-quality, large-scale data they need to be trained, validated, and safely deployed, creating a paradox where the technology that could fix healthcare's data problems is being blocked by them. 
- The "Garbage In, Garbage Out" Reality The most immediate constraint on AI in healthcare is the abysmal quality of the underlying data. The principle of "garbage in, garbage out" is absolute for machine learning: an AI model is only as good, as accurate, and as unbiased as the data it is trained on. The pervasive data quality issues endemic to EHRs—including inaccurate, incomplete, and inconsistent information—have direct and dangerous consequences for AI implementation. 11 When AI models are trained on this flawed data, they inevitably produce flawed, biased, and unreliable outputs. 55 This not only negates their potential benefit but can actively cause harm. Instead of reducing clinician burden, it creates an "AI-induced workload," where physicians and nurses must spend precious time verifying, correcting, and overriding AI-generated content that they cannot trust. 54 More critically, flawed AI predictions can lead to serious diagnostic errors and threaten patient safety, a paramount concern for providers, patients, and regulators alike. 56 The Data Access Barrier Beyond the issue of quality, the sheer lack of access to data presents a fundamental roadblock to AI development. The "walled garden" dynamics described previously are magnified in the context of AI. Training robust and generalizable AI models requires access to massive, longitudinal, and diverse datasets that span multiple institutions, geographies, and patient populations. This is precisely the kind of data that is currently locked within the proprietary silos of dominant EHR vendors. 26 This control over data creates a nearly insurmountable barrier to entry for independent AI startups and researchers. It effectively concentrates the development of the most powerful healthcare AI models within the incumbent vendor ecosystem. This stifles competition and prevents a healthy, diverse market of AI tools from emerging. Innovation becomes limited to the applications that serve the strategic interests of the data-controlling vendors, which may not align with the broader needs of patients and providers. 
- The Need for Standards Finally, the widespread adoption of AI is hampered by the lack of established standards and methodologies for its evaluation, validation, and ongoing monitoring. Without a common framework for assessing an AI tool's fairness, transparency, safety, and efficacy, healthcare organizations are understandably hesitant to procure and deploy these technologies in clinical practice. 56 This lack of trust is a major barrier to adoption. While numerous bodies, including the World Health Organization (WHO), the National Academy of Medicine (NAM), and international standards organizations, have proposed principles and frameworks, a clear, federally endorsed set of assessment standards for healthcare AI is urgently needed to build confidence and ensure responsible innovation. 58 This confluence of poor data quality, restricted access, and a lack of standards creates a profound AI paradox. The very technology that holds the potential to solve many of healthcare's deepest interoperability challenges is being throttled by the lack of data access and quality—the very problems it is uniquely equipped to solve. For example, modern AI, particularly large language models (LLMs), can excel at semantic interoperability tasks like interpreting unstructured clinical notes, mapping local codes to standard terminologies, and normalizing fragmented data from multiple sources. 52 An LLM could act as a universal translator for the disparate dialects of healthcare data. However, to build and train such a powerful tool, developers require access to exactly the kind of data that is currently inaccessible: massive, diverse, and representative datasets of clinical information from across the healthcare system. An AI startup that wants to build a tool to normalize clinical notes from multiple EHRs cannot get the volume and variety of notes needed for training because they are locked within the proprietary silos of those EHRs. 26 The problem of data fragmentation prevents the creation of the tool that could solve data fragmentation. This paradox ensures that the most powerful AI tools are likely to be developed only by the dominant EHR vendors who already control the data. This further entrenches their market position, reduces choice for providers and patients, and limits the scope of AI innovation to what is in the vendor's own business interest, rather than what is best for the entire healthcare ecosystem. 
- Part II: A Blueprint for a National Health Data Ecosystem The diagnosis is clear: a market-driven, compliance-focused approach to interoperability has failed. To break the current impasse, a new strategy is required. The federal government, led by CMS, must transition from its role as a rule-maker to that of an infrastructure-builder, establishing a set of foundational public utilities that make seamless data exchange the default, not the exception. The following chapters outline a cohesive, 11-point blueprint for this national health data ecosystem, built upon the mandatory and standardized use of HL7 FHIR. Chapter 5: The Foundational Layer: Mandating FHIR as the Lingua Franca for CMS The first and most critical step in building a national data ecosystem is to establish a single, universal standard for all data interactions. CMS must treat interoperability not as a feature to be encouraged but as a utility to be mandated. This requires elevating FHIR from one of several acceptable standards to the single, non-negotiable lingua franca for all data exchanged with or reported to the agency. This foundational layer consists of three interconnected mandates. 5.1. Mandate: FHIR USCDI for All CMS Reporting First, CMS must mandate that all data submitted to the agency for any purpose—including quality reporting, administrative transactions, and value-based care programs—be formatted according to the latest version of the HL7 FHIR standard and conform to the data elements defined in the United States Core Data for Interoperability (USCDI). This policy would build directly on the progress made in the ONC HTI-1 Final Rule, which adopted USCDI v3, and aligns with strong recommendations from across the industry to standardize on FHIR for all quality reporting. 1 The rationale is straightforward: this mandate would immediately eliminate the myriad 
-of proprietary formats, legacy standards, and one-off reporting requirements that currently create immense complexity and administrative burden for providers and payers. It would consolidate countless disparate data streams into a single, predictable, and computable format. This directly addresses the RFI's questions regarding the utility of USCDI and how to improve data exchange, proposing a clear path to harmonization. 1 By making FHIR and USCDI the universal requirement, CMS would create a powerful incentive for EHR vendors to prioritize support for these standards in their core products, moving beyond the superficial implementations that are common today. 5.2. Mandate: Bulk FHIR for All Submitted Data Second, to unlock data at scale, CMS must mandate that any data element submitted to the agency for any purpose must also be available for export from the source EHR via the Bulk FHIR API standard. This includes requiring that claims data, traditionally exchanged in legacy X12 formats, also be submitted to CMS and made available via FHIR. This mandate is the linchpin for achieving true ecosystem-level data liquidity. It moves the industry beyond the limitations of single-patient API queries and enables the large-scale data access necessary for population health management, advanced analytics, and the training of AI models. Critically, a federal mandate would serve as a powerful forcing function to address the significant technical and performance challenges that currently plague Bulk FHIR implementations, particularly with major vendors like Epic, whose systems have been reported to struggle with slow response times and cumbersome, manual setup processes for bulk data groups. 62 While initial pilots have demonstrated the feasibility of Bulk FHIR 63 , its potential cannot be realized without consistent, high-performance implementations across all certified EHRs. A mandate would compel vendors to invest in optimizing their bulk data export capabilities, making scalable data access a reality. 64 This proposal is a direct and forceful response to RFI questions regarding the use of Bulk FHIR to simplify data submission and reduce provider burden. 1 5.3. Mandate: FHIR CQL for All Quality Measure Submissions 
- Third, CMS must complete the transition to a fully digital quality measurement paradigm by mandating that all clinical quality measures be defined and submitted using the HL7 Clinical Quality Language (CQL) standard, executed against FHIR-formatted data. CQL is a powerful, open-source standard that provides a human-readable and machine-computable language for expressing complex clinical logic. 65 This mandate would transform quality measurement from a burdensome, retrospective, and largely manual process into an automated, real-time, and computable function. It would allow for the consistent application of measure logic across all systems, eliminating the ambiguity and variability that currently undermine the reliability of quality reporting. This shift is already strongly supported by the work of NCQA in digitizing HEDIS measures and aligns with the future direction envisioned by CMS's own quality programs. 65 By mandating CQL, CMS would accelerate this transition, enabling a more efficient and impactful approach to quality improvement and providing the technical foundation for the "quality measure marketplace" proposed later in this report. Taken together, this "mandate trio" creates a powerful, interconnected forcing function that addresses the root cause of poor data quality. The current system allows providers to submit data in various formats; quality is often poor, but the lack of standardization and reliance on manual processes obscures these deficiencies. There is little direct consequence for submitting messy data if it is ultimately accepted. The proposed mandates change this dynamic entirely. First, the FHIR USCDI mandate forces a baseline level of structural and semantic normalization. Second, the CQL mandate means this standardized data will be automatically processed and evaluated by CMS. If a required data element for a quality measure is missing, improperly coded, or in the wrong format, the CQL engine will fail or produce an incorrect result. The provider's quality scores—and by extension, their value-based payments—will be directly and transparently impacted. Finally, the Bulk FHIR mandate means that the provider's entire dataset, not just the fields selected for a specific report, is open to scrutiny by authorized entities like payers and researchers, dramatically increasing the pressure for comprehensive data accuracy. This combination transforms poor data quality from a hidden, private problem into a visible, public, and financially consequential one. It creates an undeniable business case for providers to demand better data capture, management, and export tools 
-from their EHR vendors. This, in turn, provides the market incentive for vendors to move beyond superficial, "checkbox" implementations and invest in building truly robust, high-quality FHIR capabilities. The forcing function created by this trio of mandates is the essential mechanism for breaking the vicious cycle of superficial adoption. Chapter 6: Establishing a Unified Semantic Framework: A National Terminology Service While mandating FHIR provides a common structure for data exchange, it does not, by itself, guarantee a common meaning. True interoperability requires semantic consistency—the assurance that when two different systems exchange a piece of information, they share an identical understanding of its meaning. A diagnosis of "Type 2 diabetes mellitus" must be represented by the exact same code, drawn from the same version of the same terminology, in every system. Currently, the U.S. healthcare system suffers from "semantic scatter," where different organizations use different code systems, different versions of those systems, and different value sets (collections of codes) to represent the same clinical concepts. This ambiguity is a fundamental barrier to aggregating data for quality measurement, public health, and research. To solve this, CMS must establish a single, authoritative source of truth for all clinical and administrative terminologies. The proposal is for CMS, acting through the National Library of Medicine (NLM), to create and host a National Terminology Server for the United States. This would not be a new creation from whole cloth, but rather a strategic expansion and formal designation of an existing federal asset: the NLM's Value Set Authority Center (VSAC). 72 The VSAC already serves as the official repository for the value sets used in CMS's electronic clinical quality measures (eCQMs). It has a proven infrastructure for hosting, validating, and distributing standard terminologies like SNOMED CT, LOINC, and RxNorm. 72 The proposal is to elevate this function into a national utility. The National Terminology Server would be mandated to provide free, public, and high-performance access to all standard terminologies and official value sets via a FHIR Terminology Service API, as defined in the FHIR standard. 77 Crucially, this would be paired with a mandate: as a condition of certification under 
-the ONC Health IT Certification Program, all certified health IT products would be required to connect to and use this national server for all terminology-related functions, such as validating codes and expanding value sets. The benefits of this approach would be transformative. It would establish a single, unambiguous source of truth for the meaning of all data elements in the healthcare system. It would eliminate the costly and error-prone process of maintaining separate terminology services within thousands of different provider, payer, and vendor systems. For developers, it would dramatically simplify the process of building applications, as they could rely on one consistent, predictable service for all terminology needs. Most importantly, it would provide the non-negotiable semantic foundation upon which all other data exchange and analysis depends. A "diabetic patient" would finally be defined identically in every system across the country, making true, large-scale data aggregation and learning possible for the first time. Chapter 7: Creating the "GPS" for Health Data: A National Provider & Endpoint Directory Even with standardized data structure (FHIR) and meaning (National Terminology Server), a fundamental question remains for any system wishing to exchange data: "Where is the door?" An application cannot connect to a provider's system if it does not know the digital address of that system's API. This is the "endpoint discovery" problem, and its lack of a solution is a core failure of the current interoperability landscape. The National Plan and Provider Enumeration System (NPPES), which was not designed for this purpose, has proven woefully inadequate as a directory for FHIR endpoints. A 2021 analysis found that millions of providers had missing digital endpoints in NPPES, and of the FHIR endpoints that were listed, the vast majority were invalid. 79 The current approach, which requires individual payers to each host their own provider directory API, simply perpetuates a fragmented, duplicative, and unreliable system. 80 To solve this, CMS must lead the creation and maintenance of a single, public, and authoritative National Directory of Healthcare Providers & Services (NDH) . This idea is not new; CMS itself issued a Request for Information on this very concept in 2022, acknowledging the profound need for a centralized "data hub" for provider information. 83 This report strongly urges CMS to move from information gathering to 
-implementation. The NDH would be built using the HL7 FHIR Validated Healthcare Directory (VhDir) Implementation Guide, which provides a mature, consensus-based technical standard for exactly this purpose. 83 It would serve as the centralized, national source of truth for provider demographics, specialties, network affiliations, and, most critically, their digital contact information. This public utility must be supported by a clear and unambiguous mandate: as a condition of participation in Medicare and Medicaid, every provider organization must register and continuously maintain a validated, machine-routable FHIR server endpoint in the NDH. This mandate would replace and supersede the ineffective requirement for individual payer directories. The impact of a federally sponsored NDH would be immediate and profound. It would function as a Domain Name System (DNS) for the entire healthcare industry, providing a simple, reliable mechanism to translate a known provider identity (like a name or National Provider Identifier) into the precise digital address needed for an API connection. This would eliminate a massive technical and logistical barrier to entry for application developers, significantly reduce the administrative burden on providers who currently have to update their information in dozens of different directories 79 , and make nationwide health information exchange technically feasible at scale. A free and publicly available NDH would also ensure equitable access to this critical infrastructure, removing the cost barriers associated with the private, fee-based directories that have emerged to fill the gap. 79 This proposal provides a direct and powerful answer to the numerous questions in the CMS RFI regarding the value and design of a nationwide provider directory. 1 Chapter 8: Illuminating the Market: Mandating FHIR for Price and Cost Transparency The federal push for price transparency in healthcare has been a landmark policy effort, yet its execution has been undermined by inconsistent compliance and impractical data formats. While hospitals and payers are now required to post pricing information, this data is often delivered in proprietary, non-standardized file formats that are difficult for consumers to understand and for software applications to process. This has blunted the impact of the policy, preventing the emergence of a 
-truly functional, consumer-driven market for healthcare services. To remedy this, CMS must move beyond simply requiring the publication of data and mandate the method of its delivery. The proposal is to require that all price and cost-sharing data—including hospital standard charges (machine-readable files), payer-negotiated rates, and patient-specific, out-of-pocket cost estimates—be made available via open, standardized, and publicly accessible FHIR APIs. A ready-made, industry-vetted framework for this already exists: the HL7 Da Vinci Patient Cost Transparency (PCT) Implementation Guide . 86 This FHIR-based standard provides detailed specifications for the electronic exchange of Good Faith Estimates (GFEs) from providers and Advanced Explanations of Benefits (AEOBs) from payers. It defines the precise FHIR resources and API transactions needed to automate what is currently a fragmented and manual process, enabling real-time, patient-specific cost calculations. 87 By mandating the use of the Da Vinci PCT IG, CMS would transform price transparency from a passive compliance exercise into an active, computable data stream. This would finally enable third-party application developers to create the genuine price comparison and care navigation tools that consumers need to make informed decisions. It would allow a patient, through an app of their choice, to get a reliable estimate of their financial responsibility before a service is rendered. This aligns directly with the goals of the No Surprises Act and the broader federal push for a more transparent and consumer-centric healthcare system. 86 This mandate is a direct and actionable response to the CMS RFI's specific inquiry about the shortcomings of current price transparency implementation and what improvements would be most valuable. 1 Chapter 9: Fostering a Culture of Quality: A Marketplace for Digital Measures The current paradigm of healthcare quality measurement in the United States is fundamentally flawed. It is overwhelmingly retrospective, administratively burdensome, and provides little real-time value for clinical improvement. Programs like the Healthcare Effectiveness Data and Information Set (HEDIS) and Medicare Star Ratings rely on a static set of measures that are updated annually. 90 The process of collecting data for these measures often involves manual chart abstraction, a costly and inefficient process that looks backward at care that was delivered months or even 
-years ago. 92 This system does more to serve the needs of regulators and payers for accountability than it does to help clinicians and patients proactively improve care. To reorient the system toward genuine quality improvement, a two-part strategic shift is necessary, moving from a static, top-down model to a dynamic, market-driven one. Proposal 1: A "Quality Measure Marketplace" First, CMS should sponsor the creation of a "Quality Measure Marketplace." This would be a public, digital platform or repository where a wide range of stakeholders—including specialty societies, patient advocacy groups, academic researchers, and commercial developers—could develop, submit, validate, and share digital quality measures. 94 These measures would be authored in the standardized FHIR and CQL formats mandated in Chapter 5, making them computable and portable. The marketplace would function as a hub for innovation in measurement science. It would allow for the rapid development and testing of new measures that are more clinically relevant, patient-centered, and responsive to evolving medical evidence than the current, slow-moving HEDIS process allows. 90 Payers and value-based care organizations could then browse this marketplace to select and adopt the most meaningful and impactful measures for their specific patient populations, fostering competition and collaboration in the creation of better metrics. Proposal 2: Mandate Consumer-Facing, Prospective Measures Second, in parallel with creating the marketplace, CMS must shift the focus of its own quality programs, like Medicare Advantage Star Ratings, toward more consumer-facing and prospective measures . Current measures are predominantly process-based and retrospective. For example, a measure might track the percentage of diabetic patients whose HbA1c was tested in the past year. While important, this is a lagging indicator. A prospective measure, by contrast, would look forward, tracking whether a patient with newly diagnosed hypertension has a documented, shared care plan for managing their condition over 
-the next six months. Furthermore, the emphasis should shift to measures that matter directly to the consumer's experience of care. These could include metrics on wait times for appointments, the ease of scheduling, the quality of doctor-patient communication, and the ability for a patient to easily access and share their own health data. 99 These are the aspects of quality that patients see and feel directly. This dual-pronged approach would fundamentally reorient the quality enterprise. The marketplace would inject dynamism and innovation into measure development, while the shift to prospective, consumer-facing metrics would make quality measurement a tool for improving future care and patient experience, not just a mechanism for reporting on past performance. It moves the system from simply asking "Was good care delivered?" to actively facilitating "How can we deliver better care tomorrow?" Chapter 10: Ensuring Trust and Accountability: Frameworks for Data Quality and AI Assessment The systemic failures detailed in Part I—from superficial FHIR adoption to rampant information blocking—have created a profound trust deficit in the healthcare data ecosystem. Patients, providers, and innovators alike are justifiably skeptical of the quality and reliability of the data flowing through the system. For a national data ecosystem to function, this trust must be rebuilt on a foundation of transparency and objective accountability. This requires new mandates that make the quality of data and the performance of systems measurable, public, and consequential. Proposal 1: Mandate Data Quality Reporting First, CMS should mandate that any and all data submitted to the agency for any purpose must be accompanied by a standardized Data Quality Report . This report, itself a FHIR-based resource, would contain a set of objective metrics about the submitted data, such as its completeness (e.g., percentage of required fields populated), timeliness (e.g., lag time from event to reporting), and conformance to terminology standards (e.g., percentage of codes validated against the National 
-Terminology Server). This would elevate data quality from an abstract concept to a measurable, reportable, and auditable attribute of every data submission. 102 It would allow CMS to not only assess the data's content but also its integrity, creating a clear mechanism to reject low-quality submissions and hold data submitters accountable. Proposal 2: Mandate Vendor Testing and Assessment Publication Second, to bring transparency directly to the source of most health data, the ONC Health IT Certification Program should be updated to require EHR vendors to conduct standardized interoperability and data quality tests and publicly publish the results . This would involve testing their systems against a CMS-provided reference implementation or testing suite. The results would objectively demonstrate which vendor systems are capable of producing high-quality, conformant FHIR data and which are merely "checking the box." This public attestation would create powerful market incentives for vendors to improve their products and for providers to select systems that have proven their interoperability capabilities. This is particularly crucial for data intended for use in FDA-regulated clinical investigations, where data quality and integrity are paramount. 104 The current system lacks this transparency, allowing underperforming systems to remain certified. This mandate would make performance visible to all, aligning with HIPAA's goals of ensuring data integrity and the Cures Act's push to use real-world evidence from EHRs. 105 Proposal 3: Publish AI Assessment Standards and Guidelines Finally, to foster trust in the next generation of health technology, CMS and ONC must collaborate to publish a clear, official framework for the assessment, validation, and ongoing monitoring of AI in healthcare . While CMS has a high-level AI strategy and various rules are emerging that touch upon AI, a consolidated set of technical assessment guidelines for the industry is urgently needed. 108 This framework should not reinvent the wheel but should harmonize and build upon the extensive work already done by authoritative bodies like the National Academy of 
-Medicine with its AI Code of Conduct (AICC), the World Health Organization, and international standards bodies like ISO. 58 The guidelines must provide clear, actionable criteria for evaluating AI models across their lifecycle, addressing critical domains such as fairness and bias mitigation, transparency and explainability, clinical safety and efficacy, and post-deployment performance monitoring. Publishing such a framework would provide the clarity that developers need to build responsible AI and that healthcare organizations need to procure and deploy these tools with confidence. Chapter 11: Addressing Market Concentration: Unlocking the EHR Duopoly to Foster Competition and Innovation The preceding ten mandates are not merely a collection of individual technical fixes. Viewed together, they represent a cohesive and powerful strategy to address the root cause of healthcare's interoperability failure: the uncompetitive market structure and the resulting data control exercised by the EHR duopoly. The ultimate goal of this blueprint is not just to improve data exchange, but to dismantle the "walled gardens" and foster a dynamic, competitive, and innovative healthcare technology market. How the Mandates Erode Monopolistic Moats The strategic power of this blueprint lies in its ability to systematically erode the "moats" that protect the incumbent vendors' market dominance. The primary source of this dominance is their proprietary control over data, which creates immense vendor lock-in and stifles competition. 37 The proposed mandates directly attack this source of power. First, they commoditize data access . By mandating Bulk FHIR for data export, establishing a National Terminology Server for semantic consistency, and creating a National Provider Directory for endpoint discovery, the blueprint transforms data access from a scarce, proprietary, vendor-controlled asset into a public utility. When every provider's data is accessible via a standardized, public, and low-cost mechanism, the EHR vendor no longer serves as the gatekeeper. 
-Second, this commoditization of data access enables best-of-breed competition . In the current locked-in environment, a hospital that uses Epic's EHR is heavily incentivized, if not required, to also use Epic's ancillary products for analytics, population health, or patient engagement. When data becomes liquid and accessible via standardized APIs, this is no longer the case. The hospital can choose the best analytics platform, the best care management tool, or the best patient-facing app from a competitive market of innovators, regardless of who makes their core EHR. This forces the incumbent vendors to compete on the merits of each individual product—on quality, usability, and price—rather than relying on their control of the platform to guarantee sales. Third, this reduces switching costs . While the operational cost and complexity of migrating a core EHR system will always be significant, the ability to retain a portfolio of best-of-breed applications that are integrated via standardized APIs dramatically lowers the overall barrier and risk of making a change. If a hospital knows it can switch its core EHR from Vendor A to Vendor B without having to simultaneously replace its dozen other critical applications, the prospect of a switch becomes far more tenable. This injects a credible threat of competition into a market that currently has very little. Further Pro-Competitive Actions The data and transparency generated by these mandates would also equip federal regulators with powerful new tools to monitor the market. CMS, in concert with the Federal Trade Commission (FTC) and the Department of Justice (DOJ), should use the public data on FHIR adoption, data quality, and vendor testing performance to actively scrutinize the market for anti-competitive behavior. The recent federal antitrust lawsuit filed against Epic by Particle Health, which alleges that the EHR giant is using its market power to unlawfully block competitors, is a clear signal that these issues are ripe for regulatory action. 113 The blueprint proposed here provides the objective data needed to substantiate such claims and enforce fair market practices. Ultimately, this blueprint outlines a strategy for using interoperability policy as a potent antitrust remedy. Traditional antitrust actions, such as attempting to break up a company, are notoriously slow, complex, and often ill-suited to the dynamics of a technology market. The approach outlined here is more direct and arguably more effective. It does not focus on punishing the incumbents for their market power; 
-instead, it neutralizes the source of that power. By establishing a public, standardized infrastructure for data access, this strategy fundamentally changes the rules of competition. It shifts the basis of competition away from who can best hoard data and toward who can best use data to create value. It achieves the core goals of antitrust policy—increased competition, lower prices, and greater innovation—through proactive, market-shaping infrastructure policy rather than reactive litigation. It is a solution designed not just to police the market, but to fix it. Conclusion: Seizing the Mandate for a Modern Healthcare Infrastructure The United States healthcare system has reached the absolute limit of what a compliance-driven, market-led approach to interoperability can achieve. The persistent failures of the past decade—the superficial adoption of standards, the entrenchment of data-hoarding business models, the stagnation of innovation, and the constrained potential of AI—are not incidental bugs in the system. They are predictable features of a market that structurally rewards the creation of data silos. Continuing down this path with more incremental rules and voluntary frameworks will only yield more of the same frustrating results. A fundamental strategic pivot is required. The only viable path forward is for the Centers for Medicare & Medicaid Services, in its role as the nation's largest payer and most influential market actor, to lead the deliberate construction of a national health data infrastructure. This is not a call for more regulation in the traditional sense, but for the establishment of essential public utilities—the digital roads, registries, and common languages that a 21st-century healthcare system requires to function. The 11-point blueprint detailed in this report provides a cohesive and actionable framework for building this infrastructure. By mandating FHIR as the universal standard for all data reporting, access, and quality measurement, CMS can create a powerful forcing function for data quality. By establishing national utilities for terminology and provider endpoint discovery, it can solve the semantic and logistical barriers that currently make nationwide exchange impossible. By mandating FHIR for price transparency and fostering a marketplace for digital quality measures, it can 
-empower consumers and reorient the system toward proactive improvement. And by demanding transparency in data quality and AI assessment, it can rebuild the trust necessary for widespread adoption. Taken together, these mandates are designed to achieve a singular strategic objective: to neutralize proprietary control over data as a source of market power. This is the key to unlocking the EHR duopoly, reducing vendor lock-in, and unleashing the forces of competition and innovation that have been suppressed for far too long. The Request for Information on the Health Technology Ecosystem presents a critical window of opportunity. It is a clear signal that federal leaders recognize the current approach is insufficient. This report offers a bold but necessary response. It is a call for CMS, ONC, and all industry stakeholders to abandon the failed paradigm of the past and seize the mandate to build the modern, open, and equitable healthcare infrastructure that Americans deserve. The goal is no less than the final realization of a healthcare system that is truly connected, intelligent, and capable of learning. Works cited 1. CMS-2025-0050-0031_content.pdf 2. Information Blocking Rule Turns Two: Successes, Struggles, and ..., accessed June 14, 2025, https://greenlighthealth.com/information-blocking-rule-turns-two-successes-str uggles-and-whats-next/ 3. 21st Century Cures Act: - Establishment of Disincentives for Health Care Providers That Have Committed Information Blocking, accessed June 14, 2025, https://www.healthit.gov/sites/default/files/facas/2024-07-11_Overview_of_HHS% 20Information_Blocking_Disincentives_Final_Rule_508.pdf 4. Critical Insights into FHIR Mandates and Ensuring Compliance - Drummond Group, accessed June 14, 2025, https://www.drummondgroup.com/blog/critical-insights-into-fhir-mandates-and- ensuring-compliance/ 5. CMS Interoperability, accessed June 14, 2025, https://www.cms.gov/priorities/burden-reduction/overview/interoperability 6. Healthcare's Interoperability Challenges - Athenahealth, accessed June 14, 2025, https://www.athenahealth.com/resources/blog/interoperability-challenges-in-hea lthcare 7. Are Interoperability and Compliance Diverging in Healthcare? - IS Partners, LLC, accessed June 14, 2025, https://www.ispartnersllc.com/blog/healthcare-interoperability-compliance/ 8. Understanding the Push for FHIR Standard Mandates in Healthcare | Blog - Itirra, accessed June 14, 2025, https://itirra.com/blog/understanding-the-push-for-fhir-standard-mandates-in-h
-ealthcare/ 9. Navigating CMS-0057: What Providers Need To Know - Tegria US, accessed June 14, 2025, https://www.tegria.com/resources/thought-leadership/navigating-cms-0057-wha t-providers-need-to-know/ 10. Meeting USCDI Requirements - Medicomp Systems, accessed June 14, 2025, https://medicomp.com/meeting-uscdi-requirements/ 11. Fix Poor Data Quality in Healthcare with AI & Automation - Imaginovation, accessed June 14, 2025, https://imaginovation.net/blog/fix-poor-data-quality-healthcare-ai-automation/ 12. Digital Stars & the data quality barrier to adoption: dQMs need high-quality FHIR | Blog Post, accessed June 14, 2025, https://careevolution.com/post/digital-stars-the-data-quality-barrier-to-adoption -dqms-need-high-quality-fhir/ 13. Deep Dive into FHIR and Duplicate Data Challenges in Healthcare Data and a Solution Using Zingg, accessed June 14, 2025, https://www.zingg.ai/post/deep-dive-into-fhir-and-duplicate-data-challenges-in- healthcare-data-and-a-solution-using-zingg 14. HL7® FHIR® Implementation Guidance Checklist | CDC, accessed June 14, 2025, https://www.cdc.gov/nchs/nvss/modernization/pdf/fhir-implimentation-guidance- checklist.pdf 15. Documentation - Epic on FHIR, accessed June 14, 2025, https://fhir.epic.com/Documentation 16. FHIR in Healthcare: Navigating the Challenges of Adoption | HealthTech Magazines, accessed June 14, 2025, https://www.healthtechmagazines.com/fhir-in-healthcare-navigating-the-challen ges-of-adoption/ 17. Cost of Implementing EHR: Key Budget Components | TechMagic, accessed June 14, 2025, https://www.techmagic.co/blog/cost-of-implementing-ehr 18. Epic Expands EHR Market Share as Rivals Lose Customers - Dark Daily, accessed June 14, 2025, https://www.darkdaily.com/2025/06/04/epic-expands-ehr-market-share-as-rivals -lose-customers/ 19. Epic gains more ground in hospital EHR market share, widens its lead over Oracle Health: KLAS - Fierce Healthcare, accessed June 14, 2025, https://www.fiercehealthcare.com/health-tech/epic-gaining-more-ground-hospit al-ehr-market-share-widens-its-lead-over-oracle-health 20. KLAS: Epic Dominates 2024 EHR Market Share, Oracle Health Sees Losses, accessed June 14, 2025, https://hitconsultant.net/2025/05/05/klas-epic-dominates-2024-ehr-market-shar e/ 21. The issue with EHR vendor lock-in, accessed June 14, 2025, https://hipaatimes.com/the-issue-with-ehr-vendor-lock-in 22. Breaking Free from Vendor Lock-In: How EHR Personalization Empowers Healthcare Independence - Juno Health, accessed June 14, 2025, 
-https://www.junohealth.com/blog/how-ehr-personalization-prevents-vendor-loc k-in 23. EHR interoperability challenges and solutions - EHR in Practice, accessed June 14, 2025, https://www.ehrinpractice.com/ehr-interoperability-challenges-solutions.html 24. Implications of an emerging EHR monoculture for hospitals and healthcare systems - PMC, accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC11749203/ 25. Implications of an emerging EHR monoculture for hospitals and healthcare systems - Oxford Academic, accessed June 14, 2025, https://academic.oup.com/jamia/article-pdf/22/2/465/34145415/amiajnl-2014-003 023.pdf 26. Healthcare's Epic Problem & the Audacity of Liberating Patient Data ..., accessed June 14, 2025, https://www.4sighthealth.com/healthcares-epic-problem-the-audacity-of-liberat ing-patient-data/ 27. Information-blocking trends following regulatory action | Journal of the American Medical Informatics Association | Oxford Academic, accessed June 14, 2025, https://academic.oup.com/jamia/article/32/4/665/7990834 28. Information blocking remains prevalent at the start of 21st Century Cures Act: results from a survey of health information exchange organizations - PMC, accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC7973451/ 29. Information blocking victory in favor of access to health data, accessed June 14, 2025, https://www.healthindustrywashingtonwatch.com/2025/03/articles/department-o f-health-and-human-services/information-blocking-victory-in-favor-of-access-t o-health-data/ 30. What is Information Blocking? Part 1 - American Medical Association, accessed June 14, 2025, https://www.ama-assn.org/system/files/2021-01/information-blocking-part-1.pdf 31. Getting Real about Information Blocking and APIs - Health IT Buzz, accessed June 14, 2025, https://www.healthit.gov/buzz-blog/electronic-health-and-medical-records/inter operability-electronic-health-and-medical-records/getting-real-about-informati on-blocking-and-apis 32. EHRs, Information Blocking, and MIPS: New Enforcement Mechanism Takes Effect in 2024, accessed June 14, 2025, https://www.aao.org/eyenet/article/ehr-information-blocking-mips-2024 33. Information blocking disincentives | AMA - American Medical Association, accessed June 14, 2025, https://www.ama-assn.org/system/files/hhs-provider-info-blocking-penalties-su mmary.pdf 34. Information Blocking: Disincentives Established for Health Care Providers - Baker Donelson, accessed June 14, 2025, https://www.bakerdonelson.com/information-blocking-disincentives-established-
-for-health-care-providers 35. New Teeth to the Information Blocking Rule: Long-Awaited Disincentives for Health Care Providers Finalized - Ropes & Gray LLP, accessed June 14, 2025, https://www.ropesgray.com/en/insights/alerts/2024/07/new-teeth-to-the-informa tion-blocking-rule-long-awaited-disincentives-for-health-care-providers 36. Physicians beware: Information-blocking rules now apply to you, accessed June 14, 2025, https://www.ama-assn.org/practice-management/digital-health/physicians-bewa re-information-blocking-rules-now-apply-you 37. How Epic's Market Dominance Affects The Healthcare System - HealthTECH Resources, accessed June 14, 2025, https://healthtechresourcesinc.com/epic-market-dominance-affects-healthcare- system 38. Epic Systems: Wizards won't modernize health care, and Wikipedia pages don't edit themselves. - Oracle, accessed June 14, 2025, https://www.oracle.com/news/announcement/blog/wizards-will-not-modernize-h ealth-care-and-wikipedia-pages-do-not-edit-themselves-2025-02-11/ 39. Epic's data fight spotlights privacy, access concerns - Becker's Hospital Review, accessed June 14, 2025, https://www.beckershospitalreview.com/healthcare-information-technology/ehrs /epics-data-fight-spotlights-privacy-access-concerns/ 40. Data fragmentation: The key healthcare challenge of our time ..., accessed June 14, 2025, https://www.fiercehealthcare.com/sponsored/data-fragmentation-key-healthcare -challenge-our-time 41. Healthcare Data Analytics Challenges & Data Silos Impact - HashStudioz Technologies, accessed June 14, 2025, https://www.hashstudioz.com/blog/healthcare-data-silos-challenges/ 42. How Healthcare Data Silos Are Hurting Your Business (And How to Fix It) - SynergyTop, accessed June 14, 2025, https://synergytop.com/blog/how-healthcare-data-silos-are-hurting-your-busine ss-and-how-to-fix-it/ 43. How Do Data Silos Impede Patient Care and Provider Efficiency? | HealthTech Magazine, accessed June 14, 2025, https://healthtechmagazine.net/article/2025/04/how-do-data-silos-impede-patie nt-care-and-provider-efficiency 44. Why Digital Fragmentation Is AI's Silent Killer | Built In, accessed June 14, 2025, https://builtin.com/articles/digital-fragmentation-ai-silent-killer 45. Clinical Data Integration: Unlocking Seamless and Secure Patient Care - Topflight Apps, accessed June 14, 2025, https://topflightapps.com/ideas/healthcare-data-integration/ 46. Lack of Acceptance of Digital Healthcare in the Medical Market: Addressing Old Problems Raised by Various Clinical Professionals and Developing Possible Solutions - PMC, accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC8476935/ 
-47. Digital health not accessible by everyone equally, new study finds, accessed June 14, 2025, https://www.who.int/europe/news/item/21-12-2022-digital-health-not-accessible- by-everyone-equally-new-study-finds 48. Back to the Future: Achieving Health Equity Through Health Informatics and Digital Health, accessed June 14, 2025, https://mhealth.jmir.org/2020/1/e14512/ 49. AI in EHR: How AI Improves Electronic Health Records - Topflight Apps, accessed June 14, 2025, https://topflightapps.com/ideas/ai-in-ehr/ 50. The role of artificial intelligence for the application of integrating electronic health records and patient-generated data in clinical decision support, accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC11141850/ 51. The role of artificial intelligence in the application of the integrated electronic health records and patient-generated health data | medRxiv, accessed June 14, 2025, https://www.medrxiv.org/content/10.1101/2024.05.01.24306690v1.full-text 52. AI Can Bridge the Health Data Interoperability Gap - Booz Allen, accessed June 14, 2025, https://www.boozallen.com/insights/data-optimization/ai-can-bridge-the-health- data-interoperability-gap.html 53. Why is Healthcare Data Quality Critical in the Age of AI - SG Analytics, accessed June 14, 2025, https://www.sganalytics.com/blog/why-is-healthcare-data-quality-critical-in-the- age-of-ai/ 54. Health care's data problem: the real obstacle to AI success - KevinMD.com, accessed June 14, 2025, https://kevinmd.com/2025/05/health-cares-data-problem-the-real-obstacle-to-a i-success.html 55. AI Implementation in Healthcare: 10 Challenges and Solutions I ..., accessed June 14, 2025, https://www.scalefocus.com/blog/ai-implementation-in-healthcare-10-challenge s-and-solutions 56. Toward a responsible future: recommendations for AI-enabled clinical decision support | Journal of the American Medical Informatics Association | Oxford Academic, accessed June 14, 2025, https://academic.oup.com/jamia/article/31/11/2730/7776823 57. Harnessing Electronic Health Records and Artificial Intelligence for Enhanced Cardiovascular Risk Prediction: A Comprehensive Review | Journal of the American Heart Association, accessed June 14, 2025, https://www.ahajournals.org/doi/10.1161/JAHA.124.036946 58. AI Quality Standards in Health Care: Rapid Umbrella Review - PMC, accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC11153979/ 59. AI Device Standards You Must Know - ISO 13485, 14971, 62304 - Hardian Health, accessed June 14, 2025, https://www.hardianhealth.com/insights/regulatory-ai-medical-device-standards 60. Health Care Artificial Intelligence Code of Conduct - NAM - National Academy of Medicine, accessed June 14, 2025, 
-https://nam.edu/our-work/programs/leadership-consortium/health-care-artificial -intelligence-code-of-conduct/ 61. Create a Lasting Digital Health Infrastructure to Support ... - NCQA, accessed June 14, 2025, https://wpcdn.ncqa.org/www-prod/NCQA-BH_TrumpAdministrationRecommend ations-WEB-DH.pdf 62. Efficient Value Based Care with Bulk FHIR | EHR Good Neighbor, accessed June 14, 2025, https://good-neighbor.smarthealthit.org/case-studies/efficient-value-based-care -with-bulk-fhir 63. Health IT to Enhance Public Health Response and Outcomes - Westat, accessed June 14, 2025, https://www.westat.com/news/health-it-public-health-response-outcomes/ 64. Bulk Data - Veradigm Developer Portal, accessed June 14, 2025, https://developer.veradigm.com/Fhir/BulkData 65. Intro to CQL - NCQA, accessed June 14, 2025, https://www.ncqa.org/resources/intro-to-cql/ 66. CQL - Clinical Quality Language - eCQI Resource Center, accessed June 14, 2025, https://ecqi.healthit.gov/cql 67. CQL for FHIR - Clinical Quality Language - Firely, accessed June 14, 2025, https://fire.ly/cql/ 68. What is Clinical Quality Language (CQL)? - Tenasol, accessed June 14, 2025, https://www.tenasol.com/blog/what-is-hl7-cql 69. Your questions answered: CQL & the future of quality measures webinar Q&A - Firely, accessed June 14, 2025, https://fire.ly/blog/cql-and-future-of-quality-measures-webinar-answers/ 70. Beyond Compliance: Scale Clinical Intelligence with FHIR® & CQL - Smile Digital Health, accessed June 14, 2025, https://www.smiledigitalhealth.com/our-blog/boost-clinical-intelligence-with-fhir -cql-ai 71. CMS-0057-F has landed. But what does it mean for your FHIR roadmap? - Firely, accessed June 14, 2025, https://fire.ly/blog/cms-0057-f-and-your-fhir-roadmap/ 72. The NLM Value Set Authority Center - PMC, accessed June 14, 2025, https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4300102/ 73. Value Set Authority Center (VSAC) - eCQI Resource Center, accessed June 14, 2025, https://ecqi.healthit.gov/tool/value-set-authority-center-vsac 74. The NLM Value Set Authority Center - PMC, accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC4300102/ 75. Value Set Information | eCQI Resource Center, accessed June 14, 2025, https://ecqi.healthit.gov/value-set-information 76. UMLS Terminology Services, accessed June 14, 2025, https://uts.nlm.nih.gov/ 77. Terminology Server - Tiga Healthcare Technologies, accessed June 14, 2025, https://www.tigahealth.com/p/terminology-server/ 78. SNOMED International: Home, accessed June 14, 2025, https://www.snomed.org/ 79. CMS Request for Information; National Directory of Healthcare Providers & 
-Services - Regulations.gov, accessed June 14, 2025, https://downloads.regulations.gov/CMS-2022-0163-0075/attachment_1.pdf 80. Application Programming Interfaces (APIs) and Relevant Standards and Implementation Guides (IGs) | CMS, accessed June 14, 2025, https://www.cms.gov/priorities/burden-reduction/overview/interoperability/imple mentation-guides-and-standards/application-programming-interfaces-apis-and -relevant-standards-and-implementation-guides-igs 81. Requirements for Provider Directory API | CMS interoperability Rule, accessed June 14, 2025, https://www.cmsinteroperability.org/provider-directory-requirements 82. Provider Directory API Final Rule | General Information, accessed June 14, 2025, https://www.cmsinteroperability.org/provider-directory 83. Request for Information; National Directory of ... - Federal Register, accessed June 14, 2025, https://www.federalregister.gov/documents/2022/10/07/2022-21904/request-for-i nformation-national-directory-of-healthcare-providers-and-services 84. Endpoint directory implementations and frameworks - FHIR - Confluence - HL7, accessed June 14, 2025, https://confluence.hl7.org/display/FHIR/Endpoint+directory+implementations+and +frameworks 85. National Directory of Healthcare Providers & Services (NDH) Implementation Guide, accessed June 14, 2025, https://confluence.hl7.org/spaces/PA/pages/308972730/National+Directory+of+H ealthcare+Providers+Services+NDH+Implementation+Guide 86. How OnyxOS and HL7 FHIR Standards Enable Payers and ..., accessed June 14, 2025, https://www.onyxhealth.io/how-onyxos-and-hl7-fhir-standards-enable-payers-a nd-providers-to-meet-price-transparency-mandates/ 87. Patient Cost Transparency Implementation Guide Home Page - FHIR specification, accessed June 14, 2025, https://build.fhir.org/ig/HL7/davinci-pct/ 88. Downloads - Patient Cost Transparency Implementation Guide v2.0.0-draft, accessed June 14, 2025, https://build.fhir.org/ig/HL7/davinci-pct/downloads.html 89. Bridging Consumerism and Price Transparency in Healthcare - CDW, accessed June 14, 2025, https://www.cdw.com/content/cdw/en/articles/dataanalytics/bridging-consumeris m-and-price-transparency-in-healthcare.html 90. HEDIS - NCQA, accessed June 14, 2025, https://www.ncqa.org/hedis/ 91. HEDIS Measures and Technical Resources - NCQA, accessed June 14, 2025, https://www.ncqa.org/hedis/measures/ 92. The health plan guide to HEDIS measures - Cotiviti, accessed June 14, 2025, https://resources.cotiviti.com/quality-measurement-and-reporting/health-plan-g uide-hedis-measures 93. Healthcare Effectiveness Data and Information Set (HEDIS) - Alliance Health, accessed June 14, 2025, https://www.alliancehealthplan.org/providers/network/qa/hedis/ 
-94. Measuring the Quality of Health Care - NCBI Bookshelf, accessed June 14, 2025, https://www.ncbi.nlm.nih.gov/books/NBK230815/ 95. Types of Health Care Quality Measures | Agency for Healthcare Research and ... - AHRQ, accessed June 14, 2025, https://www.ahrq.gov/talkingquality/measures/types.html 96. Quality Measures - CMS, accessed June 14, 2025, https://www.cms.gov/medicare/quality/measures 97. Quality Metrics: What They Are & How to Use Them | SafetyCulture, accessed June 14, 2025, https://safetyculture.com/topics/quality-metrics/ 98. Six Domains of Healthcare Quality - AHRQ, accessed June 14, 2025, https://www.ahrq.gov/talkingquality/measures/six-domains.html 99. Most Important Metrics for a Healthcare Quality Management Dashboard - symplr, accessed June 14, 2025, https://www.symplr.com/blog/most-important-metrics-healthcare-quality-dashb oard 100. Track 16 Key Healthcare Quality Metrics for Better Outcomes - ClearPoint Strategy, accessed June 14, 2025, https://www.clearpointstrategy.com/blog/quality-measures-in-healthcare 101. Healthcare Quality Measures in the United States | HIPNet, accessed June 14, 2025, https://www.hipnet.org/healthcare-quality-measures-in-the-united-states.html 102. DATA QUALITY SYMPOSIUM Q&A, accessed June 14, 2025, https://www.healthit.gov/sites/default/files/2024-03/Data_Quality_Sympos-QnA_F actsheet_v3_508.pdf 103. State Public Health Data Reporting Policies and Practices Vary Widely, accessed June 14, 2025, https://www.pew.org/en/research-and-analysis/reports/2024/12/state-public-heal th-data-reporting-policies-and-practices-vary-widely 104. Use of Electronic Health Record Data in Clinical Investigations Guidance for Industry - FDA, accessed June 14, 2025, https://www.fda.gov/media/97567/download 105. Individuals' Right under HIPAA to Access their Health Information | HHS.gov, accessed June 14, 2025, https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/access/index.html 106. Health Data, Technology, and Interoperability: Certification Program Updates, Algorithm Transparency, and Information Sharing - Federal Register, accessed June 14, 2025, https://www.federalregister.gov/documents/2024/01/09/2023-28857/health-data- technology-and-interoperability-certification-program-updates-algorithm-trans parency-and 107. Obtaining Data From Electronic Health Records - Tools and Technologies for Registry Interoperability, Registries for Evaluating Patient Outcomes - NCBI, accessed June 14, 2025, https://www.ncbi.nlm.nih.gov/books/NBK551878/ 108. Artificial Intelligence at CMS, accessed June 14, 2025, https://ai.cms.gov/ 109. House Budget Reconciliation Bill Would Delay State AI Regulation, accessed 
-June 14, 2025, https://www.mwe.com/insights/house-budget-reconciliation-bill-would-delay-sta te-ai-regulation/ 110. 13th SOW QIN–QIO and AI/AN Advancing Healthcare Quality through Technology (AHQT) Readiness Assessment (CMS-10916) - Regulations.gov, accessed June 14, 2025, https://www.regulations.gov/document/CMS-2025-0060-0001 111. CMS Final Rule on CY 2026: Policy and Technical Changes | Insights - Holland & Knight, accessed June 14, 2025, https://www.hklaw.com/en/insights/publications/2025/04/cms-final-rule-on-cy-20 26-policy-and-technical-changes 112. CMS Final Rule 2025: The New Administration Weighs In - Inovalon, accessed June 14, 2025, https://www.inovalon.com/blog/cms-final-rule-2025-the-new-administration-wei ghs-in/ 113. Epic EHR monopoly violates federal antitrust laws, hurting business and patients, lawsuit says - Medical Economics, accessed June 14, 2025, https://www.medicaleconomics.com/view/epic-ehr-monopoly-violates-federal-a ntitrust-laws-hurting-business-and-patients-lawsuit-says 114. Epic Dominates the EHR Market While Facing Antitrust Concerns - TogetherMD, accessed June 14, 2025, https://togethermd.com/epic-systems-dominating-the-ehr-market-while-facing- antitrust-concerns/ 
+Submitted by Eugene Vestel for CMS Request for Information; Health Technology Ecosystem
+Regulations.gov
+Founder FHIR IQ LLC
+Founder FHIR Goats Linkedin Group (450 Members)
+Eugene Vestel, MBA
+Contact Info
+linkedin.com/in/evestel
+Website
+fhiriq.com (Company)
+Phone
+917-664-9186 (Mobile)
+Email
+eugene.vestel@gmail.com
+
+From Checkbox to Catalyst: A Strategic Blueprint for
+Realizing Healthcare Interoperability Through Federal Action
+Introduction: The Promise Deferred and a Pivotal Moment for
+Action
+The United States healthcare system stands at an interoperability impasse. Decades
+of policy initiatives and hundreds of billions of dollars in public and private investment,
+from the Health Information Technology for Economic and Clinical Health (HITECH)
+Act to the 21st Century Cures Act, have yielded a digital infrastructure that remains
+fundamentally fragmented and dysfunctional. While these efforts have successfully
+driven the adoption of electronic health records (EHRs), they have failed to produce
+the seamless, secure, and semantic flow of information necessary to transform
+patient care, accelerate research, and foster a competitive innovation ecosystem. The
+promise of a learning health system, once a guiding vision, remains deferred.
+The Centers for Medicare & Medicaid Services (CMS) and the Office of the National
+Coordinator for Health Information Technology (ONC) have themselves acknowledged
+this gap between policy intent and real-world experience. In a recent Request for
+Information (RFI) on the Health Technology Ecosystem, the agencies concede that
+despite the establishment of foundational standards and application programming
+interfaces (APIs), "the experience of most patients, caregivers, and providers is
+neither seamless nor simple".1 This candid admission signals a critical juncture. The
+convergence of new, more stringent regulations, such as the enforcement of
+information blocking disincentives 2, the maturation of technical standards like HL7®
+Fast Healthcare Interoperability Resources (FHIR®), and the disruptive potential of
+artificial intelligence (AI) has created a unique, pivotal moment for a strategic reset.
+Incremental, market-driven, and compliance-focused approaches have proven
+insufficient. The path forward requires a fundamental shift in federal strategy: CMS
+must evolve from a rule-maker to an infrastructure-builder. Leveraging its immense
+regulatory and purchasing power, CMS can and must orchestrate the creation of a
+
+national health data ecosystem—a set of public digital utilities built upon a foundation
+of mandatory, high-quality, and universally accessible FHIR-based services.
+This report provides a comprehensive blueprint for this strategic shift. It serves as a
+direct and detailed response to the CMS RFI 1, diagnosing the systemic failures that
+perpetuate the interoperability impasse and presenting a cohesive set of actionable,
+interconnected policy mandates. By transforming data access from a proprietary,
+vendor-controlled asset into a public utility, these mandates will dismantle the market
+barriers that stifle innovation, constrain AI, and ultimately limit the quality and
+efficiency of American healthcare. The following table aligns the core
+recommendations of this report with the specific questions posed in the CMS RFI,
+framing this analysis as a direct contribution to the federal policymaking process.
+Table 1: Alignment of Proposed Mandates with CMS RFI (CMS-0042-NC)
+Proposed Mandate/Recommendation Relevant CMS RFI Question Codes 1
+1. Utilize a single data standard for all CMS TD-7, TD-7a, TD-7b, TD-7c, TD-13b
+reporting (FHIR USCDI)
+2. Mandate all data submitted to CMS be PR-8a, PA-5a, TD-9e, TD-11a, TD-15, TD-15a,
+available via Bulk FHIR TD-15b
+3. Standardize terminology services via a PC-8c, PR-3, TD-7
+single US national terminology server
+4. Incorporate price and cost-sharing data PC-8a, TD-19, TD-19a, TD-19b, TD-19c, TD-19d
+in FHIR format via open platform
+5. Create a single national provider PA-4, TD-5, VB-15
+directory with mandated FHIR endpoints
+6. Mandate quality measurement PR-2, PR-8a, PR-8c, PA-5a, VB-2, VB-4
+submission in FHIR CQL format
+7. Publish aggregate data on FHIR adoption PC-5a, PR-7
+by providers, payers, and vendors
+8. Mandate Data Quality reporting TD-9d, TD-18a
+standards for all CMS-submitted
+information
+9. Mandate EHR vendors publish data TD-9, TD-9d, TD-10
+testing and assessment results
+
+10. Create a single directory of accredited VB-5, VB-6, VB-7
+boards and providers
+11. Create a Quality Measure Marketplace PR-8c, VB-2
+12. Add consumer-facing, prospective PC-12a(4), VB-2
+quality measures to CMS/HEDIS
+13. Publish AI assessment standards and PC-5a, PC-8c, VB-2
+guidelines
+14. Unlock Epic and Oracle Health PR-12, TD-4, TD-10, TD-16
+monopolies in the EHR market
+Part I: The Interoperability Impasse: A System-Wide Diagnosis
+Chapter 1: The Illusion of Interoperability: Superficial FHIR Adoption and
+"Checkbox Compliance"
+The current state of healthcare interoperability is largely an illusion, built upon a
+foundation of superficial standards adoption. Federal mandates, particularly the CMS
+Interoperability and Patient Access Final Rule, have successfully compelled providers
+and payers to deploy FHIR-based APIs.4 However, this regulatory success has fostered
+a culture of "checkbox compliance," where the technical letter of the law is met, but
+the spirit of genuine, functional data exchange is not.6 Organizations can claim to
+have a FHIR API, satisfying auditors and avoiding penalties, yet these endpoints often
+fail to deliver the high-quality, complete, and consistent data required for meaningful
+use.8 This phenomenon represents compliance without interoperability, a technical
+achievement that is a functional failure.
+The Data Quality Chasm
+
+At the heart of this failure lies a profound and pervasive data quality chasm. The FHIR
+APIs that form the supposed bedrock of the new digital ecosystem are plagued by
+systemic data integrity issues, rendering them unreliable for the very applications they
+were meant to enable.
+First, the data is frequently incomplete. A FHIR resource may be technically valid
+according to the standard's structure, but the data elements within it are often sparse
+or missing entirely. This is reflected in the ongoing need to expand the United States
+Core Data for Interoperability (USCDI), which represents the minimum dataset for
+exchange; the very need for expansion acknowledges the insufficiency of what is
+currently shared.1 Innovators find that the APIs do not contain the full extent of data
+elements they need to build valuable applications, a direct response to the RFI's
+inquiry into USCDI's limitations.1
+Second, the data is chronically inconsistent. Healthcare providers often use varied
+terminologies and coding standards, leading to data mismatches that corrupt
+datasets and make aggregation and analysis impossible.11 Without a shared semantic
+understanding, a lab result from one system cannot be reliably interpreted by another,
+undermining the core purpose of interoperability.
+Third, the data is rife with inaccuracy. The "garbage in, garbage out" principle is
+starkly evident in healthcare data systems.12 Manual data entry errors, a high
+prevalence of duplicate patient records that fragment the medical history, and the
+persistence of outdated information are common.11 Converting this poor-quality
+source data into a FHIR format does not cleanse it; it merely repackages the errors
+into a standardized container.
+The Developer's Dilemma
+This environment of superficial adoption and poor data quality creates a toxic and
+unsustainable dilemma for the application developers who were intended to be the
+primary consumers of these APIs. When the CMS RFI asks, "What apps should exist
+but do not yet? Why do you believe they do not exist yet?" 1, the answer is clear: they
+do not exist because the data infrastructure required to build them is a mirage.
+Developers cannot build reliable, scalable, and clinically valuable products on a
+foundation of untrustworthy data. The checklist for a proper FHIR implementation is
+long and complex, covering everything from security protocols to profile conformance
+
+and terminology binding.14 When vendors and providers take shortcuts to meet
+deadlines, the result is an API that technically exists but is functionally useless to an
+innovator trying to build a business. The process for a developer to even get an app
+listed in a major EHR's marketplace, like Epic's App Orchard, involves numerous
+compliance steps, reinforcing a focus on meeting vendor requirements rather than
+fostering open innovation.15
+This situation has created a negative feedback loop that perpetuates stagnation. The
+process begins with regulatory mandates for FHIR APIs, intended to spur a vibrant
+application ecosystem.1 However, providers and their EHR vendors face significant
+technical complexity and high costs to implement these APIs robustly.9 Lacking a
+direct financial return on investment for creating high-quality data streams for third
+parties, the rational economic decision is to do the minimum necessary to check the
+compliance box.6 Consequently, application developers encounter these low-quality,
+"checkbox" APIs. The data is too incomplete, inconsistent, and unreliable to support a
+viable product.12 As a result, few compelling applications emerge, leading to a lack of
+patient and provider demand. This absence of market pull removes any incentive for
+providers and vendors to invest in improving their APIs beyond the bare minimum for
+compliance. The cycle repeats, with regulations technically being met while the
+ultimate policy goal—a thriving, innovative digital health ecosystem—fails completely.
+Chapter 2: The Walled Gardens of Healthcare: Persistent Interoperability Failures
+and Information Blocking
+The failure to achieve meaningful interoperability is not merely a technical
+shortcoming; it is a direct consequence of a market structure dominated by a duopoly
+of EHR vendors. This market concentration is the root cause of the "walled gardens"
+that define American healthcare, where data is held captive not by technological
+limitations, but by strategic business interests. Recent market analysis from KLAS
+Research paints a stark picture of this reality. In 2024, Epic Systems solidified its
+dominance, capturing nearly 70% of new hospital contracts and expanding its control
+to 42.3% of the total U.S. acute care hospital market and an astonishing 54.9% of all
+hospital beds.18 Its closest rival, Oracle Health (formerly Cerner), holds 22.9% of the
+hospital market, meaning two vendors control the digital infrastructure for two-thirds
+of the nation's hospitals.19 This is not a competitive market; it is a structural barrier to
+the free flow of health information.
+
+Vendor Lock-In and Business Practices
+This market dominance is sustained and reinforced by business practices that create
+powerful vendor lock-in and discourage data exchange with outside entities.21 These
+practices include the use of proprietary software architectures and data models that
+make it technically difficult and financially prohibitive to integrate with competing
+platforms.21 The cost to a large health system to migrate from one major EHR to
+another can run into the billions of dollars, a figure that effectively locks them into
+their existing vendor for a decade or more and magnifies the penalties of being
+trapped.24
+Furthermore, dominant vendors have been heavily criticized for leveraging restrictive
+contracts and intellectual property claims to maintain control. Epic, in particular, has
+been accused of using its "App Orchard" marketplace not to foster innovation, but to
+control it, requiring partners to share intellectual property while restricting access to
+the underlying data needed to build truly competitive applications.26 These practices
+ensure that while the vendor may publicly state they do not own the patient data, they
+maintain de facto control over a health system's ability to use and share that data,
+effectively creating a proprietary data asset.
+Information Blocking in Practice
+These business models manifest as the practice of "information blocking," a term that
+has moved from regulatory text to a tangible, everyday barrier for patients, providers,
+and innovators. While recent surveys suggest that the perceived rates of information
+blocking are slowly declining, likely due to new regulations, they remain a substantial
+and persistent problem.27 The practice takes several forms:
+● Economic Barriers: A common tactic reported by Health Information Exchanges
+(HIEs) is EHR vendors charging unreasonably high or cost-prohibitive fees for
+data access and exchange, making interoperability economically unfeasible for
+many.28
+● Technical Barriers: Vendors and providers can implement their systems in
+non-standard ways that create artificial friction. A recent federal court case, for
+
+example, found that an EHR company's use of indecipherable CAPTCHAs and the
+arbitrary blocking of user accounts likely constituted illegal information blocking,
+as these actions were not for legitimate security reasons but to interfere with a
+competitor's business.29 This aligns with physicians' experiences of info blocking
+when trying to migrate from one EHR to another or connect to HIEs.30
+● Behavioral Barriers: Perhaps the most insidious form of information blocking
+involves patterns of non-cooperation. In listening sessions with ONC, API
+developers have described a litany of such practices, including vendors providing
+unusable or incomplete API documentation, delaying application registration
+requests, and hiding provider systems behind generic endpoints to make direct
+connection difficult.31
+The Limits of Current Enforcement
+The federal government has attempted to combat these practices through the 21st
+Century Cures Act. As of 2024, new rules are in effect that establish financial
+penalties of up to $1 million per violation for health IT developers and HIEs, and create
+disincentives for healthcare providers who engage in information blocking, such as
+losing their "meaningful EHR user" status and facing payment reductions.2
+However, these enforcement mechanisms are fundamentally reactive. They are
+designed to investigate and punish bad actors after an infraction has occurred. They
+do not address the underlying market structure that makes information blocking a
+rational and profitable business strategy. Furthermore, the regulations contain nine
+specific exceptions—such as for preventing harm, protecting privacy, or ensuring
+security—that can be invoked to justify not sharing data.32 The CMS RFI itself
+questions whether these exceptions should be revised, implicitly acknowledging that
+they may be overly broad and subject to misuse.1 The court's finding that a vendor's
+claims of security and performance concerns were pretextual highlights how these
+exceptions can be used as a shield for anti-competitive behavior.29
+The persistence of information blocking is not an anomaly or a sign of a few bad
+actors. It is an emergent property of a market that rewards data siloing. The very
+business model of the dominant EHR vendors is predicated on providing a single,
+vertically integrated "mega-suite" of products.37 The core value proposition of this
+model is its tight, internal integration. Allowing easy, low-cost, and high-quality data
+exchange with external, best-of-breed systems—such as a novel analytics platform or
+
+a patient-facing app from a startup—directly undermines this value proposition. It
+threatens to commoditize the core EHR into a simple database, inviting competition on
+every front.
+Therefore, the most rational competitive strategy for an incumbent vendor is to
+control the flow of data out of its system. This is achieved through the very practices
+defined as information blocking: high fees, complex and poorly documented APIs,
+restrictive contracts, and slow-walking interoperability initiatives. The public feud
+between Oracle and Epic serves as a stark illustration; Oracle accuses Epic of using its
+market power to kill interoperability efforts that threaten its dominance, while Epic
+accuses competitors of misusing data exchange networks for improper purposes.38
+Both narratives point to the same central truth: control over data flow is the primary
+competitive battleground. As long as the market structure rewards the creation of
+"walled gardens," information blocking will persist as a feature, not a bug, of the
+system. Policies that merely punish blocking without fundamentally dismantling the
+walls are treating a symptom of the disease, not its underlying pathology. A true
+solution must alter the market dynamics themselves.
+Chapter 3: The Innovation Bottleneck: How Data Fragmentation Stifles Digital
+Health Advancement
+The "walled gardens" maintained by dominant EHR vendors have created a healthcare
+data landscape that is profoundly fragmented. Even within a single health system,
+patient information is often scattered across dozens of disparate, siloed
+systems—EHRs, lab systems, imaging archives, billing platforms, and more—that do
+not communicate with one another.40 This data fragmentation is the single greatest
+bottleneck to innovation in digital health, creating an environment where good ideas
+fail not on their merits, but because of the immense friction involved in accessing the
+data needed to make them work.
+The Innovator's Burden
+This fragmented landscape places an almost insurmountable burden on the digital
+health startups and innovators who are meant to be the engines of progress. They are
+
+forced into one of two equally inefficient and unsustainable development cycles. The
+first is the "whack-a-mole" approach, where they build a narrow, point-to-point
+solution designed to work with a single EHR vendor or even a single health system's
+specific implementation. This approach is not scalable and leads to a proliferation of
+disconnected applications that cannot be easily adopted by the broader market,
+contributing to further fragmentation.44
+The second approach is to "boil the ocean," attempting to build a complex and
+expensive integration engine capable of connecting to and normalizing data from
+dozens of different systems. This effort consumes a vast amount of time and venture
+capital, diverting resources away from developing the core product and delaying its
+entry into the market.45 In either case, the innovator spends the majority of their effort
+not on innovation, but on the frustrating and duplicative task of data plumbing.
+Consequences for the Market
+This innovation bottleneck has severe and far-reaching consequences for the entire
+healthcare ecosystem. First, it leads to market stagnation. The digital health
+landscape is saturated with simple wellness and fitness trackers that do not require
+deep clinical data integration. Meanwhile, as the CMS RFI correctly observes, "digital
+products for health management or care navigation that can leverage patient health
+records are still rare".1 The tools that could truly transform care for chronic diseases,
+improve diagnostic accuracy, or streamline complex care coordination are precisely
+the ones that are most difficult to build due to data fragmentation.46
+Second, it exacerbates inequity. The digital health tools that do manage to overcome
+these barriers are often only available to patients at large, well-resourced academic
+medical centers. This creates a digital divide, where the benefits of innovation are not
+accessible to all communities equally, particularly those in rural areas or those with
+poor health who could benefit the most.47
+Third, it results in wasted investment. When innovators cannot access reliable,
+high-quality data, even well-funded and promising projects fail to deliver on their
+value proposition. This leads to investor fatigue and creates a chilling effect on future
+investment in the sector, as the perceived risk and cost of data acquisition are simply
+too high.40
+
+The root of this problem can be understood as an "interoperability tax" that is levied
+on all digital health innovation. Before a startup can write a single line of code for its
+core, value-creating product, it must first pay a heavy tax in the form of time, money,
+and engineering resources just to acquire and normalize the necessary data. Consider
+a startup aiming to build a predictive model to identify patients at risk for sepsis in a
+hospital. The core innovation is the algorithm. However, to even begin, the startup
+must first pay the tax: it must negotiate a business agreement with the hospital;
+navigate the EHR vendor's complex and often costly API access program 26; build a
+custom technical integration to that specific hospital's API endpoint; and then develop
+a data pipeline capable of cleansing and normalizing the poor-quality, inconsistent
+data it receives.12 This entire, expensive process must be repeated for every single
+new hospital customer.
+This "interoperability tax" is not a one-time fee; it is a recurring cost of doing business
+in a fragmented ecosystem. The work of integration is not the startup's core
+competency or value proposition; it is a massive, duplicative, and non-scalable
+prerequisite for market entry.45 The tax is so high that it renders most truly innovative
+business models unviable from the start. The startup either fails, pivots to a simpler
+product that avoids the tax by not requiring deep data integration, or is forced to sell
+only to the largest and most sophisticated health systems, limiting its market reach
+and impact. The innovation is not killed by a lack of good ideas or a lack of funding,
+but by the crushing weight of the interoperability tax.
+Chapter 4: The Data Famine: Constrained AI Potential in a World of Siloed Health
+Information
+Artificial intelligence holds unprecedented potential to address some of healthcare's
+most intractable challenges. AI-powered tools can automate burdensome
+administrative tasks, enhance clinical decision support to improve diagnostic
+accuracy, and even help solve the interoperability problem itself by intelligently
+normalizing disparate data streams.49 However, this immense potential is being
+severely constrained by a system-wide data famine. AI models are starved of the
+high-quality, large-scale data they need to be trained, validated, and safely deployed,
+creating a paradox where the technology that could fix healthcare's data problems is
+being blocked by them.
+
+The "Garbage In, Garbage Out" Reality
+The most immediate constraint on AI in healthcare is the abysmal quality of the
+underlying data. The principle of "garbage in, garbage out" is absolute for machine
+learning: an AI model is only as good, as accurate, and as unbiased as the data it is
+trained on. The pervasive data quality issues endemic to EHRs—including inaccurate,
+incomplete, and inconsistent information—have direct and dangerous consequences
+for AI implementation.11
+When AI models are trained on this flawed data, they inevitably produce flawed,
+biased, and unreliable outputs.55 This not only negates their potential benefit but can
+actively cause harm. Instead of reducing clinician burden, it creates an "AI-induced
+workload," where physicians and nurses must spend precious time verifying,
+correcting, and overriding AI-generated content that they cannot trust.54 More
+critically, flawed AI predictions can lead to serious diagnostic errors and threaten
+patient safety, a paramount concern for providers, patients, and regulators alike.56
+The Data Access Barrier
+Beyond the issue of quality, the sheer lack of access to data presents a fundamental
+roadblock to AI development. The "walled garden" dynamics described previously are
+magnified in the context of AI. Training robust and generalizable AI models requires
+access to massive, longitudinal, and diverse datasets that span multiple institutions,
+geographies, and patient populations. This is precisely the kind of data that is
+currently locked within the proprietary silos of dominant EHR vendors.26
+This control over data creates a nearly insurmountable barrier to entry for
+independent AI startups and researchers. It effectively concentrates the development
+of the most powerful healthcare AI models within the incumbent vendor ecosystem.
+This stifles competition and prevents a healthy, diverse market of AI tools from
+emerging. Innovation becomes limited to the applications that serve the strategic
+interests of the data-controlling vendors, which may not align with the broader needs
+of patients and providers.
+
+The Need for Standards
+Finally, the widespread adoption of AI is hampered by the lack of established
+standards and methodologies for its evaluation, validation, and ongoing monitoring.
+Without a common framework for assessing an AI tool's fairness, transparency, safety,
+and efficacy, healthcare organizations are understandably hesitant to procure and
+deploy these technologies in clinical practice.56 This lack of trust is a major barrier to
+adoption. While numerous bodies, including the World Health Organization (WHO),
+the National Academy of Medicine (NAM), and international standards organizations,
+have proposed principles and frameworks, a clear, federally endorsed set of
+assessment standards for healthcare AI is urgently needed to build confidence and
+ensure responsible innovation.58
+This confluence of poor data quality, restricted access, and a lack of standards
+creates a profound AI paradox. The very technology that holds the potential to solve
+many of healthcare's deepest interoperability challenges is being throttled by the lack
+of data access and quality—the very problems it is uniquely equipped to solve. For
+example, modern AI, particularly large language models (LLMs), can excel at semantic
+interoperability tasks like interpreting unstructured clinical notes, mapping local codes
+to standard terminologies, and normalizing fragmented data from multiple sources.52
+An LLM could act as a universal translator for the disparate dialects of healthcare
+data.
+However, to build and train such a powerful tool, developers require access to exactly
+the kind of data that is currently inaccessible: massive, diverse, and representative
+datasets of clinical information from across the healthcare system. An AI startup that
+wants to build a tool to normalize clinical notes from multiple EHRs cannot get the
+volume and variety of notes needed for training because they are locked within the
+proprietary silos of those EHRs.26 The problem of data fragmentation prevents the
+creation of the tool that could solve data fragmentation. This paradox ensures that
+the most powerful AI tools are likely to be developed only by the dominant EHR
+vendors who already control the data. This further entrenches their market position,
+reduces choice for providers and patients, and limits the scope of AI innovation to
+what is in the vendor's own business interest, rather than what is best for the entire
+healthcare ecosystem.
+
+Part II: A Blueprint for a National Health Data Ecosystem
+The diagnosis is clear: a market-driven, compliance-focused approach to
+interoperability has failed. To break the current impasse, a new strategy is required.
+The federal government, led by CMS, must transition from its role as a rule-maker to
+that of an infrastructure-builder, establishing a set of foundational public utilities that
+make seamless data exchange the default, not the exception. The following chapters
+outline a cohesive, 11-point blueprint for this national health data ecosystem, built
+upon the mandatory and standardized use of HL7 FHIR.
+Chapter 5: The Foundational Layer: Mandating FHIR as the Lingua Franca for CMS
+The first and most critical step in building a national data ecosystem is to establish a
+single, universal standard for all data interactions. CMS must treat interoperability not
+as a feature to be encouraged but as a utility to be mandated. This requires elevating
+FHIR from one of several acceptable standards to the single, non-negotiable lingua
+franca for all data exchanged with or reported to the agency. This foundational layer
+consists of three interconnected mandates.
+5.1. Mandate: FHIR USCDI for All CMS Reporting
+First, CMS must mandate that all data submitted to the agency for any
+purpose—including quality reporting, administrative transactions, and value-based
+care programs—be formatted according to the latest version of the HL7 FHIR standard
+and conform to the data elements defined in the United States Core Data for
+Interoperability (USCDI). This policy would build directly on the progress made in the
+ONC HTI-1 Final Rule, which adopted USCDI v3, and aligns with strong
+recommendations from across the industry to standardize on FHIR for all quality
+reporting.1
+The rationale is straightforward: this mandate would immediately eliminate the myriad
+
+of proprietary formats, legacy standards, and one-off reporting requirements that
+currently create immense complexity and administrative burden for providers and
+payers. It would consolidate countless disparate data streams into a single,
+predictable, and computable format. This directly addresses the RFI's questions
+regarding the utility of USCDI and how to improve data exchange, proposing a clear
+path to harmonization.1 By making FHIR and USCDI the universal requirement, CMS
+would create a powerful incentive for EHR vendors to prioritize support for these
+standards in their core products, moving beyond the superficial implementations that
+are common today.
+5.2. Mandate: Bulk FHIR for All Submitted Data
+Second, to unlock data at scale, CMS must mandate that any data element submitted
+to the agency for any purpose must also be available for export from the source EHR
+via the Bulk FHIR API standard. This includes requiring that claims data, traditionally
+exchanged in legacy X12 formats, also be submitted to CMS and made available via
+FHIR.
+This mandate is the linchpin for achieving true ecosystem-level data liquidity. It moves
+the industry beyond the limitations of single-patient API queries and enables the
+large-scale data access necessary for population health management, advanced
+analytics, and the training of AI models. Critically, a federal mandate would serve as a
+powerful forcing function to address the significant technical and performance
+challenges that currently plague Bulk FHIR implementations, particularly with major
+vendors like Epic, whose systems have been reported to struggle with slow response
+times and cumbersome, manual setup processes for bulk data groups.62 While initial
+pilots have demonstrated the feasibility of Bulk FHIR 63, its potential cannot be realized
+without consistent, high-performance implementations across all certified EHRs. A
+mandate would compel vendors to invest in optimizing their bulk data export
+capabilities, making scalable data access a reality.64 This proposal is a direct and
+forceful response to RFI questions regarding the use of Bulk FHIR to simplify data
+submission and reduce provider burden.1
+5.3. Mandate: FHIR CQL for All Quality Measure Submissions
+
+Third, CMS must complete the transition to a fully digital quality measurement
+paradigm by mandating that all clinical quality measures be defined and submitted
+using the HL7 Clinical Quality Language (CQL) standard, executed against
+FHIR-formatted data. CQL is a powerful, open-source standard that provides a
+human-readable and machine-computable language for expressing complex clinical
+logic.65
+This mandate would transform quality measurement from a burdensome,
+retrospective, and largely manual process into an automated, real-time, and
+computable function. It would allow for the consistent application of measure logic
+across all systems, eliminating the ambiguity and variability that currently undermine
+the reliability of quality reporting. This shift is already strongly supported by the work
+of NCQA in digitizing HEDIS measures and aligns with the future direction envisioned
+by CMS's own quality programs.65 By mandating CQL, CMS would accelerate this
+transition, enabling a more efficient and impactful approach to quality improvement
+and providing the technical foundation for the "quality measure marketplace"
+proposed later in this report.
+Taken together, this "mandate trio" creates a powerful, interconnected forcing
+function that addresses the root cause of poor data quality. The current system allows
+providers to submit data in various formats; quality is often poor, but the lack of
+standardization and reliance on manual processes obscures these deficiencies. There
+is little direct consequence for submitting messy data if it is ultimately accepted.
+The proposed mandates change this dynamic entirely. First, the FHIR USCDI mandate
+forces a baseline level of structural and semantic normalization. Second, the CQL
+mandate means this standardized data will be automatically processed and evaluated
+by CMS. If a required data element for a quality measure is missing, improperly coded,
+or in the wrong format, the CQL engine will fail or produce an incorrect result. The
+provider's quality scores—and by extension, their value-based payments—will be
+directly and transparently impacted. Finally, the Bulk FHIR mandate means that the
+provider's entire dataset, not just the fields selected for a specific report, is open to
+scrutiny by authorized entities like payers and researchers, dramatically increasing the
+pressure for comprehensive data accuracy.
+This combination transforms poor data quality from a hidden, private problem into a
+visible, public, and financially consequential one. It creates an undeniable business
+case for providers to demand better data capture, management, and export tools
+
+from their EHR vendors. This, in turn, provides the market incentive for vendors to
+move beyond superficial, "checkbox" implementations and invest in building truly
+robust, high-quality FHIR capabilities. The forcing function created by this trio of
+mandates is the essential mechanism for breaking the vicious cycle of superficial
+adoption.
+Chapter 6: Establishing a Unified Semantic Framework: A National Terminology
+Service
+While mandating FHIR provides a common structure for data exchange, it does not, by
+itself, guarantee a common meaning. True interoperability requires semantic
+consistency—the assurance that when two different systems exchange a piece of
+information, they share an identical understanding of its meaning. A diagnosis of
+"Type 2 diabetes mellitus" must be represented by the exact same code, drawn from
+the same version of the same terminology, in every system. Currently, the U.S.
+healthcare system suffers from "semantic scatter," where different organizations use
+different code systems, different versions of those systems, and different value sets
+(collections of codes) to represent the same clinical concepts. This ambiguity is a
+fundamental barrier to aggregating data for quality measurement, public health, and
+research.
+To solve this, CMS must establish a single, authoritative source of truth for all clinical
+and administrative terminologies. The proposal is for CMS, acting through the
+National Library of Medicine (NLM), to create and host a National Terminology
+Server for the United States. This would not be a new creation from whole cloth, but
+rather a strategic expansion and formal designation of an existing federal asset: the
+NLM's Value Set Authority Center (VSAC).72
+The VSAC already serves as the official repository for the value sets used in CMS's
+electronic clinical quality measures (eCQMs). It has a proven infrastructure for
+hosting, validating, and distributing standard terminologies like SNOMED CT, LOINC,
+and RxNorm.72 The proposal is to elevate this function into a national utility. The
+National Terminology Server would be mandated to provide free, public, and
+high-performance access to all standard terminologies and official value sets via a
+FHIR Terminology Service API, as defined in the FHIR standard.77
+Crucially, this would be paired with a mandate: as a condition of certification under
+
+the ONC Health IT Certification Program, all certified health IT products would be
+required to connect to and use this national server for all terminology-related
+functions, such as validating codes and expanding value sets.
+The benefits of this approach would be transformative. It would establish a single,
+unambiguous source of truth for the meaning of all data elements in the healthcare
+system. It would eliminate the costly and error-prone process of maintaining separate
+terminology services within thousands of different provider, payer, and vendor
+systems. For developers, it would dramatically simplify the process of building
+applications, as they could rely on one consistent, predictable service for all
+terminology needs. Most importantly, it would provide the non-negotiable semantic
+foundation upon which all other data exchange and analysis depends. A "diabetic
+patient" would finally be defined identically in every system across the country,
+making true, large-scale data aggregation and learning possible for the first time.
+Chapter 7: Creating the "GPS" for Health Data: A National Provider & Endpoint
+Directory
+Even with standardized data structure (FHIR) and meaning (National Terminology
+Server), a fundamental question remains for any system wishing to exchange data:
+"Where is the door?" An application cannot connect to a provider's system if it does
+not know the digital address of that system's API. This is the "endpoint discovery"
+problem, and its lack of a solution is a core failure of the current interoperability
+landscape. The National Plan and Provider Enumeration System (NPPES), which was
+not designed for this purpose, has proven woefully inadequate as a directory for FHIR
+endpoints. A 2021 analysis found that millions of providers had missing digital
+endpoints in NPPES, and of the FHIR endpoints that were listed, the vast majority were
+invalid.79 The current approach, which requires individual payers to each host their
+own provider directory API, simply perpetuates a fragmented, duplicative, and
+unreliable system.80
+To solve this, CMS must lead the creation and maintenance of a single, public, and
+authoritative National Directory of Healthcare Providers & Services (NDH). This
+idea is not new; CMS itself issued a Request for Information on this very concept in
+2022, acknowledging the profound need for a centralized "data hub" for provider
+information.83 This report strongly urges CMS to move from information gathering to
+
+implementation.
+The NDH would be built using the HL7 FHIR Validated Healthcare Directory (VhDir)
+Implementation Guide, which provides a mature, consensus-based technical standard
+for exactly this purpose.83 It would serve as the centralized, national source of truth
+for provider demographics, specialties, network affiliations, and, most critically, their
+digital contact information.
+This public utility must be supported by a clear and unambiguous mandate: as a
+condition of participation in Medicare and Medicaid, every provider organization must
+register and continuously maintain a validated, machine-routable FHIR server
+endpoint in the NDH. This mandate would replace and supersede the ineffective
+requirement for individual payer directories.
+The impact of a federally sponsored NDH would be immediate and profound. It would
+function as a Domain Name System (DNS) for the entire healthcare industry, providing
+a simple, reliable mechanism to translate a known provider identity (like a name or
+National Provider Identifier) into the precise digital address needed for an API
+connection. This would eliminate a massive technical and logistical barrier to entry for
+application developers, significantly reduce the administrative burden on providers
+who currently have to update their information in dozens of different directories 79,
+and make nationwide health information exchange technically feasible at scale. A free
+and publicly available NDH would also ensure equitable access to this critical
+infrastructure, removing the cost barriers associated with the private, fee-based
+directories that have emerged to fill the gap.79 This proposal provides a direct and
+powerful answer to the numerous questions in the CMS RFI regarding the value and
+design of a nationwide provider directory.1
+Chapter 8: Illuminating the Market: Mandating FHIR for Price and Cost
+Transparency
+The federal push for price transparency in healthcare has been a landmark policy
+effort, yet its execution has been undermined by inconsistent compliance and
+impractical data formats. While hospitals and payers are now required to post pricing
+information, this data is often delivered in proprietary, non-standardized file formats
+that are difficult for consumers to understand and for software applications to
+process. This has blunted the impact of the policy, preventing the emergence of a
+
+truly functional, consumer-driven market for healthcare services.
+To remedy this, CMS must move beyond simply requiring the publication of data and
+mandate the method of its delivery. The proposal is to require that all price and
+cost-sharing data—including hospital standard charges (machine-readable files),
+payer-negotiated rates, and patient-specific, out-of-pocket cost estimates—be made
+available via open, standardized, and publicly accessible FHIR APIs.
+A ready-made, industry-vetted framework for this already exists: the HL7 Da Vinci
+Patient Cost Transparency (PCT) Implementation Guide.86 This FHIR-based
+standard provides detailed specifications for the electronic exchange of Good Faith
+Estimates (GFEs) from providers and Advanced Explanations of Benefits (AEOBs) from
+payers. It defines the precise FHIR resources and API transactions needed to
+automate what is currently a fragmented and manual process, enabling real-time,
+patient-specific cost calculations.87
+By mandating the use of the Da Vinci PCT IG, CMS would transform price
+transparency from a passive compliance exercise into an active, computable data
+stream. This would finally enable third-party application developers to create the
+genuine price comparison and care navigation tools that consumers need to make
+informed decisions. It would allow a patient, through an app of their choice, to get a
+reliable estimate of their financial responsibility before a service is rendered. This
+aligns directly with the goals of the No Surprises Act and the broader federal push for
+a more transparent and consumer-centric healthcare system.86 This mandate is a
+direct and actionable response to the CMS RFI's specific inquiry about the
+shortcomings of current price transparency implementation and what improvements
+would be most valuable.1
+Chapter 9: Fostering a Culture of Quality: A Marketplace for Digital Measures
+The current paradigm of healthcare quality measurement in the United States is
+fundamentally flawed. It is overwhelmingly retrospective, administratively
+burdensome, and provides little real-time value for clinical improvement. Programs like
+the Healthcare Effectiveness Data and Information Set (HEDIS) and Medicare Star
+Ratings rely on a static set of measures that are updated annually.90 The process of
+collecting data for these measures often involves manual chart abstraction, a costly
+and inefficient process that looks backward at care that was delivered months or even
+
+years ago.92 This system does more to serve the needs of regulators and payers for
+accountability than it does to help clinicians and patients proactively improve care.
+To reorient the system toward genuine quality improvement, a two-part strategic shift
+is necessary, moving from a static, top-down model to a dynamic, market-driven one.
+Proposal 1: A "Quality Measure Marketplace"
+First, CMS should sponsor the creation of a "Quality Measure Marketplace." This
+would be a public, digital platform or repository where a wide range of
+stakeholders—including specialty societies, patient advocacy groups, academic
+researchers, and commercial developers—could develop, submit, validate, and share
+digital quality measures.94
+These measures would be authored in the standardized FHIR and CQL formats
+mandated in Chapter 5, making them computable and portable. The marketplace
+would function as a hub for innovation in measurement science. It would allow for the
+rapid development and testing of new measures that are more clinically relevant,
+patient-centered, and responsive to evolving medical evidence than the current,
+slow-moving HEDIS process allows.90 Payers and value-based care organizations
+could then browse this marketplace to select and adopt the most meaningful and
+impactful measures for their specific patient populations, fostering competition and
+collaboration in the creation of better metrics.
+Proposal 2: Mandate Consumer-Facing, Prospective Measures
+Second, in parallel with creating the marketplace, CMS must shift the focus of its own
+quality programs, like Medicare Advantage Star Ratings, toward more
+consumer-facing and prospective measures.
+Current measures are predominantly process-based and retrospective. For example,
+a measure might track the percentage of diabetic patients whose HbA1c was tested in
+the past year. While important, this is a lagging indicator. A prospective measure, by
+contrast, would look forward, tracking whether a patient with newly diagnosed
+hypertension has a documented, shared care plan for managing their condition over
+
+the next six months.
+Furthermore, the emphasis should shift to measures that matter directly to the
+consumer's experience of care. These could include metrics on wait times for
+appointments, the ease of scheduling, the quality of doctor-patient communication,
+and the ability for a patient to easily access and share their own health data.99 These
+are the aspects of quality that patients see and feel directly.
+This dual-pronged approach would fundamentally reorient the quality enterprise. The
+marketplace would inject dynamism and innovation into measure development, while
+the shift to prospective, consumer-facing metrics would make quality measurement a
+tool for improving future care and patient experience, not just a mechanism for
+reporting on past performance. It moves the system from simply asking "Was good
+care delivered?" to actively facilitating "How can we deliver better care tomorrow?"
+Chapter 10: Ensuring Trust and Accountability: Frameworks for Data Quality and
+AI Assessment
+The systemic failures detailed in Part I—from superficial FHIR adoption to rampant
+information blocking—have created a profound trust deficit in the healthcare data
+ecosystem. Patients, providers, and innovators alike are justifiably skeptical of the
+quality and reliability of the data flowing through the system. For a national data
+ecosystem to function, this trust must be rebuilt on a foundation of transparency and
+objective accountability. This requires new mandates that make the quality of data
+and the performance of systems measurable, public, and consequential.
+Proposal 1: Mandate Data Quality Reporting
+First, CMS should mandate that any and all data submitted to the agency for any
+purpose must be accompanied by a standardized Data Quality Report. This report,
+itself a FHIR-based resource, would contain a set of objective metrics about the
+submitted data, such as its completeness (e.g., percentage of required fields
+populated), timeliness (e.g., lag time from event to reporting), and conformance to
+terminology standards (e.g., percentage of codes validated against the National
+
+Terminology Server). This would elevate data quality from an abstract concept to a
+measurable, reportable, and auditable attribute of every data submission.102 It would
+allow CMS to not only assess the data's content but also its integrity, creating a clear
+mechanism to reject low-quality submissions and hold data submitters accountable.
+Proposal 2: Mandate Vendor Testing and Assessment Publication
+Second, to bring transparency directly to the source of most health data, the ONC
+Health IT Certification Program should be updated to require EHR vendors to conduct
+standardized interoperability and data quality tests and publicly publish the results.
+This would involve testing their systems against a CMS-provided reference
+implementation or testing suite. The results would objectively demonstrate which
+vendor systems are capable of producing high-quality, conformant FHIR data and
+which are merely "checking the box."
+This public attestation would create powerful market incentives for vendors to improve
+their products and for providers to select systems that have proven their
+interoperability capabilities. This is particularly crucial for data intended for use in
+FDA-regulated clinical investigations, where data quality and integrity are
+paramount.104 The current system lacks this transparency, allowing underperforming
+systems to remain certified. This mandate would make performance visible to all,
+aligning with HIPAA's goals of ensuring data integrity and the Cures Act's push to use
+real-world evidence from EHRs.105
+Proposal 3: Publish AI Assessment Standards and Guidelines
+Finally, to foster trust in the next generation of health technology, CMS and ONC must
+collaborate to publish a clear, official framework for the assessment, validation, and
+ongoing monitoring of AI in healthcare. While CMS has a high-level AI strategy and
+various rules are emerging that touch upon AI, a consolidated set of technical
+assessment guidelines for the industry is urgently needed.108
+This framework should not reinvent the wheel but should harmonize and build upon
+the extensive work already done by authoritative bodies like the National Academy of
+
+Medicine with its AI Code of Conduct (AICC), the World Health Organization, and
+international standards bodies like ISO.58 The guidelines must provide clear, actionable
+criteria for evaluating AI models across their lifecycle, addressing critical domains
+such as fairness and bias mitigation, transparency and explainability, clinical safety
+and efficacy, and post-deployment performance monitoring. Publishing such a
+framework would provide the clarity that developers need to build responsible AI and
+that healthcare organizations need to procure and deploy these tools with
+confidence.
+Chapter 11: Addressing Market Concentration: Unlocking the EHR Duopoly to
+Foster Competition and Innovation
+The preceding ten mandates are not merely a collection of individual technical fixes.
+Viewed together, they represent a cohesive and powerful strategy to address the root
+cause of healthcare's interoperability failure: the uncompetitive market structure and
+the resulting data control exercised by the EHR duopoly. The ultimate goal of this
+blueprint is not just to improve data exchange, but to dismantle the "walled gardens"
+and foster a dynamic, competitive, and innovative healthcare technology market.
+How the Mandates Erode Monopolistic Moats
+The strategic power of this blueprint lies in its ability to systematically erode the
+"moats" that protect the incumbent vendors' market dominance. The primary source
+of this dominance is their proprietary control over data, which creates immense
+vendor lock-in and stifles competition.37 The proposed mandates directly attack this
+source of power.
+First, they commoditize data access. By mandating Bulk FHIR for data export,
+establishing a National Terminology Server for semantic consistency, and creating a
+National Provider Directory for endpoint discovery, the blueprint transforms data
+access from a scarce, proprietary, vendor-controlled asset into a public utility. When
+every provider's data is accessible via a standardized, public, and low-cost
+mechanism, the EHR vendor no longer serves as the gatekeeper.
+
+Second, this commoditization of data access enables best-of-breed competition. In
+the current locked-in environment, a hospital that uses Epic's EHR is heavily
+incentivized, if not required, to also use Epic's ancillary products for analytics,
+population health, or patient engagement. When data becomes liquid and accessible
+via standardized APIs, this is no longer the case. The hospital can choose the best
+analytics platform, the best care management tool, or the best patient-facing app
+from a competitive market of innovators, regardless of who makes their core EHR. This
+forces the incumbent vendors to compete on the merits of each individual
+product—on quality, usability, and price—rather than relying on their control of the
+platform to guarantee sales.
+Third, this reduces switching costs. While the operational cost and complexity of
+migrating a core EHR system will always be significant, the ability to retain a portfolio
+of best-of-breed applications that are integrated via standardized APIs dramatically
+lowers the overall barrier and risk of making a change. If a hospital knows it can switch
+its core EHR from Vendor A to Vendor B without having to simultaneously replace its
+dozen other critical applications, the prospect of a switch becomes far more tenable.
+This injects a credible threat of competition into a market that currently has very little.
+Further Pro-Competitive Actions
+The data and transparency generated by these mandates would also equip federal
+regulators with powerful new tools to monitor the market. CMS, in concert with the
+Federal Trade Commission (FTC) and the Department of Justice (DOJ), should use the
+public data on FHIR adoption, data quality, and vendor testing performance to actively
+scrutinize the market for anti-competitive behavior. The recent federal antitrust
+lawsuit filed against Epic by Particle Health, which alleges that the EHR giant is using
+its market power to unlawfully block competitors, is a clear signal that these issues are
+ripe for regulatory action.113 The blueprint proposed here provides the objective data
+needed to substantiate such claims and enforce fair market practices.
+Ultimately, this blueprint outlines a strategy for using interoperability policy as a
+potent antitrust remedy. Traditional antitrust actions, such as attempting to break up a
+company, are notoriously slow, complex, and often ill-suited to the dynamics of a
+technology market. The approach outlined here is more direct and arguably more
+effective. It does not focus on punishing the incumbents for their market power;
+
+instead, it neutralizes the source of that power.
+By establishing a public, standardized infrastructure for data access, this strategy
+fundamentally changes the rules of competition. It shifts the basis of competition
+away from who can best hoard data and toward who can best use data to create
+value. It achieves the core goals of antitrust policy—increased competition, lower
+prices, and greater innovation—through proactive, market-shaping infrastructure
+policy rather than reactive litigation. It is a solution designed not just to police the
+market, but to fix it.
+Conclusion: Seizing the Mandate for a Modern Healthcare
+Infrastructure
+The United States healthcare system has reached the absolute limit of what a
+compliance-driven, market-led approach to interoperability can achieve. The
+persistent failures of the past decade—the superficial adoption of standards, the
+entrenchment of data-hoarding business models, the stagnation of innovation, and
+the constrained potential of AI—are not incidental bugs in the system. They are
+predictable features of a market that structurally rewards the creation of data silos.
+Continuing down this path with more incremental rules and voluntary frameworks will
+only yield more of the same frustrating results.
+A fundamental strategic pivot is required. The only viable path forward is for the
+Centers for Medicare & Medicaid Services, in its role as the nation's largest payer and
+most influential market actor, to lead the deliberate construction of a national health
+data infrastructure. This is not a call for more regulation in the traditional sense, but
+for the establishment of essential public utilities—the digital roads, registries, and
+common languages that a 21st-century healthcare system requires to function.
+The 11-point blueprint detailed in this report provides a cohesive and actionable
+framework for building this infrastructure. By mandating FHIR as the universal
+standard for all data reporting, access, and quality measurement, CMS can create a
+powerful forcing function for data quality. By establishing national utilities for
+terminology and provider endpoint discovery, it can solve the semantic and logistical
+barriers that currently make nationwide exchange impossible. By mandating FHIR for
+price transparency and fostering a marketplace for digital quality measures, it can
+
+empower consumers and reorient the system toward proactive improvement. And by
+demanding transparency in data quality and AI assessment, it can rebuild the trust
+necessary for widespread adoption.
+Taken together, these mandates are designed to achieve a singular strategic
+objective: to neutralize proprietary control over data as a source of market power. This
+is the key to unlocking the EHR duopoly, reducing vendor lock-in, and unleashing the
+forces of competition and innovation that have been suppressed for far too long.
+The Request for Information on the Health Technology Ecosystem presents a critical
+window of opportunity. It is a clear signal that federal leaders recognize the current
+approach is insufficient. This report offers a bold but necessary response. It is a call
+for CMS, ONC, and all industry stakeholders to abandon the failed paradigm of the
+past and seize the mandate to build the modern, open, and equitable healthcare
+infrastructure that Americans deserve. The goal is no less than the final realization of
+a healthcare system that is truly connected, intelligent, and capable of learning.
+Works cited
+1. CMS-2025-0050-0031_content.pdf
+2. Information Blocking Rule Turns Two: Successes, Struggles, and ..., accessed June
+14, 2025,
+https://greenlighthealth.com/information-blocking-rule-turns-two-successes-str
+uggles-and-whats-next/
+3. 21st Century Cures Act: - Establishment of Disincentives for Health Care
+Providers That Have Committed Information Blocking, accessed June 14, 2025,
+https://www.healthit.gov/sites/default/files/facas/2024-07-11_Overview_of_HHS%
+20Information_Blocking_Disincentives_Final_Rule_508.pdf
+4. Critical Insights into FHIR Mandates and Ensuring Compliance - Drummond
+Group, accessed June 14, 2025,
+https://www.drummondgroup.com/blog/critical-insights-into-fhir-mandates-and-
+ensuring-compliance/
+5. CMS Interoperability, accessed June 14, 2025,
+https://www.cms.gov/priorities/burden-reduction/overview/interoperability
+6. Healthcare's Interoperability Challenges - Athenahealth, accessed June 14, 2025,
+https://www.athenahealth.com/resources/blog/interoperability-challenges-in-hea
+lthcare
+7. Are Interoperability and Compliance Diverging in Healthcare? - IS Partners, LLC,
+accessed June 14, 2025,
+https://www.ispartnersllc.com/blog/healthcare-interoperability-compliance/
+8. Understanding the Push for FHIR Standard Mandates in Healthcare | Blog - Itirra,
+accessed June 14, 2025,
+https://itirra.com/blog/understanding-the-push-for-fhir-standard-mandates-in-h
+
+ealthcare/
+9. Navigating CMS-0057: What Providers Need To Know - Tegria US, accessed June
+14, 2025,
+https://www.tegria.com/resources/thought-leadership/navigating-cms-0057-wha
+t-providers-need-to-know/
+10. Meeting USCDI Requirements - Medicomp Systems, accessed June 14, 2025,
+https://medicomp.com/meeting-uscdi-requirements/
+11. Fix Poor Data Quality in Healthcare with AI & Automation - Imaginovation,
+accessed June 14, 2025,
+https://imaginovation.net/blog/fix-poor-data-quality-healthcare-ai-automation/
+12. Digital Stars & the data quality barrier to adoption: dQMs need high-quality FHIR |
+Blog Post, accessed June 14, 2025,
+https://careevolution.com/post/digital-stars-the-data-quality-barrier-to-adoption
+-dqms-need-high-quality-fhir/
+13. Deep Dive into FHIR and Duplicate Data Challenges in Healthcare Data and a
+Solution Using Zingg, accessed June 14, 2025,
+https://www.zingg.ai/post/deep-dive-into-fhir-and-duplicate-data-challenges-in-
+healthcare-data-and-a-solution-using-zingg
+14. HL7® FHIR® Implementation Guidance Checklist | CDC, accessed June 14, 2025,
+https://www.cdc.gov/nchs/nvss/modernization/pdf/fhir-implimentation-guidance-
+checklist.pdf
+15. Documentation - Epic on FHIR, accessed June 14, 2025,
+https://fhir.epic.com/Documentation
+16. FHIR in Healthcare: Navigating the Challenges of Adoption | HealthTech
+Magazines, accessed June 14, 2025,
+https://www.healthtechmagazines.com/fhir-in-healthcare-navigating-the-challen
+ges-of-adoption/
+17. Cost of Implementing EHR: Key Budget Components | TechMagic, accessed June
+14, 2025, https://www.techmagic.co/blog/cost-of-implementing-ehr
+18. Epic Expands EHR Market Share as Rivals Lose Customers - Dark Daily, accessed
+June 14, 2025,
+https://www.darkdaily.com/2025/06/04/epic-expands-ehr-market-share-as-rivals
+-lose-customers/
+19. Epic gains more ground in hospital EHR market share, widens its lead over Oracle
+Health: KLAS - Fierce Healthcare, accessed June 14, 2025,
+https://www.fiercehealthcare.com/health-tech/epic-gaining-more-ground-hospit
+al-ehr-market-share-widens-its-lead-over-oracle-health
+20. KLAS: Epic Dominates 2024 EHR Market Share, Oracle Health Sees Losses,
+accessed June 14, 2025,
+https://hitconsultant.net/2025/05/05/klas-epic-dominates-2024-ehr-market-shar
+e/
+21. The issue with EHR vendor lock-in, accessed June 14, 2025,
+https://hipaatimes.com/the-issue-with-ehr-vendor-lock-in
+22. Breaking Free from Vendor Lock-In: How EHR Personalization Empowers
+Healthcare Independence - Juno Health, accessed June 14, 2025,
+
+https://www.junohealth.com/blog/how-ehr-personalization-prevents-vendor-loc
+k-in
+23. EHR interoperability challenges and solutions - EHR in Practice, accessed June 14,
+2025,
+https://www.ehrinpractice.com/ehr-interoperability-challenges-solutions.html
+24. Implications of an emerging EHR monoculture for hospitals and healthcare
+systems - PMC, accessed June 14, 2025,
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11749203/
+25. Implications of an emerging EHR monoculture for hospitals and healthcare
+systems - Oxford Academic, accessed June 14, 2025,
+https://academic.oup.com/jamia/article-pdf/22/2/465/34145415/amiajnl-2014-003
+023.pdf
+26. Healthcare's Epic Problem & the Audacity of Liberating Patient Data ..., accessed
+June 14, 2025,
+https://www.4sighthealth.com/healthcares-epic-problem-the-audacity-of-liberat
+ing-patient-data/
+27. Information-blocking trends following regulatory action | Journal of the American
+Medical Informatics Association | Oxford Academic, accessed June 14, 2025,
+https://academic.oup.com/jamia/article/32/4/665/7990834
+28. Information blocking remains prevalent at the start of 21st Century Cures Act:
+results from a survey of health information exchange organizations - PMC,
+accessed June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC7973451/
+29. Information blocking victory in favor of access to health data, accessed June 14,
+2025,
+https://www.healthindustrywashingtonwatch.com/2025/03/articles/department-o
+f-health-and-human-services/information-blocking-victory-in-favor-of-access-t
+o-health-data/
+30. What is Information Blocking? Part 1 - American Medical Association, accessed
+June 14, 2025,
+https://www.ama-assn.org/system/files/2021-01/information-blocking-part-1.pdf
+31. Getting Real about Information Blocking and APIs - Health IT Buzz, accessed June
+14, 2025,
+https://www.healthit.gov/buzz-blog/electronic-health-and-medical-records/inter
+operability-electronic-health-and-medical-records/getting-real-about-informati
+on-blocking-and-apis
+32. EHRs, Information Blocking, and MIPS: New Enforcement Mechanism Takes Effect
+in 2024, accessed June 14, 2025,
+https://www.aao.org/eyenet/article/ehr-information-blocking-mips-2024
+33. Information blocking disincentives | AMA - American Medical Association,
+accessed June 14, 2025,
+https://www.ama-assn.org/system/files/hhs-provider-info-blocking-penalties-su
+mmary.pdf
+34. Information Blocking: Disincentives Established for Health Care Providers - Baker
+Donelson, accessed June 14, 2025,
+https://www.bakerdonelson.com/information-blocking-disincentives-established-
+
+for-health-care-providers
+35. New Teeth to the Information Blocking Rule: Long-Awaited Disincentives for
+Health Care Providers Finalized - Ropes & Gray LLP, accessed June 14, 2025,
+https://www.ropesgray.com/en/insights/alerts/2024/07/new-teeth-to-the-informa
+tion-blocking-rule-long-awaited-disincentives-for-health-care-providers
+36. Physicians beware: Information-blocking rules now apply to you, accessed June
+14, 2025,
+https://www.ama-assn.org/practice-management/digital-health/physicians-bewa
+re-information-blocking-rules-now-apply-you
+37. How Epic's Market Dominance Affects The Healthcare System - HealthTECH
+Resources, accessed June 14, 2025,
+https://healthtechresourcesinc.com/epic-market-dominance-affects-healthcare-
+system
+38. Epic Systems: Wizards won't modernize health care, and Wikipedia pages don't
+edit themselves. - Oracle, accessed June 14, 2025,
+https://www.oracle.com/news/announcement/blog/wizards-will-not-modernize-h
+ealth-care-and-wikipedia-pages-do-not-edit-themselves-2025-02-11/
+39. Epic's data fight spotlights privacy, access concerns - Becker's Hospital Review,
+accessed June 14, 2025,
+https://www.beckershospitalreview.com/healthcare-information-technology/ehrs
+/epics-data-fight-spotlights-privacy-access-concerns/
+40. Data fragmentation: The key healthcare challenge of our time ..., accessed June
+14, 2025,
+https://www.fiercehealthcare.com/sponsored/data-fragmentation-key-healthcare
+-challenge-our-time
+41. Healthcare Data Analytics Challenges & Data Silos Impact - HashStudioz
+Technologies, accessed June 14, 2025,
+https://www.hashstudioz.com/blog/healthcare-data-silos-challenges/
+42. How Healthcare Data Silos Are Hurting Your Business (And How to Fix It) -
+SynergyTop, accessed June 14, 2025,
+https://synergytop.com/blog/how-healthcare-data-silos-are-hurting-your-busine
+ss-and-how-to-fix-it/
+43. How Do Data Silos Impede Patient Care and Provider Efficiency? | HealthTech
+Magazine, accessed June 14, 2025,
+https://healthtechmagazine.net/article/2025/04/how-do-data-silos-impede-patie
+nt-care-and-provider-efficiency
+44. Why Digital Fragmentation Is AI's Silent Killer | Built In, accessed June 14, 2025,
+https://builtin.com/articles/digital-fragmentation-ai-silent-killer
+45. Clinical Data Integration: Unlocking Seamless and Secure Patient Care - Topflight
+Apps, accessed June 14, 2025,
+https://topflightapps.com/ideas/healthcare-data-integration/
+46. Lack of Acceptance of Digital Healthcare in the Medical Market: Addressing Old
+Problems Raised by Various Clinical Professionals and Developing Possible
+Solutions - PMC, accessed June 14, 2025,
+https://pmc.ncbi.nlm.nih.gov/articles/PMC8476935/
+
+47. Digital health not accessible by everyone equally, new study finds, accessed June
+14, 2025,
+https://www.who.int/europe/news/item/21-12-2022-digital-health-not-accessible-
+by-everyone-equally-new-study-finds
+48. Back to the Future: Achieving Health Equity Through Health Informatics and
+Digital Health, accessed June 14, 2025, https://mhealth.jmir.org/2020/1/e14512/
+49. AI in EHR: How AI Improves Electronic Health Records - Topflight Apps, accessed
+June 14, 2025, https://topflightapps.com/ideas/ai-in-ehr/
+50. The role of artificial intelligence for the application of integrating electronic health
+records and patient-generated data in clinical decision support, accessed June
+14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC11141850/
+51. The role of artificial intelligence in the application of the integrated electronic
+health records and patient-generated health data | medRxiv, accessed June 14,
+2025, https://www.medrxiv.org/content/10.1101/2024.05.01.24306690v1.full-text
+52. AI Can Bridge the Health Data Interoperability Gap - Booz Allen, accessed June
+14, 2025,
+https://www.boozallen.com/insights/data-optimization/ai-can-bridge-the-health-
+data-interoperability-gap.html
+53. Why is Healthcare Data Quality Critical in the Age of AI - SG Analytics, accessed
+June 14, 2025,
+https://www.sganalytics.com/blog/why-is-healthcare-data-quality-critical-in-the-
+age-of-ai/
+54. Health care's data problem: the real obstacle to AI success - KevinMD.com,
+accessed June 14, 2025,
+https://kevinmd.com/2025/05/health-cares-data-problem-the-real-obstacle-to-a
+i-success.html
+55. AI Implementation in Healthcare: 10 Challenges and Solutions I ..., accessed June
+14, 2025,
+https://www.scalefocus.com/blog/ai-implementation-in-healthcare-10-challenge
+s-and-solutions
+56. Toward a responsible future: recommendations for AI-enabled clinical decision
+support | Journal of the American Medical Informatics Association | Oxford
+Academic, accessed June 14, 2025,
+https://academic.oup.com/jamia/article/31/11/2730/7776823
+57. Harnessing Electronic Health Records and Artificial Intelligence for Enhanced
+Cardiovascular Risk Prediction: A Comprehensive Review | Journal of the
+American Heart Association, accessed June 14, 2025,
+https://www.ahajournals.org/doi/10.1161/JAHA.124.036946
+58. AI Quality Standards in Health Care: Rapid Umbrella Review - PMC, accessed
+June 14, 2025, https://pmc.ncbi.nlm.nih.gov/articles/PMC11153979/
+59. AI Device Standards You Must Know - ISO 13485, 14971, 62304 - Hardian Health,
+accessed June 14, 2025,
+https://www.hardianhealth.com/insights/regulatory-ai-medical-device-standards
+60. Health Care Artificial Intelligence Code of Conduct - NAM - National Academy of
+Medicine, accessed June 14, 2025,
+
+https://nam.edu/our-work/programs/leadership-consortium/health-care-artificial
+-intelligence-code-of-conduct/
+61. Create a Lasting Digital Health Infrastructure to Support ... - NCQA, accessed
+June 14, 2025,
+https://wpcdn.ncqa.org/www-prod/NCQA-BH_TrumpAdministrationRecommend
+ations-WEB-DH.pdf
+62. Efficient Value Based Care with Bulk FHIR | EHR Good Neighbor, accessed June
+14, 2025,
+https://good-neighbor.smarthealthit.org/case-studies/efficient-value-based-care
+-with-bulk-fhir
+63. Health IT to Enhance Public Health Response and Outcomes - Westat, accessed
+June 14, 2025,
+https://www.westat.com/news/health-it-public-health-response-outcomes/
+64. Bulk Data - Veradigm Developer Portal, accessed June 14, 2025,
+https://developer.veradigm.com/Fhir/BulkData
+65. Intro to CQL - NCQA, accessed June 14, 2025,
+https://www.ncqa.org/resources/intro-to-cql/
+66. CQL - Clinical Quality Language - eCQI Resource Center, accessed June 14,
+2025, https://ecqi.healthit.gov/cql
+67. CQL for FHIR - Clinical Quality Language - Firely, accessed June 14, 2025,
+https://fire.ly/cql/
+68. What is Clinical Quality Language (CQL)? - Tenasol, accessed June 14, 2025,
+https://www.tenasol.com/blog/what-is-hl7-cql
+69. Your questions answered: CQL & the future of quality measures webinar Q&A -
+Firely, accessed June 14, 2025,
+https://fire.ly/blog/cql-and-future-of-quality-measures-webinar-answers/
+70. Beyond Compliance: Scale Clinical Intelligence with FHIR® & CQL - Smile Digital
+Health, accessed June 14, 2025,
+https://www.smiledigitalhealth.com/our-blog/boost-clinical-intelligence-with-fhir
+-cql-ai
+71. CMS-0057-F has landed. But what does it mean for your FHIR roadmap? - Firely,
+accessed June 14, 2025, https://fire.ly/blog/cms-0057-f-and-your-fhir-roadmap/
+72. The NLM Value Set Authority Center - PMC, accessed June 14, 2025,
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4300102/
+73. Value Set Authority Center (VSAC) - eCQI Resource Center, accessed June 14,
+2025, https://ecqi.healthit.gov/tool/value-set-authority-center-vsac
+74. The NLM Value Set Authority Center - PMC, accessed June 14, 2025,
+https://pmc.ncbi.nlm.nih.gov/articles/PMC4300102/
+75. Value Set Information | eCQI Resource Center, accessed June 14, 2025,
+https://ecqi.healthit.gov/value-set-information
+76. UMLS Terminology Services, accessed June 14, 2025, https://uts.nlm.nih.gov/
+77. Terminology Server - Tiga Healthcare Technologies, accessed June 14, 2025,
+https://www.tigahealth.com/p/terminology-server/
+78. SNOMED International: Home, accessed June 14, 2025, https://www.snomed.org/
+79. CMS Request for Information; National Directory of Healthcare Providers &
+
+Services - Regulations.gov, accessed June 14, 2025,
+https://downloads.regulations.gov/CMS-2022-0163-0075/attachment_1.pdf
+80. Application Programming Interfaces (APIs) and Relevant Standards and
+Implementation Guides (IGs) | CMS, accessed June 14, 2025,
+https://www.cms.gov/priorities/burden-reduction/overview/interoperability/imple
+mentation-guides-and-standards/application-programming-interfaces-apis-and
+-relevant-standards-and-implementation-guides-igs
+81. Requirements for Provider Directory API | CMS interoperability Rule, accessed
+June 14, 2025,
+https://www.cmsinteroperability.org/provider-directory-requirements
+82. Provider Directory API Final Rule | General Information, accessed June 14, 2025,
+https://www.cmsinteroperability.org/provider-directory
+83. Request for Information; National Directory of ... - Federal Register, accessed
+June 14, 2025,
+https://www.federalregister.gov/documents/2022/10/07/2022-21904/request-for-i
+nformation-national-directory-of-healthcare-providers-and-services
+84. Endpoint directory implementations and frameworks - FHIR - Confluence - HL7,
+accessed June 14, 2025,
+https://confluence.hl7.org/display/FHIR/Endpoint+directory+implementations+and
++frameworks
+85. National Directory of Healthcare Providers & Services (NDH) Implementation
+Guide, accessed June 14, 2025,
+https://confluence.hl7.org/spaces/PA/pages/308972730/National+Directory+of+H
+ealthcare+Providers+Services+NDH+Implementation+Guide
+86. How OnyxOS and HL7 FHIR Standards Enable Payers and ..., accessed June 14,
+2025,
+https://www.onyxhealth.io/how-onyxos-and-hl7-fhir-standards-enable-payers-a
+nd-providers-to-meet-price-transparency-mandates/
+87. Patient Cost Transparency Implementation Guide Home Page - FHIR
+specification, accessed June 14, 2025, https://build.fhir.org/ig/HL7/davinci-pct/
+88. Downloads - Patient Cost Transparency Implementation Guide v2.0.0-draft,
+accessed June 14, 2025, https://build.fhir.org/ig/HL7/davinci-pct/downloads.html
+89. Bridging Consumerism and Price Transparency in Healthcare - CDW, accessed
+June 14, 2025,
+https://www.cdw.com/content/cdw/en/articles/dataanalytics/bridging-consumeris
+m-and-price-transparency-in-healthcare.html
+90. HEDIS - NCQA, accessed June 14, 2025, https://www.ncqa.org/hedis/
+91. HEDIS Measures and Technical Resources - NCQA, accessed June 14, 2025,
+https://www.ncqa.org/hedis/measures/
+92. The health plan guide to HEDIS measures - Cotiviti, accessed June 14, 2025,
+https://resources.cotiviti.com/quality-measurement-and-reporting/health-plan-g
+uide-hedis-measures
+93. Healthcare Effectiveness Data and Information Set (HEDIS) - Alliance Health,
+accessed June 14, 2025,
+https://www.alliancehealthplan.org/providers/network/qa/hedis/
+
+94. Measuring the Quality of Health Care - NCBI Bookshelf, accessed June 14, 2025,
+https://www.ncbi.nlm.nih.gov/books/NBK230815/
+95. Types of Health Care Quality Measures | Agency for Healthcare Research and ... -
+AHRQ, accessed June 14, 2025,
+https://www.ahrq.gov/talkingquality/measures/types.html
+96. Quality Measures - CMS, accessed June 14, 2025,
+https://www.cms.gov/medicare/quality/measures
+97. Quality Metrics: What They Are & How to Use Them | SafetyCulture, accessed
+June 14, 2025, https://safetyculture.com/topics/quality-metrics/
+98. Six Domains of Healthcare Quality - AHRQ, accessed June 14, 2025,
+https://www.ahrq.gov/talkingquality/measures/six-domains.html
+99. Most Important Metrics for a Healthcare Quality Management Dashboard -
+symplr, accessed June 14, 2025,
+https://www.symplr.com/blog/most-important-metrics-healthcare-quality-dashb
+oard
+100. Track 16 Key Healthcare Quality Metrics for Better Outcomes - ClearPoint
+Strategy, accessed June 14, 2025,
+https://www.clearpointstrategy.com/blog/quality-measures-in-healthcare
+101. Healthcare Quality Measures in the United States | HIPNet, accessed June 14,
+2025,
+https://www.hipnet.org/healthcare-quality-measures-in-the-united-states.html
+102. DATA QUALITY SYMPOSIUM Q&A, accessed June 14, 2025,
+https://www.healthit.gov/sites/default/files/2024-03/Data_Quality_Sympos-QnA_F
+actsheet_v3_508.pdf
+103. State Public Health Data Reporting Policies and Practices Vary Widely,
+accessed June 14, 2025,
+https://www.pew.org/en/research-and-analysis/reports/2024/12/state-public-heal
+th-data-reporting-policies-and-practices-vary-widely
+104. Use of Electronic Health Record Data in Clinical Investigations Guidance for
+Industry - FDA, accessed June 14, 2025,
+https://www.fda.gov/media/97567/download
+105. Individuals' Right under HIPAA to Access their Health Information | HHS.gov,
+accessed June 14, 2025,
+https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/access/index.html
+106. Health Data, Technology, and Interoperability: Certification Program Updates,
+Algorithm Transparency, and Information Sharing - Federal Register, accessed
+June 14, 2025,
+https://www.federalregister.gov/documents/2024/01/09/2023-28857/health-data-
+technology-and-interoperability-certification-program-updates-algorithm-trans
+parency-and
+107. Obtaining Data From Electronic Health Records - Tools and Technologies for
+Registry Interoperability, Registries for Evaluating Patient Outcomes - NCBI,
+accessed June 14, 2025, https://www.ncbi.nlm.nih.gov/books/NBK551878/
+108. Artificial Intelligence at CMS, accessed June 14, 2025, https://ai.cms.gov/
+109. House Budget Reconciliation Bill Would Delay State AI Regulation, accessed
+
+June 14, 2025,
+https://www.mwe.com/insights/house-budget-reconciliation-bill-would-delay-sta
+te-ai-regulation/
+110. 13th SOW QIN–QIO and AI/AN Advancing Healthcare Quality through
+Technology (AHQT) Readiness Assessment (CMS-10916) - Regulations.gov,
+accessed June 14, 2025,
+https://www.regulations.gov/document/CMS-2025-0060-0001
+111. CMS Final Rule on CY 2026: Policy and Technical Changes | Insights - Holland &
+Knight, accessed June 14, 2025,
+https://www.hklaw.com/en/insights/publications/2025/04/cms-final-rule-on-cy-20
+26-policy-and-technical-changes
+112. CMS Final Rule 2025: The New Administration Weighs In - Inovalon, accessed
+June 14, 2025,
+https://www.inovalon.com/blog/cms-final-rule-2025-the-new-administration-wei
+ghs-in/
+113. Epic EHR monopoly violates federal antitrust laws, hurting business and
+patients, lawsuit says - Medical Economics, accessed June 14, 2025,
+https://www.medicaleconomics.com/view/epic-ehr-monopoly-violates-federal-a
+ntitrust-laws-hurting-business-and-patients-lawsuit-says
+114. Epic Dominates the EHR Market While Facing Antitrust Concerns -
+TogetherMD, accessed June 14, 2025,
+https://togethermd.com/epic-systems-dominating-the-ehr-market-while-facing-
+antitrust-concerns/

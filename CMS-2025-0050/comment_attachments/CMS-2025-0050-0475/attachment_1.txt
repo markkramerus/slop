@@ -1,3 +1,80 @@
-David Rocha drocha3408@outlook.com US Agencies should adopt formal ontologies Recommendation: CMS should partner with NLM and ONC to lead a government-wide initiative to create formal ontologies for healthcare, benefits, and eligibility. These ontologies would define shared meaning across programs and agencies, enabling explainable AI, semantic interoperability, smarter FHIR exchange, and future policy simulation. This initiative would build on NLM’s work with SNOMED CT, LOINC, and UMLS, and create a standards-first foundation for TEFCA, LLM safety, and semantic reasoning — with future optional support for graph infrastructure like Neo4j. Benefits: 1.Semantic Alignment Across Agencies Without Schema Lock-in •Formal ontologies enable CMS, SSA, VA, and others to define domain-specific concepts independently while aligning on shared upper-level concepts (e.g., Person, Benefit, Encounter). •This supports semantic interoperability despite differing database schemas—key for TEFCA and whole-of-government data integration. 2.Leverages NLM’s Trusted Expertise in Health Data Semantics •NLM’s stewardship of SNOMED CT, RxNorm, LOINC, and UMLS positions it well to coordinate federal formal ontology development. •A centralized branch (e.g., Health Data Standards Branch) could manage publishing, harmonization, version control, and API services. 3.Supports Responsible AI and Large Language Model (LLM) Adoption •Ontologies provide AI systems with a ground-truth semantic layer that anchors predictions and conversational responses in well-defined concepts. •This enhances explainability, traceability, and trust, especially for CMS’s beneficiary- facing AI tools and decision support. 4.Enables Smarter Interoperability in TEFCA and FHIR Exchange
-•Ontologies can support granular consent management (e.g., mental health, substance use disorder), data segmentation, and context-driven routing decisions. •FHIR natively supports integration with ontologies through CodeSystem, ValueSet, and StructureDefinition resources. 5.Improves Program Evaluation and Policy Simulation •CMS can model value-based care, ACO attribution, social risk factors, and eligibility criteria using ontologies, enabling: oPolicy simulation oAI-powered quality forecasting oAlignment of plain-language notices via natural language processing 6.Enables Downstream Graph-Based Reasoning (Optional Future Phase) •After establishing agency ontologies, CMS can adopt graph databases and semantic reasoners (e.g., Neo4j, Stardog, SPARQL engines) for real-time inference. •This phased approach respects existing infrastructure and promotes standards-first adoption without immediate platform overhaul. Suggested Partners: •NLM – Core technical coordinator •NIH/NIBIB – Research funding and ontology infrastructure pilots •ASTP/ONC – Alignment with TEFCA and Interoperability Standards Advisory •GAO, OMB, CDO Council – Oversight and policy support •Academic Ontology Labs (leading universities)– Pilot collaborators Academic QA would ensure: •Logical consistency (using DL reasoners like HermiT or Pellet) •Coverage and correctness (e.g., does the ontology represent all CMS benefit types accurately?) •Use-case driven testing (e.g., prior auth simulation, eligibility inference, coverage groupings) •Linking with standards (ICD-10-CM, CPT, HCPCS, FHIR value sets) This protects CMS from the risk of flawed logic or misaligned classifications, especially in high-stakes policy automation.
-To strengthen data interoperability, program alignment, and responsible AI adoption, CMS should support the development and use of formal ontologies across federal agencies. Formal ontologies — structured using description logic and standards like OWL — allow programs such as Medicare, Medicaid, the VA, SSA, and CDC to define their domain knowledge in a machine- readable, interoperable format. These ontologies would complement existing code systems such as SNOMED CT, LOINC, ICD-10, and CPT, and provide the logical foundation for modeling benefit rules, eligibility definitions, consent frameworks, social risk factors, and policy constraints. Unlike traditional flat value sets or rule-based systems, ontologies enable transparent reasoning, cross-domain inference, and dynamic policy simulation — features increasingly necessary for next-generation AI, quality measures, and beneficiary-facing digital tools. CMS, in collaboration with the National Library of Medicine (NLM), ASTP/ONC, NIH, and academic institutions, should lead a government-wide initiative to create, publish, and quality- assure formal ontologies. These ontologies can be aligned with FHIR resources to support use cases in TEFCA, such as granular data segmentation, eligibility adjudication, and semantically enriched queries. Formal ontologies will not replace SNOMED CT or other terminologies, but will complement them by defining relationships, constraints, and logic that support explainable, AI-powered decision-making. With governance and oversight from trusted federal entities and input from academic ontology labs, this initiative can ensure technical accuracy, transparency, and interoperability across agencies — enabling the federal government to move from exchanging data to sharing meaning.
+David Rocha drocha3408@outlook.com
+US Agencies should adopt formal ontologies
+Recommendation:
+CMS should partner with NLM and ONC to lead a government-wide initiative to create formal
+ontologies for healthcare, benefits, and eligibility. These ontologies would define shared
+meaning across programs and agencies, enabling explainable AI, semantic interoperability,
+smarter FHIR exchange, and future policy simulation. This initiative would build on NLM’s
+work with SNOMED CT, LOINC, and UMLS, and create a standards-first foundation for
+TEFCA, LLM safety, and semantic reasoning — with future optional support for graph
+infrastructure like Neo4j.
+Benefits:
+1. Semantic Alignment Across Agencies Without Schema Lock-in
+• Formal ontologies enable CMS, SSA, VA, and others to define domain-specific concepts
+independently while aligning on shared upper-level concepts (e.g., Person, Benefit,
+Encounter).
+• This supports semantic interoperability despite differing database schemas—key for
+TEFCA and whole-of-government data integration.
+2. Leverages NLM’s Trusted Expertise in Health Data Semantics
+• NLM’s stewardship of SNOMED CT, RxNorm, LOINC, and UMLS positions it well to
+coordinate federal formal ontology development.
+• A centralized branch (e.g., Health Data Standards Branch) could manage publishing,
+harmonization, version control, and API services.
+3. Supports Responsible AI and Large Language Model (LLM) Adoption
+• Ontologies provide AI systems with a ground-truth semantic layer that anchors
+predictions and conversational responses in well-defined concepts.
+• This enhances explainability, traceability, and trust, especially for CMS’s beneficiary-
+facing AI tools and decision support.
+4. Enables Smarter Interoperability in TEFCA and FHIR Exchange
+
+• Ontologies can support granular consent management (e.g., mental health, substance use
+disorder), data segmentation, and context-driven routing decisions.
+• FHIR natively supports integration with ontologies through CodeSystem, ValueSet, and
+StructureDefinition resources.
+5. Improves Program Evaluation and Policy Simulation
+• CMS can model value-based care, ACO attribution, social risk factors, and eligibility
+criteria using ontologies, enabling:
+o Policy simulation
+o AI-powered quality forecasting
+o Alignment of plain-language notices via natural language processing
+6. Enables Downstream Graph-Based Reasoning (Optional Future Phase)
+• After establishing agency ontologies, CMS can adopt graph databases and semantic
+reasoners (e.g., Neo4j, Stardog, SPARQL engines) for real-time inference.
+• This phased approach respects existing infrastructure and promotes standards-first
+adoption without immediate platform overhaul.
+Suggested Partners:
+• NLM – Core technical coordinator
+• NIH/NIBIB – Research funding and ontology infrastructure pilots
+• ASTP/ONC – Alignment with TEFCA and Interoperability Standards Advisory
+• GAO, OMB, CDO Council – Oversight and policy support
+• Academic Ontology Labs (leading universities)– Pilot collaborators
+Academic QA would ensure:
+• Logical consistency (using DL reasoners like HermiT or Pellet)
+• Coverage and correctness (e.g., does the ontology represent all CMS benefit types
+accurately?)
+• Use-case driven testing (e.g., prior auth simulation, eligibility inference, coverage
+groupings)
+• Linking with standards (ICD-10-CM, CPT, HCPCS, FHIR value sets)
+This protects CMS from the risk of flawed logic or misaligned classifications, especially in
+high-stakes policy automation.
+
+To strengthen data interoperability, program alignment, and responsible AI adoption, CMS
+should support the development and use of formal ontologies across federal agencies. Formal
+ontologies — structured using description logic and standards like OWL — allow programs such
+as Medicare, Medicaid, the VA, SSA, and CDC to define their domain knowledge in a machine-
+readable, interoperable format. These ontologies would complement existing code systems such
+as SNOMED CT, LOINC, ICD-10, and CPT, and provide the logical foundation for modeling
+benefit rules, eligibility definitions, consent frameworks, social risk factors, and policy
+constraints. Unlike traditional flat value sets or rule-based systems, ontologies enable transparent
+reasoning, cross-domain inference, and dynamic policy simulation — features increasingly
+necessary for next-generation AI, quality measures, and beneficiary-facing digital tools.
+CMS, in collaboration with the National Library of Medicine (NLM), ASTP/ONC, NIH, and
+academic institutions, should lead a government-wide initiative to create, publish, and quality-
+assure formal ontologies. These ontologies can be aligned with FHIR resources to support use
+cases in TEFCA, such as granular data segmentation, eligibility adjudication, and semantically
+enriched queries. Formal ontologies will not replace SNOMED CT or other terminologies, but
+will complement them by defining relationships, constraints, and logic that support explainable,
+AI-powered decision-making. With governance and oversight from trusted federal entities and
+input from academic ontology labs, this initiative can ensure technical accuracy, transparency,
+and interoperability across agencies — enabling the federal government to move from
+exchanging data to sharing meaning.

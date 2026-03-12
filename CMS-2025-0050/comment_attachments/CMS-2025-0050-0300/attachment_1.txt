@@ -1,20 +1,790 @@
- Front Cover SAS Comments for Health Technology Ecosyst em (code CMS -0042 -NC) Centers for Medicare & Medicaid Services 
- Title Page SAS Comments for Health Technology Ecosystem (code CMS -0042- NC)  Centers for Medicare & Medicaid Services  June 16, 2025 Submitted by: Mike Davis Senior Strategic Account Executive 919-531-2792 Mike.L.Davis@sas.com This proposal is the confidential and proprietary property of SAS Institute Inc. It may contain approaches, techniques, and other information proprietary to SAS, and shall not be disclosed in whole or in part to third parties without the prior written cons ent of SAS. Copyright 2025 SAS Institute Inc. All Rights Reserved 
- Contents SAS Comments for Health Technology Ecosystem code CMS -0042- NC Page i Contents Executive Summary ............................................................................................ 1 B. Patients and Caregivers ................................................................................ 2 1. Patient Needs ........................................................................................................................ 2 2. Data Access and Integration ................................................................................................. 4 3. Information Blocking and Digital Identity ............................................................................... 7 C. Providers ......................................................................................................... 8 1. Digital Health Apps ................................................................................................................ 8 2. Data Exchange .................................................................................................................... 10 D. Payers ........................................................................................................... 12 E. Technology Vendors, Data Providers, and Networks ............................... 13 1. Ecosystem ........................................................................................................................... 13 2. Digital Identity ...................................................................................................................... 13 3. Technical Standards and Certification ................................................................................ 13 4. Data Exchange .................................................................................................................... 14 F. Value -Based Care Organizations ................................................................ 15 1. Digital Health Adoption ........................................................................................................ 15 
- Executive Summary SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 1 Executive Summary SAS Institute Inc. (SAS) appreciates the opportunity to provide comment s on the future of health care IT in the United States and celebrates the Centers for Medicare & Medicaid Services’ (CMS) and the Office of the National Coordinator for Health IT’s (ONC) decision to explore and request feedback on powerful topics in health care information technology . As a leader in data, analytics and AI for nearly 50 years, SAS has the distinct pleasure of helping hundreds of health care organizations across the world make sense of their data. SAS offers advanced analytics and artificial intelligence to provide value on an open and t ransparent platform. SAS agrees with CMS’ vision for a more open, interoperable and data -driven health care future. To build this future, our response reflects lessons learned from decades of experience working with leading health care organizations , specifically the power that advanced analytics can bring to a large health system . As an example , SAS has worked with the Em irates Health Service to build their goal of a “digital hospital”, by developing a complete patient registry, predicting fatal outcomes and providing these data clinical decision makers insights to better drive patient care. Similarly, SAS worked with Duke Health to develop AI models to optimize patient flow through an infusion clinic, with the potential to improv e patient care and reduce overhead and waste in this expensive care area. In the area of interoperability, SAS is the analytics software for the North Carolina Health Information Exchange , NC HealthConnex . In this work , we find a system that often struggles to normalize data without access to costly third -party reference data and one that has been slow to move to Fast Healthcare Interoperability Resources (FHIR) , but one that shows promise and potential when uniting connected health data with powerful data management and analytics. SAS’ motto has always been The Power to Know, for we understand that the open flow of data, in a secure and appropriate fashion , combined with powerful and transparent analytics leads to real knowledge. This is why our SAS Health platform was built with a FHIR- first design and utilizes SAS’ Model Cards capability which provides transparent insight s into potential bias within AI models . It is with this experience and more that SAS is glad to present input back to CMS and ONC. 
- B. Patients and Caregivers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 2 B. Patients and Caregivers This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve patients and caregivers. While we certainly want patients and caregivers to answer questions in this section (and in other sections) from the patient/caregiver point of view, we also invite all stakeholders to provide their viewpoints on the patient/caregiver workflows. 1. Patient Needs PC-1. What health management or care navigation apps would help you understand and manage your (or your loved ones) health needs, as well as the actions you should take? The ideal app would be fully integrated, sitting on top of a single, secure platform that aggregates data from electronic health records, lab results, wearables, prescription fills/refills, etc. to provide a real-time, 360- defgree view of vitals, medications, and upcoming health related tasks. Ideally, there would be built -in decision- support algorithms to convert raw data into concrete prompts, for things such as scheduling a telehealth- visit, requesting a refill, or ordering follow -up labs, so that next s tep(s) are never missed. When chronic conditions are in play, continuous remote monitoring and coaching keep both patients and clinicians ahead of potential issues by surfacing early warning trends. A caregiver -sync feature lets assigned family members access the same dashboard to help manage, replacing scattered texts and missed reminders with coordinated, accountable action. a. What are the top things you would like to be able to do for your or your loved ones’ health that can be enabled by digital health products? The following are the top desirable things that can be enabled by digital health products: • Integrated care itinerary that tracks upcoming appointments, lab orders, imaging, and referrals on a single timeline with push reminders • Real-time benefit look -ups for out -of-pocket estimates, prior -authorization status, in- network alternatives with pricing compare/contrast before care is scheduled , and alerts for generic alternatives, medication bundles etc. • A medication command and reconciliation center with refill alerts, drug- interaction checks, and price- comparison coupons in one place • Symptom triage with escalation based on evidence- based self -care advice that can be hand ed off to telehealth, urgent care, or 911 as needed • Secure family sharing for caregiver views limited to what the patient authorizes, especially for individuals who are experiencing any cognitive impairment • Chronic condition management dashboards integrate vitals, labs, and medication adherence for patients with diabetes, hypertension, heart failure, etc., with alerts to providers when thresholds are breached b. If you had a personal assistant to support your health needs, what are the top things you would ask them to help with? In your response, please consider tasks that could be supported or facilitated by software solutions in the future. Tasks that could be supported or facilitated by software solutions in the future include: • Handle appointment booking, rescheduling, and transportation set -up automatically • Scan new test results, flag anything outside normal range, and explain next steps in plain language • Track quality and satisfaction metrics for each care provider and suggest the best local options • Keep a running list of programs a patient qualif ies for like free vaccines, preventive screenings, food- as-medicine pilots, and sign me up and/or nudge me before deadlines 
- B. Patients and Caregivers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 3 • Aggregate out -of-pocket spending so patients always know where they stand against deductibles and coverage gaps PC-2. Do you have easy access to your own and all your loved ones’ health information in one location (for example, in a single patient portal or another software system)? According to the latest published data, only between 2% and 5% of all adults use an app that merges data from multiple patient portals, l eaving most people juggling multiple systems and access points. a. If so, what are some examples of benefits it has provided? Examples of benefits include : • EMTs or ER staff can see allergies, meds, and advance directives within seconds • Potential for better chronic -care oversight, monitoring trending A1c, blood pressure, and weight, allowing clinicians to intervene sooner • Administrative relief when insurance, demographics, and consent flow straight from the record b. If not, in what contexts or for what workflows would it be most valuable to use one portal or system to access all such health information? Opportunities for improvement include : • Multi -site care, especially for severe illness. For example, when it comes to cancer care. oncology, radiation, and infusion centers rarely share images and genomics seamlessly. • Elder care coordination for when adult children need labs, care plans, and med lists without logging into multiple portals. • Rural and dual -eligible populations who tend to have frequent moves between hospital, skilled nursing facilities, and home health, creating data silos that slow follow -up care. c. Were there particular data types, such as x -rays or specific test results, that were unavailable? What are the obstacles to accessing your own or your loved ones’ complete health information electronically and using it for managing health conditions or finding the best care (for example, limitations in functionality, user friendliness, or access to basic technology infrastructure)? Data struggles and o bstacles include: • Diagnostic imaging • Raw cardiology waveforms and surgical videos • Specialist progress notes that reside in “read only” mode behind paywalls • Proprietary EHR interfaces and fees for connection. • Variable adoption of FHIR APIs, especially among post -acute and behavioral -health vendors. • Limited broadband and device literacy in many Medicaid/Medicare populations. • Privacy concerns that discourage patients from granting proxy access, even to trusted caregivers PC-3. Are you aware of health management, care navigation, or personal health record apps that would be useful to Medicare beneficiaries and their caregivers? Solutions such as Epic’s MyChart for unified records and Medisafe for medication management demonstrate what’s possible, yet no single app currently delivers a complete, end- to-end package that combines record access, care navigation, cost transparency, an d caregiver collaboration for Medicare beneficiaries. 
- B. Patients and Caregivers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 4 PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these digital health products? Sharing use cases of where these tools have improved the patient experience can bridge the gap between technical demonstrations of the power of these tools and the human factor at play in the caregiver relationship. a. What role, if any, should CMS have in reviewing or approving digital health products on the basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of a coverage determination)? What criteria should be used if there is a review process? What technology solutions, policy changes, or program design changes can increase patient and caregiver adoption of digital health products (for example, enhancements to data access, reimbursement adjustments, or new beneficiary c ommunications)? Aside from other factors ( e.g., s ecurity), CMS should develop quality checks and easily deployable models to gauge the effectiveness of digital health products on an objective basis. For example, comparing health outcomes and spending for patients using the products compared to those which are not using the products. Although the model -building tools may originate elsewhere, there should be roles nested within CMS to conduct the actual evaluations. b. What changes would enable timely access to high quality CMS and provider generated data on patients? An end to legacy, monolithic data management systems at all levels would facilitate the integration of CMS/provider data . This would require a significant investment on the part of CMS but would produce unprecedented efficiencies in the long- term. PC-6. What features are most important to make digital health products accessible and easy to use for Medicare beneficiaries and caregivers, particularly those with limited prior experience using digital tools and services? Based on a quick survey of the literature, there are several must -haves for proper engagement of Medicare recipients . Big text, high contrast screens , and simple workflows to keep navigation effortless. Plain -language prompts and brief, built -in tutorials teach as they guide. Proxy logins with shared alerts that allow caregivers to step in without friction. Finally, automatic pulls from EHRs, pharmacies, and wearables to eliminate manual data entry. PC-7. If CMS were to collect real -world data on digital health products’ impact on health outcomes and related costs once they are released into the market, what would be the best means of doing so? CMS could require standardized FHIR feeds from digital tools that track usage, outcomes, and costs, integrating them into existing environments like the Chronic Conditions Data Warehouse. From there, platforms such as SAS Viya can link, analyze, and visualize the combined claims, EHR, and device data, allowing CMS to detect real -world impact without creating extra reporting work for vendors. 2. Data Access and Integration PC-8. In your experience, what health data is readily available and valuable to patients or their caregivers or both? Caregiver access to data varies widely between different settings. Available literature in the field of implementation science has shown that caregiver access to resources is often a determining factor in the satisfaction of both patient and caregiver with the experience of caring for an individual. The following key data elements are especially valuable: • Lab results with reference ranges and trend charts • Medication lists including dosages and refill status 
- B. Patients and Caregivers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 5 • Visit summaries with diagnoses and follow -up instructions • Imaging reports with annotated findings • Care plans detailing goals, tasks, and responsible parties • Appointment schedules and reminders These elements are critical because they help patients understand current health status, track progress, and coordinate care. When presented alongside clear explanations and next -step guidance, they transform data into actionable insight s that support timely decisions and reduces confusion. a. What data is valuable, but hard for patients and caregivers, or app developers and other technical vendors, to access for appropriate and valuable use (for example, claims data, clinical data, encounter notes, operative reports, appointment schedules, pric es)? Studies have shown that qualitative data can be extremely valuable when assessing program effectiveness but is difficult to analyze on the scale required by CMS. Text analysis tools can help with this objective but can only go so far. A few additional , concrete examples include: • Detailed claims adjudication data, vital for cost transparency but locked behind payers’ systems • Unstructured clinical narratives such as discharge summaries and operative reports contain essential context but require complex natural language processing (NLP) to extract reliably • Real-time appointment and scheduling feeds improve coordination and reduce no -shows yet remain siloed in proprietary EHR APIs • Patient -reported outcomes and social determinants data drive risk stratification but rarely flow through standard health- IT channels b. What are specific sources, other than claims and clinical data, that would be of highest value, and why? Available literature has shown that p atient feedback data on provider facilities can be helpful for determination of value- based evaluations. Several additional sources that are very high value include : • Wearables (Remote Patient Monitoring) • Pharmacy fill records and adherence logs • Social Determinants of Health ( SDoH ) data, coming from patient intakes , screening tools, EMRs (z -codes) , etc. c. What specific opportunities and challenges exist to improve accessibility, interoperability and integration of clinical data from different sources to enable more meaningful clinical research and generation of actionable evidence? The primary emerging challenge is ensuring the security of patient data; both preventing data breaches and committing the necessary resources to de- identifying data needed for research on this scale. The other challenge facing work in this space is the growing and intractable use of AI across the data life cycle. Aside from the obvious security concerns around patient data and privacy, CMS personnel will need analytical tools that are able to address unethical uses of AI and biases present in models trained by AI -dependent systems. The pace of AI development threatens to rapidly outpace the ability of governing bodies to address its misuse, particularly in government health areas. SAS has developed teams focused on the ethical use of AI, and continues to use its expertise in this field to guide other organizations on methods to ethically harness the power of AI to improve health outcomes. 
- B. Patients and Caregivers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 6 PC-11. How are health information exchanges (HIEs) currently helping to advance patient access to health information in the real world? HIEs may have a stated goal of being able to provide patient access to data stored within the HIE system. Current ly, the North Carolina HIE of which SAS is the analytic s provider , does not allow this function. The HIE does allow patients to view where their data has been sent but is not required to disclose the patient data housed within (separate entities provide that function) . d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader frameworks for data exchange (for example, vendor health information networks, TEFCA, private exchange networks, etc.)? HIEs are the community’s neutral, ethical trust broker, linking hospitals, clinics, public -health agencies, and social -service partners. By normalizing disparate EHR feeds, EMS reports, lab results, and social -determinant data, HIEs close last -mile gaps and keep c linicians and public - health officials aligned. As they are typically l ocally governed as nonprofits, they enforce community -driven consent rules, rigorous bias checks, and transparent audit trails that extend beyond HIPAA, protecting marginalized groups while enabling research and quality improvement. Their longitudinal, cross -provider datasets make them the logical proving ground for ethical AI alerts, predictive risk scoring, and real -time public -health dashboards. National networks may move the b ulk data, but HIEs ensure that information remains trustworthy, inclusive, and actionable for the communities that generate it. PC-12. What are the most valuable operational health data use cases for patients and caregivers that, if addressed, would create more efficient care navigation or eliminate barriers to competition among providers or both? a. Examples may include the following: (1) Binding cost estimates for pre- defined periods. (2) Viewing provider schedule availability. (3) Using third- party apps for appointment management. (4) Accessing patient -facing quality metrics. (5) Finding the right provider for specific healthcare needs. The most valuable operational health data use cases for patients and caregivers include: • Cost estimates that auto- adjust when coverage or pricing changes • Real-time schedule inventory across competing health systems, urgent -care chains, and telehealth slots • Third -party booking APIs that can cancel, reschedule, and manage referrals without forcing portal logins • Consumer facing quality dashboards that blend HEDIS, CMS Star ratings, PROMs, and patient reviews in one view • Precision provider matching that filters by condition expertise, linguistic fit, and accessibility options • Pre-authorization status trackers with timestamps and escalation paths • Drug- price and pharmacy -stock checks surfaced at the point of prescribing • Single -click digital intake that populates every downstream system such as registration, imaging, labs, ancillary services b. What use cases are possible today? Use cases that are possible today include: • Static cost -estimate PDFs for select procedures • Scheduling within a single EHR instance • Stand -alone apps that handle booking but not typically document exchange • Public quality data updated quarterly • Basic provider directories filtered by specialty and distance 
- B. Patients and Caregivers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 7 c. What should be possible in the near future? The following should be possible in the near future: • API-driven cost estimates refreshed near -time against payer contracts • Federated scheduling that spans independent practices and hospital -owned clinics • Quality scores refreshed near -time and linked to the encounter screen • AI-assisted provider search that uses diagnoses, social needs, and language preferences to rank results d. What would be very valuable but may be very hard to achieve? The following would be very valuable but may be very hard to achieve: • Real-time/ nationwide provider availability, updated in real or near time, due to the need to adopt a national standard • A universal patient identifier system, avoiding duplicity while protective privacy • Dynamic, contract -specific cost that update with benefit -year changes and tier re- assignments • Closed- loop referral tracking across unaffiliated networks, including follow -up data back to the referring clinician • End-to-end social -service integration (housing, food, transport) with shared documentation and billing support 3. Information Blocking and Digital Identity PC-13. How can CMS encourage patients and caregivers to submit information blocking complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would increasing reporting of complaints advance or negatively impact data exchange? CMS could encourage patients and caregivers to submit information blocking complaints to ASTP/ONC’s Information Blocking Portal by: • Placing a “Report data- access problem” button inside every point of interaction and allow ing voice or SMS submissions for those with low digital literacy • Auto-populat ing the complaint form with as much context as possible • Highlight ing success stories where complaints triggered quick fixes, shifting the messaging from punitive towards improvement focus, creating a safe, no- fault feedback loop • Offer ing an anonymous option and reassure users of confidentiality protections, as well as publish aggregate complaint trends so providers see systemic gaps over personal attacks. • Linking reporting to incentives (positive reinforcement), possibly tying remediation of validated complaints to positive points in CMS quality programs. A higher volume of well -documented complaints provides a clear map of where information blocking occurs . That evidence allows organizations to target appropriate guidance, technical help, and enforcement (as needed) , which in turn pressures vendors and providers to clean up access barriers faster. If CMS is empowered to triage complaints back to the market quickly, more reporting can become a force- multiplier for positive change. The risk of this being a net negative is if the process starts to feel punitiv e, arbitrary, or excessively bureaucratic in nature. 
- C. Providers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 8 C. Providers This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve providers. While we certainly want providers to answer questions in this section (and in other sections) from the provider point of view, we also invite all stakeholders to provide their viewpoints on the provider workflows as appropriate. 1. Digital Health Apps PR-1. What can CMS and its partners do to encourage providers, including those in rural areas, to leverage approved (see description in PC -5) digital health products for their patients? SAS cares deeply about widening access to proven digital health tools , especially in rural and underserved regions , and applauds CMS’s resolve to do the same. CMS can offer start up incentives, extra shared savings credit for rural practices, targeted broadband subsidies, and on demand technical assistance so resource constrained providers can adopt approved apps without financial strain. A single FHIR based interface standard, a public catalog of certified products, and regular best practice playbooks will keep vendors, EHR teams, and clinicians on the same page. SAS can then supply secure analytics that track adoption and outcomes in real time, turning raw data into clear performance feedback that rewards what works and flags gaps before they widen. a. What are the current obstacles? Current obstacles include: • Less than half of households in rural health- care deserts subscribe to fixed broadband or own devices like laptops or tablets, making reliable real -time apps or video visits difficult. • Rural providers lag in adopting certified electronic health records, hindered by limited technical support, connectivity challenges, and lower interoperability. • Tight margins and unclear reimbursement models discourage rural practices from investing in digital tools. • Rural areas have an insufficient number of physicians, many of whom are over age 50. • Rural seniors face digital -health literacy that comes along with trust gaps, frequently requiring personalized, local support before adopting apps for routine health management. • Rural clinics identify cybersecurity as a barrier, lacking resources and expertise needed to confidently integrate new digital health devices and services into existing IT systems. b. What information should providers share with patients when using digital products in the provision of their care? Information that providers should share with patients include: • Providers should explain the app’s purpose, detailing what it tracks and how it will enhance diagnosis, monitoring, or treatment. • They need to specify what data the app collects, where it is stored, who can access it, and how long it will be retained. • Providers should spell out the patient’s responsibilities: how often to use the tool, which alerts require action, and when to call the clinic instead. • They must outline privacy and security protections , such as encryption and authentication steps, while reminding patients they can revoke access at any time. • Any potential costs, data charges, or insurance coverage details should be disclosed upfront. • Clear support channels must be provided, identifying whom to contact for technical issues or to report side effects and device problems. • With the further adoption of AI within digital health product, CMS should provide consumers support in understanding and deciphering what the AI model is doing and any bias that may be present , like the CMS Care Compare Tool . SAS has developed a SAS Model Card, which is a “nutrition label ” for AI models , which take any AI model and provides insights into biases and drift in an easy -to-understand format. 
- C. Providers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 9 Additional information specific to r ural USA: • Providers should note the minimum bandwidth needed, describe offline or low -signal workflows, and give an estimate of data usage for patients with limited connectivity. • They should direct patients to local resources such as community health workers, extension offices, or phone- only workflo ws to help with setup and troubleshooting. • Providers should also highlight state or federal broadband subsidies and loaner -device programs that can lower financial barriers to using the digital tool. c. What responsibilities do providers have when recommending use of a digital product by a patient? A provider must first vet the tool’s clinical validity, regulatory status, data- security safeguards, and cost. Informed consent must be secured and then the provider must lay out the associated benefits, risks , and the expectations for the level of patient engagement/involvement Finally, the information around any AI models used in the product should be disclosed and an easy -to- understand explanation of the model, any known biases and other considerations should be displayed. As a leader in AI Governance and Trustworth y AI, SAS has developed tools that can assist with such a process. PR-2. What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could thes e obstacles be mitigated? Obstacles and mit igation recommendations include: • Data silos and non- standard formats keep apps from pulling or pushing the metrics physicians need. Mandating FHIR R4 APIs and a national digital -quality -measure library would cut integration costs and speed development. • Misaligned incentives and unclear reimbursement make it hard for practices to justify new workflows. CMS can tie MIPS and APM bonuses to verified digital reporting and reimburse AI-assisted documentation directly. • EHR vendor lock -in and high app- store fees deter innovators. Enforcing open marketplaces and capping transaction fees would widen the pipeline of useful tools. • Clinicians distrust “black box” AI and resent extra clicks. Requiring model transparency, rigorous usability testing, and giving credit for ambient, click -reducing documentation can turn skepticism into uptake. • Cybersecurity and liability concerns stall procurement. A shared federal security -certification program and safe- harbor protections for certified tools would lower perceived risk. • Small practices often lack capital and IT staff. Targeted technical -assistance grants and low - cost, cloud- hosted managed services can deliver turn- key deployment without new overhead. PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? Please address all of the following: a. Current challenges in accessing different data formats. Lack of integration and continued data siloing will hamper any technical progress made in app development and the like. b. Impact on patient care quality. When providers have access to the full patient record , including scanned documents, faxed notes, free- text entries, and structured labs , they can make faster decisions, avoid redundant tests, and reduce medication errors. If any part of the record remains siloed due to format, clinicians are forced to operate with incomplete information, which directly compromises quality of care and outcomes . 
- C. Providers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 10 c. Technical barriers to full data accessibility. This has already been addressed in several sections but in summary, many EHRs store data in fragmented or proprietary formats, making it difficult to extract and exchange complete records. Scanned documents and free- text notes often lack metadata, which limits searchability and automated processing. Older systems may not support modern APIs like FHIR, and even those that do often apply inconsistent standards, slowing integration and raising costs. d. Cost or privacy implications of making all data formats interoperable. Converting legacy formats and unstructured data into interoperable, machine- readable content can be expensive, especially for smaller systems without existing infrastructure. Privacy risks also increase when broad access is granted to sensitive documents t hat were never designed for digital exchange. Ensuring proper tagging, audit trails, and access controls adds complexity but is necessary to prevent breaches and maintain trust. e. Priority level compared to other interoperability needs. App-level interoperability is a growing priority but is still secondary to core system- to-system exchange. Until foundational interoperability across EHRs, labs, pharmacies, and payers is consistent and reliable, the value of app integration will be limited. However , as the infrastructure matures, app- level access becomes essential for patient -facing innovation and real -time decision support. PR-4. What changes or improvements to standards or policies might be needed for patients’ third-party digital products to have access to administrative workflows, such as auto- populating intake forms, viewing provider information and schedules, and making and modifying an appointment? Existing standards , like FHIR , already support administrative functions, but consistent access is blocked by uneven implementation and proprietary restrictions. Policy changes should require certified systems and providers to expose standardized APIs for intake, scheduling, and provider directories. Enforcing open participation across vendors and care settings is essential to allow third-party apps to operate reliably and serve patients effectively. 2. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization’s systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: a. Patient Access API b. Standardized API for Patient and Population Services c. Provider Directory API d. Provider Access API e. Payer -to-Payer API f. Prior Authorization API g. Bulk FHIR – Do you support Group ID -based access filtering for population- specific queries? h. SMART on FHIR – Do you support both EHR -launched and standalone app access? What does the process for application deployment entail? i. CDS Hooks (for clinical decision support integrations) SAS Health supports b ulk FHIR but does not support Group ID -based access filtering. 
- C. Providers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 11 PR-7. What strategies can CMS implement to support providers in making high- quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? Financial incentives could help offset the cost of implementing compliant technology platforms capable of collecting, preparing, and protecting clinical data real time. How can the burden of increasing data availability and sharing be mitigated for providers? CMS and payers could offer p rovider assistance in the form of financial, access automation technologies, financial implementation expertise, and liability protections for compliance. Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? The process mapping, workflow artifacts, and other metrics can be ingested into data analytical tools with backend AI models to optimize interoperability seamlessly. PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? CMS or partners can help with simplifying clinical quality data responsibilities of providers by ensuring access to data management tools to assist with data stewardship. a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? Benefits include : • Reduced provider burden • Standardization • Interoperability • Better health surveillance A downside is that large data volumes may cause slower performance. Leveraging bulk FHIRs can reduce the burden on providers by offering an automated and streamlined way to extract the EHR data. Bulk FHIRs can also reduce the need for manual entry and reporting of patient data since data can be pulled automatically and per iodically, ultimately reducing a layer of administrative burden. Bulk FHIR data exports from provider EHRs to CMS will also help spur innovation through easier and increased data sharing in a common data format. This is especially useful with population health, research, and near real time access to information. b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? We recommend using data analytical software that adheres to industry standards for interoperability , which can improve data quality and reporting for providers. c. Are there requirements CMS should consider for data registries to support digital quality measurement in a more efficient manner? Are there requirements CMS should consider for data registries that would support access to real -time quality data for healthc are providers to inform clinical care in addition to simplifying reporting processes? CMS should consider the use of data access engines, AI models, and m achine learning technologies to ensure data quality; and combine it with digital credentials to control real -time access to authorized users. 
- D. Payers SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 12 D. Payers PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of providers? a. How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider -side technology? There is a mutual interest and benefit for both payers and providers to share clinical data and ensure that the data quality is of the highest standard possible. The underlying issue is the financial burden to implement and maintain a technology platform t hat does not unduly cause a hardship for smaller providers with the requirement to purchase the necessary EHR technology to collect quality clinical data and share with payers via bulk extract of the clinical data via standardized EHR interoperability standards. Payers should offer providers EHR client applications as the interface into the payer’s claims processing system. Claims processing infrastructure standardization is necessary to implement mechanisms to enable bulk extraction of clinical quality data regardless of provider type, size, location, or payer enrollment. Standardization creates opportunities for interoperability to take root and grow. To extract quality clinical data, which is a form of data exchange, the data must adhere to the same standards. Similarly, HIE s allow the electronic exchange of healthcare information among different healthcare organizations. A Healthcare Payer Exchange (HPE) would enable payers and providers to share quality clinical data within the HIE. b. In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? The interoperability and quality reposting responsibilities of providers to payers and CMS could be consolidated by adopting standardized tools to automate the collection of clinical quality data and generation of standardized reporting in real time. Currently available technologies include text analytics and natural language processing (NLP) , large language models (LLMs), g enerative AI, AI -driven document analysis, and a gentic AI. 
- E. Technology Vendors, Data Providers, and Networks SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 13 E. Technology Vendors, Data Providers, and Networks This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve technology vendors, data providers, and networks. While we certainly want technology vendors, data providers, and networks to answer questions in this section (and in other sections) from their point of view, we also invite all stakeholders to provide their viewpoints on the technology vendor, data provider, and network use cases as appropriate. 1. Ecosystem TD-1. What short term (in the next 2 years) and longer -term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? Vision and direction. CMS must provide the digital healthcare industry clear and consistent direction on where it envisions the future of healthcare in the US. While digital healthcare offers new and innovative ways to healthcare, it also has its own unique sets of challenges, such as data privacy, cyber security, and ethical use. 2. Digital Identity TD-3. Regarding digital identity implementation: a. What are the challenges and benefits? Credentialing involves vetting and issuance of credentials on a national scale. Managing digital credentials on a notational scale, i.e. revocation, replacement, expiration, and compromise. Analysis of digital identity systems should be a considered requirement of a national credentialing system to ensure quality and performance of the entire process. b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? Requiring digital identities, in theory, should have a positive impact on the data exchange by ensuring a higher level of confidence in transaction validity. However, this is where the use of digital analysis tools will enable intelligent decision making . 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? CMS must continue to lead in the development of, and use of open, standards -based, publicly available APIs. Building on the Blue Button 2.0 work for consumers, CMS should strive to meet the requirements set forth in its Interoperability and Patient Access final rule (CMS -9115- F) for Medicare FFS. Through this leadership, CMS will be able to encourage and at times require the use of open, standards -based APIs over proprietary APIs. This will also provide clear guidance on when FHIR transactions conflict with HIPAA requirements , giving the health care community clear guidance and a path forward. SAS believes that open, appropriate, standards -based exchange of information is imperative to a better functioning health care system. TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? The USCDI has improved interoperability and health data exchange. Like most standards organizations , the USCDI program is slow to roll -out new changes and often may lose specific areas of important information due to needing to meet a common standard. This should not be seen as a downfall of the USCDI, but rather a limitation that can be supported through analytic tools and other methods outside the process of health data interoperability. The current set of 
- E. Technology Vendors, Data Providers, and Networks SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 14 data elements are extensive and support current use cases, but in the case of analytics are often too focused on transactional systems. Adding more data elements to the USCDI will enhance analytics value. SAS recommends that CMS and ONC continue to support USCDI and its initiative to continue to grow and standardize the dataset, making it more available to analytic and population health use cases. 4. Data Exchange TD-12. Should CMS endorse non- CMS data sources and networks, and if so, what criteria or metrics should CMS consider? Other data sources commonly produced by the federal government ( e.g., American Community Survey data) could be incorporated into CMS analytics projects to build upon population health research. For example, understanding which communities are most impacted by food deserts, and tying those insights into overall health outcomes. TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data flow? Increased use of bulk FHIR supports scalable, efficient population- level data exchange and enhances analytics, care coordination, and reporting. The use of bulk FHIR toolkits would enable more free- flowing data through appropriate means for additional research and innovation. The current restriction on exporting data from current data systems lacks a standard which bulk FHIR could replace and provide new means for data sharing beyond the current transactional systems FHIR has provided. A bulk FHIR could sup port this and reduce the fri ction of population level data exchanges. b. What are the potential disadvantages of their use? While bulk FHIR use will require additional infrastructure, security and patient consent management and other implementation, the value gained by providing a clear and standardized way to share population- level data through a known standard would be well achieved. The risks from not implementing a bulk FHIR standard include additional reductions in innovation and quality improvement . 
- F. Value- Based Care Organizations SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 15 F. Value-Based Care Organizations This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve value- based care organizations. While we certainly want value- based care organizations to answer questions in this section (a nd in other sections) from the value- based care provider point of view, we also invite all stakeholders to provide their viewpoints on the value- based care workflows as appropriate. 1. Digital Health Adoption VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital health management and care navigation products more often and more effectively with their patients? What are the current obstacles preventing broader digital product adoption for patients in ACOs? We recommend the following incentives: • Boost shared savings split when a large percentage target (maybe 70% or more) of attributed lives log a digital touch ( e.g., portal, RPM, secure message) • Offer tech stipends if certain thresholds are met • Add quality bonus points for gaps closed through digital workflows • Count low -acuity patients managed virtually at a lower risk weight to expand covered lives without raising benchmarks Main obstacles include uncertain ROI, EHR ‐integration cost, clinician alert fatigue, tech gaps in high-risk seniors, and construct validity. VB-2. How can key themes and technologies such as artificial intelligence, population health analytics, risk stratification, care coordination, usability, quality measurement, and patient engagement be better integrated into APM requirements? Recommendations for better integration into APM requirements include: • Require transparent, quarterly refreshed risk -strat algorithms with bias testing • Make in- workflow pop- health dashboards a certification item • Mandate 48- hour electronic discharge hand- offs via standard FHIR messages • Tie credit to percentage response on patient -reported outcomes • Demand an AI governance plan, embedded with transparency, for any model used in triage, prior auth, or outreach VB-3. What are essential health IT capabilities for value- based care arrangements? a. Examples (not comprehensive) may include: care planning, patient event notification, data extraction/normalization, quality performance measurement, access to claims data, attribution and patient ID matching, remote device interoperability, or other patient empowerment tools. Essential health IT capabilities for value- based care arrangements include: • Real-time ADT/ pharmacy / RPM event feed into a shared task queue • High-accuracy master patient index + attribution engine. • FHIR -enabled longitudinal data lake (claims + clinical + SDoH) with frequent refresh • Writable care- plan module for patients, caregivers, and all providers • Remote- device gateway for triage into the EHR • Embedded electronic clinical quality measures (eCQMs) engine generating near –real-time quality scores • Predictive avoidable -admission alerts, API -based prior authorization tracking, AI -driven medication reconciliation 
- F. Value- Based Care Organizations SAS Comments for Health Technology Ecosystem code CMS -0042- NC Get more done with a faster, more productive analytics platform . Page 16 b. What other health IT capabilities have proven valuable to succeeding in value- based care arrangements? Proven health IT capabilities include: • Near -real-time contract -performance dashboards that tie claims, quality scores, and shared- savings targets together • Risk-adjusted cost -forecasting and attribution tools that flag margin erosion before settlement • Hierarchical condition category capture and encounter -coding audits with instant clinician feedback to protect risk -score accuracy • Referral -management and network -leakage analytics that keep care in- network and on- protocol • SDoH enrichment and outreach triggers that prioritize high- impact, nonclinical interventions • Closed- loop e- referral and scheduling APIs that shorten time- to-visit and reduce avoidable ED use • Preference- based patient engagement campaigns with built -in ROI tracking for every touchpoint VB-4. What are the essential data types needed for successful participation in value- based care arrangements? Data types needed include: • Clinical/EHR • Claims and cost • Utilization feeds • Pharmacy dispenses • Patient -reported • Social determinants • Device/ biometric • Provider and network 
- Error! No text of specified style in document. SAS Comments for Health Technology Ecosystem code CMS -0042- NC Concise Win Theme/Value Proposition or Section Name Page 17 Back Cover To contact your local SAS office, please visit: sas.com/offices SAS and all other SAS Institute Inc. product or service names are registered trademarks or trademarks of SAS Institute Inc. in the USA and other countries. ® indicates USA registration. Other brand and product names are trademarks of their respective companies. Copyright 2025 SAS Institute Inc. All Rights Reserved. 
+Front Cover
+SAS Comments for Health Technology
+Ecosystem (code CMS-0042-NC)
+Centers for Medicare & Medicaid Services
+
+Title Page
+SAS Comments for Health
+Technology Ecosystem (code
+CMS-0042-NC)
+
+Centers for Medicare & Medicaid
+Services
+
+June 16, 2025
+Submitted by:
+Mike Davis
+Senior Strategic Account Executive
+919-531-2792
+Mike.L.Davis@sas.com
+This proposal is the confidential and proprietary property of SAS Institute
+Inc. It may contain approaches, techniques, and other information
+proprietary to SAS, and shall not be disclosed in whole or in part to third
+parties without the prior written consent of SAS.
+Copyright 2025 SAS Institute Inc. All Rights Reserved
+
+Contents
+Executive Summary ............................................................................................ 1
+B. Patients and Caregivers ................................................................................ 2
+1. Patient Needs ........................................................................................................................ 2
+2. Data Access and Integration ................................................................................................. 4
+3. Information Blocking and Digital Identity ............................................................................... 7
+C. Providers ......................................................................................................... 8
+1. Digital Health Apps ................................................................................................................ 8
+2. Data Exchange .................................................................................................................... 10
+D. Payers ........................................................................................................... 12
+E. Technology Vendors, Data Providers, and Networks ............................... 13
+1. Ecosystem ........................................................................................................................... 13
+2. Digital Identity ...................................................................................................................... 13
+3. Technical Standards and Certification ................................................................................ 13
+4. Data Exchange .................................................................................................................... 14
+F. Value-Based Care Organizations ................................................................ 15
+1. Digital Health Adoption........................................................................................................ 15
+Contents
+Page i
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+Executive Summary
+SAS Institute Inc. (SAS) appreciates the opportunity to provide comments on the future
+of health care IT in the United States and celebrates the Centers for Medicare &
+Medicaid Services’ (CMS) and the Office of the National Coordinator for Health IT’s
+(ONC) decision to explore and request feedback on powerful topics in health care
+information technology. As a leader in data, analytics and AI for nearly 50 years, SAS
+has the distinct pleasure of helping hundreds of health care organizations across the
+world make sense of their data. SAS offers advanced analytics and artificial intelligence
+to provide value on an open and transparent platform.
+SAS agrees with CMS’ vision for a more open, interoperable and data-driven health care
+future. To build this future, our response reflects lessons learned from decades of
+experience working with leading health care organizations, specifically the power that
+advanced analytics can bring to a large health system. As an example, SAS has worked
+with the Emirates Health Service to build their goal of a “digital hospital”, by developing a
+complete patient registry, predicting fatal outcomes and providing these data clinical
+decision makers insights to better drive patient care. Similarly, SAS worked with Duke
+Health to develop AI models to optimize patient flow through an infusion clinic, with the
+potential to improve patient care and reduce overhead and waste in this expensive care
+area.
+In the area of interoperability, SAS is the analytics software for the North Carolina Health
+Information Exchange, NC HealthConnex. In this work, we find a system that often
+struggles to normalize data without access to costly third-party reference data and one
+that has been slow to move to Fast Healthcare Interoperability Resources (FHIR), but
+one that shows promise and potential when uniting connected health data with powerful
+data management and analytics.
+SAS’ motto has always been The Power to Know, for we understand that the open flow
+of data, in a secure and appropriate fashion, combined with powerful and transparent
+analytics leads to real knowledge. This is why our SAS Health platform was built with a
+FHIR-first design and utilizes SAS’ Model Cards capability which provides transparent
+insights into potential bias within AI models. It is with this experience and more that SAS
+is glad to present input back to CMS and ONC.
+Executive Summary
+Page 1
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+B. Patients and Caregivers
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve patients and caregivers. While we certainly want patients and
+caregivers to answer questions in this section (and in other sections) from the patient/caregiver
+point of view, we also invite all stakeholders to provide their viewpoints on the patient/caregiver
+workflows.
+1. Patient Needs
+PC-1. What health management or care navigation apps would help you understand and manage
+your (or your loved ones) health needs, as well as the actions you should take?
+The ideal app would be fully integrated, sitting on top of a single, secure platform that aggregates
+data from electronic health records, lab results, wearables, prescription fills/refills, etc. to provide
+a real-time, 360-defgree view of vitals, medications, and upcoming health related tasks. Ideally,
+there would be built-in decision-support algorithms to convert raw data into concrete prompts, for
+things such as scheduling a telehealth-visit, requesting a refill, or ordering follow-up labs, so that
+next step(s) are never missed. When chronic conditions are in play, continuous remote
+monitoring and coaching keep both patients and clinicians ahead of potential issues by surfacing
+early warning trends. A caregiver-sync feature lets assigned family members access the same
+dashboard to help manage, replacing scattered texts and missed reminders with coordinated,
+accountable action.
+a. What are the top things you would like to be able to do for your or your loved ones’ health that
+can be enabled by digital health products?
+The following are the top desirable things that can be enabled by digital health products:
+• Integrated care itinerary that tracks upcoming appointments, lab orders, imaging, and
+referrals on a single timeline with push reminders
+• Real-time benefit look-ups for out-of-pocket estimates, prior-authorization status, in-network
+alternatives with pricing compare/contrast before care is scheduled, and alerts for generic
+alternatives, medication bundles etc.
+• A medication command and reconciliation center with refill alerts, drug-interaction checks,
+and price-comparison coupons in one place
+• Symptom triage with escalation based on evidence-based self-care advice that can be
+handed off to telehealth, urgent care, or 911 as needed
+• Secure family sharing for caregiver views limited to what the patient authorizes, especially for
+individuals who are experiencing any cognitive impairment
+• Chronic condition management dashboards integrate vitals, labs, and medication adherence
+for patients with diabetes, hypertension, heart failure, etc., with alerts to providers when
+thresholds are breached
+b. If you had a personal assistant to support your health needs, what are the top things you would
+ask them to help with? In your response, please consider tasks that could be supported or
+facilitated by software solutions in the future.
+Tasks that could be supported or facilitated by software solutions in the future include:
+• Handle appointment booking, rescheduling, and transportation set-up automatically
+• Scan new test results, flag anything outside normal range, and explain next steps in plain
+language
+• Track quality and satisfaction metrics for each care provider and suggest the best local
+options
+• Keep a running list of programs a patient qualifies for like free vaccines, preventive
+screenings, food-as-medicine pilots, and sign me up and/or nudge me before deadlines
+B. Patients and Caregivers
+Page 2
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+• Aggregate out-of-pocket spending so patients always know where they stand against
+deductibles and coverage gaps
+PC-2. Do you have easy access to your own and all your loved ones’ health information in one
+location (for example, in a single patient portal or another software system)?
+According to the latest published data, only between 2% and 5% of all adults use an app that
+merges data from multiple patient portals, leaving most people juggling multiple systems and
+access points.
+a. If so, what are some examples of benefits it has provided?
+Examples of benefits include:
+• EMTs or ER staff can see allergies, meds, and advance directives within seconds
+• Potential for better chronic-care oversight, monitoring trending A1c, blood pressure, and
+weight, allowing clinicians to intervene sooner
+• Administrative relief when insurance, demographics, and consent flow straight from the
+record
+b. If not, in what contexts or for what workflows would it be most valuable to use one portal or
+system to access all such health information?
+Opportunities for improvement include:
+• Multi-site care, especially for severe illness. For example, when it comes to cancer care.
+oncology, radiation, and infusion centers rarely share images and genomics seamlessly.
+• Elder care coordination for when adult children need labs, care plans, and med lists without
+logging into multiple portals.
+• Rural and dual-eligible populations who tend to have frequent moves between hospital,
+skilled nursing facilities, and home health, creating data silos that slow follow-up care.
+c. Were there particular data types, such as x-rays or specific test results, that were unavailable?
+What are the obstacles to accessing your own or your loved ones’ complete health information
+electronically and using it for managing health conditions or finding the best care (for example,
+limitations in functionality, user friendliness, or access to basic technology infrastructure)?
+Data struggles and obstacles include:
+• Diagnostic imaging
+• Raw cardiology waveforms and surgical videos
+• Specialist progress notes that reside in “read only” mode behind paywalls
+• Proprietary EHR interfaces and fees for connection.
+• Variable adoption of FHIR APIs, especially among post-acute and behavioral-health vendors.
+• Limited broadband and device literacy in many Medicaid/Medicare populations.
+• Privacy concerns that discourage patients from granting proxy access, even to trusted
+caregivers
+PC-3. Are you aware of health management, care navigation, or personal health record apps that
+would be useful to Medicare beneficiaries and their caregivers?
+Solutions such as Epic’s MyChart for unified records and Medisafe for medication management
+demonstrate what’s possible, yet no single app currently delivers a complete, end-to-end package
+that combines record access, care navigation, cost transparency, and caregiver collaboration for
+Medicare beneficiaries.
+B. Patients and Caregivers
+Page 3
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+PC-5. What can CMS and its partners do to encourage patient and caregiver interest in these
+digital health products?
+Sharing use cases of where these tools have improved the patient experience can bridge the gap
+between technical demonstrations of the power of these tools and the human factor at play in the
+caregiver relationship.
+a. What role, if any, should CMS have in reviewing or approving digital health products on the
+basis of their efficacy, quality or impact or both on health outcomes (not approving in the sense of
+a coverage determination)? What criteria should be used if there is a review process? What
+technology solutions, policy changes, or program design changes can increase patient and
+caregiver adoption of digital health products (for example, enhancements to data access,
+reimbursement adjustments, or new beneficiary communications)?
+Aside from other factors (e.g., security), CMS should develop quality checks and easily
+deployable models to gauge the effectiveness of digital health products on an objective basis. For
+example, comparing health outcomes and spending for patients using the products compared to
+those which are not using the products. Although the model-building tools may originate
+elsewhere, there should be roles nested within CMS to conduct the actual evaluations.
+b. What changes would enable timely access to high quality CMS and provider generated data on
+patients?
+An end to legacy, monolithic data management systems at all levels would facilitate the
+integration of CMS/provider data. This would require a significant investment on the part of CMS
+but would produce unprecedented efficiencies in the long-term.
+PC-6. What features are most important to make digital health products accessible and easy to
+use for Medicare beneficiaries and caregivers, particularly those with limited prior experience
+using digital tools and services?
+Based on a quick survey of the literature, there are several must-haves for proper engagement of
+Medicare recipients. Big text, high contrast screens, and simple workflows to keep navigation
+effortless. Plain-language prompts and brief, built-in tutorials teach as they guide. Proxy logins
+with shared alerts that allow caregivers to step in without friction. Finally, automatic pulls from
+EHRs, pharmacies, and wearables to eliminate manual data entry.
+PC-7. If CMS were to collect real-world data on digital health products’ impact on health
+outcomes and related costs once they are released into the market, what would be the best
+means of doing so?
+CMS could require standardized FHIR feeds from digital tools that track usage, outcomes, and
+costs, integrating them into existing environments like the Chronic Conditions Data Warehouse.
+From there, platforms such as SAS Viya can link, analyze, and visualize the combined claims,
+EHR, and device data, allowing CMS to detect real-world impact without creating extra reporting
+work for vendors.
+2. Data Access and Integration
+PC-8. In your experience, what health data is readily available and valuable to patients or their
+caregivers or both?
+Caregiver access to data varies widely between different settings. Available literature in the field
+of implementation science has shown that caregiver access to resources is often a determining
+factor in the satisfaction of both patient and caregiver with the experience of caring for an
+individual.
+The following key data elements are especially valuable:
+• Lab results with reference ranges and trend charts
+• Medication lists including dosages and refill status
+B. Patients and Caregivers
+Page 4
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+• Visit summaries with diagnoses and follow-up instructions
+• Imaging reports with annotated findings
+• Care plans detailing goals, tasks, and responsible parties
+• Appointment schedules and reminders
+These elements are critical because they help patients understand current health status, track
+progress, and coordinate care. When presented alongside clear explanations and next-step
+guidance, they transform data into actionable insights that support timely decisions and reduces
+confusion.
+a. What data is valuable, but hard for patients and caregivers, or app developers and other
+technical vendors, to access for appropriate and valuable use (for example, claims data, clinical
+data, encounter notes, operative reports, appointment schedules, prices)?
+Studies have shown that qualitative data can be extremely valuable when assessing program
+effectiveness but is difficult to analyze on the scale required by CMS. Text analysis tools can help
+with this objective but can only go so far.
+A few additional, concrete examples include:
+• Detailed claims adjudication data, vital for cost transparency but locked behind payers’
+systems
+• Unstructured clinical narratives such as discharge summaries and operative reports contain
+essential context but require complex natural language processing (NLP) to extract reliably
+• Real-time appointment and scheduling feeds improve coordination and reduce no-shows yet
+remain siloed in proprietary EHR APIs
+• Patient-reported outcomes and social determinants data drive risk stratification but rarely flow
+through standard health-IT channels
+b. What are specific sources, other than claims and clinical data, that would be of highest value,
+and why?
+Available literature has shown that patient feedback data on provider facilities can be helpful for
+determination of value-based evaluations. Several additional sources that are very high value
+include:
+• Wearables (Remote Patient Monitoring)
+• Pharmacy fill records and adherence logs
+• Social Determinants of Health (SDoH) data, coming from patient intakes, screening tools,
+EMRs (z-codes), etc.
+c. What specific opportunities and challenges exist to improve accessibility, interoperability and
+integration of clinical data from different sources to enable more meaningful clinical research and
+generation of actionable evidence?
+The primary emerging challenge is ensuring the security of patient data; both preventing data
+breaches and committing the necessary resources to de-identifying data needed for research on
+this scale.
+The other challenge facing work in this space is the growing and intractable use of AI across the
+data life cycle. Aside from the obvious security concerns around patient data and privacy, CMS
+personnel will need analytical tools that are able to address unethical uses of AI and biases
+present in models trained by AI-dependent systems. The pace of AI development threatens to
+rapidly outpace the ability of governing bodies to address its misuse, particularly in government
+health areas. SAS has developed teams focused on the ethical use of AI, and continues to use its
+expertise in this field to guide other organizations on methods to ethically harness the power of AI
+to improve health outcomes.
+B. Patients and Caregivers
+Page 5
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+PC-11. How are health information exchanges (HIEs) currently helping to advance patient access
+to health information in the real world?
+HIEs may have a stated goal of being able to provide patient access to data stored within the HIE
+system. Currently, the North Carolina HIE of which SAS is the analytics provider, does not allow
+this function. The HIE does allow patients to view where their data has been sent but is not
+required to disclose the patient data housed within (separate entities provide that function).
+d. What is the ongoing role of HIEs amidst other entities facilitating data exchange and broader
+frameworks for data exchange (for example, vendor health information networks, TEFCA, private
+exchange networks, etc.)?
+HIEs are the community’s neutral, ethical trust broker, linking hospitals, clinics, public-health
+agencies, and social-service partners. By normalizing disparate EHR feeds, EMS reports, lab
+results, and social-determinant data, HIEs close last-mile gaps and keep clinicians and public-
+health officials aligned. As they are typically locally governed as nonprofits, they enforce
+community-driven consent rules, rigorous bias checks, and transparent audit trails that extend
+beyond HIPAA, protecting marginalized groups while enabling research and quality improvement.
+Their longitudinal, cross-provider datasets make them the logical proving ground for ethical AI
+alerts, predictive risk scoring, and real-time public-health dashboards. National networks may
+move the bulk data, but HIEs ensure that information remains trustworthy, inclusive, and
+actionable for the communities that generate it.
+PC-12. What are the most valuable operational health data use cases for patients and caregivers
+that, if addressed, would create more efficient care navigation or eliminate barriers to competition
+among providers or both?
+a. Examples may include the following:
+(1) Binding cost estimates for pre-defined periods.
+(2) Viewing provider schedule availability.
+(3) Using third-party apps for appointment management.
+(4) Accessing patient-facing quality metrics.
+(5) Finding the right provider for specific healthcare needs.
+The most valuable operational health data use cases for patients and caregivers include:
+• Cost estimates that auto-adjust when coverage or pricing changes
+• Real-time schedule inventory across competing health systems, urgent-care chains, and
+telehealth slots
+• Third-party booking APIs that can cancel, reschedule, and manage referrals without forcing
+portal logins
+• Consumer facing quality dashboards that blend HEDIS, CMS Star ratings, PROMs, and
+patient reviews in one view
+• Precision provider matching that filters by condition expertise, linguistic fit, and accessibility
+options
+• Pre-authorization status trackers with timestamps and escalation paths
+• Drug-price and pharmacy-stock checks surfaced at the point of prescribing
+• Single-click digital intake that populates every downstream system such as registration,
+imaging, labs, ancillary services
+b. What use cases are possible today?
+Use cases that are possible today include:
+• Static cost-estimate PDFs for select procedures
+• Scheduling within a single EHR instance
+• Stand-alone apps that handle booking but not typically document exchange
+• Public quality data updated quarterly
+• Basic provider directories filtered by specialty and distance
+B. Patients and Caregivers
+Page 6
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+c. What should be possible in the near future?
+The following should be possible in the near future:
+• API-driven cost estimates refreshed near-time against payer contracts
+• Federated scheduling that spans independent practices and hospital-owned clinics
+• Quality scores refreshed near-time and linked to the encounter screen
+• AI-assisted provider search that uses diagnoses, social needs, and language preferences to
+rank results
+d. What would be very valuable but may be very hard to achieve?
+The following would be very valuable but may be very hard to achieve:
+• Real-time/nationwide provider availability, updated in real or near time, due to the need to
+adopt a national standard
+• A universal patient identifier system, avoiding duplicity while protective privacy
+• Dynamic, contract-specific cost that update with benefit-year changes and tier re-
+assignments
+• Closed-loop referral tracking across unaffiliated networks, including follow-up data back to the
+referring clinician
+• End-to-end social-service integration (housing, food, transport) with shared documentation
+and billing support
+3. Information Blocking and Digital Identity
+PC-13. How can CMS encourage patients and caregivers to submit information blocking
+complaints to ASTP/ONC’s Information Blocking Portal? What would be the impact? Would
+increasing reporting of complaints advance or negatively impact data exchange?
+CMS could encourage patients and caregivers to submit information blocking complaints to
+ASTP/ONC’s Information Blocking Portal by:
+• Placing a “Report data-access problem” button inside every point of interaction and allowing
+voice or SMS submissions for those with low digital literacy
+• Auto-populating the complaint form with as much context as possible
+• Highlighting success stories where complaints triggered quick fixes, shifting the messaging
+from punitive towards improvement focus, creating a safe, no-fault feedback loop
+• Offering an anonymous option and reassure users of confidentiality protections, as well as
+publish aggregate complaint trends so providers see systemic gaps over personal attacks.
+• Linking reporting to incentives (positive reinforcement), possibly tying remediation of
+validated complaints to positive points in CMS quality programs.
+A higher volume of well-documented complaints provides a clear map of where information
+blocking occurs. That evidence allows organizations to target appropriate guidance, technical
+help, and enforcement (as needed), which in turn pressures vendors and providers to clean up
+access barriers faster. If CMS is empowered to triage complaints back to the market quickly,
+more reporting can become a force-multiplier for positive change. The risk of this being a net
+negative is if the process starts to feel punitive, arbitrary, or excessively bureaucratic in nature.
+B. Patients and Caregivers
+Page 7
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+C. Providers
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve providers. While we certainly want providers to answer
+questions in this section (and in other sections) from the provider point of view, we also invite all
+stakeholders to provide their viewpoints on the provider workflows as appropriate.
+1. Digital Health Apps
+PR-1. What can CMS and its partners do to encourage providers, including those in rural areas,
+to leverage approved (see description in PC-5) digital health products for their patients?
+SAS cares deeply about widening access to proven digital health tools, especially in rural and
+underserved regions, and applauds CMS’s resolve to do the same. CMS can offer start up
+incentives, extra shared savings credit for rural practices, targeted broadband subsidies, and on
+demand technical assistance so resource constrained providers can adopt approved apps without
+financial strain. A single FHIR based interface standard, a public catalog of certified products, and
+regular best practice playbooks will keep vendors, EHR teams, and clinicians on the same page.
+SAS can then supply secure analytics that track adoption and outcomes in real time, turning raw
+data into clear performance feedback that rewards what works and flags gaps before they widen.
+a. What are the current obstacles?
+Current obstacles include:
+• Less than half of households in rural health-care deserts subscribe to fixed broadband or own
+devices like laptops or tablets, making reliable real-time apps or video visits difficult.
+• Rural providers lag in adopting certified electronic health records, hindered by limited
+technical support, connectivity challenges, and lower interoperability.
+• Tight margins and unclear reimbursement models discourage rural practices from investing in
+digital tools.
+• Rural areas have an insufficient number of physicians, many of whom are over age 50.
+• Rural seniors face digital-health literacy that comes along with trust gaps, frequently requiring
+personalized, local support before adopting apps for routine health management.
+• Rural clinics identify cybersecurity as a barrier, lacking resources and expertise needed to
+confidently integrate new digital health devices and services into existing IT systems.
+b. What information should providers share with patients when using digital products in the
+provision of their care?
+Information that providers should share with patients include:
+• Providers should explain the app’s purpose, detailing what it tracks and how it will enhance
+diagnosis, monitoring, or treatment.
+• They need to specify what data the app collects, where it is stored, who can access it, and
+how long it will be retained.
+• Providers should spell out the patient’s responsibilities: how often to use the tool, which alerts
+require action, and when to call the clinic instead.
+• They must outline privacy and security protections, such as encryption and authentication
+steps, while reminding patients they can revoke access at any time.
+• Any potential costs, data charges, or insurance coverage details should be disclosed upfront.
+• Clear support channels must be provided, identifying whom to contact for technical issues or
+to report side effects and device problems.
+• With the further adoption of AI within digital health product, CMS should provide consumers
+support in understanding and deciphering what the AI model is doing and any bias that may
+be present, like the CMS Care Compare Tool. SAS has developed a SAS Model Card, which
+is a “nutrition label” for AI models, which take any AI model and provides insights into biases
+and drift in an easy-to-understand format.
+C. Providers
+Page 8
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+Additional information specific to rural USA:
+• Providers should note the minimum bandwidth needed, describe offline or low-signal
+workflows, and give an estimate of data usage for patients with limited connectivity.
+• They should direct patients to local resources such as community health workers, extension
+offices, or phone-only workflows to help with setup and troubleshooting.
+• Providers should also highlight state or federal broadband subsidies and loaner-device
+programs that can lower financial barriers to using the digital tool.
+c. What responsibilities do providers have when recommending use of a digital product by a
+patient?
+A provider must first vet the tool’s clinical validity, regulatory status, data-security safeguards, and
+cost. Informed consent must be secured and then the provider must lay out the associated
+benefits, risks, and the expectations for the level of patient engagement/involvement Finally, the
+information around any AI models used in the product should be disclosed and an easy-to-
+understand explanation of the model, any known biases and other considerations should be
+displayed. As a leader in AI Governance and Trustworthy AI, SAS has developed tools that can
+assist with such a process.
+PR-2. What are obstacles that prevent development, deployment, or effective utilization of the
+most useful and innovative applications for physician workflows, such as quality measurement
+reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated?
+Obstacles and mitigation recommendations include:
+• Data silos and non-standard formats keep apps from pulling or pushing the metrics
+physicians need. Mandating FHIR R4 APIs and a national digital-quality-measure library
+would cut integration costs and speed development.
+• Misaligned incentives and unclear reimbursement make it hard for practices to justify new
+workflows. CMS can tie MIPS and APM bonuses to verified digital reporting and reimburse
+AI-assisted documentation directly.
+• EHR vendor lock-in and high app-store fees deter innovators. Enforcing open marketplaces
+and capping transaction fees would widen the pipeline of useful tools.
+• Clinicians distrust “black box” AI and resent extra clicks. Requiring model transparency,
+rigorous usability testing, and giving credit for ambient, click-reducing documentation can turn
+skepticism into uptake.
+• Cybersecurity and liability concerns stall procurement. A shared federal security-certification
+program and safe-harbor protections for certified tools would lower perceived risk.
+• Small practices often lack capital and IT staff. Targeted technical-assistance grants and low-
+cost, cloud-hosted managed services can deliver turn-key deployment without new overhead.
+PR-3. How important is it for healthcare delivery and interoperability in urban and rural areas that
+all data in an EHR system be accessible for exchange, regardless of storage format (for example,
+scanned documents, faxed records, lab results, free text notes, structured data fields)? Please
+address all of the following:
+a. Current challenges in accessing different data formats.
+Lack of integration and continued data siloing will hamper any technical progress made in app
+development and the like.
+b. Impact on patient care quality.
+When providers have access to the full patient record, including scanned documents, faxed
+notes, free-text entries, and structured labs, they can make faster decisions, avoid redundant
+tests, and reduce medication errors. If any part of the record remains siloed due to format,
+clinicians are forced to operate with incomplete information, which directly compromises quality of
+care and outcomes.
+C. Providers
+Page 9
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+c. Technical barriers to full data accessibility.
+This has already been addressed in several sections but in summary, many EHRs store data in
+fragmented or proprietary formats, making it difficult to extract and exchange complete records.
+Scanned documents and free-text notes often lack metadata, which limits searchability and
+automated processing. Older systems may not support modern APIs like FHIR, and even those
+that do often apply inconsistent standards, slowing integration and raising costs.
+d. Cost or privacy implications of making all data formats interoperable.
+Converting legacy formats and unstructured data into interoperable, machine-readable content
+can be expensive, especially for smaller systems without existing infrastructure. Privacy risks also
+increase when broad access is granted to sensitive documents that were never designed for
+digital exchange. Ensuring proper tagging, audit trails, and access controls adds complexity but is
+necessary to prevent breaches and maintain trust.
+e. Priority level compared to other interoperability needs.
+App-level interoperability is a growing priority but is still secondary to core system-to-system
+exchange. Until foundational interoperability across EHRs, labs, pharmacies, and payers is
+consistent and reliable, the value of app integration will be limited. However, as the infrastructure
+matures, app-level access becomes essential for patient-facing innovation and real-time decision
+support.
+PR-4. What changes or improvements to standards or policies might be needed for patients’
+third-party digital products to have access to administrative workflows, such as auto-populating
+intake forms, viewing provider information and schedules, and making and modifying an
+appointment?
+Existing standards, like FHIR, already support administrative functions, but consistent access is
+blocked by uneven implementation and proprietary restrictions. Policy changes should require
+certified systems and providers to expose standardized APIs for intake, scheduling, and provider
+directories. Enforcing open participation across vendors and care settings is essential to allow
+third-party apps to operate reliably and serve patients effectively.
+2. Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your
+provider organization’s systems, directly or through an intermediary? For each, describe the
+transaction model, use case, whether you use individual queries or bulk transactions, and any
+constraints:
+a. Patient Access API
+b. Standardized API for Patient and Population Services
+c. Provider Directory API
+d. Provider Access API
+e. Payer-to-Payer API
+f. Prior Authorization API
+g. Bulk FHIR – Do you support Group ID-based access filtering for population-specific queries?
+h. SMART on FHIR – Do you support both EHR-launched and standalone app access? What
+does the process for application deployment entail?
+i. CDS Hooks (for clinical decision support integrations)
+SAS Health supports bulk FHIR but does not support Group ID-based access filtering.
+C. Providers
+Page 10
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+PR-7. What strategies can CMS implement to support providers in making high-quality, timely,
+and comprehensive healthcare data available for interoperability in the digital product ecosystem?
+Financial incentives could help offset the cost of implementing compliant technology platforms
+capable of collecting, preparing, and protecting clinical data real time.
+How can the burden of increasing data availability and sharing be mitigated for providers?
+CMS and payers could offer provider assistance in the form of financial, access automation
+technologies, financial implementation expertise, and liability protections for compliance.
+Are there ways that workflows or metrics that providers are already motivated to optimize for that
+could be reused for, or combined with, efforts needed to support interoperability?
+The process mapping, workflow artifacts, and other metrics can be ingested into data analytical
+tools with backend AI models to optimize interoperability seamlessly.
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers?
+CMS or partners can help with simplifying clinical quality data responsibilities of providers by
+ensuring access to data management tools to assist with data stewardship.
+a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to
+CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by
+performing quality metrics calculations leveraging Bulk FHIR data exports?
+Benefits include:
+• Reduced provider burden
+• Standardization
+• Interoperability
+• Better health surveillance
+A downside is that large data volumes may cause slower performance.
+Leveraging bulk FHIRs can reduce the burden on providers by offering an automated and
+streamlined way to extract the EHR data. Bulk FHIRs can also reduce the need for manual entry
+and reporting of patient data since data can be pulled automatically and periodically, ultimately
+reducing a layer of administrative burden.
+Bulk FHIR data exports from provider EHRs to CMS will also help spur innovation through easier
+and increased data sharing in a common data format. This is especially useful with population
+health, research, and near real time access to information.
+b. In what ways can the interoperability and quality reporting responsibilities of providers be
+consolidated so investments can be dually purposed?
+We recommend using data analytical software that adheres to industry standards for
+interoperability, which can improve data quality and reporting for providers.
+c. Are there requirements CMS should consider for data registries to support digital quality
+measurement in a more efficient manner? Are there requirements CMS should consider for data
+registries that would support access to real-time quality data for healthcare providers to inform
+clinical care in addition to simplifying reporting processes?
+CMS should consider the use of data access engines, AI models, and machine learning
+technologies to ensure data quality; and combine it with digital credentials to control real-time
+access to authorized users.
+C. Providers
+Page 11
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+D. Payers
+PA-5. What are ways payers can help with simplifying clinical quality data responsibilities of
+providers?
+a. How interested are payers and providers in EHR technology advances that enable bulk
+extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead
+of the provider-side technology?
+There is a mutual interest and benefit for both payers and providers to share clinical data and
+ensure that the data quality is of the highest standard possible. The underlying issue is the
+financial burden to implement and maintain a technology platform that does not unduly cause a
+hardship for smaller providers with the requirement to purchase the necessary EHR technology to
+collect quality clinical data and share with payers via bulk extract of the clinical data via
+standardized EHR interoperability standards.
+Payers should offer providers EHR client applications as the interface into the payer’s claims
+processing system.
+Claims processing infrastructure standardization is necessary to implement mechanisms to
+enable bulk extraction of clinical quality data regardless of provider type, size, location, or payer
+enrollment. Standardization creates opportunities for interoperability to take root and grow. To
+extract quality clinical data, which is a form of data exchange, the data must adhere to the same
+standards. Similarly, HIEs allow the electronic exchange of healthcare information among
+different healthcare organizations. A Healthcare Payer Exchange (HPE) would enable payers and
+providers to share quality clinical data within the HIE.
+b. In what ways can the interoperability and quality reporting responsibilities of providers to both
+CMS and other payers be consolidated so investments can be dually purposed? Are there
+technologies payers might leverage that would support access to real time quality data for
+healthcare providers to inform clinical care in addition to simplifying reporting processes?
+The interoperability and quality reposting responsibilities of providers to payers and CMS could
+be consolidated by adopting standardized tools to automate the collection of clinical quality data
+and generation of standardized reporting in real time. Currently available technologies include
+text analytics and natural language processing (NLP), large language models (LLMs), generative
+AI, AI-driven document analysis, and agentic AI.
+D. Payers
+Page 12
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+E. Technology Vendors, Data Providers,
+and Networks
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve technology vendors, data providers, and networks. While we
+certainly want technology vendors, data providers, and networks to answer questions in this
+section (and in other sections) from their point of view, we also invite all stakeholders to provide
+their viewpoints on the technology vendor, data provider, and network use cases as appropriate.
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate
+developer interest in building digital health products for Medicare beneficiaries and caregivers?
+Vision and direction. CMS must provide the digital healthcare industry clear and consistent
+direction on where it envisions the future of healthcare in the US. While digital healthcare offers
+new and innovative ways to healthcare, it also has its own unique sets of challenges, such as
+data privacy, cyber security, and ethical use.
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+a. What are the challenges and benefits?
+Credentialing involves vetting and issuance of credentials on a national scale. Managing digital
+credentials on a notational scale, i.e. revocation, replacement, expiration, and compromise.
+Analysis of digital identity systems should be a considered requirement of a national credentialing
+system to ensure quality and performance of the entire process.
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange?
+Requiring digital identities, in theory, should have a positive impact on the data exchange by
+ensuring a higher level of confidence in transaction validity. However, this is where the use of
+digital analysis tools will enable intelligent decision making.
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs
+over proprietary APIs?
+CMS must continue to lead in the development of, and use of open, standards-based, publicly
+available APIs. Building on the Blue Button 2.0 work for consumers, CMS should strive to meet
+the requirements set forth in its Interoperability and Patient Access final rule (CMS-9115-F) for
+Medicare FFS. Through this leadership, CMS will be able to encourage and at times require the
+use of open, standards-based APIs over proprietary APIs. This will also provide clear guidance
+on when FHIR transactions conflict with HIPAA requirements, giving the health care community
+clear guidance and a path forward. SAS believes that open, appropriate, standards-based
+exchange of information is imperative to a better functioning health care system.
+TD-7. To what degree has USCDI improved interoperability and exchange and what are its
+limitations?
+The USCDI has improved interoperability and health data exchange. Like most standards
+organizations, the USCDI program is slow to roll-out new changes and often may lose specific
+areas of important information due to needing to meet a common standard. This should not be
+seen as a downfall of the USCDI, but rather a limitation that can be supported through analytic
+tools and other methods outside the process of health data interoperability. The current set of
+E. Technology Vendors, Data Providers, and Networks
+Page 13
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+data elements are extensive and support current use cases, but in the case of analytics are often
+too focused on transactional systems. Adding more data elements to the USCDI will enhance
+analytics value. SAS recommends that CMS and ONC continue to support USCDI and its
+initiative to continue to grow and standardize the dataset, making it more available to analytic and
+population health use cases.
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or
+metrics should CMS consider?
+Other data sources commonly produced by the federal government (e.g., American Community
+Survey data) could be incorporated into CMS analytics projects to build upon population health
+research. For example, understanding which communities are most impacted by food deserts,
+and tying those insights into overall health outcomes.
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+Increased use of bulk FHIR supports scalable, efficient population-level data exchange and
+enhances analytics, care coordination, and reporting. The use of bulk FHIR toolkits would enable
+more free-flowing data through appropriate means for additional research and innovation. The
+current restriction on exporting data from current data systems lacks a standard which bulk FHIR
+could replace and provide new means for data sharing beyond the current transactional systems
+FHIR has provided. A bulk FHIR could support this and reduce the friction of population level data
+exchanges.
+b. What are the potential disadvantages of their use?
+While bulk FHIR use will require additional infrastructure, security and patient consent
+management and other implementation, the value gained by providing a clear and standardized
+way to share population-level data through a known standard would be well achieved. The risks
+from not implementing a bulk FHIR standard include additional reductions in innovation and
+quality improvement.
+E. Technology Vendors, Data Providers, and Networks
+Page 14
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+F. Value-Based Care Organizations
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve value-based care organizations. While we certainly want value-
+based care organizations to answer questions in this section (and in other sections) from the
+value-based care provider point of view, we also invite all stakeholders to provide their viewpoints
+on the value-based care workflows as appropriate.
+1. Digital Health Adoption
+VB-1. What incentives could encourage APMs such as accountable care organizations (ACOs) or
+participants in Medicare Shared Savings Program (MSSP) to leverage digital health management
+and care navigation products more often and more effectively with their patients? What are the
+current obstacles preventing broader digital product adoption for patients in ACOs?
+We recommend the following incentives:
+• Boost shared savings split when a large percentage target (maybe 70% or more) of attributed
+lives log a digital touch (e.g., portal, RPM, secure message)
+• Offer tech stipends if certain thresholds are met
+• Add quality bonus points for gaps closed through digital workflows
+• Count low-acuity patients managed virtually at a lower risk weight to expand covered lives
+without raising benchmarks
+Main obstacles include uncertain ROI, EHR integration cost, clinician alert fatigue, tech gaps in
+high-risk seniors, and construct validity.
+‐
+VB-2. How can key themes and technologies such as artificial intelligence, population health
+analytics, risk stratification, care coordination, usability, quality measurement, and patient
+engagement be better integrated into APM requirements?
+Recommendations for better integration into APM requirements include:
+• Require transparent, quarterly refreshed risk-strat algorithms with bias testing
+• Make in-workflow pop-health dashboards a certification item
+• Mandate 48-hour electronic discharge hand-offs via standard FHIR messages
+• Tie credit to percentage response on patient-reported outcomes
+• Demand an AI governance plan, embedded with transparency, for any model used in triage,
+prior auth, or outreach
+VB-3. What are essential health IT capabilities for value-based care arrangements?
+a. Examples (not comprehensive) may include: care planning, patient event notification, data
+extraction/normalization, quality performance measurement, access to claims data, attribution
+and patient ID matching, remote device interoperability, or other patient empowerment tools.
+Essential health IT capabilities for value-based care arrangements include:
+• Real-time ADT/ pharmacy / RPM event feed into a shared task queue
+• High-accuracy master patient index + attribution engine.
+• FHIR-enabled longitudinal data lake (claims + clinical + SDoH) with frequent refresh
+• Writable care-plan module for patients, caregivers, and all providers
+• Remote-device gateway for triage into the EHR
+• Embedded electronic clinical quality measures (eCQMs) engine generating near–real-time
+quality scores
+• Predictive avoidable-admission alerts, API-based prior authorization tracking, AI-driven
+medication reconciliation
+F. Value-Based Care Organizations
+Page 15
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Get more done with a faster, more productive analytics platform.
+b. What other health IT capabilities have proven valuable to succeeding in value-based care
+arrangements?
+Proven health IT capabilities include:
+• Near-real-time contract-performance dashboards that tie claims, quality scores, and shared-
+savings targets together
+• Risk-adjusted cost-forecasting and attribution tools that flag margin erosion before settlement
+• Hierarchical condition category capture and encounter-coding audits with instant clinician
+feedback to protect risk-score accuracy
+• Referral-management and network-leakage analytics that keep care in-network and on-
+protocol
+• SDoH enrichment and outreach triggers that prioritize high-impact, nonclinical interventions
+• Closed-loop e-referral and scheduling APIs that shorten time-to-visit and reduce avoidable
+ED use
+• Preference-based patient engagement campaigns with built-in ROI tracking for every
+touchpoint
+VB-4. What are the essential data types needed for successful participation in value-based care
+arrangements?
+Data types needed include:
+• Clinical/EHR
+• Claims and cost
+• Utilization feeds
+• Pharmacy dispenses
+• Patient-reported
+• Social determinants
+• Device/biometric
+• Provider and network
+F. Value-Based Care Organizations
+Page 16
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC
+
+Concise Win Theme/Value Proposition or Section Name
+Back Cover
+To contact your local SAS office, please visit: sas.com/offices
+SAS and all other SAS Institute Inc. product or service names are registered trademarks or
+trademarks of SAS Institute Inc. in the USA and other countries. ® indicates USA registration.
+Other brand and product names are trademarks of their respective companies.
+Copyright 2025 SAS Institute Inc. All Rights Reserved.
+Error! No text of specified style in document.
+Page 17
+SAS Comments for Health Technology Ecosystem code CMS-0042-NC

@@ -1,3 +1,68 @@
- CMS-0042-NC StrivePD Architecture StrivePD’s cloud-native data pipeline aligns with CMS and ONC’s vision for a patient-centered, standards-based digital ecosystem in three key ways: 1. Open ingestion (HIGHLY AVAILABLE & EXTENSIBLE) The front-end Ingest API accepts raw HealthKit, Apple Watch, and third-party sensor streams the moment they’re generated. Because it’s schema-driven and FHIR-aware, new data types (e.g., Epic FHIR bulk exports, Bluetooth wearables) drop in with minimal lift. This keeps patients at the center: wherever they collect data, it flows into a longitudinal record. 2. Security-ﬁrst, customizable processing (HIGHLY RELIABLE & SECURE) On AWS, each processing step is containerized behind role-based access controls and encryption at rest/in flight, satisfying HIPAA and CMS “zero trust” expectations. Modular transforms let us normalize to US Core FHIR proﬁles or specialized research schemas on the fly supporting both clinical care and value-based population analytics without duplicative pipelines. 3. Low-latency, developer-friendly access (HIGHLY PERFORMANT) The Query API and SDK expose indexed time-series and streaming endpoints that apps, EHR plug-ins, and analytics platforms can query in milliseconds. This lets care teams surface real-time symptom insights, payers run quality-measure dashboards, and researchers prototype adaptive-trial analytics all on the same governed dataset, reducing silos and analytic duplication. StrivePD turns dense, heterogeneous neurologic data into standards-compliant, readily computable FHIR artifacts that flow securely from patient devices to clinicians, payers, and researchers. By collapsing ingestion, normalization, and high-performance access into one AWS-hosted backbone, we cut the time and cost of integrating novel real-world evidence exactly the acceleration CMS and ONC are calling for. By funneling every watch-captured tremor episode, gait change, or missed-medication timestamp through StrivePD’s low-latency pipeline, we can generate personalized “nudge logic” in seconds: an evidence-based message to take a skipped dose, a hydration reminder, or a prompt to start a balance-focused exercise. These micro-interventions surface in the patient’s app exactly when they matter, while the same risk signals trigger a clinician alert only if thresholds are crossed keeping the care team focused on the moments that truly require 
- escalation. In practice, this turns continuous real-world data into a real-time coaching layer that keeps people with Parkinson’s on their care plan day-to-day and initiates early intervention as soon as risk is detected, delivering the proactive, patient-centric model CMS and ONC envision. Apple FHIR Mapping Apple’s Health Records feature, exposed to developers as FHIR-native clinical resources in HealthKit, directly advances CMS and ONC’s call for a patient-centered, standards-based digital ecosystem. By giving individuals on-device access to their AllergyIntolerance, Condition, Coverage, Immunization, Observation, Medication, Procedure, and DocumentReference data with no proprietary wrappers Apple eliminates format translation overhead and lets any FHIR-capable app plug in immediately. This lowers integration costs for innovators, encourages competition around value-add services (e.g., care-plan coaching, remote monitoring), and equips patients to share complete, computable records across providers, reducing duplicate tests and care gaps. In short, Apple’s out-of-the-box FHIR pipeline turns the smartphone into an interoperable health hub, accelerating better outcomes at lower systemwide cost.. Apple’s HKClinicalTypeIdentiﬁer* list maps one-to-one to the subset of FHIR resources Apple Health Records imports from participating provider APIs. Reference Apple’s Developer Docs. 
- HealthKit Clinical Type Identiﬁer FHIR Resource Description HKClinicalTypeIdentiﬁerAllergyRecord AllergyIntolerance Documented allergies and intolerances HKClinicalTypeIdentiﬁerConditionRecord Condition Problems, diagnoses, and other conditions HKClinicalTypeIdentiﬁerCoverageRecord Coverage Insurance and payor coverage details HKClinicalTypeIdentiﬁerImmunizationRecord Immunization Administered vaccinations HKClinicalTypeIdentiﬁerLabResultRecord Observation Laboratory result observations HKClinicalTypeIdentiﬁerVitalSignRecord Observation Vital signs (BP, HR, temp, etc.) HKClinicalTypeIdentiﬁerMedicationRecord MedicationStatement / MedicationOrder / MedicationDispense Medication lists, orders, and dispenses HKClinicalTypeIdentiﬁerProcedureRecord Procedure Clinical and surgical procedures HKClinicalTypeIdentiﬁerClinicalNoteRecord DocumentReference Clinical notes & documents 
+CMS-0042-NC
+StrivePD Architecture
+StrivePD’s cloud-native data pipeline aligns with CMS and ONC’s vision for a patient-centered,
+standards-based digital ecosystem in three key ways:
+1. Open ingestion (HIGHLY AVAILABLE & EXTENSIBLE)
+The front-end Ingest API accepts raw HealthKit, Apple Watch, and third-party sensor
+streams the moment they’re generated. Because it’s schema-driven and FHIR-aware,
+new data types (e.g., Epic FHIR bulk exports, Bluetooth wearables) drop in with
+minimal lift. This keeps patients at the center: wherever they collect data, it flows into a
+longitudinal record.
+2. Security-first, customizable processing (HIGHLY RELIABLE & SECURE)
+On AWS, each processing step is containerized behind role-based access controls and
+encryption at rest/in flight, satisfying HIPAA and CMS “zero trust” expectations.
+Modular transforms let us normalize to US Core FHIR profiles or specialized research
+schemas on the fly supporting both clinical care and value-based population analytics
+without duplicative pipelines.
+3. Low-latency, developer-friendly access (HIGHLY PERFORMANT)
+The Query API and SDK expose indexed time-series and streaming endpoints that apps,
+EHR plug-ins, and analytics platforms can query in milliseconds. This lets care teams
+surface real-time symptom insights, payers run quality-measure dashboards, and
+researchers prototype adaptive-trial analytics all on the same governed dataset,
+reducing silos and analytic duplication.
+StrivePD turns dense, heterogeneous neurologic data into standards-compliant, readily
+computable FHIR artifacts that flow securely from patient devices to clinicians, payers, and
+researchers. By collapsing ingestion, normalization, and high-performance access into one
+AWS-hosted backbone, we cut the time and cost of integrating novel real-world evidence
+exactly the acceleration CMS and ONC are calling for.
+By funneling every watch-captured tremor episode, gait change, or missed-medication
+timestamp through StrivePD’s low-latency pipeline, we can generate personalized “nudge
+logic” in seconds: an evidence-based message to take a skipped dose, a hydration reminder, or
+a prompt to start a balance-focused exercise. These micro-interventions surface in the
+patient’s app exactly when they matter, while the same risk signals trigger a clinician alert only
+if thresholds are crossed keeping the care team focused on the moments that truly require
+
+escalation. In practice, this turns continuous real-world data into a real-time coaching layer
+that keeps people with Parkinson’s on their care plan day-to-day and initiates early
+intervention as soon as risk is detected, delivering the proactive, patient-centric model CMS
+and ONC envision.
+Apple FHIR Mapping
+Apple’s Health Records feature, exposed to developers as FHIR-native clinical resources in
+HealthKit, directly advances CMS and ONC’s call for a patient-centered, standards-based
+digital ecosystem. By giving individuals on-device access to their AllergyIntolerance, Condition,
+Coverage, Immunization, Observation, Medication, Procedure, and DocumentReference data
+with no proprietary wrappers Apple eliminates format translation overhead and lets any
+FHIR-capable app plug in immediately. This lowers integration costs for innovators,
+encourages competition around value-add services (e.g., care-plan coaching, remote
+monitoring), and equips patients to share complete, computable records across providers,
+reducing duplicate tests and care gaps. In short, Apple’s out-of-the-box FHIR pipeline turns
+the smartphone into an interoperable health hub, accelerating better outcomes at lower
+systemwide cost..
+Apple’s HKClinicalTypeIdentifier* list maps one-to-one to the subset of FHIR resources Apple
+Health Records imports from participating provider APIs. Reference Apple’s Developer Docs.
+
+HealthKit Clinical Type Identifier FHIR Resource Description
+Documented allergies and
+HKClinicalTypeIdentifierAllergyRecord AllergyIntolerance intolerances
+Problems, diagnoses, and other
+HKClinicalTypeIdentifierConditionRecord Condition conditions
+Insurance and payor coverage
+HKClinicalTypeIdentifierCoverageRecord Coverage details
+HKClinicalTypeIdentifierImmunizationRecord Immunization Administered vaccinations
+HKClinicalTypeIdentifierLabResultRecord Observation Laboratory result observations
+HKClinicalTypeIdentifierVitalSignRecord Observation Vital signs (BP, HR, temp, etc.)
+MedicationStatement
+/ MedicationOrder / Medication lists, orders, and
+HKClinicalTypeIdentifierMedicationRecord MedicationDispense dispenses
+HKClinicalTypeIdentifierProcedureRecord Procedure Clinical and surgical procedures
+HKClinicalTypeIdentifierClinicalNoteRecord DocumentReference Clinical notes & documents

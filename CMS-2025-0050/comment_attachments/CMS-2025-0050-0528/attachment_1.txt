@@ -1,19 +1,788 @@
-This proposal or quotation includes data that shall not be disclosed outside the government and shall not be duplicated, used, or disclosed, in whole or in part, for any purpose other than to evaluate this proposal or quotation. If, however, a contract is awarded to this offeror or quoter as a result of or in connection with the submission of these data, the government shall have the right to duplicate, use, or disclose the data to the extent provided in the resulting contract. This restriction does not limit the government’s right to use information contained in this data if it is obtained from another source without restriction. The data subject to these restrictions are contained in all pages of this proposal. In addition, the information contained herein may include technical data, the export of which is restricted by the U.S. International Traffic in Arms Regulations (ITAR) or the U.S. Export Administration Regulations (EAR). This material is not intended by Science Applications International Corporation to become a “record,” within the meaning of 5 USC Sec. 552, and is entrusted to the government with the understanding that it will be returned if the government is unwilling or unable to maintain it as non-record material. Health Technology Ecosystem Department of Health and Human Services - Centers for Medicare & Medicaid Services June 16th, 2025 | CMS 0042-NC Submitted to: Submitted by: Business Development: Giritharan Rajaiah 703-676-4300 Giritharan.Rajaiah@saic.com Technical Support: Magizhan Tamilarasu 667-305-8255 Magizhan.Tamilarasu@saic.com Centers for Medicare & Medicaid Services Department of Health and Human Services Attention: CMS-0042-NC P.O. Box 0813 Baltimore, MD 21244-8013 SAIC 12010 Sunset Hills Road, Fl 4 Reston, VA 20190 CAGE Code: 6XWA8 UEI: MMLKPW9JLX64 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 1 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . Executive Summary At SAIC, we understand the critical role that an advanced and secure Health Technology Ecosystem plays in transforming healthcare delivery and improving health outcomes. Our extensive experience in health IT and commitment to innovation uniquely position us to support the Department of Health and Human Services (HHS) and the Centers for Medicare & Medicaid Services (CMS) in achieving their strategic goals. We are dedicated to enhancing health value by focusing on quality, equity and access. Our approach is centered on putting patients’ health first, ensuring that care respects their individual goals, values, culture, social geographic inequality and privacy. We prioritize secure data access, facilitating seamless and secure exchange of real time health information among patients, caregivers, and providers. SAIC recognizes the importance of advancing value-based care through robust healthcare data access, enabling providers to better understand patient needs, manage risks, ensure health care cost transparency and track improvements. We support the use of standard agreements like the TEFCA, Bulk FHIR, SDOH and other research/ care coordination health IT standards to achieve real time secure interoperability and enhance health IT functionality. We leverage new digital health tools and technologies, including advanced APIs, Advanced Clinical Decision Support system using Generative AI and Large Language Models (LLM’s) and refined data analysis, to maximize the use of existing health IT infrastructure for clinical research and public health purposes. By simplifying regulations and reducing administrative burdens, we help align the regulatory environment with broader policy goals. Our solutions ensure privacy and security are embedded in health IT. As interoperability and health IT usage expand, we implement robust data first security measures to protect sensitive health information and adhere to Zero Trust Architecture (ZTA) outlined by NIST, DISA and HHS. SAIC is committed to partnering with HHS and CMS to build a resilient, innovative, and patient- centered Health Technology Ecosystem that delivers cost-effective, value-driven, and superior health outcomes for all Americans across diverse care settings and geographic locations. Our approach emphasizes secure data access, interoperability, advanced digital technology use, and regulatory simplification. By focusing on patient needs, privacy, and security, we aim to transform healthcare delivery, improve efficiency, and foster equitable access to high-quality care nationwide. 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 2 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . Section B – Part 2. Data Access and Integration PC-8(a): While Medicare beneficiaries and caregivers currently have access to claims data, prescription histories, and basic demographic information via Medicare.gov and APIs like Blue Button 2.0, these datasets are retrospective and limited in clinical depth and timeliness – claims data can lag weeks or months, limiting usefulness for active management. High-value data such as clinical records from EHRs—including lab results, imaging studies, care team notes, and real-time treatment updates—remains largely siloed due to fragmented interoperability, non-standardized formats, and vendor-specific constraints. Historically, CMS has had limited engagement with provider and research data sources, given its traditional role as a payer. As it expands access to these datasets, CMS must prioritize harmonizing non-standardized formats and mitigating vendor- specific constraints to enable scalable, interoperable solutions In addition, critical data types such as encounter notes and surgical or operative reports are often buried in unstructured formats and inconsistently shared, making them inaccessible to patients and third-party app developers. These documents offer vital insights for post-acute care coordination, second opinions, and safety monitoring, but are underutilized in patient-facing tools. Moreover, operational transparency – such as on average appointment wait times – is lacking. Making such scheduling data publicly available would offer meaningful visibility into provider availability and care access. Service-level pricing data, including negotiated rates and out-of-pocket costs by providers, are another high-value but inaccessible dataset. Despite policy efforts to enhance price transparency, patients still lack access to actionable, provider-specific pricing to compare and plan for medical services. Patients still lack timely access to actionable, provider-specific pricing—such as negotiated rates, out-of-pocket estimates, and cost-sharing details—in formats that support real- time decision-making when selecting care options. PC -8 (b): Beyond claims and core clinical data, several underutilized but high-value sources could significantly enhance decision-making, care coordination, and system efficiency if made accessible: Provider-Level Performance Metrics : Including quality scores, patient safety indicators, outcomes, and patient experience ratings. These metrics support STAR rating and value- based goals, while helping beneficiaries make informed choices about providers and promote competition based on quality. Service-Level Pricing by Provider : Price transparency at the procedure and provider level would help beneficiaries understand their financial responsibilities and actively compare care options, reducing surprise billing and enabling more competitive provider markets. Social Services Utilization Data: Information on beneficiary engagement with programs such as SNAP (Supplemental Nutrition Assistance Program), TANF (Temporary Assistance for Needy Families), housing support, and utility assistance offers critical insight into an individual's social context. When integrated with health records, this data 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 3 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . can inform more holistic care planning, enable better resource allocation, and support targeted interventions to address social determinants of health. Additionally, it can help care coordinators identify service gaps, avoid duplication, and improve longitudinal tracking of non-clinical needs that impact health outcomes Process Metrics/Service Operations Data: Timely access to operational data from both payers and providers—such as average time to appointment, time from referral to specialist visit, prior authorization processing times, and service completion rates—would bring much-needed visibility into healthcare delivery performance. These metrics are essential for understanding bottlenecks, measuring access, and enabling patients and caregivers to navigate the system more effectively. For example, knowing that the average wait time for a cardiology appointment in a given region is 28 days could prompt more proactive scheduling or help inform policy decisions related to network adequacy. Geographic Mapping Data : Information related to housing, food insecurity, transportation access, and caregiver support is crucial for care planning and addressing health disparities. This data is rarely integrated into patient-facing systems but is essential for tailoring care to individual needs. Each data type directly advances CMS priorities: provider performance metrics support value- based payments and STAR ratings; operational data informs Medicare Advantage network adequacy and access standards; social services data aligns with the Health Equity Framework; service-level pricing enhances transparency and reduces surprise billing; and geographic data strengthens care models for underserved and high-risk populations. PC-8 (c): Readily available health data includes claims data, prescription histories, vaccination records, and basic demographics from Medicare.gov and APIs. However, accessing more critical data such as clinical records, lab results, imaging studies, encounter notes, and real-time updates remains challenging due to interoperability issues. Operational transparency, including appointment wait times and pricing, is also limited, impeding informed patient decisions. Enhanced interoperability and standardized data formats are essential, as critical data in patient portals and health information exchanges often remains siloed. Improving clinical care coordination and clinical research standards presents several opportunities, including the adoption of FHIR-based APIs, TEFCA alignment, and patient-facing digital tools that promote transparency and usability. These can be complemented by other existing research, care coordination and clinical data and imaging standards. Challenges include inconsistent data standards, semantic variability, limited vendor incentives for interoperability, and complex data governance. Systemic hurdles involve privacy regulations, misaligned stakeholder incentives, and the need to advance various VBC (value-based care) methodologies. Promising solutions involve CMS investments, cross-sector partnerships, the CDM and clear standards for enhancing clinical research, population health outcomes, and promoting equity, patient engagement, and directed care. 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 4 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . Launch FFS to VBC transformation and map Each data type to supports CMS various programs and initiatives: provider performance metrics align with value-based Merit-based Incentive and Alternative Payment Models); process and operational data inform social adequacy and access standards for Medicare Advantage; social services utilization data supports CMS's efforts in improving health equity and addressing social health; service-level pricing transparency to reduce cost; and social/rural mapping strengthens care models targeting underserved and high-risk populations. PC-9: To enhance the utility of the Blue Button 2.0 API and support the development of more effective digital tools for Medicare beneficiaries and caregivers, several additional CMS data sources could be prioritized for inclusion. Chief among these are clinical and care coordination data, such as lab results, imaging reports, care plans, provider notes, and care team communications. These elements are essential for building digital solutions that support chronic disease management, care transitions, and multi-provider coordination. Equally important is access to Medicaid data for dual-eligible individuals, which is critical for addressing the needs of low-income seniors through more comprehensive benefit tracking and care management. Developers also see significant value in integrating social determinants of health (SDOH) data— including income level, housing status, and food security—as these factors are increasingly tied to patient outcomes and are central to developing equity-focused applications. Finally, behavioral health records and functional status data, such as mental health treatment history and activities of daily living (ADL) assessments, are crucial for tools that support caregivers and complex care planning. PC-9 (a): Many of the needed datasets/data sources reside in fragmented systems, such as electronic health records (EHRs) or state-administered databases, which are not natively integrated with CMS infrastructure. SDOH data, in particular, is often siloed across local agencies and lacks standardization, making it difficult to retrieve and operationalize. Privacy and security concerns also complicate data sharing, especially as more sensitive health and behavioral information is considered for inclusion. The 2019 security incident involving Blue Button has made stakeholders more cautious about expanding access without robust safeguards. From a technical standpoint, current implementations of the API rely on non-standard FHIR URL structures and inconsistent data formatting, which complicates developer integration and limits interoperability with commercial health IT systems. PC-9 (b): To enhance the utility and adoption of the Blue Button 2.0 API, CMS could target improvements across technical functionality, developer support, and financial incentives for providers. Technically, CMS could fully adopt the FHIR R4 standard, introduce structured error codes and real-time debugging tools, and expand synthetic sandbox data to include clinical notes and SDOH metrics. Strengthening developer support through interactive, use-case-based tutorials and a dedicated advocate team would streamline onboarding and integration. On the policy front, piloting bulk data access via the Beneficiary Claims Data API (BCDA) and aligning API requirements with the CARIN for Blue Button Implementation Guide would promote interoperability and enable scalable, patient-centered innovation. Critically, CMS could pair these efforts with financial incentives for private providers, particularly smaller practices and safety-net 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 5 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . organizations, to connect to Health Information Exchanges (HIEs) and leverage the Blue Button 2.0 infrastructure. This could include subsidies for interface development, PMPM payments, or bonus payments under value-based care programs for providers that demonstrate active API usage or HIE connectivity. By offsetting the initial and ongoing costs of implementation, these incentives would reduce financial barriers, encourage broader participation, and help ensure that the value of the Blue Button 2.0 API is fully realized across the provider landscape. These enhancements would make the API more robust, developer-friendly, and aligned with modern healthcare needs PC-9 (c): To enhance the effectiveness of digital health tools for Medicare beneficiaries, CMS could begin to integrate high-value non-CMS data sources that support more holistic, patient- centered care. Cross-agency linkages—such as CDC immunization records and community health rankings, as well as HUD and SNAP eligibility data—would provide context for addressing public health needs and social determinants of health (SDOH). These datasets offer essential insights which are critical for addressing disparities and designing targeted interventions. Additionally, patient-generated data—such as wearable device metrics (e.g., glucose trends, fall detection) and caregiver-reported functional status updates—would support more proactive and personalized care, particularly for seniors managing chronic conditions. Commercial data partnerships could further strengthen the ecosystem by enabling real-time medication adherence tracking through pharmacy systems and improving care access via transportation and logistics APIs. Integrating these non-CMS data sources through secure, standards-based frameworks would significantly broaden the API’s utility, empowering developers to build smarter, more equitable, and outcome- driven tools for the Medicare population. PC-10: TEFCA™ is beginning to demonstrate meaningful impact in advancing real-world patient access to longitudinal health information. At Healthcare Information and Management System Society’s in March of 2025 (HIMSS 2025), Partners Healthcare and b.well Connected Health showcased TEFCA-enabled, end-to-end patient data retrieval across multiple providers through a unified interface—addressing long-standing challenges such as delayed diagnoses and fragmented care for complex patients. In parallel, Epic’s adoption of TEFCA has enabled over 1,000 hospitals and 22,000 clinics to facilitate more than 14 million document exchanges, supporting cross- network care coordination and public health reporting. These examples underscore TEFCA’s growing role as a national interoperability infrastructure that empowers patients, enhances care continuity, and strengthens system-wide data exchange. PC-10 (b): Suggested Changes: i. Expand Use Cases: Add prior authorization and social determinants of health (SDOH) data exchange to TEFCA’s scope, aligning with CMS’s interoperability priorities ii. Simplify Onboarding: Reduce technical and financial barriers for small practices by offering subsidized API integration tools 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 6 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . iii. Enhance Patient Education: Develop standardized patient-facing materials explaining TEFCA’s benefits, modeled after CMS’s patient access rule resources PC-10 (c): Use cases: i. Chronic Care Management : Automated aggregation of data from specialists, pharmacies, and home monitoring devices for patients with diabetes or heart failure. ii. Emergency Response : Real-time exchange of allergy and medication data during disasters via FHIR-based APIs. iii. Patient-Mediated Sharing : Allow patients to selectively share records with non-TEFCA entities (e.g., clinical trial sponsors) using OAuth2.0 PC-10 (d): Several data standards are currently functioning effectively to advance health information access and interoperability, supporting both patient empowerment and system-wide data exchange. The FHIR® API standard has emerged as a foundational enabler, widely adopted across health systems to support app-based patient access and provider-to-provider data exchange in real time. Its flexible architecture and compatibility with mobile and web-based tools have made it a critical driver of modern digital health solutions. Complementing FHIR, the U.S. Core Data for Interoperability (USCDI) provides a nationally recognized set of standardized data elements— such as allergies, medications, and lab results—that significantly reduce variability in shared records. This standard helps ensure that data exchanged across systems remains consistent, structured, and clinically useful. In parallel, QRDA III has proven to be a reliable and widely used standard for quality reporting, particularly within CMS programs such as the Merit-based Incentive Payment System (MIPS). By enabling uniform reporting of aggregate clinical quality measures, QRDA III supports performance benchmarking and value-based care alignment. Together, these standards form a strong foundation for advancing interoperability, streamlining regulatory compliance, and enabling scalable innovation across the healthcare ecosystem. PC 10 (e): Several emerging standards hold significant promise for improving data access, integration, and interoperability, yet remain underutilized across the healthcare ecosystem. The Observational Medical Outcomes Partnership Common Data Model (OMOP CDM) is a prime example. Widely used in research and clinical informatics, OMOP CDM enables structured, comparable data across institutions—making it ideally suited to enhance data liquidity for real- world evidence generation if integrated with broader frameworks like TEFCA. Its adoption within CMS programs could accelerate clinical research, safety monitoring, and public health surveillance at scale. Similarly, the Da Vinci Project Implementation Guides, developed under HL7 and built on the FHIR® standard, offer robust solutions for high-impact use cases such as automated prior authorization, gaps-in-care identification, and value-based reporting. However, deployment of these guides remains limited due to fragmented vendor adoption and operational inertia. Broader 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 7 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . implementation would streamline payer-provider workflows, reduce administrative burden, and accelerate care delivery—particularly in complex or high-utilization scenarios. PC-10 (f): Regional Health Information Exchanges (HIEs) represent perhaps the most visible example of redundant infrastructure. The state of Indiana's recent consolidation of three separate HIEs into a single statewide network demonstrates both the problem and potential solution. The consolidation eliminated duplicate administrative overhead while serving nearly all providers in the state through one unified platform. Multiple HIE participation creates significant administrative burden for healthcare providers. Organizations often must join several networks to achieve comprehensive data sharing, each with distinct governance structures, technical requirements, and operational procedures. PC-10 (g): While several alternatives to TEFCA support health information exchange, none currently replicate its core value: a nationwide, standardized governance framework for network- to-network interoperability. The CMS Interoperability and Patient Access Rule has mandated the use of payer APIs to improve individual access to clinical and claims data; however, it does not provide the broader network governance or cross-organizational coordination that TEFCA enables. Regional Health Information Exchanges (HIEs) offer localized data sharing capabilities but often face limitations in cross-state scalability, hindering their effectiveness for national or multi-jurisdictional care coordination. Proprietary networks—such as Epic’s Care Everywhere, which facilitates the exchange of more than 10 million records daily—demonstrate high-volume utility but remain vendor-specific and lack interoperability with non-affiliated platforms. TEFCA’s unique contribution lies in its ability to establish a universal trust framework and operational rules that promote secure, consistent, and scalable data exchange across disparate systems nationwide. However, for TEFCA to achieve its full potential, CMS and its federal partners must continue to accelerate adoption of FHIR-based standards, incentivize alignment among private-sector platforms, and address persistent challenges related to clinical workflow integration and data usability. PC-11 (a): HIEs provide substantial value by enabling cross-provider access to clinical data that supports care coordination, public health reporting, and population health management. When functioning effectively, they can deliver real-time access to lab results, medication histories, immunizations, and encounter summaries that improve decision-making and reduce duplication of services. However, data availability and accuracy vary widely across HIEs due to uneven provider participation, incomplete data feeds, and inconsistent adherence to data standards. In many cases, patient records are fragmented, duplicative, or lack key clinical context—limiting their reliability for high-stakes use cases. PC-11 (b): To enhance the effectiveness of HIEs, key improvements include expanding participation across smaller and underserved provider types, standardizing and cleaning data using national interoperability standards, and improving patient access through user-friendly tools and streamlined consent. Financial sustainability could be strengthened through diversified funding 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 8 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . aligned with payer and public health priorities, while modernizing technical infrastructure is essential to support real-time exchange, scalable analytics, and cloud-based integration. PC-11 (c): Yes, several HIEs demonstrate scalable, high-impact models: a) CRISP (Maryland/DC) has successfully integrated hospitals, ambulatory providers, and public health systems, supporting use cases from care alerts to social needs referrals. b) Manifest MedEx (California) brings together claims and clinical data from payers and providers, enabling robust longitudinal patient records and care gap analytics. c) Utah Health Information Network (UHIN) exemplifies a well-governed public-private model that supports interoperability across payers and providers, including a focus on underserved populations. These HIEs succeed due to their strong governance, commitment to interoperability, and ability to serve as trusted conveners across sectors. PC-11 (d): HIEs remain vital as regional data integrators, particularly for smaller providers, safety-net organizations, and public health agencies not fully served by national networks. As TEFCA and commercial exchanges scale, HIEs play a complementary role by enabling last-mile connectivity, supporting localized public and population health analytics, integrating cross-sector data—including SDOH—and serving as data quality stewards. To sustain their impact, HIEs must modernize into interoperable platforms aligned with national frameworks while preserving their regional flexibility and community trust PC-12: The operationalization of health data presents a powerful opportunity to improve care navigation, empower patients and caregivers, and foster a more competitive and transparent healthcare marketplace. Several high-value use cases, if addressed, could significantly reduce friction in the patient experience and eliminate structural barriers to provider competition: Binding Cost Estimates for Pre-Defined Periods : Patients and caregivers often face unpredictable healthcare costs due to variable pricing, fragmented billing systems, and lack of upfront cost visibility. Enabling binding cost estimates for specific procedures or episodes of care—valid for a defined time window—would allow individuals to make informed decisions and plan for care financially. Operationalizing this capability requires integrating claims, coverage, and pricing data at the point of scheduling, and aligning payer-provider data systems to offer real-time financial transparency. This would also encourage providers to compete on value and efficiency, particularly in high-volume, shoppable services. Real-Time Provider Schedule Availability : Today, finding and scheduling an appointment often requires navigating disconnected platforms or calling multiple providers, creating delays in access to care. Establishing real-time, standardized APIs that expose provider availability across systems would streamline scheduling, 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 9 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . reduce administrative burden, and increase throughput. For patients, this translates to faster care access; for the market, it opens opportunities for new scheduling platforms and reduces reliance on proprietary networks, encouraging competition based on convenience and responsiveness. Third-Party App Integration for Care Management : Care navigation—particularly for patients managing chronic conditions or coordinating across multiple providers—can be disjointed without the ability to consolidate and act on operational data. Enabling secure, FHIR-based integration with third-party care management apps would allow patients and caregivers to access real-time appointment information, care team contacts, referrals, and task reminders in one place. This would improve adherence, reduce duplicative care, and allow digital health vendors to innovate around patient experience, driving value beyond traditional care delivery channels. AI-Driven Provider Matching : Patients often select providers based on limited or outdated information. AI-enabled provider matching tools that leverage operational data—such as appointment availability, quality scores, patient reviews, treatment specialization, and geographic proximity—can guide patients to high- quality, cost-effective care options aligned with their preferences and needs. This supports smarter provider selection, reduces inappropriate utilization, and encourages providers to differentiate based on measurable performance. PC-12 (b): Several high-value operational health data use cases are already technically feasible today and, if more broadly adopted and standardized, could significantly improve care navigation and promote provider competition. Price transparency tools represent a major step forward. As of 2024, approximately 75% of hospitals are compliant with CMS’s machine-readable file mandate, often validated through tools like the v2.0 Online Validator. While this signals progress, the usability and interpretability of the data for consumers remains inconsistent. Complementary solutions such as FAIR Health’s API further enhance transparency by providing historical charge benchmarks across 493 geographic regions in both English and Spanish, enabling patients and caregivers to generate self-service cost estimates and compare prices before care is delivered. These tools empower individuals to make financially informed decisions and encourage providers to offer competitive, predictable pricing. In parallel, basic appointment scheduling automation is increasingly accessible. The Argonaut Scheduling Implementation Guide, a FHIR-based standard, has enabled roughly 68% of Epic clients to support online booking, cutting average scheduling time from 9.2 minutes to just 2.4 minutes. This functionality improves care access, reduces administrative burden, and lays the groundwork for broader scheduling interoperability. However, notable limitations remain— approximately 32% of providers still require phone confirmation for complex visits, which introduces delays and undermines the seamless, consumer-friendly experience that patients increasingly expect. Standardizing APIs for scheduling across all EHR platforms, along with expanding automation to include specialty and multi-provider coordination visits, would further eliminate friction and drive competition based on accessibility and patient convenience. 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 10 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . PC-12 (c): In the near future, the deployment of intelligent, AI-powered tools—such as ambient scheduling assistants—represents a transformative opportunity to streamline care navigation, reduce avoidable readmissions, and improve continuity of care for patients and caregivers. These assistants not only relieve administrative burden on providers but also help patients avoid the confusion and delays that often follow hospital discharge. By integrating these tools into provider workflows and enabling access to standardized scheduling APIs, CMS can help accelerate their adoption systemwide. Furthermore, expanding ambient assistants to support medication reconciliation, home health referrals, and social service navigation would create a more seamless and proactive healthcare experience—particularly for high-risk populations—while promoting a more competitive, outcomes-driven provider landscape. PC-12 (d): One of the most valuable—but also most challenging—operational health data use cases is the development of social determinant-aware navigation systems that can dynamically guide patients and caregivers to both clinical and non-clinical resources based on individual social risk factors. While approximately 68% of existing care navigation tools incorporate basic screening for social determinants of health (SDOH)—such as housing instability, food insecurity, or transportation barriers—only 9% currently connect to community-based resources through bidirectional APIs that allow for closed-loop referrals and real-time status updates. This disconnect significantly limits the ability of care teams to intervene effectively and of patients to access timely, holistic support. The Gravity Project’s SDOH Clinical Care FHIR Implementation Guide provides a national standard for representing and exchanging SDOH data, yet its adoption remains limited due to challenges in mapping these data elements within EHR systems, inconsistent local data infrastructure, and limited interoperability across healthcare and social service sectors. Overcoming these barriers would require CMS to play a leading role in incentivizing EHR vendors, providers, and community organizations to adopt common standards, invest in technical integration, and align incentives around addressing non-medical drivers of health. If realized, social determinant-aware navigation could meaningfully reduce disparities, enhance care coordination, and improve outcomes for the most vulnerable populations—while creating new opportunities for providers and technology partners to differentiate through equitable, whole- person care delivery. 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 11 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . Section E. Technology Vendors, Data Providers, and Networks Part 1. Ecosystem TD-1. To accelerate digital innovation in support of Medicare beneficiaries and caregivers, CMS could implement a phased strategy that addresses both immediate needs and long-term systemic transformation. In the near term, CMS can catalyze progress by hosting regular seminars, panels, and listening sessions that bring together developers, providers, caregivers, and beneficiaries to share insights, surface unmet needs, and build trust across the innovation ecosystem. Strengthening developer support is equally critical; CMS could expand its developer portals with clear documentation, FAQs, and real-time technical assistance to ease integration with key APIs such as Blue Button 2.0. Complementary technical assistance programs can further reduce onboarding friction by helping developers navigate regulatory pathways and align their solutions with CMS standards. Additionally, CMS can stimulate innovation through targeted grant programs and competitive funding opportunities, such as funding 10-15 pilot projects annually to generate a 20% increase in digital tool adoption. To enable safe and effective development, CMS could broaden access to sandbox environments with synthetic Medicare data and automate credentialing processes to streamline experimentation and accelerate time-to-value. CMS could also continue to solicit structured feedback from the developer and stakeholder community through Requests for Information (RFIs), ensuring short-term policies remain adaptive to evolving technology and end- user needs. Over the longer term, CMS could invest in building foundational digital health infrastructure that simplifies access and integration. This includes interoperable provider directories, modern identity verification frameworks, and the expansion and general availability of high-value APIs and data- sharing initiatives such as Data at the Point of Care. To sustain innovation at scale, CMS must also align financial incentives by embedding digital health adoption into value-based care models, quality measures, and payment arrangements that reward prevention and care coordination. Regulatory modernization will be essential—streamlining approval and certification pathways for digital health tools, and standardizing innovation model design features to minimize administrative burden on developers and providers. A sustained focus on patient-centered innovation could guide the development of intuitive, accessible tools that empower beneficiaries and caregivers to manage their health, navigate the care continuum, and make informed decisions. Finally, CMS could institutionalize continuous stakeholder engagement to ensure its digital strategy evolves in tandem with market innovation and the lived experiences of those it serves. By executing this comprehensive approach, CMS can establish a dynamic, inclusive, and future-ready digital health ecosystem that improves outcomes and equity across the Medicare population. TD-2 (a): To stimulate greater developer engagement and unlock new opportunities for digital innovation, CMS could prioritize expanding the scope of data made available through its APIs. One of the most critical additions would be Medicare Advantage (Part C) claims data, which is currently absent from Blue Button 2.0. With nearly 48% of Medicare beneficiaries enrolled in Part C plans, the lack of visibility into their utilization patterns creates a significant blind spot for developers seeking to build comprehensive care management, analytics, and patient engagement 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 12 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . tools. Incorporating this data would enable more accurate risk stratification, performance measurement, and longitudinal patient insights across the full Medicare population. Risk adjustment is critical to ensuring that Medicare Advantage plans have the resources necessary to provide innovative, affordable, high quality care to all Medicare eligible beneficiaries who choose Medicare Advantage. Medicare Advantage relies on an accurate and stable risk adjustment that ensures plans are able to provide high value care to all beneficiaries, including those with complex health needs. Medicare Advantage’s approach depends on the accurate clinical identification of health status to reflect the needs of beneficiaries. It is this process that allows Medicare Advantage plans to provide the high quality care that works to identify illness early and better outcome. It is essential that risk adjustment in Medicare Advantage is accurate, stable, and predicable. This enables Medicare Advantage plans to offer innovative, effective, quality care that is highly valued by millions of beneficiaries, their families, and providers. Additionally, integrating standardized social determinants of health (SDOH) indicators—such as Z59 codes for food insecurity, housing instability, and transportation barriers—would allow developers to design tools that account for the real-world conditions influencing patient outcomes. When linked to claims and encounter data, these indicators could support risk-adjusted care models, targeted interventions, and enhanced equity analytics. Finally, developers would benefit significantly from access to real-time prior authorization (PA) status, particularly if CMS expands the scope of its CMS-0057-F rule to include drug-related PA decisions and incorporates predictive analytics for likely denials. Releasing anonymized prior authorization denial patterns would enable developers to train machine-learning models for automated triage. This would allow digital platforms to streamline care workflows, alert providers and patients proactively, and reduce administrative burden associated with PA processes. Making these datasets accessible through secure, standards-based APIs would meaningfully expand the CMS data ecosystem and attract a broader range of innovators focused on building intelligent, patient-centered solutions for Medicare beneficiaries. TD-2 (b): Data Type Integration Value Example Sources State Medicaid Data Enables 360 degree view for dual-eligible patients MITS/T-MSIS analytics files Medical Device Feeds Correlated implant data with postoperative outcomes FDA UDI Database Pharmacy Dispense Logs Validates Part D adherence against actual fills NCPDP Telecommunication Standard 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 13 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . Private Payer Claims Reduces care gaps through consolidated histories CARIN Payer Data Exchange IG TD-2 (c): Despite growing demand for comprehensive, patient-centered digital tools, several significant obstacles continue to limit access to critical CMS and health system data sources— hindering developer innovation and slowing progress toward a more interoperable health ecosystem. Technical limitations remain a primary challenge: for example, approximately over 70% of electronic health records (EHRs) still store clinical notes as non-searchable PDFs, which prevents effective data parsing and integration. Additionally, many APIs impose restrictive payload limits, making it difficult to export large volumes of longitudinal data—particularly for patients with complex, chronic conditions whose records may exceed 2.1 GB. Regulatory fragmentation also impedes access. Behavioral health data, for instance, is subject to inconsistent consent requirements across 14 states, creating uncertainty and compliance risk for developers attempting to build cross-jurisdictional tools. Furthermore, access to the CMS Virtual Research Data Center (VRDC)—a key resource for academic and analytic use cases—has become cost-prohibitive, with fees rising over significantly since 2022, reducing participation from research institutions and smaller innovators. These combined barriers—technical, and regulatory—undermine data liquidity and discourage developer investment, underscoring the need for CMS to enforce interoperability standards and foster an ecosystem where data can flow securely, efficiently, and equitably to support innovation at scale. TD-2 (d): CMS and ASTP/ONC could prioritize the development and deployment of new, purpose-built APIs that enable more intelligent and dynamic use of operational health data. A National Provider Directory API would serve as a foundational resource, offering real-time verification of provider credentials—including board certifications and telehealth licensure—as well as dynamic updates on network participation status, such as whether a provider is currently accepting new Medicaid patients. This would reduce administrative burden, enhance transparency, and improve care navigation for patients and caregivers. Similarly, a Social Determinants of Health (SDOH) Resource API could provide a standardized, FHIR-based inventory of community-based services—such as food banks, housing assistance programs, and transportation resources—mapped to the nationally recognized 211 taxonomy. Such an API would empower developers to build applications that connect patients with the non-clinical support systems most relevant to their needs, driving more holistic and equitable care delivery. A Clinical Trial Matching API represents another high-impact opportunity. By enabling automatic patient matching to NIH-registered clinical trials based on CMS claims history and trial eligibility criteria, this API could significantly expand access to advanced therapies and reduce disparities in clinical research participation, particularly among underserved Medicare populations. By bridging 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 14 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . these gaps, CMS can transform its data infrastructure from a regulatory compliance tool into an innovation engine for value-based care. Part 4. Data Exchange TD-12: CMS could endorse non-CMS data sources and networks when they meet rigorous criteria that align with CMS's mission, data quality standards, and regulatory requirements. This approach supports comprehensive quality measurement while maintaining data integrity and patient privacy. Endorsing high-quality non-CMS data—such as registry, social services, or patient-generated datasets—can enhance the comprehensiveness of CMS programs while preserving data integrity and patient privacy. Key criteria for endorsement could include: Data quality and reliability , supported by standardized validation processes, transparent data collection methodologies, and measurable performance indicators such as error rates, completeness, and CMS system compatibility. Privacy and security compliance , requiring strict adherence to HIPAA, enforcement of the Minimum Necessary Principle, and implementation of CMS-equivalent encryption, access controls, and breach response protocols. Technical interoperability , ensuring all endorsed data sources conform to CMS-approved standards such as FHIR® APIs or QRDA III formats and are validated through proven linkage methodologies compatible with CMS's identity-matching protocols. Purpose alignment , requiring clear evidence that the data supports CMS goals in quality improvement, population health, or performance measurement, including demonstrated value in addressing known gaps and stakeholder consensus through transparent endorsement processes. Operational sustainability , backed by long-term maintenance plans, cost-effectiveness evaluations, and scalability testing to ensure data pipelines can support CMS's national footprint. These capabilities can be validated through a certification process or independent audit. CMS has already applied similar principles in its oversight of Qualified Clinical Data Registries (QCDRs) and external research data partnerships, requiring secure transmission, ongoing review, and clear alignment with quality performance objectives. By holding non-CMS data sources to these same standards, CMS can expand its data ecosystem responsibly—enabling richer insights, reducing reporting burdens, and advancing equitable, outcomes-based care. TD-13: Precision Medicine and AI-Driven Care: Full EHI APIs enable machine learning models to analyze unstructured clinical notes, pathology reports, and imaging narratives that contain critical contextual details absent from USCDI’s structured fields. For example, natural language processing applied to psychiatry progress notes could identify subtle symptom progression patterns in treatment-resistant depression—data that structured mood assessment scales in USCDI v3 cannot capture 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 15 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . TD-13 (a): Enabling full API-based access to electronic health information (EHI), particularly unstructured data, faces several significant barriers that must be addressed to realize its full potential. Technically, most electronic health record (EHR) systems are not designed to extract, normalize, or expose unstructured data—such as clinical notes, pathology reports, and imaging narratives—at scale. This challenge is compounded by data fragmentation across systems and inconsistent metadata, which hinder the ability to construct a coherent longitudinal patient record. Furthermore, many healthcare IT environments lack the infrastructure to support advanced technologies such as natural language processing (NLP) and AI, limiting the ability to extract actionable insights from unstructured data. Emerging approaches to address these challenges have been seen through AI-assisted data labeling and FHIR Genomics. TD-13 (b): The primary tradeoff between USCDI and full Electronic Health Information (EHI) lies in balancing interoperability and simplicity with clinical depth and contextual richness. USCDI offers a standardized, structured dataset that simplifies data exchange and lowers implementation burden, making it well-suited for consistent use across health systems. In contrast, full EHI includes unstructured data—such as clinical notes and care plans—that provides deeper clinical insight and supports advanced analytics like natural language processing. However, it introduces greater complexity in integration, interpretation, and infrastructure requirements. As data processing capabilities evolve, the decision increasingly centers on aligning technical feasibility with the need for comprehensive, patient-centered insights via a phased expansion strategy from USCDI to full EHI to guide CMS actions TD-14 (a): SAIC supports EDI-TAS, the Department of Veterans Affairs’ enterprise system for eligibility verification and claims processing. In this role, we have implemented modern interoperability features—most notably the use of the FHIR R4 standard for internal data structuring—while maintaining the security and operational integrity required in a federal payer context. Endpoint Connectivity: EDI-TAS is integrated with the VA Financial Services Center (FSC) via a secure Azure Service Bus architecture. Although these exchanges do not currently utilize externally accessible FHIR APIs, they are structured using FHIR R4 standards for improved consistency and future extensibility. This hybrid model demonstrates how modern standards can be applied within high-assurance environments, even without public API exposure. Searchability: The current implementation prioritizes security and controlled access. Connections are not publicly discoverable by National Provider Identifier (NPI) or organizational ID, and are limited to vetted partners under predefined agreements. This model supports deterministic, secure workflows and offers valuable lessons in balancing discoverability with enterprise risk management. SAIC’s experience with this secure, standards-aligned configuration is directly relevant to CMS’s broader goal of achieving greater FHIR-based interoperability. We understand the operational trade-offs in real-world federal environments and can help CMS identify scalable onramps to API- first ecosystems without requiring immediate overhaul of critical systems. TD-14 (b): In the EDI-TAS environment, SAIC has integrated FHIR R4 as a core structuring element within claim-related message formats. While transport is not yet handled using full FHIR 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 16 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . (g)(10) APIs, the platform applies contemporary standards in a way that aligns with system stability and mission needs. Protocol Use:  FHIR R4: Used internally to structure payloads, enabling standardization and easing potential transitions to API-based workflows in the future.  Azure Service Bus: Employed for secure, asynchronous message exchange. This allows scalable coordination between components while maintaining full auditability and reliability.  X12 Standards: Continue to serve as the backbone for claims and eligibility transactions (e.g., 837, 270/271), offering proven throughput and system compatibility. This dual-mode architecture allows modernization to proceed without disruption, offering a compelling reference model for CMS to consider when looking to implement FHIR within environments still dominated by legacy protocols. Our experience navigating this path can inform CMS implementation strategies, particularly for payers with constrained modernization budgets or mission-critical uptime needs. TD-14 (c): EDI-TAS currently facilitates point-to-point data exchange under direct agreements and VA security governance, rather than through formal trust frameworks like TEFCA or Carequality. While it does not yet interconnect with national networks, its configuration reflects operational requirements of secure federal systems. Interconnection Approach:  Exchanges are limited to authorized VA components (e.g., FSC) and governed by strict access policies and bilateral agreements.  Integration occurs via well-defined interfaces and standardized payloads, ensuring consistency and compliance with internal data sharing policies.  Trust and governance are enforced through internal controls rather than external intermediaries. This model is reflective of many federal implementations that prioritize security, traceability, and mission continuity. SAIC’s experience in designing and operating such environments offers valuable perspective for CMS as it evaluates phased strategies to promote TEFCA alignment and broader trust-based exchange—particularly in settings that require controlled modernization and risk-aware implementation roadmaps. TD-15 (a) : Expanding the use of bulk FHIR APIs would significantly enhance CMS’s ability to support high-value, population-level use cases—particularly in public health and real-time analytics. For example, syndromic surveillance could leverage a single bulk export to expose data from the unstructured clinical notes of hundreds of thousands of patients to identify early indicators of emerging threats, such as spikes in “respiratory distress” tied to potential avian influenza outbreaks. Similarly, vaccine effectiveness studies would benefit from rapid, large-scale analysis of immunization and outcome data, enabling timely post-market surveillance across diverse populations. By enabling scalable, structured data exchange, bulk FHIR transforms CMS’s data 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 17 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . infrastructure into a powerful tool for proactive decision-making, early intervention, and public health innovation. TD-15 (b): Implementing bulk FHIR APIs for value-based care monitoring and coordination offers significant benefits but faces challenges. These include technical hurdles like integrating with legacy systems, data standardization issues, and ensuring scalability. Data security and privacy risks, obtaining patient consent, and managing large datasets are critical concerns. Organizational challenges involve provider resistance, lack of skilled personnel, and collaboration needs. Finally, staying compliant with evolving regulations and interpreting standards consistently are key regulatory challenges. Despite these, strategic implementation Bulk FHIR API can enhance care coordination and patient outcomes. There are also significant security and compliance risks. Unlike transactional APIs, a single compromised bulk export could expose data from hundreds of thousands of patients, exponentially increasing the breach surface and the associated legal and reputational risks for both CMS and participating entities. Additionally, operational barriers, particularly cost structures, continue to limit adoption. Despite federal rules encouraging open access, API call fees can render bulk data exports financially unsustainable for nearly 90% of community hospitals, many of which lack the technical or financial resources to absorb these costs. TD-16. Point-to-point health information exchange models offer technical simplicity and fast implementation by creating direct, bilateral connections between healthcare entities. While this approach works well for immediate, small-scale connectivity, it becomes unsustainable at scale— requiring thousands of individual integrations as participants grow. Each connection demands custom interfaces, security protocols, and data mappings, placing a significant operational burden on organizations. In contrast, shared network infrastructures—such as Health Information Exchanges (HIEs) and TEFCA—enable scalability by allowing organizations to connect once and exchange data with all participants, dramatically reducing integration complexity and cost. These models benefit from network effects, increasing adoption and data availability as participation grows, and they allow for shared cost structures that make advanced capabilities more accessible across resource-constrained settings. While point-to-point models may offer faster response times due to direct routing, their scalability and interoperability challenges are significant—particularly in enterprise environments with multiple EHR vendors. Shared networks, though slightly less performant due to standardization overhead, offer long-term sustainability through common data models and broader interoperability support Participation can be further incentivized by tying engagement to program eligibility or offering reporting credits, aligning organizational incentives with federal interoperability goals. TD-16 (a): Despite regulatory efforts to promote data sharing, significant barriers continue to hinder scalable, equitable network participation. The 21st Century Cures Act aims to prevent information blocking, but uneven enforcement allows vendors to maintain proprietary constraints. While TEFCA introduces uniform governance and technical standards to address these issues, the 
- Health Technology Ecosystem | CMS 0042-NC | June 16th, 2025 18 Source Selection Information – See FAR 2.101 and 3.104 Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation . cost of participation—including onboarding fees, infrastructure investment, and ongoing operations—remains a deterrent, particularly for public health agencies and smaller organizations. Additionally, network adequacy requirements and competitive dynamics discourage participation among providers with limited market power, who may avoid interoperability to prevent patient leakage to dominant health systems. TD-16 (b): Unifying and standardizing APIs represents the most impactful opportunity to enhance network alignment and interoperability across the healthcare ecosystem. Today, organizations must navigate a fragmented landscape of API specifications, authentication protocols, and data formats, leading to redundant development and integration efforts. Transitioning to a single, standardized FHIR API framework with consistent implementation guides would streamline connections, enable scalable one-to-many data exchange, and reduce reliance on complex point- to-point architectures. Replacing legacy HL7 v2 messaging with unified FHIR APIs would further simplify technical environments and align with modern interoperability demands. However, this transition requires coordinated deprecation timelines and migration support to avoid workflow disruption. Modern FHIR-based architectures offer the foundation for scalable, efficient data sharing, positioning CMS to lead in establishing a cohesive, future-ready exchange infrastructure. TD-17. As the largest healthcare purchaser in the United States, CMS holds unmatched leverage to ensure the viability of health data-sharing networks. With oversight of Medicare, Medicaid, and CHIP—covering over 160 million individuals—CMS could leverage its market power to drive participation and scale. To support long-term network sustainability, CMS could adopt tiered funding models that address both startup and operational costs. The CMS Innovation Center offers a blueprint through its data-sharing strategies, including expanded API access to claims data beyond ACOs. This model could be extended to support broader health information exchange infrastructure, with startup capital provided for network development—following examples like Delaware’s Health Information Network, which received $11.7 million in initial funding. Additionally, CMS could integrate network participation requirements into federal program eligibility, using policy levers to generate stable demand. This mirrors the success of the Interoperability and Patient Access Final Rule, which mandated API adoption across Medicare Advantage and Medicaid, effectively accelerating interoperability through regulatory action. 
+Health Technology Ecosystem
+Department of Health and Human Services - Centers for
+Medicare & Medicaid Services
+June 16th, 2025 | CMS 0042-NC
+Submitted to: Submitted by: Business Development:
+Centers for Medicare & Medicaid Services SAIC Giritharan Rajaiah
+Department of Health and Human Services 12010 Sunset Hills Road, Fl 4 703-676-4300
+Attention: CMS-0042-NC Reston, VA 20190 Giritharan.Rajaiah@saic.com
+P.O. Box 0813 CAGE Code: 6XWA8
+Technical Support:
+Baltimore, MD 21244-8013 UEI: MMLKPW9JLX64
+Magizhan Tamilarasu
+667-305-8255
+Magizhan.Tamilarasu@saic.com
+This proposal or quotation includes data that shall not be disclosed outside the government and shall not be duplicated, used, or disclosed, in whole or in part, for any purpose other than
+to evaluate this proposal or quotation. If, however, a contract is awarded to this offeror or quoter as a result of or in connection with the submission of these data, the government shall
+have the right to duplicate, use, or disclose the data to the extent provided in the resulting contract. This restriction does not limit the government’s right to use information contained in
+this data if it is obtained from another source without restriction. The data subject to these restrictions are contained in all pages of this proposal. In addition, the information contained
+herein may include technical data, the export of which is restricted by the U.S. International Traffic in Arms Regulations (ITAR) or the U.S. Export Administration Regulations (EAR). This
+material is not intended by Science Applications International Corporation to become a “record,” within the meaning of 5 USC Sec. 552, and is entrusted to the government with the
+understanding that it will be returned if the government is unwilling or unable to maintain it as non-record material.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+Executive Summary
+At SAIC, we understand the critical role that an advanced and secure Health Technology
+Ecosystem plays in transforming healthcare delivery and improving health outcomes. Our
+extensive experience in health IT and commitment to innovation uniquely position us to support
+the Department of Health and Human Services (HHS) and the Centers for Medicare & Medicaid
+Services (CMS) in achieving their strategic goals.
+We are dedicated to enhancing health value by focusing on quality, equity and access. Our
+approach is centered on putting patients’ health first, ensuring that care respects their individual
+goals, values, culture, social geographic inequality and privacy. We prioritize secure data access,
+facilitating seamless and secure exchange of real time health information among patients,
+caregivers, and providers.
+SAIC recognizes the importance of advancing value-based care through robust healthcare data
+access, enabling providers to better understand patient needs, manage risks, ensure health care cost
+transparency and track improvements. We support the use of standard agreements like the TEFCA,
+Bulk FHIR, SDOH and other research/ care coordination health IT standards to achieve real time
+secure interoperability and enhance health IT functionality.
+We leverage new digital health tools and technologies, including advanced APIs, Advanced
+Clinical Decision Support system using Generative AI and Large Language Models (LLM’s) and
+refined data analysis, to maximize the use of existing health IT infrastructure for clinical research
+and public health purposes. By simplifying regulations and reducing administrative burdens, we
+help align the regulatory environment with broader policy goals.
+Our solutions ensure privacy and security are embedded in health IT. As interoperability and health
+IT usage expand, we implement robust data first security measures to protect sensitive health
+information and adhere to Zero Trust Architecture (ZTA) outlined by NIST, DISA and HHS.
+SAIC is committed to partnering with HHS and CMS to build a resilient, innovative, and patient-
+centered Health Technology Ecosystem that delivers cost-effective, value-driven, and superior
+health outcomes for all Americans across diverse care settings and geographic locations. Our
+approach emphasizes secure data access, interoperability, advanced digital technology use, and
+regulatory simplification. By focusing on patient needs, privacy, and security, we aim to transform
+healthcare delivery, improve efficiency, and foster equitable access to high-quality care
+nationwide.
+1
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+Section B – Part 2. Data Access and Integration
+PC-8(a): While Medicare beneficiaries and caregivers currently have access to claims data,
+prescription histories, and basic demographic information via Medicare.gov and APIs like Blue
+Button 2.0, these datasets are retrospective and limited in clinical depth and timeliness – claims
+data can lag weeks or months, limiting usefulness for active management. High-value data such as
+clinical records from EHRs—including lab results, imaging studies, care team notes, and real-time
+treatment updates—remains largely siloed due to fragmented interoperability, non-standardized
+formats, and vendor-specific constraints. Historically, CMS has had limited engagement with
+provider and research data sources, given its traditional role as a payer. As it expands access to
+these datasets, CMS must prioritize harmonizing non-standardized formats and mitigating vendor-
+specific constraints to enable scalable, interoperable solutions
+In addition, critical data types such as encounter notes and surgical or operative reports are often
+buried in unstructured formats and inconsistently shared, making them inaccessible to patients and
+third-party app developers. These documents offer vital insights for post-acute care coordination,
+second opinions, and safety monitoring, but are underutilized in patient-facing tools. Moreover,
+operational transparency – such as on average appointment wait times – is lacking. Making such
+scheduling data publicly available would offer meaningful visibility into provider availability and
+care access.
+Service-level pricing data, including negotiated rates and out-of-pocket costs by providers, are
+another high-value but inaccessible dataset. Despite policy efforts to enhance price transparency,
+patients still lack access to actionable, provider-specific pricing to compare and plan for medical
+services. Patients still lack timely access to actionable, provider-specific pricing—such as
+negotiated rates, out-of-pocket estimates, and cost-sharing details—in formats that support real-
+time decision-making when selecting care options.
+PC -8 (b): Beyond claims and core clinical data, several underutilized but high-value sources could
+significantly enhance decision-making, care coordination, and system efficiency if made
+accessible:
+Provider-Level Performance Metrics: Including quality scores, patient safety indicators,
+outcomes, and patient experience ratings. These metrics support STAR rating and value-
+based goals, while helping beneficiaries make informed choices about providers and
+promote competition based on quality.
+Service-Level Pricing by Provider: Price transparency at the procedure and provider level
+would help beneficiaries understand their financial responsibilities and actively compare
+care options, reducing surprise billing and enabling more competitive provider markets.
+Social Services Utilization Data: Information on beneficiary engagement with programs
+such as SNAP (Supplemental Nutrition Assistance Program), TANF (Temporary
+Assistance for Needy Families), housing support, and utility assistance offers critical
+insight into an individual's social context. When integrated with health records, this data
+2
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+can inform more holistic care planning, enable better resource allocation, and support
+targeted interventions to address social determinants of health. Additionally, it can help
+care coordinators identify service gaps, avoid duplication, and improve longitudinal
+tracking of non-clinical needs that impact health outcomes
+Process Metrics/Service Operations Data: Timely access to operational data from both
+payers and providers—such as average time to appointment, time from referral to specialist
+visit, prior authorization processing times, and service completion rates—would bring
+much-needed visibility into healthcare delivery performance. These metrics are essential
+for understanding bottlenecks, measuring access, and enabling patients and caregivers to
+navigate the system more effectively. For example, knowing that the average wait time for
+a cardiology appointment in a given region is 28 days could prompt more proactive
+scheduling or help inform policy decisions related to network adequacy.
+Geographic Mapping Data: Information related to housing, food insecurity,
+transportation access, and caregiver support is crucial for care planning and addressing
+health disparities. This data is rarely integrated into patient-facing systems but is essential
+for tailoring care to individual needs.
+Each data type directly advances CMS priorities: provider performance metrics support value-
+based payments and STAR ratings; operational data informs Medicare Advantage network
+adequacy and access standards; social services data aligns with the Health Equity Framework;
+service-level pricing enhances transparency and reduces surprise billing; and geographic data
+strengthens care models for underserved and high-risk populations.PC-8 (c): Readily available
+health data includes claims data, prescription histories, vaccination records, and basic
+demographics from Medicare.gov and APIs. However, accessing more critical data such as clinical
+records, lab results, imaging studies, encounter notes, and real-time updates remains challenging
+due to interoperability issues. Operational transparency, including appointment wait times and
+pricing, is also limited, impeding informed patient decisions. Enhanced interoperability and
+standardized data formats are essential, as critical data in patient portals and health information
+exchanges often remains siloed.
+Improving clinical care coordination and clinical research standards presents several opportunities,
+including the adoption of FHIR-based APIs, TEFCA alignment, and patient-facing digital tools
+that promote transparency and usability. These can be complemented by other existing research,
+care coordination and clinical data and imaging standards. Challenges include inconsistent data
+standards, semantic variability, limited vendor incentives for interoperability, and complex data
+governance. Systemic hurdles involve privacy regulations, misaligned stakeholder incentives, and
+the need to advance various VBC (value-based care) methodologies. Promising solutions involve
+CMS investments, cross-sector partnerships, the CDM and clear standards for enhancing clinical
+research, population health outcomes, and promoting equity, patient engagement, and directed
+care.
+3
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+Launch FFS to VBC transformation and map Each data type to supports CMS various programs
+and initiatives: provider performance metrics align with value-based Merit-based Incentive and
+Alternative Payment Models); process and operational data inform social adequacy and access
+standards for Medicare Advantage; social services utilization data supports CMS's efforts in
+improving health equity and addressing social health; service-level pricing transparency to reduce
+cost; and social/rural mapping strengthens care models targeting underserved and high-risk
+populations.
+PC-9: To enhance the utility of the Blue Button 2.0 API and support the development of more
+effective digital tools for Medicare beneficiaries and caregivers, several additional CMS data
+sources could be prioritized for inclusion. Chief among these are clinical and care coordination
+data, such as lab results, imaging reports, care plans, provider notes, and care team
+communications. These elements are essential for building digital solutions that support chronic
+disease management, care transitions, and multi-provider coordination. Equally important is
+access to Medicaid data for dual-eligible individuals, which is critical for addressing the needs of
+low-income seniors through more comprehensive benefit tracking and care management.
+Developers also see significant value in integrating social determinants of health (SDOH) data—
+including income level, housing status, and food security—as these factors are increasingly tied to
+patient outcomes and are central to developing equity-focused applications. Finally, behavioral
+health records and functional status data, such as mental health treatment history and activities of
+daily living (ADL) assessments, are crucial for tools that support caregivers and complex care
+planning.
+PC-9 (a): Many of the needed datasets/data sources reside in fragmented systems, such as
+electronic health records (EHRs) or state-administered databases, which are not natively integrated
+with CMS infrastructure. SDOH data, in particular, is often siloed across local agencies and lacks
+standardization, making it difficult to retrieve and operationalize. Privacy and security concerns
+also complicate data sharing, especially as more sensitive health and behavioral information is
+considered for inclusion. The 2019 security incident involving Blue Button has made stakeholders
+more cautious about expanding access without robust safeguards. From a technical standpoint,
+current implementations of the API rely on non-standard FHIR URL structures and inconsistent
+data formatting, which complicates developer integration and limits interoperability with
+commercial health IT systems.
+PC-9 (b): To enhance the utility and adoption of the Blue Button 2.0 API, CMS could target
+improvements across technical functionality, developer support, and financial incentives for
+providers. Technically, CMS could fully adopt the FHIR R4 standard, introduce structured error
+codes and real-time debugging tools, and expand synthetic sandbox data to include clinical notes
+and SDOH metrics. Strengthening developer support through interactive, use-case-based tutorials
+and a dedicated advocate team would streamline onboarding and integration. On the policy front,
+piloting bulk data access via the Beneficiary Claims Data API (BCDA) and aligning API
+requirements with the CARIN for Blue Button Implementation Guide would promote
+interoperability and enable scalable, patient-centered innovation. Critically, CMS could pair these
+efforts with financial incentives for private providers, particularly smaller practices and safety-net
+4
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+organizations, to connect to Health Information Exchanges (HIEs) and leverage the Blue Button
+2.0 infrastructure. This could include subsidies for interface development, PMPM payments, or
+bonus payments under value-based care programs for providers that demonstrate active API usage
+or HIE connectivity. By offsetting the initial and ongoing costs of implementation, these incentives
+would reduce financial barriers, encourage broader participation, and help ensure that the value of
+the Blue Button 2.0 API is fully realized across the provider landscape. These enhancements would
+make the API more robust, developer-friendly, and aligned with modern healthcare needs
+PC-9 (c): To enhance the effectiveness of digital health tools for Medicare beneficiaries, CMS
+could begin to integrate high-value non-CMS data sources that support more holistic, patient-
+centered care. Cross-agency linkages—such as CDC immunization records and community health
+rankings, as well as HUD and SNAP eligibility data—would provide context for addressing public
+health needs and social determinants of health (SDOH). These datasets offer essential insights
+which are critical for addressing disparities and designing targeted interventions. Additionally,
+patient-generated data—such as wearable device metrics (e.g., glucose trends, fall detection) and
+caregiver-reported functional status updates—would support more proactive and personalized
+care, particularly for seniors managing chronic conditions. Commercial data partnerships could
+further strengthen the ecosystem by enabling real-time medication adherence tracking through
+pharmacy systems and improving care access via transportation and logistics APIs. Integrating
+these non-CMS data sources through secure, standards-based frameworks would significantly
+broaden the API’s utility, empowering developers to build smarter, more equitable, and outcome-
+driven tools for the Medicare population.
+PC-10: TEFCA™ is beginning to demonstrate meaningful impact in advancing real-world patient
+access to longitudinal health information. At Healthcare Information and Management System
+Society’s in March of 2025 (HIMSS 2025), Partners Healthcare and b.well Connected Health
+showcased TEFCA-enabled, end-to-end patient data retrieval across multiple providers through a
+unified interface—addressing long-standing challenges such as delayed diagnoses and fragmented
+care for complex patients. In parallel, Epic’s adoption of TEFCA has enabled over 1,000 hospitals
+and 22,000 clinics to facilitate more than 14 million document exchanges, supporting cross-
+network care coordination and public health reporting. These examples underscore TEFCA’s
+growing role as a national interoperability infrastructure that empowers patients, enhances care
+continuity, and strengthens system-wide data exchange.
+PC-10 (b): Suggested Changes:
+i. Expand Use Cases: Add prior authorization and social determinants of health
+(SDOH) data exchange to TEFCA’s scope, aligning with CMS’s
+interoperability priorities
+ii. Simplify Onboarding: Reduce technical and financial barriers for small
+practices by offering subsidized API integration tools
+5
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+iii. Enhance Patient Education: Develop standardized patient-facing materials
+explaining TEFCA’s benefits, modeled after CMS’s patient access rule
+resources
+PC-10 (c): Use cases:
+i. Chronic Care Management: Automated aggregation of data from specialists,
+pharmacies, and home monitoring devices for patients with diabetes or heart
+failure.
+ii. Emergency Response: Real-time exchange of allergy and medication data
+during disasters via FHIR-based APIs.
+iii. Patient-Mediated Sharing: Allow patients to selectively share records with
+non-TEFCA entities (e.g., clinical trial sponsors) using OAuth2.0
+PC-10 (d): Several data standards are currently functioning effectively to advance health
+information access and interoperability, supporting both patient empowerment and system-wide
+data exchange. The FHIR® API standard has emerged as a foundational enabler, widely adopted
+across health systems to support app-based patient access and provider-to-provider data exchange
+in real time. Its flexible architecture and compatibility with mobile and web-based tools have made
+it a critical driver of modern digital health solutions. Complementing FHIR, the U.S. Core Data
+for Interoperability (USCDI) provides a nationally recognized set of standardized data elements—
+such as allergies, medications, and lab results—that significantly reduce variability in shared
+records. This standard helps ensure that data exchanged across systems remains consistent,
+structured, and clinically useful. In parallel, QRDA III has proven to be a reliable and widely used
+standard for quality reporting, particularly within CMS programs such as the Merit-based Incentive
+Payment System (MIPS). By enabling uniform reporting of aggregate clinical quality measures,
+QRDA III supports performance benchmarking and value-based care alignment. Together, these
+standards form a strong foundation for advancing interoperability, streamlining regulatory
+compliance, and enabling scalable innovation across the healthcare ecosystem.
+PC 10 (e): Several emerging standards hold significant promise for improving data access,
+integration, and interoperability, yet remain underutilized across the healthcare ecosystem. The
+Observational Medical Outcomes Partnership Common Data Model (OMOP CDM) is a prime
+example. Widely used in research and clinical informatics, OMOP CDM enables structured,
+comparable data across institutions—making it ideally suited to enhance data liquidity for real-
+world evidence generation if integrated with broader frameworks like TEFCA. Its adoption within
+CMS programs could accelerate clinical research, safety monitoring, and public health surveillance
+at scale.
+Similarly, the Da Vinci Project Implementation Guides, developed under HL7 and built on the
+FHIR® standard, offer robust solutions for high-impact use cases such as automated prior
+authorization, gaps-in-care identification, and value-based reporting. However, deployment of
+these guides remains limited due to fragmented vendor adoption and operational inertia. Broader
+6
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+implementation would streamline payer-provider workflows, reduce administrative burden, and
+accelerate care delivery—particularly in complex or high-utilization scenarios.
+PC-10 (f): Regional Health Information Exchanges (HIEs) represent perhaps the most visible
+example of redundant infrastructure. The state of Indiana's recent consolidation of three separate
+HIEs into a single statewide network demonstrates both the problem and potential solution. The
+consolidation eliminated duplicate administrative overhead while serving nearly all providers in
+the state through one unified platform. Multiple HIE participation creates significant
+administrative burden for healthcare providers. Organizations often must join several networks to
+achieve comprehensive data sharing, each with distinct governance structures, technical
+requirements, and operational procedures.
+PC-10 (g): While several alternatives to TEFCA support health information exchange, none
+currently replicate its core value: a nationwide, standardized governance framework for network-
+to-network interoperability. The CMS Interoperability and Patient Access Rule has mandated the
+use of payer APIs to improve individual access to clinical and claims data; however, it does not
+provide the broader network governance or cross-organizational coordination that TEFCA
+enables. Regional Health Information Exchanges (HIEs) offer localized data sharing capabilities
+but often face limitations in cross-state scalability, hindering their effectiveness for national or
+multi-jurisdictional care coordination. Proprietary networks—such as Epic’s Care Everywhere,
+which facilitates the exchange of more than 10 million records daily—demonstrate high-volume
+utility but remain vendor-specific and lack interoperability with non-affiliated platforms.
+TEFCA’s unique contribution lies in its ability to establish a universal trust framework and
+operational rules that promote secure, consistent, and scalable data exchange across disparate
+systems nationwide. However, for TEFCA to achieve its full potential, CMS and its federal
+partners must continue to accelerate adoption of FHIR-based standards, incentivize alignment
+among private-sector platforms, and address persistent challenges related to clinical workflow
+integration and data usability.
+PC-11 (a): HIEs provide substantial value by enabling cross-provider access to clinical data that
+supports care coordination, public health reporting, and population health management. When
+functioning effectively, they can deliver real-time access to lab results, medication histories,
+immunizations, and encounter summaries that improve decision-making and reduce duplication of
+services. However, data availability and accuracy vary widely across HIEs due to uneven provider
+participation, incomplete data feeds, and inconsistent adherence to data standards. In many cases,
+patient records are fragmented, duplicative, or lack key clinical context—limiting their reliability
+for high-stakes use cases.
+PC-11 (b): To enhance the effectiveness of HIEs, key improvements include expanding
+participation across smaller and underserved provider types, standardizing and cleaning data using
+national interoperability standards, and improving patient access through user-friendly tools and
+streamlined consent. Financial sustainability could be strengthened through diversified funding
+7
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+aligned with payer and public health priorities, while modernizing technical infrastructure is
+essential to support real-time exchange, scalable analytics, and cloud-based integration.
+PC-11 (c): Yes, several HIEs demonstrate scalable, high-impact models:
+a) CRISP (Maryland/DC) has successfully integrated hospitals, ambulatory providers,
+and public health systems, supporting use cases from care alerts to social needs
+referrals.
+b) Manifest MedEx (California) brings together claims and clinical data from payers and
+providers, enabling robust longitudinal patient records and care gap analytics.
+c) Utah Health Information Network (UHIN) exemplifies a well-governed public-private
+model that supports interoperability across payers and providers, including a focus on
+underserved populations.
+These HIEs succeed due to their strong governance, commitment to interoperability, and ability to
+serve as trusted conveners across sectors.
+PC-11 (d): HIEs remain vital as regional data integrators, particularly for smaller providers,
+safety-net organizations, and public health agencies not fully served by national networks. As
+TEFCA and commercial exchanges scale, HIEs play a complementary role by enabling last-mile
+connectivity, supporting localized public and population health analytics, integrating cross-sector
+data—including SDOH—and serving as data quality stewards. To sustain their impact, HIEs must
+modernize into interoperable platforms aligned with national frameworks while preserving their
+regional flexibility and community trust
+PC-12: The operationalization of health data presents a powerful opportunity to improve care
+navigation, empower patients and caregivers, and foster a more competitive and transparent
+healthcare marketplace. Several high-value use cases, if addressed, could significantly reduce
+friction in the patient experience and eliminate structural barriers to provider competition:
+Binding Cost Estimates for Pre-Defined Periods:
+Patients and caregivers often face unpredictable healthcare costs due to variable pricing,
+fragmented billing systems, and lack of upfront cost visibility. Enabling binding cost estimates
+for specific procedures or episodes of care—valid for a defined time window—would allow
+individuals to make informed decisions and plan for care financially. Operationalizing this
+capability requires integrating claims, coverage, and pricing data at the point of scheduling, and
+aligning payer-provider data systems to offer real-time financial transparency. This would also
+encourage providers to compete on value and efficiency, particularly in high-volume, shoppable
+services.
+Real-Time Provider Schedule Availability:
+Today, finding and scheduling an appointment often requires navigating disconnected platforms
+or calling multiple providers, creating delays in access to care. Establishing real-time,
+standardized APIs that expose provider availability across systems would streamline scheduling,
+8
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+reduce administrative burden, and increase throughput. For patients, this translates to faster care
+access; for the market, it opens opportunities for new scheduling platforms and reduces reliance
+on proprietary networks, encouraging competition based on convenience and responsiveness.
+Third-Party App Integration for Care Management:
+Care navigation—particularly for patients managing chronic conditions or coordinating across
+multiple providers—can be disjointed without the ability to consolidate and act on operational
+data. Enabling secure, FHIR-based integration with third-party care management apps would
+allow patients and caregivers to access real-time appointment information, care team contacts,
+referrals, and task reminders in one place. This would improve adherence, reduce duplicative
+care, and allow digital health vendors to innovate around patient experience, driving value
+beyond traditional care delivery channels.
+AI-Driven Provider Matching:
+Patients often select providers based on limited or outdated information. AI-enabled provider
+matching tools that leverage operational data—such as appointment availability, quality scores,
+patient reviews, treatment specialization, and geographic proximity—can guide patients to high-
+quality, cost-effective care options aligned with their preferences and needs. This supports
+smarter provider selection, reduces inappropriate utilization, and encourages providers to
+differentiate based on measurable performance.
+PC-12 (b): Several high-value operational health data use cases are already technically feasible
+today and, if more broadly adopted and standardized, could significantly improve care navigation
+and promote provider competition. Price transparency tools represent a major step forward. As of
+2024, approximately 75% of hospitals are compliant with CMS’s machine-readable file mandate,
+often validated through tools like the v2.0 Online Validator. While this signals progress, the
+usability and interpretability of the data for consumers remains inconsistent. Complementary
+solutions such as FAIR Health’s API further enhance transparency by providing historical charge
+benchmarks across 493 geographic regions in both English and Spanish, enabling patients and
+caregivers to generate self-service cost estimates and compare prices before care is delivered.
+These tools empower individuals to make financially informed decisions and encourage providers
+to offer competitive, predictable pricing.
+In parallel, basic appointment scheduling automation is increasingly accessible. The Argonaut
+Scheduling Implementation Guide, a FHIR-based standard, has enabled roughly 68% of Epic
+clients to support online booking, cutting average scheduling time from 9.2 minutes to just 2.4
+minutes. This functionality improves care access, reduces administrative burden, and lays the
+groundwork for broader scheduling interoperability. However, notable limitations remain—
+approximately 32% of providers still require phone confirmation for complex visits, which
+introduces delays and undermines the seamless, consumer-friendly experience that patients
+increasingly expect. Standardizing APIs for scheduling across all EHR platforms, along with
+expanding automation to include specialty and multi-provider coordination visits, would further
+eliminate friction and drive competition based on accessibility and patient convenience.
+9
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+PC-12 (c): In the near future, the deployment of intelligent, AI-powered tools—such as ambient
+scheduling assistants—represents a transformative opportunity to streamline care navigation,
+reduce avoidable readmissions, and improve continuity of care for patients and caregivers. These
+assistants not only relieve administrative burden on providers but also help patients avoid the
+confusion and delays that often follow hospital discharge. By integrating these tools into provider
+workflows and enabling access to standardized scheduling APIs, CMS can help accelerate their
+adoption systemwide. Furthermore, expanding ambient assistants to support medication
+reconciliation, home health referrals, and social service navigation would create a more seamless
+and proactive healthcare experience—particularly for high-risk populations—while promoting a
+more competitive, outcomes-driven provider landscape.
+PC-12 (d): One of the most valuable—but also most challenging—operational health data use
+cases is the development of social determinant-aware navigation systems that can dynamically
+guide patients and caregivers to both clinical and non-clinical resources based on individual social
+risk factors. While approximately 68% of existing care navigation tools incorporate basic
+screening for social determinants of health (SDOH)—such as housing instability, food insecurity,
+or transportation barriers—only 9% currently connect to community-based resources through
+bidirectional APIs that allow for closed-loop referrals and real-time status updates. This disconnect
+significantly limits the ability of care teams to intervene effectively and of patients to access timely,
+holistic support. The Gravity Project’s SDOH Clinical Care FHIR Implementation Guide provides
+a national standard for representing and exchanging SDOH data, yet its adoption remains limited
+due to challenges in mapping these data elements within EHR systems, inconsistent local data
+infrastructure, and limited interoperability across healthcare and social service sectors.
+Overcoming these barriers would require CMS to play a leading role in incentivizing EHR
+vendors, providers, and community organizations to adopt common standards, invest in technical
+integration, and align incentives around addressing non-medical drivers of health. If realized,
+social determinant-aware navigation could meaningfully reduce disparities, enhance care
+coordination, and improve outcomes for the most vulnerable populations—while creating new
+opportunities for providers and technology partners to differentiate through equitable, whole-
+person care delivery.
+10
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+Section E. Technology Vendors, Data Providers, and Networks
+Part 1. Ecosystem
+TD-1. To accelerate digital innovation in support of Medicare beneficiaries and caregivers, CMS
+could implement a phased strategy that addresses both immediate needs and long-term systemic
+transformation. In the near term, CMS can catalyze progress by hosting regular seminars, panels,
+and listening sessions that bring together developers, providers, caregivers, and beneficiaries to
+share insights, surface unmet needs, and build trust across the innovation ecosystem. Strengthening
+developer support is equally critical; CMS could expand its developer portals with clear
+documentation, FAQs, and real-time technical assistance to ease integration with key APIs such
+as Blue Button 2.0. Complementary technical assistance programs can further reduce onboarding
+friction by helping developers navigate regulatory pathways and align their solutions with CMS
+standards. Additionally, CMS can stimulate innovation through targeted grant programs and
+competitive funding opportunities, such as funding 10-15 pilot projects annually to generate a 20%
+increase in digital tool adoption. To enable safe and effective development, CMS could broaden
+access to sandbox environments with synthetic Medicare data and automate credentialing
+processes to streamline experimentation and accelerate time-to-value. CMS could also continue to
+solicit structured feedback from the developer and stakeholder community through Requests for
+Information (RFIs), ensuring short-term policies remain adaptive to evolving technology and end-
+user needs.
+Over the longer term, CMS could invest in building foundational digital health infrastructure that
+simplifies access and integration. This includes interoperable provider directories, modern identity
+verification frameworks, and the expansion and general availability of high-value APIs and data-
+sharing initiatives such as Data at the Point of Care. To sustain innovation at scale, CMS must also
+align financial incentives by embedding digital health adoption into value-based care models,
+quality measures, and payment arrangements that reward prevention and care coordination.
+Regulatory modernization will be essential—streamlining approval and certification pathways for
+digital health tools, and standardizing innovation model design features to minimize administrative
+burden on developers and providers. A sustained focus on patient-centered innovation could guide
+the development of intuitive, accessible tools that empower beneficiaries and caregivers to manage
+their health, navigate the care continuum, and make informed decisions. Finally, CMS could
+institutionalize continuous stakeholder engagement to ensure its digital strategy evolves in tandem
+with market innovation and the lived experiences of those it serves. By executing this
+comprehensive approach, CMS can establish a dynamic, inclusive, and future-ready digital health
+ecosystem that improves outcomes and equity across the Medicare population.
+TD-2 (a): To stimulate greater developer engagement and unlock new opportunities for digital
+innovation, CMS could prioritize expanding the scope of data made available through its APIs.
+One of the most critical additions would be Medicare Advantage (Part C) claims data, which is
+currently absent from Blue Button 2.0. With nearly 48% of Medicare beneficiaries enrolled in Part
+C plans, the lack of visibility into their utilization patterns creates a significant blind spot for
+developers seeking to build comprehensive care management, analytics, and patient engagement
+11
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+tools. Incorporating this data would enable more accurate risk stratification, performance
+measurement, and longitudinal patient insights across the full Medicare population. Risk
+adjustment is critical to ensuring that Medicare Advantage plans have the resources necessary to
+provide innovative, affordable, high quality care to all Medicare eligible beneficiaries who choose
+Medicare Advantage. Medicare Advantage relies on an accurate and stable risk adjustment that
+ensures plans are able to provide high value care to all beneficiaries, including those with complex
+health needs. Medicare Advantage’s approach depends on the accurate clinical identification of
+health status to reflect the needs of beneficiaries. It is this process that allows Medicare Advantage
+plans to provide the high quality care that works to identify illness early and better outcome. It is
+essential that risk adjustment in Medicare Advantage is accurate, stable, and predicable. This
+enables Medicare Advantage plans to offer innovative, effective, quality care that is highly valued
+by millions of beneficiaries, their families, and providers.
+Additionally, integrating standardized social determinants of health (SDOH) indicators—such as
+Z59 codes for food insecurity, housing instability, and transportation barriers—would allow
+developers to design tools that account for the real-world conditions influencing patient outcomes.
+When linked to claims and encounter data, these indicators could support risk-adjusted care
+models, targeted interventions, and enhanced equity analytics.
+Finally, developers would benefit significantly from access to real-time prior authorization (PA)
+status, particularly if CMS expands the scope of its CMS-0057-F rule to include drug-related PA
+decisions and incorporates predictive analytics for likely denials. Releasing anonymized prior
+authorization denial patterns would enable developers to train machine-learning models for
+automated triage. This would allow digital platforms to streamline care workflows, alert providers
+and patients proactively, and reduce administrative burden associated with PA processes. Making
+these datasets accessible through secure, standards-based APIs would meaningfully expand the
+CMS data ecosystem and attract a broader range of innovators focused on building intelligent,
+patient-centered solutions for Medicare beneficiaries.
+TD-2 (b):
+Data Type Integration Value Example Sources
+State Medicaid Data Enables 360 degree view for MITS/T-MSIS analytics files
+dual-eligible patients
+Medical Device Feeds Correlated implant data with FDA UDI Database
+postoperative outcomes
+Pharmacy Dispense Logs Validates Part D adherence NCPDP Telecommunication
+against actual fills Standard
+12
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+Private Payer Claims Reduces care gaps through CARIN Payer Data
+consolidated histories Exchange IG
+TD-2 (c): Despite growing demand for comprehensive, patient-centered digital tools, several
+significant obstacles continue to limit access to critical CMS and health system data sources—
+hindering developer innovation and slowing progress toward a more interoperable health
+ecosystem. Technical limitations remain a primary challenge: for example, approximately over
+70% of electronic health records (EHRs) still store clinical notes as non-searchable PDFs, which
+prevents effective data parsing and integration. Additionally, many APIs impose restrictive
+payload limits, making it difficult to export large volumes of longitudinal data—particularly for
+patients with complex, chronic conditions whose records may exceed 2.1 GB.
+Regulatory fragmentation also impedes access. Behavioral health data, for instance, is subject to
+inconsistent consent requirements across 14 states, creating uncertainty and compliance risk for
+developers attempting to build cross-jurisdictional tools. Furthermore, access to the CMS Virtual
+Research Data Center (VRDC)—a key resource for academic and analytic use cases—has become
+cost-prohibitive, with fees rising over significantly since 2022, reducing participation from
+research institutions and smaller innovators.
+These combined barriers—technical, and regulatory—undermine data liquidity and discourage
+developer investment, underscoring the need for CMS to enforce interoperability standards and
+foster an ecosystem where data can flow securely, efficiently, and equitably to support innovation
+at scale.
+TD-2 (d): CMS and ASTP/ONC could prioritize the development and deployment of new,
+purpose-built APIs that enable more intelligent and dynamic use of operational health data. A
+National Provider Directory API would serve as a foundational resource, offering real-time
+verification of provider credentials—including board certifications and telehealth licensure—as
+well as dynamic updates on network participation status, such as whether a provider is currently
+accepting new Medicaid patients. This would reduce administrative burden, enhance transparency,
+and improve care navigation for patients and caregivers.
+Similarly, a Social Determinants of Health (SDOH) Resource API could provide a standardized,
+FHIR-based inventory of community-based services—such as food banks, housing assistance
+programs, and transportation resources—mapped to the nationally recognized 211 taxonomy. Such
+an API would empower developers to build applications that connect patients with the non-clinical
+support systems most relevant to their needs, driving more holistic and equitable care delivery.
+A Clinical Trial Matching API represents another high-impact opportunity. By enabling automatic
+patient matching to NIH-registered clinical trials based on CMS claims history and trial eligibility
+criteria, this API could significantly expand access to advanced therapies and reduce disparities in
+clinical research participation, particularly among underserved Medicare populations. By bridging
+13
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+these gaps, CMS can transform its data infrastructure from a regulatory compliance tool into an
+innovation engine for value-based care.
+Part 4. Data Exchange
+TD-12: CMS could endorse non-CMS data sources and networks when they meet rigorous criteria
+that align with CMS's mission, data quality standards, and regulatory requirements. This approach
+supports comprehensive quality measurement while maintaining data integrity and patient privacy.
+Endorsing high-quality non-CMS data—such as registry, social services, or patient-generated
+datasets—can enhance the comprehensiveness of CMS programs while preserving data integrity
+and patient privacy. Key criteria for endorsement could include:
+Data quality and reliability, supported by standardized validation processes, transparent data
+collection methodologies, and measurable performance indicators such as error rates,
+completeness, and CMS system compatibility.
+Privacy and security compliance, requiring strict adherence to HIPAA, enforcement of the
+Minimum Necessary Principle, and implementation of CMS-equivalent encryption, access
+controls, and breach response protocols.
+Technical interoperability, ensuring all endorsed data sources conform to CMS-approved
+standards such as FHIR® APIs or QRDA III formats and are validated through proven linkage
+methodologies compatible with CMS's identity-matching protocols.
+Purpose alignment, requiring clear evidence that the data supports CMS goals in quality
+improvement, population health, or performance measurement, including demonstrated value in
+addressing known gaps and stakeholder consensus through transparent endorsement processes.
+Operational sustainability, backed by long-term maintenance plans, cost-effectiveness
+evaluations, and scalability testing to ensure data pipelines can support CMS's national footprint.
+These capabilities can be validated through a certification process or independent audit.
+CMS has already applied similar principles in its oversight of Qualified Clinical Data Registries
+(QCDRs) and external research data partnerships, requiring secure transmission, ongoing review,
+and clear alignment with quality performance objectives. By holding non-CMS data sources to
+these same standards, CMS can expand its data ecosystem responsibly—enabling richer insights,
+reducing reporting burdens, and advancing equitable, outcomes-based care.
+TD-13: Precision Medicine and AI-Driven Care: Full EHI APIs enable machine learning
+models to analyze unstructured clinical notes, pathology reports, and imaging narratives that
+contain critical contextual details absent from USCDI’s structured fields. For example, natural
+language processing applied to psychiatry progress notes could identify subtle symptom
+progression patterns in treatment-resistant depression—data that structured mood assessment
+scales in USCDI v3 cannot capture
+14
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+TD-13 (a): Enabling full API-based access to electronic health information (EHI), particularly
+unstructured data, faces several significant barriers that must be addressed to realize its full
+potential. Technically, most electronic health record (EHR) systems are not designed to extract,
+normalize, or expose unstructured data—such as clinical notes, pathology reports, and imaging
+narratives—at scale. This challenge is compounded by data fragmentation across systems and
+inconsistent metadata, which hinder the ability to construct a coherent longitudinal patient record.
+Furthermore, many healthcare IT environments lack the infrastructure to support advanced
+technologies such as natural language processing (NLP) and AI, limiting the ability to extract
+actionable insights from unstructured data. Emerging approaches to address these challenges have
+been seen through AI-assisted data labeling and FHIR Genomics.
+TD-13 (b): The primary tradeoff between USCDI and full Electronic Health Information (EHI)
+lies in balancing interoperability and simplicity with clinical depth and contextual richness. USCDI
+offers a standardized, structured dataset that simplifies data exchange and lowers implementation
+burden, making it well-suited for consistent use across health systems. In contrast, full EHI
+includes unstructured data—such as clinical notes and care plans—that provides deeper clinical
+insight and supports advanced analytics like natural language processing. However, it introduces
+greater complexity in integration, interpretation, and infrastructure requirements. As data
+processing capabilities evolve, the decision increasingly centers on aligning technical feasibility
+with the need for comprehensive, patient-centered insights via a phased expansion strategy from
+USCDI to full EHI to guide CMS actions
+TD-14 (a): SAIC supports EDI-TAS, the Department of Veterans Affairs’ enterprise system for
+eligibility verification and claims processing. In this role, we have implemented modern
+interoperability features—most notably the use of the FHIR R4 standard for internal data
+structuring—while maintaining the security and operational integrity required in a federal payer
+context.
+Endpoint Connectivity: EDI-TAS is integrated with the VA Financial Services Center (FSC) via
+a secure Azure Service Bus architecture. Although these exchanges do not currently utilize
+externally accessible FHIR APIs, they are structured using FHIR R4 standards for improved
+consistency and future extensibility. This hybrid model demonstrates how modern standards can
+be applied within high-assurance environments, even without public API exposure.
+Searchability: The current implementation prioritizes security and controlled access. Connections
+are not publicly discoverable by National Provider Identifier (NPI) or organizational ID, and are
+limited to vetted partners under predefined agreements. This model supports deterministic, secure
+workflows and offers valuable lessons in balancing discoverability with enterprise risk
+management.
+SAIC’s experience with this secure, standards-aligned configuration is directly relevant to CMS’s
+broader goal of achieving greater FHIR-based interoperability. We understand the operational
+trade-offs in real-world federal environments and can help CMS identify scalable onramps to API-
+first ecosystems without requiring immediate overhaul of critical systems.
+TD-14 (b): In the EDI-TAS environment, SAIC has integrated FHIR R4 as a core structuring
+element within claim-related message formats. While transport is not yet handled using full FHIR
+15
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+(g)(10) APIs, the platform applies contemporary standards in a way that aligns with system
+stability and mission needs.
+Protocol Use:
+ FHIR R4: Used internally to structure payloads, enabling standardization and easing
+potential transitions to API-based workflows in the future.
+ Azure Service Bus: Employed for secure, asynchronous message exchange. This allows
+scalable coordination between components while maintaining full auditability and
+reliability.
+ X12 Standards: Continue to serve as the backbone for claims and eligibility transactions
+(e.g., 837, 270/271), offering proven throughput and system compatibility.
+This dual-mode architecture allows modernization to proceed without disruption, offering a
+compelling reference model for CMS to consider when looking to implement FHIR within
+environments still dominated by legacy protocols. Our experience navigating this path can inform
+CMS implementation strategies, particularly for payers with constrained modernization budgets
+or mission-critical uptime needs.
+TD-14 (c): EDI-TAS currently facilitates point-to-point data exchange under direct agreements
+and VA security governance, rather than through formal trust frameworks like TEFCA or
+Carequality. While it does not yet interconnect with national networks, its configuration reflects
+operational requirements of secure federal systems.
+Interconnection Approach:
+ Exchanges are limited to authorized VA components (e.g., FSC) and governed by strict
+access policies and bilateral agreements.
+ Integration occurs via well-defined interfaces and standardized payloads, ensuring
+consistency and compliance with internal data sharing policies.
+ Trust and governance are enforced through internal controls rather than external
+intermediaries.
+This model is reflective of many federal implementations that prioritize security, traceability, and
+mission continuity. SAIC’s experience in designing and operating such environments offers
+valuable perspective for CMS as it evaluates phased strategies to promote TEFCA alignment and
+broader trust-based exchange—particularly in settings that require controlled modernization and
+risk-aware implementation roadmaps.
+TD-15 (a): Expanding the use of bulk FHIR APIs would significantly enhance CMS’s ability to
+support high-value, population-level use cases—particularly in public health and real-time
+analytics. For example, syndromic surveillance could leverage a single bulk export to expose data
+from the unstructured clinical notes of hundreds of thousands of patients to identify early indicators
+of emerging threats, such as spikes in “respiratory distress” tied to potential avian influenza
+outbreaks. Similarly, vaccine effectiveness studies would benefit from rapid, large-scale analysis
+of immunization and outcome data, enabling timely post-market surveillance across diverse
+populations. By enabling scalable, structured data exchange, bulk FHIR transforms CMS’s data
+16
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+infrastructure into a powerful tool for proactive decision-making, early intervention, and public
+health innovation.
+TD-15 (b): Implementing bulk FHIR APIs for value-based care monitoring and coordination
+offers significant benefits but faces challenges. These include technical hurdles like integrating
+with legacy systems, data standardization issues, and ensuring scalability. Data security and
+privacy risks, obtaining patient consent, and managing large datasets are critical concerns.
+Organizational challenges involve provider resistance, lack of skilled personnel, and collaboration
+needs. Finally, staying compliant with evolving regulations and interpreting standards consistently
+are key regulatory challenges. Despite these, strategic implementation Bulk FHIR API can
+enhance care coordination and patient outcomes.
+There are also significant security and compliance risks. Unlike transactional APIs, a single
+compromised bulk export could expose data from hundreds of thousands of patients, exponentially
+increasing the breach surface and the associated legal and reputational risks for both CMS and
+participating entities.
+Additionally, operational barriers, particularly cost structures, continue to limit adoption. Despite
+federal rules encouraging open access, API call fees can render bulk data exports financially
+unsustainable for nearly 90% of community hospitals, many of which lack the technical or
+financial resources to absorb these costs.
+TD-16. Point-to-point health information exchange models offer technical simplicity and fast
+implementation by creating direct, bilateral connections between healthcare entities. While this
+approach works well for immediate, small-scale connectivity, it becomes unsustainable at scale—
+requiring thousands of individual integrations as participants grow. Each connection demands
+custom interfaces, security protocols, and data mappings, placing a significant operational burden
+on organizations. In contrast, shared network infrastructures—such as Health Information
+Exchanges (HIEs) and TEFCA—enable scalability by allowing organizations to connect once and
+exchange data with all participants, dramatically reducing integration complexity and cost. These
+models benefit from network effects, increasing adoption and data availability as participation
+grows, and they allow for shared cost structures that make advanced capabilities more accessible
+across resource-constrained settings. While point-to-point models may offer faster response times
+due to direct routing, their scalability and interoperability challenges are significant—particularly
+in enterprise environments with multiple EHR vendors. Shared networks, though slightly less
+performant due to standardization overhead, offer long-term sustainability through common data
+models and broader interoperability support Participation can be further incentivized by tying
+engagement to program eligibility or offering reporting credits, aligning organizational incentives
+with federal interoperability goals.
+TD-16 (a): Despite regulatory efforts to promote data sharing, significant barriers continue to
+hinder scalable, equitable network participation. The 21st Century Cures Act aims to prevent
+information blocking, but uneven enforcement allows vendors to maintain proprietary constraints.
+While TEFCA introduces uniform governance and technical standards to address these issues, the
+17
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.
+
+Health Technology Ecosystem
+| CMS 0042-NC | June 16th, 2025
+cost of participation—including onboarding fees, infrastructure investment, and ongoing
+operations—remains a deterrent, particularly for public health agencies and smaller organizations.
+Additionally, network adequacy requirements and competitive dynamics discourage participation
+among providers with limited market power, who may avoid interoperability to prevent patient
+leakage to dominant health systems.
+TD-16 (b): Unifying and standardizing APIs represents the most impactful opportunity to enhance
+network alignment and interoperability across the healthcare ecosystem. Today, organizations
+must navigate a fragmented landscape of API specifications, authentication protocols, and data
+formats, leading to redundant development and integration efforts. Transitioning to a single,
+standardized FHIR API framework with consistent implementation guides would streamline
+connections, enable scalable one-to-many data exchange, and reduce reliance on complex point-
+to-point architectures. Replacing legacy HL7 v2 messaging with unified FHIR APIs would further
+simplify technical environments and align with modern interoperability demands. However, this
+transition requires coordinated deprecation timelines and migration support to avoid workflow
+disruption. Modern FHIR-based architectures offer the foundation for scalable, efficient data
+sharing, positioning CMS to lead in establishing a cohesive, future-ready exchange infrastructure.
+TD-17. As the largest healthcare purchaser in the United States, CMS holds unmatched leverage
+to ensure the viability of health data-sharing networks. With oversight of Medicare, Medicaid, and
+CHIP—covering over 160 million individuals—CMS could leverage its market power to drive
+participation and scale. To support long-term network sustainability, CMS could adopt tiered
+funding models that address both startup and operational costs. The CMS Innovation Center offers
+a blueprint through its data-sharing strategies, including expanded API access to claims data
+beyond ACOs. This model could be extended to support broader health information exchange
+infrastructure, with startup capital provided for network development—following examples like
+Delaware’s Health Information Network, which received $11.7 million in initial funding.
+Additionally, CMS could integrate network participation requirements into federal program
+eligibility, using policy levers to generate stable demand. This mirrors the success of the
+Interoperability and Patient Access Final Rule, which mandated API adoption across Medicare
+Advantage and Medicaid, effectively accelerating interoperability through regulatory action.
+18
+Source Selection Information – See FAR 2.101 and 3.104
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal or quotation.

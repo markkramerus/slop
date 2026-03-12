@@ -1,15 +1,464 @@
- Centers for Medicare and Medicaid Services Request for Information; Health Technology Ecosystem Submitted by Viz.AI E. Technology Vendors, Data Providers, and Networks This section is intended for all stakeholders to provide input on questions as they relate to use cases and workflows that involve technology vendors, data providers, and networks. While we certainly want technology vendors, data providers, and networks to answer questions in this section (and in other sections) from their point of view, we also invite all stakeholders to provide their viewpoints on the technology vendor, data provider, and network use cases as appropriate. 1. Ecosystem TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? ● Streamlined approvals, financial incentives for efficiency, reimbursement for AI that lowers costs/improves population health, broader data access, and near real-time data access. TD-2. Regarding CMS Data, to stimulate developer interest— a. What additional data would be most valuable if made available through CMS APIs? ● For medical AI advancement, CMS API access should expand to include de-identified imaging, genomic/proteomic, detailed SDOH, comprehensive longitudinal claims and clinical, caregiver-reported outcomes, and device-specific (RPM) data. This would improve diagnostics, personalized medicine, health equity, chronic care, caregiver support, and predictive analytics. ● 
- b. What data sources are most valuable alongside the data available through the Blue Button 2.0 API? While Blue Button 2.0 is an excellent start, the most valuable data sources to integrate alongside it for a medical AI company would include: ● To effectively train AI for patient health understanding, access to various data sources is crucial beyond claims data. Electronic Health Records (EHR) provide essential clinical context like diagnoses and physician notes. Pharmacy data offers a comprehensive view of medication use. Wearable and sensor data deliver continuous real-world physiological insights. Provider-submitted clinical registries and quality data provide disease-specific, high-quality information. Integrating individual patient data with public health data offers insights into individual and population health trends. ● c. What obstacles prevent accessing these data sources today ? ● Fragmented healthcare data across systems hinders a complete patient view. Inconsistent data formats and terminology complicate AI training and scalability. Privacy regulations like HIPAA and IRB processes restrict access to necessary data. Commercial interests limit access to EHRs and proprietary data, posing financial challenges. API limitations restrict the volume, frequency, and specificity of data access. A lack of standardized data governance and trust frameworks impedes data sharing. The absence of universal de-identification standards and tools creates hesitation in data sharing. ● d. What other APIs should CMS and ASTP/ONC consider including in program policies to unleash innovation and support patients and providers? ● To integrate AI insights into healthcare workflows, CMS should implement standardized APIs for: enabling data "write-back" to EHRs; accessing predictive analytics/risk scoring models; providing tailored patient education and shared decision-making resources; facilitating care coordination and communication; streamlining prior authorization and claims processing; offering tiered data access for research; utilizing CDS Hooks for AI-powered clinical decision support; and explaining AI model predictions to build trust. ● 2. Digital Identity TD-3. Regarding digital identity implementation: 
- a. What are the challenges and benefits? ● Challenges: Lack of standardized digital identities hinders data exchange. Privacy and security of PHI require robust solutions. User adoption faces resistance due to complexity or lack of understanding. Cost and infrastructure for secure systems can be high. Remote identity proofing at different levels poses accuracy challenges. Integrating new solutions with legacy systems is difficult. ● ● Benefits: Enhanced cybersecurity reduces unauthorized access. Improved data exchange and interoperability streamline care. Automated identity verification reduces administrative burden. Secure digital identities improve patient experience. Increased trust and accountability result from verified access. Compliance with regulations like HIPAA is aided by digital identity solutions. ● b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange? ● Stronger cybersecurity through improved authentication (MFA, IAL2/AAL2) reduces unauthorized access, phishing, and enhances audit trails. For data exchange, reliable digital identities increase trust, streamline authorization, improve data integrity, and facilitate interoperability frameworks like TEFCA. ● c. What impact would mandatory use of the OpenID Connect identity protocol have? Mandatory use of the OpenID Connect (OIDC) identity protocol would have a largely positive impact: Adopting the mature OpenID Connect (OIDC) standard, built on OAuth 2.0, would significantly improve healthcare application interoperability through simplified secure login and identity sharing. OIDC's straightforward implementation fosters quicker development and a unified single sign-on (SSO) system, enhancing user experience and security (authentication layer). As an open standard, OIDC reduces vendor lock-in and offers scalability. Organizations not yet using OIDC may experience minor disadvantages during the transition due to development and training needs. 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? 
- CMS can encourage open API use by prioritizing them in certification, incentivizing adoption in payment models, developing reference implementations, offering technical assistance, showcasing successes, requiring public documentation, collaborating with SDOs, leveraging procurement, and disincentivizing proprietary APIs. TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? A nationwide FHIR endpoint directory would significantly improve health information access by: ● Patients: Simplifying connection of personal health apps/portals to providers, enhancing personal health record management and data control. ● Providers: Enabling easy discovery of FHIR endpoints for streamlined data exchange in referrals, transitions, and coordination, reducing manual processes. ● Payers: Improving claims, care management, quality reporting, and population health through efficient data access, leading to better payments and outcomes. ● Overall: Accelerating interoperability by lowering adoption barriers for new healthcare applications and services. ● Who Should Publish? ● A neutral, trusted, and authoritative entity should publish a directory. Potential options include ONC/HHS (possibly collaborating with a non-profit), a public-private partnership involving government and industry, or a TEFCA-designated entity leveraging the TEFCA trust framework. ● Should Users Bear a Cost? ● The directory's basic search features should be free or low-cost to ensure broad access for providers and innovators, enhancing public health. While charging could limit participation, improved data access offers a greater public benefit. A tiered pricing model for advanced features and developer fees could supplement federal funding for maintenance, keeping core lookup functionality free. TD-6. What unique interoperability functions does TEFCA perform? 
- ● TEFCA establishes a nationwide Common Agreement and governance for all QHINs, creating a "network of networks" to replace direct connections. It mandates universal purpose of use for HIPAA-permitted EHI exchange and enforces common technical standards like FHIR and IHE XCA. TEFCA includes a dispute resolution process and focuses on foundational interoperability to enable extensive health data exchange. ● a. What existing alternatives should be considered? ● Existing health information exchange (HIE) alternatives include bilateral agreements lacking scalability, regional/state HIEs with limited reach, private HINs (like CommonWell and Carequality) that TEFCA aims to interconnect, proprietary vendor networks restricted to their users, and patient-mediated exchange which doesn't solve provider-to-provider exchange at scale. b . Are there redundant standards, protocols or channels or both that should be consolidated? ● Opportunities exist to consolidate and streamline data exchange despite its historical development and varied uses. Key areas include: consolidating document exchange protocols (considering FHIR's emergence alongside existing methods), standardizing query mechanisms by promoting FHIR RESTful APIs for new implementations, reducing variation in FHIR implementations through stricter adherence to standards like US Core, streamlining consent management by standardizing technical models and policies, and leveraging TEFCA as the primary data exchange channel to reduce complexity. TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? ● The USCDI has improved interoperability by establishing a baseline data set for exchange, driving vendor compliance, facilitating FHIR adoption, reducing data blocking claims, and enabling patient access APIs. However, it has limitations due to its limited scope of data elements needed for comprehensive care and analysis, representing a "least common denominator" of information, and lacking granularity and context. While relying on FHIR for exchange, variations in implementation can still cause minor interoperability issues. 
- a. Does it contain the full extent of data elements you need? While the USCDI offers a strong starting point and includes essential foundational data, it lacks the comprehensive data elements necessary for many complex use cases and thorough patient care. Thus, numerous stakeholders need more detailed, specialized, or context-rich information. b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized? The primary reason for USCDI's limitations in meeting comprehensive data needs lies in the inherent scope of its definition. USCDI is purposefully designed as a core dataset and is not intended to be exhaustive. Although variations in its application exist (such as incomplete vendor implementation), the fundamental constraint stems from its deliberately limited scope. c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such challenges be addressed? ● Adding data elements to USCDI offers value but poses challenges like implementation burden, complexity, data availability, consensus-building, and version control. These can be addressed through a phased approach, modular expansion for specific use cases, leveraging industry best practices, strong governance and prioritization, providing guidance and tooling, and focusing on robust FHIR profiles with extension mechanisms. d. Given improvements in language models, would you prefer a non-proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? ● Structured data is strongly preferred for core clinical and administrative information due to its necessity for accurate processing, automated support, and reliable analytics. While language models have potential, they pose risks in misinterpreting unstructured clinical text. ● ● For inherently unstructured data like clinical narratives and social determinants of health, a less structured but universally accessible format, combined with language models, could improve data coverage and insights. ● ● A hybrid approach is likely best: highly structured formats (like FHIR with USCDI) for critical, discrete data, and non-proprietary, less structured formats (accessible via API) for narrative data, leveraging language models for extraction and summarization. Key considerations include non-proprietary formats, robust language models, data validation, and this hybrid model. TD-8. What are the most effective certification criteria and standards under the ONC Health IT Certification Program? Effective certification criteria and standards promote interoperability (API, FHIR, USCDI, and address 
- information blocking), enhance patient access (VDT, secure messaging), improve data quality and safety (decision support, interaction checks), and ensure security and privacy. Specificity, clarity, and rigorous enforcement, especially adherence to open standards like FHIR, are key to their effectiveness. TD-9. Regarding certification of health IT: a. What are the benefits of redefining certification to prioritize API-enabled capabilities over software functionality? ● Prioritizing APIs over software functionality enhances interoperability and fosters data exchange. An API-first approach drives innovation through third-party apps, reduces vendor lock-in, and accelerates development via modularity. API-enabled access empowers patients with their health data and improves data flow for reporting and analytics, offering organizations greater flexibility in choosing user interfaces while utilizing certified backend systems. b. What would be the drawbacks? ● API-focused certification may deprioritize UI usability, risking poor provider experience. Managing more APIs increases security risks. Maintaining data integrity and clinical context via APIs is challenging and requires robust modeling. Older EHRs face a heavy implementation burden for API exposure. "Information blocking" could occur through poorly designed or documented APIs. Healthcare organizations will rely more on third-party developers, necessitating careful vendor management. c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient's chart (for example, faxed records, free text, discrete data)? ● To improve data access, USCDI could include metadata for unstructured data, and standardized FHIR API endpoints should enable retrieval of documents like faxes and notes. Define and certify "full EHI" APIs for comprehensive data access. Explore incentivizing NLP for extracting structured data from free text. Mandate semantic interoperability using standard terminologies for structured data exchange. API certification should include performance and scalability metrics. Require thorough API documentation and test tools. d. What policy changes could CMS make so providers are motivated to respond to API-based data requests with best possible coverage and quality of data? ● Encourage API adoption and interoperability by linking it to value-based care and quality programs, strengthening information blocking disincentives, offering performance-based incentives, reducing reporting burden, and publicizing performance. Provide technical assistance and emphasize the clinical benefits of data sharing. 
- e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? What capabilities are needed to show benefit? What concerns are there with this approach? ● Automated bulk FHIR data exports from EHRs to CMS could reduce reporting burden by eliminating manual abstraction, improving accuracy/timeliness through standardization, and lessening manual effort. Benefits require standardized data models, robust bulk FHIR APIs in EHRs, CMS data ingestion capabilities, data validation/error handling, attestation/audit trails, and consent management. Concerns include poor underlying data, over/under-reporting, security/privacy risks, system performance impacts, vendor compliance variability, attribution/accountability challenges, and implementation costs. TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's APIs to allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable privacy laws? To fully implement the Cures Act's API condition of certification for "without special effort" and "all data elements," CMS should: ● Define "Without Special Effort" with measurable metrics like performance requirements (response times, throughput), ease of use (comprehensive documentation, sandboxes), predictable behavior (consistent error handling, versioning, uptime), and minimal customization. ● Clarify "All Data Elements of a Patient's EHR" by defining comprehensive FHIR profiles beyond USCDI to include all commonly stored EHR data (narratives, images, device data, etc.), categorizing EHI (discrete vs. unstructured) with expected API capabilities, and providing pathways for data not yet in FHIR. ● Mandate standardized authentication (OpenID Connect) and authorization (SMART on FHIR), require API-based consent management (FHIR Consent), prohibit unreasonable fees/restrictive terms, and implement continuous monitoring and enforcement. ● Incentivize semantic interoperability, and ensure APIs provide data provenance and handle segregated data appropriately. TD-11. As of January 1, 2024, many health IT developers with products certified through the ONC Health IT Certification Program are required to include the capability to perform an electronic health information export or “EHI export” for a single patient as well as for patient populations (45 CFR 170.315(b)(10)). Such health IT developers are also required to publicly describe the format of the EHI export. Notably, how EHI export was accomplished was left entirely to the health IT developer. Now that this capability has been in production for over a year, CMS and ASTP/ONC seek input on the following: 
- a. Should this capability be revised to specify standardized API requirements for EHI export? The current lack of standardized EHI export methods, leaving implementation to developers, hinders Cures Act goals and burdens data recipients with diverse proprietary formats. Standardized API requirements, like FHIR Bulk Data Access (Flat FHIR), would enable true interoperability, reduce burden, enhance data utility, foster developer innovation, and improve compliance monitoring. FHIR Bulk Data Access is the recommended, widely adopted, and scalable standard for this purpose. b. Are there specific workflow aspects that could be improved? ● Standardized APIs could automate EHI export requests and delivery, offering granular data selection, status monitoring with notifications, and detailed error handling. For population exports, robust patient identity matching is key. The export process should integrate with consent management and consider secure archiving and data lifecycle management. c. Should CMS consider policy changes to support this capability's use? ● CMS should consider policy changes including mandating FHIR Bulk Data Access for EHI export as a certification criterion, incentivizing its use for reporting to reduce manual burden, reinforcing that hindering standardized EHI export is information blocking, requiring public reporting of adherence to EHI export APIs, providing guidance for receiving entities on utilizing standardized exports, and funding pilot programs to demonstrate their value. 4. Data Exchange TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics should CMS consider? ● CMS should endorse non-CMS data sources and networks, which are vital for comprehensive healthcare. Endorsement criteria should include adherence to open standards (like FHIR), data quality and completeness, strong security and privacy (HIPAA, NIST), interoperability performance, participation in trusted governance frameworks (e.g., TEFCA), transparency through public documentation, scalability and resilience, demonstrated value in healthcare use cases, non-discriminatory access, and auditability with clear accountability. TD-13. What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient's electronic health information (EHI)? Access to the entirety of a patient's EHI via APIs would unlock immense opportunities: ● New advancements include comprehensive patient portals, advanced AI-powered clinical decision 
- support, richer datasets for population health management and precision medicine, automated prior authorization and claims processing, seamless care transitions, AI/ML-driven research and drug discovery, reduced administrative burden, and improved emergency care through rapid access to complete medical histories. a. What are the primary obstacles to this? ● Ensuring privacy and security for comprehensive data is the paramount obstacle. Defining and implementing full Electronic Health Information (EHI) APIs is technically complex due to the vast amount and variety of data. Semantic interoperability remains a challenge despite data exchange due to inconsistent data interpretation. Data quality and completeness issues in EHRs hinder reliable full data extraction. Legacy systems and data migration pose difficulties for exposing all data via modern APIs. Ambiguity in data ownership, use rights, and consent policies needs resolution. New forms of information blocking may arise despite the Cures Act. Scalability of transferring and processing massive patient data requires strong infrastructure. Economic disincentives for health IT vendors may hinder full data access. b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing capabilities today? The USCDI focuses on core, structured data, offering easier implementation and reliability for basic interoperability but lacking depth for advanced uses. Full EHI, encompassing both structured and unstructured data, unlocks greater potential for AI/ML and comprehensive care by providing complete clinical context. While complex to implement and posing higher security risks, advancements in language models and AI now mitigate the challenges of processing unstructured data within full EHI, enhancing its value. These technologies enable information extraction, improved understanding, and on-demand data structuring. Consequently, while USCDI remains relevant, the focus should shift towards securely enabling access to full EHI with clear governance to leverage its increased value for advanced applications. TD-14. Regarding networks' use of FHIR APIs: a. How many endpoints is your network connected to for patient data sharing? What types, categories, geographies of endpoints do you cover? Are they searchable by National Provider Identifier (NPI) or organizational ID? 
- b. How are these connections established (for example, FHIR (g)(10) endpoints, TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)? c. Do you interconnect with other networks? Under what frameworks (for example, TEFCA, private agreements)? TD-15. Regarding bulk FHIR APIs: a. How would increased use of bulk FHIR improve use cases and data flow? ● Increased use of bulk FHIR would significantly improve data flow and numerous use cases, including population health management, quality reporting automation, research and analytics, care management program facilitation, streamlined system migration and archiving, rapid disaster recovery, efficient payer data acquisition, and support for robust patient data portability concepts. b. What are the potential disadvantages of their use? ● Transferring large PHI volumes increases security risks and breach impact. Bulk data exports can burden EHR system performance and amplify existing data quality issues. Receiving systems require significant infrastructure for large FHIR bundles. Managing authorization and consent for bulk data is complex. Vendors might create new information blocking methods with bulk exports. "All data" may lack summarization and clinical context compared to individual queries. TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network infrastructure? Point-to-Point Models: ● Pros: Direct control, simple for few connections, customizable. ● Cons: Unscalable ("N squared" problem), high maintenance, inconsistent data, information silos, limited discovery. Shared Network Infrastructure (e.g., TEFCA, Carequality): ● Pros: Scalable ("connect once, connect to many"), standardized, reduced maintenance, enhanced discovery, improved trust/governance, network effects. ● Cons: Initial investment/complexity, less customization, governance overhead, potential (though less likely) for single point of failure. 
- a. Do current rules encourage scalable network participation? ● Current regulations like the 21st Century Cures Act (Information Blocking, API Condition of Certification, USCDI) increasingly promote scalable network participation. The API Condition of Certification facilitates connections through open APIs. Information Blocking rules discourage hindering data exchange, favoring network-based approaches. FHIR and USCDI provide the technical foundation for scalable exchange, and TEFCA directly aims to create a national network of networks. b. What changes would improve alignment (for example, API unification, reciprocal access)? To further improve alignment and encourage scalable network participation: Recommendations for Enhanced Interoperability: ● API Unification/Consistency: Ensure consistent API design. ● Stronger FHIR Enforcement: Mandate consistent FHIR US Core and profile implementation for plug-and-play interoperability. ● Standardized FHIR for Full EHI: Develop and require FHIR for all EHI data elements for comprehensive exchange. ● API Gateway/Discovery Standards: Standardize API discovery and connection across networks. ● Reciprocal Access Requirements: ○ Mutual Data Contribution: Require entities requesting data to also provide data under similar terms to prevent data asymmetry. ○ Fair Pricing and Business Terms: Regulate against unfair pricing or restrictive API access terms. ● Certification Incentives for Network Participation: Incentivize seamless integration and active participation in national exchange networks. ● Streamlined Onboarding for Networks: Simplify and accelerate network onboarding into frameworks like TEFCA. ● Public Reporting of Network Interoperability: Increase transparency on effective data exchange and standards adherence. ● Address Edge Cases and Exceptions: Provide guidance for organizations facing unique adoption challenges. TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring viability of healthcare data sharing networks, including enough supply and demand, that results in usage and outcomes? To ensure the long-term success of healthcare data sharing networks beyond technical aspects, CMS and ASTP/ONC should fund non-profit/public HINs/HIEs, incentivize participation through payment models 
- and reduced burden, publicly report participants, strengthen API certification and penalize information blocking to drive supply, provide open-source tools, manage TEFCA, offer dispute resolution and security guidance, promote valuable use cases, and address market barriers to open data sharing. 5. Compliance TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? ● Technology Vendor Interoperability Issues: ● ● Some certified health IT systems exhibit behaviors that hinder interoperability, such as ignoring or delaying API requests, providing poor documentation and support, falsely claiming standard capabilities aren't supported, and delaying access agreements. ● ● Situations Causing Unusable API Responses: ● ● Vendors may obstruct data access by using proprietary wrappers around standard APIs, implementing non-standard FHIR, providing incomplete data, imposing restrictive rate limits or excessive fees, requiring unnecessary vetting, delivering data in unusable formats like PDFs, and lacking event-based API notifications. b. What additional policies could ASTP/ONC and CMS implement to further discourage healthcare providers from engaging in information blocking practices? ● Technology Vendor Interoperability Issues: ● ● Some certified health IT systems exhibit behaviors that hinder interoperability, such as ignoring or delaying API requests, providing poor documentation and support, falsely claiming standard capabilities aren't supported, and delaying access agreements. ● ● Situations Causing Unusable API Responses: ● ● Vendors may obstruct data access by using proprietary wrappers around standard APIs, implementing non-standard FHIR, providing incomplete data, imposing restrictive rate limits or excessive fees, requiring unnecessary vetting, delivering data in unusable formats like PDFs, and lacking event-based API notifications. 
- c. Are there specific categories of healthcare actors covered under the definition of information blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information blocking disincentives? ● The Cures Act Final Rule established tiered disincentives for information blocking. Health IT developers and HIEs/Networks face penalties up to $1 million per violation. Healthcare providers currently face less direct disincentives determined by CMS, potentially affecting value-based care program participation or MIPS scores, without a direct fine structure like that for developers. TD-19. Regarding price transparency implementation: a. What are current shortcomings in content, format, delivery, and timeliness? ● Price transparency data from healthcare providers suffers from several shortcomings across content, format, delivery, and timeliness. Content is often incomplete, lacks personalization and context, uses varied definitions, and focuses on chargemaster prices instead of negotiated rates. Formats are often machine-unreadable (PDFs, large CSVs), lack standardization, and have poor user interfaces. Delivery lacks API access, centralized access, and real-time data. Updates are infrequent and lag in reflecting negotiated rate changes. b. Which workflows would benefit most from functional price transparency? ● Transparent pricing could enable: pre-service cost estimates and financial counseling, cost-conscious referrals, cost discussions in care planning, faster prior authorizations, quicker benefits verification, easier bill reconciliation, and quality/cost comparison tools. c. What improvements would be most valuable for patients, providers, or payers, including CMS? ● Price Transparency Solutions ● ● For Patients: Personalized, real-time out-of-pocket cost estimates; user-friendly tools to compare costs and quality across providers; proactive communication of estimated costs before service. ● ● For Providers: Standardized API access to payer-specific rates; integration of cost estimates into EHR workflows; reduced administrative burden from cost inquiries. ● ● For Payers (including CMS): Machine-readable, standardized data feeds of rates and patient liabilities; bulk data access via APIs; improved fraud, waste, and abuse detection; more accurate payment models through real-time pricing data. d. What would further motivate solution development? 
- ● To improve price transparency, mandate standardized APIs (FHIR-based), strengthen enforcement with penalties, incentivize early API adoption, consider centralized data repositories, clearly define and prioritize "patient out-of-pocket cost," and require transparent pricing for all related service components. 
+Centers for Medicare and Medicaid Services
+Request for Information; Health
+Technology Ecosystem
+Submitted by Viz.AI
+E. Technology Vendors, Data Providers, and Networks
+This section is intended for all stakeholders to provide input on questions as they relate to use
+cases and workflows that involve technology vendors, data providers, and networks. While we
+certainly want technology vendors, data providers, and networks to answer questions in this
+section (and in other sections) from their point of view, we also invite all stakeholders to provide
+their viewpoints on the technology vendor, data provider, and network use cases as appropriate.
+1. Ecosystem
+TD-1. What short term (in the next 2 years) and longer-term steps can CMS take to
+stimulate developer interest in building digital health products for Medicare beneficiaries
+and caregivers?
+● Streamlined approvals, financial incentives for efficiency, reimbursement for AI that
+lowers costs/improves population health, broader data access, and near real-time data
+access.
+TD-2. Regarding CMS Data, to stimulate developer interest—
+a. What additional data would be most valuable if made available through CMS APIs?
+● For medical AI advancement, CMS API access should expand to include de-identified
+imaging, genomic/proteomic, detailed SDOH, comprehensive longitudinal claims and
+clinical, caregiver-reported outcomes, and device-specific (RPM) data. This would
+improve diagnostics, personalized medicine, health equity, chronic care, caregiver
+support, and predictive analytics.
+●
+
+b. What data sources are most valuable alongside the data available through the Blue
+Button 2.0 API?
+While Blue Button 2.0 is an excellent start, the most valuable data sources to integrate
+alongside it for a medical AI company would include:
+● To effectively train AI for patient health understanding, access to various data sources is
+crucial beyond claims data. Electronic Health Records (EHR) provide essential clinical
+context like diagnoses and physician notes. Pharmacy data offers a comprehensive view
+of medication use. Wearable and sensor data deliver continuous real-world physiological
+insights. Provider-submitted clinical registries and quality data provide disease-specific,
+high-quality information. Integrating individual patient data with public health data offers
+insights into individual and population health trends.
+●
+c. What obstacles prevent accessing these data sources today?
+● Fragmented healthcare data across systems hinders a complete patient view.
+Inconsistent data formats and terminology complicate AI training and scalability. Privacy
+regulations like HIPAA and IRB processes restrict access to necessary data.
+Commercial interests limit access to EHRs and proprietary data, posing financial
+challenges. API limitations restrict the volume, frequency, and specificity of data access.
+A lack of standardized data governance and trust frameworks impedes data sharing. The
+absence of universal de-identification standards and tools creates hesitation in data
+sharing.
+●
+d. What other APIs should CMS and ASTP/ONC consider including in program policies to
+unleash innovation and support patients and providers?
+● To integrate AI insights into healthcare workflows, CMS should implement standardized
+APIs for: enabling data "write-back" to EHRs; accessing predictive analytics/risk scoring
+models; providing tailored patient education and shared decision-making resources;
+facilitating care coordination and communication; streamlining prior authorization and
+claims processing; offering tiered data access for research; utilizing CDS Hooks for
+AI-powered clinical decision support; and explaining AI model predictions to build trust.
+●
+2. Digital Identity
+TD-3. Regarding digital identity implementation:
+
+a. What are the challenges and benefits?
+● Challenges: Lack of standardized digital identities hinders data exchange. Privacy and
+security of PHI require robust solutions. User adoption faces resistance due to complexity
+or lack of understanding. Cost and infrastructure for secure systems can be high. Remote
+identity proofing at different levels poses accuracy challenges. Integrating new solutions
+with legacy systems is difficult.
+●
+● Benefits: Enhanced cybersecurity reduces unauthorized access. Improved data exchange
+and interoperability streamline care. Automated identity verification reduces administrative
+burden. Secure digital identities improve patient experience. Increased trust and
+accountability result from verified access. Compliance with regulations like HIPAA is aided
+by digital identity solutions.
+●
+b. How would requiring digital identity credentials (for example, CLEAR, Login.gov, ID.me, other
+NIST 800-63-3 IAL2/AAL2 CSPs) impact cybersecurity and data exchange?
+● Stronger cybersecurity through improved authentication (MFA, IAL2/AAL2) reduces
+unauthorized access, phishing, and enhances audit trails. For data exchange, reliable
+digital identities increase trust, streamline authorization, improve data integrity, and
+facilitate interoperability frameworks like TEFCA.
+●
+c. What impact would mandatory use of the OpenID Connect identity protocol have?
+Mandatory use of the OpenID Connect (OIDC) identity protocol would have a largely positive
+impact:
+Adopting the mature OpenID Connect (OIDC) standard, built on OAuth 2.0, would significantly
+improve healthcare application interoperability through simplified secure login and identity
+sharing. OIDC's straightforward implementation fosters quicker development and a unified
+single sign-on (SSO) system, enhancing user experience and security (authentication layer). As
+an open standard, OIDC reduces vendor lock-in and offers scalability. Organizations not yet
+using OIDC may experience minor disadvantages during the transition due to development and
+training needs.
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available
+APIs over proprietary APIs?
+
+CMS can encourage open API use by prioritizing them in certification, incentivizing adoption in
+payment models, developing reference implementations, offering technical assistance,
+showcasing successes, requiring public documentation, collaborating with SDOs, leveraging
+procurement, and disincentivizing proprietary APIs.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to
+health information for patients, providers, and payers? Who should publish such a
+directory, and should users bear a cost?
+A nationwide FHIR endpoint directory would significantly improve health information access
+by:
+● Patients: Simplifying connection of personal health apps/portals to providers, enhancing
+personal health record management and data control.
+● Providers: Enabling easy discovery of FHIR endpoints for streamlined data exchange in
+referrals, transitions, and coordination, reducing manual processes.
+● Payers: Improving claims, care management, quality reporting, and population health
+through efficient data access, leading to better payments and outcomes.
+● Overall: Accelerating interoperability by lowering adoption barriers for new healthcare
+applications and services.
+●
+Who Should Publish?
+● A neutral, trusted, and authoritative entity should publish a directory. Potential options
+include ONC/HHS (possibly collaborating with a non-profit), a public-private partnership
+involving government and industry, or a TEFCA-designated entity leveraging the TEFCA
+trust framework.
+●
+Should Users Bear a Cost?
+● The directory's basic search features should be free or low-cost to ensure broad access
+for providers and innovators, enhancing public health. While charging could limit
+participation, improved data access offers a greater public benefit. A tiered pricing model
+for advanced features and developer fees could supplement federal funding for
+maintenance, keeping core lookup functionality free.
+TD-6. What unique interoperability functions does TEFCA perform?
+
+● TEFCA establishes a nationwide Common Agreement and governance for all QHINs, creating a
+"network of networks" to replace direct connections. It mandates universal purpose of use for
+HIPAA-permitted EHI exchange and enforces common technical standards like FHIR and IHE XCA.
+TEFCA includes a dispute resolution process and focuses on foundational interoperability to enable
+extensive health data exchange.
+●
+a. What existing alternatives should be considered?
+● Existing health information exchange (HIE) alternatives include bilateral agreements
+lacking scalability, regional/state HIEs with limited reach, private HINs (like CommonWell
+and Carequality) that TEFCA aims to interconnect, proprietary vendor networks restricted
+to their users, and patient-mediated exchange which doesn't solve provider-to-provider
+exchange at scale.
+b. Are there redundant standards, protocols or channels or both that should be
+consolidated?
+● Opportunities exist to consolidate and streamline data exchange despite its historical
+development and varied uses. Key areas include: consolidating document exchange
+protocols (considering FHIR's emergence alongside existing methods), standardizing
+query mechanisms by promoting FHIR RESTful APIs for new implementations, reducing
+variation in FHIR implementations through stricter adherence to standards like US Core,
+streamlining consent management by standardizing technical models and policies, and
+leveraging TEFCA as the primary data exchange channel to reduce complexity.
+TD-7. To what degree has USCDI improved interoperability and exchange and what are its
+limitations?
+● The USCDI has improved interoperability by establishing a baseline data set for
+exchange, driving vendor compliance, facilitating FHIR adoption, reducing data blocking
+claims, and enabling patient access APIs. However, it has limitations due to its limited
+scope of data elements needed for comprehensive care and analysis, representing a
+"least common denominator" of information, and lacking granularity and context. While
+relying on FHIR for exchange, variations in implementation can still cause minor
+interoperability issues.
+
+a. Does it contain the full extent of data elements you need?
+While the USCDI offers a strong starting point and includes essential foundational data, it lacks
+the comprehensive data elements necessary for many complex use cases and thorough patient
+care. Thus, numerous stakeholders need more detailed, specialized, or context-rich information.
+b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized?
+The primary reason for USCDI's limitations in meeting comprehensive data needs lies in the
+inherent scope of its definition. USCDI is purposefully designed as a core dataset and is not
+intended to be exhaustive. Although variations in its application exist (such as incomplete
+vendor implementation), the fundamental constraint stems from its deliberately limited scope.
+c. If so, would adding more data elements to USCDI add value or create scoping challenges?
+How could such challenges be addressed?
+● Adding data elements to USCDI offers value but poses challenges like implementation burden,
+complexity, data availability, consensus-building, and version control. These can be addressed
+through a phased approach, modular expansion for specific use cases, leveraging industry best
+practices, strong governance and prioritization, providing guidance and tooling, and focusing on
+robust FHIR profiles with extension mechanisms.
+d. Given improvements in language models, would you prefer a non-proprietary but less
+structured format that might improve data coverage even if it requires more processing by the
+receiver?
+● Structured data is strongly preferred for core clinical and administrative information due to its
+necessity for accurate processing, automated support, and reliable analytics. While language
+models have potential, they pose risks in misinterpreting unstructured clinical text.
+●
+● For inherently unstructured data like clinical narratives and social determinants of health, a less
+structured but universally accessible format, combined with language models, could improve data
+coverage and insights.
+●
+● A hybrid approach is likely best: highly structured formats (like FHIR with USCDI) for critical, discrete
+data, and non-proprietary, less structured formats (accessible via API) for narrative data, leveraging
+language models for extraction and summarization. Key considerations include non-proprietary
+formats, robust language models, data validation, and this hybrid model.
+TD-8. What are the most effective certification criteria and standards under the ONC Health IT
+Certification Program?
+Effective certification criteria and standards promote interoperability (API, FHIR, USCDI, and address
+
+information blocking), enhance patient access (VDT, secure messaging), improve data quality and safety
+(decision support, interaction checks), and ensure security and privacy. Specificity, clarity, and rigorous
+enforcement, especially adherence to open standards like FHIR, are key to their effectiveness.
+TD-9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled capabilities over
+software functionality?
+● Prioritizing APIs over software functionality enhances interoperability and fosters data
+exchange. An API-first approach drives innovation through third-party apps, reduces
+vendor lock-in, and accelerates development via modularity. API-enabled access
+empowers patients with their health data and improves data flow for reporting and
+analytics, offering organizations greater flexibility in choosing user interfaces while utilizing
+certified backend systems.
+b. What would be the drawbacks?
+● API-focused certification may deprioritize UI usability, risking poor provider experience. Managing
+more APIs increases security risks. Maintaining data integrity and clinical context via APIs is
+challenging and requires robust modeling. Older EHRs face a heavy implementation burden for API
+exposure. "Information blocking" could occur through poorly designed or documented APIs.
+Healthcare organizations will rely more on third-party developers, necessitating careful vendor
+management.
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently
+support exchanging data from all aspects of the patient's chart (for example, faxed records, free
+text, discrete data)?
+● To improve data access, USCDI could include metadata for unstructured data, and standardized
+FHIR API endpoints should enable retrieval of documents like faxes and notes. Define and certify
+"full EHI" APIs for comprehensive data access. Explore incentivizing NLP for extracting structured
+data from free text. Mandate semantic interoperability using standard terminologies for structured
+data exchange. API certification should include performance and scalability metrics. Require
+thorough API documentation and test tools.
+d. What policy changes could CMS make so providers are motivated to respond to API-based
+data requests with best possible coverage and quality of data?
+● Encourage API adoption and interoperability by linking it to value-based care and quality programs,
+strengthening information blocking disincentives, offering performance-based incentives, reducing
+reporting burden, and publicizing performance. Provide technical assistance and emphasize the
+clinical benefits of data sharing.
+
+e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for
+reporting quality performance data to CMS? What capabilities are needed to show benefit?
+What concerns are there with this approach?
+● Automated bulk FHIR data exports from EHRs to CMS could reduce reporting burden by eliminating
+manual abstraction, improving accuracy/timeliness through standardization, and lessening manual
+effort. Benefits require standardized data models, robust bulk FHIR APIs in EHRs, CMS data
+ingestion capabilities, data validation/error handling, attestation/audit trails, and consent
+management. Concerns include poor underlying data, over/under-reporting, security/privacy risks,
+system performance impacts, vendor compliance variability, attribution/accountability challenges,
+and implementation costs.
+TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what
+further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API
+condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's APIs to
+allow health information to be accessed, exchanged, and used without special effort, including
+providing access to all data elements of a patient's electronic health record to the extent
+permissible under applicable privacy laws?
+To fully implement the Cures Act's API condition of certification for "without special effort" and "all data
+elements," CMS should:
+● Define "Without Special Effort" with measurable metrics like performance requirements (response
+times, throughput), ease of use (comprehensive documentation, sandboxes), predictable
+behavior (consistent error handling, versioning, uptime), and minimal customization.
+● Clarify "All Data Elements of a Patient's EHR" by defining comprehensive FHIR profiles beyond
+USCDI to include all commonly stored EHR data (narratives, images, device data, etc.),
+categorizing EHI (discrete vs. unstructured) with expected API capabilities, and providing
+pathways for data not yet in FHIR.
+● Mandate standardized authentication (OpenID Connect) and authorization (SMART on FHIR),
+require API-based consent management (FHIR Consent), prohibit unreasonable fees/restrictive
+terms, and implement continuous monitoring and enforcement.
+● Incentivize semantic interoperability, and ensure APIs provide data provenance and handle
+segregated data appropriately.
+TD-11. As of January 1, 2024, many health IT developers with products certified through the
+ONC Health IT Certification Program are required to include the capability to perform an
+electronic health information export or “EHI export” for a single patient as well as for patient
+populations (45 CFR 170.315(b)(10)). Such health IT developers are also required to publicly
+describe the format of the EHI export. Notably, how EHI export was accomplished was left
+entirely to the health IT developer. Now that this capability has been in production for over a
+year, CMS and ASTP/ONC seek input on the following:
+
+a. Should this capability be revised to specify standardized API requirements for EHI export?
+The current lack of standardized EHI export methods, leaving implementation to developers, hinders
+Cures Act goals and burdens data recipients with diverse proprietary formats. Standardized API
+requirements, like FHIR Bulk Data Access (Flat FHIR), would enable true interoperability, reduce burden,
+enhance data utility, foster developer innovation, and improve compliance monitoring. FHIR Bulk Data
+Access is the recommended, widely adopted, and scalable standard for this purpose.
+b. Are there specific workflow aspects that could be improved?
+● Standardized APIs could automate EHI export requests and delivery, offering granular data
+selection, status monitoring with notifications, and detailed error handling. For population exports,
+robust patient identity matching is key. The export process should integrate with consent
+management and consider secure archiving and data lifecycle management.
+c. Should CMS consider policy changes to support this capability's use?
+● CMS should consider policy changes including mandating FHIR Bulk Data Access for EHI export as
+a certification criterion, incentivizing its use for reporting to reduce manual burden, reinforcing that
+hindering standardized EHI export is information blocking, requiring public reporting of adherence to
+EHI export APIs, providing guidance for receiving entities on utilizing standardized exports, and
+funding pilot programs to demonstrate their value.
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or
+metrics should CMS consider?
+● CMS should endorse non-CMS data sources and networks, which are vital for comprehensive
+healthcare. Endorsement criteria should include adherence to open standards (like FHIR), data
+quality and completeness, strong security and privacy (HIPAA, NIST), interoperability performance,
+participation in trusted governance frameworks (e.g., TEFCA), transparency through public
+documentation, scalability and resilience, demonstrated value in healthcare use cases,
+non-discriminatory access, and auditability with clear accountability.
+TD-13. What new opportunities and advancements could emerge with APIs providing access to
+the entirety of a patient's electronic health information (EHI)?
+Access to the entirety of a patient's EHI via APIs would unlock immense opportunities:
+● New advancements include comprehensive patient portals, advanced AI-powered clinical decision
+
+support, richer datasets for population health management and precision medicine, automated prior
+authorization and claims processing, seamless care transitions, AI/ML-driven research and drug
+discovery, reduced administrative burden, and improved emergency care through rapid access to
+complete medical histories.
+a. What are the primary obstacles to this?
+● Ensuring privacy and security for comprehensive data is the paramount obstacle. Defining and
+implementing full Electronic Health Information (EHI) APIs is technically complex due to the vast
+amount and variety of data. Semantic interoperability remains a challenge despite data exchange
+due to inconsistent data interpretation. Data quality and completeness issues in EHRs hinder
+reliable full data extraction. Legacy systems and data migration pose difficulties for exposing all data
+via modern APIs. Ambiguity in data ownership, use rights, and consent policies needs resolution.
+New forms of information blocking may arise despite the Cures Act. Scalability of transferring and
+processing massive patient data requires strong infrastructure. Economic disincentives for health IT
+vendors may hinder full data access.
+b. What are the primary tradeoffs between USCDI and full EHI, especially
+given more flexible data processing capabilities today?
+The USCDI focuses on core, structured data, offering easier implementation and reliability for
+basic interoperability but lacking depth for advanced uses. Full EHI, encompassing both
+structured and unstructured data, unlocks greater potential for AI/ML and comprehensive care
+by providing complete clinical context. While complex to implement and posing higher security
+risks, advancements in language models and AI now mitigate the challenges of processing
+unstructured data within full EHI, enhancing its value. These technologies enable information
+extraction, improved understanding, and on-demand data structuring. Consequently, while
+USCDI remains relevant, the focus should shift towards securely enabling access to full EHI
+with clear governance to leverage its increased value for advanced applications.
+TD-14. Regarding networks' use of FHIR APIs:
+a. How many endpoints is your network connected to for patient data sharing? What types,
+categories, geographies of endpoints do you cover? Are they searchable by National Provider
+Identifier (NPI) or organizational ID?
+
+b. How are these connections established (for example, FHIR (g)(10) endpoints,
+TEFCA/Integrating the Health Enterprise (IHE) XCA, or proprietary APIs)?
+c. Do you interconnect with other networks? Under what frameworks (for example, TEFCA,
+private agreements)?
+TD-15. Regarding bulk FHIR APIs:
+a. How would increased use of bulk FHIR improve use cases and data flow?
+● Increased use of bulk FHIR would significantly improve data flow and numerous use cases,
+including population health management, quality reporting automation, research and analytics, care
+management program facilitation, streamlined system migration and archiving, rapid disaster
+recovery, efficient payer data acquisition, and support for robust patient data portability concepts.
+b. What are the potential disadvantages of their use?
+● Transferring large PHI volumes increases security risks and breach impact. Bulk data exports can
+burden EHR system performance and amplify existing data quality issues. Receiving systems
+require significant infrastructure for large FHIR bundles. Managing authorization and consent for
+bulk data is complex. Vendors might create new information blocking methods with bulk exports. "All
+data" may lack summarization and clinical context compared to individual queries.
+TD-16. What are the tradeoffs of maintaining point-to-point models vs. shared network
+infrastructure?
+Point-to-Point Models:
+● Pros: Direct control, simple for few connections, customizable.
+● Cons: Unscalable ("N squared" problem), high maintenance, inconsistent data,
+information silos, limited discovery.
+Shared Network Infrastructure (e.g., TEFCA, Carequality):
+● Pros: Scalable ("connect once, connect to many"), standardized, reduced maintenance,
+enhanced discovery, improved trust/governance, network effects.
+● Cons: Initial investment/complexity, less customization, governance overhead, potential
+(though less likely) for single point of failure.
+
+a. Do current rules encourage scalable network participation?
+● Current regulations like the 21st Century Cures Act (Information Blocking, API Condition of
+Certification, USCDI) increasingly promote scalable network participation. The API Condition of
+Certification facilitates connections through open APIs. Information Blocking rules discourage
+hindering data exchange, favoring network-based approaches. FHIR and USCDI provide the
+technical foundation for scalable exchange, and TEFCA directly aims to create a national network of
+networks.
+b. What changes would improve alignment (for example, API unification, reciprocal access)?
+To further improve alignment and encourage scalable network participation:
+Recommendations for Enhanced Interoperability:
+● API Unification/Consistency: Ensure consistent API design.
+● Stronger FHIR Enforcement: Mandate consistent FHIR US Core and profile
+implementation for plug-and-play interoperability.
+● Standardized FHIR for Full EHI: Develop and require FHIR for all EHI data elements
+for comprehensive exchange.
+● API Gateway/Discovery Standards: Standardize API discovery and connection across
+networks.
+● Reciprocal Access Requirements:
+○ Mutual Data Contribution: Require entities requesting data to also provide data
+under similar terms to prevent data asymmetry.
+○ Fair Pricing and Business Terms: Regulate against unfair pricing or restrictive
+API access terms.
+● Certification Incentives for Network Participation: Incentivize seamless integration
+and active participation in national exchange networks.
+● Streamlined Onboarding for Networks: Simplify and accelerate network onboarding
+into frameworks like TEFCA.
+● Public Reporting of Network Interoperability: Increase transparency on effective data
+exchange and standards adherence.
+● Address Edge Cases and Exceptions: Provide guidance for organizations facing
+unique adoption challenges.
+TD-17. Given operational costs, what role should CMS or ASTP/ONC or both have in ensuring
+viability of healthcare data sharing networks, including enough supply and demand, that results
+in usage and outcomes?
+To ensure the long-term success of healthcare data sharing networks beyond technical aspects, CMS and
+ASTP/ONC should fund non-profit/public HINs/HIEs, incentivize participation through payment models
+
+and reduced burden, publicly report participants, strengthen API certification and penalize information
+blocking to drive supply, provide open-source tools, manage TEFCA, offer dispute resolution and security
+guidance, promote valuable use cases, and address market barriers to open data sharing.
+5. Compliance
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices you have
+experienced that may constitute information blocking. Please include both situations of
+non-responsiveness as well as situations that may cause a failure or unusable response?
+● Technology Vendor Interoperability Issues:
+●
+● Some certified health IT systems exhibit behaviors that hinder interoperability, such as
+ignoring or delaying API requests, providing poor documentation and support, falsely
+claiming standard capabilities aren't supported, and delaying access agreements.
+●
+● Situations Causing Unusable API Responses:
+●
+● Vendors may obstruct data access by using proprietary wrappers around standard APIs,
+implementing non-standard FHIR, providing incomplete data, imposing restrictive rate limits
+or excessive fees, requiring unnecessary vetting, delivering data in unusable formats like
+PDFs, and lacking event-based API notifications.
+b. What additional policies could ASTP/ONC and CMS implement to further discourage
+healthcare providers from engaging in information blocking practices?
+● Technology Vendor Interoperability Issues:
+●
+● Some certified health IT systems exhibit behaviors that hinder interoperability, such as
+ignoring or delaying API requests, providing poor documentation and support, falsely
+claiming standard capabilities aren't supported, and delaying access agreements.
+●
+● Situations Causing Unusable API Responses:
+●
+● Vendors may obstruct data access by using proprietary wrappers around standard APIs,
+implementing non-standard FHIR, providing incomplete data, imposing restrictive rate limits
+or excessive fees, requiring unnecessary vetting, delivering data in unusable formats like
+PDFs, and lacking event-based API notifications.
+
+c. Are there specific categories of healthcare actors covered under the definition of information
+blocking in section 3022(a)(1) of the Public Health Service Act (PHSA) that lack information
+blocking disincentives?
+● The Cures Act Final Rule established tiered disincentives for information blocking. Health IT
+developers and HIEs/Networks face penalties up to $1 million per violation. Healthcare providers
+currently face less direct disincentives determined by CMS, potentially affecting value-based care
+program participation or MIPS scores, without a direct fine structure like that for developers.
+TD-19. Regarding price transparency implementation:
+a. What are current shortcomings in content, format, delivery, and timeliness?
+● Price transparency data from healthcare providers suffers from several shortcomings across
+content, format, delivery, and timeliness. Content is often incomplete, lacks personalization and
+context, uses varied definitions, and focuses on chargemaster prices instead of negotiated rates.
+Formats are often machine-unreadable (PDFs, large CSVs), lack standardization, and have poor
+user interfaces. Delivery lacks API access, centralized access, and real-time data. Updates are
+infrequent and lag in reflecting negotiated rate changes.
+b. Which workflows would benefit most from functional price transparency?
+● Transparent pricing could enable: pre-service cost estimates and financial counseling,
+cost-conscious referrals, cost discussions in care planning, faster prior authorizations, quicker
+benefits verification, easier bill reconciliation, and quality/cost comparison tools.
+c. What improvements would be most valuable for patients, providers, or payers, including
+CMS?
+● Price Transparency Solutions
+●
+● For Patients: Personalized, real-time out-of-pocket cost estimates; user-friendly tools to
+compare costs and quality across providers; proactive communication of estimated costs
+before service.
+●
+● For Providers: Standardized API access to payer-specific rates; integration of cost
+estimates into EHR workflows; reduced administrative burden from cost inquiries.
+●
+● For Payers (including CMS): Machine-readable, standardized data feeds of rates and
+patient liabilities; bulk data access via APIs; improved fraud, waste, and abuse detection;
+more accurate payment models through real-time pricing data.
+d. What would further motivate solution development?
+
+● To improve price transparency, mandate standardized APIs (FHIR-based), strengthen enforcement
+with penalties, incentivize early API adoption, consider centralized data repositories, clearly define
+and prioritize "patient out-of-pocket cost," and require transparent pricing for all related service
+components.

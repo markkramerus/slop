@@ -1,7 +1,216 @@
- Response to CMS Request for Information; Health Technology Ecosystem Introduction Novelcare (a.k.a. SelectIQ) is a software company that helps doctors across the country connect their patients to relevant clinical trials to improve their care. Few patients ever hear about clinical trials, especially in underserved areas. Though this kind of innovation has been possible for many years in large health systems and hospitals, it has been historically impossible to offer to smaller practices. CMS’s Promoting Interoperability program makes Novelcare possible by allowing us to integrate with the litany of smaller EHRs used in the community care setting. Specifically, our product is impossible to build without Bulk FHIR. In our experience integrating with over a dozen different EHR vendors, very few implementations work out of the box today. Through our many implementations, only one has worked “out of the box”: AthenaHealth. All others required months - over a year in some cases - of iteration with the vendor to get them to fix their implementation. Some Bulk FHIR implementations are still not working today after more than a year of joint debugging with the EHR vendor . Bulk FHIR is absolutely critical for enabling a number of apps like ours that depend on population level data to provide value to a practice and its patients. However, many of our providers, despite using an EHR certified to the g(10) criteria, cannot begin using Novelcare because their ONC Certified EHR vendor’s Bulk FHIR implementation either can’t successfully complete a Bulk Export, or is missing key USCDI elements. Summary of Key Requests for CMS / ONC Though we provide a number of suggestions to the ONC throughout our document, the most crucial suggestions that directly affect population health apps can be found in our response to TD-4 and in the accompanying Appendix section of this document. 1. Clarify that repeated Bulk FHIR job failures (or >24 h completion times) constitute information blocking and trigger §171.103 enforcement 2. Adopt a performance SLO: ≤ 1 hour per 100,000 FHIR resources for successful export 3. Require every certified EHR to support an “all-patient” Bulk FHIR export (or an unrestricted group-of-all-patients) 4. Require EHR vendors to document and enable self-service registration and installation for FHIR clients 
- Responses to select RFI questions C. Providers 2. Data Exchange PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization's systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: b. Standardized API for Patient and Population Services. See below g. Bulk FHIR—Do you support Group ID-based access filtering for population-specific queries? Bulk FHIR is the main access pattern for our application. We support Group-ID based access only because the current certification requirements don’t require EHR Vendors to support “All patient” export APIs. When “All patient” export is available, we prefer to use that. When vendors support Group-ID based access only, it creates a burden for providers. Typically these groups are statically defined lists of patients created inside the EHR, which means any population health app requires regular intervention from an EHR end-user to update the group to include new patients. We would be strongly in favor of ONC changing the certification requirements to require “All patient” export instead of the Group-ID based API. h. SMART on FHIR—Do you support both EHR-launched and standalone app access? What does the process for application deployment entail? Our app is a SMART on FHIR system client, so users have to log directly into our app. Deployment is a major pain point today and greatly impacts the speed at which we can deliver value to our providers and their patients. ONC Certification doesn’t require any specific process for app registration, so many vendors require you to email them to register your application (often at an email that isn’t published anywhere). Though the API Conditions & Certification of Maintenance require vendors to register an application for production use within 15 days ( 45 CFR 170.404(b)(1) ), we haven’t seen a single ONC Certified EHR vendor which uses this email-based registration process meet this 15 day window, often taking multiple months to enable our application to go live. PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? 
- We strongly support CMS using Bulk FHIR for clinical data quality submissions. As described in our responses to other sections, Bulk FHIR doesn’t work reliably today, yet is absolutely critical for many kinds of applications. CMS becoming a consumer of Bulk FHIR would give it more flexibility in its reporting program, while creating a feedback loop between CMS and EHR Vendors to ensure Bulk FHIR is working on every ONC Certified EHR. This will ultimately benefit healthcare providers and their patients by opening up a litany of digital health applications to them. E. Technology Vendors, Data Providers, and Networks 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over proprietary APIs? Stronger regulation of Bulk FHIR in production Across every EHR vendor Novelcare has attempted to integrate with, except for one, at least one function required by ONC’s g(10) criteria did not work when we started. Many still do not work to this day. The issues we’ve encountered include, but are not limited to: - Bulk FHIR not available in production - Bulk exports failing or not completing - All patients not available in Bulk FHIR - Missing USCDI Because Bulk FHIR is complex, it’s easy for an ONC Certified EHR vendor to pass the tests needed to obtain a certification without actually being ready for production. EHR vendors usually prefer that technology vendors use their proprietary APIs, and when the Certified APIs don’t work, it’s tempting, and often the only option to deliver value for providers in a timely manner. If CMS & ONC want the kinds of apps enabled by Bulk FHIR to be available for healthcare providers, it’s crucial that additional regulatory requirements and enforcement be placed on EHR vendors to ensure this functionality works in the real world. We request ONC exercise its authority to address these problems in the following manner: 1. Exercise information-blocking enforcement to issue sub-regulatory guidance that repeated Bulk FHIR job failure and/or “stuck” behavior constitutes a §171.103 interference 2. Amend the Conditions & Maintenance of Certification to require specific, universal Bulk FHIR performance standards that all certified EHRs must meet in production Additional specifics on these suggestions can be found in the Appendix section at the bottom of this document. 
- Clear requirements around developer registration and app installation As mentioned in our response to (PR-5)(h), EHR vendors often obfuscate their FHIR application registration process. On numerous occasions, we’ve had no other way to register an application besides looking up the developer contact email on the Certified Health Product Listing. By contrast, many of these same EHR vendors promote their proprietary APIs on their website. New technology entrants that aren’t aware of ONC Certified APIs may never discover the open APIs that CMS & ONC have worked hard to manifest. Requiring ONC-certified EHR developers to: 1. Allow applications of all kinds (patient, provider & system apps) to register and install a production application without human intervention from the EHR Vendor 2. Prominently document and link to this process on their website Would greatly increase the speed at which developers can support new EHRs, and new entrants to the health technology ecosystem can discover and adopt open APIs. Additionally, ONC has previously explored requiring Certified EHRs to support OAuth 2.0 Dynamic Client Registration Protocol (DCRP) in HTI-2. We would strongly support this as an option, provided the EHR documents the installation process (for provider & system apps) in addition to the client registration process. TD-9. Regarding certification of health IT: c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient's chart (for example, faxed records, free text, discrete data)? The FHIR standards support many formats of data, like free text and scans/faxes. However, many EHR vendors don’t expose this kind of data over FHIR, presumably because they don’t feel the data is clearly part of USCDIv1. For example, scanned laboratory reports are available in some EHRs, and not in others. Some EHRs don’t provide access to clinical notes until the Encounter is “signed” or “locked”. Unlike consistent, specific clinical elements like Health Concerns or Patient Demographics, this kind of unstructured information will likely always be a challenge to cover with USCDI data elements. Given the special nature of this kind of data, we encourage ONC to revise the certification criteria to require that all notes and images associated with a patient’s record be made available via a FHIR DocumentReference in their original format, rather than relying on the USCDI data elements & standards advancement process. TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API condition of certification ( 42 U.S.C. 300jj-11(c)(5)(D)(iv) ) that requires a developer's APIs to 
- allow health information to be accessed, exchanged, and used without special effort, including providing access to all data elements of a patient's electronic health record to the extent permissible under applicable privacy laws? See response to TD-4. 5. Compliance TD-18. Information blocking: a. Could you, as a technology vendor, provide examples for the types of practices you have experienced that may constitute information blocking. Please include both situations of non-responsiveness as well as situations that may cause a failure or unusable response? Non-responsiveness Many EHR vendors have taken weeks or sometimes months to respond to a request to register a production application, or to fix a bug that prevents access to clinical data. Performance and functionality Many EHRs have non-functional Bulk FHIR implementations and are unable or unwilling to fix them. One major EHR which we began integrating with in January 2024 (16 months ago, as of writing), has had a consistent problem with exports stalling before they complete. We’ve reported this issue many times to the EHR Vendor, as have many other population health technology vendors we’re aware of. Appendix Expanded suggestions on regulatory actions As mentioned throughout our comments, Bulk FHIR frequently does not work in practice. The two biggest issues we see across vendors are: 1. Exports not completing ever (i.e “getting stuck” processing the export) 2. Exports failing before completion For exports that do eventually complete, they can often take multiple weeks to finish. Many kinds of workflows are impossible with this kind of delay. We urge the ONC to take the following actions if it intends for Bulk FHIR to be functional for users of Certified Health IT: 1. Immediately provide clarification and enforcement to EHR vendors with non-functional Bulk FHIR implementations 
- 2. Update the API Conditions and Maintenance of Certification criteria to specify Bulk FHIR performance outcomes 3. Require that all patients are exportable via Bulk FHIR Immediate clarification and enforcement Based on our experience, many of the EHR vendors who have repeatedly had broken implementations for long periods of time do not appear to be under the impression that failing Bulk FHIR exports constitute information blocking. Many of them feel that having the API alone is sufficient for compliance with both Information Blocking regulations as well as their certification requirements. We request that the ONC exercise its information-blocking enforcement authority to issue sub-regulatory guidance that Certified Health IT modules which have Bulk FHIR exports that repeatedly fail, or do not complete within a reasonable time frame are considered Information Blocking and will be subject to Information Blocking penalties. Besides providing clarity to EHR vendors, it would also encourage technology vendors like Novelcare to report these instances as Information Blocking. Providing performance requirements via API Conditions & Maintenance of Certification In addition to the Information Blocking clarity, adding specific performance requirements to the API Conditions & Maintenance of Certification would ensure that Bulk FHIR implementations not only “work”, but work in a practical timeframe for real-world applications to use them. Specific Recommendations on Bulk FHIR Export Job Performance Export jobs can reasonably be expected to vary in performance because of the number of variables: how many patients are in the group, how many PDFs and images are associated with each patient, etc. Any requirements on export performance must take into account the amount of data being exported. In our experience, a reasonable starting place would be 1 hour per 100,000 FHIR Resources without image attachments . For example, an export of a practice with 100,000 Patients and their Condition and MedicationRequest records (using the _type parameter to filter to these 3 resource types), assuming 5 of each per-patient, would be allowed to take 11 hours (5 hours for Condition, 5 Hours for MedicationRequest and 1 hour for Patient). Setting requirements for records that contain images such as DocumentReference and DiagnosticReport is more challenging due to the associated attachments. We believe it’s reasonable to apply the same restriction (1 hour per 100,000) for these resources, but dynamically add to the allowed time based on the size (in bytes) and/or number of attachments. 
- Require that all patients are exportable via Bulk FHIR One risk of implementing our suggestions to enforce Bulk FHIR exports complete successfully and in a timely manner is that EHRs may try to “game” these requirements by creating further limitations on Bulk FHIR users. Because the ONC currently doesn’t require All Patient export, nor does it prohibit ONC certified EHR vendors from limiting Group sizes, setting performance requirements may cause certified EHR vendors to limit allowed FHIR Group sizes, rather than improving their underlying system performance and reliability. This would severely impact population health applications like Novelcare which provide analysis for the patients at an entire practice. We strongly suggest the ONC not set requirements for performance without requiring that all patients’ records are exportable within a single export . This can be achieved by either: specifying that a Group containing all patients in a practice must be able to be created and exported, or by adding a requirement to support the All Patient export endpoint already present in the FHIR Standard . 
+Response to CMS Request for Information; Health
+Technology Ecosystem
+Introduction
+Novelcare (a.k.a. SelectIQ) is a software company that helps doctors across the country connect their
+patients to relevant clinical trials to improve their care. Few patients ever hear about clinical trials,
+especially in underserved areas. Though this kind of innovation has been possible for many years in large
+health systems and hospitals, it has been historically impossible to offer to smaller practices. CMS’s
+Promoting Interoperability program makes Novelcare possible by allowing us to integrate with the litany of
+smaller EHRs used in the community care setting.
+Specifically, our product is impossible to build without Bulk FHIR. In our experience integrating with over a
+dozen different EHR vendors, very few implementations work out of the box today. Through our many
+implementations, only one has worked “out of the box”: AthenaHealth. All others required months - over a
+year in some cases - of iteration with the vendor to get them to fix their implementation. Some Bulk FHIR
+implementations are still not working today after more than a year of joint debugging with the EHR
+vendor.
+Bulk FHIR is absolutely critical for enabling a number of apps like ours that depend on population level
+data to provide value to a practice and its patients. However, many of our providers, despite using an
+EHR certified to the g(10) criteria, cannot begin using Novelcare because their ONC Certified EHR
+vendor’s Bulk FHIR implementation either can’t successfully complete a Bulk Export, or is missing key
+USCDI elements.
+Summary of Key Requests for CMS / ONC
+Though we provide a number of suggestions to the ONC throughout our document, the most
+crucial suggestions that directly affect population health apps can be found in our response to
+TD-4 and in the accompanying Appendix section of this document.
+1. Clarify that repeated Bulk FHIR job failures (or >24 h completion times) constitute
+information blocking and trigger §171.103 enforcement
+2. Adopt a performance SLO: ≤ 1 hour per 100,000 FHIR resources for successful export
+3. Require every certified EHR to support an “all-patient” Bulk FHIR export (or an
+unrestricted group-of-all-patients)
+4. Require EHR vendors to document and enable self-service registration and installation for
+FHIR clients
+
+Responses to select RFI questions
+C. Providers
+2. Data Exchange
+PR-5. Which of the following FHIR APIs and capabilities do you already support or utilize in your provider
+organization's systems, directly or through an intermediary? For each, describe the transaction model,
+use case, whether you use individual queries or bulk transactions, and any constraints:
+b. Standardized API for Patient and Population Services.
+See below
+g. Bulk FHIR—Do you support Group ID-based access filtering for population-specific queries?
+Bulk FHIR is the main access pattern for our application. We support Group-ID based access only
+because the current certification requirements don’t require EHR Vendors to support “All patient” export
+APIs. When “All patient” export is available, we prefer to use that. When vendors support Group-ID based
+access only, it creates a burden for providers. Typically these groups are statically defined lists of patients
+created inside the EHR, which means any population health app requires regular intervention from an
+EHR end-user to update the group to include new patients.
+We would be strongly in favor of ONC changing the certification requirements to require “All patient”
+export instead of the Group-ID based API.
+h. SMART on FHIR—Do you support both EHR-launched and standalone app access? What does the
+process for application deployment entail?
+Our app is a SMART on FHIR system client, so users have to log directly into our app.
+Deployment is a major pain point today and greatly impacts the speed at which we can deliver value to
+our providers and their patients. ONC Certification doesn’t require any specific process for app
+registration, so many vendors require you to email them to register your application (often at an email that
+isn’t published anywhere). Though the API Conditions & Certification of Maintenance require vendors to
+register an application for production use within 15 days (45 CFR 170.404(b)(1)), we haven’t seen a
+single ONC Certified EHR vendor which uses this email-based registration process meet this 15 day
+window, often taking multiple months to enable our application to go live.
+PR-8. What are ways CMS or partners can help with simplifying clinical quality data responsibilities of
+providers?
+a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to
+simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality
+metrics calculations leveraging Bulk FHIR data exports?
+b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated
+so investments can be dually purposed?
+
+We strongly support CMS using Bulk FHIR for clinical data quality submissions. As described in our
+responses to other sections, Bulk FHIR doesn’t work reliably today, yet is absolutely critical for many
+kinds of applications. CMS becoming a consumer of Bulk FHIR would give it more flexibility in its reporting
+program, while creating a feedback loop between CMS and EHR Vendors to ensure Bulk FHIR is working
+on every ONC Certified EHR. This will ultimately benefit healthcare providers and their patients by
+opening up a litany of digital health applications to them.
+E. Technology Vendors, Data Providers, and Networks
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs
+over proprietary APIs?
+Stronger regulation of Bulk FHIR in production
+Across every EHR vendor Novelcare has attempted to integrate with, except for one, at least
+one function required by ONC’s g(10) criteria did not work when we started. Many still do not
+work to this day. The issues we’ve encountered include, but are not limited to:
+- Bulk FHIR not available in production
+- Bulk exports failing or not completing
+- All patients not available in Bulk FHIR
+- Missing USCDI
+Because Bulk FHIR is complex, it’s easy for an ONC Certified EHR vendor to pass the tests
+needed to obtain a certification without actually being ready for production. EHR vendors usually
+prefer that technology vendors use their proprietary APIs, and when the Certified APIs don’t
+work, it’s tempting, and often the only option to deliver value for providers in a timely manner.
+If CMS & ONC want the kinds of apps enabled by Bulk FHIR to be available for healthcare
+providers, it’s crucial that additional regulatory requirements and enforcement be placed on EHR
+vendors to ensure this functionality works in the real world.
+We request ONC exercise its authority to address these problems in the following manner:
+1. Exercise information-blocking enforcement to issue sub-regulatory guidance that
+repeated Bulk FHIR job failure and/or “stuck” behavior constitutes a §171.103
+interference
+2. Amend the Conditions & Maintenance of Certification to require specific, universal Bulk
+FHIR performance standards that all certified EHRs must meet in production
+Additional specifics on these suggestions can be found in the Appendix section at the bottom of
+this document.
+
+Clear requirements around developer registration and app installation
+As mentioned in our response to (PR-5)(h), EHR vendors often obfuscate their FHIR application
+registration process. On numerous occasions, we’ve had no other way to register an application
+besides looking up the developer contact email on the Certified Health Product Listing.
+By contrast, many of these same EHR vendors promote their proprietary APIs on their website.
+New technology entrants that aren’t aware of ONC Certified APIs may never discover the open
+APIs that CMS & ONC have worked hard to manifest.
+Requiring ONC-certified EHR developers to:
+1. Allow applications of all kinds (patient, provider & system apps) to register and install a
+production application without human intervention from the EHR Vendor
+2. Prominently document and link to this process on their website
+Would greatly increase the speed at which developers can support new EHRs, and new
+entrants to the health technology ecosystem can discover and adopt open APIs.
+Additionally, ONC has previously explored requiring Certified EHRs to support OAuth 2.0
+Dynamic Client Registration Protocol (DCRP) in HTI-2. We would strongly support this as an
+option, provided the EHR documents the installation process (for provider & system apps) in
+addition to the client registration process.
+TD-9. Regarding certification of health IT:
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently
+support exchanging data from all aspects of the patient's chart (for example, faxed records, free
+text, discrete data)?
+The FHIR standards support many formats of data, like free text and scans/faxes. However,
+many EHR vendors don’t expose this kind of data over FHIR, presumably because they don’t
+feel the data is clearly part of USCDIv1. For example, scanned laboratory reports are available
+in some EHRs, and not in others. Some EHRs don’t provide access to clinical notes until the
+Encounter is “signed” or “locked”.
+Unlike consistent, specific clinical elements like Health Concerns or Patient Demographics, this
+kind of unstructured information will likely always be a challenge to cover with USCDI data
+elements. Given the special nature of this kind of data, we encourage ONC to revise the
+certification criteria to require that all notes and images associated with a patient’s record be
+made available via a FHIR DocumentReference in their original format, rather than relying on
+the USCDI data elements & standards advancement process.
+TD-10. For EHR and other developers subject to the ONC Health IT Certification Program, what
+further steps should ASTP/ONC consider to implement the 21st Century Cures Act's API
+condition of certification (42 U.S.C. 300jj-11(c)(5)(D)(iv)) that requires a developer's APIs to
+
+allow health information to be accessed, exchanged, and used without special effort, including
+providing access to all data elements of a patient's electronic health record to the extent
+permissible under applicable privacy laws?
+See response to TD-4.
+5. Compliance
+TD-18. Information blocking:
+a. Could you, as a technology vendor, provide examples for the types of practices you have
+experienced that may constitute information blocking. Please include both situations of
+non-responsiveness as well as situations that may cause a failure or unusable response?
+Non-responsiveness
+Many EHR vendors have taken weeks or sometimes months to respond to a request to register
+a production application, or to fix a bug that prevents access to clinical data.
+Performance and functionality
+Many EHRs have non-functional Bulk FHIR implementations and are unable or unwilling to fix
+them. One major EHR which we began integrating with in January 2024 (16 months ago, as of
+writing), has had a consistent problem with exports stalling before they complete. We’ve
+reported this issue many times to the EHR Vendor, as have many other population health
+technology vendors we’re aware of.
+Appendix
+Expanded suggestions on regulatory actions
+As mentioned throughout our comments, Bulk FHIR frequently does not work in practice. The
+two biggest issues we see across vendors are:
+1. Exports not completing ever (i.e “getting stuck” processing the export)
+2. Exports failing before completion
+For exports that do eventually complete, they can often take multiple weeks to finish. Many
+kinds of workflows are impossible with this kind of delay. We urge the ONC to take the following
+actions if it intends for Bulk FHIR to be functional for users of Certified Health IT:
+1. Immediately provide clarification and enforcement to EHR vendors with
+non-functional Bulk FHIR implementations
+
+2. Update the API Conditions and Maintenance of Certification criteria to specify
+Bulk FHIR performance outcomes
+3. Require that all patients are exportable via Bulk FHIR
+Immediate clarification and enforcement
+Based on our experience, many of the EHR vendors who have repeatedly had broken
+implementations for long periods of time do not appear to be under the impression that failing
+Bulk FHIR exports constitute information blocking. Many of them feel that having the API alone
+is sufficient for compliance with both Information Blocking regulations as well as their
+certification requirements.
+We request that the ONC exercise its information-blocking enforcement authority to issue
+sub-regulatory guidance that Certified Health IT modules which have Bulk FHIR exports that
+repeatedly fail, or do not complete within a reasonable time frame are considered Information
+Blocking and will be subject to Information Blocking penalties.
+Besides providing clarity to EHR vendors, it would also encourage technology vendors like
+Novelcare to report these instances as Information Blocking.
+Providing performance requirements via API Conditions & Maintenance of
+Certification
+In addition to the Information Blocking clarity, adding specific performance requirements to the
+API Conditions & Maintenance of Certification would ensure that Bulk FHIR implementations not
+only “work”, but work in a practical timeframe for real-world applications to use them.
+Specific Recommendations on Bulk FHIR Export Job Performance
+Export jobs can reasonably be expected to vary in performance because of the number of
+variables: how many patients are in the group, how many PDFs and images are associated with
+each patient, etc. Any requirements on export performance must take into account the amount
+of data being exported.
+In our experience, a reasonable starting place would be 1 hour per 100,000 FHIR Resources
+without image attachments. For example, an export of a practice with 100,000 Patients and their
+Condition and MedicationRequest records (using the _type parameter to filter to these 3
+resource types), assuming 5 of each per-patient, would be allowed to take 11 hours (5 hours for
+Condition, 5 Hours for MedicationRequest and 1 hour for Patient).
+Setting requirements for records that contain images such as DocumentReference and
+DiagnosticReport is more challenging due to the associated attachments. We believe it’s
+reasonable to apply the same restriction (1 hour per 100,000) for these resources, but
+dynamically add to the allowed time based on the size (in bytes) and/or number of attachments.
+
+Require that all patients are exportable via Bulk FHIR
+One risk of implementing our suggestions to enforce Bulk FHIR exports complete successfully
+and in a timely manner is that EHRs may try to “game” these requirements by creating further
+limitations on Bulk FHIR users.
+Because the ONC currently doesn’t require All Patient export, nor does it prohibit ONC certified
+EHR vendors from limiting Group sizes, setting performance requirements may cause certified
+EHR vendors to limit allowed FHIR Group sizes, rather than improving their underlying system
+performance and reliability. This would severely impact population health applications like
+Novelcare which provide analysis for the patients at an entire practice.
+We strongly suggest the ONC not set requirements for performance without requiring that all
+patients’ records are exportable within a single export. This can be achieved by either:
+specifying that a Group containing all patients in a practice must be able to be created and
+exported, or by adding a requirement to support the All Patient export endpoint already present
+in the FHIR Standard.

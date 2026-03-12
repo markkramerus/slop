@@ -1,12 +1,394 @@
-Dock Health Response to CMS Request for Information: Health Technology Ecosystem Introduction Dock Health appreciates the opportunity to respond to CMS's Request for Information regarding the health technology ecosystem. Dock Health was founded by a pediatric gastroenterologist and informaticist at Boston Children’s Hospital to help solve for the administrative challenges and lack of an operational hub for highly reliable patient care. As a provider of clinical workflow, task management, and care coordination solutions, we are committed to reducing administrative burden while improving healthcare delivery and outcomes. Our platform enables healthcare teams to effectively track, assign, and collaborate on clinical and operational tasks that are essential for high-quality patient care but often fall through the cracks of traditional systems. We believe that technology can and should serve as a catalyst for healthcare transformation, particularly in reducing the administrative burden that contributes significantly to provider burnout while enhancing the coordination of care across settings. With the emergence of sophisticated AI capabilities, we see tremendous potential to further augment human workflows and decision-making in healthcare. Based on our expertise and market position, we have selected key questions from this RFI that align with Dock Health's mission and capabilities. Responses to Selected Questions PR-2. Obstacles to Innovation in Provider Workflows What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated? The primary obstacles include: ● Data Silos and Lack of True Interoperability: While progress has been made, seamless data exchange between disparate systems (EHRs, practice management systems, etc.) remains a significant challenge. This fragmentation hinders the development of applications that require a holistic view of patient data and provider workflows. For instance, automating quality reporting is difficult when data resides in 
-multiple, non-interoperable systems. ● Complex and Varied Workflows: Healthcare workflows are notoriously complex and can vary significantly between specialties, practice sizes, and even individual providers. Developing "one-size-fits-all" solutions is often impractical. ● Burdensome Integration Processes: Integrating new applications with existing legacy systems, particularly EHRs, can be time-consuming, expensive, and technically challenging. EHR vendors may have restrictive API access or charge exorbitant integration fees, stifling innovation. ● Physician Burnout and Resistance to Change: Clinicians are already overburdened. Introducing new tools that are not intuitive, don't demonstrably save time, or add to their cognitive load will face resistance. ● Misaligned Incentives: The current fee-for-service model doesn't always incentivize the adoption of technologies that improve efficiency or care coordination if they don't directly translate to billable services. ● Regulatory and Compliance Overhead: Navigating HIPAA, security requirements, and other regulations can be a significant hurdle for developers, particularly smaller innovators. Mitigation Strategies: ● Mandate and Enforce Robust, Standardized APIs: CMS should continue to push for truly open, standardized APIs (like FHIR) across all certified health IT, ensuring access to granular data and workflow integration points without "special effort" or prohibitive costs. This includes administrative and operational data, not just clinical data. ● Promote Modular and Composable Systems: Encourage an ecosystem where providers can select best-of-breed applications that seamlessly plug into their existing infrastructure, rather than being locked into monolithic EHRs. ● Incentivize Workflow Automation and AI-Augmented Solutions: Create financial and non-financial incentives for the adoption of technologies that leverage AI to automate administrative tasks (e.g., prior authorizations, referral management, care gap closure, task management) and demonstrably reduce provider burden. These AI solutions should maintain humans in the loop for oversight and intervention when needed. ● User-Centered Design and Co-development: Foster closer collaboration between developers and end-users (physicians, nurses, administrative staff) to ensure solutions are intuitive, fit seamlessly into workflows, and solve real-world problems. 
-● Streamline Certification and Compliance: Simplify the regulatory pathways for innovative digital health tools that focus on workflow improvement, while maintaining necessary privacy and security safeguards. PR-7. Supporting Providers in Making Healthcare Data Available What strategies can CMS implement to support providers in making high-quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? CMS can implement several strategies: ● Incentivize Data Quality at the Source: Link data quality (completeness, accuracy, timeliness, conformance to standards) to reimbursement in value-based care models. Poor data quality should negatively impact performance scores or payments. ● Reduce Reporting Burdens through Interoperability and AI: Instead of providers manually abstracting and reporting data for various quality programs, CMS should promote and incentivize the use of APIs (e.g., Bulk FHIR) combined with AI-powered analytics for direct data submission from EHRs. AI can help identify, extract, and structure relevant data for reporting, dramatically reducing manual effort while improving accuracy. ● Support for "Data as a Byproduct" of Care: Encourage and certify health IT solutions that capture high-quality data as a natural byproduct of efficient clinical and administrative workflows, rather than as a separate data entry task. For example, a well-designed task management system for closing care gaps can automatically generate the data needed for quality reporting on those measures. ● Provide Technical Assistance and Resources: Offer resources, best practices, and technical assistance, particularly for smaller or under-resourced providers, to help them implement and maintain systems for high-quality data sharing. ● Standardize Data Elements for Key Workflows: Beyond USCDI, identify and standardize data elements critical for high-priority administrative and operational workflows (e.g., referrals, prior authorizations, care coordination tasks). This will improve the quality and utility of data exchanged for these purposes. ● Align Metrics Across Payers: Work with private payers to align quality metrics and data submission requirements to reduce the burden on providers of reporting the same 
-or similar data to multiple entities in different formats. Mitigating Burden: ● The key is to make data sharing a benefit to providers by reducing other burdens (like manual reporting) or by enabling more efficient workflows. ● Automating data extraction and submission through APIs is crucial. ● Leveraging AI to help with data normalization, extraction, and quality assurance can significantly reduce the cognitive and administrative burden on providers. ● Ensure that health IT vendors bear more responsibility for providing certified, interoperable solutions that don't require extensive custom effort from providers. Reusing/Combining Workflows and Metrics: ● Care Gap Closure: Workflows designed to identify and close care gaps (e.g., for preventive screenings, chronic disease management) inherently generate data relevant to quality metrics. Systems that manage these workflows can provide data for interoperability. ● Referral Management: Efficient referral tracking and management systems create data on network utilization, timeliness of care, and patient outcomes that can be shared. ● Task Management: Systems that manage the myriad of administrative and clinical tasks associated with patient care (e.g., Dock Health) generate valuable data on process efficiency, workload distribution, and follow-up, which can be leveraged for operational improvements and data sharing. PR-8. Simplifying Clinical Quality Data Responsibilities What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers? a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? Benefits of Bulk FHIR for Quality Data Submission: ● Reduced Provider Burden: Significantly decreases the manual effort involved in abstracting, formatting, and submitting quality data. ● Increased Timeliness: Data can be submitted more frequently, potentially enabling more timely feedback and performance monitoring. ● Improved Data Accuracy: Reduces errors associated with manual data abstraction and entry. 
-● Greater Data Richness: Bulk FHIR can potentially provide access to a broader and deeper dataset than typically submitted, allowing for more nuanced quality calculations and insights. ● Alignment with Interoperability Goals: Promotes the use of standardized APIs for data exchange, benefiting other use cases beyond quality reporting. ● AI-Enhanced Processing: When combined with AI capabilities, Bulk FHIR exports can be intelligently processed to identify relevant clinical concepts even in semi-structured or unstructured data, expanding the range of quality measures that can be automated. Downsides of Bulk FHIR for Quality Data Submission: ● Data Quality Variability: The quality and completeness of data in EHRs can vary. "Garbage in, garbage out" still applies. CMS would need robust data validation processes. ● Complexity of Implementation: While Bulk FHIR is a standard, implementation can still be complex for some EHRs and providers. ● Defining Data Scope: Clearly defining the exact data elements and patient cohorts for export requires careful specification and consistent implementation by vendors. ● Computational Burden on CMS/Recipient: CMS or its designated entities would take on the burden of calculating the quality metrics from the raw data, requiring significant computational infrastructure and expertise. ● Provider Visibility and Validation: Providers would need clear mechanisms to review and validate the data being exported and the metrics calculated by CMS to ensure accuracy and address discrepancies. Yes, CMS can reduce provider burden by performing quality metrics calculations leveraging Bulk FHIR data exports. This shifts the computational burden from individual providers/their vendors to a centralized entity, which can invest in the necessary infrastructure and expertise. This is a key advantage. b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? ● Single Data Submission Mechanism: Promote a "submit once, use many times" paradigm. Data submitted for quality reporting via robust APIs (like Bulk FHIR) should also be usable (with appropriate consent and authorization) for other legitimate purposes such as public health reporting, research, or care coordination, reducing redundant data submission efforts. ● Aligning Quality Measures with Clinical Workflows: Design quality measures that are natural outcomes of good clinical and operational workflows. For example, a measure on timely follow-up after hospital discharge can be derived from data generated by care coordination platforms that manage these transitions. 
-● Integrated Health IT Solutions: Encourage health IT solutions that embed quality measurement and reporting capabilities within the daily workflow tools used by providers. If a task management system helps ensure all pre-operative checks are completed, it should also be able to generate the data for a quality measure related to pre-operative safety. Dock Health, for instance, focuses on managing the administrative and operational work of care, and the data generated through our platform can directly inform process quality and efficiency metrics. ● Standardized Data for Value-Based Care: Ensure that data required for participation in value-based care models (e.g., for risk stratification, care coordination, patient engagement) also fulfills quality reporting requirements where overlap exists. TD-1. Stimulating Developer Interest in Digital Health Products What short term (in the next 2 years) and longer-term steps can CMS take to stimulate developer interest in building digital health products for Medicare beneficiaries and caregivers? Short-Term Steps (Next 2 Years): ● Enhance and Expand Blue Button 2.0 (and similar APIs): Include more data types beyond claims (e.g., care coordination notes, advance directives, social determinants of health data if available). Ensure reliability and provide excellent developer support. ● Clearer Pathways for Innovative Solutions in VBC Models: Showcase and incentivize the use of novel digital health tools within existing and new APMs. Provide clear guidance on how such tools can help meet VBC objectives. ● "Sandbox" Environments with Realistic, De-identified Data: Provide developers with robust sandbox environments that include a richer set of de-identified data (beyond basic claims) to facilitate development and testing of AI-augmented solutions. These environments should include the diversity and complexity of real-world data to ensure AI models are properly trained and validated. ● Reduce Barriers to Entry for Non-EHR-Centric Solutions: Create pathways and potentially streamlined certification processes for applications that address specific workflow niches (like administrative automation or care coordination) and integrate with EHRs via APIs, rather than needing to be full EHRs themselves. ● Support AI Innovation for Administrative Automation: Create specific funding opportunities or innovation challenges focused on leveraging AI to reduce administrative burden, with clear guidelines on appropriate human oversight and intervention. Emphasize solutions that augment human capabilities rather than replacing them. 
-● Publicly Recognize and Promote Successful Integrations: Highlight and promote examples of innovative digital health products, particularly those leveraging AI responsibly, that are successfully improving care for Medicare beneficiaries and easing provider burden. Longer-Term Steps: ● Mandate and Enforce True "No Special Effort" API Access: Continue to strengthen regulations ensuring that certified health IT provides comprehensive, cost-effective, and performant API access to all relevant data (clinical, administrative, operational) without obstructive practices by incumbent vendors. ● Foster a Competitive API-Driven Ecosystem: Implement policies that prevent information blocking and encourage a marketplace where the best tools can be easily integrated, regardless of the underlying EHR. ● Sustainable Reimbursement Models for Digital Health Tools: Work towards reimbursement models that recognize the value of digital health tools, including AI-augmented ones, that improve outcomes, enhance efficiency, and improve patient/provider experience, not just those that facilitate a billable encounter. ● Develop AI Governance Frameworks: Create balanced governance frameworks that enable innovation in AI-augmented healthcare tools while ensuring appropriate safety, transparency, and human oversight. This should include guidelines for validating AI performance, monitoring for bias, and ensuring appropriate human review of AI-generated recommendations. ● Support Research on AI+Human Workflow Models: Fund research on optimal models for human-AI collaboration in healthcare, identifying areas where AI can most effectively reduce burden while preserving or enhancing the quality of care and human judgment. ● Invest in Digital Health Literacy: Support initiatives that improve digital health literacy for both beneficiaries and providers to drive demand and effective utilization of these tools, particularly around understanding the capabilities and limitations of AI. ● Long-Term Vision for Data Liquidity: Articulate and execute a long-term vision for a health data ecosystem where data flows securely and seamlessly to where it's needed to support patient care, operational efficiency, and innovation. VB-1. Incentives for Digital Health Product Adoption in APMs What incentives could encourage APMs such as accountable care organizations (ACOs) or participants in Medicare Shared Savings Program (MSSP) to leverage digital health 
-management and care navigation products more often and more effectively with their patients? What are the current obstacles preventing broader digital product adoption for patients in ACOs? Effective Incentives: 1. Administrative Efficiency Bonuses: Create specific financial incentives for ACOs that demonstrate reduced administrative time through digital tools, particularly those that leverage AI to automate routine tasks while maintaining appropriate human oversight. 2. Shared Savings for Operational Improvements: Allow ACOs to count operational efficiency gains (not just clinical outcomes) toward shared savings calculations, especially for implementing AI-augmented solutions that demonstrably reduce administrative workload while improving care coordination. 3. Implementation Support Funding: Provide dedicated funding for workflow tool implementation, similar to EHR incentive programs, with specific allocations for solutions that incorporate responsibly-designed AI to tackle administrative burden. 4. Reduced Reporting Requirements: Offer simplified reporting requirements for organizations using certified workflow management solutions that leverage AI to automatically generate required documentation and reporting data. 5. Technical Assistance: Provide expertise to help ACOs select and implement workflow automation technologies, including guidance on responsible AI implementation with appropriate human oversight models. 6. Innovation Grants for AI-Augmented Care Coordination: Create specific funding opportunities for developing and implementing AI solutions that enhance care coordination while keeping humans in the loop for critical decision-making. Current Obstacles: 1. Focus on Clinical vs. Operational Metrics: ACO incentives primarily target clinical outcomes, not operational efficiency. 2. Implementation Resource Constraints: Limited staff time and expertise for implementing new operational systems, particularly those involving sophisticated AI capabilities. 3. Fragmented Technology Landscape: Difficulty integrating workflow tools with existing clinical systems. 
-4. ROI Uncertainty: Challenges in quantifying financial returns from workflow improvements, especially for newer AI-augmented solutions. 5. Upfront Costs: Implementing and integrating new digital tools requires investment, and the ROI, especially in the short term, may not be clear or guaranteed. 6. Workflow Disruption: If not implemented carefully, new tools can disrupt established workflows and add to provider burden rather than alleviating it. 7. Resistance to AI Adoption: Providers may be hesitant to adopt AI-augmented tools due to concerns about reliability, liability, reimbursement, and potential impact on clinical autonomy. 8. Patient Adoption and Engagement: Getting patients, especially those with lower digital literacy or limited access, to adopt and consistently use digital health tools can be challenging. VB-3. Essential Health IT Capabilities for Value-Based Care What are essential health IT capabilities for value-based care arrangements? Based on our experience supporting healthcare organizations transitioning to value-based care, we've identified several essential health IT capabilities: ● AI-Augmented Task-based Care Coordination: Value-based care requires complex coordination across team members and care settings. Effective task management systems that leverage AI to identify, prioritize, route, and track care tasks are essential. These systems should maintain humans in the loop for oversight and complex decision-making while automating routine processes. Dock Health provides this through our clinical workflow platform, which we continue to enhance with AI capabilities. ● Intelligent Care Gap Identification and Closure: Systems must proactively identify when patients are missing recommended services or follow-ups, with AI-powered analytics to prioritize gaps based on clinical impact and automated task creation to address these gaps. ● Comprehensive Care Planning with AI Support: Shared, dynamic care plans accessible to the patient and all care team members, with AI assistance for suggesting interventions based on evidence and best practices, while keeping clinicians in control of final decisions. ● Smart Event Notifications and Triage: Real-time alerts for admissions, discharges, and transfers, with AI-powered triage to prioritize follow-up actions based on patient risk 
-and care team availability, integrated into care coordination workflows. ● Team-Based Communication with AI Facilitation: Value-based care requires multidisciplinary teams to collaborate efficiently. Secure messaging integrated with workflow tools and enhanced by AI to route messages, suggest actions, and facilitate information sharing while preserving human judgment. ● Intelligent Data Aggregation and Normalization: AI-powered systems to pull data from diverse sources (EHRs, claims, HIEs, patient-generated data), normalize it, identify patterns, and create a unified patient view. ● Predictive Operational Analytics: Organizations need AI-enhanced visibility into workflow bottlenecks, administrative time allocation, and operational inefficiencies to continuously improve and allocate resources effectively. ● AI-Enhanced Patient Engagement Management: Tools that help manage patient outreach, education, and engagement initiatives with AI capabilities to personalize content, optimize timing, and identify patients at risk of disengagement, while maintaining human oversight of the engagement strategy. ● AI-Augmented Care Coordination Platforms: This is a critical area where Dock Health focuses. These platforms are essential for managing referrals, transitions of care, chronic care management tasks, closing care gaps, and ensuring follow-through on care plans. They can leverage AI to automate administrative and clinical operational tasks while keeping humans in the loop for judgment calls and complex decision-making. ● Intelligent Referral Management: Tools that leverage AI to identify optimal providers based on quality, cost, and access parameters, manage referrals efficiently, track outcomes, and analyze network performance to guide patients to high-value providers. In our implementations, we've found that organizations often focus heavily on clinical data analytics but underinvest in the operational workflow systems needed to actually execute on the insights. Successful value-based care requires both analytical capabilities and robust workflow management tools that increasingly leverage AI to reduce administrative burden while keeping humans in the loop for critical decisions. VB-11. Interoperability Challenges in Value-Based Care Programs What specific interoperability challenges have you encountered in implementing value-based care programs? As a company focused on workflow automation that often sits between or alongside EHRs, Dock Health frequently observes and addresses these interoperability challenges in VBC programs: 
-● Data Fragmentation Across the Continuum: VBC often involves coordinating care across multiple providers and settings (PCPs, specialists, hospitals, post-acute care, community services), each potentially using different, non-interoperable IT systems. Getting a unified, real-time view of the patient is a constant struggle, even with AI tools that attempt to reconcile and normalize data from disparate sources. ● Lack of Standardized Data for Care Coordination: While USCDI helps, critical data elements for effective care coordination and operational workflows (e.g., status of referrals, completion of specific follow-up tasks, detailed social needs assessments) are often not standardized or easily exchangeable. This forces reliance on manual processes, phone calls, and faxes, which could be significantly reduced with AI-augmented workflow tools if standardized data were available. ● Inconsistent ADT Feed Quality and Timeliness: While ADT notifications are crucial, their reliability, timeliness, and the richness of the data provided can vary significantly, hindering prompt and effective care transition management. AI systems that could help prioritize and route these notifications are limited by the quality of the underlying data. ● Difficulty Accessing and Integrating Data from External Partners: Sharing data with community-based organizations, specialists outside a primary network, or post-acute care facilities is often hampered by technical barriers, lack of trust agreements, or incompatible systems. AI solutions that could help bridge these gaps are hindered by limited access to cross-organizational data. ● Limited Bi-Directional Interoperability: Much of the focus has been on "reading" data. True VBC requires bi-directional exchange – the ability to not just pull information but also to push tasks, updates, and care plan changes back into relevant systems or to shared platforms. AI-augmented task management systems like Dock Health could dramatically improve care coordination if they had reliable bi-directional access. ● Workflow Interoperability (Not Just Data): Beyond just data exchange, there's a need for "workflow interoperability" – the ability for different systems to participate in and trigger actions within a shared, cross-organizational process. For example, a referral initiated in one system should seamlessly create a task and relevant data packet in the receiving system. Dock Health aims to bridge many of these workflow gaps, leveraging AI to help route, prioritize, and manage these cross-system workflows when possible. ● Challenges in Leveraging AI Across System Boundaries: While AI has significant potential to reduce administrative burden, current interoperability limitations restrict the ability of AI systems to access the comprehensive data needed for optimal functioning. AI solutions confined to single-system data have limited utility in the fragmented healthcare ecosystem. 
-Conclusion Dock Health appreciates the opportunity to respond to this Request for Information. As a health IT company focused on improving healthcare operations and workflow management, we believe there is a significant opportunity to enhance the digital health ecosystem by addressing the operational and administrative aspects of healthcare delivery. We see tremendous potential in carefully designed AI-augmented solutions that can reduce administrative burden while keeping humans in the loop for critical decisions and oversight. This human-AI collaboration model represents the future of healthcare operations – combining the efficiency and pattern recognition capabilities of AI with the judgment, empathy, and ethical reasoning of human healthcare professionals. We are committed to working with CMS and ASTP/ONC to advance technologies that reduce provider burden while improving patient care and outcomes. By focusing on practical interoperability that supports real-world clinical and administrative workflows, and by thoughtfully incorporating AI capabilities with appropriate human oversight, CMS can significantly accelerate the adoption of technologies that improve care quality, enhance operational efficiency, reduce provider burnout, and ultimately benefit Medicare beneficiaries. 
+Dock Health Response to CMS Request
+for Information: Health Technology
+Ecosystem
+Introduction
+Dock Health appreciates the opportunity to respond to CMS's Request for Information regarding
+the health technology ecosystem. Dock Health was founded by a pediatric gastroenterologist
+and informaticist at Boston Children’s Hospital to help solve for the administrative challenges
+and lack of an operational hub for highly reliable patient care. As a provider of clinical workflow,
+task management, and care coordination solutions, we are committed to reducing administrative
+burden while improving healthcare delivery and outcomes. Our platform enables healthcare
+teams to effectively track, assign, and collaborate on clinical and operational tasks that are
+essential for high-quality patient care but often fall through the cracks of traditional systems.
+We believe that technology can and should serve as a catalyst for healthcare transformation,
+particularly in reducing the administrative burden that contributes significantly to provider
+burnout while enhancing the coordination of care across settings. With the emergence of
+sophisticated AI capabilities, we see tremendous potential to further augment human workflows
+and decision-making in healthcare. Based on our expertise and market position, we have
+selected key questions from this RFI that align with Dock Health's mission and capabilities.
+Responses to Selected Questions
+PR-2. Obstacles to Innovation in Provider Workflows
+What are obstacles that prevent development, deployment, or effective utilization of the
+most useful and innovative applications for physician workflows, such as quality
+measurement reporting, clinical documentation, and billing tasks? How could these
+obstacles be mitigated?
+The primary obstacles include:
+● Data Silos and Lack of True Interoperability: While progress has been made,
+seamless data exchange between disparate systems (EHRs, practice management
+systems, etc.) remains a significant challenge. This fragmentation hinders the
+development of applications that require a holistic view of patient data and provider
+workflows. For instance, automating quality reporting is difficult when data resides in
+
+multiple, non-interoperable systems.
+● Complex and Varied Workflows: Healthcare workflows are notoriously complex and
+can vary significantly between specialties, practice sizes, and even individual providers.
+Developing "one-size-fits-all" solutions is often impractical.
+● Burdensome Integration Processes: Integrating new applications with existing legacy
+systems, particularly EHRs, can be time-consuming, expensive, and technically
+challenging. EHR vendors may have restrictive API access or charge exorbitant
+integration fees, stifling innovation.
+● Physician Burnout and Resistance to Change: Clinicians are already overburdened.
+Introducing new tools that are not intuitive, don't demonstrably save time, or add to their
+cognitive load will face resistance.
+● Misaligned Incentives: The current fee-for-service model doesn't always incentivize the
+adoption of technologies that improve efficiency or care coordination if they don't directly
+translate to billable services.
+● Regulatory and Compliance Overhead: Navigating HIPAA, security requirements, and
+other regulations can be a significant hurdle for developers, particularly smaller
+innovators.
+Mitigation Strategies:
+● Mandate and Enforce Robust, Standardized APIs: CMS should continue to push for
+truly open, standardized APIs (like FHIR) across all certified health IT, ensuring access
+to granular data and workflow integration points without "special effort" or prohibitive
+costs. This includes administrative and operational data, not just clinical data.
+● Promote Modular and Composable Systems: Encourage an ecosystem where
+providers can select best-of-breed applications that seamlessly plug into their existing
+infrastructure, rather than being locked into monolithic EHRs.
+● Incentivize Workflow Automation and AI-Augmented Solutions: Create financial and
+non-financial incentives for the adoption of technologies that leverage AI to automate
+administrative tasks (e.g., prior authorizations, referral management, care gap closure,
+task management) and demonstrably reduce provider burden. These AI solutions should
+maintain humans in the loop for oversight and intervention when needed.
+● User-Centered Design and Co-development: Foster closer collaboration between
+developers and end-users (physicians, nurses, administrative staff) to ensure solutions
+are intuitive, fit seamlessly into workflows, and solve real-world problems.
+
+● Streamline Certification and Compliance: Simplify the regulatory pathways for
+innovative digital health tools that focus on workflow improvement, while maintaining
+necessary privacy and security safeguards.
+PR-7. Supporting Providers in Making Healthcare Data Available
+What strategies can CMS implement to support providers in making high-quality, timely,
+and comprehensive healthcare data available for interoperability in the digital product
+ecosystem? How can the burden of increasing data availability and sharing be mitigated
+for providers? Are there ways that workflows or metrics that providers are already
+motivated to optimize for that could be reused for, or combined with, efforts needed to
+support interoperability?
+CMS can implement several strategies:
+● Incentivize Data Quality at the Source: Link data quality (completeness, accuracy,
+timeliness, conformance to standards) to reimbursement in value-based care models.
+Poor data quality should negatively impact performance scores or payments.
+● Reduce Reporting Burdens through Interoperability and AI: Instead of providers
+manually abstracting and reporting data for various quality programs, CMS should
+promote and incentivize the use of APIs (e.g., Bulk FHIR) combined with AI-powered
+analytics for direct data submission from EHRs. AI can help identify, extract, and
+structure relevant data for reporting, dramatically reducing manual effort while improving
+accuracy.
+● Support for "Data as a Byproduct" of Care: Encourage and certify health IT solutions
+that capture high-quality data as a natural byproduct of efficient clinical and
+administrative workflows, rather than as a separate data entry task. For example, a
+well-designed task management system for closing care gaps can automatically
+generate the data needed for quality reporting on those measures.
+● Provide Technical Assistance and Resources: Offer resources, best practices, and
+technical assistance, particularly for smaller or under-resourced providers, to help them
+implement and maintain systems for high-quality data sharing.
+● Standardize Data Elements for Key Workflows: Beyond USCDI, identify and
+standardize data elements critical for high-priority administrative and operational
+workflows (e.g., referrals, prior authorizations, care coordination tasks). This will improve
+the quality and utility of data exchanged for these purposes.
+● Align Metrics Across Payers: Work with private payers to align quality metrics and
+data submission requirements to reduce the burden on providers of reporting the same
+
+or similar data to multiple entities in different formats.
+Mitigating Burden:
+● The key is to make data sharing a benefit to providers by reducing other burdens (like
+manual reporting) or by enabling more efficient workflows.
+● Automating data extraction and submission through APIs is crucial.
+● Leveraging AI to help with data normalization, extraction, and quality assurance can
+significantly reduce the cognitive and administrative burden on providers.
+● Ensure that health IT vendors bear more responsibility for providing certified,
+interoperable solutions that don't require extensive custom effort from providers.
+Reusing/Combining Workflows and Metrics:
+● Care Gap Closure: Workflows designed to identify and close care gaps (e.g., for
+preventive screenings, chronic disease management) inherently generate data relevant
+to quality metrics. Systems that manage these workflows can provide data for
+interoperability.
+● Referral Management: Efficient referral tracking and management systems create data
+on network utilization, timeliness of care, and patient outcomes that can be shared.
+● Task Management: Systems that manage the myriad of administrative and clinical tasks
+associated with patient care (e.g., Dock Health) generate valuable data on process
+efficiency, workload distribution, and follow-up, which can be leveraged for operational
+improvements and data sharing.
+PR-8. Simplifying Clinical Quality Data Responsibilities
+What are ways CMS or partners can help with simplifying clinical quality data
+responsibilities of providers?
+a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs
+to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on
+providers by performing quality metrics calculations leveraging Bulk FHIR data exports?
+Benefits of Bulk FHIR for Quality Data Submission:
+● Reduced Provider Burden: Significantly decreases the manual effort involved in
+abstracting, formatting, and submitting quality data.
+● Increased Timeliness: Data can be submitted more frequently, potentially enabling
+more timely feedback and performance monitoring.
+● Improved Data Accuracy: Reduces errors associated with manual data abstraction and
+entry.
+
+● Greater Data Richness: Bulk FHIR can potentially provide access to a broader and
+deeper dataset than typically submitted, allowing for more nuanced quality calculations
+and insights.
+● Alignment with Interoperability Goals: Promotes the use of standardized APIs for
+data exchange, benefiting other use cases beyond quality reporting.
+● AI-Enhanced Processing: When combined with AI capabilities, Bulk FHIR exports can
+be intelligently processed to identify relevant clinical concepts even in semi-structured or
+unstructured data, expanding the range of quality measures that can be automated.
+Downsides of Bulk FHIR for Quality Data Submission:
+● Data Quality Variability: The quality and completeness of data in EHRs can vary.
+"Garbage in, garbage out" still applies. CMS would need robust data validation
+processes.
+● Complexity of Implementation: While Bulk FHIR is a standard, implementation can still
+be complex for some EHRs and providers.
+● Defining Data Scope: Clearly defining the exact data elements and patient cohorts for
+export requires careful specification and consistent implementation by vendors.
+● Computational Burden on CMS/Recipient: CMS or its designated entities would take
+on the burden of calculating the quality metrics from the raw data, requiring significant
+computational infrastructure and expertise.
+● Provider Visibility and Validation: Providers would need clear mechanisms to review
+and validate the data being exported and the metrics calculated by CMS to ensure
+accuracy and address discrepancies.
+Yes, CMS can reduce provider burden by performing quality metrics calculations
+leveraging Bulk FHIR data exports. This shifts the computational burden from individual
+providers/their vendors to a centralized entity, which can invest in the necessary infrastructure
+and expertise. This is a key advantage.
+b. In what ways can the interoperability and quality reporting responsibilities of providers
+be consolidated so investments can be dually purposed?
+● Single Data Submission Mechanism: Promote a "submit once, use many times"
+paradigm. Data submitted for quality reporting via robust APIs (like Bulk FHIR) should
+also be usable (with appropriate consent and authorization) for other legitimate purposes
+such as public health reporting, research, or care coordination, reducing redundant data
+submission efforts.
+● Aligning Quality Measures with Clinical Workflows: Design quality measures that are
+natural outcomes of good clinical and operational workflows. For example, a measure on
+timely follow-up after hospital discharge can be derived from data generated by care
+coordination platforms that manage these transitions.
+
+● Integrated Health IT Solutions: Encourage health IT solutions that embed quality
+measurement and reporting capabilities within the daily workflow tools used by
+providers. If a task management system helps ensure all pre-operative checks are
+completed, it should also be able to generate the data for a quality measure related to
+pre-operative safety. Dock Health, for instance, focuses on managing the administrative
+and operational work of care, and the data generated through our platform can directly
+inform process quality and efficiency metrics.
+● Standardized Data for Value-Based Care: Ensure that data required for participation in
+value-based care models (e.g., for risk stratification, care coordination, patient
+engagement) also fulfills quality reporting requirements where overlap exists.
+TD-1. Stimulating Developer Interest in Digital Health Products
+What short term (in the next 2 years) and longer-term steps can CMS take to stimulate
+developer interest in building digital health products for Medicare beneficiaries and
+caregivers?
+Short-Term Steps (Next 2 Years):
+● Enhance and Expand Blue Button 2.0 (and similar APIs): Include more data types
+beyond claims (e.g., care coordination notes, advance directives, social determinants of
+health data if available). Ensure reliability and provide excellent developer support.
+● Clearer Pathways for Innovative Solutions in VBC Models: Showcase and
+incentivize the use of novel digital health tools within existing and new APMs. Provide
+clear guidance on how such tools can help meet VBC objectives.
+● "Sandbox" Environments with Realistic, De-identified Data: Provide developers with
+robust sandbox environments that include a richer set of de-identified data (beyond
+basic claims) to facilitate development and testing of AI-augmented solutions. These
+environments should include the diversity and complexity of real-world data to ensure AI
+models are properly trained and validated.
+● Reduce Barriers to Entry for Non-EHR-Centric Solutions: Create pathways and
+potentially streamlined certification processes for applications that address specific
+workflow niches (like administrative automation or care coordination) and integrate with
+EHRs via APIs, rather than needing to be full EHRs themselves.
+● Support AI Innovation for Administrative Automation: Create specific funding
+opportunities or innovation challenges focused on leveraging AI to reduce administrative
+burden, with clear guidelines on appropriate human oversight and intervention.
+Emphasize solutions that augment human capabilities rather than replacing them.
+
+● Publicly Recognize and Promote Successful Integrations: Highlight and promote
+examples of innovative digital health products, particularly those leveraging AI
+responsibly, that are successfully improving care for Medicare beneficiaries and easing
+provider burden.
+Longer-Term Steps:
+● Mandate and Enforce True "No Special Effort" API Access: Continue to strengthen
+regulations ensuring that certified health IT provides comprehensive, cost-effective, and
+performant API access to all relevant data (clinical, administrative, operational) without
+obstructive practices by incumbent vendors.
+● Foster a Competitive API-Driven Ecosystem: Implement policies that prevent
+information blocking and encourage a marketplace where the best tools can be easily
+integrated, regardless of the underlying EHR.
+● Sustainable Reimbursement Models for Digital Health Tools: Work towards
+reimbursement models that recognize the value of digital health tools, including
+AI-augmented ones, that improve outcomes, enhance efficiency, and improve
+patient/provider experience, not just those that facilitate a billable encounter.
+● Develop AI Governance Frameworks: Create balanced governance frameworks that
+enable innovation in AI-augmented healthcare tools while ensuring appropriate safety,
+transparency, and human oversight. This should include guidelines for validating AI
+performance, monitoring for bias, and ensuring appropriate human review of
+AI-generated recommendations.
+● Support Research on AI+Human Workflow Models: Fund research on optimal models
+for human-AI collaboration in healthcare, identifying areas where AI can most effectively
+reduce burden while preserving or enhancing the quality of care and human judgment.
+● Invest in Digital Health Literacy: Support initiatives that improve digital health literacy
+for both beneficiaries and providers to drive demand and effective utilization of these
+tools, particularly around understanding the capabilities and limitations of AI.
+● Long-Term Vision for Data Liquidity: Articulate and execute a long-term vision for a
+health data ecosystem where data flows securely and seamlessly to where it's needed to
+support patient care, operational efficiency, and innovation.
+VB-1. Incentives for Digital Health Product Adoption in APMs
+What incentives could encourage APMs such as accountable care organizations (ACOs)
+or participants in Medicare Shared Savings Program (MSSP) to leverage digital health
+
+management and care navigation products more often and more effectively with their
+patients? What are the current obstacles preventing broader digital product adoption for
+patients in ACOs?
+Effective Incentives:
+1. Administrative Efficiency Bonuses: Create specific financial incentives for ACOs that
+demonstrate reduced administrative time through digital tools, particularly those that
+leverage AI to automate routine tasks while maintaining appropriate human oversight.
+2. Shared Savings for Operational Improvements: Allow ACOs to count operational
+efficiency gains (not just clinical outcomes) toward shared savings calculations,
+especially for implementing AI-augmented solutions that demonstrably reduce
+administrative workload while improving care coordination.
+3. Implementation Support Funding: Provide dedicated funding for workflow tool
+implementation, similar to EHR incentive programs, with specific allocations for solutions
+that incorporate responsibly-designed AI to tackle administrative burden.
+4. Reduced Reporting Requirements: Offer simplified reporting requirements for
+organizations using certified workflow management solutions that leverage AI to
+automatically generate required documentation and reporting data.
+5. Technical Assistance: Provide expertise to help ACOs select and implement workflow
+automation technologies, including guidance on responsible AI implementation with
+appropriate human oversight models.
+6. Innovation Grants for AI-Augmented Care Coordination: Create specific funding
+opportunities for developing and implementing AI solutions that enhance care
+coordination while keeping humans in the loop for critical decision-making.
+Current Obstacles:
+1. Focus on Clinical vs. Operational Metrics: ACO incentives primarily target clinical
+outcomes, not operational efficiency.
+2. Implementation Resource Constraints: Limited staff time and expertise for
+implementing new operational systems, particularly those involving sophisticated AI
+capabilities.
+3. Fragmented Technology Landscape: Difficulty integrating workflow tools with existing
+clinical systems.
+
+4. ROI Uncertainty: Challenges in quantifying financial returns from workflow
+improvements, especially for newer AI-augmented solutions.
+5. Upfront Costs: Implementing and integrating new digital tools requires investment, and
+the ROI, especially in the short term, may not be clear or guaranteed.
+6. Workflow Disruption: If not implemented carefully, new tools can disrupt established
+workflows and add to provider burden rather than alleviating it.
+7. Resistance to AI Adoption: Providers may be hesitant to adopt AI-augmented tools
+due to concerns about reliability, liability, reimbursement, and potential impact on clinical
+autonomy.
+8. Patient Adoption and Engagement: Getting patients, especially those with lower digital
+literacy or limited access, to adopt and consistently use digital health tools can be
+challenging.
+VB-3. Essential Health IT Capabilities for Value-Based Care
+What are essential health IT capabilities for value-based care arrangements?
+Based on our experience supporting healthcare organizations transitioning to value-based care,
+we've identified several essential health IT capabilities:
+● AI-Augmented Task-based Care Coordination: Value-based care requires complex
+coordination across team members and care settings. Effective task management
+systems that leverage AI to identify, prioritize, route, and track care tasks are essential.
+These systems should maintain humans in the loop for oversight and complex
+decision-making while automating routine processes. Dock Health provides this through
+our clinical workflow platform, which we continue to enhance with AI capabilities.
+● Intelligent Care Gap Identification and Closure: Systems must proactively identify
+when patients are missing recommended services or follow-ups, with AI-powered
+analytics to prioritize gaps based on clinical impact and automated task creation to
+address these gaps.
+● Comprehensive Care Planning with AI Support: Shared, dynamic care plans
+accessible to the patient and all care team members, with AI assistance for suggesting
+interventions based on evidence and best practices, while keeping clinicians in control of
+final decisions.
+● Smart Event Notifications and Triage: Real-time alerts for admissions, discharges,
+and transfers, with AI-powered triage to prioritize follow-up actions based on patient risk
+
+and care team availability, integrated into care coordination workflows.
+● Team-Based Communication with AI Facilitation: Value-based care requires
+multidisciplinary teams to collaborate efficiently. Secure messaging integrated with
+workflow tools and enhanced by AI to route messages, suggest actions, and facilitate
+information sharing while preserving human judgment.
+● Intelligent Data Aggregation and Normalization: AI-powered systems to pull data
+from diverse sources (EHRs, claims, HIEs, patient-generated data), normalize it, identify
+patterns, and create a unified patient view.
+● Predictive Operational Analytics: Organizations need AI-enhanced visibility into
+workflow bottlenecks, administrative time allocation, and operational inefficiencies to
+continuously improve and allocate resources effectively.
+● AI-Enhanced Patient Engagement Management: Tools that help manage patient
+outreach, education, and engagement initiatives with AI capabilities to personalize
+content, optimize timing, and identify patients at risk of disengagement, while
+maintaining human oversight of the engagement strategy.
+● AI-Augmented Care Coordination Platforms: This is a critical area where Dock Health
+focuses. These platforms are essential for managing referrals, transitions of care,
+chronic care management tasks, closing care gaps, and ensuring follow-through on care
+plans. They can leverage AI to automate administrative and clinical operational tasks
+while keeping humans in the loop for judgment calls and complex decision-making.
+● Intelligent Referral Management: Tools that leverage AI to identify optimal providers
+based on quality, cost, and access parameters, manage referrals efficiently, track
+outcomes, and analyze network performance to guide patients to high-value providers.
+In our implementations, we've found that organizations often focus heavily on clinical data
+analytics but underinvest in the operational workflow systems needed to actually execute on the
+insights. Successful value-based care requires both analytical capabilities and robust workflow
+management tools that increasingly leverage AI to reduce administrative burden while keeping
+humans in the loop for critical decisions.
+VB-11. Interoperability Challenges in Value-Based Care Programs
+What specific interoperability challenges have you encountered in implementing
+value-based care programs?
+As a company focused on workflow automation that often sits between or alongside EHRs,
+Dock Health frequently observes and addresses these interoperability challenges in VBC
+programs:
+
+● Data Fragmentation Across the Continuum: VBC often involves coordinating care
+across multiple providers and settings (PCPs, specialists, hospitals, post-acute care,
+community services), each potentially using different, non-interoperable IT systems.
+Getting a unified, real-time view of the patient is a constant struggle, even with AI tools
+that attempt to reconcile and normalize data from disparate sources.
+● Lack of Standardized Data for Care Coordination: While USCDI helps, critical data
+elements for effective care coordination and operational workflows (e.g., status of
+referrals, completion of specific follow-up tasks, detailed social needs assessments) are
+often not standardized or easily exchangeable. This forces reliance on manual
+processes, phone calls, and faxes, which could be significantly reduced with
+AI-augmented workflow tools if standardized data were available.
+● Inconsistent ADT Feed Quality and Timeliness: While ADT notifications are crucial,
+their reliability, timeliness, and the richness of the data provided can vary significantly,
+hindering prompt and effective care transition management. AI systems that could help
+prioritize and route these notifications are limited by the quality of the underlying data.
+● Difficulty Accessing and Integrating Data from External Partners: Sharing data with
+community-based organizations, specialists outside a primary network, or post-acute
+care facilities is often hampered by technical barriers, lack of trust agreements, or
+incompatible systems. AI solutions that could help bridge these gaps are hindered by
+limited access to cross-organizational data.
+● Limited Bi-Directional Interoperability: Much of the focus has been on "reading" data.
+True VBC requires bi-directional exchange – the ability to not just pull information but
+also to push tasks, updates, and care plan changes back into relevant systems or to
+shared platforms. AI-augmented task management systems like Dock Health could
+dramatically improve care coordination if they had reliable bi-directional access.
+● Workflow Interoperability (Not Just Data): Beyond just data exchange, there's a need
+for "workflow interoperability" – the ability for different systems to participate in and
+trigger actions within a shared, cross-organizational process. For example, a referral
+initiated in one system should seamlessly create a task and relevant data packet in the
+receiving system. Dock Health aims to bridge many of these workflow gaps, leveraging
+AI to help route, prioritize, and manage these cross-system workflows when possible.
+● Challenges in Leveraging AI Across System Boundaries: While AI has significant
+potential to reduce administrative burden, current interoperability limitations restrict the
+ability of AI systems to access the comprehensive data needed for optimal functioning.
+AI solutions confined to single-system data have limited utility in the fragmented
+healthcare ecosystem.
+
+Conclusion
+Dock Health appreciates the opportunity to respond to this Request for Information. As a health
+IT company focused on improving healthcare operations and workflow management, we believe
+there is a significant opportunity to enhance the digital health ecosystem by addressing the
+operational and administrative aspects of healthcare delivery.
+We see tremendous potential in carefully designed AI-augmented solutions that can reduce
+administrative burden while keeping humans in the loop for critical decisions and oversight. This
+human-AI collaboration model represents the future of healthcare operations – combining the
+efficiency and pattern recognition capabilities of AI with the judgment, empathy, and ethical
+reasoning of human healthcare professionals.
+We are committed to working with CMS and ASTP/ONC to advance technologies that reduce
+provider burden while improving patient care and outcomes. By focusing on practical
+interoperability that supports real-world clinical and administrative workflows, and by thoughtfully
+incorporating AI capabilities with appropriate human oversight, CMS can significantly accelerate
+the adoption of technologies that improve care quality, enhance operational efficiency, reduce
+provider burnout, and ultimately benefit Medicare beneficiaries.

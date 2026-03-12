@@ -1,79 +1,90 @@
 {
-  "plan_version": "1.0",
-  "created": "2026-02-28T18:03:33.508339+00:00",
-  "scenario_summary": "The user opposes ONC/ASTP's proposed removal of AI model card transparency requirements from the Decision Support Interventions (DSI) certification criterion. They argue that transparency on AI design, testing, and performance is essential for patient safety, clinical trust, and informed procurement—and that removing these requirements creates unacceptable risk as AI adoption in healthcare accelerates.",
-  "objective": "Retain the current DSI certification criterion requiring detailed AI model card disclosures (intended use, target population, known risks, training data characteristics, validation processes) on the grounds that transparency is foundational to patient safety, clinical adoption, and accountability in high-stakes healthcare AI applications.",
+  "plan_version": "2.0",
+  "created": "2026-03-11T23:55:56.276214+00:00",
+  "scenario_summary": "The user opposes ASTP/ONC's proposed removal of AI model card and transparency requirements from the Decision Support Interventions (DSI) certification criterion. They believe transparency is essential for patient safety, trust in AI tools, and informed procurement decisions, and want to mobilize stakeholders (hospitals, clinical informatics organizations, patient safety advocates, cybersecurity experts, and academics) to retain these safeguards.",
+  "objective": "Retain the current Decision Support Interventions (DSI) certification criterion requiring AI model cards and transparency disclosures (intended use, target population, known risks, training data characteristics, external validation) to ensure patient safety, informed clinical decision-making, and accountability in AI-assisted healthcare.",
   "argument_angles": [
     {
       "id": "patient_safety_imperative",
-      "angle": "Removing transparency requirements for AI-based DSIs directly undermines patient safety by eliminating clinician access to critical performance and risk data needed to detect and prevent algorithmic harm.",
+      "angle": "Removing transparency requirements creates unacceptable patient safety risks when AI systems make or influence high-stakes clinical recommendations without disclosed performance data or known limitations.",
       "weight": 0.25,
-      "best_archetypes": [
-        "advocacy_group",
-        "individual_consumer",
-        "academic"
+      "best_voices": [
+        "advocacy_group-high-org",
+        "individual_consumer-high",
+        "academic-high-org"
       ]
     },
     {
-      "id": "black_box_adoption_risk",
-      "angle": "The 'black box' nature of unvetted AI algorithms represents a systemic adoption barrier; model cards are one of the few existing standards that demystify AI design and build the trust necessary for responsible clinical deployment.",
+      "id": "black_box_accountability",
+      "angle": "Healthcare providers and patients have a fundamental right to know how AI systems were designed, tested, and validated before deploying them in clinical settings; removing model cards eliminates accountability.",
       "weight": 0.2,
-      "best_archetypes": [
-        "industry",
-        "academic",
-        "advocacy_group"
+      "best_voices": [
+        "individual_consumer-medium",
+        "individual_consumer-high",
+        "advocacy_group-high-org"
       ]
     },
     {
-      "id": "informed_procurement",
-      "angle": "Hospital and health system procurement teams rely on DSI transparency requirements to evaluate whether AI tools are fit for their specific patient populations, clinical workflows, and risk tolerances; removal strips away decision-making data.",
+      "id": "procurement_informed_decision",
+      "angle": "Hospital and health system procurement teams need transparent AI model information to make evidence-based decisions about which tools to adopt and how to implement them safely in their local contexts.",
       "weight": 0.18,
-      "best_archetypes": [
-        "industry",
-        "advocacy_group"
+      "best_voices": [
+        "industry-high-org",
+        "advocacy_group-high-org",
+        "academic-high-org"
       ]
     },
     {
-      "id": "absence_of_evidence_fallacy",
-      "angle": "The agency's claim that no public evidence supports transparency's positive impact conflates lack of published studies with lack of real-world benefit; transparency requirements are too recent and nascent to have generated robust outcome literature.",
+      "id": "trust_adoption_barrier",
+      "angle": "The 'black box' problem is a documented barrier to AI adoption in healthcare; model cards directly address clinician and organizational concerns about trustworthiness and are a proven mechanism to build confidence.",
       "weight": 0.15,
-      "best_archetypes": [
-        "academic",
-        "advocacy_group"
+      "best_voices": [
+        "academic-high-org",
+        "industry-high-org",
+        "advocacy_group-high-org"
       ]
     },
     {
-      "id": "future_harm_prevention",
-      "angle": "Few DSIs are currently AI-based, but the criterion must be in place proactively to prevent harm as AI adoption accelerates; waiting for documented failures before requiring transparency is ethically indefensible.",
+      "id": "regulatory_gap_risk",
+      "angle": "Removing DSI transparency requirements creates a dangerous regulatory gap where AI-based clinical decision support tools face fewer disclosure obligations than traditional medical devices, undermining consistent safety standards.",
       "weight": 0.12,
-      "best_archetypes": [
-        "advocacy_group",
-        "individual_consumer",
-        "academic"
+      "best_voices": [
+        "advocacy_group-high-org",
+        "academic-high-org",
+        "individual_consumer-high"
       ]
     },
     {
-      "id": "consumer_right_to_know",
-      "angle": "Patients and clinicians have a fundamental right to know whether a high-stakes health recommendation originates from a human expert or an algorithmic system, and what that system's limitations are.",
+      "id": "evidence_absence_fallacy",
+      "angle": "The agency's claim that 'no publicly available evidence' supports transparency requirements conflates absence of evidence with evidence of absence; lack of published studies does not mean the criterion provides no value.",
       "weight": 0.1,
-      "best_archetypes": [
-        "individual_consumer",
-        "advocacy_group"
+      "best_voices": [
+        "academic-high-org",
+        "individual_consumer-high",
+        "advocacy_group-high-org"
       ]
     }
   ],
-  "stakeholder_emphasis": {
-    "individual_consumer": 0.15,
-    "advocacy_group": 0.35,
-    "industry": 0.25,
-    "academic": 0.2,
-    "government": 0.05
+  "campaign_voices": {
+    "academic-high-org": 0.08,
+    "advocacy_group-high-org": 0.32,
+    "government-high-org": 0.01,
+    "individual_consumer-high": 0.18,
+    "individual_consumer-low": 0.06,
+    "individual_consumer-medium": 0.16,
+    "industry-high-org": 0.17,
+    "industry-medium-org": 0.02
   },
-  "vector_mix": {
-    "1": 0.3,
-    "2": 0.45,
-    "3": 0.15,
-    "4": 0.1
+  "base_population": {
+    "individual_consumer-medium": 0.20317460317460317,
+    "individual_consumer-low": 0.10634920634920635,
+    "individual_consumer-high": 0.1492063492063492,
+    "industry-medium-org": 0.026984126984126985,
+    "industry-high-org": 0.3,
+    "government-high-org": 0.007936507936507936,
+    "advocacy_group-high-org": 0.18888888888888888,
+    "academic-high-org": 0.01746031746031746
   },
-  "notes": "This campaign targets a technical, high-stakes regulatory domain where credibility and specificity matter. Persona Mimicry (vector 2) is weighted heavily because the coalition is genuinely diverse—hospital procurement officers, patient safety advocates, clinical informaticists, and academic researchers all have distinct but aligned concerns. Semantic Variance (vector 1) is substantial because the same core safety argument can be reframed through patient rights, clinical workflow, procurement, and proactive risk management lenses. Citation Flooding (vector 3) is moderate because academic and industry commenters will naturally cite AI governance literature, model card frameworks, and healthcare AI safety studies. Dilution (vector 4) is minimal because this position requires substantive engagement; vague agreement adds little value in a technical rulemaking. Stakeholder emphasis reflects realistic commenters: advocacy groups and industry (hospitals, EHR vendors, clinical informatics firms) are primary; academics provide credibility and evidence; individual consumers and government are secondary but important for narrative diversity. The campaign should emphasize credible organizational and personal stories (e.g., a hospital's procurement dilemma, a clinician's experience with unexplainable algorithmic recommendations) while grounding arguments in the genuine absence of evidence for deregulation's safety benefits, not the presence of evidence for regulation's benefits."
+  "affinity_boost": 3.5,
+  "notes": "This campaign strategically amplifies advocacy and patient-focused voices while maintaining credible industry and academic representation. Advocacy groups are boosted from 18.9% to 32% because they are most effective at framing this as a patient safety and transparency rights issue, and they have institutional credibility with regulators. Individual consumers (high + medium sophistication) are increased from 31.2% to 34% to emphasize the personal stakes and right-to-know framing. Academic voices are held at 8% (up from 1.7%) to provide evidence-based counterarguments to the agency's 'no evidence' claim. Industry-high is maintained at 17% (down from 30%) because while hospitals and health systems are natural allies, over-representing industry could undermine the patient-safety-first framing and invite accusations of vendor self-interest. The affinity_boost of 3.5 is set high because argument-voice alignment is critical: patient safety and accountability arguments must come from advocacy and consumer voices; procurement and trust-adoption arguments work best from industry and academic voices; the regulatory gap and evidence-absence arguments require academic rigor. Few DSI comments currently exist in the docket (the rule is new), so this campaign must establish the narrative that transparency requirements are preventive safeguards against future AI risks, not solutions to current problems."
 }

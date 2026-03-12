@@ -1,19 +1,533 @@
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 1 www. veloxhealthmetadata .com Introduction Velox Health Metadata, Inc. appreciates the opportunity to respond to the CMS Request for Information on the Health Technology Ecosystem . The response is informed by Velox ’s expertise in interoperability (Clinical Data Exchange) and the leadership team’s significant experience with the Health Technology Ecosystem and various use cases, including quality reporting, risk adjustment, VBC and others. Velox Backgr ound Velox has been founded with the goal of making interoperability, or as we prefer to call it, Clinical Data Exchange , as seamless and fast as the Internet and as secure and reliable as online banking . Our founding team has been working towards that goal for several years and believes that this goal is very much in reach, given developments in the standards and legislative arenas in the last 15 years, most notably with the emergence and adoption of HL7 FHIR® and the 21st Century Cures Act of 2016. We are additionally encouraged towards our aim given more recent developments, including the themes of the questions in this RFI as well as the seemingly broad consensus in the recent listening session regarding this RFI on topics including a focus on API certifications. Not only do we believe that such a modern, comprehensive, secure and real -time exchange of clinical data is possible on a national scale. More importantly, we have reasons to believe (and data to support) that such a clinical data ecosystem can transform numerous use cases that heavily depend on clinical data for all major stakeholders: patients, clinicians, provider systems, payers and government agenc ies at the federal and state levels . The following sections provide a brief overview of Velox ’ position on key topics recurring in th is RFI: Optimizing Interopera bility/Clinical Data Exchange We have concluded that the optimal way to exchange clinical data among stakeholders is via a federated, directory -facilitated clinical data ecosystem , where all requestors and data sources (systems of record ) exchange data directly via FHIR APIs without intermediaries. While data connections (point -to-point , networks and beyond) are an important foundation for optimal clinical data exchange, we have seen over and over, however, that use cases are patient - or member - centric . Our approach to solving interoperability fully takes that into account and we encourage CMS and the wider community of stakeholders to fully embrace this guiding pri nciple , which obviously mirrors the desire to design many aspects of our healthcare system to be come increasingly patient - centric. Provider Dire ctory We fully support CMS ’ goal to stand up a nation directory . Such a directory would ideally combine and improve NPPES and a national endpoint directory with NPI as a primary key to loca ting FHIR Endpoints. Velox has experience with this approach . 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 2 www. veloxhealthmetadata .com Patient Recor d Locator The best way we believe a patient record locator to work is to inventory clinical events (patient encou nters and others ) as a way to link a provider (with the corresponding directory entry) and the patient (in the long run ) with a national ID scheme, but for logistical reasons with best pr actice -based patient matching for the patient in the foreseeable future . Such a metadata directory has several adva ntages , including the ability to quickly locate relevant clinical events for a pa tient (most use cases are patient centric, not endpoint/provider ce ntric ). It eliminate s ‘broadcasting ’ of queries for patient records to many endpoints or networks to locate relevant data . It only c aptures some limi ted amount of PII (no PH I) to accomplish an optimal way of l ocating patient recor ds. Other benefits of this approach include ➢ No Aggregation of PHI ➢ No attac k surface for clinical data breaches ➢ No sin gle point of failure/ch okepoint (federated model ) ➢ No data trans mission and translation errors ➢ Optimized data speed ( usually real-time) ➢ Mini mized costs ➢ Data s ource (system of record) remains in c ontrol of data sharing (intended use) ➢ Monetiz ation remains in the control of the d ata source (to the extent allowed) ➢ Minimized overhea d for data source ➢ Enable s automated data provenance Ensuring Data Quality Clinical data is useful to the requestor if it is ‘comple te’, which Velox defines as follows : ➢ Data from a ll relevant clinical events for a ny combination of patient and use case are discov ered and captured ➢ Data for ea ch even t contains all data elements and context to fully satisfy t he use case , i.e. data is ‘fit for purpose .’ To meet this need, clinical data exchange needs a standardized In that context, Velox supports and encourages the PIQI Framework which we unde rstand is under consideration as a widely applicable standard for clinical data quality. We also support USCDI as a good way to gradually en force mini mally available data. For USCDI to be optimal for en forcing minima lly available data sets, it needs to continually be reconciled with F HIR resource definitions and , by ex tension, with mapping those re sources to different use cases . FHIR as a Universal Interoperability Standar d Velox is almost exclusively focused on accessing ‘complete ’ clinical data for payers, providers and patient s. We recognize that there are use cases (e.g. Prior Auth) that go beyond locating and accessing 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 3 www. veloxhealthmetadata .com (read -only) clinica l data. It is our in formed opinion, however, that FHIR is also the best standard/technology for more transactional (read -write) use cases . For more information about Velox visit www.veloxmetadata.com RFI Responses The following sections list the questions we have selected to respond to and our responses /public commen ts. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 4 www. veloxhealthmetadata .com C – Providers 1. Digital Health Apps PR-1 What can CMS and its partners do to encourage providers, including those in rural areas, to leverage approved (see description in PC -5) digital health products for their patients ? Provide a way for providers and other stakeholders to see what digital health products are available and have been validated by CMS to meet the intended stated purpose. Apps should be available for any stakeholder in the patient journey . CMS provides a categorization of Apps and the intended stakeholder. CMS could identify any App certification organizations like Drummond, CAQH (for Payers ), that can be used to certify that the App is compliant with standards, intended use cases , and meets minimal quality standards. CAQH showed an approach through their CAQH endpoint Directory. This framework could include standard data quality measurement tools like the PIQI Framework , to ensure tha t the data sources used and the apps produced data are measurable and high quality. Then providers could quickly find any apps meet the intended purpose of use , and list how they manage constraints unique to rural areas such as intermittent access in rural areas . PR-2 What are obstacles that prevent development, deployment, or effective utilization of the most useful and innovative applications for physician workflows, such as quality measurement reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated? The main obstacle is (and continues to be ) the lack of seamless , standards -based access to structured clinica l data across all EMR s and other systems of record ( data sources ) as well as secondary sources , usually aggregators li ke HI Es. To facilitate this, CMS should continue it s support for FHIR, both for data exchange between organizations supporting the end-to-end patient journey as we ll as for other payer and provider use cases inclu ding quality measurement and reporting (combining FHIR for data and FHIR -CQL as the measure logic standar ds, re spectively. Additionally, select , support and potentially mandate mechanism to measure data quality in a standard ized way for verifying that FHIR data is 'fit for purpose' across one or more use cases. Final ly we fully support the creation o f an e ndpoint directory tied to NPI provider data, to allow for apps to locate FHIR endpoints , so that they can maximize innovating for more effective and efficient care, rather than spendi ng money and effort developing mechanisms to locate and match patients to endpoints. Ensure that patients have a way to engage themselves through enabling consent management for data sharing. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 5 www. veloxhealthmetadata .com PR-3 How important is it for healthcare delivery and interoperability in urban and rural areas that all data in an EHR system be accessible for exchange, regardless of storage format (for example, scanned documents, faxed records, lab results, free text notes, structured data fields)? We believe it is essential that data standards and FHIR A PI access be available across all ge ographies. Urban centers typically have a very hig h adoption of EMR systems and, therefore, all the technical prerequisites , if not full capabilities for the electronic exchange of structured clin ical data. Rural area s typically lag in the adoption of EMRs , which means a disproportionat ely higher prevalence of paper records. On the other hand, rural populations typically have no or difficult (long travel times) access to certain services , e.g. specia lists. Therefore, access to t elehealth services may be more important to them . Those services will be effecti ve if patient records can be shared in a standardized , structured data format (i.e. FHIR). While we recogniz e that faxing, sending PDFs, etc. are options, we consider those subopt imal, especially if these re cords are t o be availa ble in a nationwide interoperable clinical data ecosystem. Please address all of the following: a. Current challenges in accessing different data formats. Given the above, the biggest challenge in the long run is t o get to 1 00% adoption of EMRs or other systems or records that can store and share patient data in a structured format. In the short run, therefore, we believe that a uniform way of ‘digitizing ’ paper records as well as accessing data available via interoperability solutions are the primary challenges. But accessing actionable data in non -standard formats requires it s own set of technical resources and expertise. Data needs to be scanned in, manual review of paper or pdf documents, means that important data can be missed, and so needs to be supplemented with additional technology. For instance , OCR is required to extract meaningful data to make the data usable by other systems. AI could be used, but being non -deterministic is unreliable in the results and so requires a different set of oversight. Any mechanism that may be used to access this non -standard data in a non -deterministic way would need to be regulated to ensure that data quality is not compromised. This means that sharing the data in non -standard ways only pushes the technical problems to be solved into different and in many ways more complex areas as it is easier to fix data sharing issues when the data is in a standard format. As such , standards should be encouraged as they overall require less effort. The best solution for these mostly rur al paper -based providers is to offer a standardized way of capturing records and accessi ng patients ’ records from other systems of record . It is likely that such solutions are not attractive for commercial offerings. Therefore, CMS could play the role of a catalyst towards such solutions . If that is to be consider ed, the program should focus on a clear standard, e conomic viability while avoiding fraud waste and abuse. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 6 www. veloxhealthmetadata .com In addition , the program should support both short -term solutions for bridging paper -based provider offices into a national clinical data ecosystem as well as a longer -term solution that has full ado ption of EMRs, eventually al lowing the phase -out of the bridge solution. b. Impact on patient care quality. Lack of standard way to identify a patient and where those records exist , mean that data can easily be missed. For instance , by not having a single patient lookup mechanism to find patient data across care settings. Sharing data in fax, or pdf, or even CCDA means that important data may be buried within the document and easily missed by a busy physician . Without the technical resources to accurately extract the data when shared in this format it adds to physician burden to review. Document -based sharing also does not provide any ability to ensure quality and quantity of the data . Conver sely, when it is not possible to share patient data with other providers or payers, the provision of necessary services can be delayed or potentially even end up not be ing performed , both with potentially significant negative impact on the quality of care a patient receives . c. Technical barriers to full data accessibility. The t echnical barrie rs are rest ricted to the ones listed above. While there are technical cha llenges to be addressed when a p rovider still uses paper records , the pervasive barrie rs are thos e of a fully developed standard for structured clinical data ( USCDI – FHIR) , enforcement and the correspondin g educ ation of part icipating stakeholders . This is also true for the af oreme ntioned federated, directory -facilitated clinical data ecosystem d. Cost or privacy implications of making all data formats interoperable. Cost with a federated, directory facilitated approach can be expect ed to be negligible, especially if data blocking and fee rules are enforced. The key p hrase from the 21st Century Cures Act, to provide access to patient information ‘without special effort’ summarizes that idea. In addition , payers often have arrangement s with in-network providers and government programs also mandate access already , which means that there is a dditional leverage for contracting partners to negotiate low or no -cost access to FHIR APIs . On the other hand, by operating existing FHIR APIs and servicing all external clinical data requests in a standardized, automated way means that operating costs can be minimal and certainly lower than th ey have been in current models of exchanging clinic al data. For instance, today intermediaries are paid to get access to data. Legacy data formats such as HL7 V2 require burdensome VPNs for data to flow securely adding to cost of data sharing adding to technical cost. There is cost to patients when their care is im pacted adversely due to incomplete sharing of important information and required repeated costly procedures such as MRIs. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 7 www. veloxhealthmetadata .com C – Providers 2. Data Exchange PR-5 Which of the following FHIR APIs and capabilities do you already support or utilize in your provider organization’s systems, directly or through an intermediary? For each, describe the transaction model, use case, whether you use individual queries or bulk transactions, and any constraints: a. Patient Access API Velox does not provide FHIR servers ( FHIR APIs) as part of its product o fferings. However, we are very closely involved with inventorying capabilities and facilitating access to those APIs. W e advocate for a n anticipated provider directory to ensure that an accurate and current inventory of supported APIs and the corresponding data (quality) is captured f ully and kep t current . The further evolution of USCDI to include data ele ments for all common use cases and the n harmonizing that with FHIR resources is essential for patient access , which we also use a s a pro xy for access to clinical data for other scenarios ( all perm utations between payers and providers) . We envision a segmentation of mandated FHIR resour ces by use case and other crit eria ( e.g. provider special ty) to keep the number of resources at a reasonable number and to not mandate data elements in cases where the data does not , or cann ot, exist ( e.g. Oncology -related resources can only be mandated for Oncology provid ers). In our vision, patient access, and all other scenarios are provided in real-time, direct A PI, calls. Directly from the requestor to the source (system of record) , facilitated by the dynamic clinical data ecosystem based on a federated, direct ory-facilitated system. d. Provider Access API See a. e. Payer -to-Payer API See a. g. Bulk FHIR – Do you support Group ID -based access filtering for population -specific queries? 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 8 www. veloxhealthmetadata .com We believe that API ca lls for a single patient is the most efficient way of handlin g clinical data request s. Working with request lists, dealing with the inevitable response for a subset of member s on the req uest list and other issues have al ways caused friction and sub optional results. Bu lk FHIR cannot fix those issues. . Maintaining Group IDs and members seems like another layer of complexity without obvious benefits. s. h. SMART on FHIR – Do you support both EHR -launched and standalone app access? What does the process for application deployment entail? Velox does not provide solutions that involve SMART on FH IR. We do often see that many sta keholders and developers are not clear exactly on how the different FHIR models are intended to be used. WE want to use this opportunity and encoura ge CMS and the community to share clear definitions and a delineation betwe en the purpose of FHIR APIs, SMART on FHIR and CDS Hooks and categorize use cases and approaches accordingly. i. CDS Hooks (for clinical decision support integrations) See h. PR-7 What strategies can CMS implement to support providers in making high -quality, timely, and comprehensive healthcare data available for interoperability in the digital product ecosystem? How can the burden of increasing data availability and sharing be mitigated for providers? Are there ways that workflows or metrics that providers are already motivated to optimize for that could be reused for, or combined with, efforts needed to support interoperability? Today much of the foundation for data exchange via FHIR has been laid. CMS can build upon this effort and infrastructure that has encompassed multitudes of experts to contribute expertise with innovative and leading -edge solutions. Moving to FHIR -based exchanges and away from document -based exchanges , especially for external data sharing between organizations , means providers can more efficiently be presented with the most important and actionable data for patient care decisions. FHIR data sharing eco -system within a data quality framework means that just the right data is shared, and that it is fit for purpose . Since most provider and payer organiz ation s have already been mand ated to expose FHIR A PIs, to further adapt to tightening standards and regulations will require only minimal increment al investment with outsi zed opportunities for returns. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 9 www. veloxhealthmetadata .com Eliminating other costly and labor -intensive ways of sharing or capturing clinical data (flat files, medical record retrieval and review , OCR/NLP on unstructured data) will y ield signifi cant cost savings for p ayers and providers, better support use cases such as Digital Quality ( transition is u nderway) and Value -Based Care arrangements. PR-8 What are ways CMS or partners can help with simplifying clinical quality data responsibilities of providers ? First off, we advocate for a clear delineation between clinical data ( input for quality measurement) and quality data (output). It is important for quality prog rams to work as int ended, that the organization that performs the quality rep orting function is the one that always has a current and complete view of the population that is being reported on. Only that organization can know what data is required to properly report quality measures . Next, it is important that the required data is available and accessible in a standardized way in a timely fashion . The way we envision USC DI-FHIR and clinical data ecos ystem (s ee above) will facilitate that for the quality measurement -related use cases (and others). Combined with digital quality measures based on the FHIR -CQL standards (and the corresponding runtime environments) as well as measure consol idation and harmonization (Applegate model, configurability ), this will radically simplify quality reporting for providers and payers alike. a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS to simplify clinical quality data submissions? Can CMS reduce the burden on providers by performing quality metrics calculations leveraging Bulk FHIR data exports? Building on the answer above, we do not see a direct link between quality metrics and Bulk FHIR – we believe that clinical data needs to be available when and where it is needed and quality scoring/metrics/reporting need to be performed . Of course, bu lk data sy nchronization may be a good way to establish a bas eline and/or infrequent updates. But we generally advocate for transactional FHIR API calls to retrieve data for any ( and mul tiple ) uses cases, including quality reporting. b. In what ways can the interoperability and quality reporting responsibilities of providers be consolidated so investments can be dually purposed? See above. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 10 www. veloxhealthmetadata .com c. Are there requirements CMS should consider for data registries to support digital quality measurement in a more efficient manner? Are there requirements CMS should consider for data registries that would support access to real -time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? With an evolving USCDI data set and the aforementioned alig nment with FHIR resources a cross use cases (including quality reportin g/ digital quality) , we envis ion that data registries are included in the FHIR mandate s. This will make accessing registr y data just a nother source system that can be accessed like any other source, therefore simplifying the capture of clinical data, and consequently , quality reporting. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 11 www. veloxhealthmetadata .com C – Providers 3. Digital Identity PR-10 Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800 -63-3 IAL2/AAL2 CSPs): a. What are the challenges and benefits for providers? Considering the curren t stat e of (or lack of) patient IDs and adoption of identity credentials , we believe that the biggest challenge is the time it takes to implement such a solution, and more significantly, related investments. On the surface, the implementation of ident ity solutions may not seem related to patient ID /patient matching . But if we intend to have a truly national solution where all stakeholders can confidently access a patient ’s entire record across multiple s ystems and time, the topic of properly indexing clinical data (histor ic and new) is an important topic that should also be explored . b. How would requiring their use improve access to health information? Due to the considerations listed in a. above, we are not sure that the implementation of a digital identity would significantly improve access to a patient ’s longitudinal record. It may make it easier to log into and acc ess data from certain systems. c. What are the potential downsides? We do not see any downsides . d. What impact would mandatory credentials have on a nationwide provider directory? Such a mandate would certainly need to be consider ed in the design and operation of the nationwide provider directory. I n Velox ’s envisioned dynamic clinical data exchange, a clinical event metadata directory is key to facilitating efficient and effective Clinical Data Exchange and other API calls in the ecosystem. The patient ’s ID/credential c an be linked to a formal, or de -factor national patient ID sche me, which will enable truly seamless access to a patient ’s data from any FHIR endpoint, even if the patient does not explicitly select the prov iders holding their records. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 12 www. veloxhealthmetadata .com f. Would combining FHIR addresses and identity improve data flow? Yes, it would. In the metadata -facilitated clinical data e cosystem, where clinical events link patients ( ID) and providers (FHIR Endpoints), the combination will significantly aid the seamless locating and access of a pat ient’s records across multiple en dpoin ts in a dynamic, automated way . 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 13 www. veloxhealthmetadata .com D – Payers PA-4 What would be the value to payers of a nationwide provider directory that included FHIR end points and used digital identity credentials? The value to payers would be significant and essentially as des cribed for Providers in PR10 a – f above. PA-5 What are ways payers can help with simplifying clinical quality data responsibilities of providers? a. How interested are payers and providers in EHR technology advances that enable bulk extraction of clinical quality data from EHRs to payers to allow them to do the calculations instead of the provider -side technology? In our experience, payers are most familiar with batches of clinical data (we do not encourage limiting the data by use case, e.g. quality – see below) , which is most closely resembled by Bulk FHIR in the FH IR standard . However, we have observed that payers, like other stakeholders , prefer real -time, event -driven data exchange, as long as mature software (we call it demand -side FHIR enablement) is available that handles all the technology, standard and protocol -related complexities and shields the payer from having to deal with that. Velox is in the early stages of rollout out this capability with select payers at the time of this writing. b. In what ways can the interoperability and quality reporting responsibilities of providers to both CMS and other payers be consolidated so investments can be dually purposed? Are there technologies payers might leverage that would support access to real time quality data for healthcare providers to inform clinical care in addition to simplifying reporting processes? Further standardization on FHIR in the context of USCDI, ensuring th at measure input is satisfied with standard clinical data in FHIR (re gardless of source) is a key prerequisite. Additionally, broad adoption of digital quality (FHIR -CQL), measure consolidation and harmonization (App legate model, measure configuration ) is essential to effec tively use the same data and a standard s-based quality measurement system (FHIR -CQL runtime engines, ideally inside complete quality measurement solutions) will drastically red uce complexity and reduce costs, both in provisioning and operating quality measurement across payers, CMS and also providers. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 14 www. veloxhealthmetadata .com Providers should have access to clinical data from payers just as from othe r provi ders in a fully d eveloped FHIR -API-based cli nical data ecosystem, therefore having all the information they need to treat a p atient at their finge rtips. Assuming provi ders use same or similar measure s to identify g aps in care, that s hould be adequate to address any q uality -related needs. In the short t erm, gap s in care identified by payers may need to be communicated to providers. FHIR is the obvious choice here with a corresponding I mplementation Guide (DEQM) from the HL7 DaVinci workgroup already in place. Note: while we typically only talk about gaps in care, most gaps are not gaps in care but gaps in data. Anecdotally, payers may not have suffi cient data for up to 80% of member s to know for sure whether there is truly a gap in care or just not sufficient data to document that there is (or is not) a gap. Therefore , it is crucial to close the data gaps by pur suing complete data ( see definition in intro) . Even if that additional data may have incremental cost, avoiding costly outreach, frustrating patients and providers has a s ignificant ROI on closing data ga ps properly. Fully embracing di gital quality m easures and c omprehensive data coverage from interoperability will also facilitate the long overdue discontinuation of Medical Records ‘pulls’ , eliminating a very costly, frustrating (provider abrasion) , slow and inaccurate way of access clinical data, not to mention the manual or semi -automated steps required to abstract (quality use cases) and code (risk adjustment) which adds costs, delays and potential errors, even with the aid of NLP or AI. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 15 www. veloxhealthmetadata .com E – Technology Vendors, Data Providers, and Networks 3. Technical Standards and Certification TD-4. How can CMS better encourage use of open, standards -based, publicly available APIs over proprietary APIs? Certification, enforcement of ONC, CMS rules including cost rule.. Many of the components required have already being built. But to truly enable a patient data sharing eco-system CMS needs to make sure the mandated APIs contain complete and actionable data that is fit for purpose (use cases) . The envisioned provider directory that combines NPPES and endpoint information should include capability statements mapped to USCDI and FHIR resources as d escribed above. Retooling certification with a focus on APIs rather than softwar e funct ionality is expected to be additionally effective. Overlaying a data quality fr amework li ke the PIQI Framework will ensure that shared data meets the stated purpose. We further envision that such data quality scores and other metrics could be made public , possibly as a foundation for incentives and penalties . TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health information for patients, providers, and payers? Who should publish such a directory, and should users bear a cost? If such a direct ory maps a co mplete set of provid ers (NPPES) to the app ropriate FHIR endpoints and combines additional information such as capabilities , supported use cases a nd data quality metrics, it would truly enable a dynamic clinical data exchange, espe cially w hen supplemented with a meta -data driven record locator solu tion like the one developed by Velox. Such a directory could be published by CMS, but we can also see a private entity like Velox, with the appropriate transp arency, governance and oversi ght, o perating it. In our current model, there is a cost that would be borne by the requestor. Deployed on a national scale, such fix ed costs , spread across billions of transactions will be very small, however and the benefits ad cost savings of a dy namic way of acces sing clin ical data are modeled to be multiples o f the anticipated costs. a. What existing alternatives should be considered? 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 16 www. veloxhealthmetadata .com The above -described dynamic clinical data ecosystem , implementing a fede rated clinical data exchange model facilitated by a national directory is a clear alternative. It can co-exist with TEFCA but does not depend on it. b. Are there redundant standards, protocols or channels or both that should be consolidated? Generations of HL7 standards may be considered redundant. If we consider FHIR to be the latest generation with a clear mandate for full adoption , then older generations are not really redundant, but to be replace d. The swit ch from document s-based standa rds and file transfers to a resource -based and A PI-centric model is a significant evolution for everyone in healthcare . Ensuring that the FHIR standard and the use of APIs is done in a uniform way will inevit ably lead to the phase -out of older models and accomplish the transformation in clinical data exchange that we envision. TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations? a. Does it contain the full extent of data elements you need? USCDI does n ot contain all the data elements we believe it should contain. It has be en clear from the beginn ing that USCDI cannot be a ca tch-all for data elements on e veryone ’s wish list. A balance ne eds to be struck between completeness and usefulness. We believe that this can be accomplished by closely aligning USCDI with FHIR resources and , by extension with different use cases and sce narios ( e.g. specialties , inpatient/outpatient ). That ca n allow USCDI to be bo th broadly appliable and narrowly enforceable . b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized? As describ ed ab ove, we consi der USCDI a continually evolving set of data elements. Actively man aging alignment and stratification with consideration for evolving use cases and ot her circum stances will be critical to ensure it becomes the enforcement (and certification) vehicle we e xpect it to be. c. If so, would adding more data elements to USCDI add value or create scoping challenges? How could such challenges be addressed? See above 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 17 www. veloxhealthmetadata .com d. Given improvements in language models, would you prefer a non -proprietary but less structured format that might improve data coverage even if it requires more processing by the receiver? Not at this time. We believe that very deliberat ely aligning USCDI with FHIR resources and use cases is the key to success . TD-9. Regarding certification of health IT: a. What are the benefits of redefining certification to prioritize API -enabled capabilities over software functionality? While certifying functionality has arguably been important in the early days of Meaningful Use, the remaining technology providers at this point have mature products ( to varying degrees) , able to perform their purpose, even if issues like usability remain . While certifying functionality impacts one or more customers of a technology provider, certifying A PIs has a network effect , assuming that certification means true standardization (i.e. API calls to each system work exactl y the same ). The benefits from that are outsized and therefore such a shift seems to be very much welcomed by everyone in the industry. Certifying APIs especially for use cases and business processes w ill ensure that the data is actionable and usable for the stated purpose of use in a way not available today. It would ensure , for instance , that an API is available and the data is available according to th e certification standard, or reveal that it is not. b. What would be the drawbacks? We do not see a draw back . As with everything , unintended consequ ences may arise and should be monitored and addressed when needed. c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently support exchanging data from all aspects of the patient’s chart (for example, faxed records, free text, discrete data)? The criterial should incorporate the goals o f true standardization, meeting use case needs by aligning USCDI with FHIR Resources and other KPIs like data quality and accurate capability statements. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 18 www. veloxhealthmetadata .com A secondary goal shou ld be to fully eliminate , not incorporate the inefficient and unstructured /non - standard ways of excha nging data (fax, PDF, custom flat files, etc.) and to drive bridge solutions and eventually full EMR adoption by the small percentage of providers that are not capab le of participating in the FHIR-based clinical data ecosystem . d. What policy changes could CMS make so providers are motivated to respond to API -based data requests with best possible coverage and quality of data? CMS should com mit to adapting ONC/CMS rules for certification and ensure comprehe nsive enforcement of all ru les, including data blocking and fee rules. Uniform adoption across all parti cipants is critical for the ecosystem to work with massi ve benefits for all . Enforcement should mirror that imperative. e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for reporting quality performance data to CMS? What capabilities are needed to show benefit? What concerns are there with this approach? Using the FHIR standard ac ross use cases a nd for excha nging data between all stakeho lders reduce s burden significantly. We do not see the bulk method as a significant differ entiator but the re are scenarios where such a transfer may be preferrable over real-time A PI calls. Currently, we think of clinic al data as input for quality measurement that should absolutely mo ve towards the FHIR standard. Qu ality reporting output must not be FHIR (existing X ML-based layouts are very adequate for the job ) but could be. The concern, a common the me here , and what ever th e format and transmission method may be, is that it can be accomplished with the same standard te ch stack and that it is well understood and easily supported in data operations. 
- Response to RFI CMS -0042 -NC from Velox Health Metadata June 16, 2025 Page 19 www. veloxhealthmetadata .com E – Technology Vendors, Data Providers, and Networks 4. Data Exchange TD-12. Should CMS endorse non -CMS data sources and networks, and if so, what criteria or metrics should CMS consider? Yes, Velox could envision such an approach regarding its Dynamic Clinical Data Exchan ge model . Given the central and critical role of such a system, appropriate governance and oversig ht needs to be a priority. That might include - Independent gover nance body/board - Transparency in opera tions and management - Perform ance and reliability KPIs and monitoring - Compliance and security audit s TD-13 What new opportunities and advancements could emerge with APIs providing access to the entirety of a patient’s electronic health information (EHI)? When the dy namic access to a complete, longitudinal , always up -to-date patien t record in FHIR becomes a reality , it will truly transform how patients experience and use healthcare and how provid ers and payers operate, from clin ical and administrative workflows to automating entire functions like quality reporting, risk adjustment, care coordination and even a udits. a. What are the primary obstacles to this? The major obstacles are a lack of uniform and universal adoption and enforcement of FHIR and related standards . b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible data processing capabilities today? As stated above, it is completeness of data (from use case perspective ) vs. m anageability , which can be addressed by align ing FHIR resources a nd stratification by use case and scenarios. While more flexible data processing capabilities exist today and are fur ther emerging , we do not believe that enabling that flexi bility w ould be helpful in advancing interoperability. [end of response ] 
+Response to RFI CMS-0042-NC from Velox Health Metadata
+Introduction
+Velox Health Metadata, Inc. appreciates the opportunity to respond to the CMS Request for Information
+on the Health Technology Ecosystem. The response is informed by Velox’s expertise in interoperability
+(Clinical Data Exchange) and the leadership team’s significant experience with the Health Technology
+Ecosystem and various use cases, including quality reporting, risk adjustment, VBC and others.
+Velox Background
+Velox has been founded with the goal of making interoperability, or as we prefer to call it, Clinical Data
+Exchange, as seamless and fast as the Internet and as secure and reliable as online banking.
+Our founding team has been working towards that goal for several years and believes that this goal is
+very much in reach, given developments in the standards and legislative arenas in the last 15 years,
+most notably with the emergence and adoption of HL7 FHIR® and the 21st Century Cures Act of 2016.
+We are additionally encouraged towards our aim given more recent developments, including the
+themes of the questions in this RFI as well as the seemingly broad consensus in the recent listening
+session regarding this RFI on topics including a focus on API certifications.
+Not only do we believe that such a modern, comprehensive, secure and real-time exchange of clinical
+data is possible on a national scale. More importantly, we have reasons to believe (and data to support)
+that such a clinical data ecosystem can transform numerous use cases that heavily depend on clinical
+data for all major stakeholders: patients, clinicians, provider systems, payers and government agencies
+at the federal and state levels.
+The following sections provide a brief overview of Velox’ position on key topics recurring in this RFI:
+Optimizing Interoperability/Clinical Data Exchange
+We have concluded that the optimal way to exchange clinical data among stakeholders is via a
+federated, directory-facilitated clinical data ecosystem, where all requestors and data sources (systems
+of record) exchange data directly via FHIR APIs without intermediaries.
+While data connections (point-to-point, networks and beyond) are an important foundation for optimal
+clinical data exchange, we have seen over and over, however, that use cases are patient- or member-
+centric. Our approach to solving interoperability fully takes that into account and we encourage CMS
+and the wider community of stakeholders to fully embrace this guiding principle, which obviously
+mirrors the desire to design many aspects of our healthcare system to become increasingly patient-
+centric.
+Provider Directory
+We fully support CMS’ goal to stand up a nation directory. Such a directory would ideally combine and
+improve NPPES and a national endpoint directory with NPI as a primary key to locating FHIR Endpoints.
+Velox has experience with this approach.
+June 16, 2025 Page 1 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+Patient Record Locator
+The best way we believe a patient record locator to work is to inventory clinical events (patient
+encounters and others) as a way to link a provider (with the corresponding directory entry) and the
+patient (in the long run) with a national ID scheme, but for logistical reasons with best practice-based
+patient matching for the patient in the foreseeable future.
+Such a metadata directory has several advantages, including the ability to quickly locate relevant clinical
+events for a patient (most use cases are patient centric, not endpoint/provider centric). It eliminates
+‘broadcasting’ of queries for patient records to many endpoints or networks to locate relevant data. It
+only captures some limited amount of PII (no PHI) to accomplish an optimal way of locating patient
+records.
+Other benefits of this approach include
+➢ No Aggregation of PHI
+➢ No attack surface for clinical data breaches
+➢ No single point of failure/chokepoint (federated model)
+➢ No data transmission and translation errors
+➢ Optimized data speed (usually real-time)
+➢ Minimized costs
+➢ Data source (system of record) remains in control of data sharing (intended use)
+➢ Monetization remains in the control of the data source (to the extent allowed)
+➢ Minimized overhead for data source
+➢ Enables automated data provenance
+Ensuring Data Quality
+Clinical data is useful to the requestor if it is ‘complete’, which Velox defines as follows:
+➢ Data from all relevant clinical events for any combination of patient and use case are discovered
+and captured
+➢ Data for each event contains all data elements and context to fully satisfy the use case, i.e. data
+is ‘fit for purpose.’ To meet this need, clinical data exchange needs a standardized In that
+context, Velox supports and encourages the PIQI Framework which we understand is under
+consideration as a widely applicable standard for clinical data quality.
+We also support USCDI as a good way to gradually enforce minimally available data. For USCDI to be
+optimal for enforcing minimally available data sets, it needs to continually be reconciled with FHIR
+resource definitions and, by extension, with mapping those resources to different use cases.
+FHIR as a Universal Interoperability Standard
+Velox is almost exclusively focused on accessing ‘complete’ clinical data for payers, providers and
+patients. We recognize that there are use cases (e.g. Prior Auth) that go beyond locating and accessing
+June 16, 2025 Page 2 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+(read-only) clinical data. It is our informed opinion, however, that FHIR is also the best
+standard/technology for more transactional (read-write) use cases.
+For more information about Velox visit www.veloxmetadata.com
+RFI Responses
+The following sections list the questions we have selected to respond to and our responses/public
+comments.
+June 16, 2025 Page 3 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+C – Providers
+1. Digital Health Apps
+PR-1
+What can CMS and its partners do to encourage providers, including those in rural areas, to leverage
+approved (see description in PC-5) digital health products for their patients?
+Provide a way for providers and other stakeholders to see what digital health products are available and
+have been validated by CMS to meet the intended stated purpose. Apps should be available for any
+stakeholder in the patient journey. CMS provides a categorization of Apps and the intended stakeholder.
+CMS could identify any App certification organizations like Drummond, CAQH (for Payers), that can be
+used to certify that the App is compliant with standards, intended use cases, and meets minimal quality
+standards. CAQH showed an approach through their CAQH endpoint Directory.
+This framework could include standard data quality measurement tools like the PIQI Framework, to
+ensure that the data sources used and the apps produced data are measurable and high quality. Then
+providers could quickly find any apps meet the intended purpose of use, and list how they manage
+constraints unique to rural areas such as intermittent access in rural areas.
+PR-2
+What are obstacles that prevent development, deployment, or effective utilization
+of the most useful and innovative applications for physician workflows, such as quality measurement
+reporting, clinical documentation, and billing tasks? How could these obstacles be mitigated?
+The main obstacle is (and continues to be) the lack of seamless, standards-based access to structured
+clinical data across all EMRs and other systems of record (data sources) as well as secondary sources,
+usually aggregators like HIEs.
+To facilitate this, CMS should continue its support for FHIR, both for data exchange between
+organizations supporting the end-to-end patient journey as well as for other payer and provider use
+cases including quality measurement and reporting (combining FHIR for data and FHIR-CQL as the
+measure logic standards, respectively.
+Additionally, select, support and potentially mandate mechanism to measure data quality in a
+standardized way for verifying that FHIR data is 'fit for purpose' across one or more use cases.
+Finally we fully support the creation of an endpoint directory tied to NPI provider data, to allow for apps
+to locate FHIR endpoints, so that they can maximize innovating for more effective and efficient care,
+rather than spending money and effort developing mechanisms to locate and match patients to
+endpoints.
+Ensure that patients have a way to engage themselves through enabling consent management for data
+sharing.
+June 16, 2025 Page 4 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+PR-3
+How important is it for healthcare delivery and interoperability in urban and rural areas that all data
+in an EHR system be accessible for exchange, regardless of storage format (for example, scanned
+documents, faxed records, lab results, free text notes, structured data fields)?
+We believe it is essential that data standards and FHIR API access be available across all geographies.
+Urban centers typically have a very high adoption of EMR systems and, therefore, all the technical
+prerequisites, if not full capabilities for the electronic exchange of structured clinical data.
+Rural areas typically lag in the adoption of EMRs, which means a disproportionately higher prevalence of
+paper records. On the other hand, rural populations typically have no or difficult (long travel times)
+access to certain services, e.g. specialists. Therefore, access to telehealth services may be more
+important to them. Those services will be effective if patient records can be shared in a standardized,
+structured data format (i.e. FHIR).
+While we recognize that faxing, sending PDFs, etc. are options, we consider those suboptimal, especially
+if these records are to be available in a nationwide interoperable clinical data ecosystem.
+Please address all of the following:
+a. Current challenges in accessing different data formats.
+Given the above, the biggest challenge in the long run is to get to 100% adoption of EMRs or other
+systems or records that can store and share patient data in a structured format.
+In the short run, therefore, we believe that a uniform way of ‘digitizing’ paper records as well as
+accessing data available via interoperability solutions are the primary challenges.
+But accessing actionable data in non-standard formats requires its own set of technical resources and
+expertise. Data needs to be scanned in, manual review of paper or pdf documents, means that important
+data can be missed, and so needs to be supplemented with additional technology. For instance, OCR is
+required to extract meaningful data to make the data usable by other systems. AI could be used, but
+being non-deterministic is unreliable in the results and so requires a different set of oversight. Any
+mechanism that may be used to access this non-standard data in a non-deterministic way would need to
+be regulated to ensure that data quality is not compromised.
+This means that sharing the data in non-standard ways only pushes the technical problems to be solved
+into different and in many ways more complex areas as it is easier to fix data sharing issues when the
+data is in a standard format. As such, standards should be encouraged as they overall require less effort.
+The best solution for these mostly rural paper-based providers is to offer a standardized way of capturing
+records and accessing patients’ records from other systems of record. It is likely that such solutions are
+not attractive for commercial offerings. Therefore, CMS could play the role of a catalyst towards such
+solutions. If that is to be considered, the program should focus on a clear standard, economic viability
+while avoiding fraud waste and abuse.
+June 16, 2025 Page 5 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+In addition, the program should support both short-term solutions for bridging paper-based provider
+offices into a national clinical data ecosystem as well as a longer-term solution that has full adoption of
+EMRs, eventually allowing the phase-out of the bridge solution.
+b. Impact on patient care quality.
+Lack of standard way to identify a patient and where those records exist, mean that data can easily be
+missed. For instance, by not having a single patient lookup mechanism to find patient data across care
+settings. Sharing data in fax, or pdf, or even CCDA means that important data may be buried within the
+document and easily missed by a busy physician. Without the technical resources to accurately extract
+the data when shared in this format it adds to physician burden to review. Document-based sharing also
+does not provide any ability to ensure quality and quantity of the data.
+Conversely, when it is not possible to share patient data with other providers or payers, the provision of
+necessary services can be delayed or potentially even end up not being performed, both with potentially
+significant negative impact on the quality of care a patient receives.
+c. Technical barriers to full data accessibility.
+The technical barriers are restricted to the ones listed above. While there are technical challenges to be
+addressed when a provider still uses paper records, the pervasive barriers are those of a fully developed
+standard for structured clinical data (USCDI – FHIR), enforcement and the corresponding education of
+participating stakeholders.
+This is also true for the aforementioned federated, directory-facilitated clinical data ecosystem
+d. Cost or privacy implications of making all data formats interoperable.
+Cost with a federated, directory facilitated approach can be expected to be negligible, especially if data
+blocking and fee rules are enforced. The key phrase from the 21st Century Cures Act, to provide access to
+patient information ‘without special effort’ summarizes that idea. In addition, payers often have
+arrangements with in-network providers and government programs also mandate access already, which
+means that there is additional leverage for contracting partners to negotiate low or no-cost access to
+FHIR APIs.
+On the other hand, by operating existing FHIR APIs and servicing all external clinical data requests in a
+standardized, automated way means that operating costs can be minimal and certainly lower than they
+have been in current models of exchanging clinical data.
+For instance, today intermediaries are paid to get access to data. Legacy data formats such as HL7 V2
+require burdensome VPNs for data to flow securely adding to cost of data sharing adding to technical
+cost. There is cost to patients when their care is impacted adversely due to incomplete sharing of
+important information and required repeated costly procedures such as MRIs.
+June 16, 2025 Page 6 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+C – Providers
+2. Data Exchange
+PR-5
+Which of the following FHIR APIs and capabilities do you already support or utilize in your provider
+organization’s systems, directly or through an intermediary? For each, describe the transaction model,
+use case, whether you use individual queries or bulk transactions, and any constraints:
+a. Patient Access API
+Velox does not provide FHIR servers (FHIR APIs) as part of its product offerings. However, we are very
+closely involved with inventorying capabilities and facilitating access to those APIs. We advocate for an
+anticipated provider directory to ensure that an accurate and current inventory of supported APIs and
+the corresponding data (quality) is captured fully and kept current.
+The further evolution of USCDI to include data elements for all common use cases and then harmonizing
+that with FHIR resources is essential for patient access, which we also use as a proxy for access to clinical
+data for other scenarios (all permutations between payers and providers).
+We envision a segmentation of mandated FHIR resources by use case and other criteria (e.g. provider
+specialty) to keep the number of resources at a reasonable number and to not mandate data elements in
+cases where the data does not, or cannot, exist (e.g. Oncology-related resources can only be mandated
+for Oncology providers).
+In our vision, patient access, and all other scenarios are provided in real-time, direct API, calls. Directly
+from the requestor to the source (system of record), facilitated by the dynamic clinical data ecosystem
+based on a federated, directory-facilitated system.
+d. Provider Access API
+See a.
+e. Payer-to-Payer API
+See a.
+g. Bulk FHIR – Do you support Group ID-based access filtering for population-specific queries?
+June 16, 2025 Page 7 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+We believe that API calls for a single patient is the most efficient way of handling clinical data requests.
+Working with request lists, dealing with the inevitable response for a subset of members on the request
+list and other issues have always caused friction and sub optional results. Bulk FHIR cannot fix those
+issues. . Maintaining Group IDs and members seems like another layer of complexity without obvious
+benefits. s.
+h. SMART on FHIR – Do you support both EHR-launched and standalone app access? What does
+the process for application deployment entail?
+Velox does not provide solutions that involve SMART on FHIR. We do often see that many stakeholders
+and developers are not clear exactly on how the different FHIR models are intended to be used. WE want
+to use this opportunity and encourage CMS and the community to share clear definitions and a
+delineation between the purpose of FHIR APIs, SMART on FHIR and CDS Hooks and categorize use cases
+and approaches accordingly.
+i. CDS Hooks (for clinical decision support integrations)
+See h.
+PR-7
+What strategies can CMS implement to support providers in making high-quality, timely, and
+comprehensive healthcare data available for interoperability in the digital product ecosystem? How
+can the burden of increasing data availability and sharing be mitigated for providers? Are there ways
+that workflows or metrics that providers are already motivated to optimize for that could be reused
+for, or combined with, efforts needed to support interoperability?
+Today much of the foundation for data exchange via FHIR has been laid. CMS can build upon this effort
+and infrastructure that has encompassed multitudes of experts to contribute expertise with innovative
+and leading-edge solutions. Moving to FHIR-based exchanges and away from document-based
+exchanges, especially for external data sharing between organizations, means providers can more
+efficiently be presented with the most important and actionable data for patient care decisions. FHIR
+data sharing eco-system within a data quality framework means that just the right data is shared, and
+that it is fit for purpose.
+Since most provider and payer organizations have already been mandated to expose FHIR APIs, to
+further adapt to tightening standards and regulations will require only minimal incremental investment
+with outsized opportunities for returns.
+June 16, 2025 Page 8 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+Eliminating other costly and labor-intensive ways of sharing or capturing clinical data (flat files, medical
+record retrieval and review, OCR/NLP on unstructured data) will yield significant cost savings for payers
+and providers, better support use cases such as Digital Quality (transition is underway) and Value-Based
+Care arrangements.
+PR-8
+What are ways CMS or partners can help with simplifying clinical quality data responsibilities of
+providers?
+First off, we advocate for a clear delineation between clinical data (input for quality measurement) and
+quality data (output). It is important for quality programs to work as intended, that the organization that
+performs the quality reporting function is the one that always has a current and complete view of the
+population that is being reported on. Only that organization can know what data is required to properly
+report quality measures.
+Next, it is important that the required data is available and accessible in a standardized way in a timely
+fashion. The way we envision USCDI-FHIR and clinical data ecosystem (see above) will facilitate that for
+the quality measurement-related use cases (and others).
+Combined with digital quality measures based on the FHIR-CQL standards (and the corresponding
+runtime environments) as well as measure consolidation and harmonization (Applegate model,
+configurability), this will radically simplify quality reporting for providers and payers alike.
+a. What would be the benefits and downsides of using Bulk FHIR data exports from EHRs to CMS
+to simplify clinical quality data submissions? Can CMS reduce the burden on providers by
+performing quality metrics calculations leveraging Bulk FHIR data exports?
+Building on the answer above, we do not see a direct link between quality metrics and Bulk FHIR – we
+believe that clinical data needs to be available when and where it is needed and quality
+scoring/metrics/reporting need to be performed. Of course, bulk data synchronization may be a good
+way to establish a baseline and/or infrequent updates. But we generally advocate for transactional FHIR
+API calls to retrieve data for any (and multiple) uses cases, including quality reporting.
+b. In what ways can the interoperability and quality reporting responsibilities of providers be
+consolidated so investments can be dually purposed?
+See above.
+June 16, 2025 Page 9 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+c. Are there requirements CMS should consider for data registries to support digital quality
+measurement in a more efficient manner? Are there requirements CMS should consider for
+data registries that would support access to real-time quality data for healthcare providers to
+inform clinical care in addition to simplifying reporting processes?
+With an evolving USCDI data set and the aforementioned alignment with FHIR resources across use cases
+(including quality reporting/ digital quality), we envision that data registries are included in the FHIR
+mandates. This will make accessing registry data just another source system that can be accessed like
+any other source, therefore simplifying the capture of clinical data, and consequently, quality reporting.
+June 16, 2025 Page 10 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+C – Providers
+3. Digital Identity
+PR-10
+Regarding digital identity credentials (for example, CLEAR, Login.gov, ID.me, other NIST 800-63-3
+IAL2/AAL2 CSPs):
+a. What are the challenges and benefits for providers?
+Considering the current state of (or lack of) patient IDs and adoption of identity credentials, we believe
+that the biggest challenge is the time it takes to implement such a solution, and more significantly,
+related investments.
+On the surface, the implementation of identity solutions may not seem related to patient ID/patient
+matching. But if we intend to have a truly national solution where all stakeholders can confidently access
+a patient’s entire record across multiple systems and time, the topic of properly indexing clinical data
+(historic and new) is an important topic that should also be explored.
+b. How would requiring their use improve access to health information?
+Due to the considerations listed in a. above, we are not sure that the implementation of a digital identity
+would significantly improve access to a patient’s longitudinal record. It may make it easier to log into
+and access data from certain systems.
+c. What are the potential downsides?
+We do not see any downsides.
+d. What impact would mandatory credentials have on a nationwide provider directory?
+Such a mandate would certainly need to be considered in the design and operation of the nationwide
+provider directory. In Velox’s envisioned dynamic clinical data exchange, a clinical event metadata
+directory is key to facilitating efficient and effective Clinical Data Exchange and other API calls in the
+ecosystem. The patient’s ID/credential can be linked to a formal, or de-factor national patient ID scheme,
+which will enable truly seamless access to a patient’s data from any FHIR endpoint, even if the patient
+does not explicitly select the providers holding their records.
+June 16, 2025 Page 11 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+f. Would combining FHIR addresses and identity improve data flow?
+Yes, it would. In the metadata-facilitated clinical data ecosystem, where clinical events link patients (ID)
+and providers (FHIR Endpoints), the combination will significantly aid the seamless locating and access of
+a patient’s records across multiple endpoints in a dynamic, automated way.
+June 16, 2025 Page 12 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+D – Payers
+PA-4
+What would be the value to payers of a nationwide provider directory that included FHIR end points
+and used digital identity credentials?
+The value to payers would be significant and essentially as described for Providers in PR10 a – f above.
+PA-5
+What are ways payers can help with simplifying clinical quality data responsibilities of providers?
+a. How interested are payers and providers in EHR technology advances that enable bulk
+extraction of clinical quality data from EHRs to payers to allow them to do the calculations
+instead of the provider-side technology?
+In our experience, payers are most familiar with batches of clinical data (we do not encourage limiting
+the data by use case, e.g. quality – see below), which is most closely resembled by Bulk FHIR in the FHIR
+standard.
+However, we have observed that payers, like other stakeholders, prefer real-time, event-driven data
+exchange, as long as mature software (we call it demand-side FHIR enablement) is available that handles
+all the technology, standard and protocol-related complexities and shields the payer from having to deal
+with that. Velox is in the early stages of rollout out this capability with select payers at the time of this
+writing.
+b. In what ways can the interoperability and quality reporting responsibilities of providers to
+both CMS and other payers be consolidated so investments can be dually purposed? Are there
+technologies payers might leverage that would support access to real time quality data for
+healthcare providers to inform clinical care in addition to simplifying reporting processes?
+Further standardization on FHIR in the context of USCDI, ensuring that measure input is satisfied with
+standard clinical data in FHIR (regardless of source) is a key prerequisite. Additionally, broad adoption of
+digital quality (FHIR-CQL), measure consolidation and harmonization (Applegate model, measure
+configuration) is essential to effectively use the same data and a standards-based quality measurement
+system (FHIR-CQL runtime engines, ideally inside complete quality measurement solutions) will
+drastically reduce complexity and reduce costs, both in provisioning and operating quality measurement
+across payers, CMS and also providers.
+June 16, 2025 Page 13 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+Providers should have access to clinical data from payers just as from other providers in a fully developed
+FHIR-API-based clinical data ecosystem, therefore having all the information they need to treat a patient
+at their fingertips. Assuming providers use same or similar measures to identify gaps in care, that should
+be adequate to address any quality-related needs.
+In the short term, gaps in care identified by payers may need to be communicated to providers. FHIR is
+the obvious choice here with a corresponding Implementation Guide (DEQM) from the HL7 DaVinci
+workgroup already in place.
+Note: while we typically only talk about gaps in care, most gaps are not gaps in care but gaps in data.
+Anecdotally, payers may not have sufficient data for up to 80% of members to know for sure whether
+there is truly a gap in care or just not sufficient data to document that there is (or is not) a gap.
+Therefore, it is crucial to close the data gaps by pursuing complete data (see definition in intro). Even if
+that additional data may have incremental cost, avoiding costly outreach, frustrating patients and
+providers has a significant ROI on closing data gaps properly.
+Fully embracing digital quality measures and comprehensive data coverage from interoperability will
+also facilitate the long overdue discontinuation of Medical Records ‘pulls’, eliminating a very costly,
+frustrating (provider abrasion), slow and inaccurate way of access clinical data, not to mention the
+manual or semi-automated steps required to abstract (quality use cases) and code (risk adjustment)
+which adds costs, delays and potential errors, even with the aid of NLP or AI.
+June 16, 2025 Page 14 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+E – Technology Vendors, Data Providers, and Networks
+3. Technical Standards and Certification
+TD-4. How can CMS better encourage use of open, standards-based, publicly available APIs over
+proprietary APIs?
+Certification, enforcement of ONC, CMS rules including cost rule..
+Many of the components required have already being built. But to truly enable a patient data sharing
+eco-system CMS needs to make sure the mandated APIs contain complete and actionable data that is fit
+for purpose (use cases). The envisioned provider directory that combines NPPES and endpoint
+information should include capability statements mapped to USCDI and FHIR resources as described
+above.
+Retooling certification with a focus on APIs rather than software functionality is expected to be
+additionally effective.
+Overlaying a data quality framework like the PIQI Framework will ensure that shared data meets the
+stated purpose. We further envision that such data quality scores and other metrics could be made
+public, possibly as a foundation for incentives and penalties.
+TD-5. How could a nationwide provider directory of FHIR endpoints improve access to health
+information for patients, providers, and payers? Who should publish such a directory, and should
+users bear a cost?
+If such a directory maps a complete set of providers (NPPES) to the appropriate FHIR endpoints and
+combines additional information such as capabilities, supported use cases and data quality metrics, it
+would truly enable a dynamic clinical data exchange, especially when supplemented with a meta-data
+driven record locator solution like the one developed by Velox.
+Such a directory could be published by CMS, but we can also see a private entity like Velox, with the
+appropriate transparency, governance and oversight, operating it.
+In our current model, there is a cost that would be borne by the requestor. Deployed on a national scale,
+such fixed costs, spread across billions of transactions will be very small, however and the benefits ad
+cost savings of a dynamic way of accessing clinical data are modeled to be multiples of the anticipated
+costs.
+a. What existing alternatives should be considered?
+June 16, 2025 Page 15 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+The above-described dynamic clinical data ecosystem, implementing a federated clinical data exchange
+model facilitated by a national directory is a clear alternative. It can co-exist with TEFCA but does not
+depend on it.
+b. Are there redundant standards, protocols or channels or both that should be consolidated?
+Generations of HL7 standards may be considered redundant. If we consider FHIR to be the latest
+generation with a clear mandate for full adoption, then older generations are not really redundant, but
+to be replaced.
+The switch from documents-based standards and file transfers to a resource-based and API-centric
+model is a significant evolution for everyone in healthcare. Ensuring that the FHIR standard and the use
+of APIs is done in a uniform way will inevitably lead to the phase-out of older models and accomplish the
+transformation in clinical data exchange that we envision.
+TD-7. To what degree has USCDI improved interoperability and exchange and what are its limitations?
+a. Does it contain the full extent of data elements you need?
+USCDI does not contain all the data elements we believe it should contain. It has been clear from the
+beginning that USCDI cannot be a catch-all for data elements on everyone’s wish list. A balance needs to
+be struck between completeness and usefulness. We believe that this can be accomplished by closely
+aligning USCDI with FHIR resources and, by extension with different use cases and scenarios (e.g.
+specialties, inpatient/outpatient). That can allow USCDI to be both broadly appliable and narrowly
+enforceable.
+b. If not, is it because of limitations in the definition of the USCDI format or the way it is utilized?
+As described above, we consider USCDI a continually evolving set of data elements. Actively managing
+alignment and stratification with consideration for evolving use cases and other circumstances will be
+critical to ensure it becomes the enforcement (and certification) vehicle we expect it to be.
+c. If so, would adding more data elements to USCDI add value or create scoping challenges? How
+could such challenges be addressed?
+See above
+June 16, 2025 Page 16 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+d. Given improvements in language models, would you prefer a non-proprietary but less
+structured format that might improve data coverage even if it requires more processing by the
+receiver?
+Not at this time. We believe that very deliberately aligning USCDI with FHIR resources and use cases is
+the key to success.
+TD-9. Regarding certification of health IT:
+a. What are the benefits of redefining certification to prioritize API-enabled capabilities over
+software functionality?
+While certifying functionality has arguably been important in the early days of Meaningful Use, the
+remaining technology providers at this point have mature products (to varying degrees), able to perform
+their purpose, even if issues like usability remain.
+While certifying functionality impacts one or more customers of a technology provider, certifying APIs
+has a network effect, assuming that certification means true standardization (i.e. API calls to each
+system work exactly the same). The benefits from that are outsized and therefore such a shift seems to
+be very much welcomed by everyone in the industry.
+Certifying APIs especially for use cases and business processes will ensure that the data is actionable and
+usable for the stated purpose of use in a way not available today. It would ensure, for instance, that an
+API is available and the data is available according to the certification standard, or reveal that it is not.
+b. What would be the drawbacks?
+We do not see a drawback. As with everything, unintended consequences may arise and should be
+monitored and addressed when needed.
+c. How could ASTP/ONC revise health IT certification criteria to require APIs to consistently
+support exchanging data from all aspects of the patient’s chart (for example, faxed records,
+free text, discrete data)?
+The criterial should incorporate the goals of true standardization, meeting use case needs by aligning
+USCDI with FHIR Resources and other KPIs like data quality and accurate capability statements.
+June 16, 2025 Page 17 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+A secondary goal should be to fully eliminate, not incorporate the inefficient and unstructured/non-
+standard ways of exchanging data (fax, PDF, custom flat files, etc.) and to drive bridge solutions and
+eventually full EMR adoption by the small percentage of providers that are not capable of participating
+in the FHIR-based clinical data ecosystem.
+d. What policy changes could CMS make so providers are motivated to respond to API-based
+data requests with best possible coverage and quality of data?
+CMS should commit to adapting ONC/CMS rules for certification and ensure comprehensive enforcement
+of all rules, including data blocking and fee rules. Uniform adoption across all participants is critical for
+the ecosystem to work with massive benefits for all. Enforcement should mirror that imperative.
+e. How could EHRs capable of bulk data transfer be used to reduce the burden on providers for
+reporting quality performance data to CMS? What capabilities are needed to show benefit?
+What concerns are there with this approach?
+Using the FHIR standard across use cases and for exchanging data between all stakeholders reduces
+burden significantly. We do not see the bulk method as a significant differentiator but there are
+scenarios where such a transfer may be preferrable over real-time API calls.
+Currently, we think of clinical data as input for quality measurement that should absolutely move
+towards the FHIR standard. Quality reporting output must not be FHIR (existing XML-based layouts are
+very adequate for the job) but could be.
+The concern, a common theme here, and whatever the format and transmission method may be, is that
+it can be accomplished with the same standard tech stack and that it is well understood and easily
+supported in data operations.
+June 16, 2025 Page 18 www.veloxhealthmetadata.com
+
+Response to RFI CMS-0042-NC from Velox Health Metadata
+E – Technology Vendors, Data Providers, and Networks
+4. Data Exchange
+TD-12. Should CMS endorse non-CMS data sources and networks, and if so, what criteria or metrics
+should CMS consider?
+Yes, Velox could envision such an approach regarding its Dynamic Clinical Data Exchange model. Given
+the central and critical role of such a system, appropriate governance and oversight needs to be a
+priority. That might include
+- Independent governance body/board
+- Transparency in operations and management
+- Performance and reliability KPIs and monitoring
+- Compliance and security audits
+TD-13
+What new opportunities and advancements could emerge with APIs providing access to the entirety
+of a patient’s electronic health information (EHI)?
+When the dynamic access to a complete, longitudinal, always up-to-date patient record in FHIR becomes
+a reality, it will truly transform how patients experience and use healthcare and how providers and
+payers operate, from clinical and administrative workflows to automating entire functions like quality
+reporting, risk adjustment, care coordination and even audits.
+a. What are the primary obstacles to this?
+The major obstacles are a lack of uniform and universal adoption and enforcement of FHIR and related
+standards.
+b. What are the primary tradeoffs between USCDI and full EHI, especially given more flexible
+data processing capabilities today?
+As stated above, it is completeness of data (from use case perspective) vs. manageability, which can be
+addressed by aligning FHIR resources and stratification by use case and scenarios.
+While more flexible data processing capabilities exist today and are further emerging, we do not believe
+that enabling that flexibility would be helpful in advancing interoperability.
+[end of response]
+June 16, 2025 Page 19 www.veloxhealthmetadata.com

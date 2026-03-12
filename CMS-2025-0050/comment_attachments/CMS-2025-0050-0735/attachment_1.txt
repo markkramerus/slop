@@ -1,16 +1,608 @@
-Comment of Autonomous.Md on CMS RFI CMS ‑ 0042 ‑ NC – Health Technology Ecosystem June 16, 2025 Centers for Medicare & Medicaid Services Division of Regulations Development Attention: CMS ‑ 0042 ‑ NC 7500 Security Boulevard Baltimore, MD 21244 Submitted via Federal Register Re: Request for Information – Health Technology Ecosystem Introduction Autonomous.Md appreciates the opportunity to submit comments on the Centers for Medicare & Medicaid Services’ (CMS) Request for Information “Health Technology Ecosystem” (90 FR 21034, CMS ‑ 0042 ‑ NC). Autonomous.md is a health ‑ technology company focused on integrating claims, clinical, pharmacy , and social ‑ determinant data through open HL7 FHIR ‑ based APIs and applying artificial intelligence to guide care navigation for Medicare beneficiaries. We concur with CMS that digital health tools now constitute a new care modality , complementing in ‑ person, telehealth, and remote ‑ monitoring services, and therefore require a supportive policy and data ‑ exchange infrastructure. Our comment addresses all four objectives in the RFI, with particular emphasis on Objective 3 (identifying and overcoming barriers to seamless health ‑ information exchange), and offers actionable recommendations in five domains: 1. Accelerate nationwide data exchange via TEFCA and interoperable networks. 2. Expand Blue Button 2.0 and related APIs to deliver comprehensive, patient ‑ authorized data access. 
-3. Modernize ONC certification to prioritize open ‑ API interoperability and value ‑ based ‑ care capabilities. 4. Promote federated digital identity (e.g., Login.gov ‑ level credentials) to streamline secure access and patient matching. 5. Establish real ‑ world ‑ evidence feedback loops for continuous evaluation of digital health performance. These recommendations are aimed at (i) eliminating residual information blocking, (ii) reducing administrative burden, and (iii) enabling equitable, data ‑ driven, value ‑ based Medicare care. Detailed analysis and citations follow in the sections below . Respectfully submitted, Alex Tsatsulin                     CEO Autonomous.Md Driving Adoption of Digital Health Management & Care Navigation (Objective 1) Empowering patients and caregivers with digital health management and care navigation tools is paramount. CMS rightly seeks to drive development and adoption of these applications, recognizing their potential to help Medicare beneficiaries understand their health needs, make informed decisions, and coordinate care. In our experience, patients benefit most when digital tools are user-friendly, accessible, and integrated into their healthcare journey. For example, a robust care navigation app can guide a senior through managing a chronic condition – reminding them of medications, coaching them on lifestyle changes, and helping them find appropriate providers or community services. Embedding AI-driven navigation capabilities amplifies this impact: an AI virtual assistant can proactively answer common health questions, flag potential care gaps, and personalize recommendations based on the patient’s data and preferences (e.g. suggesting a follow-up care option or a wellness program). Closing the “usability gap” for seniors and caregivers is critical. We agree with CMS’s emphasis on plain-language clarity and intuitive design for these tools, especially for beneficiaries with limited digital experience. Key features must include simplified interfaces, multilingual support, and compatibility with assistive technologies to ensure no patient is left behind. Interoperability is also a make-or-break factor for adoption: patients need easy access to all their health information in one place, without juggling multiple portals. We recommend continued support for unified personal health record apps that aggregate data from across providers and insurers via APIs. Patients and 
-caregivers should be able to, for instance, use a single app to view clinical records, lab results, medications, and claims data together, enabling a comprehensive understanding of their health. We encourage CMS to expand initiatives that encourage data aggregation (for example, by expanding Blue Button® 2.0 beyond claims data), so that third-party apps can pull in EHR data, pharmacy data, and more with patient consent. Building trust and awareness will further drive adoption. Many high-need patients are not aware of existing digital health and navigation apps. CMS can play a convening role by highlighting vetted solutions and even piloting an “app formulary” or endorsement program for Medicare-focused digital health products (without making formal coverage determinations). While the RFI asks whether CMS should review or approve these tools for efficacy, we suggest a balanced approach: facilitate information sharing about app quality and real-world performance without stifling innovation . CMS could publish voluntary guidelines or ratings on usability, security, and outcomes for digital health apps relevant to seniors, helping beneficiaries and caregivers identify high-quality options. Importantly, driving adoption also means addressing barriers to access and equity. Digital health tools must be accessible to those with limited broadband or limited tech literacy. We support investments in digital literacy training for seniors, multilingual educational resources, and partnerships with community organizations to introduce these technologies in underserved communities. Additionally, device access programs (similar to how some plans offer smartphones or tablets for telehealth) could help bridge the technology gap. CMS can encourage Medicare Advantage plans and providers to offer such support as part of supplemental benefits or community health initiatives, ensuring equity in who can benefit from the digital ecosystem. Finally, we note that real-world evidence (RWE) collection on digital health outcomes will inform adoption strategies. CMS’s question PC-7 asks how to gather data on the impact of digital health products in practice. We recommend establishing feedback loops (discussed in detail later) to continuously learn which digital interventions improve outcomes or reduce costs. By monitoring metrics like hospitalization rates, medication adherence, or patient satisfaction for users of certain apps (versus non-users), CMS can refine its encouragement strategies – focusing on the tools that demonstrably empower patients and improve health. Strengthening Interoperability Through Open Standards (Objective 2) We applaud CMS’s focus on “strengthen(ing) interoperability and secure access to health data through open, standards-based technologies”. A truly interoperable ecosystem is the foundation for all digital health innovation. Open APIs and standardized data formats ensure that authorized data can flow seamlessly across the continuum of care – from a hospital’s EHR, to a patient’s smartphone app, to a community clinician’s system – enabling better-informed decisions and coordinated care. 
-HL7® FHIR® has emerged as the key standard to achieve this vision. CMS and ONC’s policies (like the Interoperability and Patient Access Final Rule and the 21st Century Cures Act requirements) have already spurred widespread adoption of FHIR APIs in EHRs and payer systems. We recommend that CMS double down on this momentum by incentivizing the use of public, standardized APIs over proprietary alternatives – echoing RFI question TD-4 which asks how to encourage open APIs in lieu of vendor-specific approaches. Concretely, CMS could require that any technology used in Medicare programs (or certified under ONC) expose core functionalities via FHIR-based APIs. CMS could also offer bonus points or credits in payment programs (e.g. Merit-Based Incentive Payment System (MIPS) or value-based care models) for providers and health plans that go above the baseline and implement enhanced FHIR integrations (for example, enabling SMART on FHIR apps or sharing a broader dataset than the USCDI minimum). A critical aspect of modern interoperability is bulk data access (Bulk FHIR) for population-level data exchange. We strongly support CMS’s inclusion of bulk data capabilities as part of the interoperability landscape. Bulk FHIR allows authorized entities (with privacy safeguards) to efficiently retrieve datasets for a cohort of patients – for example, enabling an ACO to pull monthly updates on all their patients’ claims or clinical metrics, rather than one patient at a time. This is transformative for quality measurement, research, and care coordination at scale. We encourage CMS to continue promoting Bulk FHIR implementations (as highlighted in questions like TD-15 on bulk FHIR’s uses and PR-8a on bulk data for quality reporting ). By leveraging Bulk FHIR, CMS itself could periodically ingest provider data to calculate quality measures on behalf of providers – reducing reporting burden (Objective 4) while ensuring timely, standardized data for value-based care. Interoperability also depends on robust data standards and directories. We recommend that CMS support the expansion of standard data sets such as the U.S. Core Data for Interoperability (USCDI). RFI question TD-7 asks about limitations of USCDI and whether it includes all needed data elements. In practice, important information like social determinants of health, advanced directives, or device data may need to be more fully standardized and included in future versions of USCDI. CMS should collaborate with ONC to accelerate incorporation of such data classes that are crucial for holistic patient care and equity. Additionally, CMS can champion the creation of a nationwide provider and endpoint directory (as envisioned in TD-5 and PA-4 ) that lists FHIR API endpoints and public digital contact information for providers. Such a directory would function like a “phone book” for health data exchange, enabling any authorized app or provider to automatically discover where to send or retrieve a patient’s records. This would vastly simplify connectivity, especially when patients see multiple providers across different networks. On the security and privacy front, open standards offer strong support for safety when coupled with modern authentication and authorization frameworks. FHIR APIs today typically use OAuth 2.0 and OpenID Connect for authorization, which are 
-robust, well-vetted protocols. We believe that standard, federated authentication (discussed further below in digital identity) can both enhance security and improve user convenience. By using trusted digital identity providers and token-based access, data can be shared securely without cumbersome workflows, and audit trails can ensure accountability. CMS’s emphasis on “secure access” as part of interoperability is well-founded – patients and providers must trust that open data flow will protect sensitive information and prevent misuse. We support rigorous enforcement of privacy rules (HIPAA and 42 CFR Part 2 where applicable) for all actors, and suggest exploring extended frameworks (potentially building on TEFCA’s Common Agreement) to certify or designate Data Trust Hubs that meet high security standards for handling patient data exchange. In summary, embracing open, standardized interoperability is a linchpin for a future-ready health ecosystem. CMS’s ongoing commitment – “ensuring that health information is not locked away in silos but rather flows securely to where it is needed most” – is laying the groundwork for this reality. We have already seen encouraging progress via Blue Button 2.0, which gave patients API access to Medicare claims; via the FHIR Patient Access API requirements for payers; and via provider-to-provider exchange through Health Information Networks. By continuing to fortify open standards (FHIR, OAuth, USCDI), promote vendor-neutral APIs, and build the “digital highways” (directories, trust frameworks) for data travel, CMS will unlock innovation across the industry. New digital health products – from medication management apps to AI care navigators – will be able to plug into the healthcare system’s data layer without friction, delivering real-time insights and decision support that improve care quality and safety. Overcoming Barriers to Seamless Data Exchange (Objective 3) Despite progress in health IT, significant barriers still impede the seamless exchange of health information. Autonomous.Md concurs with CMS that tackling these obstacles (Objective 3) is essential to realizing a fully interoperable, patient-centric ecosystem. Below we identify key categories of barriers and propose solutions and policy actions to address them: ● Fragmentation and Information Blocking: Health data remains fragmented across many systems. Information blocking – whether through outright restrictive practices or unintended consequences of policy – continues to inhibit exchange. While ONC’s Information Blocking regulations (45 CFR Part 171) prohibit most interferences, stakeholders report ongoing issues such as excessive portal fees, delayed responses to data requests, or refusal to share certain data under broad exception claims. We support CMS and ONC in scrutinizing and refining these policies. For example, CMS could consider tightening or clarifying exceptions as suggested in RFI PR-12 (asking if any information blocking exceptions should be 
-removed or revised). Furthermore, enforcement mechanisms should be strengthened: CMS can work with OIG to ensure providers and developers face disincentives for non-compliance (as alluded to in PR-13 on effective disincentives). A transparent reporting system and robust penalties for confirmed information blocking would deter practices that silo data. We also encourage greater education and support for providers on what the rules require, since some “blocking” may stem from uncertainty or technical incapacity. In short, the culture must shift to one of data sharing by default, with clear consequences for willful blocking behavior. ● Lack of a Unified Digital Identity: One fundamental barrier to seamless exchange is the difficulty of reliably matching patients (and providers) across systems. The RFI highlights the challenge that patients must manage separate logins and identity proofs for every portal or app. Federated digital identity solutions can mitigate this fragmentation. If patients could use a single trusted digital credential (e.g. Login.gov or a NIST 800-63-3 IAL2 verified ID) to authenticate across healthcare organizations, it would simplify access and improve record matching. We see promise in CMS’s interest (via PR-9 and PA-3 ) in encouraging acceptance of such credentials by providers and payers. The barrier here is not technology – solutions like OAuth 2.0 federated login and identity providers already exist – but adoption and policy alignment . We recommend CMS partner with federal initiatives (such as the ONC/ASTP and the Trusted Exchange Framework and Common Agreement (TEFCA) identify proofing requirements) to make a federated identity a standard part of health data exchange. For instance, CMS could require that any patient-facing system in Medicare (or any CMS-sponsored app) accepts Login.gov credentials. It could also provide guidance to providers on how to integrate third-party identity providers into their patient portals. Over time, this would eliminate the need for patients to juggle dozens of usernames and passwords, thereby lowering the barrier to using digital tools and accessing records. It also improves matching accuracy, reducing errors where one patient’s records are split or two individuals’ records are mistakenly merged – a safety issue as well as an exchange barrier. ● Inconsistent Implementation of Standards: Another barrier is that even when standards like FHIR are used, implementation can vary widely. Some EHRs or vendors may only support a limited subset of FHIR resources, or they update their endpoints irregularly, or they don’t implement bulk access or write-back capabilities. These gaps create friction for seamless data exchange, as third-party apps may face different behaviors from each source. We recommend strengthening certification and testing regimes for standards compliance. ONC’s Certification Program should not only certify that a vendor has a FHIR API, but also test the performance, completeness, and up-to-date adherence of those APIs. One idea is a “seal of interoperability” for vendors or HIEs that meet higher standards (e.g., support Bulk FHIR, publish endpoints in the national directory, 
-respond to queries within a reasonable time SLA, etc.). CMS could incentivize providers to use products with this advanced interoperability seal, perhaps through innovation model scoring or exceptions to certain reporting if using a certified intermediary. Additionally, CMS can fund or facilitate open-source tooling and implementation guides that make it easier for developers to adopt standards consistently. For example, providing reference implementations for common FHIR use cases (patient summaries, care plans, medication histories) would help smaller organizations overcome technical barriers to exchange. ● Limited Connectivity Between Networks (TEFCA and beyond): Many healthcare organizations participate in data exchange networks – some in regional Health Information Exchanges (HIEs), others in national broker networks or vendor-specific clouds – but these networks often don’t talk to each other. TEFCA is an initiative to bridge this gap by establishing a universal floor for nationwide exchange via Qualified Health Information Networks (QHINs). However, as CMS asks in PR-6 and PA-1 , TEFCA’s current impact and participation level remain emerging issues. A barrier here is that providers or vendors may be taking a “wait and see” approach on joining QHINs, and some may question the value proposition relative to cost. We urge CMS to actively promote and integrate TEFCA into its programs. For example, CMS could require hospitals (as part of Conditions of Participation or interoperability mandates) to either join a TEFCA QHIN or demonstrate an alternative that meets or exceeds TEFCA’s capabilities. Likewise, CMS could tie a future incentive payment to early participation in TEFCA for clinicians, or ensure that Medicare health plans are connected for payer-to-payer data exchange. The goal is to prevent a two-tier system where some data is on TEFCA and some is isolated – we need critical mass so that a query for a patient’s records can reach any major holder of data nationwide. We also support efforts to align TEFCA’s technical framework with FHIR APIs (currently, TEFCA focuses on document exchange; adding FHIR resource-level exchange could be a next step). By eliminating the “walled garden” phenomenon in exchange networks, patients and providers will experience more seamless data flow as they move across the healthcare system. ● Administrative and Cultural Barriers: Even when technical connectivity exists, workflow and cultural issues can be barriers. Busy provider teams may be reluctant to incorporate yet another app or data feed into their routine due to alert fatigue or lack of reimbursement for time spent on digital data review. Similarly, patients may be hesitant to trust new digital tools with sensitive information. We recommend integrating interoperability into clinical workflows in a streamlined way – for instance, ensuring that data from external sources (via APIs or HIEs) flows into EHR in-baskets or dashboards that clinicians already use, rather than requiring multiple logins. CMS can encourage EHR vendors to develop better user interface integration for third-party data. On the patient side, continuing to emphasize privacy protections and providing transparency about how digital 
-health apps use data will build trust. CMS might develop a model privacy notice or require apps that connect to Medicare data (via APIs like Blue Button) to attest to certain privacy principles, giving beneficiaries peace of mind. Lastly, addressing financial misalignment will help: if providers are rewarded under value-based models for using data to improve outcomes, they will be more eager to leverage interoperability rather than seeing it as a burden. We discuss in the next section how reducing burden and aligning incentives can turn interoperability from an unfunded mandate into a core part of efficient care delivery. In sum, Objective 3’s focus on eliminating barriers is where vision meets reality. We must address the gritty hurdles – from inconsistent standards implementation to identity management to lingering info blocking – to make the lofty goals achievable. By systematically tearing down these barriers through thoughtful regulation, incentives, and collaboration with industry, CMS can ensure that health data truly becomes fluid and available wherever and whenever needed – the cornerstone of a high-functioning digital health ecosystem. Reducing Administrative Burden & Advancing Value-Based Care (Objective 4) We wholeheartedly agree that technology should reduce administrative burden while propelling us toward value-based, patient-centered care. In today’s healthcare environment, clinicians and organizations often spend excessive time on documentation, billing, and reporting tasks that technology – if properly harnessed – could streamline or even automate. At the same time, value-based care (VBC) models demand more data-driven coordination and continuous quality improvement. Our comment in this section addresses how modern health IT can square that circle: lightening providers’ load even as they deliver better, more coordinated care . We also provide recommendations on aligning certification and standards with these goals, per CMS’s inquiry. Digital health tools can be powerful enablers of value-based care, especially for organizations like ACOs and medical homes. CMS asked in VB-3 about essential health IT capabilities for VBC arrangements – we emphasize a few here: care coordination platforms, real-time patient event notifications, population health analytics, and patient engagement tools. For example, an ACO managing a population of Medicare patients needs to know when one of their patients is admitted to any hospital (to ensure follow-up) – a capability enabled by event notification systems (now required for hospitals under Conditions of Participation). They also need efficient ways to perform care planning (shared across teams), track quality measures, identify high-risk patients (using analytics/AI on integrated data), and engage patients in self-care between visits. Modern platforms like ours illustrate these capabilities: using FHIR data aggregation and 
-AI, providers can get alerts such as “your patient with diabetes hasn’t had an A1c test in 6 months” or “patients on medication X are trending with higher readmission risk,” allowing timely interventions. These are not futuristic ideas – they are increasingly feasible as interoperability improves and artificial intelligence can draw insights from comprehensive data. Reducing burden is a parallel mandate. CMS explicitly solicits ideas on minimizing the workload increase that often comes with more digital data (see PR-7 about mitigating burden while increasing data sharing ). One key strategy is to repurpose data collected for care into reporting and compliance, so that data is entered once and used many times. We strongly support CMS’s suggestion (in PR-8a ) that Bulk FHIR data exports from EHRs could allow CMS to handle quality measure calculations centrally . If CMS can pull de-identified or patient-consented data directly and run standardized measure algorithms, it spares every provider from manually extracting and submitting quality data to multiple entities. Similarly, PA-5 in the RFI asks how payer and provider quality reporting responsibilities could be consolidated ; one idea is a “report once” model where a provider’s data submission to CMS (or a trusted HIE) satisfies other payers’ needs too. CMS could collaborate with private payers to accept a common data feed or use a shared platform for quality reporting, reducing duplicative processes. Another area of burden is prior authorization and documentation requirements, which VBC entities still grapple with for necessary referrals or treatments. We note that CMS’s separate efforts (like the proposed rule on electronic prior authorization) dovetail with this RFI. We encourage continued advancement of standards for automating prior auth and claims – such as integrating FHIR-based prior auth (e.g. DTR/CRD/PAS implementation guides) into EHRs – which would significantly cut down the administrative overhead on providers and get patients the care they need faster. Value-based organizations, which often operate on thin margins, would particularly benefit from time saved on administrative tasks. Certification reform is an important lever to support value-based care technology. The RFI’s VB-5 and VB-6 questions highlight that current ONC Health IT Certification criteria may not fully encompass capabilities needed for VBC, and asks what could be added. We echo that sentiment – for example, certification today focuses on EHR functions and interoperability, but does not explicitly certify care management or population health modules. CMS and ONC could consider broadening certification (or establishing voluntary certification programs) for additional modules such as care coordination tools, patient engagement apps, and data analytics platforms. This would assure ACOs and others that the products they adopt meet certain standards of interoperability and performance. At the same time, certification should be modernized to remain lean and outcomes-focused. We hear from many developers that the certification process can be onerous and slow to adapt, which can stifle innovation. A potential solution is to move toward testing real-world performance and gathering user feedback as part of certification updates – aligning with the concept of continuous improvement. 
-For instance, if a particular certified API isn’t working well in practice, that feedback loop (discussed below under RWE) could inform tightening the criteria or guidance. In supporting value-based care, flexibility for smaller or resource-constrained providers must be considered. CMS has wisely allowed some flexibility (such as tailoring CEHRT requirements in advanced APMs to what’s applicable to the practice area). We recommend continuing this approach: perhaps allowing certain community-based providers or rural clinics in an ACO to use lightweight technology solutions (like a FHIR-enabled care management app) instead of a full EHR, as long as core data can flow. Certification and program requirements should focus on the data and interoperability outcomes rather than the specific product type – enabling low-cost, innovative solutions to stand in for traditional EHRs in some VBC contexts, without compromising data exchange or quality tracking. Ultimately, reducing burden and advancing VBC are synergistic goals: when clinicians spend less time on paperwork and hunting for data, they can spend more time on proactive care, which leads to better outcomes (the very aim of value-based models). We envision a near future where a clinician in an ACO starts their day with an AI-curated “care ops dashboard” – showing which patients need outreach today, which gaps have closed, which new data has come in – all compiled from interoperable sources. That clinician can trust that the necessary quality reports and compliance checks are happening in the background (automatically transmitted to CMS), and can devote attention to patient care. This is a health ecosystem that is efficient, outcome-focused, and rewarding for providers, aligning financial incentives with doing the right thing for patients. Policy Recommendations for a Next-Generation Digital Health Ecosystem To achieve the objectives above, policy action is needed on multiple fronts. Below we outline strategic recommendations in five key areas that correspond to themes raised in the RFI. These recommendations aim to accelerate progress by leveraging CMS’s policy levers and convening power: 1. Accelerate Nationwide Data Exchange through TEFCA and Network Integration Recommendation: Embed TEFCA into the healthcare ecosystem as a backbone for nationwide interoperability, and ensure it complements other exchange methods (like APIs). CMS should actively encourage providers, payers, and health IT vendors to participate in the Trusted Exchange Framework and Common Agreement (TEFCA). This could include incentives for early adopters and requirements for program participation. For example, CMS might require Medicare Shared Savings Program ACOs or Medicare 
-Advantage plans to connect to a Qualified Health Information Network (QHIN) under TEFCA once operational, to facilitate broad record connectivity (addressing questions raised in PR-6 and PA-1). Additionally, CMS can work with ONC’s Recognized Coordinating Entity (RCE) to ensure that TEFCA’s technical framework evolves to support FHIR-based queries and submissions in the future, not just document exchange. By doing so, TEFCA and the API economy will converge into a unified ecosystem where any authorized stakeholder can discover and retrieve the data they need across organizational boundaries. Finally, CMS could help underwrite or promote education and onboarding resources for smaller providers to join networks (e.g., grant programs or technical assistance for connecting to HIEs/QHINs), ensuring that safety net and rural providers are not left out of the nationwide exchange fabric. 2. Expand Blue Button 2.0 and API Data Access Initiatives Recommendation: Build on the success of Blue Button 2.0 by expanding the scope of data and increasing adoption across the industry. Blue Button 2.0 has been a pioneering program giving beneficiaries API access to their Medicare claims, and CMS has also deployed related APIs like Data at the Point of Care (DPC) for providers. We suggest broadening Blue Button to become a comprehensive health data hub for beneficiaries. This means incorporating additional data domains (e.g., Medicare Part D drug data, Medicaid data for dual-eligibles, possibly clinical data from providers who participate in CMS programs) into the Blue Button API in a FHIR format. In essence, beneficiaries – through any application of their choice – should be able to obtain a longitudinal health record that combines claims and clinical information. We recognize challenges in assembling clinical data, but CMS could leverage its influence (for instance, require that providers in certain programs submit key clinical data to CMS repositories, or partner with health information exchanges to federate data). Moreover, CMS should encourage other payers to follow suit: under the Interoperability rule, payers already must offer patient access APIs; CMS can ensure compliance and perhaps provide a unified endpoint directory where patients can easily find how to connect any insurer’s data (e.g., via a Blue Button for All registry). Simplifying patient and app developer access to these APIs will spur a wave of new digital health innovations that use holistic patient data to provide tailored care guidance, medication management, financial cost transparency tools, and more. Additionally, we recommend integrating Blue Button with federated identity solutions. For example, allow Medicare beneficiaries to log into Blue Button or related services using Login.gov or other secure IDs, rather than managing separate credentials. Not only would this align with efforts to streamline digital identity (Objective 3), it could also enhance security and onboarding for users. We also encourage CMS to do more outreach and partnerships to drive awareness and usage of Blue Button among beneficiaries and app developers. Making the data available is the first step; ensuring it is utilized to improve care is the next. CMS could, for instance, collaborate with patient advocacy groups to promote applications that use Blue Button data for medication 
-tracking, preventive care reminders, or provider comparison tools – demonstrating the value of data access in tangible terms to patients. By expanding and championing Blue Button 2.0, CMS will continue its leadership in data transparency and empower every Medicare beneficiary to take control of their health information. 3. Modernize Health IT Certification and Standards Alignment Recommendation: Reform and expand the ONC Health IT Certification Program to better support interoperability and innovation, especially for patient-facing and value-based care technologies. We urge CMS (in collaboration with ASTP/ONC) to undertake a strategic update of certification criteria. This update should aim to streamline burdensome requirements that no longer add value while adding or elevating criteria that facilitate the goals of this RFI. Concretely, we propose the following actions: ● Incorporate VBC-Oriented Capabilities: Identify critical capabilities needed for success in value-based models (as noted in RFI VB-3 and VB-6 ) – such as care coordination functions, bulk data export for quality, integration with remote monitoring devices, and patient engagement features – and consider creating certification criteria or guidance around these. For example, a new criterion might certify that an EHR or care management system can generate a standardized care plan document or support event notifications. This ensures that VBC participants have a baseline of functionality to work with, and it signals the market that these features are prioritized. ● Enable Module-Based and Agile Certification: To foster innovation, certification should accommodate third-party modules and apps that are not full EHRs. Perhaps an optional certification for consumer-facing apps on security and FHIR compatibility could be introduced – giving providers and patients confidence in those tools (a light version of certification that could even be voluntary or through an accreditation body). Moreover, ONC could experiment with a more agile update cycle for standards: for instance, quickly recognizing and allowing certification to newer versions of FHIR or emerging implementation guides (so that developers aren’t stuck on older standards waiting for regulation updates). CMS can reinforce this by allowing new standards to be piloted in programs (e.g., granting regulatory sandbox waivers to try a new API standard in a demonstration project). ● Reduce Compliance Overhead: On the flip side, identify any certification criteria that have proven overly complex or not aligned with modern tech (for example, older formats or functions that add cost but little clinical benefit) and eliminate or revise them. The idea is to lower the cost and effort of certifying, especially for new entrants. By doing so, smaller innovative companies (like startups offering specialized digital health tools) can more easily get their products certified or interoperable, increasing competition and innovation. This addresses a subtle 
-barrier: if certification is too onerous, only a few large incumbents dominate, which can slow the infusion of fresh ideas in health IT. ● Certification as a Living Process: We also propose building a feedback mechanism into certification: use real-world data (e.g., app performance, interoperability metrics, user satisfaction) to inform future criteria. If, for example, data shows that a certified EHR’s FHIR API still doesn’t allow patients to do X that they need, that insight can guide the next rulemaking. This approach aligns with CMS’s interest in real-world evidence and continuous improvement. Overall, modernizing certification and standards will require collaboration between CMS, ONC, developers, and providers, but it is achievable and vital. Aligning certification with today’s needs ensures that regulations promote the right capabilities (interoperability, patient empowerment, safety) and not outdated checklists, ultimately creating a marketplace of health IT where vendors compete on delivering value (not just on meeting minimum requirements). 4. Promote Federated Digital Identity and Trust Frameworks Recommendation: Adopt and promote federated digital identity solutions across healthcare to streamline access and enhance security. We recommend that CMS champion a shift away from the status quo of each provider, payer, or portal issuing its own login credentials. Instead, patients (and providers) should be able to use one set of secure, trusted credentials universally. In practice, this could mean leveraging services such as Login.gov, ID.me, or state ID trust networks that meet high security standards (NIST Identity Assurance Level 2 or higher). CMS can lead by example: integrate Login.gov as an option for MyMedicare.gov accounts and any future patient-facing CMS apps, and allow third-party Medicare apps to authenticate users through that route (with user consent). In parallel, CMS can encourage healthcare providers to accept federated identity credentials from patients – for instance, when a new patient comes to a clinic, they could login with their federated ID and automatically share their verified identity attributes and even insurance information, rather than filling out redundant paper forms. We acknowledge that some providers may be hesitant, so policy incentives or requirements may be needed. The RFI’s PR-9 and PR-10 questions probe what it would take for providers to accept such credentials and what the downsides might be. One way CMS could accelerate this is by integrating digital identity into CMS certification or conditions of participation – for example, requiring that certified EHRs support external digital identity authentication, or mandating that hospitals offer federated login as an option for patient portal access. Additionally, CMS could coordinate with ONC and the TEFCA framework to ensure identity trust is portable: TEFCA already requires QHINs to verify identities at IAL2 for network access, which sets a foundation for trust. Extending that trust to consumer-facing scenarios (with patient consent) is a logical next step. 
-Embracing federated identity has multiple benefits: it reduces burden on patients (one password instead of dozens), reduces burden on providers (less time spent on identity proofing and account management), improves patient matching (if the same identifier is used across systems), and can enhance privacy (patients can manage a single account and see where they’ve authorized data access). It also lays groundwork for future innovation – for example, a patient with a single digital ID could easily maintain a comprehensive audit log of who accessed their data, enhancing transparency and trust in the system. To address potential downsides: CMS should ensure there are alternatives for those unwilling or unable to use digital IDs (so as not to create an access barrier), and work with identity providers to uphold stringent privacy protections (no misuse of identity data). We believe these concerns are manageable. The upside of a federated digital identity framework is a healthcare experience that feels cohesive and secure – much like using a single passport to travel through many countries, a patient could use one digital identity to navigate all their health services. 5. Leverage Real-World Evidence (RWE) for Continuous Improvement Recommendation: Establish feedback loops to collect and utilize real-world data on the effectiveness, safety, and outcomes of digital health tools, feeding this evidence into policy and practice. CMS has signaled interest in this area by asking in PC-7 how it might collect real-world data on digital health products’ impact. We strongly support this direction. To truly modernize the health tech ecosystem, we must learn from what is happening on the ground – which innovations are working, for whom, and under what conditions – and then iterate. CMS can operationalize RWE collection in several ways: ● Voluntary Reporting Programs: Create a program where digital health developers or providers can opt to report on key outcome metrics related to their tool’s usage. For example, an app for diabetes management could report de-identified data on its users’ average HbA1c levels or hospitalization rates, compared to benchmarks. CMS could provide modest incentives (such as recognition, technical assistance, or the ability to tout CMS partnership) for participation. Over time, this could build a repository of knowledge about digital health efficacy. ● Incorporate RWE into Pilots/Demos: When CMS funds demonstration projects or models (e.g., an Innovation Center pilot involving digital interventions), require a robust evaluation that captures real-world outcomes and user feedback. Ensure that these findings are published or at least shared broadly, so the industry can learn. Likewise, align with FDA where applicable – as noted in a related FDA RFI about using FHIR for submissions of RWE from EHRs and registries, there is 
-cross-agency interest in leveraging routine data for evidence. ● Continuous Monitoring via APIs: Utilize the same interoperability channels we’ve been discussing to feed data back to CMS for analysis (with proper consent and privacy). For instance, with patient permission, a CMS analytics platform could periodically pull certain anonymized data from FHIR endpoints or HIEs – such as medication adherence rates, control of blood pressure, patient-reported outcomes captured in apps, etc. – to track how digital health tool users are faring. If patterns indicate a particular app or approach yields improved outcomes (or conversely, any safety concerns), CMS can act on that information. This might influence coverage decisions, quality measure development, or recommendations that CMS issues to plans and providers. ● Learning Health System Approach: We endorse the concept of a “patient-centric learning health system” referenced in the RFI’s background. This means that every interaction with digital health tools can generate insights that loop back into improving care. CMS can facilitate communities of practice or data collaboratives where stakeholders share lessons and data on what works. For example, a collaborative on AI-driven care navigation could share outcome data and best practices, in turn refining the algorithms and approaches used. By investing in RWE, CMS will ensure that digital health policy is guided by evidence and real-world impact, not just theory or hype. It also helps close the policy feedback loop : if a certain barrier is consistently reported via RWE data (say, an interoperability issue causing adverse events), CMS can prioritize addressing it in subsequent rulemaking. Conversely, if a digital solution is proving highly beneficial, CMS can encourage its spread (through payment models or endorsements). In essence, real-world evidence will help CMS continuously fine-tune the regulatory environment to maximize patient benefit and safety while supporting innovation. Conclusion In closing, Autonomous.Md strongly commends CMS and ASTP/ONC for their strategic focus on building a future-ready health technology ecosystem. This RFI comes at a pivotal time: digital health tools and data interoperability are finally reaching maturity to fundamentally transform care. By addressing the objectives of innovation (Objective 1), open interoperability (Objective 2), barrier removal (Objective 3), and burden reduction for value-based care (Objective 4) in a coordinated fashion, CMS can catalyze a health system that truly works better for patients, providers, payers, and policymakers alike . Our comments have highlighted how a modern platform approach – one that embraces FHIR APIs, Bulk Data, federated identity, and AI-driven care navigation – can advance CMS’s goals of interoperability, patient safety, equitable access, and value-based 
-transformation. We offered concrete policy recommendations including strengthening TEFCA’s role, expanding Blue Button data access, reforming certification, standardizing digital identity, and establishing real-world evidence feedback loops. Together, these steps will help knit the currently disparate parts of the health IT landscape into one interoperable, learning network centered on the patient. Autonomous.Md is committed to this vision. We have seen first-hand the power of combining comprehensive health data with intelligent software to guide care decisions. For example, when data silos are broken down, an AI navigation tool can alert a caregiver that their loved one’s lab result is out of range and suggest a timely intervention – possibly preventing an ER visit. These are the kinds of impactful improvements that scaled interoperability and digital innovation can bring. We are optimistic that with continued leadership from CMS and collaboration across the public and private sectors, such scenarios will become routine. Thank you for the opportunity to provide input. We welcome further discussion and are eager to support CMS in any next steps stemming from this RFI. By working together to remove barriers and promote open, safe, and effective technology, we can accelerate the journey toward a health ecosystem that delivers better outcomes, lower burden, and greater equity for all Americans. 
+Comment of Autonomous.Md on CMS
+RFI CMS‑0042‑NC – Health Technology
+Ecosystem
+June 16, 2025
+Centers for Medicare & Medicaid Services
+Division of Regulations Development
+Attention: CMS‑0042‑NC
+7500 Security Boulevard
+Baltimore, MD 21244
+Submitted via Federal Register
+Re: Request for Information – Health Technology Ecosystem
+Introduction
+Autonomous.Md appreciates the opportunity to submit comments on the Centers for
+Medicare & Medicaid Services’ (CMS) Request for Information “Health Technology
+Ecosystem” (90 FR 21034, CMS‑0042‑NC). Autonomous.md is a health‑technology company
+focused on integrating claims, clinical, pharmacy, and social‑determinant data through open
+HL7 FHIR‑based APIs and applying artificial intelligence to guide care navigation for
+Medicare beneficiaries.
+We concur with CMS that digital health tools now constitute a new care modality,
+complementing in‑person, telehealth, and remote‑monitoring services, and therefore require
+a supportive policy and data‑exchange infrastructure. Our comment addresses all four
+objectives in the RFI, with particular emphasis on Objective 3 (identifying and overcoming
+barriers to seamless health‑information exchange), and offers actionable recommendations
+in five domains:
+1. Accelerate nationwide data exchange via TEFCA and interoperable networks.
+2. Expand Blue Button 2.0 and related APIs to deliver comprehensive,
+patient‑authorized data access.
+
+3. Modernize ONC certification to prioritize open‑API interoperability and
+value‑based‑care capabilities.
+4. Promote federated digital identity (e.g., Login.gov‑level credentials) to streamline
+secure access and patient matching.
+5. Establish real‑world‑evidence feedback loops for continuous evaluation of digital
+health performance.
+These recommendations are aimed at (i) eliminating residual information blocking, (ii)
+reducing administrative burden, and (iii) enabling equitable, data‑driven, value‑based
+Medicare care. Detailed analysis and citations follow in the sections below.
+Respectfully submitted,
+Alex Tsatsulin
+CEO
+Autonomous.Md
+Driving Adoption of Digital Health Management &
+Care Navigation (Objective 1)
+Empowering patients and caregivers with digital health management and care
+navigation tools is paramount. CMS rightly seeks to drive development and adoption
+of these applications, recognizing their potential to help Medicare beneficiaries
+understand their health needs, make informed decisions, and coordinate care. In our
+experience, patients benefit most when digital tools are user-friendly, accessible, and
+integrated into their healthcare journey. For example, a robust care navigation app can
+guide a senior through managing a chronic condition – reminding them of medications,
+coaching them on lifestyle changes, and helping them find appropriate providers or
+community services. Embedding AI-driven navigation capabilities amplifies this impact:
+an AI virtual assistant can proactively answer common health questions, flag potential
+care gaps, and personalize recommendations based on the patient’s data and
+preferences (e.g. suggesting a follow-up care option or a wellness program).
+Closing the “usability gap” for seniors and caregivers is critical. We agree with
+CMS’s emphasis on plain-language clarity and intuitive design for these tools, especially
+for beneficiaries with limited digital experience. Key features must include simplified
+interfaces, multilingual support, and compatibility with assistive technologies to ensure
+no patient is left behind. Interoperability is also a make-or-break factor for adoption:
+patients need easy access to all their health information in one place, without juggling
+multiple portals. We recommend continued support for unified personal health record
+apps that aggregate data from across providers and insurers via APIs. Patients and
+
+caregivers should be able to, for instance, use a single app to view clinical records, lab
+results, medications, and claims data together, enabling a comprehensive understanding
+of their health. We encourage CMS to expand initiatives that encourage data
+aggregation (for example, by expanding Blue Button® 2.0 beyond claims data), so that
+third-party apps can pull in EHR data, pharmacy data, and more with patient consent.
+Building trust and awareness will further drive adoption. Many high-need patients
+are not aware of existing digital health and navigation apps. CMS can play a convening
+role by highlighting vetted solutions and even piloting an “app formulary” or endorsement
+program for Medicare-focused digital health products (without making formal coverage
+determinations). While the RFI asks whether CMS should review or approve these tools
+for efficacy, we suggest a balanced approach: facilitate information sharing about app
+quality and real-world performance without stifling innovation. CMS could publish
+voluntary guidelines or ratings on usability, security, and outcomes for digital health apps
+relevant to seniors, helping beneficiaries and caregivers identify high-quality options.
+Importantly, driving adoption also means addressing barriers to access and
+equity. Digital health tools must be accessible to those with limited broadband or limited
+tech literacy. We support investments in digital literacy training for seniors, multilingual
+educational resources, and partnerships with community organizations to introduce
+these technologies in underserved communities. Additionally, device access programs
+(similar to how some plans offer smartphones or tablets for telehealth) could help bridge
+the technology gap. CMS can encourage Medicare Advantage plans and providers to
+offer such support as part of supplemental benefits or community health initiatives,
+ensuring equity in who can benefit from the digital ecosystem.
+Finally, we note that real-world evidence (RWE) collection on digital health
+outcomes will inform adoption strategies. CMS’s question PC-7 asks how to gather
+data on the impact of digital health products in practice. We recommend establishing
+feedback loops (discussed in detail later) to continuously learn which digital interventions
+improve outcomes or reduce costs. By monitoring metrics like hospitalization rates,
+medication adherence, or patient satisfaction for users of certain apps (versus
+non-users), CMS can refine its encouragement strategies – focusing on the tools that
+demonstrably empower patients and improve health.
+Strengthening Interoperability Through Open
+Standards (Objective 2)
+We applaud CMS’s focus on “strengthen(ing) interoperability and secure access
+to health data through open, standards-based technologies”. A truly interoperable
+ecosystem is the foundation for all digital health innovation. Open APIs and standardized
+data formats ensure that authorized data can flow seamlessly across the continuum of
+care – from a hospital’s EHR, to a patient’s smartphone app, to a community clinician’s
+system – enabling better-informed decisions and coordinated care.
+
+HL7® FHIR® has emerged as the key standard to achieve this vision. CMS and ONC’s
+policies (like the Interoperability and Patient Access Final Rule and the 21st Century
+Cures Act requirements) have already spurred widespread adoption of FHIR APIs in
+EHRs and payer systems. We recommend that CMS double down on this momentum by
+incentivizing the use of public, standardized APIs over proprietary alternatives – echoing
+RFI question TD-4 which asks how to encourage open APIs in lieu of vendor-specific
+approaches. Concretely, CMS could require that any technology used in Medicare
+programs (or certified under ONC) expose core functionalities via FHIR-based APIs.
+CMS could also offer bonus points or credits in payment programs (e.g. Merit-Based
+Incentive Payment System (MIPS) or value-based care models) for providers and health
+plans that go above the baseline and implement enhanced FHIR integrations (for
+example, enabling SMART on FHIR apps or sharing a broader dataset than the USCDI
+minimum).
+A critical aspect of modern interoperability is bulk data access (Bulk FHIR) for
+population-level data exchange. We strongly support CMS’s inclusion of bulk data
+capabilities as part of the interoperability landscape. Bulk FHIR allows authorized entities
+(with privacy safeguards) to efficiently retrieve datasets for a cohort of patients – for
+example, enabling an ACO to pull monthly updates on all their patients’ claims or clinical
+metrics, rather than one patient at a time. This is transformative for quality measurement,
+research, and care coordination at scale. We encourage CMS to continue promoting
+Bulk FHIR implementations (as highlighted in questions like TD-15 on bulk FHIR’s uses
+and PR-8a on bulk data for quality reporting ). By leveraging Bulk FHIR, CMS itself could
+periodically ingest provider data to calculate quality measures on behalf of providers –
+reducing reporting burden (Objective 4) while ensuring timely, standardized data for
+value-based care.
+Interoperability also depends on robust data standards and directories. We
+recommend that CMS support the expansion of standard data sets such as the U.S.
+Core Data for Interoperability (USCDI). RFI question TD-7 asks about limitations of
+USCDI and whether it includes all needed data elements. In practice, important
+information like social determinants of health, advanced directives, or device data may
+need to be more fully standardized and included in future versions of USCDI. CMS
+should collaborate with ONC to accelerate incorporation of such data classes that are
+crucial for holistic patient care and equity. Additionally, CMS can champion the creation
+of a nationwide provider and endpoint directory (as envisioned in TD-5 and PA-4) that
+lists FHIR API endpoints and public digital contact information for providers. Such a
+directory would function like a “phone book” for health data exchange, enabling any
+authorized app or provider to automatically discover where to send or retrieve a patient’s
+records. This would vastly simplify connectivity, especially when patients see multiple
+providers across different networks.
+On the security and privacy front, open standards offer strong support for safety
+when coupled with modern authentication and authorization frameworks. FHIR
+APIs today typically use OAuth 2.0 and OpenID Connect for authorization, which are
+
+robust, well-vetted protocols. We believe that standard, federated authentication
+(discussed further below in digital identity) can both enhance security and improve user
+convenience. By using trusted digital identity providers and token-based access, data
+can be shared securely without cumbersome workflows, and audit trails can ensure
+accountability. CMS’s emphasis on “secure access” as part of interoperability is
+well-founded – patients and providers must trust that open data flow will protect sensitive
+information and prevent misuse. We support rigorous enforcement of privacy rules
+(HIPAA and 42 CFR Part 2 where applicable) for all actors, and suggest exploring
+extended frameworks (potentially building on TEFCA’s Common Agreement) to certify or
+designate Data Trust Hubs that meet high security standards for handling patient data
+exchange.
+In summary, embracing open, standardized interoperability is a linchpin for a
+future-ready health ecosystem. CMS’s ongoing commitment – “ensuring that health
+information is not locked away in silos but rather flows securely to where it is needed
+most” – is laying the groundwork for this reality. We have already seen encouraging
+progress via Blue Button 2.0, which gave patients API access to Medicare claims; via the
+FHIR Patient Access API requirements for payers; and via provider-to-provider
+exchange through Health Information Networks. By continuing to fortify open standards
+(FHIR, OAuth, USCDI), promote vendor-neutral APIs, and build the “digital highways”
+(directories, trust frameworks) for data travel, CMS will unlock innovation across the
+industry. New digital health products – from medication management apps to AI care
+navigators – will be able to plug into the healthcare system’s data layer without friction,
+delivering real-time insights and decision support that improve care quality and safety.
+Overcoming Barriers to Seamless Data Exchange
+(Objective 3)
+Despite progress in health IT, significant barriers still impede the seamless exchange of
+health information. Autonomous.Md concurs with CMS that tackling these obstacles
+(Objective 3) is essential to realizing a fully interoperable, patient-centric ecosystem.
+Below we identify key categories of barriers and propose solutions and policy actions to
+address them:
+● Fragmentation and Information Blocking: Health data remains fragmented
+across many systems. Information blocking – whether through outright restrictive
+practices or unintended consequences of policy – continues to inhibit exchange.
+While ONC’s Information Blocking regulations (45 CFR Part 171) prohibit most
+interferences, stakeholders report ongoing issues such as excessive portal fees,
+delayed responses to data requests, or refusal to share certain data under broad
+exception claims. We support CMS and ONC in scrutinizing and refining these
+policies. For example, CMS could consider tightening or clarifying exceptions as
+suggested in RFI PR-12 (asking if any information blocking exceptions should be
+
+removed or revised). Furthermore, enforcement mechanisms should be
+strengthened: CMS can work with OIG to ensure providers and developers face
+disincentives for non-compliance (as alluded to in PR-13 on effective
+disincentives). A transparent reporting system and robust penalties for confirmed
+information blocking would deter practices that silo data. We also encourage
+greater education and support for providers on what the rules require, since
+some “blocking” may stem from uncertainty or technical incapacity. In short, the
+culture must shift to one of data sharing by default, with clear consequences for
+willful blocking behavior.
+● Lack of a Unified Digital Identity: One fundamental barrier to seamless
+exchange is the difficulty of reliably matching patients (and providers) across
+systems. The RFI highlights the challenge that patients must manage separate
+logins and identity proofs for every portal or app. Federated digital identity
+solutions can mitigate this fragmentation. If patients could use a single trusted
+digital credential (e.g. Login.gov or a NIST 800-63-3 IAL2 verified ID) to
+authenticate across healthcare organizations, it would simplify access and
+improve record matching. We see promise in CMS’s interest (via PR-9 and PA-3)
+in encouraging acceptance of such credentials by providers and payers. The
+barrier here is not technology – solutions like OAuth 2.0 federated login and
+identity providers already exist – but adoption and policy alignment. We
+recommend CMS partner with federal initiatives (such as the ONC/ASTP and the
+Trusted Exchange Framework and Common Agreement (TEFCA) identify
+proofing requirements) to make a federated identity a standard part of health data
+exchange. For instance, CMS could require that any patient-facing system in
+Medicare (or any CMS-sponsored app) accepts Login.gov credentials. It could
+also provide guidance to providers on how to integrate third-party identity
+providers into their patient portals. Over time, this would eliminate the need for
+patients to juggle dozens of usernames and passwords, thereby lowering the
+barrier to using digital tools and accessing records. It also improves matching
+accuracy, reducing errors where one patient’s records are split or two individuals’
+records are mistakenly merged – a safety issue as well as an exchange barrier.
+● Inconsistent Implementation of Standards: Another barrier is that even when
+standards like FHIR are used, implementation can vary widely. Some EHRs or
+vendors may only support a limited subset of FHIR resources, or they update
+their endpoints irregularly, or they don’t implement bulk access or write-back
+capabilities. These gaps create friction for seamless data exchange, as
+third-party apps may face different behaviors from each source. We recommend
+strengthening certification and testing regimes for standards compliance. ONC’s
+Certification Program should not only certify that a vendor has a FHIR API, but
+also test the performance, completeness, and up-to-date adherence of those
+APIs. One idea is a “seal of interoperability” for vendors or HIEs that meet higher
+standards (e.g., support Bulk FHIR, publish endpoints in the national directory,
+
+respond to queries within a reasonable time SLA, etc.). CMS could incentivize
+providers to use products with this advanced interoperability seal, perhaps
+through innovation model scoring or exceptions to certain reporting if using a
+certified intermediary. Additionally, CMS can fund or facilitate open-source tooling
+and implementation guides that make it easier for developers to adopt standards
+consistently. For example, providing reference implementations for common
+FHIR use cases (patient summaries, care plans, medication histories) would help
+smaller organizations overcome technical barriers to exchange.
+● Limited Connectivity Between Networks (TEFCA and beyond): Many
+healthcare organizations participate in data exchange networks – some in
+regional Health Information Exchanges (HIEs), others in national broker networks
+or vendor-specific clouds – but these networks often don’t talk to each other.
+TEFCA is an initiative to bridge this gap by establishing a universal floor for
+nationwide exchange via Qualified Health Information Networks (QHINs).
+However, as CMS asks in PR-6 and PA-1, TEFCA’s current impact and
+participation level remain emerging issues. A barrier here is that providers or
+vendors may be taking a “wait and see” approach on joining QHINs, and some
+may question the value proposition relative to cost. We urge CMS to actively
+promote and integrate TEFCA into its programs. For example, CMS could require
+hospitals (as part of Conditions of Participation or interoperability mandates) to
+either join a TEFCA QHIN or demonstrate an alternative that meets or exceeds
+TEFCA’s capabilities. Likewise, CMS could tie a future incentive payment to early
+participation in TEFCA for clinicians, or ensure that Medicare health plans are
+connected for payer-to-payer data exchange. The goal is to prevent a two-tier
+system where some data is on TEFCA and some is isolated – we need critical
+mass so that a query for a patient’s records can reach any major holder of data
+nationwide. We also support efforts to align TEFCA’s technical framework with
+FHIR APIs (currently, TEFCA focuses on document exchange; adding FHIR
+resource-level exchange could be a next step). By eliminating the “walled
+garden” phenomenon in exchange networks, patients and providers will
+experience more seamless data flow as they move across the healthcare system.
+● Administrative and Cultural Barriers: Even when technical connectivity exists,
+workflow and cultural issues can be barriers. Busy provider teams may be
+reluctant to incorporate yet another app or data feed into their routine due to alert
+fatigue or lack of reimbursement for time spent on digital data review. Similarly,
+patients may be hesitant to trust new digital tools with sensitive information. We
+recommend integrating interoperability into clinical workflows in a streamlined
+way – for instance, ensuring that data from external sources (via APIs or HIEs)
+flows into EHR in-baskets or dashboards that clinicians already use, rather than
+requiring multiple logins. CMS can encourage EHR vendors to develop better
+user interface integration for third-party data. On the patient side, continuing to
+emphasize privacy protections and providing transparency about how digital
+
+health apps use data will build trust. CMS might develop a model privacy notice
+or require apps that connect to Medicare data (via APIs like Blue Button) to attest
+to certain privacy principles, giving beneficiaries peace of mind. Lastly,
+addressing financial misalignment will help: if providers are rewarded under
+value-based models for using data to improve outcomes, they will be more eager
+to leverage interoperability rather than seeing it as a burden. We discuss in the
+next section how reducing burden and aligning incentives can turn interoperability
+from an unfunded mandate into a core part of efficient care delivery.
+In sum, Objective 3’s focus on eliminating barriers is where vision meets reality. We must
+address the gritty hurdles – from inconsistent standards implementation to identity
+management to lingering info blocking – to make the lofty goals achievable. By
+systematically tearing down these barriers through thoughtful regulation, incentives, and
+collaboration with industry, CMS can ensure that health data truly becomes fluid and
+available wherever and whenever needed – the cornerstone of a high-functioning digital
+health ecosystem.
+Reducing Administrative Burden & Advancing
+Value-Based Care (Objective 4)
+We wholeheartedly agree that technology should reduce administrative burden while
+propelling us toward value-based, patient-centered care. In today’s healthcare
+environment, clinicians and organizations often spend excessive time on documentation,
+billing, and reporting tasks that technology – if properly harnessed – could streamline or
+even automate. At the same time, value-based care (VBC) models demand more
+data-driven coordination and continuous quality improvement. Our comment in this
+section addresses how modern health IT can square that circle: lightening providers’
+load even as they deliver better, more coordinated care. We also provide
+recommendations on aligning certification and standards with these goals, per CMS’s
+inquiry.
+Digital health tools can be powerful enablers of value-based care, especially for
+organizations like ACOs and medical homes. CMS asked in VB-3 about essential
+health IT capabilities for VBC arrangements – we emphasize a few here: care
+coordination platforms, real-time patient event notifications, population health analytics,
+and patient engagement tools. For example, an ACO managing a population of
+Medicare patients needs to know when one of their patients is admitted to any hospital
+(to ensure follow-up) – a capability enabled by event notification systems (now required
+for hospitals under Conditions of Participation). They also need efficient ways to perform
+care planning (shared across teams), track quality measures, identify high-risk patients
+(using analytics/AI on integrated data), and engage patients in self-care between visits.
+Modern platforms like ours illustrate these capabilities: using FHIR data aggregation and
+
+AI, providers can get alerts such as “your patient with diabetes hasn’t had an A1c test in
+6 months” or “patients on medication X are trending with higher readmission risk,”
+allowing timely interventions. These are not futuristic ideas – they are increasingly
+feasible as interoperability improves and artificial intelligence can draw insights from
+comprehensive data.
+Reducing burden is a parallel mandate. CMS explicitly solicits ideas on minimizing the
+workload increase that often comes with more digital data (see PR-7 about mitigating
+burden while increasing data sharing ). One key strategy is to repurpose data collected
+for care into reporting and compliance, so that data is entered once and used many
+times. We strongly support CMS’s suggestion (in PR-8a) that Bulk FHIR data exports
+from EHRs could allow CMS to handle quality measure calculations centrally. If CMS
+can pull de-identified or patient-consented data directly and run standardized measure
+algorithms, it spares every provider from manually extracting and submitting quality data
+to multiple entities. Similarly, PA-5 in the RFI asks how payer and provider quality
+reporting responsibilities could be consolidated ; one idea is a “report once” model where
+a provider’s data submission to CMS (or a trusted HIE) satisfies other payers’ needs too.
+CMS could collaborate with private payers to accept a common data feed or use a
+shared platform for quality reporting, reducing duplicative processes.
+Another area of burden is prior authorization and documentation requirements,
+which VBC entities still grapple with for necessary referrals or treatments. We note
+that CMS’s separate efforts (like the proposed rule on electronic prior authorization)
+dovetail with this RFI. We encourage continued advancement of standards for
+automating prior auth and claims – such as integrating FHIR-based prior auth (e.g.
+DTR/CRD/PAS implementation guides) into EHRs – which would significantly cut down
+the administrative overhead on providers and get patients the care they need faster.
+Value-based organizations, which often operate on thin margins, would particularly
+benefit from time saved on administrative tasks.
+Certification reform is an important lever to support value-based care technology.
+The RFI’s VB-5 and VB-6 questions highlight that current ONC Health IT Certification
+criteria may not fully encompass capabilities needed for VBC, and asks what could be
+added. We echo that sentiment – for example, certification today focuses on EHR
+functions and interoperability, but does not explicitly certify care management or
+population health modules. CMS and ONC could consider broadening certification (or
+establishing voluntary certification programs) for additional modules such as care
+coordination tools, patient engagement apps, and data analytics platforms. This would
+assure ACOs and others that the products they adopt meet certain standards of
+interoperability and performance. At the same time, certification should be modernized to
+remain lean and outcomes-focused. We hear from many developers that the certification
+process can be onerous and slow to adapt, which can stifle innovation. A potential
+solution is to move toward testing real-world performance and gathering user feedback
+as part of certification updates – aligning with the concept of continuous improvement.
+
+For instance, if a particular certified API isn’t working well in practice, that feedback loop
+(discussed below under RWE) could inform tightening the criteria or guidance.
+In supporting value-based care, flexibility for smaller or resource-constrained providers
+must be considered. CMS has wisely allowed some flexibility (such as tailoring CEHRT
+requirements in advanced APMs to what’s applicable to the practice area). We
+recommend continuing this approach: perhaps allowing certain community-based
+providers or rural clinics in an ACO to use lightweight technology solutions (like a
+FHIR-enabled care management app) instead of a full EHR, as long as core data can
+flow. Certification and program requirements should focus on the data and
+interoperability outcomes rather than the specific product type – enabling low-cost,
+innovative solutions to stand in for traditional EHRs in some VBC contexts, without
+compromising data exchange or quality tracking.
+Ultimately, reducing burden and advancing VBC are synergistic goals: when
+clinicians spend less time on paperwork and hunting for data, they can spend more time
+on proactive care, which leads to better outcomes (the very aim of value-based models).
+We envision a near future where a clinician in an ACO starts their day with an AI-curated
+“care ops dashboard” – showing which patients need outreach today, which gaps have
+closed, which new data has come in – all compiled from interoperable sources. That
+clinician can trust that the necessary quality reports and compliance checks are
+happening in the background (automatically transmitted to CMS), and can devote
+attention to patient care. This is a health ecosystem that is efficient, outcome-focused,
+and rewarding for providers, aligning financial incentives with doing the right thing for
+patients.
+Policy Recommendations for a Next-Generation
+Digital Health Ecosystem
+To achieve the objectives above, policy action is needed on multiple fronts. Below we
+outline strategic recommendations in five key areas that correspond to themes raised in
+the RFI. These recommendations aim to accelerate progress by leveraging CMS’s policy
+levers and convening power:
+1. Accelerate Nationwide Data Exchange through TEFCA and Network
+Integration
+Recommendation: Embed TEFCA into the healthcare ecosystem as a backbone for
+nationwide interoperability, and ensure it complements other exchange methods (like
+APIs). CMS should actively encourage providers, payers, and health IT vendors to
+participate in the Trusted Exchange Framework and Common Agreement (TEFCA). This
+could include incentives for early adopters and requirements for program participation.
+For example, CMS might require Medicare Shared Savings Program ACOs or Medicare
+
+Advantage plans to connect to a Qualified Health Information Network (QHIN) under
+TEFCA once operational, to facilitate broad record connectivity (addressing questions
+raised in PR-6 and PA-1). Additionally, CMS can work with ONC’s Recognized
+Coordinating Entity (RCE) to ensure that TEFCA’s technical framework evolves to
+support FHIR-based queries and submissions in the future, not just document exchange.
+By doing so, TEFCA and the API economy will converge into a unified ecosystem where
+any authorized stakeholder can discover and retrieve the data they need across
+organizational boundaries. Finally, CMS could help underwrite or promote education and
+onboarding resources for smaller providers to join networks (e.g., grant programs or
+technical assistance for connecting to HIEs/QHINs), ensuring that safety net and rural
+providers are not left out of the nationwide exchange fabric.
+2. Expand Blue Button 2.0 and API Data Access Initiatives
+Recommendation: Build on the success of Blue Button 2.0 by expanding the scope of
+data and increasing adoption across the industry. Blue Button 2.0 has been a pioneering
+program giving beneficiaries API access to their Medicare claims, and CMS has also
+deployed related APIs like Data at the Point of Care (DPC) for providers. We suggest
+broadening Blue Button to become a comprehensive health data hub for beneficiaries.
+This means incorporating additional data domains (e.g., Medicare Part D drug data,
+Medicaid data for dual-eligibles, possibly clinical data from providers who participate in
+CMS programs) into the Blue Button API in a FHIR format. In essence, beneficiaries –
+through any application of their choice – should be able to obtain a longitudinal health
+record that combines claims and clinical information. We recognize challenges in
+assembling clinical data, but CMS could leverage its influence (for instance, require that
+providers in certain programs submit key clinical data to CMS repositories, or partner
+with health information exchanges to federate data). Moreover, CMS should encourage
+other payers to follow suit: under the Interoperability rule, payers already must offer
+patient access APIs; CMS can ensure compliance and perhaps provide a unified
+endpoint directory where patients can easily find how to connect any insurer’s data (e.g.,
+via a Blue Button for All registry). Simplifying patient and app developer access to these
+APIs will spur a wave of new digital health innovations that use holistic patient data to
+provide tailored care guidance, medication management, financial cost transparency
+tools, and more.
+Additionally, we recommend integrating Blue Button with federated identity solutions. For
+example, allow Medicare beneficiaries to log into Blue Button or related services using
+Login.gov or other secure IDs, rather than managing separate credentials. Not only
+would this align with efforts to streamline digital identity (Objective 3), it could also
+enhance security and onboarding for users. We also encourage CMS to do more
+outreach and partnerships to drive awareness and usage of Blue Button among
+beneficiaries and app developers. Making the data available is the first step; ensuring it
+is utilized to improve care is the next. CMS could, for instance, collaborate with patient
+advocacy groups to promote applications that use Blue Button data for medication
+
+tracking, preventive care reminders, or provider comparison tools – demonstrating the
+value of data access in tangible terms to patients. By expanding and championing Blue
+Button 2.0, CMS will continue its leadership in data transparency and empower every
+Medicare beneficiary to take control of their health information.
+3. Modernize Health IT Certification and Standards Alignment
+Recommendation: Reform and expand the ONC Health IT Certification Program to
+better support interoperability and innovation, especially for patient-facing and
+value-based care technologies. We urge CMS (in collaboration with ASTP/ONC) to
+undertake a strategic update of certification criteria. This update should aim to streamline
+burdensome requirements that no longer add value while adding or elevating criteria that
+facilitate the goals of this RFI. Concretely, we propose the following actions:
+● Incorporate VBC-Oriented Capabilities: Identify critical capabilities needed for
+success in value-based models (as noted in RFI VB-3 and VB-6 ) – such as care
+coordination functions, bulk data export for quality, integration with remote
+monitoring devices, and patient engagement features – and consider creating
+certification criteria or guidance around these. For example, a new criterion might
+certify that an EHR or care management system can generate a standardized
+care plan document or support event notifications. This ensures that VBC
+participants have a baseline of functionality to work with, and it signals the market
+that these features are prioritized.
+● Enable Module-Based and Agile Certification: To foster innovation,
+certification should accommodate third-party modules and apps that are not full
+EHRs. Perhaps an optional certification for consumer-facing apps on security and
+FHIR compatibility could be introduced – giving providers and patients
+confidence in those tools (a light version of certification that could even be
+voluntary or through an accreditation body). Moreover, ONC could experiment
+with a more agile update cycle for standards: for instance, quickly recognizing
+and allowing certification to newer versions of FHIR or emerging implementation
+guides (so that developers aren’t stuck on older standards waiting for regulation
+updates). CMS can reinforce this by allowing new standards to be piloted in
+programs (e.g., granting regulatory sandbox waivers to try a new API standard in
+a demonstration project).
+● Reduce Compliance Overhead: On the flip side, identify any certification criteria
+that have proven overly complex or not aligned with modern tech (for example,
+older formats or functions that add cost but little clinical benefit) and eliminate or
+revise them. The idea is to lower the cost and effort of certifying, especially for
+new entrants. By doing so, smaller innovative companies (like startups offering
+specialized digital health tools) can more easily get their products certified or
+interoperable, increasing competition and innovation. This addresses a subtle
+
+barrier: if certification is too onerous, only a few large incumbents dominate,
+which can slow the infusion of fresh ideas in health IT.
+● Certification as a Living Process: We also propose building a feedback
+mechanism into certification: use real-world data (e.g., app performance,
+interoperability metrics, user satisfaction) to inform future criteria. If, for example,
+data shows that a certified EHR’s FHIR API still doesn’t allow patients to do X
+that they need, that insight can guide the next rulemaking. This approach aligns
+with CMS’s interest in real-world evidence and continuous improvement.
+Overall, modernizing certification and standards will require collaboration between CMS,
+ONC, developers, and providers, but it is achievable and vital. Aligning certification with
+today’s needs ensures that regulations promote the right capabilities (interoperability,
+patient empowerment, safety) and not outdated checklists, ultimately creating a
+marketplace of health IT where vendors compete on delivering value (not just on
+meeting minimum requirements).
+4. Promote Federated Digital Identity and Trust Frameworks
+Recommendation: Adopt and promote federated digital identity solutions across
+healthcare to streamline access and enhance security. We recommend that CMS
+champion a shift away from the status quo of each provider, payer, or portal issuing its
+own login credentials. Instead, patients (and providers) should be able to use one set of
+secure, trusted credentials universally. In practice, this could mean leveraging services
+such as Login.gov, ID.me, or state ID trust networks that meet high security standards
+(NIST Identity Assurance Level 2 or higher). CMS can lead by example: integrate
+Login.gov as an option for MyMedicare.gov accounts and any future patient-facing CMS
+apps, and allow third-party Medicare apps to authenticate users through that route (with
+user consent). In parallel, CMS can encourage healthcare providers to accept federated
+identity credentials from patients – for instance, when a new patient comes to a clinic,
+they could login with their federated ID and automatically share their verified identity
+attributes and even insurance information, rather than filling out redundant paper forms.
+We acknowledge that some providers may be hesitant, so policy incentives or
+requirements may be needed. The RFI’s PR-9 and PR-10 questions probe what it would
+take for providers to accept such credentials and what the downsides might be. One way
+CMS could accelerate this is by integrating digital identity into CMS certification or
+conditions of participation – for example, requiring that certified EHRs support external
+digital identity authentication, or mandating that hospitals offer federated login as an
+option for patient portal access. Additionally, CMS could coordinate with ONC and the
+TEFCA framework to ensure identity trust is portable: TEFCA already requires QHINs to
+verify identities at IAL2 for network access, which sets a foundation for trust. Extending
+that trust to consumer-facing scenarios (with patient consent) is a logical next step.
+
+Embracing federated identity has multiple benefits: it reduces burden on patients (one
+password instead of dozens), reduces burden on providers (less time spent on identity
+proofing and account management), improves patient matching (if the same identifier is
+used across systems), and can enhance privacy (patients can manage a single account
+and see where they’ve authorized data access). It also lays groundwork for future
+innovation – for example, a patient with a single digital ID could easily maintain a
+comprehensive audit log of who accessed their data, enhancing transparency and trust
+in the system.
+To address potential downsides: CMS should ensure there are alternatives for those
+unwilling or unable to use digital IDs (so as not to create an access barrier), and work
+with identity providers to uphold stringent privacy protections (no misuse of identity data).
+We believe these concerns are manageable. The upside of a federated digital identity
+framework is a healthcare experience that feels cohesive and secure – much like using a
+single passport to travel through many countries, a patient could use one digital identity
+to navigate all their health services.
+5. Leverage Real-World Evidence (RWE) for Continuous Improvement
+Recommendation: Establish feedback loops to collect and utilize real-world data on the
+effectiveness, safety, and outcomes of digital health tools, feeding this evidence into
+policy and practice. CMS has signaled interest in this area by asking in PC-7 how it
+might collect real-world data on digital health products’ impact. We strongly support this
+direction. To truly modernize the health tech ecosystem, we must learn from what is
+happening on the ground – which innovations are working, for whom, and under what
+conditions – and then iterate.
+CMS can operationalize RWE collection in several ways:
+● Voluntary Reporting Programs: Create a program where digital health
+developers or providers can opt to report on key outcome metrics related to their
+tool’s usage. For example, an app for diabetes management could report
+de-identified data on its users’ average HbA1c levels or hospitalization rates,
+compared to benchmarks. CMS could provide modest incentives (such as
+recognition, technical assistance, or the ability to tout CMS partnership) for
+participation. Over time, this could build a repository of knowledge about digital
+health efficacy.
+● Incorporate RWE into Pilots/Demos: When CMS funds demonstration projects
+or models (e.g., an Innovation Center pilot involving digital interventions), require
+a robust evaluation that captures real-world outcomes and user feedback. Ensure
+that these findings are published or at least shared broadly, so the industry can
+learn. Likewise, align with FDA where applicable – as noted in a related FDA RFI
+about using FHIR for submissions of RWE from EHRs and registries, there is
+
+cross-agency interest in leveraging routine data for evidence.
+● Continuous Monitoring via APIs: Utilize the same interoperability channels
+we’ve been discussing to feed data back to CMS for analysis (with proper
+consent and privacy). For instance, with patient permission, a CMS analytics
+platform could periodically pull certain anonymized data from FHIR endpoints or
+HIEs – such as medication adherence rates, control of blood pressure,
+patient-reported outcomes captured in apps, etc. – to track how digital health tool
+users are faring. If patterns indicate a particular app or approach yields improved
+outcomes (or conversely, any safety concerns), CMS can act on that information.
+This might influence coverage decisions, quality measure development, or
+recommendations that CMS issues to plans and providers.
+● Learning Health System Approach: We endorse the concept of a
+“patient-centric learning health system” referenced in the RFI’s background. This
+means that every interaction with digital health tools can generate insights that
+loop back into improving care. CMS can facilitate communities of practice or data
+collaboratives where stakeholders share lessons and data on what works. For
+example, a collaborative on AI-driven care navigation could share outcome data
+and best practices, in turn refining the algorithms and approaches used.
+By investing in RWE, CMS will ensure that digital health policy is guided by evidence
+and real-world impact, not just theory or hype. It also helps close the policy feedback
+loop: if a certain barrier is consistently reported via RWE data (say, an interoperability
+issue causing adverse events), CMS can prioritize addressing it in subsequent
+rulemaking. Conversely, if a digital solution is proving highly beneficial, CMS can
+encourage its spread (through payment models or endorsements). In essence,
+real-world evidence will help CMS continuously fine-tune the regulatory environment to
+maximize patient benefit and safety while supporting innovation.
+Conclusion
+In closing, Autonomous.Md strongly commends CMS and ASTP/ONC for their strategic
+focus on building a future-ready health technology ecosystem. This RFI comes at a
+pivotal time: digital health tools and data interoperability are finally reaching maturity to
+fundamentally transform care. By addressing the objectives of innovation (Objective 1),
+open interoperability (Objective 2), barrier removal (Objective 3), and burden reduction
+for value-based care (Objective 4) in a coordinated fashion, CMS can catalyze a health
+system that truly works better for patients, providers, payers, and policymakers alike.
+Our comments have highlighted how a modern platform approach – one that embraces
+FHIR APIs, Bulk Data, federated identity, and AI-driven care navigation – can advance
+CMS’s goals of interoperability, patient safety, equitable access, and value-based
+
+transformation. We offered concrete policy recommendations including strengthening
+TEFCA’s role, expanding Blue Button data access, reforming certification, standardizing
+digital identity, and establishing real-world evidence feedback loops. Together, these
+steps will help knit the currently disparate parts of the health IT landscape into one
+interoperable, learning network centered on the patient.
+Autonomous.Md is committed to this vision. We have seen first-hand the power of
+combining comprehensive health data with intelligent software to guide care decisions.
+For example, when data silos are broken down, an AI navigation tool can alert a
+caregiver that their loved one’s lab result is out of range and suggest a timely
+intervention – possibly preventing an ER visit. These are the kinds of impactful
+improvements that scaled interoperability and digital innovation can bring. We are
+optimistic that with continued leadership from CMS and collaboration across the public
+and private sectors, such scenarios will become routine.
+Thank you for the opportunity to provide input. We welcome further discussion and
+are eager to support CMS in any next steps stemming from this RFI. By working together
+to remove barriers and promote open, safe, and effective technology, we can accelerate
+the journey toward a health ecosystem that delivers better outcomes, lower burden, and
+greater equity for all Americans.

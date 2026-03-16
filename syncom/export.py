@@ -67,6 +67,9 @@ _RESEARCH_COLUMNS = [
     "synth_qc_passed",
     "synth_qc_notes",
     "synth_word_count",
+    "synth_judge_score",
+    "synth_judge_reasons",
+    "synth_rewrites_performed",
 ]
 
 ALL_COLUMNS = _REGS_GOV_COLUMNS + _RESEARCH_COLUMNS
@@ -173,6 +176,9 @@ def _build_row(
         "synth_qc_passed": str(comment.qc_passed),
         "synth_qc_notes": comment.qc_notes,
         "synth_word_count": str(comment.word_count()),
+        "synth_judge_score": str(comment.judge_score),
+        "synth_judge_reasons": comment.judge_reasons.replace("\r\n", _NL).replace("\r", _NL).replace("\n", _NL),
+        "synth_rewrites_performed": str(comment.rewrites_performed),
     })
 
     return row

@@ -24,10 +24,10 @@ st.divider()
 current = read_env()
 
 DEFAULTS = {
-    "SLOP_API_BASE_URL":       "https://api.openai.com/v1",
-    "SLOP_EMBED_API_BASE_URL": "https://api.openai.com/v1",
-    "SLOP_CHAT_MODEL":         "gpt-4o",
-    "SLOP_EMBED_MODEL":        "text-embedding-3-small",
+    "GENERATOR_API_BASE_URL":       "https://api.openai.com/v1",
+    "EMBED_API_BASE_URL": "https://api.openai.com/v1",
+    "GENERATOR_CHAT_MODEL":         "gpt-4o",
+    "EMBED_MODEL":        "text-embedding-3-small",
 }
 
 def _current(key: str) -> str:
@@ -41,15 +41,15 @@ with st.form("config_form"):
 
     with col1:
         api_key = st.text_input(
-            "Chat API Key (`SLOP_API_KEY`)",
-            value=_current("SLOP_API_KEY"),
+            "Chat API Key (`GENERATOR_API_KEY`)",
+            value=_current("GENERATOR_API_KEY"),
             type="password",
             help="Required. Your OpenAI (or compatible) API key for comment generation.",
         )
     with col2:
         embed_key = st.text_input(
-            "Embedding API Key (`SLOP_EMBED_API_KEY`)",
-            value=_current("SLOP_EMBED_API_KEY"),
+            "Embedding API Key (`EMBED_API_KEY`)",
+            value=_current("EMBED_API_KEY"),
             type="password",
             help="Required. Used for near-duplicate QC. Can be the same key as above.",
         )
@@ -59,25 +59,25 @@ with st.form("config_form"):
 
     with col3:
         api_base = st.text_input(
-            "Chat API Base URL (`SLOP_API_BASE_URL`)",
-            value=_current("SLOP_API_BASE_URL"),
+            "Chat API Base URL (`GENERATOR_API_BASE_URL`)",
+            value=_current("GENERATOR_API_BASE_URL"),
             help="Base URL for the chat/completions endpoint.",
         )
         chat_model = st.text_input(
-            "Chat Model (`SLOP_CHAT_MODEL`)",
-            value=_current("SLOP_CHAT_MODEL"),
+            "Chat Model (`GENERATOR_CHAT_MODEL`)",
+            value=_current("GENERATOR_CHAT_MODEL"),
             help="Model name for comment generation (e.g. gpt-4o, gpt-4o-mini).",
         )
 
     with col4:
         embed_base = st.text_input(
-            "Embedding API Base URL (`SLOP_EMBED_API_BASE_URL`)",
-            value=_current("SLOP_EMBED_API_BASE_URL"),
+            "Embedding API Base URL (`EMBED_API_BASE_URL`)",
+            value=_current("EMBED_API_BASE_URL"),
             help="Base URL for the embeddings endpoint.",
         )
         embed_model = st.text_input(
-            "Embedding Model (`SLOP_EMBED_MODEL`)",
-            value=_current("SLOP_EMBED_MODEL"),
+            "Embedding Model (`EMBED_MODEL`)",
+            value=_current("EMBED_MODEL"),
             help="Model name for embeddings (e.g. text-embedding-3-small).",
         )
 
@@ -85,12 +85,12 @@ with st.form("config_form"):
 
 if submitted:
     new_values = {
-        "SLOP_API_KEY":            api_key,
-        "SLOP_EMBED_API_KEY":      embed_key,
-        "SLOP_API_BASE_URL":       api_base,
-        "SLOP_EMBED_API_BASE_URL": embed_base,
-        "SLOP_CHAT_MODEL":         chat_model,
-        "SLOP_EMBED_MODEL":        embed_model,
+        "GENERATOR_API_KEY":            api_key,
+        "EMBED_API_KEY":      embed_key,
+        "GENERATOR_API_BASE_URL":       api_base,
+        "EMBED_API_BASE_URL": embed_base,
+        "GENERATOR_CHAT_MODEL":         chat_model,
+        "EMBED_MODEL":        embed_model,
     }
     # Strip empty strings — don't write blanks for keys not being set
     new_values = {k: v for k, v in new_values.items() if v.strip()}
@@ -108,9 +108,9 @@ if not refreshed:
 else:
     display_rows = []
     all_keys = [
-        "SLOP_API_KEY", "SLOP_EMBED_API_KEY",
-        "SLOP_API_BASE_URL", "SLOP_EMBED_API_BASE_URL",
-        "SLOP_CHAT_MODEL", "SLOP_EMBED_MODEL",
+        "GENERATOR_API_KEY", "EMBED_API_KEY",
+        "GENERATOR_API_BASE_URL", "EMBED_API_BASE_URL",
+        "GENERATOR_CHAT_MODEL", "EMBED_MODEL",
     ]
     for k in all_keys:
         v = refreshed.get(k, "")
@@ -134,11 +134,11 @@ test_col1, test_col2 = st.columns(2)
 with test_col1:
     if st.button("🔌 Test Chat API"):
         env = read_env()
-        key = env.get("SLOP_API_KEY", "")
-        base = env.get("SLOP_API_BASE_URL", "https://api.openai.com/v1")
-        model = env.get("SLOP_CHAT_MODEL", "gpt-4o")
+        key = env.get("GENERATOR_API_KEY", "")
+        base = env.get("GENERATOR_API_BASE_URL", "https://api.openai.com/v1")
+        model = env.get("GENERATOR_CHAT_MODEL", "gpt-5")
         if not key:
-            st.error("SLOP_API_KEY is not set.")
+            st.error("GENERATOR_API_KEY is not set.")
         else:
             with st.spinner("Testing..."):
                 try:
@@ -147,7 +147,7 @@ with test_col1:
                     resp = client.chat.completions.create(
                         model=model,
                         messages=[{"role": "user", "content": "Say OK"}],
-                        max_tokens=5,
+                        max_tokens=100,
                     )
                     st.success(f"✅ Chat API OK — model `{model}` responded: *{resp.choices[0].message.content.strip()}*")
                 except Exception as exc:
@@ -156,11 +156,11 @@ with test_col1:
 with test_col2:
     if st.button("🔌 Test Embedding API"):
         env = read_env()
-        key = env.get("SLOP_EMBED_API_KEY", "")
-        base = env.get("SLOP_EMBED_API_BASE_URL", "https://api.openai.com/v1")
-        model = env.get("SLOP_EMBED_MODEL", "text-embedding-3-small")
+        key = env.get("EMBED_API_KEY", "")
+        base = env.get("EMBED_API_BASE_URL", "https://api.openai.com/v1")
+        model = env.get("EMBED_MODEL", "text-embedding-3-small")
         if not key:
-            st.error("SLOP_EMBED_API_KEY is not set.")
+            st.error("EMBED_API_KEY is not set.")
         else:
             with st.spinner("Testing..."):
                 try:

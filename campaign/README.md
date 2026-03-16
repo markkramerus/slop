@@ -170,9 +170,9 @@ The planner uses the same API configuration as syncom (only the chat API — no 
 
 | Variable | Default | Description |
 |---|---|---|
-| `SLOP_API_BASE_URL` | `https://api.openai.com/v1` | Chat API base URL |
-| `SLOP_API_KEY` | (required) | Chat API key |
-| `SLOP_CHAT_MODEL` | `gpt-4o` | Chat model name |
+| `GENERATOR_API_BASE_URL` | `https://api.openai.com/v1` | Chat API base URL |
+| `GENERATOR_API_KEY` | (required) | Chat API key |
+| `GENERATOR_CHAT_MODEL` | `gpt-4o` | Chat model name |
 
 ## CLI Reference
 
@@ -185,9 +185,9 @@ required arguments:
   --output PATH              Destination for campaign_plan.json
 
 API configuration:
-  --api-base-url URL         Override SLOP_API_BASE_URL
-  --api-key KEY              Override SLOP_API_KEY
-  --chat-model MODEL         Override SLOP_CHAT_MODEL
+  --api-base-url URL         Override GENERATOR_API_BASE_URL
+  --api-key KEY              Override GENERATOR_API_KEY
+  --chat-model MODEL         Override GENERATOR_CHAT_MODEL
 
   --quiet                    Suppress progress output
 ```

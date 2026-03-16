@@ -114,7 +114,7 @@ def _check_relevance(comment: GeneratedComment, config: Config) -> tuple[bool, s
             {"role": "user", "content": prompt},
         ],
         temperature=0.0,
-        max_tokens=150,
+        max_tokens=20000,
     )
     parsed = _parse_json_response(response.choices[0].message.content or "{}")
     relevant = bool(parsed.get("relevant", True))
@@ -136,7 +136,7 @@ async def _check_relevance_async(comment: GeneratedComment, config: Config) -> t
             {"role": "user", "content": prompt},
         ],
         temperature=0.0,
-        max_tokens=150,
+        max_tokens=20000,
     )
     parsed = _parse_json_response(response.choices[0].message.content or "{}")
     relevant = bool(parsed.get("relevant", True))
@@ -157,7 +157,7 @@ def _check_argument(comment: GeneratedComment, config: Config) -> tuple[bool, st
             {"role": "user", "content": prompt},
         ],
         temperature=0.0,
-        max_tokens=150,
+        max_tokens=20000,
     )
     parsed = _parse_json_response(response.choices[0].message.content or "{}")
     on_message = bool(parsed.get("on_message", True))
@@ -178,7 +178,7 @@ async def _check_argument_async(comment: GeneratedComment, config: Config) -> tu
             {"role": "user", "content": prompt},
         ],
         temperature=0.0,
-        max_tokens=150,
+        max_tokens=20000,
     )
     parsed = _parse_json_response(response.choices[0].message.content or "{}")
     on_message = bool(parsed.get("on_message", True))

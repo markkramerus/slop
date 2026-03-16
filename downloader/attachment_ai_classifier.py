@@ -9,9 +9,9 @@ This module walks a regulations.gov-style attachment tree:
 For each PDF attachment, it sends rendered page images to an
 OpenAI-compatible chat-completions endpoint configured by environment
 variables:
-  - SLOP_CLASSIFER_API_BASE_URL
-  - SLOP_CLASSIFER_API_KEY
-  - SLOP_CLASSIFER_MODEL
+  - ATTACHMENT_CLASSIFIER_API_BASE_URL
+  - ATTACHMENT_CLASSIFIER_API_KEY
+  - ATTACHMENT_CLASSIFIER_MODEL
 
 The AI classification (comment vs not_comment) is written to a CSV file
 (default: ``attachment_classification.csv``) which downstream tools—such as
@@ -115,26 +115,26 @@ class ClassifierConfig:
 
 
 def _env(name: str, default: str = "") -> str:
-    if name == "SLOP_CLASSIFER_API_BASE_URL":
-        return os.getenv("SLOP_CLASSIFER_API_BASE_URL") or os.getenv("SLOP_CLASSIFIER_API_BASE_URL", default)
-    if name == "SLOP_CLASSIFER_API_KEY":
-        return os.getenv("SLOP_CLASSIFER_API_KEY") or os.getenv("SLOP_CLASSIFIER_API_KEY", default)
-    if name == "SLOP_CLASSIFER_MODEL":
-        return os.getenv("SLOP_CLASSIFER_MODEL") or os.getenv("SLOP_CLASSIFIER_MODEL", default)
+    if name == "ATTACHMENT_CLASSIFIER_API_BASE_URL":
+        return os.getenv("ATTACHMENT_CLASSIFIER_API_BASE_URL") or os.getenv("SLOP_CLASSIFIER_API_BASE_URL", default)
+    if name == "ATTACHMENT_CLASSIFIER_API_KEY":
+        return os.getenv("ATTACHMENT_CLASSIFIER_API_KEY") or os.getenv("SLOP_CLASSIFIER_API_KEY", default)
+    if name == "ATTACHMENT_CLASSIFIER_MODEL":
+        return os.getenv("ATTACHMENT_CLASSIFIER_MODEL") or os.getenv("SLOP_CLASSIFIER_MODEL", default)
     return os.getenv(name, default)
 
 
 def load_classifier_config() -> ClassifierConfig:
-    base = (_env("SLOP_CLASSIFER_API_BASE_URL") or "").strip()
-    key = (_env("SLOP_CLASSIFER_API_KEY") or "").strip()
-    model = (_env("SLOP_CLASSIFER_MODEL") or "").strip()
+    base = (_env("ATTACHMENT_CLASSIFIER_API_BASE_URL") or "").strip()
+    key = (_env("ATTACHMENT_CLASSIFIER_API_KEY") or "").strip()
+    model = (_env("ATTACHMENT_CLASSIFIER_MODEL") or "").strip()
 
     if not base:
-        raise ValueError("Missing SLOP_CLASSIFER_API_BASE_URL env var")
+        raise ValueError("Missing ATTACHMENT_CLASSIFIER_API_BASE_URL env var")
     if not key:
-        raise ValueError("Missing SLOP_CLASSIFER_API_KEY env var")
+        raise ValueError("Missing ATTACHMENT_CLASSIFIER_API_KEY env var")
     if not model:
-        raise ValueError("Missing SLOP_CLASSIFER_MODEL env var")
+        raise ValueError("Missing ATTACHMENT_CLASSIFIER_MODEL env var")
 
     # Allow env to be either the API root (.../v1) or the full chat-completions URL.
     # Many OpenAI-compatible servers use /v1/chat/completions.
@@ -373,7 +373,7 @@ def _build_payload_content_parts(filename: str, document_id: str, pdf_bytes: byt
             },
         ],
         "temperature": 0.0,
-        "max_tokens": 400,
+        "max_tokens": 20000,
     }
 
 
@@ -460,7 +460,7 @@ def _build_payload_attachments_field(filename: str, document_id: str, pdf_bytes:
             }
         ],
         "temperature": 0.0,
-        "max_tokens": 400,
+        "max_tokens": 20000,
     }
 
 
@@ -549,7 +549,7 @@ def classify_pdf_via_ai(
             "system": _SYSTEM_PROMPT,
             "user": _USER_PROMPT.format(filename=item.filename, document_id=item.document_id),
             "temperature": "0.0",
-            "max_tokens": "400",
+            "max_tokens": "20000",
         }
         try:
             resp = requests.post(

@@ -37,7 +37,9 @@ rule_path = Path(docket_id, "rule", "rule.txt")
 skills = list_voice_skills(docket_id)
 plan = read_campaign_plan(docket_id)
 
-pre_cols = st.columns(3)
+world_model_path = Path(docket_id, "world_model.json")
+
+pre_cols = st.columns(4)
 with pre_cols[0]:
     if rule_path.is_file():
         st.success(f"✅ Rule text: `{rule_path}`")
@@ -53,6 +55,11 @@ with pre_cols[2]:
         st.success("✅ Campaign plan detected")
     else:
         st.info("ℹ️ No campaign plan — using Direct mode")
+with pre_cols[3]:
+    if world_model_path.is_file():
+        st.success("✅ Cached world model")
+    else:
+        st.info("ℹ️ No cached world model — will build on first run")
 
 st.divider()
 
@@ -143,7 +150,7 @@ with common_cols[0]:
     volume = st.number_input(
         "Volume (# comments) *",
         min_value=1,
-        max_value=10000,
+        max_value=20000,
         value=100,
         step=1,
         help="Number of accepted synthetic comments to produce.",
@@ -183,6 +190,15 @@ with st.expander("⚙️ Advanced & Quality Control Options"):
         )
         no_async = st.checkbox("Disable async (slower)", value=False,
                                help="--no-async")
+        rebuild_wm = st.checkbox(
+            "Rebuild world model",
+            value=False,
+            help=(
+                "Force regeneration of the world model via LLM even if a "
+                "cached version exists at {docket_id}/world_model.json. "
+                "--rebuild-world-model"
+            ),
+        )
 
     with adv_cols[2]:
         st.markdown("**Quality Thresholds**")
@@ -232,6 +248,8 @@ def build_generate_cmd() -> list[str]:
     args += ["--max-concurrent", str(max_concurrent)]
     if no_async:
         args.append("--no-async")
+    if rebuild_wm:
+        args.append("--rebuild-world-model")
 
     # QC thresholds
     args += ["--similarity-threshold", str(sim_threshold)]

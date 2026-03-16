@@ -10,8 +10,8 @@ pip install -r requirements.txt
 
 # 2. Set up your API keys
 # Create a .env file with:
-#   SLOP_API_KEY=your_key_here
-#   SLOP_EMBED_API_KEY=your_key_here
+#   GENERATOR_API_KEY=your_key_here
+#   EMBED_API_KEY=your_key_here
 
 # 3. Download a docket and convert attachments to text
 python downloader/download_attachments.py CMS-2025-0050 --convert-text
@@ -136,20 +136,20 @@ cd slop
 pip install -r requirements.txt
 
 # Set up your API keys
-echo "SLOP_API_KEY=your_key_here" >> .env
-echo "SLOP_EMBED_API_KEY=your_key_here" >> .env
+echo "GENERATOR_API_KEY=your_key_here" >> .env
+echo "EMBED_API_KEY=your_key_here" >> .env
 ```
 
 ### Environment Variables
 
 | Variable | Description |
 |---|---|
-| `SLOP_API_BASE_URL` | Chat API base URL (default: `https://api.openai.com/v1`) |
-| `SLOP_API_KEY` | Chat/completion API key (required) |
-| `SLOP_CHAT_MODEL` | Chat model name (default: `gpt-4o`) |
-| `SLOP_EMBED_API_BASE_URL` | Base URL for embed API |
-| `SLOP_EMBED_API_KEY` | API key for embed model |
-| `SLOP_EMBED_MODEL` | Embedding model name |
+| `GENERATOR_API_BASE_URL` | Chat API base URL (default: `https://api.openai.com/v1`) |
+| `GENERATOR_API_KEY` | Chat/completion API key (required) |
+| `GENERATOR_CHAT_MODEL` | Chat model name (default: `gpt-4o`) |
+| `EMBED_API_BASE_URL` | Base URL for embed API |
+| `EMBED_API_KEY` | API key for embed model |
+| `EMBED_MODEL` | Embedding model name |
 
 ## Sub-Applications
 
@@ -411,9 +411,9 @@ Campaign plan mode:
                         Provides --objective and distributes across vectors.
 
 API configuration:
-  --api-base-url URL    Override SLOP_API_BASE_URL
-  --api-key KEY         Override SLOP_API_KEY
-  --chat-model MODEL    Override SLOP_CHAT_MODEL
+  --api-base-url URL    Override GENERATOR_API_BASE_URL
+  --api-key KEY         Override GENERATOR_API_KEY
+  --chat-model MODEL    Override GENERATOR_CHAT_MODEL
 
 Quality control:
   --no-relevance-check  Skip LLM topical-relevance QC
@@ -470,9 +470,9 @@ Convention-based defaults (derived from --docket-id):
   --output PATH             Default: {docket_id}/campaign/campaign_plan.json
 
 API configuration:
-  --api-base-url URL    Override SLOP_API_BASE_URL
-  --api-key KEY         Override SLOP_API_KEY
-  --chat-model MODEL    Override SLOP_CHAT_MODEL
+  --api-base-url URL    Override GENERATOR_API_BASE_URL
+  --api-key KEY         Override GENERATOR_API_KEY
+  --chat-model MODEL    Override GENERATOR_CHAT_MODEL
 
   --quiet               Suppress progress output
 ```
@@ -696,15 +696,15 @@ python test_stylometry_integration.py
 
 ### Common Issues
 
-**"SLOP_API_KEY not set" / "API key not found"**
-- Create a `.env` file with `SLOP_API_KEY=your_key_here` and `SLOP_EMBED_API_KEY=your_key_here`
+**"GENERATOR_API_KEY not set" / "API key not found"**
+- Create a `.env` file with `GENERATOR_API_KEY=your_key_here` and `EMBED_API_KEY=your_key_here`
 
 **"No stylometry data found for docket"**
 - Run `python stylometry/stylometry_analyzer.py {csv}` before generating comments
 
 **"Generation too slow"**
 - Async mode is enabled by default (10x concurrency). Use `--max-concurrent 15` for more aggression.
-- Use a faster model by setting `SLOP_CHAT_MODEL=gpt-4o-mini`
+- Use a faster model by setting `GENERATOR_CHAT_MODEL=gpt-4o-mini`
 - Reduce QC overhead with `--no-embedding-check` (disables dedup)
 
 **"Output quality is poor"**

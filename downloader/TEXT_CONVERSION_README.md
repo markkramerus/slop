@@ -42,9 +42,9 @@ to images and sends them to an OpenAI-compatible endpoint. It does **not** need
 
 **Environment variables required** (set in `.env` or your shell):
 
-- `SLOP_CLASSIFER_API_BASE_URL`
-- `SLOP_CLASSIFER_API_KEY`
-- `SLOP_CLASSIFER_MODEL`
+- `ATTACHMENT_CLASSIFIER_API_BASE_URL`
+- `ATTACHMENT_CLASSIFIER_API_KEY`
+- `ATTACHMENT_CLASSIFIER_MODEL`
 
 ### Resume / re-run
 

@@ -191,6 +191,25 @@ def _derive_citation_guidance(persona: Persona) -> str:
         return "This voice rarely cites sources. Leave citation_agenda empty."
 
 
+def _subsample_rfi_questions(
+    rfi_qs: list[str],
+    rng: np.random.Generator,
+    max_questions: int = 2,
+) -> list[str]:
+    """
+    Randomly subsample 1–max_questions RFI questions from the full list.
+
+    This is applied *before* sending RFI questions to the frame-building LLM
+    so it never sees (and gravitates toward) the most "dramatic" question in
+    the full set.  Each generation sees a different random slice.
+    """
+    if not rfi_qs or len(rfi_qs) <= max_questions:
+        return list(rfi_qs)
+    n_to_keep = int(rng.integers(1, max_questions + 1))
+    indices = rng.choice(len(rfi_qs), size=n_to_keep, replace=False)
+    return [rfi_qs[int(i)] for i in indices]
+
+
 def build_campaign_frame(
     objective: str,
     argument_angle: str,
@@ -222,7 +241,9 @@ def build_campaign_frame(
     """
     client = config.openai_client()
 
-    rfi_qs = world_model.rfi_questions
+    # Subsample RFI questions so the frame LLM doesn't always gravitate to
+    # the most dramatic question in the full list
+    rfi_qs = _subsample_rfi_questions(world_model.rfi_questions, rng)
     rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
     citation_guidance = _derive_citation_guidance(persona)
 
@@ -252,7 +273,7 @@ def build_campaign_frame(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=600,
+        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -308,7 +329,9 @@ async def build_campaign_frame_async(
     """
     client = config.async_openai_client()
 
-    rfi_qs = world_model.rfi_questions
+    # Subsample RFI questions so the frame LLM doesn't always gravitate to
+    # the most dramatic question in the full list
+    rfi_qs = _subsample_rfi_questions(world_model.rfi_questions, rng)
     rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
     citation_guidance = _derive_citation_guidance(persona)
 
@@ -338,7 +361,7 @@ async def build_campaign_frame_async(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=600,
+        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -488,7 +511,9 @@ def _build_frame_via_llm(
     """Use the LLM to generate an ExpressionFrame (direct/vector mode)."""
     client = config.openai_client()
 
-    rfi_qs = world_model.rfi_questions
+    # Subsample RFI questions so the frame LLM doesn't always gravitate to
+    # the most dramatic question in the full list
+    rfi_qs = _subsample_rfi_questions(world_model.rfi_questions, rng)
     rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
 
     prompt = _FRAME_USER_TEMPLATE.format(
@@ -517,7 +542,7 @@ def _build_frame_via_llm(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=600,
+        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -614,7 +639,9 @@ async def map_argument_async(
 
     client = config.async_openai_client()
 
-    rfi_qs = world_model.rfi_questions
+    # Subsample RFI questions so the frame LLM doesn't always gravitate to
+    # the most dramatic question in the full list
+    rfi_qs = _subsample_rfi_questions(world_model.rfi_questions, rng)
     rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
 
     prompt = _FRAME_USER_TEMPLATE.format(
@@ -643,7 +670,7 @@ async def map_argument_async(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=600,
+        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()

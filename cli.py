@@ -17,12 +17,12 @@ Prerequisites:
     This creates {docket_id}/stylometry/ with index.json and voice skill .md files.
 
 Environment variables (or .env file):
-    SLOP_API_BASE_URL        Base URL for the chat/completion API
-    SLOP_API_KEY             API key for chat/completion
-    SLOP_CHAT_MODEL          Chat/completion model name
-    SLOP_EMBED_API_BASE_URL  Base URL for embed API
-    SLOP_EMBED_API_KEY       API key for embed model
-    SLOP_EMBED_MODEL         Embedding model name 
+    GENERATOR_API_BASE_URL        Base URL for the chat/completion API
+    GENERATOR_API_KEY             API key for chat/completion
+    GENERATOR_CHAT_MODEL          Chat/completion model name
+    EMBED_API_BASE_URL  Base URL for embed API
+    EMBED_API_KEY       API key for embed model
+    EMBED_MODEL         Embedding model name 
 
 Optional flags let you tune cost vs. quality:
     --no-relevance-check    Skip LLM topical-relevance QC
@@ -33,9 +33,9 @@ Optional flags let you tune cost vs. quality:
     --similarity-threshold  Cosine similarity ceiling for dedup (default 0.92)
     --max-retries           Retries per comment slot on QC failure (default 3)
     --comment-period-days   Simulated comment period length in days (default 60)
-    --api-base-url          Override SLOP_API_BASE_URL
-    --api-key               Override SLOP_API_KEY
-    --chat-model            Override SLOP_CHAT_MODEL
+    --api-base-url          Override GENERATOR_API_BASE_URL
+    --api-key               Override GENERATOR_API_KEY
+    --chat-model            Override GENERATOR_CHAT_MODEL
     --quiet                 Suppress progress output
 
 Vector descriptions:
@@ -472,17 +472,17 @@ Simplest invocations
     # API configuration
     api = p.add_argument_group("API configuration")
     api.add_argument("--api-base-url", metavar="URL", default=None,
-                     help="Chat API base URL (overrides SLOP_API_BASE_URL).")
+                     help="Chat API base URL (overrides GENERATOR_API_BASE_URL).")
     api.add_argument("--api-key", metavar="KEY", default=None,
-                     help="Chat API key (overrides SLOP_API_KEY).")
+                     help="Chat API key (overrides GENERATOR_API_KEY).")
     api.add_argument("--chat-model", metavar="MODEL", default=None,
-                     help="Chat model name (overrides SLOP_CHAT_MODEL).")
+                     help="Chat model name (overrides GENERATOR_CHAT_MODEL).")
     api.add_argument("--embed-api-base-url", metavar="URL", default=None,
-                     help="Embedding API base URL (overrides SLOP_EMBED_API_BASE_URL).")
+                     help="Embedding API base URL (overrides EMBED_API_BASE_URL).")
     api.add_argument("--embed-api-key", metavar="KEY", default=None,
-                     help="Embedding API key (overrides SLOP_EMBED_API_KEY).")
+                     help="Embedding API key (overrides EMBED_API_KEY).")
     api.add_argument("--embed-model", metavar="MODEL", default=None,
-                     help="Embedding model name (overrides SLOP_EMBED_MODEL).")
+                     help="Embedding model name (overrides EMBED_MODEL).")
     
     # QC options
     qc = p.add_argument_group("quality control")
@@ -509,6 +509,8 @@ Simplest invocations
                      help="Max concurrent API requests (async mode, default 10).")
     gen.add_argument("--no-async", action="store_true",
                      help="Disable async parallelization (slower but more predictable).")
+    gen.add_argument("--rebuild-world-model", action="store_true",
+                     help="Force regeneration of the world model via LLM even if a cached version exists.")
 
     # Verbosity
     p.add_argument("--quiet", action="store_true", help="Suppress progress output.")
@@ -543,6 +545,10 @@ def main(argv: list[str] | None = None) -> int:
     # ── Subcommand dispatch ─────────────────────────────────────────────────
     if argv and argv[0] == "shuffle":
         return run_shuffle(argv[1:])
+
+    if argv and argv[0] in ("phrase-check", "phrase_check"):
+        from syncom.phrase_check import main as phrase_check_main
+        return phrase_check_main(argv[1:])
 
     # ── Generate (default) mode ─────────────────────────────────────────────
     parser = build_parser()
@@ -643,6 +649,7 @@ def main(argv: list[str] | None = None) -> int:
                 skip_argument_check=args.no_argument_check,
                 skip_embedding_check=args.no_embedding_check,
                 verbose=not args.quiet,
+                rebuild_world_model=args.rebuild_world_model,
             )
 
             if args.no_async:
@@ -673,6 +680,7 @@ def main(argv: list[str] | None = None) -> int:
                     skip_argument_check=args.no_argument_check,
                     skip_embedding_check=args.no_embedding_check,
                     verbose=not args.quiet,
+                    rebuild_world_model=args.rebuild_world_model,
                 )
             else:
                 result = run_async(
@@ -693,6 +701,7 @@ def main(argv: list[str] | None = None) -> int:
                     skip_embedding_check=args.no_embedding_check,
                     verbose=not args.quiet,
                     max_concurrent=args.max_concurrent,
+                    rebuild_world_model=args.rebuild_world_model,
                 )
     except Exception as exc:
         print(f"Fatal error: {exc}", file=sys.stderr)

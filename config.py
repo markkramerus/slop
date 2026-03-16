@@ -4,15 +4,17 @@ config.py — API client configuration for any OpenAI-compatible endpoint.
 Set via environment variables or pass a Config object explicitly.
 
 Environment variables:
-  SLOP_API_BASE_URL        Base URL for the chat completions API
+  GENERATOR_API_BASE_URL        Base URL for the chat completions API
                            Default: https://api.openai.com/v1
-  SLOP_API_KEY             API key for chat/generation
-  SLOP_CHAT_MODEL          Model name for chat/generation
+  GENERATOR_API_KEY             API key for chat/generation
+  GENERATOR_CHAT_MODEL          Model name for chat/generation
                            Default: gpt-4o
   SLOP_MAX_TOKENS          Maximum tokens for generated comment
                            Default: 1024
   SLOP_TEMPERATURE         Default sampling temperature (overridden per vector)
                            Default: 0.9
+  MAX_REWRITES             Maximum judge→rewrite passes per comment
+                           Default: 2 (0 disables the rewrite loop)
 """
 
 from __future__ import annotations
@@ -28,42 +30,38 @@ load_dotenv()
 class Config:
     # LLM/Chat API configuration
     api_base_url: str = field(
-        default_factory=lambda: os.getenv("SLOP_API_BASE_URL", "https://api.openai.com/v1")
+        default_factory=lambda: os.getenv("GENERATOR_API_BASE_URL", "https://api.openai.com/v1")
     )
     api_key: str = field(
-        default_factory=lambda: os.getenv("SLOP_API_KEY", "")
+        default_factory=lambda: os.getenv("GENERATOR_API_KEY", "")
     )
     chat_model: str = field(
-        default_factory=lambda: os.getenv("SLOP_CHAT_MODEL", "gpt-4o")
+        default_factory=lambda: os.getenv("GENERATOR_CHAT_MODEL", "gpt-4o")
     )
 
     # Embedding API configuration
     embed_api_base_url: str = field(
-        default_factory=lambda: os.getenv("SLOP_EMBED_API_BASE_URL", "https://api.openai.com/v1")
+        default_factory=lambda: os.getenv("EMBED_API_BASE_URL", "https://api.openai.com/v1")
     )
     embed_api_key: str = field(
-        default_factory=lambda: os.getenv("SLOP_EMBED_API_KEY", "")
+        default_factory=lambda: os.getenv("EMBED_API_KEY", "")
     )
     embed_model: str = field(
-        default_factory=lambda: os.getenv("SLOP_EMBED_MODEL", "text-embedding-3-small")
+        default_factory=lambda: os.getenv("EMBED_MODEL", "text-embedding-3-small")
     )
     
     # Generation parameters
-    max_tokens: int = field(
-        default_factory=lambda: int(os.getenv("SLOP_MAX_TOKENS", "1024"))
-    )
-    temperature: float = field(
-        default_factory=lambda: float(os.getenv("SLOP_TEMPERATURE", "0.9"))
-    )
+    max_tokens= 20000
+    temperature=0.9
 
     def validate(self) -> None:
         if not self.api_key:
             raise ValueError(
-                "No API key found. Set SLOP_API_KEY environment variable or pass api_key to Config."
+                "No API key found. Set GENERATOR_API_KEY environment variable or pass api_key to Config."
             )
         if not self.embed_api_key:
             raise ValueError(
-                "No embedding API key found. Set SLOP_EMBED_API_KEY environment variable or pass embed_api_key to Config."
+                "No embedding API key found. Set EMBED_API_KEY environment variable or pass embed_api_key to Config."
             )
 
     def openai_client(self):

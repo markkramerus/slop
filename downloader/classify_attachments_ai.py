@@ -6,9 +6,9 @@ Walk a comment_attachments directory tree and classify each PDF attachment as
 
 The AI endpoint is configured by environment variables (loaded from .env if
 present):
-  - SLOP_CLASSIFER_API_BASE_URL
-  - SLOP_CLASSIFER_API_KEY
-  - SLOP_CLASSIFER_MODEL
+  - ATTACHMENT_CLASSIFIER_API_BASE_URL
+  - ATTACHMENT_CLASSIFIER_API_KEY
+  - ATTACHMENT_CLASSIFIER_MODEL
 
 Output is a CSV (default name: attachment_classification.csv) with one row per
 attachment containing the AI classification result.

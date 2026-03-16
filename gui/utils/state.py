@@ -93,15 +93,15 @@ def status_badge(ok: bool | None) -> str:
 ENV_PATH = Path(".env")
 
 _ENV_KEYS = [
-    "SLOP_API_KEY",
-    "SLOP_EMBED_API_KEY",
-    "SLOP_API_BASE_URL",
-    "SLOP_EMBED_API_BASE_URL",
-    "SLOP_CHAT_MODEL",
-    "SLOP_EMBED_MODEL",
+    "GENERATOR_API_KEY",
+    "EMBED_API_KEY",
+    "GENERATOR_API_BASE_URL",
+    "EMBED_API_BASE_URL",
+    "GENERATOR_CHAT_MODEL",
+    "EMBED_MODEL",
 ]
 
-_SECRET_KEYS = {"SLOP_API_KEY", "SLOP_EMBED_API_KEY"}
+_SECRET_KEYS = {"GENERATOR_API_KEY", "EMBED_API_KEY"}
 
 
 def read_env() -> dict[str, str]:

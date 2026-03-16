@@ -42,8 +42,9 @@ from .persona import (
     sample_persona, sample_persona_async,
     sample_persona_by_voice_id, sample_persona_by_voice_id_async,
 )
+from .phrase_check import run_phrase_check
 from .quality_control import QualityController
-from .world_model import build_world_model, WorldModel
+from .world_model import build_world_model, build_or_load_world_model, WorldModel
 from stylometry.stylometry_loader import build_population_model
 
 
@@ -146,6 +147,7 @@ def run_campaign(
     skip_argument_check: bool = False,
     skip_embedding_check: bool = False,
     verbose: bool = True,
+    rebuild_world_model: bool = False,
 ) -> RunResult:
     """
     Run the synthetic comment generation pipeline using a v2.0 campaign plan.
@@ -193,11 +195,13 @@ def run_campaign(
     # ── Stage 2: Build world model ────────────────────────────────────────
     if verbose:
         print(f"[2/4] Analysing proposed rule…", file=sys.stderr)
-    world_model = build_world_model(
+    world_model = build_or_load_world_model(
         rule_text=rule_text,
         population=population,
         config=config,
         docket_id=docket_id,
+        rebuild=rebuild_world_model,
+        verbose=verbose,
     )
     result.world_model_summary = world_model.to_dict()
     if verbose:
@@ -256,7 +260,7 @@ def run_campaign(
                         objective, angle_text, persona, world_model, config, rng,
                     )
                     comment = generate_comment(
-                        persona, frame, world_model, 0, objective, config,
+                        persona, frame, world_model, 0, objective, config, rng,
                     )
                     comment.argument_angle = angle_text
                     comment.voice_id = voice_id
@@ -302,6 +306,15 @@ def run_campaign(
     )
     result.output_path = output_path
 
+    # ── Phrase repetition check ───────────────────────────────────────────
+    phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    run_phrase_check(
+        comments=all_comments,
+        output_path=phrase_report_path,
+        only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
+
     if verbose:
         print(result.summary(), file=sys.stderr)
 
@@ -339,7 +352,7 @@ async def _generate_one_campaign_comment_async(
                 objective, argument_angle, persona, world_model, config, rng,
             )
             comment = await generate_comment_async(
-                persona, frame, world_model, 0, objective, config,
+                persona, frame, world_model, 0, objective, config, rng,
             )
             comment.argument_angle = argument_angle
             comment.voice_id = voice_id
@@ -374,6 +387,7 @@ def run_campaign_async(
     skip_embedding_check: bool = False,
     verbose: bool = True,
     max_concurrent: int = 10,
+    rebuild_world_model: bool = False,
 ) -> RunResult:
     """
     Run the v2.0 campaign-plan-aware pipeline with async parallelization.
@@ -408,11 +422,13 @@ def run_campaign_async(
     # ── Stage 2: Build world model ────────────────────────────────────────
     if verbose:
         print(f"[2/4] Analysing proposed rule…", file=sys.stderr)
-    world_model = build_world_model(
+    world_model = build_or_load_world_model(
         rule_text=rule_text,
         population=population,
         config=config,
         docket_id=docket_id,
+        rebuild=rebuild_world_model,
+        verbose=verbose,
     )
     result.world_model_summary = world_model.to_dict()
     if verbose:
@@ -508,6 +524,15 @@ def run_campaign_async(
     )
     result.output_path = output_path
 
+    # ── Phrase repetition check ───────────────────────────────────────────
+    phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    run_phrase_check(
+        comments=all_comments,
+        output_path=phrase_report_path,
+        only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
+
     if verbose:
         print(result.summary(), file=sys.stderr)
 
@@ -533,6 +558,7 @@ def run(
     skip_argument_check: bool = False,
     skip_embedding_check: bool = False,
     verbose: bool = True,
+    rebuild_world_model: bool = False,
 ) -> RunResult:
     """
     Run the full synthetic comment generation pipeline (direct mode).
@@ -551,11 +577,13 @@ def run(
 
     if verbose:
         print(f"[2/4] Analysing proposed rule…", file=sys.stderr)
-    world_model = build_world_model(
+    world_model = build_or_load_world_model(
         rule_text=rule_text,
         population=population,
         config=config,
         docket_id=docket_id,
+        rebuild=rebuild_world_model,
+        verbose=verbose,
     )
     result.world_model_summary = world_model.to_dict()
     if verbose:
@@ -590,7 +618,7 @@ def run(
             try:
                 persona = sample_persona(world_model, config, rng, docket_id=docket_id)
                 frame = map_argument(objective, vector, persona, world_model, config, rng)
-                comment = generate_comment(persona, frame, world_model, vector, objective, config)
+                comment = generate_comment(persona, frame, world_model, vector, objective, config, rng)
                 qc_result = qc.check(comment)
                 all_comments.append(comment)
 
@@ -625,6 +653,15 @@ def run(
     )
     result.output_path = output_path
 
+    # ── Phrase repetition check ───────────────────────────────────────────
+    phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    run_phrase_check(
+        comments=all_comments,
+        output_path=phrase_report_path,
+        only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
+
     if verbose:
         print(result.summary(), file=sys.stderr)
 
@@ -653,7 +690,7 @@ async def _generate_one_comment_async(
         try:
             persona = await sample_persona_async(world_model, config, rng, docket_id=docket_id)
             frame = await map_argument_async(objective, vector, persona, world_model, config, rng)
-            comment = await generate_comment_async(persona, frame, world_model, vector, objective, config)
+            comment = await generate_comment_async(persona, frame, world_model, vector, objective, config, rng)
             qc_result = await qc.check_async(comment)
 
             if qc_result.passed:
@@ -686,6 +723,7 @@ def run_async(
     skip_embedding_check: bool = False,
     verbose: bool = True,
     max_concurrent: int = 10,
+    rebuild_world_model: bool = False,
 ) -> RunResult:
     """Async direct-mode pipeline (backward compatible)."""
     if config is None:
@@ -701,11 +739,13 @@ def run_async(
 
     if verbose:
         print(f"[2/4] Analysing proposed rule…", file=sys.stderr)
-    world_model = build_world_model(
+    world_model = build_or_load_world_model(
         rule_text=rule_text,
         population=population,
         config=config,
         docket_id=docket_id,
+        rebuild=rebuild_world_model,
+        verbose=verbose,
     )
     result.world_model_summary = world_model.to_dict()
     if verbose:
@@ -779,6 +819,15 @@ def run_async(
         seed=seed,
     )
     result.output_path = output_path
+
+    # ── Phrase repetition check ───────────────────────────────────────────
+    phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    run_phrase_check(
+        comments=all_comments,
+        output_path=phrase_report_path,
+        only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
 
     if verbose:
         print(result.summary(), file=sys.stderr)

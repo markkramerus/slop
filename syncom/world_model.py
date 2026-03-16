@@ -16,7 +16,10 @@ model is attached as-is.
 from __future__ import annotations
 
 import json
+import os
+import sys
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 from config import Config
@@ -123,6 +126,76 @@ class WorldModel:
         idx = rng.integers(0, len(self.rfi_questions))
         return self.rfi_questions[int(idx)]
 
+    # ── Persistence ───────────────────────────────────────────────────────
+
+    def _serializable_dict(self) -> dict[str, Any]:
+        """Return a JSON-serializable dict of the LLM-derived fields + rule_text.
+
+        The PopulationModel is *not* included — it is rebuilt cheaply from
+        stylometry data each run and re-attached after loading.
+        """
+        return {
+            "rule_title": self.rule_title,
+            "docket_id": self.docket_id,
+            "agency": self.agency,
+            "regulatory_domain": self.regulatory_domain,
+            "core_change": self.core_change,
+            "stated_rationale": self.stated_rationale,
+            "affected_parties": self.affected_parties,
+            "rfi_questions": self.rfi_questions,
+            "plausible_consequences": self.plausible_consequences,
+            "key_terms": self.key_terms,
+            "controversy_level": self.controversy_level,
+            "rule_text": self.rule_text,
+        }
+
+    def save(self, path: str | Path) -> None:
+        """Save the world model (LLM-derived fields + rule text) to a JSON file."""
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(self._serializable_dict(), f, indent=2, ensure_ascii=False)
+
+    @classmethod
+    def load(
+        cls,
+        path: str | Path,
+        population: PopulationModel | None = None,
+    ) -> "WorldModel":
+        """Load a world model from a JSON file and optionally attach a population model.
+
+        Parameters
+        ----------
+        path:
+            Path to a ``world_model.json`` file previously written by :meth:`save`.
+        population:
+            Population model to attach.  If ``None`` the resulting WorldModel
+            will have ``population=None``; the caller can set it afterwards.
+        """
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        return cls(
+            rule_title=data.get("rule_title", "Unknown Rule"),
+            docket_id=data.get("docket_id", ""),
+            agency=data.get("agency", ""),
+            regulatory_domain=data.get("regulatory_domain", ""),
+            core_change=data.get("core_change", ""),
+            stated_rationale=data.get("stated_rationale", ""),
+            affected_parties=data.get("affected_parties", []),
+            rfi_questions=data.get("rfi_questions", []),
+            plausible_consequences=data.get("plausible_consequences", {}),
+            key_terms=data.get("key_terms", []),
+            controversy_level=data.get("controversy_level", "medium"),
+            population=population,
+            rule_text=data.get("rule_text", ""),
+        )
+
+
+def _default_cache_path(docket_id: str) -> Path:
+    """Return the conventional cache path: ``{docket_id}/world_model.json``."""
+    return Path(docket_id, "world_model.json")
+
 
 def build_world_model(
     rule_text: str,
@@ -157,7 +230,7 @@ def build_world_model(
             {"role": "user", "content": prompt},
         ],
         temperature=0.2,  # Low temperature for structured analysis
-        max_tokens=1200,
+        max_tokens=20000,
     )
 
     raw = response.choices[0].message.content or "{}"
@@ -192,4 +265,69 @@ def build_world_model(
         population=population,
         rule_text=rule_text,
     )
+    return wm
+
+
+def build_or_load_world_model(
+    rule_text: str,
+    population: PopulationModel,
+    config: Config,
+    docket_id: str = "",
+    rebuild: bool = False,
+    verbose: bool = True,
+) -> WorldModel:
+    """Build a new world model via LLM or load a cached one from disk.
+
+    On the first run for a docket the world model is built with an LLM call
+    and saved to ``{docket_id}/world_model.json``.  Subsequent runs reuse the
+    cached file unless *rebuild* is ``True``.
+
+    Parameters
+    ----------
+    rule_text:
+        Full text of the proposed rule or RFI.
+    population:
+        Population model built from stylometry data.
+    config:
+        API configuration (only used when an LLM call is needed).
+    docket_id:
+        Docket identifier — used to derive the cache path.
+    rebuild:
+        If ``True``, ignore any cached file and regenerate via LLM.
+    verbose:
+        Print status messages to stderr.
+    """
+    cache_path = _default_cache_path(docket_id) if docket_id else None
+
+    # Try loading from cache
+    if cache_path and cache_path.is_file() and not rebuild:
+        if verbose:
+            print(f"      Loading cached world model from {cache_path}", file=sys.stderr)
+        wm = WorldModel.load(cache_path, population=population)
+        # Re-attach rule_text in case the caller's copy differs only in
+        # whitespace or encoding; the cached version is authoritative for
+        # the LLM-derived fields.
+        if not wm.rule_text:
+            wm.rule_text = rule_text
+        return wm
+
+    # Build via LLM
+    if verbose and cache_path and not rebuild:
+        print(f"      No cached world model found — building via LLM…", file=sys.stderr)
+    elif verbose and rebuild:
+        print(f"      Rebuilding world model via LLM (--rebuild-world-model)…", file=sys.stderr)
+
+    wm = build_world_model(
+        rule_text=rule_text,
+        population=population,
+        config=config,
+        docket_id=docket_id,
+    )
+
+    # Persist for next time
+    if cache_path:
+        wm.save(cache_path)
+        if verbose:
+            print(f"      World model saved to {cache_path}", file=sys.stderr)
+
     return wm

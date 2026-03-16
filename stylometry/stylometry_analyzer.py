@@ -182,8 +182,8 @@ Provide your analysis in 3-4 paragraphs that would help a writer mimic this styl
                 {"role": "system", "content": "You are an expert in analyzing writing styles and linguistic patterns in regulatory comments."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.3,  # Lower temperature for more consistent analysis
-            max_tokens=1000
+            temperature=0.5,  # Lower temperature for more consistent analysis
+            max_tokens=20000
         )
         
         analysis = response.choices[0].message.content.strip()

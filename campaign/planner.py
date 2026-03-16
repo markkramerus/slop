@@ -29,9 +29,9 @@ Usage
         --output campaign_plan.json
 
 Environment variables (or .env file):
-    SLOP_API_BASE_URL   Base URL for the chat/completion API
-    SLOP_API_KEY        API key for chat/completion
-    SLOP_CHAT_MODEL     Chat/completion model name
+    GENERATOR_API_BASE_URL   Base URL for the chat/completion API
+    GENERATOR_API_KEY        API key for chat/completion
+    GENERATOR_CHAT_MODEL     Chat/completion model name
 """
 
 from __future__ import annotations
@@ -339,7 +339,7 @@ def generate_campaign_plan(
             {"role": "user", "content": prompt},
         ],
         temperature=0.4,
-        max_tokens=2500,
+        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -477,11 +477,11 @@ Example (all defaults from docket directory):
 
     api = p.add_argument_group("API configuration")
     api.add_argument("--api-base-url", metavar="URL", default=None,
-                     help="Chat API base URL (overrides SLOP_API_BASE_URL).")
+                     help="Chat API base URL (overrides GENERATOR_API_BASE_URL).")
     api.add_argument("--api-key", metavar="KEY", default=None,
-                     help="Chat API key (overrides SLOP_API_KEY).")
+                     help="Chat API key (overrides GENERATOR_API_KEY).")
     api.add_argument("--chat-model", metavar="MODEL", default=None,
-                     help="Chat model name (overrides SLOP_CHAT_MODEL).")
+                     help="Chat model name (overrides GENERATOR_CHAT_MODEL).")
 
     p.add_argument("--quiet", action="store_true", help="Suppress progress output.")
 
@@ -502,7 +502,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Only validate chat API (planner doesn't need embeddings)
     if not config.api_key:
-        print("Error: No API key found. Set SLOP_API_KEY or pass --api-key.", file=sys.stderr)
+        print("Error: No API key found. Set GENERATOR_API_KEY or pass --api-key.", file=sys.stderr)
         return 1
 
     # ── Resolve defaults from docket-id ────────────────────────────────────

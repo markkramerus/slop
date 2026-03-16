@@ -314,7 +314,7 @@ def _generate_hook(persona: Persona, world_model: WorldModel, config: Config) ->
             {"role": "user", "content": prompt},
         ],
         temperature=1.0,
-        max_tokens=200,
+        max_tokens=20000,
     )
     return (response.choices[0].message.content or "").strip()
 
@@ -345,7 +345,7 @@ async def _generate_hook_async(persona: Persona, world_model: WorldModel, config
             {"role": "user", "content": prompt},
         ],
         temperature=1.0,
-        max_tokens=200,
+        max_tokens=20000,
     )
     return (response.choices[0].message.content or "").strip()
 

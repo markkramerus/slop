@@ -189,8 +189,8 @@ def _sample_from_stats(
         # Fallback: ~100 words per paragraph
         para_count = max(1, target_wc // 100)
 
-    # ── max_tokens: words × 1.5 (tokens per word), with a floor ─────────
-    max_tokens = max(256, int(target_wc * 1.5))
+    # ── max_tokens: words × 5 (tokens per word), with a floor ─────────
+    max_tokens = max(20000, int(target_wc * 5.0))
 
     return CommentDirectives(
         target_word_count=target_wc,

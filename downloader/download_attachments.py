@@ -287,7 +287,7 @@ def print_summary(stats: dict, conversion_stats: dict | None = None) -> None:
 def main():
     """Main entry point for the script."""
     parser = argparse.ArgumentParser(
-        description='Download attachment files from CMS regulations CSV',
+        description='Download attachment files from regulations.gov as CSV',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__
     )

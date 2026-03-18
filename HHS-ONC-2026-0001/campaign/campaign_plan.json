@@ -1,0 +1,232 @@
+{
+  "plan_version": "2.0",
+  "created": "2026-03-17T13:24:16.724351+00:00",
+  "scenario_summary": "This campaign broadly opposes HHS and ONC efforts to accelerate AI adoption in clinical care, insurance decisions, and administrative functions. It argues that medicine is fundamentally a human relationship requiring judgment, accountability, and trust that AI cannot replicate, and that the risks \u2014 including safety failures, embedded bias, workforce harm, diffusion of responsibility, and erosion of patient dignity \u2014 far outweigh any efficiency gains. The goal is to persuade HHS to slow or halt AI integration rather than accelerate it.",
+  "objective": "Urge HHS and ONC to reject the accelerationist framing of this RFI and instead adopt a precautionary, human-centered posture that imposes strong safeguards, independent oversight, and meaningful limits on AI use in clinical care, insurance determinations, and administrative functions \u2014 recognizing that medicine's core value lies in human judgment, accountability, and relationship, not computational efficiency.",
+  "argument_angles": [
+    {
+      "id": "medicine_as_human_relationship",
+      "angle": "Medicine is fundamentally a human relationship built on judgment, context, and trust \u2014 not an information-processing problem that AI can solve.",
+      "weight": 0.18,
+      "best_voices": [
+        "individual_consumer-high",
+        "individual_consumer-medium",
+        "advocacy_group-medium-org"
+      ],
+      "key_claims": [
+        "Patients are often scared, confused, or in pain and cannot articulate their symptoms clearly \u2014 clinicians interpret body language, family dynamics, and ambiguity that AI cannot perceive.",
+        "The therapeutic relationship itself has measurable clinical value; replacing human presence with machine recommendations degrades that relationship even when the recommendation is technically correct.",
+        "AI creates the illusion of objectivity while pushing medicine toward a transactional model in which the patient becomes a data point rather than a person.",
+        "The sense that a specific human being is truly responsible for your care and answerable for mistakes is not a luxury \u2014 it is a structural feature of trustworthy medicine."
+      ],
+      "rhetorical_approach": "Humanistic values argument \u2014 center the patient's subjective experience of care and the irreplaceable moral weight of human presence, using first-person or narrative framing to make abstract depersonalization concrete and emotionally legible.",
+      "avoid": [
+        "Technical safety failures and algorithmic bias \u2014 covered by the safety_and_bias angle",
+        "Workforce displacement and surveillance \u2014 covered by the workforce_and_labor angle",
+        "Diffusion of accountability \u2014 covered by the accountability_and_responsibility angle"
+      ]
+    },
+    {
+      "id": "safety_and_bias",
+      "angle": "AI systems in clinical settings inherit and amplify racial, socioeconomic, and institutional biases from training data, and their apparent authority makes those biases harder to detect and correct.",
+      "weight": 0.17,
+      "best_voices": [
+        "academic-medium-org",
+        "advocacy_group-medium-org",
+        "individual_consumer-high"
+      ],
+      "key_claims": [
+        "AI tools trained on historical healthcare data encode existing disparities in diagnosis, treatment, and resource allocation \u2014 and because outputs appear authoritative, clinicians are less likely to question them.",
+        "A system that performs well on average can fail catastrophically for edge cases, rare conditions, and patients whose presentations differ from the training population.",
+        "Even technically accurate AI tools may not be clinically useful, and tools validated in one setting are routinely deployed in settings where they were never tested.",
+        "Racial and socioeconomic bias in AI-driven insurance and prior authorization tools has already been documented, resulting in higher denial rates for Black, Latino, and low-income patients.",
+        "Accelerating adoption before bias auditing standards exist guarantees that disparities will be embedded at scale before they can be identified."
+      ],
+      "rhetorical_approach": "Evidence-based harm documentation \u2014 cite known real-world cases of AI bias in healthcare (e.g., pulse oximetry, sepsis algorithms, prior authorization denial patterns) to show that these are not hypothetical risks but documented harms that acceleration will worsen.",
+      "avoid": [
+        "The human relationship and depersonalization argument \u2014 covered by medicine_as_human_relationship",
+        "Workforce and employment impacts \u2014 covered by workforce_and_labor",
+        "Vendor accountability and regulatory capture \u2014 covered by accountability_and_responsibility"
+      ]
+    },
+    {
+      "id": "false_efficiency_and_brittle_systems",
+      "angle": "AI tools that appear impressive in demonstrations are often brittle in real clinical environments, adding hidden risk while creating false reassurance about safety and effectiveness.",
+      "weight": 0.12,
+      "best_voices": [
+        "academic-medium-org",
+        "industry-high-org",
+        "individual_consumer-high"
+      ],
+      "key_claims": [
+        "Healthcare AI systems frequently perform well on benchmark datasets but degrade significantly when deployed in different hospital systems, patient populations, or EHR configurations.",
+        "Clinicians who trust AI outputs may reduce their own vigilance \u2014 a phenomenon called automation bias \u2014 increasing the probability of error precisely when the AI is wrong.",
+        "Incomplete, fragmented, and inconsistently coded medical records mean that AI inputs in real clinical settings are far noisier than training environments assume.",
+        "Rapidly changing clinical circumstances \u2014 new medications, evolving diagnoses, patient deterioration \u2014 can render AI recommendations outdated within hours in ways the system cannot signal.",
+        "The gap between demonstrated performance and real-world performance is a known and recurring problem in health IT; accelerating deployment before this gap is closed is not innovation, it is recklessness."
+      ],
+      "rhetorical_approach": "Implementation science critique \u2014 draw on the well-documented history of health IT failures (EHR rollouts, clinical decision support alert fatigue, sepsis algorithm failures) to argue that the pattern of overpromising and underdelivering is structural, not incidental, and that acceleration repeats past mistakes.",
+      "avoid": [
+        "Bias in training data \u2014 covered by safety_and_bias",
+        "Workforce deskilling \u2014 covered by workforce_and_labor",
+        "Who is legally responsible when the system fails \u2014 covered by accountability_and_responsibility"
+      ]
+    },
+    {
+      "id": "workforce_and_labor",
+      "angle": "AI in healthcare threatens to be used not to reduce clinician burnout but to justify staffing cuts, intensify surveillance, automate denials, and devalue professional expertise.",
+      "weight": 0.13,
+      "best_voices": [
+        "advocacy_group-medium-org",
+        "individual_consumer-medium",
+        "industry-medium-org"
+      ],
+      "key_claims": [
+        "Hospitals and insurers have strong financial incentives to use AI as a cost-cutting mechanism \u2014 reducing headcount, increasing caseloads, and replacing judgment with automated workflows \u2014 rather than as a tool to improve care.",
+        "AI-powered productivity monitoring and documentation tools can function as surveillance systems that intensify pressure on frontline workers without improving patient outcomes.",
+        "Automation of prior authorization, coding, and administrative functions eliminates jobs held disproportionately by workers of color and women, concentrating the economic benefits of AI among executives and shareholders.",
+        "When AI systems generate recommendations that frontline clinicians disagree with, those clinicians may lack the institutional standing or time to override them, effectively transferring decision-making authority to opaque systems.",
+        "The promise of AI reducing burnout has not been validated at scale; early evidence suggests that poorly implemented AI tools increase documentation burden and cognitive load rather than reducing them."
+      ],
+      "rhetorical_approach": "Political economy critique \u2014 frame AI adoption as a labor and power issue, not just a technology issue, by showing how the incentive structures of hospitals, insurers, and vendors systematically favor cost extraction over care improvement, and that workers and patients bear the downside while shareholders capture the upside.",
+      "avoid": [
+        "Patient depersonalization \u2014 covered by medicine_as_human_relationship",
+        "Technical safety failures \u2014 covered by safety_and_bias and false_efficiency_and_brittle_systems",
+        "Legal accountability gaps \u2014 covered by accountability_and_responsibility"
+      ]
+    },
+    {
+      "id": "insurance_and_denial_automation",
+      "angle": "AI-driven insurance decisions and prior authorization systems automate the denial of care in ways that are opaque, difficult to appeal, and disproportionately harmful to vulnerable patients.",
+      "weight": 0.12,
+      "best_voices": [
+        "advocacy_group-medium-org",
+        "individual_consumer-medium",
+        "individual_consumer-high"
+      ],
+      "key_claims": [
+        "Insurers have already deployed AI tools that generate prior authorization denials at scale with minimal human review, and these tools have been shown to deny medically necessary care at higher rates than human reviewers.",
+        "Patients who receive AI-generated denials face appeals processes that are designed to be burdensome, and most do not appeal even when the denial is incorrect \u2014 meaning the harm is largely invisible in aggregate data.",
+        "Elderly, disabled, low-income, and non-English-speaking patients are least able to navigate AI-driven denial systems and most dependent on the care being denied.",
+        "Accelerating AI adoption in insurance functions without mandatory human review requirements, explainability standards, and enforceable appeal rights will institutionalize automated denial as the default.",
+        "HHS has the authority under existing law to require meaningful human oversight of coverage determinations \u2014 accelerating AI adoption without exercising that authority is a policy choice with foreseeable victims."
+      ],
+      "rhetorical_approach": "Concrete harm to identifiable populations \u2014 ground the argument in specific documented cases of AI-driven insurance denials (e.g., UnitedHealth/NaviHealth algorithm cases) and connect them to the populations HHS is statutorily obligated to protect, making inaction a failure of regulatory duty rather than a neutral choice.",
+      "avoid": [
+        "Clinical care AI bias \u2014 covered by safety_and_bias",
+        "Workforce impacts of automation \u2014 covered by workforce_and_labor",
+        "Vendor accountability structures \u2014 covered by accountability_and_responsibility"
+      ]
+    },
+    {
+      "id": "accountability_and_responsibility",
+      "angle": "Embedding AI in healthcare diffuses responsibility so thoroughly that when errors occur \u2014 and they will \u2014 no single actor can be held accountable, creating a system where patients are harmed with no meaningful recourse.",
+      "weight": 0.12,
+      "best_voices": [
+        "academic-medium-org",
+        "individual_consumer-high",
+        "advocacy_group-medium-org"
+      ],
+      "key_claims": [
+        "When an AI-assisted clinical decision causes harm, the clinician can blame the tool, the hospital can blame the vendor, and the vendor can blame the training data or the user \u2014 existing tort and regulatory frameworks do not cleanly assign liability in this chain.",
+        "Vendors routinely disclaim responsibility for clinical outcomes in their contracts, and hospitals accept these terms because they lack bargaining power \u2014 meaning the patient is left with no solvent, accountable defendant.",
+        "FDA clearance of AI as a medical device does not establish clinical efficacy or safety in the specific deployment context, creating a false assurance of regulatory oversight.",
+        "Once AI systems are embedded in clinical workflows, EHR integrations, and reimbursement structures, they become practically irreversible \u2014 institutions become dependent, and the cost of removal exceeds the cost of tolerating known harms.",
+        "Democratic oversight of AI in healthcare requires that someone be identifiably responsible; a system designed to diffuse responsibility is a system designed to escape accountability."
+      ],
+      "rhetorical_approach": "Structural accountability argument \u2014 use legal and institutional analysis to show that the current framework for assigning responsibility in AI-assisted harm is fundamentally broken, and that accelerating adoption before fixing accountability structures guarantees that patients will be harmed without recourse.",
+      "avoid": [
+        "The human relationship and dignity argument \u2014 covered by medicine_as_human_relationship",
+        "Bias and disparate impact \u2014 covered by safety_and_bias",
+        "Vendor market power \u2014 covered by vendor_capture_and_lock_in"
+      ]
+    },
+    {
+      "id": "vendor_capture_and_lock_in",
+      "angle": "AI adoption in healthcare creates vendor dependency, market concentration, and regulatory capture that will be nearly impossible to reverse once embedded.",
+      "weight": 0.08,
+      "best_voices": [
+        "academic-medium-org",
+        "industry-high-org",
+        "advocacy_group-medium-org"
+      ],
+      "key_claims": [
+        "A small number of large technology vendors \u2014 including companies with no prior healthcare expertise \u2014 are positioned to capture the AI infrastructure layer of American medicine, giving them leverage over clinical workflows, data, and reimbursement.",
+        "EHR integration requirements and proprietary data formats create switching costs that lock institutions into vendor relationships regardless of performance, eliminating competitive pressure to improve safety or reduce cost.",
+        "Vendors who participate in HHS research partnerships and public-private collaborations gain privileged access to federal data, regulatory processes, and policy development \u2014 a form of regulatory capture that disadvantages smaller competitors and public-interest alternatives.",
+        "Once AI systems are embedded in billing, documentation, and clinical decision support, the cost of removal \u2014 in retraining, workflow redesign, and contract penalties \u2014 exceeds the cost of tolerating known problems.",
+        "The RFI's framing of AI adoption as a public good to be accelerated by HHS effectively deputizes the federal government as a marketing arm for the AI vendor industry."
+      ],
+      "rhetorical_approach": "Political economy and antitrust framing \u2014 argue that the structural dynamics of AI vendor markets in healthcare replicate the worst features of EHR market consolidation, and that HHS is being asked to repeat a well-documented policy mistake at larger scale and higher stakes.",
+      "avoid": [
+        "Diffusion of legal accountability \u2014 covered by accountability_and_responsibility",
+        "Workforce displacement \u2014 covered by workforce_and_labor",
+        "Technical brittleness \u2014 covered by false_efficiency_and_brittle_systems"
+      ]
+    },
+    {
+      "id": "equity_and_vulnerable_populations",
+      "angle": "AI-powered care risks becoming a euphemism for cheaper, thinner, less attentive care that is disproportionately imposed on elderly, poor, disabled, and otherwise vulnerable patients who already face systemic barriers.",
+      "weight": 0.08,
+      "best_voices": [
+        "advocacy_group-medium-org",
+        "individual_consumer-medium",
+        "individual_consumer-high"
+      ],
+      "key_claims": [
+        "Vulnerable populations \u2014 the elderly, the poor, the disabled, non-English speakers, rural patients \u2014 are least able to advocate for themselves when AI systems produce incorrect or harmful outputs.",
+        "AI tools are more likely to be deployed in under-resourced settings as a substitute for adequate staffing rather than as a supplement to it, meaning the populations with the greatest need receive the most automated and least personalized care.",
+        "Patients with complex, multi-morbid, or atypical presentations \u2014 who are disproportionately older and lower-income \u2014 are precisely the edge cases where AI systems are most likely to fail.",
+        "The framing of AI as democratizing access to high-quality care obscures the more likely outcome: that high-income patients receive AI-augmented human care while low-income patients receive AI-substituted human care.",
+        "HHS has an explicit civil rights and equity mandate; accelerating AI adoption without equity impact assessments is inconsistent with that mandate."
+      ],
+      "rhetorical_approach": "Civil rights and equity framing \u2014 invoke HHS's statutory obligations under civil rights law and its stated equity commitments to argue that accelerating AI without equity guardrails is not a neutral policy choice but an affirmative decision to expose the most vulnerable to the greatest risk.",
+      "avoid": [
+        "Bias in training data \u2014 covered by safety_and_bias",
+        "Insurance denial automation \u2014 covered by insurance_and_denial_automation",
+        "Workforce impacts \u2014 covered by workforce_and_labor"
+      ]
+    },
+    {
+      "id": "democratic_oversight_and_irreversibility",
+      "angle": "Society has the right to decide that some domains should remain stubbornly human, and once AI is embedded in healthcare it becomes practically and politically impossible to remove \u2014 making the decision to accelerate now a decision that forecloses future democratic choice.",
+      "weight": 0.1,
+      "best_voices": [
+        "individual_consumer-high",
+        "academic-medium-org",
+        "advocacy_group-medium-org"
+      ],
+      "key_claims": [
+        "Technology adoption in healthcare has historically been treated as irreversible once embedded \u2014 no major EHR system has ever been successfully removed from a large health system after deployment, regardless of performance.",
+        "The RFI asks HHS to accelerate adoption before governance frameworks, liability rules, audit requirements, and democratic oversight mechanisms exist \u2014 inverting the proper order of technology governance.",
+        "A society can legitimately decide that medicine should be slower, more accountable, and more human even at the cost of some efficiency \u2014 that is not anti-technology, it is a values choice that democratic institutions are entitled to make.",
+        "Once AI vendors are embedded in federal reimbursement structures and clinical workflows, the political cost of reversing course will exceed the political cost of tolerating known harms \u2014 creating a ratchet effect that eliminates future policy options.",
+        "HHS is being asked to use regulatory, reimbursement, and research levers simultaneously to accelerate a technology whose long-term effects on care quality, equity, and professional practice are unknown \u2014 that is not prudent governance, it is a bet made with other people's health."
+      ],
+      "rhetorical_approach": "Democratic legitimacy and precautionary governance \u2014 argue that the question of how much AI should be in medicine is a political and moral question that belongs to democratic deliberation, not to an administrative agency acting on behalf of an industry-aligned acceleration agenda, and that irreversibility makes the stakes of getting it wrong catastrophically high.",
+      "avoid": [
+        "Legal accountability gaps \u2014 covered by accountability_and_responsibility",
+        "Vendor market capture \u2014 covered by vendor_capture_and_lock_in",
+        "Patient depersonalization \u2014 covered by medicine_as_human_relationship"
+      ]
+    }
+  ],
+  "campaign_voices": {
+    "academic-medium-org": 0.1,
+    "advocacy_group-medium-org": 0.32,
+    "individual_consumer-high": 0.12,
+    "individual_consumer-medium": 0.3,
+    "industry-high-org": 0.06,
+    "industry-medium-org": 0.1
+  },
+  "base_population": {
+    "individual_consumer-medium": 0.46551724137931033,
+    "industry-medium-org": 0.19540229885057472,
+    "individual_consumer-high": 0.034482758620689655,
+    "industry-high-org": 0.028735632183908046,
+    "advocacy_group-medium-org": 0.2413793103448276,
+    "academic-medium-org": 0.034482758620689655
+  },
+  "affinity_boost": 3.5,
+  "notes": "The base docket is dominated by individual_consumer-medium (47%) and advocacy_group-medium-org (24%), with industry-medium-org at 19%. This campaign preserves the dominance of individual and advocacy voices because they are most credible for the human relationship, equity, and democratic legitimacy arguments that form the emotional and moral core of the opposition case. individual_consumer-medium is kept near its base rate (30%) because authentic patient and citizen voices are essential for the insurance denial, depersonalization, and equity angles. advocacy_group-medium-org is boosted slightly (32%) because organized advocacy voices carry the most weight on civil rights, equity, and labor arguments and are the most credible opponents of an industry-aligned RFI. individual_consumer-high is boosted above its base (12% vs 3.4%) because the accountability, democratic legitimacy, and implementation science arguments require sophisticated individual voices that can engage with structural and legal complexity without sounding like industry. academic-medium-org is modestly boosted (10% vs 3.4%) to provide credibility on bias documentation, implementation science, and structural accountability \u2014 angles that require cited evidence and analytical framing. industry-medium-org is retained at 10% (slightly below base) to represent dissenting voices within the industry \u2014 smaller vendors, clinician-owned practices, or professional associations \u2014 who can credibly argue that the acceleration agenda serves large incumbents rather than the broader market. industry-high-org is kept small (6%) but present to make the vendor capture and brittleness arguments credible from an insider perspective. The affinity_boost of 3.5 is set high enough to strongly channel sophisticated structural arguments (accountability, vendor capture, democratic legitimacy) to academic and high-sophistication individual voices, while routing narrative and equity arguments to individual_consumer-medium and advocacy voices \u2014 preventing the campaign from sounding uniformly technical or uniformly emotional."
+}

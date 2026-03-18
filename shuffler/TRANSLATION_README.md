@@ -6,7 +6,7 @@ This tool translates synthetic comments from the output format (♔-delimited) b
 
 ## Files
 
-- **`translate_to_cms_format.py`** - Main translation script
+- **`translate_to_psv_format.py`** - Main translation script
 - **`verify_translation.py`** - Quick verification script to check output
 
 ## Usage
@@ -14,22 +14,22 @@ This tool translates synthetic comments from the output format (♔-delimited) b
 ### Basic Usage
 
 ```bash
-python shuffler/translate_to_cms_format.py <input_file> [output_file]
+python shuffler/translate_to_psv_format.py <input_file> [output_file]
 ```
 
 Example:
 ```bash
-python shuffler/translate_to_cms_format.py CMS-2025-0050/synthetic_comments/comments.txt CMS-2025-0050/synthetic_comments/comments_cms.csv
+python shuffler/translate_to_psv_format.py CMS-2025-0050/synthetic_comments/synthetic.txt CMS-2025-0050/synthetic_comments/synthetic.psv
 ```
 
-If the output file is omitted, a default name is derived from the input file (e.g., `comments_cms.csv`).
+If the output file is omitted, a default name is derived from the input file with psv extension.
 
 ### Verify Translation
 
 After translation, verify the output:
 
 ```bash
-python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_cms.csv
+python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/synthetic.psv
 ```
 
 ## Input Format
@@ -53,8 +53,8 @@ Key mappings from synthetic format to CMS format:
 
 | Synthetic Field | CMS Field | Notes |
 |----------------|-----------|-------|
-| Comment ID | Document ID | Used as primary identifier |
-| Document ID | Docket ID | Strips -SYNTH suffix |
+| Document ID | Document ID | Used as primary identifier; Strips -SYNTH suffix |
+| Docket ID | Docket ID | - |
 | Submitter Name | First Name, Last Name | Parsed into components |
 | synth_persona_state | State/Province | - |
 | Organization Name | Organization Name | - |

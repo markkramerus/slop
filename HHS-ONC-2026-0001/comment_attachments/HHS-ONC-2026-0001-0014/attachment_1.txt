@@ -1,0 +1,531 @@
+HHS Health Sector AI RFI Response | FERZ LLC
+Response to Request for Information:
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical
+Care
+RIN 0955-AA13
+A Framework for Evaluating AI Governance Claims:
+Distinguishing Deterministic Governance from Marketing
+Submitted by:
+FERZ AI
+Deterministic AI Governance Infrastructure
+Neil Nair, Chief Business Officer
+neil@ferz.ai
+December 2025
+Page 1 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Executive Summary
+FERZ AI welcomes the opportunity to respond to HHS's Request for Information on
+accelerating AI adoption in clinical care. This response serves two purposes: first, to
+provide concrete recommendations addressing HHS's specific questions; second,
+and perhaps more importantly, to equip federal reviewers with a technical
+framework for evaluating AI governance claims they will inevitably receive
+from vendors.
+The AI governance market includes many solutions marketed as "guardrails,"
+"responsible AI," "ethical AI," and "trustworthy AI." These terms lack precise
+technical definitions, making it difficult for federal reviewers to evaluate competing
+claims. Acquisition officers benefit from distinguishing between:
+• Marketing claims ("our AI is safe and responsible")
+• Statistical governance (probabilistic approaches providing confidence
+intervals)
+• Deterministic governance (fail-closed enforcement with reproducible,
+auditable decision artifacts)
+This document provides: (1) a taxonomy of AI governance approaches with their
+respective strengths and limitations; (2) evaluation criteria federal reviewers can use
+to assess vendor claims; (3) specific questions to ask vendors claiming governance
+capabilities; and (4) FERZ's recommendations for regulatory frameworks that would
+accelerate trustworthy AI adoption.
+Key Insight: The fundamental barrier to AI adoption in clinical care is not AI
+capability—it is the inability to prove that an AI system's governance was functioning
+correctly at the time of any specific decision. Without such proof, liability cannot be
+allocated, regulatory compliance cannot be demonstrated, and patient trust cannot
+be justified. This is a governance problem, not an AI problem.
+Page 2 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Part I: Understanding AI Governance—A Taxonomy for
+Federal Reviewers
+Before addressing HHS's specific questions, we provide a framework for
+understanding the AI governance landscape. Federal reviewers evaluating vendor
+claims need this foundation to distinguish substance from marketing.
+1.1 The Three Layers of AI Systems
+Understanding where governance operates is essential to evaluating vendor claims.
+AI systems can be conceptualized in three layers:
+Layer Description Governance Implications
+Model Layer The AI model itself (e.g., GPT- Model-level governance (RLHF,
+4, Claude, Gemini). Includes Constitutional AI) attempts to
+training data, architecture, make the model "safer" through
+learned parameters. training. Inherently
+probabilistic—the model tends
+to behave well but cannot
+guarantee it.
+Application Layer The software that wraps the Application-level governance
+model—user interface, (prompt engineering, output
+integration points, business filtering) adds checks around
+logic. Where prompts are the model. Still largely
+constructed and outputs probabilistic—filters can miss
+processed. edge cases.
+Deployment Layer The operational environment Deployment-level governance
+where AI actions occur—clinical (FERZ's focus) enforces
+workflows, EHR integration, constraints at the execution
+decision execution. The "last boundary. Can be
+mile" before real-world impact. deterministic—nothing executes
+unless governance validates it.
+Critical distinction: Most AI "safety" approaches operate at the Model Layer or
+Application Layer, where governance is inherently probabilistic. Deterministic
+governance operates at the Deployment Layer, where execution can be gated by
+mathematically verifiable constraints.
+1.2 The Fundamental Problem: Probabilistic vs. Deterministic
+Governance
+The core technical distinction federal reviewers must understand is between
+probabilistic governance (statistical confidence that a system usually behaves
+correctly) and deterministic governance (mathematical proof that a specific
+decision complied with specific rules).
+Probabilistic Governance: "Likely Compliant"
+Probabilistic approaches—including RLHF (Reinforcement Learning from Human
+Feedback), Constitutional AI, content filtering, and most "guardrails"—operate on
+statistical principles. They provide confidence that a system usually behaves
+correctly, expressed as accuracy percentages or confidence intervals.
+Page 3 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+• How it works: Train the model to prefer "good" outputs; use classifiers to flag
+"bad" outputs; filter problematic content before delivery.
+• What vendors claim: "95% accuracy," "reduced harmful outputs by 80%,"
+"enterprise-grade safety."
+• Risk exposure: At clinical scale, even small residual failure rates produce
+frequent governance escapes. The question is whether escapes are (a)
+prevented pre-execution, and (b) provable/auditable when they occur.
+Probabilistic approaches cannot guarantee either.
+• Key limitation: Cannot provide proof that governance was functioning
+correctly for any specific decision. After an adverse event, there is no way to
+demonstrate that the system was operating within its governance boundaries.
+Deterministic Governance: "Provably Compliant"
+Deterministic governance provides fail-closed enforcement with reproducible,
+independently verifiable audit artifacts at the governance layer. This is distinct from
+claiming the underlying AI model is deterministic—it is not. Determinism is achieved
+at the execution boundary through: (1) pre-execution validation against explicit
+rules; (2) recorded snapshots of all inputs, policies, and outputs; and (3) reproducible
+evaluation that can be independently verified.
+• How it works: Every AI output passes through a validation layer that checks
+explicit rules. If validation fails, the output is blocked ("deny-by-default" or "fail-
+closed"). Every decision generates a cryptographic proof bundle capturing
+inputs, policy state, and verdict.
+• What this enables: Bit-for-bit reproducible governance decisions,
+cryptographic audit trails, and bounded residual errors quantifiable by rule
+coverage and implementation factors.
+• What this means: In a healthcare deployment, every AI decision is validated
+against explicit rules before execution. Failed validations are blocked. Every
+decision can be independently verified and replayed.
+• Key advantage: After an adverse event, governance compliance can be
+independently verified by third parties. Liability can be allocated based on
+provable governance state at decision time.
+Page 4 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+1.3 Side-by-Side Comparison: Critical Differences
+Characteristic Probabilistic Governance Deterministic Governance
+Compliance assurance Statistical confidence (e.g., Verifiable conformance
+"95% accurate") artifacts with bounded
+residual risk
+Failure mode "Fail-open": Ungoverned "Fail-closed": Nothing
+outputs may proceed executes without validation
+After adverse event Cannot prove governance Cryptographic proof of
+was working governance state
+Decision reproducibility Cannot reproduce specific Bit-for-bit reproducible
+decisions ("replay test")
+Audit capability Logs of outputs and Cryptographic proof chain
+classifications (Proof-Carrying Decisions)
+Liability allocation Unclear—governance state Clear—governance state
+unknowable provable
+FDA 21 CFR Part 11 Difficult to satisfy—records Designed for compliance—
+not verifiable immutable audit trails
+Regulatory inspection Requires trust in vendor's Third-party verification
+claims possible
+Page 5 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+1.4 Why This Distinction Matters for Healthcare
+Healthcare is a precision-critical domain where statistical assurances are insufficient.
+Consider:
+Scenario: A clinical AI system assists with medication recommendations. The
+vendor claims high accuracy in avoiding dangerous drug interactions. A large
+hospital processes thousands of AI-assisted medication decisions monthly.
+• With probabilistic governance: Some fraction of decisions may have
+ungoverned drug interaction risks. The fraction may be small, but at scale the
+absolute number becomes significant. Critically, after an adverse event, there
+is no mechanism to prove whether governance was functioning correctly for
+that specific decision.
+• With deterministic governance: Every medication recommendation is
+validated against drug interaction rules before reaching the clinician. Failed
+validations are blocked and escalated. After any decision, cryptographic proof
+demonstrates exactly which rules were applied and whether they passed.
+The difference is not merely technical—it fundamentally changes liability allocation,
+regulatory compliance posture, and patient safety assurance.
+1.5 Emerging Architectures: RAG, Agentic AI, and Governance Topology
+Two architectural patterns are accelerating AI deployment in healthcare: Retrieval-
+Augmented Generation (RAG), which grounds AI outputs in retrieved documents,
+and agentic AI, which enables AI systems to take actions autonomously. Federal
+reviewers will encounter many proposals featuring these patterns. Understanding
+their governance implications is essential.
+Why RAG and Agentic Patterns Increase Governance Requirements
+These patterns do not reduce governance complexity—they increase it:
+• RAG systems introduce dynamic, unpredictable inputs. The AI's outputs
+depend on retrieved context that changes with each query—patient records,
+clinical literature, formulary data. Model-level governance cannot anticipate
+what documents will be retrieved. Governance must validate outputs
+regardless of retrieval context.
+• Agentic systems execute actions with real-world consequences: API calls,
+database writes, order placements, message transmissions. Post-hoc
+monitoring cannot reverse an incorrectly administered medication, a
+misconfigured treatment plan, or an erroneous prior authorization denial.
+Governance must operate pre-execution, not post-detection.
+Reviewer Note: Federal reviewers should be skeptical of claims that RAG or agentic
+architectures are inherently "safer" or "more accurate." These architectures shift
+where errors occur, not whether they occur. The fundamental question remains: can
+you prove governance was functioning for any specific decision?
+Governance Topology in Multi-Agent Systems
+Page 6 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+As agentic AI evolves toward multi-agent architectures—where specialized agents
+collaborate on complex tasks—a critical architectural question emerges: where does
+governance operate?
+Per-Agent Governance distributes guardrails across individual agents. This creates
+structural vulnerabilities:
+• Agent-to-agent communication may bypass governance entirely
+• Emergent behaviors from agent interactions remain ungoverned
+• No unified audit trail across the agent ensemble
+• Inconsistent policy enforcement across agents with different guardrail
+implementations
+• "Governance arbitrage"—sophisticated actors may route sensitive operations
+through the least-governed agent
+Centralized Governance at the Execution Boundary validates all actions—
+regardless of which agent originates them—before they execute. This architecture
+ensures consistent policy enforcement, unified auditability, and captures emergent
+behaviors at the point of real-world impact. The governance layer is model-agnostic
+and agent-agnostic; it governs actions, not agents.
+Example: Consider a clinical agentic system with a retrieval agent (pulls patient
+records, literature), a reasoning agent (synthesizes recommendations), and an
+action agent (places orders, sends messages). With per-agent governance, each
+agent has separate guardrails optimized for its function—but no single point
+validates that the chain of agent interactions produced a compliant outcome. With
+centralized execution-boundary governance, every action passes through
+deterministic validation regardless of which agent initiated it, and the audit trail
+captures the full decision chain.
+Questions for Multi-Agent AI Proposals
+Federal reviewers evaluating multi-agent AI proposals should ask:
+1. Does governance operate per-agent or at the execution boundary?
+2. If per-agent, how are inter-agent communications governed?
+3. How are emergent behaviors from agent interactions detected and controlled?
+4. Is there a unified audit trail across all agents, or separate logs per agent?
+5. Can you replay a decision that involved multiple agents and obtain identical
+results?
+Page 7 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Part II: Evaluating AI Governance Claims—A Guide for
+Federal Reviewers
+Federal acquisition officers will receive numerous proposals claiming AI governance
+capabilities. This section provides practical tools to evaluate those claims.
+2.1 Red Flags: Marketing Language vs. Technical Substance
+The following table identifies common marketing claims and provides questions that
+distinguish substance from noise:
+Vendor Claim What It Usually Means Questions to Ask
+"AI Guardrails" Content filtering or output What happens when
+classifiers. Probabilistic. guardrails fail? Can you
+May miss edge cases. prove they were active for a
+specific decision?
+"Responsible AI" Training-time interventions How do you verify
+(RLHF, Constitutional AI). responsible behavior for a
+Model tends to behave specific decision? What are
+responsibly. your error bounds?
+"Enterprise-Grade Safety" Marketing term. No Define "enterprise-grade."
+technical definition. May What specific guarantees
+mean access controls or do you provide? How are
+logging. they verified?
+"Explainable AI" Post-hoc rationales. May Can explanations be
+explain why AI probably independently verified? Can
+made a decision, but decisions be replayed to
+cannot prove compliance. confirm the explanation?
+"AI Monitoring" After-the-fact analysis. How do you prevent
+Detects problems after they violations rather than detect
+occur, not before. them? What is your pre-
+execution validation?
+"99% Accurate" 1% of decisions are What happens to the 1%?
+ungoverned. At scale, this Can you identify which
+means thousands of specific decisions are in
+potential failures. that 1%?
+2.2 The Four Tests: Evaluating Governance Capabilities
+FERZ has published the Four Tests Standard (4TS) as a vendor-neutral framework
+for evaluating AI governance claims. Federal reviewers can use these tests to
+assess any governance solution:
+Test Question It Answers How to Verify
+Stop Test Can the system be halted before Ask: "What happens if
+side-effects occur? Does governance validation fails?"
+governance validation happen The answer must be "the action
+before execution, not after? is blocked," not "we log it for
+review."
+Page 8 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Test Question It Answers How to Verify
+Ownership Is there clear authority signing Ask: "Show me the signature
+Test governance policy? Can you chain for governance policy."
+identify who authorized the AI's There must be cryptographic
+operational boundaries? proof of who authorized what.
+Replay Test Can any historical decision be Ask: "Show me a decision from
+reproduced and verified? Can a last week and reproduce it."
+regulator independently confirm The replayed decision must
+what happened? match the original exactly.
+Escalation Are human oversight routes Ask: "What happens when you
+Test defined? When governance denies deny an action?" There must be
+an action, what happens? Is there defined escalation paths with
+mandatory custody transfer? human decision-makers.
+Key insight: A governance system that cannot pass all four tests provides statistical
+confidence at best. It cannot provide the proof-level assurance required for regulated
+healthcare environments.
+Page 9 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+2.3 Technical Due Diligence Questions
+When evaluating AI governance solutions for healthcare, federal reviewers should
+ask these specific technical questions:
+Architecture Questions
+6. At what layer does your governance operate? (Model, Application, or
+Deployment)
+7. Is governance validation performed before or after execution?
+8. What is the default behavior when governance cannot validate an action?
+(Fail-open vs. fail-closed)
+9. Can your system operate with any AI model, or is it tied to a specific model
+provider?
+Compliance Verification Questions
+1. How do you prove that governance was functioning correctly for a specific
+historical decision?
+2. Can a third party independently verify your compliance claims without trusting
+your attestations?
+3. What cryptographic mechanisms ensure audit trail integrity?
+4. How do you satisfy FDA 21 CFR Part 11 requirements for electronic records
+and signatures?
+Error Bound Questions
+1. What are your quantified error bounds? (Not accuracy percentages—actual
+mathematical error bounds)
+2. How did you derive those bounds? (Empirical testing vs. mathematical proof)
+3. What assumptions must hold for those bounds to be valid?
+4. How do you detect and handle cases that fall outside your bounded domain?
+Operational Questions
+1. What is your governance validation latency? (Must not significantly impact
+clinical workflows)
+2. How do you handle governance policy updates without disrupting operations?
+3. What happens if your governance system experiences an outage?
+4. Can you demonstrate air-gapped deployment for sensitive environments?
+Page 10 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Part III: Responses to HHS Specific Questions
+Having established the technical framework, we now address HHS's specific
+questions from the perspective of deterministic governance.
+Question 1: Barriers to Private Sector Innovation
+"What are the biggest barriers to private sector innovation in AI for health care?"
+The primary barriers are governance-related, not capability-related:
+1. The Governance Gap: Healthcare requires certainty; current AI governance
+provides only statistical confidence. Organizations cannot deploy AI when
+they cannot prove compliance.
+2. Liability Uncertainty: Without clear governance boundaries, liability cannot
+be allocated. Legal departments block deployments when governance state is
+unknowable.
+3. Audit Trail Inadequacy: FDA 21 CFR Part 11 requires verifiable electronic
+records. Current AI systems produce outputs, not evidence. There is no
+cryptographic proof that governance was functioning at decision time.
+4. Regulatory Uncertainty: Non-medical device AI falls into gray zones.
+Organizations cannot invest when regulatory requirements are unclear.
+FERZ Recommendation: HHS should establish clear governance requirements that
+distinguish between statistical and deterministic assurance levels, creating a
+pathway for organizations to deploy AI with appropriate governance for their risk
+tolerance.
+Question 2: Regulatory and Policy Changes
+"What regulatory, payment policy, or programmatic design changes should HHS prioritize?"
+Regulatory Recommendations with CFR Citations
+Note: The following citations are illustrative, not exhaustive. We recommend HHS
+issue guidance clarifying application to AI governance rather than amending the
+underlying regulations.
+1. 21 CFR Part 11 (Electronic Records and Signatures): Issue guidance
+recognizing cryptographic proof bundles (e.g., Proof-Carrying Decisions) as
+satisfying §11.10 requirements for audit trails and §11.50 requirements for
+signature manifestations. Current language contemplates traditional electronic
+signatures; guidance should clarify that cryptographic attestation of policy
+state satisfies the integrity and attribution requirements.
+2. 45 CFR Part 170 (Health IT Certification): Consider adding AI governance
+attestation requirements to §170.315 certification criteria. Systems claiming
+clinical decision support functionality should demonstrate reproducible
+governance validation as a certification condition.
+3. 42 CFR Part 493 (CLIA): Issue guidance on how AI-assisted laboratory
+analytics should satisfy §493.1251 procedure manual requirements and
+§493.1283 retention requirements. Deterministic governance artifacts could
+satisfy the "complete record" requirements.
+4. 45 CFR Part 164 (HIPAA Security): Clarify how AI governance audit trails
+interact with §164.312(b) audit control requirements and §164.312(c) integrity
+Page 11 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+requirements. Cryptographic proof chains may exceed current compliance
+expectations; guidance should recognize this.
+Payment Policy Recommendations
+• Governance Attestation as Reimbursement Condition: For AI-assisted
+clinical workflows in high-risk categories, require governance attestation
+artifacts as a condition of reimbursement. This creates market incentive for
+governance adoption.
+• Incentives for Burden-Reduction Tools: Provide enhanced reimbursement
+for AI-assisted documentation, coding, and prior authorization when
+governance artifacts enable post-payment integrity verification. This aligns
+payer interests with governance adoption.
+• Pilot Reimbursement Models: CMS should pilot reimbursement models for
+AI tooling where governance artifacts support audit. This generates evidence
+on governance value while managing risk.
+Question 3: Novel Legal Issues
+"What novel legal and implementation issues exist for non-medical devices?"
+1. The Black Box Problem: Current AI cannot prove governance state at
+decision time. This creates fundamental liability allocation challenges. Who is
+responsible when governance cannot be verified?
+2. Temporal Governance: AI systems may be updated between deployment
+and adverse event. Without governance infrastructure capturing policy state at
+decision time, retrospective analysis is impossible.
+3. Multi-Party Accountability: Clinical AI involves model developers,
+governance providers, deploying institutions, and clinicians. Clear boundary
+definitions are needed.
+4. Privacy-Preserving Audit: HIPAA requires protecting PHI while maintaining
+auditable records. Deterministic governance with cryptographic proofs can
+address this, but regulatory recognition is needed.
+HHS's Role: Define minimum governance architecture standards for clinical AI;
+create accountability frameworks for multi-party deployments; publish reference
+architectures demonstrating acceptable approaches.
+Mapping to FDA SaMD and CDS Realities
+Although this RFI addresses AI broadly, reviewers will implicitly map responses to
+existing FDA frameworks. Deterministic governance artifacts support auditability and
+change control regardless of whether a tool is regulated as a device. For clinical
+decision support (CDS) that falls outside device regulation under 21st Century Cures
+Act criteria, governance artifacts nonetheless provide the documentation and
+traceability that healthcare organizations require for institutional risk management.
+For tools that do qualify as Software as a Medical Device (SaMD), these same
+artifacts directly support FDA expectations for traceability, change control, and post-
+market surveillance. The governance layer thus provides compliance infrastructure
+that scales across the regulatory spectrum—from unregulated CDS to Class II/III
+SaMD—without requiring different architectures for different regulatory categories.
+Page 12 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Question 4: AI Evaluation Methods
+"What are the most promising AI evaluation methods for clinical care?"
+The most promising evaluation methods focus on governance verification rather than
+AI capability assessment:
+Pre-Deployment Evaluation
+• Governance Coverage Analysis: What percentage of AI outputs pass
+through deterministic validation? Target: 100% for high-risk decisions.
+• Rule Completeness Testing: Do governance rules cover all compliance
+requirements (HIPAA, FDA, state regulations)?
+• Adversarial Testing: Systematic testing of governance behavior under
+unusual or adversarial inputs.
+Post-Deployment Evaluation
+• Replay Verification: Can any historical decision be replayed and obtain
+identical results? This enables post-hoc audit without trusting logs.
+• Escalation Analysis: How often do decisions escalate to human review? Are
+thresholds appropriately calibrated?
+• Governance Drift Detection: Monitor for changes in AI behavior that might
+indicate model drift affecting governance effectiveness.
+HHS Opportunity: Support development of governance evaluation tools and
+conformance testing infrastructure. The 4TS conformance bundle provides a model.
+Questions 5-10: Summary Responses
+Question 5 (Private Sector Activities): HHS should recognize deterministic
+governance in certification criteria; fund pilot programs; create testing infrastructure;
+and establish public-private partnerships for reference architectures.
+Question 6 (AI Tool Performance): AI succeeds in domains with clear boundaries
+and low compliance complexity (imaging, analytics). It underperforms in governance-
+heavy domains. The common thread is governance inadequacy, not capability
+limitation. Deterministic governance unlocks high-value applications currently
+blocked by compliance concerns.
+Question 7 (Decision-Makers): General Counsel and Risk Management are
+typically the blocking stakeholders—they cannot approve deployments without
+governance guarantees. CMOs focus on clinical efficacy; CIOs on integration;
+Compliance Officers on regulations. Deterministic governance directly addresses the
+Risk Management/Legal blockers.
+Question 8 (Interoperability): Critical gaps exist in standards for exchanging
+governance attestations, audit trail formats, and AI governance metadata in FHIR.
+The 4TS Proof-Carrying Decision (PCD) format provides a foundation. Concrete
+recommendation: HHS could sponsor an HL7 FHIR Implementation Guide for
+exchanging governance attestations (decision hashes, policy IDs, cryptographic
+signatures) alongside CDS Hooks responses or as extensions to relevant FHIR
+resources. This would enable EHRs and clinical systems to verify governance state
+without proprietary integrations.
+Page 13 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Question 9 (Patient Concerns): Patient concerns about privacy, accuracy,
+dehumanization, and bias are fundamentally governance concerns. Deterministic
+governance addresses them: cryptographic audit trails ensure verifiable privacy
+compliance; reproducible decisions enable accuracy demonstration; escalation
+protocols preserve human oversight; bias detection provides equity assurance.
+Question 10 (Research Priorities): HHS should prioritize research in deterministic
+governance methods, cryptographic audit infrastructure, causal inference for clinical
+AI, and human-AI collaboration frameworks.
+Page 14 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+Part IV: About FERZ—Deterministic Governance
+Infrastructure
+FERZ AI develops deterministic AI governance infrastructure software. Unlike
+approaches that attempt to make AI models "safer" through training, FERZ operates
+at the deployment layer—wrapping any AI system in a deterministic validation shell
+that guarantees compliance with explicitly defined rules.
+Core Technology
+• LASO(f): Multi-tier linguistic and action governance framework. Eight
+validation tiers (syntax, semantics, pragmatics, stylistics, discourse,
+morphology, phonology/graphemics, lexicon) with bidirectional propagation.
+Designed for low-latency, high-accuracy validation.
+• DELIA: Flat constraint architecture with Z3 SMT solver for rapid deterministic
+validation. Ideal for action governance requiring ALLOW/DENY/ESCALATE
+decisions.
+• CausaCore: Cross-domain causal modeling with four specialized engines for
+drug interaction analysis, clinical trial design, and precision medicine.
+• 4TS Standard: Vendor-neutral open standard for AI governance verification
+(CC BY-NC-ND 4.0).
+Performance benchmarks available upon request under appropriate evaluation conditions;
+figures depend on policy complexity and deployment environment.
+Regulatory Alignment
+FERZ systems are designed for regulatory compliance from the ground up:
+• FDA 21 CFR Part 11: Electronic signatures, immutable audit trails, record
+integrity verification
+• HIPAA: Access controls, encryption, audit logging for protected health
+information
+• EU AI Act: High-risk system governance, documentation requirements,
+explainability
+• SEC Rule 17a-4: WORM storage, tamper-evidence, 7-year retention
+Offer of Collaboration
+FERZ stands ready to support HHS:
+1. Pilot Programs: Deploy LASO(f) and DELIA in hospital pilots to generate
+real-world evidence
+2. Standards Development: Collaborate on healthcare-specific adaptations of
+the 4TS Standard
+3. Technical Consultation: Provide briefings to HHS staff on deterministic
+governance approaches
+4. Research Partnerships: Participate in HHS-sponsored research through
+cooperative agreements or CRADAs
+Vendor-Neutral Guidance: We encourage HHS to adopt the evaluation criteria and
+governance principles described in Parts I and II regardless of vendor. The Four
+Tests Standard (4TS) is published under open license specifically to enable vendor-
+Page 15 | Public Submission
+
+HHS Health Sector AI RFI Response | FERZ LLC
+neutral assessment. Our interest is in establishing clear standards that accelerate
+trustworthy AI adoption—FERZ benefits from a well-defined market, not from
+regulatory ambiguity.
+The promise of AI in clinical care is immense. The barrier is trust. Deterministic
+governance infrastructure can bridge that gap—transforming AI from a liability
+concern into a verified asset.
+Public Submission Notice: This submission contains no protected health information (PHI)
+and no confidential business information. It is intended for inclusion in the public docket.
+Respectfully submitted,
+Neil Nair
+Chief Business Officer, FERZ AI
+neil@ferz.ai
+Page 16 | Public Submission

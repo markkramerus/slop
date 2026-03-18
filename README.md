@@ -215,16 +215,16 @@ Output:
 CMS-2025-0050/
 └── stylometry/
     ├── index.json
-    ├── individual_consumer-low.md
-    ├── individual_consumer-medium.md
-    ├── individual_consumer-high.md
-    ├── industry-medium-org.md
-    ├── industry-high-org.md
-    ├── advocacy_group-medium-org.md
+    ├── individual_consumer_low.md
+    ├── individual_consumer_medium.md
+    ├── individual_consumer_high.md
+    ├── industry_medium_org.md
+    ├── industry_high_org.md
+    ├── advocacy_group_medium_org.md
     └── ...
 ```
 
-Voice groups are defined by archetype × sophistication level (e.g., `individual_consumer-high`, `industry-medium-org`). Each skill file contains empirical statistics (word count ranges, sentence lengths, punctuation frequencies) and AI-avoidance rules tailored to what that specific group of real commenters actually writes.
+Voice groups are defined by archetype × sophistication level (e.g., `individual_consumer-high`, `industry_medium_org`). Each skill file contains empirical statistics (word count ranges, sentence lengths, punctuation frequencies) and AI-avoidance rules tailored to what that specific group of real commenters actually writes.
 
 **Run this before generating comments.** The generator looks for `{docket_id}/stylometry/` automatically.
 
@@ -302,13 +302,13 @@ python cli.py shuffle --docket-id CMS-2025-0050
 # Explicit paths also still work:
 python cli.py shuffle \
     --syncom-output     CMS-2025-0050/synthetic_comments/synthetic.txt \
-    --translated-output CMS-2025-0050/shuffled_comments/synthetic_cms.csv \
+    --translated-output CMS-2025-0050/shuffled_comments/synthetic.csv \
     --real-comments     CMS-2025-0050/comments/CMS-2025-0050.csv \
     --combined-output   CMS-2025-0050/shuffled_comments/combined.csv
 ```
 
 This single command:
-1. Translates `synthetic.txt` (♔-delimited) → `synthetic_cms.csv` (CMS CSV)
+1. Translates `synthetic.txt` (♔-delimited) → `synthetic.csv` (CMS CSV)
 2. Loads the real comment file and the translated synthetic file
 3. Randomly shuffles them together (reproducible via `--seed`)
 4. Writes the combined file to `combined.csv`
@@ -333,16 +333,6 @@ python cli.py shuffle --docket-id CMS-2025-0050 --skip-translation
 ```
 
 #### Translation only (lower-level)
-
-```bash
-# Translate ♔-delimited → CMS CSV without shuffling
-python shuffler/translate_to_cms_format.py \
-    CMS-2025-0050/synthetic_comments/comments.txt \
-    CMS-2025-0050/synthetic_comments/comments_cms.csv
-
-# Verify the translation
-python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_cms.csv
-```
 
 📖 See [`shuffler/TRANSLATION_README.md`](shuffler/TRANSLATION_README.md) for field-mapping details.
 
@@ -376,12 +366,7 @@ All steps accept a docket ID and derive conventional file paths automatically.
     python cli.py --docket-id {docket_id} --volume N
     # campaign_plan.json is auto-detected; output → {docket_id}/synthetic_comments/synthetic.txt
 
-4. Translate + shuffle
-   python cli.py shuffle --docket-id {docket_id}
-   └── {docket_id}/shuffled_comments/
-       ├── synthetic_cms.csv   ← translated synthetic comments in CMS format
-       ├── combined.csv        ← real + synthetic, randomly interleaved
-       └── combined_key.csv    ← ground-truth label for every row
+
 ```
 
 ## Command-Line Reference
@@ -443,9 +428,9 @@ Required:
 
 Convention-based defaults (derived from --docket-id):
   --syncom-output PATH      Default: {docket_id}/synthetic_comments/synthetic.txt
-  --translated-output PATH  Default: {docket_id}/shuffled_comments/synthetic_cms.csv
+  --translated-output PATH  Default: {docket_id}/shuffled_comments/synthetic.psv
   --real-comments PATH      Default: {docket_id}/comments/{docket_id}.csv
-  --combined-output PATH    Default: {docket_id}/shuffled_comments/combined.csv
+  --combined-output PATH    Default: {docket_id}/shuffled_comments/combined.psv
 
 Shuffle options:
   --key-output PATH         Path for the key CSV (default: <combined-stem>_key.csv).
@@ -598,7 +583,7 @@ Providers need stable reimbursement to absorb FHIR API implementation costs..."
 Synthetic comments are saved in ♔-delimited format with added metadata:
 
 ```
-Comment ID♔Document ID♔Submitter Name♔Organization♔...♔Comment♔synth_archetype♔synth_sophistication♔...
+Document ID♔Docket ID♔Submitter Name♔Organization♔...♔Comment♔synth_archetype♔synth_sophistication♔...
 ```
 
 Key synthetic metadata fields:
@@ -611,7 +596,7 @@ Key synthetic metadata fields:
 - `synth_core_arguments`: Bullet points of main arguments
 - `synth_qc_passed`: Quality control status
 
-Use `shuffler/translate_to_cms_format.py` to convert this to standard CMS CSV format.
+Use `shuffler/translate_to_psv_format.py` to convert this to standard CMS CSV format.
 
 ## Performance
 
@@ -658,7 +643,7 @@ slop/
 │
 ├── shuffler/                   # Shuffler sub-application
 │   ├── shuffler.py                 # Core shuffle logic (translate + interleave + key)
-│   ├── translate_to_cms_format.py  # Convert ♔-delimited → CMS CSV
+│   ├── translate_to_psv_format.py  # Convert synthetic ♔-delimited → PSV
 │   ├── verify_translation.py       # Verify translation output
 │   └── TRANSLATION_README.md
 │

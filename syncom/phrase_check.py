@@ -31,6 +31,49 @@ from typing import Sequence
 from .generator import GeneratedComment
 
 
+# ── Watch list: known LLM-favorite short phrases ─────────────────────────────
+#
+# These are short phrases (typically 2–3 words) that LLMs reach for
+# repeatedly as narrative anchors.  They are too short to be caught by the
+# standard n-gram analysis (min_n=4) but are strong AI-generation signals
+# when they appear in a high fraction of comments.
+#
+# The watch list is checked separately from the n-gram analysis.  Any phrase
+# here that appears in ≥ WATCH_LIST_MIN_COMMENTS distinct comments is
+# included in the phrase report as a WATCH_LIST hit.
+#
+# Grow this list as new patterns are discovered across dockets.
+
+WATCH_LIST: list[str] = [
+    # Temporal narrative anchors — the LLM's favourite season is spring
+    "last spring",
+    "last summer",
+    "last fall",
+    "last winter",
+    "last year",
+    "last month",
+    "last week",
+    "a few years ago",
+    "a few months ago",
+    "a couple of years ago",
+    "a couple of months ago",
+    # Narrative openers
+    "i keep coming back to",
+    "coming back to",
+    "i genuinely don't understand",
+    "i genuinely don't",
+    # Liability / accountability clichés
+    "patient gets hurt",
+    "who is responsible",
+    "who exactly is responsible",
+    "the doctor blames the",
+]
+
+# Minimum number of distinct comments a watch-list phrase must appear in
+# to be included in the report.
+WATCH_LIST_MIN_COMMENTS: int = 2
+
+
 # ── English stopwords (no external dependency) ────────────────────────────────
 
 _STOPWORDS: set[str] = {
@@ -343,11 +386,85 @@ def _sentence_at_token_offset(
     return ("…" if start > 0 else "") + sentence[start:end] + ("…" if end < len(sentence) else "")
 
 
+def find_watch_list_phrases(
+    comments: Sequence[GeneratedComment],
+    only_passed_qc: bool = True,
+    min_count: int = WATCH_LIST_MIN_COMMENTS,
+) -> list[RepeatedPhrase]:
+    """
+    Scan comments for occurrences of phrases on the :data:`WATCH_LIST`.
+
+    Returns a list of :class:`RepeatedPhrase` objects (one per watch-list
+    phrase that appears in *min_count* or more distinct comments), sorted
+    by match count descending.
+
+    This is a separate, lightweight scan that runs in addition to the
+    standard n-gram analysis.  It catches short phrases (2–3 words) that
+    are too short for the n-gram analysis but are known LLM-favourite
+    narrative anchors.
+    """
+    target = [
+        (i, c) for i, c in enumerate(comments)
+        if not only_passed_qc or c.qc_passed
+    ]
+
+    # Normalised watch-list phrases for fast matching
+    normalised_watch = [(phrase, _normalise(phrase)) for phrase in WATCH_LIST]
+
+    # phrase → { comment_idx: sentence }
+    phrase_to_hits: dict[str, dict[int, str]] = {p: {} for p, _ in normalised_watch}
+
+    for idx, comment in target:
+        text = comment.comment_text
+        norm_text = _normalise(text)
+        # Defense-in-depth: also check the personal_hook / institutional anchor
+        # field.  If a watch-list phrase slipped through the upstream LLM guard
+        # it will still appear here and be flagged in the report.
+        hook_text = getattr(comment.persona, "personal_hook", "") or ""
+        norm_hook = _normalise(hook_text) if hook_text else ""
+
+        for phrase, norm_phrase in normalised_watch:
+            if idx in phrase_to_hits[phrase]:
+                continue
+            if norm_phrase in norm_text:
+                sentence = _find_sentence_containing(text, norm_phrase)
+                phrase_to_hits[phrase][idx] = sentence
+            elif norm_phrase in norm_hook:
+                sentence = _find_sentence_containing(hook_text, norm_phrase)
+                if sentence != "(sentence not found)":
+                    phrase_to_hits[phrase][idx] = f"[synth_personal_hook] {sentence}"
+                else:
+                    phrase_to_hits[phrase][idx] = "[synth_personal_hook] (sentence not found)"
+
+    repeated: list[RepeatedPhrase] = []
+    for phrase, hits in phrase_to_hits.items():
+        if len(hits) < min_count:
+            continue
+
+        rp = RepeatedPhrase(phrase=phrase, ngram_length=len(phrase.split()))
+        for idx in sorted(hits):
+            comment = comments[idx]
+            suffix = str(idx + 1).zfill(4)
+            comment_id = comment.document_id or f"SYNTH-{suffix}"
+
+            rp.matches.append(PhraseMatch(
+                comment_index=idx,
+                comment_id=comment_id,
+                persona_name=_build_submitter_name(comment.persona),
+                persona_detail=_build_submitter_detail(comment.persona),
+                sentence=hits[idx],
+            ))
+        repeated.append(rp)
+
+    repeated.sort(key=lambda rp: (-rp.count, rp.phrase))
+    return repeated
+
+
 def find_repeated_phrases(
     comments: Sequence[GeneratedComment],
     min_n: int = 4,
     max_n: int = 8,
-    min_count: int = 2,
+    min_count: int = 3,
     only_passed_qc: bool = True,
     verbose: bool = True,
 ) -> list[RepeatedPhrase]:
@@ -508,7 +625,7 @@ def find_repeated_phrases(
 
             # Use the actual Document ID from the PSV file; fall back only
             # when no document_id was loaded (e.g. in-memory generation).
-            comment_id = comment.document_id or f"IDX-{idx}"
+            comment_id = comment.document_id or f"SYNTH-{idx}"
 
             submitter_name = _build_submitter_name(comment.persona)
             submitter_detail = _build_submitter_detail(comment.persona)
@@ -630,7 +747,7 @@ def generate_report(
         lines.append("")
         lines.append(f'## {i}. "{rp.phrase}" (found in {rp.count} comments)')
         lines.append("")
-        lines.append("| # | Comment ID | Submitter | Sentence |")
+        lines.append("| # | Document ID | Submitter | Sentence |")
         lines.append("|---|-----------|---------|----------|")
 
         for j, match in enumerate(rp.matches, 1):
@@ -678,7 +795,7 @@ def stream_report(
         for i, rp in enumerate(repeated, 1):
             f.write("---\n\n")
             f.write(f'## {i}. "{rp.phrase}" (found in {rp.count} comments)\n\n')
-            f.write("| # | Comment ID | Submitter | Sentence |\n")
+            f.write("| # | Document ID | Submitter | Sentence |\n")
             f.write("|---|-----------|---------|----------|\n")
 
             for j, match in enumerate(rp.matches, 1):
@@ -703,6 +820,12 @@ def run_phrase_check(
 ) -> str:
     """
     Run the batch phrase-repetition check and write a Markdown report.
+
+    Combines two detection passes:
+      1. Standard n-gram analysis (min_n–max_n, default 4–8 words).
+      2. Watch-list scan for known short LLM-favourite phrases.
+
+    Watch-list hits are merged into the results and sorted by frequency.
 
     Parameters
     ----------
@@ -740,6 +863,27 @@ def run_phrase_check(
         verbose=verbose,
     )
 
+    # ── Watch-list scan ────────────────────────────────────────────────────
+    t0 = time.perf_counter()
+    watch_hits = find_watch_list_phrases(
+        comments,
+        only_passed_qc=only_passed_qc,
+        min_count=min_count,
+    )
+    t_watch = time.perf_counter() - t0
+    if verbose:
+        _print_timing(f"Watch-list scan ({len(watch_hits)} hits)", t_watch)
+
+    # Merge watch-list hits: add any phrase not already in the n-gram results
+    existing_phrases = {rp.phrase for rp in repeated}
+    for wh in watch_hits:
+        if wh.phrase not in existing_phrases:
+            repeated.append(wh)
+            existing_phrases.add(wh.phrase)
+
+    # Re-sort after merge
+    repeated.sort(key=lambda rp: (-rp.count, rp.phrase))
+
     # Stream directly to file — avoids building a 100K+ line string in memory
     t0 = time.perf_counter()
     stream_report(repeated, target_count, output_path)
@@ -776,12 +920,12 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
 
     Auto-detects two formats:
 
-    * **CMS format** (e.g. ``synthetic_cms.psv``): columns include
+    * **Regulations.gov format** (e.g. ``synthetic.psv``): columns include
       ``Comment``, ``First Name``, ``Last Name``, ``State/Province``,
       ``Document ID``.
-    * **Syncom export format** (e.g. ``synthetic.txt``): columns include
+    * **Synthetic comment export format** (e.g. ``synthetic.txt``): columns include
       ``Comment``, ``Submitter Name``, ``synth_persona_state``,
-      ``synth_persona_occupation``, ``Comment ID``.
+      ``synth_persona_occupation``, ``Document ID``.
     """
     import sys
     from pathlib import Path
@@ -804,7 +948,7 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
         return []
 
     # ── Detect format ──────────────────────────────────────────────────────
-    has_cms_cols = "First Name" in fieldnames and "Last Name" in fieldnames
+    has_psv_cols = "First Name" in fieldnames and "Last Name" in fieldnames
     has_syncom_cols = "Submitter Name" in fieldnames
 
     comments: list[GeneratedComment] = []
@@ -816,16 +960,16 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
         if not text.strip():
             continue
 
-        # The Document ID from the PSV is the authoritative comment identifier
+        # The Document ID is the per-row unique identifier of the comment (e.g. "SYNTH-0001").
         document_id = row.get("Document ID", "")
+        docket_id = row.get("Docket ID", "")
 
         # Extract metadata depending on format
-        if has_cms_cols:
+        if has_psv_cols:
             first_name = row.get("First Name", "")
             last_name = row.get("Last Name", "")
             state = row.get("State/Province", "")
             occupation = row.get("synth_persona_occupation", "")
-            docket_id = row.get("Docket ID", "")
             org_name = row.get("Organization Name", "")
         elif has_syncom_cols:
             full = row.get("Submitter Name", "")
@@ -834,7 +978,6 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
             last_name = parts[1] if len(parts) > 1 else ""
             state = row.get("synth_persona_state", "")
             occupation = row.get("synth_persona_occupation", "")
-            docket_id = row.get("Document ID", "")
             org_name = row.get("Organization Name", "")
         else:
             # Best-effort fallback
@@ -842,11 +985,15 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
             last_name = row.get("Last Name", "")
             state = row.get("State/Province", "")
             occupation = ""
-            docket_id = ""
             org_name = ""
 
+        # Load synth_personal_hook so the watch-list scan can detect
+        # watch-list phrases that slipped through in the hook field.
+        personal_hook = row.get("synth_personal_hook", "") or ""
+        archetype = row.get("synth_persona_archetype", "individual_consumer") or "individual_consumer"
+
         persona = Persona(
-            archetype="individual_consumer",
+            archetype=archetype,
             first_name=first_name or "",
             last_name=last_name or "",
             state=state,
@@ -856,7 +1003,7 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
             emotional_register="concerned",
             org_name=org_name,
             personal_stake="",
-            personal_hook="",
+            personal_hook=personal_hook,
         )
 
         frame = ExpressionFrame(
@@ -900,10 +1047,10 @@ def run_phrase_check_on_psv(
     Parameters
     ----------
     psv_path:
-        Path to the input PSV file (syncom export or CMS format).
+        Path to the input PSV file (synthetic or real).
     output_path:
         Path for the Markdown report.  If None, derives from psv_path
-        (e.g. ``synthetic_cms.phrase_report.md``).
+        (e.g. ``synthetic_cm_phrase_report.md``).
     min_n, max_n:
         N-gram window sizes to consider (default 4–8).
     min_count:
@@ -954,7 +1101,7 @@ def main(argv: list[str] | None = None) -> int:
     Usage::
 
         python -m syncom.phrase_check \\
-            --input  CMS-2025-0050/shuffled_comments/synthetic_cms.psv \\
+            --input  CMS-2025-0050/shuffled_comments/synthetic.psv \\
             --output phrase_report.md
     """
     import argparse
@@ -971,7 +1118,7 @@ def main(argv: list[str] | None = None) -> int:
         "--input", "-i",
         required=True,
         metavar="PATH",
-        help="Input PSV file (syncom export or CMS format).",
+        help="Input PSV file (synthetic or real).",
     )
     parser.add_argument(
         "--output", "-o",

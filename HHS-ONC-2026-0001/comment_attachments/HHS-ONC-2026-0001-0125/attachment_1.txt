@@ -1,0 +1,323 @@
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+PUBLIC COMMENT
+Request for Information: Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+RFI Title Accelerating the Adoption and Use of AI as Part of Clinical Care
+RIN 0955-AA13
+Docket ID HHS-ONC-2026-0001
+Respondent Scientix.ai Inc.
+Contact Bo Lora (bolora@scientix.ai)
+Date February 20, 2026
+Introduction
+Scientix.ai Inc. is a Delaware C-Corp specializing in data infrastructure for regulated industries
+like healthcare & life sciences. Our leadership includes veterans of Amazon Web Services
+(AWS) and the pharmaceutical sector who specialize in resolving the structural friction that
+prevents clinical organizations from extracting value from their data. We appreciate the
+opportunity to provide input on this RFI and respond below to the questions where our
+operational experience is most directly relevant.
+Our perspective is grounded in a consistent observation across engagements: the primary
+barriers to clinical AI adoption are infrastructural, not algorithmic. The AI models
+themselves have reached impressive capability thresholds. What remains broken is the data
+substrate they depend on, the fragmented systems, informal workarounds, and the absence of
+deterministic validation layers that clinical AI requires to earn clinician trust.
+Question #1: What are the biggest barriers to private sector innovation in AI for health
+care and its adoption and use in clinical care?
+The biggest barriers to private-sector innovation are not algorithmic—they are infrastructural.
+Three systemic forces constrain AI adoption in clinical care:
+1. The Compounding Cost of System Integration
+Current “application-first” paradigms treat data as a secondary byproduct of siloed software.
+This creates a compounding integration burden where the complexity and cost of connecting
+disparate systems consume the capital and time intended for innovation. Research consistently
+finds that data workers spend over 40% of their time searching for, cleaning, and reconciling
+data rather than analyzing it.[1] Vendors often protect proprietary data structures, leading to lock-
+in and a fragmented ecosystem that is nearly impossible to maintain.
+2. The Gap Between Documented Workflows and Operational Reality
+Page 1
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+Most AI implementations are built on how IT departments believe data flows (the documented
+workflow), which rarely reflects operational reality. Clinical and administrative staff frequently
+bypass official systems using unregulated spreadsheets and manual workarounds to bridge
+technical gaps. When AI models are trained on the official data pathway alone, they fail to
+generalize in real clinical environments—producing outputs that are technically plausible but
+operationally wrong.
+3. The Trust Gap: Probabilistic Risk in Deterministic Care
+Clinical care demands deterministic accountability—the ability to trace exactly which data
+informed a decision and verify that it was correct. Purely probabilistic AI (such as large language
+models) cannot provide this traceability on its own. In high-stakes environments, non-
+deterministic behavior creates a trust gap: hallucinations and inconsistent outputs are not
+merely inconvenient, they are potentially dangerous. Most current architectures lack a
+deterministic validation layer—a verifiable record of truth that enforces data integrity (exact
+timestamps, immutable records) before probabilistic insights are applied on top.
+We address these barriers by helping organizations transition from siloed, application-centric
+architectures to context-first data infrastructure built on open standards (such as NGSI-LD),
+where institutional knowledge becomes a persistent, governed asset rather than a byproduct of
+any single vendor’s software.
+Question #2: What regulatory, payment policy, or programmatic design changes should
+HHS prioritize to incentivize the effective use of AI in clinical care and why?
+HHS should prioritize regulatory and programmatic shifts that address the integration burden
+and trust gap described above. This requires updating legacy frameworks that were designed
+for static software, not adaptive AI systems.
+Regulatory Priorities
+Modernize HIPAA for AI-era data governance (45 C.F.R. Parts 160 and 164): Current de-
+identification and re-identification rules under § 164.514 should be updated to facilitate real-
+time, automated data governance that prevents silos without compromising patient privacy. As
+AI systems require richer longitudinal datasets, the rules should clarify how organizations can
+responsibly prepare data for model training while maintaining HIPAA compliance.
+Expand algorithmic transparency under HTI-1 (45 C.F.R. § 170.315(b)(11)): The HTI-1 Final
+Rule’s transparency requirements for Predictive Decision Support Interventions are a strong
+foundation. HHS should expand these to include mandatory reporting of serious adverse events
+attributed to AI-driven clinical recommendations, building on the existing 31 source attribute
+disclosure requirements.
+Establish deterministic validation safe harbors: Create “qualified AI” safe harbor principles
+for tools that meet rigorous, HHS-endorsed standards for transparency and deterministic
+Page 2
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+validation. This would mitigate liability risks for clinicians using AI as intended and incentivize
+developers to build verifiable systems rather than opaque ones.
+Payment Policy Reforms
+Temporary Medicare payment codes for AI-enabled interventions: The traditional fee-for-
+service model disincentivizes AI adoption because efficiency-driven tools (those reducing
+hospitalizations or shortening visits) can lower short-term billable services. Temporary payment
+codes—similar to those proposed for rural hospital access—would allow AI-enabled clinical
+interventions to be reimbursed while evidence of long-term value accumulates.
+Strengthen human-in-the-loop requirements for medical necessity (42 C.F.R. §
+422.101(c)): CMS’s 2024 FAQs clarified that Medicare Advantage medical necessity
+determinations cannot rely solely on algorithmic outputs without considering individual patient
+circumstances. HHS should codify this principle more explicitly, ensuring that automated prior
+authorization systems include meaningful clinical review rather than defaulting to algorithmic
+denials.
+Programmatic Design
+Expand shared infrastructure through OneHHS: HHS should build shared, cloud-agnostic
+infrastructure that allows agencies like the FDA, CDC, and CMS to reuse validated AI
+components and standardized data models. This reduces duplicative investment and lowers the
+barrier to entry for smaller innovators.
+Fund operational readiness assessments before implementation: R&D programs should
+incentivize organizations to map their actual operational workflows—including informal
+workarounds and data gaps—before committing federal capital to AI software procurement.
+Without this diagnostic step, AI implementations are built on faulty assumptions about how data
+actually flows.
+Page 3
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+Summary of Priority CFR Revisions
+Regulation Citation Recommended Change
+HIPAA Security Rule 45 C.F.R. § 164.308 Update to include AI-specific risk analysis and data-
+lineage requirements.
+Health IT Certification 45 C.F.R. § Expand transparency requirements to include
+(HTI-1) 170.315(b)(11) mandatory adverse event reporting for AI-driven
+clinical recommendations.
+Medicare Advantage 42 C.F.R. § Codify the requirement that algorithmic prior
+422.101(c) authorizations include human review of individual
+clinical circumstances.
+HIPAA Privacy Rule 45 C.F.R. § 164.514 Clarify de-identification standards for AI training
+datasets, enabling responsible real-time data
+governance.
+Question #6: Where have AI tools deployed in clinical care met or exceeded
+performance and cost expectations and where have they fallen short?
+Where AI Has Exceeded Expectations
+Medical imaging and triage: AI has significantly outperformed expectations in diagnostic
+imaging. A peer-reviewed Cedars-Sinai study found that AI-augmented radiological triage
+reduced hospital length of stay for pulmonary embolism by 26.3%.[3] AI-driven triage of patient
+portal messages reduced median clinician review time for high-acuity content from 22 hours to
+approximately 5 hours.[4]
+Administrative automation: Automated billing and scheduling represent the fastest-growing
+use case. In 2026, 98% of surveyed health executives expect at least 10% cost savings from AI,
+with 37% targeting savings above 20%.[2] Early adopters of agentic AI—systems that coordinate
+tasks across billing, care delivery, and payments—report disproportionate productivity gains.[8]
+Ambient documentation: Generative AI scribes have reduced the documentation burden on
+clinicians, directly addressing one of the primary drivers of provider burnout.[9]
+Where AI Has Fallen Short
+Shallow clinical reasoning: Many tools optimize for drafting notes rather than improving
+decisions. They frequently lack the longitudinal context (historical diagnoses, labs, patterns
+across encounters) needed for effective value-based care.
+Correction burden on clinicians: Clinicians report spending up to three hours per week
+correcting or bypassing AI outputs due to missing context or misinterpreted patient data.[5] This
+erodes the efficiency gains that AI was intended to deliver.
+Page 4
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+Bias and evaluation gaps: While 65% of hospitals use predictive models, less than half
+evaluate these tools for potential bias.[6] Off-the-shelf products may not reflect local patient
+populations, creating a quiet disparity in care quality.
+Hallucination and misinformation: Healthcare-specific AI models still maintain hallucination
+rates estimated at 10–30%. Research published in The Lancet Digital Health in February 2026
+revealed that leading language models can repeat false medical claims as truth when the
+misinformation is wrapped in realistic clinical language.[7]
+Novel Tools with Greatest Potential
+The greatest potential lies in shifting from passive automation to context-aware, agentic
+systems: AI that autonomously gathers documentation from multiple sources, validates it
+against clinical requirements, and presents verified recommendations—rather than AI that
+simply generates text for human review. Equally promising are predictive remote monitoring
+tools (AI-powered wearables detecting early warning signs before escalation) and infrastructure
+layers that enforce data integrity at the point of creation, ensuring AI always reasons from
+verified facts rather than fragmented snapshots.
+Question #7: Which role(s), decision maker(s), or governing bodies within health care
+organizations have the most influence on the adoption of AI for clinical care? What are
+the primary administrative hurdles?
+While clinical AI champions, C-suite leaders (CIO/CDO/CEO), and multidisciplinary AI
+committees each play roles in adoption decisions, our experience across regulated
+environments reveals a more fundamental constraint that shapes all of these: the executive
+digital fluency gap.
+The Leadership Fluency Gap
+The most profound and overlooked administrative hurdle in 2026 is not technical—it is the gap
+between what organizational leaders think AI is and what it actually requires to succeed. While
+the vast majority of healthcare organizations recognize AI’s importance, only about half of IT
+leaders feel confident in their implementation abilities. This stems from an executive mental
+model that treats AI as a passive software tool (purchase it, install it, benefit from it) rather than
+an adaptive system that requires ongoing governance, data infrastructure, and organizational
+redesign.
+This fluency gap creates specific, observable pathologies:
+Perpetual pilot programs: Leaders lacking digital fluency invest in disconnected, application-
+first pilots. Each pilot adds another point-to-point integration, making the eventual cost of
+connection higher than the innovation itself. The result is an ever-growing portfolio of
+“successful” pilots that never scale.
+Page 5
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+Ignoring operational reality: Administrative focus remains on documenting official system
+workflows while ignoring the informal workarounds (unregulated spreadsheets, manual data
+transfers) that staff actually use. AI implementations built on the official workflow fail in practice
+because they are trained on a fiction.
+Undersized technical support: While 40% of IT leaders report staff are unequipped for AI
+adoption, leadership frequently underestimates the need for specialized roles (information
+architects, data governance leads) whose absence ensures that AI tools operate on unreliable
+data.
+The Role of HHS
+HHS should prioritize programs that address this fluency gap directly. Profession-specific AI
+competency frameworks would ensure that decision-makers understand not just the potential of
+AI, but the infrastructure, governance, and organizational change it requires. Programmatic
+design should reward organizations that demonstrate operational readiness—the ability to
+produce a complete audit trail and documented alignment between clinical and technical
+teams—before allocating federal capital to AI implementation.
+Question #8: Where would enhanced interoperability widen market opportunities, fuel
+research, and accelerate the development of AI for clinical care?
+Interoperability is the single highest-leverage intervention for accelerating clinical AI. The current
+landscape of fragmented “digital islands” forces every AI implementation to solve the same data
+reconciliation problem independently—consuming resources that should go toward innovation.
+Widening Market Opportunities
+When data flows through standardized interfaces, specialized AI tools can be deployed across
+different health systems without the prohibitive cost of custom integrations. This shifts the
+market from monolithic vendor platforms to a modular ecosystem where best-in-class tools
+compete on merit. Standardized APIs (including FHIR for clinical data exchange and context-
+aware standards like NGSI-LD for metadata-rich environments) lower the barrier to entry for
+smaller innovators, enabling startups to plug into enterprise health systems without rebuilding
+data pipelines from scratch.
+Fueling Research
+Interoperability transforms research from retrospective data reconstruction to real-time, high-
+fidelity analysis. Linking disparate signals (genomic markers, environmental exposures,
+symptoms) into unified data models enables rare disease diagnostics that are impossible in
+siloed databases. Standardized data collection (using CDISC standards for clinical trials, FHIR
+for clinical data) ensures real-world data is born ready for analysis. Federated learning
+models—where AI is trained across multiple institutions without moving raw patient data—
+depend entirely on interoperable infrastructure to function.
+Page 6
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+Critical Priorities
+Category Key Priority
+Data Types Multimodal integration: combining EHRs, claims, genomic data, and real-time
+biometric data from wearables into unified patient models.
+Data Standards FHIR for clinical exchange; context-rich standards (NGSI-LD, JSON-LD) for
+metadata-intensive environments where provenance and accuracy are first-
+class attributes.
+Benchmarking Agent-oriented benchmarks (e.g., MedAgentBench) that measure AI’s ability
+to perform complex, multi-step clinical tasks—not just medical knowledge
+tests.
+Data Quality Data-quality-at-source protocols: ensuring every data point is findable,
+accessible, interoperable, and reusable (FAIR) at the moment of creation.
+Question #10: Are there specific areas of AI research that HHS should prioritize to
+accelerate the adoption of AI as part of clinical care?
+HHS should prioritize research that bridges the gap between symbolic reasoning (ontologies,
+structured knowledge) and probabilistic modeling (large language models). Published findings
+consistently show that clinical AI adoption fails when it lacks the deterministic validation layer
+required to prevent hallucinations and performance degradation in high-stakes environments.
+1. Ontological Harmonization
+The primary bottleneck in clinical AI is not model capability but data fragmentation. Research
+into hybrid mapping systems—coupling classical lexical matchers with LLMs—has shown
+substantial improvements in aligning complex medical ontologies. HHS should fund research
+into scalable methods for resolving semantic inconsistencies across EHR systems, claims
+databases, and research repositories, ensuring that AI models reason from consistent
+definitions rather than conflicting data.
+2. Agentic AI with Deterministic Grounding
+Research should advance AI systems that autonomously plan and execute clinical tasks
+(agentic AI) while remaining anchored in verifiable data. The ARPA-H ADVOCATE program
+offers a promising model for “supervisory agents” that ensure patient-facing AI remains safe and
+aligned with clinical guidelines. Additional priorities include transforming clinical practice
+guidelines into machine-readable constraints and developing uncertainty quantification methods
+for real-time physiological data.
+3. Reducing the Data Preparation Burden
+Research consistently finds that the majority of data scientist and researcher time is consumed
+by data preparation rather than analysis.[1] HHS should fund research into “data-quality-at-
+source” protocols that ensure clinical data is standardized, labeled, and ready for AI
+Page 7
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+consumption at the moment of creation—eliminating the retrospective data reconstruction that
+currently drains research productivity. Equally important is research into preventing “model
+collapse,” where AI models degrade when trained on recursively generated synthetic data rather
+than high-fidelity, curated records.
+Published Evidence on Adopted AI Tools (Questions 10a–10b)
+The published literature on clinical AI economics has matured significantly. A systematic review
+of economic evaluations found that 98% of studies concluded AI-based strategies were cost-
+effective or cost-saving,[10] with projections suggesting annual net savings of $200–$360 billion
+in U.S. healthcare (a 5–10% reduction in total spending).[11] However, fewer than half of studies
+explicitly report their costing methods, and only 28% include implementation costs—indicating
+that the full financial burden of AI adoption is systematically underestimated in the literature.
+The literature also reveals that trust in medical AI flows hierarchically: from digital literacy to the
+AI system, and only then to the physician and institution. This reinforces the importance of the
+physician’s intermediary role in building institutional trust—and the danger of deploying AI in
+ways that bypass clinical judgment.
+Closing
+We appreciate HHS’s commitment to gathering concrete, experience-based input on clinical AI
+adoption. The consistent theme across our responses is that the barriers to AI in healthcare are
+primarily infrastructural and organizational—not algorithmic. Investing in data infrastructure,
+operational readiness, and executive digital fluency will yield greater returns than investing in AI
+models alone. We welcome the opportunity to engage further with HHS on these priorities.
+Respectfully submitted,
+Bo Lora
+Scientix.ai Inc.
+bolora@scientix.ai
+Page 8
+
+106 6th St, Suite 900-152
+Austin TX 78701
+Public Comment on RFI (RIN 0955-AA13)
+References
+[1] IDC/Alteryx, “State of Data Preparation,” 2023. Also cited in JMP (SAS) research finding scientists
+waste up to 40% of time on data preparation.
+[2] Deloitte, “2026 US Health Care Outlook Survey: Many health care leaders are leaning into agentic AI,”
+February 2026.
+[3] Aidoc/Cedars-Sinai study published in Radiology Research and Practice (2022), PMC9411003. Mean
+LOS for PE dropped from 7.91 to 5.83 days (p=0.034).
+[4] JAMA Network Open, 2026. AI-driven triage reduced median clinician review time from 22.03 hours to
+5.02 hours.
+[5] Tateeda Healthcare IT research, 2026. Survey of clinicians on AI correction time.
+[6] University of Minnesota School of Public Health, 2025. Analysis of hospital use of AI-assisted
+predictive tools.
+[7] The Lancet Digital Health, February 2026. Study on LLMs repeating false medical claims in clinical
+contexts.
+[8] Deloitte 2026 US Health Care Outlook Survey; PR Newswire release, February 2026.
+[9] SullivanCotter, “AI and the Future of Health Care,” 2026.
+[10] PMC systematic review (PMC12795340): 98% of economic evaluations found AI cost-effective or
+cost-saving.
+[11] Medrxiv preprint 2025. Projected annual net savings of $200B–$360B (5–10% reduction in total U.S.
+healthcare spending).
+Page 9

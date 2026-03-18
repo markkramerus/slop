@@ -1,0 +1,3489 @@
+Integrating the Healthcare Enterprise
+IHE Radiology
+5
+Technical Framework Supplement
+Manifest-based Access to DICOM Objects
+10
+(MADO)
+For review and comment only.
+DO NOT implement this public comment version.
+15 HL7® FHIR® R5 (R4 to be added later)
+Using Resources at FMM Level 2-N
+Revision 1.0 – Draft for Public Comment
+20 Date: December 8, 2025
+Author: IHE Radiology Technical Committee
+Email: radiology@ihe.net
+25 Please verify you have the most recent version of this document. See here for Trial
+Implementation and Final Text versions and here for Public Comment versions.
+Copyright © 2025: IHE International, Inc.
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Foreword
+This IHE Public Comment version has been prepared based on input from a draft version
+30 issued for the European Xt-EHR public consultation developed jointly as a EURIDICE
+specification by the IHE-HL7 Europe Working Group on Imaging. The goal is to use this
+new profile in the context of the EHDS use case on the sharing of imaging studies and
+related imaging reports.
+The goal of the MADO profile is to be an internationally adopted profile that can be
+35 deployed not only in Europe.
+Following comments from the international community and their resolution, the MADO
+Profile is intended to result in a trial implementation release scheduled for February 2026
+before being implemented, tested, and incorporated into the volumes of the Radiology
+Technical Framework
+40
+This is a supplement to the IHE Radiology Technical Framework V22.0. Each supplement
+undergoes a process of public comment and trial implementation before being incorporated into
+the volumes of the Technical Frameworks.
+This supplement is published on December 8, 2025 for Public Comment. Comments are invited
+45 and can be submitted at https://www.ihe.net/Radiology_Public_Comments. In order to be
+considered in development of the Trial Implementation version of the supplement, comments
+must be received by January 10, 2026.
+This supplement describes changes to the existing technical framework documents.
+“Boxed” instructions like the sample below indicate to the Volume Editor how to integrate the
+50 relevant section(s) into the relevant Technical Framework volume.
+Amend section X.X by the following:
+Where the amendment adds text, make the added text bold underline. Where the amendment
+removes text, make the removed text bold strikethrough. When entire new sections are added,
+introduce with editor’s instructions to “add new text” or similar, which for readability are not
+55 bolded or underlined.
+General information about IHE can be found at IHE.net.
+Information about the IHE Radiology domain can be found at IHE Domains.
+Information about the organization of IHE Technical Frameworks and Supplements and the
+60 process used to create them can be found at Profiles and IHE Process
+The current version of the Radiology Technical Framework can be found at Radiology Technical
+Framework.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 2 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+CONTENTS
+65
+Introduction to this Supplement ...................................................................................................... 5
+Open Issues and Questions ........................................................................................................ 6
+Closed Issues ............................................................................................................................ 11
+IHE Technical Frameworks General Introduction ........................................................................ 12
+70 9 Copyright Licenses................................................................................................................... 12
+10 Trademark ................................................................................................................................ 12
+IHE Technical Frameworks General Introduction Appendices .................................................... 13
+Appendix A – Actors .................................................................................................................... 13
+Appendix B – Transactions ........................................................................................................... 13
+75 Appendix D – Glossary ................................................................................................................. 13
+Volume 1 – Profiles ..................................................................................................................... 15
+Domain-specific additions ....................................................................................................... 15
+X Manifest-based Access to DICOM Objects (MADO) Profile .................................................. 15
+X.1 MADO Actors, Transactions, and Content Modules ........................................................ 15
+80 X.1.1 Actor Descriptions and Actor Profile Requirements ................................................. 17
+X.2 MADO Actor Options ....................................................................................................... 18
+X.2.1 DICOM KOS-Based Imaging Study Manifest Option .............................................. 19
+X.2.2 HL7 FHIR-Based Imaging Study Manifest Option .................................................. 19
+X.3 MADO Required Actor Groupings ................................................................................... 19
+85 X.4 MADO Overview .............................................................................................................. 20
+X.4.1 Concepts .................................................................................................................... 20
+X.4.2 Use Cases .................................................................................................................. 24
+X.5 MADO Security Considerations ....................................................................................... 29
+X.6 MADO Cross Profile Considerations ................................................................................ 29
+90 Volume 2 – Transactions ............................................................................................................ 31
+4.1xy Intra-Community WADO-RS Retrieve [RAD-1xy] ...................................................... 31
+4.1xy.1 Scope ...................................................................................................................... 31
+4.1xy.2 Actor Roles ............................................................................................................. 31
+4.1xy.3 Referenced Standards ............................................................................................. 31
+95 4.1xy.4 Messages ................................................................................................................ 31
+4.1xy.5 Security Considerations .......................................................................................... 35
+Appendix XA – Managing the addresses of the sources of images to retrieve beyond a single
+community ............................................................................................................................... 36
+Volume 3 – Content Modules ..................................................................................................... 41
+100 4 IHE Namespaces, Concept Domains and Vocabularies ............................................................ 42
+4.1 IHE MADO Namespaces ................................................................................................... 42
+4.2 IHE MADO Concept Domains .......................................................................................... 42
+4.3 IHE MADO Format Codes and Vocabularies ................................................................... 42
+4.3.1 IHE Format Codes ...................................................................................................... 42
+105 4.3.X Imaging Study Manifest Search Metadata ................................................................ 42
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 3 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+6.X MADO Content Definition................................................................................................ 45
+6.X.1 MADO DICOM KOS-Based Imaging Study Content Definition ............................. 45
+6.X.2 MADO HL7 FHIR Based Imaging Study Manifest Content Definitions ................. 61
+6.X.3 MADO Envelope Content Definitions ...................................................................... 61
+110 6.X.4 MADO DICOM – FHIR Manifest Mapping Specification ....................................... 61
+Appendices to Volume 3 ............................................................................................................... 63
+Appendix A – Updated DICOM Change Proposal for DICOM KOS in the IHE MADO Manifest
+specification ............................................................................................................................. 64
+A.35.4 Key Object Selection Document IOD ..................................................................... 65
+115 Appendix B – Alternative MADO KOS Manifest format using a Standard Extended SOP Class
+.................................................................................................................................................. 88
+B.1 Extension to Hierarchical SOP Instance Reference Macro ............................................... 90
+B.1.1 Referenced Standards ................................................................................................ 90
+B.1.2 Macro Definition ....................................................................................................... 90
+120 B.2 Extension to Hierarchical Series Reference Macro ........................................................... 91
+B.2.1 Referenced Standards ................................................................................................ 91
+B.2.2 Macro Definition ....................................................................................................... 91
+B.3 MADO Series Metadata (Descriptive) Macro ................................................................... 92
+B.3.1 Referenced Standards ................................................................................................ 92
+125 B.3.2 Macro Definition ....................................................................................................... 92
+B.4 MADO SOP Instance Metadata (Descriptive) Macro ....................................................... 92
+B.4.1 Referenced Standards ................................................................................................ 92
+B.4.2 Macro Definition ....................................................................................................... 92
+B.5 MADO Significant (Key) Image Reference Macro .......................................................... 93
+130 B.5.1 Referenced Standards ................................................................................................ 93
+B.5.2 Macro Definition ....................................................................................................... 93
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 4 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Introduction to this Supplement
+135
+Whenever possible, IHE profiles are based on established and stable underlying standards.
+However, if an IHE domain determines that an emerging standard has high likelihood of industry
+adoption, and the standard offers significant benefits for the use cases it is attempting to address,
+the domain may develop IHE profiles based on such a standard. During Trial Implementation,
+140 the IHE domain will update and republish the IHE profile as the underlying standard evolves.
+Product implementations and site deployments may need to be updated in order for them to
+remain interoperable and conformant with an updated IHE profile.
+This MADO Profile (or This Technical Framework Supplement) incorporates content from
+Release 4 and Release 5 of the HL7® FHIR® specification. HL7 describes FHIR Change
+145 Management and Versioning at https://www.hl7.org/fhir/versions.html.
+FHIR Content FMM Level
+(Resources, ValueSets, etc.)
+Bundle N
+Device 2
+DocumentReference 4
+Endpoint 2
+ImagingSelection Resource 1
+ImagingStudy Resource 4
+Patient N
+PratitionerRole 4
+Procedure 4
+ServiceRequest 4
+This new profile addresses the access to DICOM Instances based on an imaging study manifest.
+150 The need for this profile was identified as part of the sharing of imaging studies and related
+reports as required under the EHDS Regulation.
+The access to DICOM Instances based on an imaging study manifest can be combined either
+with MHDS (or MHD) to deploy FHIR based document sharing infrastructures or XDS, or some
+proprietary document sharing scheme. Such flexibility ensures a common and more effective
+155 way to access the DICOM Objects through a solid profiling of WADO-RS consistent with the
+XC-WADO Cross-Community profile and the IID (Invoke Image Display) profiles. The MADO
+Profile includes also a more robust Imaging Study Manifest supporting two complementary
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 5 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+encodings based on the DICOM KOS IOD or FHIR Imaging Study resource, as well as profiling
+in a more precise way existing attributes and new attributes, such as those necessary to improve
+160 access to key images in a way compatible with the IHE KIN Profile.
+Open Issues and Questions
+# Issue / Answer
+1. Q: Given the two formats proposed for the imaging study manifest (DICOM KOS
+based and FHIR based), which interoperability approach shall be chosen by MADO.
+Two approaches have been considered:
+1. The Content Creator supports both formats and the consumer selects the
+preferred one.
+2. Both the Imaging Document Consumer and the Content Creator support one
+format and the other format offered as an option by the Imaging Document
+Consumer and the Content Creator.
+TC: The current Public Comment has selected approach 1, assuming that there are
+likely more consumers than sources.
+A: Comments are welcome about the use of approach 2.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 6 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+# Issue / Answer
+2. Q: Several approaches have been considered to extend the Key Object Selection
+(KOS) DICOM with additional information to offer to Imaging Document
+Consumers more flexibility to search for relevant imaging studies, as well as to select
+relevant series or images. Three approaches have been considered and discussed with
+DICOM WG6:
+1. Extend the DICOM KOS IOD with standard Data Elements. This approach is
+the one used in the initial draft of the MADO Profile. Although being formally
+allowed by the DICOM Standard, it’s use has been discouraged by the DICOM
+WG6 as being not consistent with the design of the KOS IOD.
+2. DICOM created a CP to extend the TID2010 Template that is used by the
+DICOM KOS IOD. DICOM forbids extensions to the TID 2010 Template, by
+profilers or implementers. This Change Proposal proposes to add the existing
+TID 1600 Image Library Template to TID 2010.
+3. Use a different SOP Class than an extended KOS SOP Class. The use of the
+DICOM Inventory IOD has been considered and found functionally capable to
+support the extensions needed. However, this approach has not been selected
+because it breaks the backward compatibility with many existing deployments
+and products support of KOS Manifests per the XDS-I Profile.
+TC: The current Public Comment has selected approach 2, based on its backward
+compatibility and design consistency with the DICOM KOS despite the somewhat
+increased overhead of the DICOM SR based constructs.
+A: Comments are welcome on the use of the approach 2, versus the use of the
+alternative approach 1: as an alternative with less overhead. (See Volume 3 Appendix
+B).
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 7 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+3. Q: What Time Zone Offset-related behaviors should the profile mandate?
+MADO involves Imaging Document Sources sharing data (potentially with different
+time zone offsets) with Imaging Document Consumers (potentially located in different
+time zones). This raises the risk that:
+• A clinician accesses an imaging study that was acquired and reported at
+2:00pm on November 12 (without time zone offset). A surgery report is
+available for a surgery that was performed during the same hospital visit and
+was shared on November 12 at 12pm, Central European Time Zone. The
+clinician assumes that the reported surgery was performed before the
+acquisition of the imaging study. However, if the missing time zone offset had
+been applied, the imaging study had been acquired pre-surgery at 10am on
+Nov 12.
+• A CT Imaging Study was acquired in a French pacific island on May 17 at
+9am and shared so that the images are retrieved by a pulmonary center in
+metropolitan France to be post-processed by a CT lung nodule assessment
+application which happened an hour later. The images resulting from the lung
+nodule detection were placed in a distinct imaging study. Unless the time zone
+in the study date and times of both studies are properly tracked the imaging
+study with post-processing images would appear with a local time that
+precedes by 2 hours the date and time of the acquired imaging study that was
+postprocessed.
+Background Information:
+• The DICOM Value Representation (VR) for Datetime (DT) supports
+(optionally) recording the time zone offset of the encoded time.
+• Timezone Offsets are commonly based on geographic location (time zone)
+and, for some regions, date (“summer time”).
+• Timezone Offset From UTC (0008,0201) in SOP Common (optionally)
+records an offset to be applied to all Date (DA) and Time (TM) attributes, and
+to any DT attributes that do not contain an explicitly encoded offset.
+• Best practice is for modalities (and other evidence creators) to record
+Timezone Offset From UTC in instances they create.
+• Many installed modalities (and other evidence creators) create and store
+instances without recording any offset information.
+• When offset information is not available, it is left to the recipient to make
+assumptions. Typically, such instances are assumed to be in the “local time” of
+the device. One might infer the time zone offset of that local time based on the
+installed location of the device and the date of the instances.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 8 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+• Some evidence/image creators may operate in different time zones.
+• Best practice is for all systems (creators, servers, and consumers) to support
+the IHE Consistent Time profile (which ensures they have an accurate clock
+setting and timezone offset)
+• MADO, for various reasons, requires Imaging Document Sources, Imaging
+Document Consumers, and Content Creators to support the IHE CT Profile.
+• Most acquisition modality and evidence creator actors support the IHE CT
+Profile which is critical to having accurate original data.
+• Acquisition Date (0008,0022) and Time (0008,0032) record (optionally) when
+the data underlying an instance was acquired.
+• Instance Creation Date (0008,0012) and Time (0008,0013) record (optionally)
+in SOP Common when the instance UID was assigned and the instance was
+created.
+• Series Date (0008,0021) and Time (0008,0031) values are implementation
+dependent.
+• Viewers launched via IID will likely display date/times in the time zone offset
+of the viewer, not the requester.
+The MADO Profile currently specifies the following mandated approach:
+• The Imaging Document Source
+shall ensure that all systems that supply instances to the Imaging Document
+o
+Source are all configured to use a single implicit time zone offset or
+include the time zone offset.
+ This implies that all instances within any given study are based on the
+same time zone in their date and times even if series may be created on
+different sources.
+shall include Timezone Offset From UTC (0008,0201) in each imaging
+o
+study manifest to represent the time zone offset for the dates and times in
+the manifest and those in the imaging study instances that do not include an
+explicit time zone offset.
+If instances returned by WADO-RS responses (per the MADO Profile) do
+o
+not contain a time zone offset in their DA, TM, and DT attribute values,
+these values in the retrieved instances shall be based on the time zone
+offset from the corresponding imaging manifest.
+• The Imaging Document Consumer
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 9 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+shall apply the time zone offset from the manifest to the date and time in
+o
+the instances of the imaging study when there is no Time Zone Offset
+present when performing import in the local Image Manager/Archive or
+performing image display before import. At the time of import, there is less
+time critical constraints.
+Note: For a display before import, a number of creative implementation strategies can be used taking into
+account the specific design of the Imaging Document Consumer. For example, when the Imaging
+Document Consumer intends to display, e.g., the Acquisition Time for an instance, it may use a cached
+value for the Time zone offset from the corresponding Manifest unless the image instance already has a
+Timezone Offset. The same should be performed when imaging study is imported (added to the attribute
+coercion process already needed for any import).
+• This approach shifts some of the implementation burden from the Imaging
+Document Source to the Imaging Document Consumer by making sure that
+the needed information is provided, and offers maximum flexibility to the
+Imaging Document Consumer to manage the application of the time zone only
+when required.
+Comment is sought on this mandated approach.
+Comment is sought on whether the following alternative approach would be better:
+• The Imaging Document Source
+shall add Timezone Offset From UTC (0008,0201) to any instances being
+o
+shared where it is missing.
+ this is likely done as a coercion step to update the stored instances
+when they are first received for sharing
+ this could be also done by coercing instances to add the attribute during
+WADO-RS responses instead if the implementation prefers
+• The Imaging Document Consumer
+shall be able to make use of timezone offset information for any time-based
+o
+calculations (which they hopefully already do)
+shall be able to make use of timezone offset information in each instance to
+o
+meet local conventions or preferences for displaying imported instances
+showing the originating timezone offset or the local time zone offset
+ Note that instances in the same study might have different time zone
+offsets.
+It was not proposed to include the Acquisition Modality actor in the MADO profile
+and include requirements that it populate the timezone offset in all DT attributes and
+via the Timezone Offset From UTC (0008,0201) for all DA and TM attributes. While
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 10 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+# Issue / Answer
+that would address some problems, it did not seem practical to depend on updates to
+the full install base of modalities rather than just depending on the imaging document
+source.
+See also DICOM CP1944 which was cancelled with the dictate that the cure must not
+be worse than the disease. ������
+https://dicom.nema.org/medical/dicom/CP/cp1944_01_Request_to_Retire_Timezone_
+Offset_From_UTC_attribute.pdf
+Specifically refer to the rational text labelled “As a practical matter” and “Various
+alternative solutions”
+Closed Issues
+# Issue / Answer
+None
+165
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 11 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+IHE Technical Frameworks General Introduction
+The IHE Technical Frameworks General Introduction is shared by all of the IHE domain
+technical frameworks. Each technical framework volume contains links to this document where
+appropriate.
+170 9 Copyright Licenses
+IHE technical documents refer to, and make use of, a number of standards developed and
+published by several standards development organizations. Please refer to the IHE Technical
+Frameworks General Introduction, Section 9 - Copyright Licenses for copyright license
+information for frequently referenced base standards. Information pertaining to the use of IHE
+175 International copyrighted materials is also available there.
+10 Trademark
+IHE® and the IHE logo are trademarks of the Healthcare Information Management Systems
+Society in the United States and trademarks of IHE Europe in the European Community. Please
+refer to the IHE Technical Frameworks General Introduction, Section 10 - Trademark for
+180 information on their use.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 12 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+IHE Technical Frameworks General Introduction Appendices
+The IHE Technical Framework General Introduction Appendices are components shared by all
+of the IHE domain technical frameworks. Each technical framework volume contains links to
+these documents where appropriate.
+185
+ppendix–ctors
+Add the following new or modified actors to the IHE Technical Frameworks General
+Introduction Appendix A:
+New (or modified) Actor Description
+Name
+None
+190
+The table below lists existing actors that are utilized in this profile.
+Complete List of Existing Actors Utilized in this Profile
+Existing Actor Name Definition
+Content Creator The Content Creator Actor creates content and transmits to a Content Consumer.
+Document Source The Document Source is the producer and publisher of documents and metadata.
+Document Consumer The Document Consumer queries for document metadata meeting certain criteria
+and may retrieve selected documents.
+Imaging Document Consumer A system that makes use of imaging data.
+Imaging Document Source Publishes imaging data and makes it available for retrieval.
+Appendix B – Transactions
+195
+New (or modified) Transaction Name and Definition
+Number
+Intra-Community WADO-RS Retrieve [RAD-1xy] Get DICOM Instances from the Imaging Document Source at a
+Study, Series or Instance level by an Imaging Document
+Consumer within the same Community.
+ppendix–lossary
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 13 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+No new or modified glossary terms.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 14 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Volume 1 – Profiles
+200 Domain-specific additions
+None.
+Add new Section X
+205 X Manifest-based Access to DICOM Objects (MADO) Profile
+The Manifest-based Access to DICOM Objects (MADO) Integration Profile specifies actors and
+transactions to retrieve patient-relevant DICOM Instances from medical imaging studies being
+stored within a community. Each community may have multiple sources of medical image data
+that publish it for sharing within the community.
+210 The MADO profile utilizes the RESTful DICOMWeb Studies Service Retrieve transaction (a.k.a
+WADO-RS, DICOM PS3.18 Section 10.4).
+This profile discusses but does not specify cross-community access to DICOM Objects;
+however, it has been designed to be grouped with the XC-WADO Profile to support cross-
+community access.
+215 This Profile does not address specific means of publishing into some community-level document
+registry, searching and retrieving the Imaging Study Manifests that reference DICOM Instances
+stored in the community. The XDS.b or MHD (or MHDS) Profiles may be used to support such
+document sharing and combined with the MADO Profile.
+The reader of MADO is expected to understand the use of Imaging Study Manifests. The
+220 Manifest concept is described below in Section X.4.1.1 Role of an imaging Study Manifest.
+X.1 MADO Actors, Transactions, and Content Modules
+This section defines the actors, transactions, and/or content modules in this profile. General
+definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
+IHE Transactions can be found in the Technical Frameworks General Introduction Appendix B.
+225 Both appendices are located at https://profiles.ihe.net/GeneralIntro/index.html.
+Figure X.1-1 shows the actors directly involved in the MADO Profile and the relevant
+transactions/content between them. If needed for context, other actors that may be indirectly
+involved due to their participation in other related profiles are shown in dotted lines. Actors
+which have a required grouping (if any), are shown as joined boxes (see Section X.3).
+230 The Imaging Document Consumer obtains the Imaging Manifests from the local community
+through grouping with an actor from an ITI profile that can provide access to the XDS / MHD
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 15 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+infrastructure, such as the XDS.b Document Consumer or MHD Document Consumer. The
+XDS.b Document Consumer and MHD Document Consumer are NOT included in this profile.
+235
+Figure X.1-1: MADO Actor Diagram
+Table X.1-1 lists the transactions and Table X.1-2 lists the content for each actor directly
+involved in the Manifest-based Access to DICOM Objects (MADO) Profile. To claim
+compliance with this profile, an actor shall support all required transactions/content (labeled
+240 “R”) and may support the optional transactions (labeled “O”).
+Table X.1-1: MADO Profile - Actors and Transactions
+Actors Transactions Requester or Optionality Reference
+Responder
+Imaging Intra-Community Requester R RAD TF-2: 4.1xy
+Document WADO-RS Retrieve
+Consumer [RAD-1xy]
+Imaging Intra-Community Responder R RAD TF-2: 4.1xyt
+Document WADO-RS Retrieve
+Source [RAD-1xy]
+Table X.1-2: MADO Profile - Actors and Content
+Actors Content Requester or Optionality Reference
+Modules Responder
+Content DICOM KOS Based Creator R See Note 1 RAD TF-3: 6.X.1
+Creator Imaging Study
+Manifest
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 16 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Actors Content Requester or Optionality Reference
+Modules Responder
+FHIR Based Creator R See Note 1 RAD TF-3: 6.X.2
+Imaging Study
+Manifest
+Imaging DICOM KOS Based Consumer O See Note 2 RAD TF-3: 6.X.1
+Document Imaging Study
+Consumer Manifest
+FHIR Based Consumer O See Note 2 RAD TF-3: 6.X.2
+Imaging Study
+Manifest
+Note 1: The Imaging Study Manifest content is defined in two alternative formats – A DICOM KOS IOD based format and a
+FHIR Bundle format. The Manifest Content Creator shall support both formats and when integrated at deployment time
+245 with a Document Source Actor, it is configured to publish one of the two formats.
+Note 2: The Imaging Document Consumer shall support at least one of the two formats
+X.1.1 Actor Descriptions and Actor Profile Requirements
+The transactions needed to query and retrieve Imaging Manifest Documents whose content is
+specified by this profile are beyond the scope of the MADO Profile. Such transactions when
+250 needed are addressed by grouping the MADO Profile with the desired Document sharing
+profiles.
+Most requirements on the Intra-Community WADO-RS Retrieve are documented in RAD TF-2
+Transactions. This section documents any additional requirements on profile’s actors.X.1.1.1
+Content Creator.
+255 X.1.1.1 Content Creator
+The Content Creator produces Imaging Study Manifest documents in both formats. The Content
+Creator and the Imaging Document Source are expected to ensure that the imaging study
+DICOM instances referenced by the Imaging Study Manifest are consistent.
+X.1.1.2 Imaging Document Consumer
+260 The Imaging Document Consumer requests and receives DICOM instances from an Imaging
+Document Source.
+The Imaging Document Consumer obtains the Imaging Study Manifest(s) identifying DICOM
+Studies of interest from the grouped Document Consumer that uses appropriate transactions
+(e.g., from other IHE Profiles such as MHD, MHDS or XDS.b) to search for and retrieve such
+265 Imaging Study Manifest(s) within the community.
+Using the information from an Imaging Study Manifest, the Imaging Document Consumer
+determines which DICOM Instance(s) it will retrieve.
+Note: The Imaging Study Manifests do not identify individual frames within multi-frame objects, and as such, there is no
+possibility to retrieve individual frames using the MADO Profile.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 17 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+270 The Imaging Document Consumer issues an Intra-Community WADO-RS Retrieve [RAD-1xy]
+transaction in the Requester role to an Imaging Document Source to retrieve the DICOM
+instances within its community.
+The Imaging Document Consumer forms the URL endpoint in its Study Service Retrieve
+Request by using the following metadata elements from the retrieved Imaging Study Manifests:
+275 • Study Instance UID
+• Series Instance UID, as needed
+• SOP Instance UID, as needed
+The Imaging Document Consumer will typically retrieve all DICOM instances listed in the
+Imaging Study Manifest that belong to the same series from a specific Imaging Document
+280 Source within the community, by retrieving all instances of a Series. Alternatively, it may choose
+to retrieve each Instance resource individually.
+The Imaging Document Consumer shall be aware that the list of instances of one series or study
+referenced in an Imaging Manifest may not be the same as all the instances of that series or study
+available at an Imaging Document Source and published by it for sharing within and outside the
+285 community. In this case, the number of instances retrieved by using the request for Series
+Instances or Study Instances resource may be larger or smaller than the number of instances
+expected by the Document Consumer.
+X.1.1.3 Imaging Document Source
+The Imaging Document Source receives an Intra-Community WADO-RS Retrieve [RAD-1xy]
+290 transaction request from an Imaging Document Consumer to retrieve the requested instances and
+returns them to the requester. If the <resource> component of the inbound request indicates the
+request for retrieval of a complete study or series, Imaging Document Source may only return
+those DICOM Instances that have been published by it in an Imaging Study Manifest.
+X.2 MADO Actor Options
+295 Options that may be selected for each actor in this profile, if any, are listed in Table X.2-1.
+Dependencies between options, when applicable, are specified in notes.
+300
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 18 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Table X.2-1: MADO – Actors and Options
+Actor Option Name Reference
+Content Creator No Options N/A
+Imaging Document Consumer DICOM KOS-based Imaging Study See Section X.2.1
+Manifest (Note 1)
+FHIR-Based Imaging Study Manifest See Section X.2.2
+(Note 1)
+Rendered Instances Option See Section X.2.3
+Imaging Document Source Rendered Instances Option See Section X.2.3
+Note 1: at least one of these two options shall be supported.
+X.2.1 DICOM KOS-Based Imaging Study Manifest Option
+305 A Document Consumer supporting this option is able to consume a manifest using the
+specification defined in IHE RAD TF-3: Chapter 6.X.1: MADO DICOM KOS-Based Imaging
+Study Content Definition. The manifest will be a DICOM Part 10 encapsulated DICOM
+Information Object.
+X.2.2 HL7 FHIR-Based Imaging Study Manifest Option
+310 A Document Consumer supporting this option can consume a manifest using the specification
+defined in IHE RAD TF-3: Chapter 6.X.2: MADO HL7 FHIR Based Imaging Study Manifest
+Content Definition.
+X.2.3 Rendered Instances Option
+An Imaging Document Consumer supporting this option shall be able to request and receive
+315 instances in a rendered format.
+An Imaging Document Source supporting this option shall be able to respond to requests for
+rendered instances and return them in a rendered format.
+X.3 MADO Required Actor Groupings
+An actor from this profile (Column 1) shall implement all of the required transactions and/or
+320 content modules in this profile in addition to all of the requirements for the grouped actor
+(Column 2).
+If this is a content profile, and actors from this profile are grouped with actors from a workflow
+or transport profile, the Reference column references any specifications for mapping data from
+the content module into data elements from the workflow or transport transactions.
+325 In some cases, required groupings are defined as at least one of an enumerated set of possible
+actors; this is designated by merging column one into a single cell spanning multiple potential
+grouped actors. Notes are used to highlight this situation.
+Section X.5 describes some optional groupings that may be of interest for security considerations
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 19 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+and Section X.6 describes some optional groupings in other related profiles.
+330 Table X.3-1: MADO – Actor Groupings
+MADO Actor Actor(s) to be grouped Reference Content Bindings
+with Reference
+Content Creator ITI CT / Time Client ITI TF-1: 7.1
+Imaging Document ITI CT / Time Client ITI TF-1: 7.1
+Consumer
+ITI ATNA / Secure Node or ITI TF-1: 9.1
+Secure Application
+Imaging Document ITI CT / Time Client ITI TF-1: 7.1
+Source
+ITI ATNA / Secure Node or ITI TF-1: 9.1
+Secure Application
+X.4 MADO Overview
+X.4.1 Concepts
+X.4.1.1 Role of an imaging Study Manifest
+335 An Imaging Study Manifest is a document listing the key information about the content of a
+single imaging study. It acts as a summary for the actual imaging study that is large (typically
+megabyte or gigabyte size) and complex (hundreds of data elements). It includes location
+pointers to its image content and organizes this information according to the well-established
+model of an imaging study made of one or more series and each series made of instances or
+340 images.
+The Content Creator produces an Imaging Study Manifest that represents the shared content of
+an imaging study that is being published by the Imaging Document Source in the community.
+The Imaging Document Source determines which part of the imaging study to include in the
+Imaging Study Manifest it publishes. This decision is based on local and community policies.
+345 The mechanism by which the Imaging Document Source and Imaging Document Consumer
+share Imaging Study Manifests is not constrained by the MADO profile, and several models may
+be used, including but not limited to XDS.b, MHD or MHDS. The Imaging Document Consumer
+is typically an application that is grouped with an actor providing access to the Imaging Study
+Manifest.
+350 As an example, the Imaging Document Consumer can discover and retrieve Imaging Study
+Manifests by grouping with one of the following actors:
+• XDS.b Document Consumer: The MADO Content Consumer/Imaging Document
+Consumer is grouped with the XDS.b Document Consumer that is the initiator of the
+document discovery and retrieval and communicates with the XDS Document
+355 Registry/Repositories using the Registry Stored Query [ITI-18] and Retrieve Document
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 20 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Set [ITI-43] transactions. The XDS.b Document Consumer then transfers that
+information to the Imaging Document Consumer.
+Note: An XDS-I.b Document Consumer may also be grouped with a MADO Imaging
+Document Consumer to support the use of the MADO Imaging Study Manifest which
+360 is richer than the XDS-I.b Imaging Manifest and relies on a more basic WADO-RS
+retrieve transaction that the RAD [107] transaction.
+• MHD Consumer: The MADO Content Consumer/Imaging Document Consumer is
+grouped with the MHD Document Consumer that is the initiator of the document
+discovery and retrieval and communicates with the MHD Document Responder. The
+365 MHD Document Consumer uses the Find Document References [ITI-67] and Retrieve
+Document [ITI-68] transactions to find and return the retrieved Imaging Manifests. The
+MHD Consumer then provides this information to the Imaging Document Consumer.
+MADO defines two content formats (encodings) for the Imaging Study Manifest:
+1. DICOM KOS based manifest (see TF-3: 6.X.1)
+370 2. FHIR Imaging Study based manifest (see TF-3: 6.X.2)
+and a bi-directional mapping between the two formats for transformation purposes (see TF-3:
+6.X.4).
+The MADO Imaging Study Manifest extends the definition of the XDS-I.b Manifest by
+including key information about the content of the imaging study including attributes that
+375 describe the:
+• Modality
+• Series Number
+• Series Description
+• Series Date/Time
+380 • Instance Number
+• Number of Frames (in instance)
+• Image flagged as a key image
+These attributes can be used to identify the series/instances of the imaging study that are of
+interest and so optimize the instance retrieval to those series/instances instead of having to
+385 retrieve the whole study.
+Once the selected study, series, instance has been identified, the Imaging Document Consumer
+can retrieve imaging studies from an Imaging Document Source using a consistent mechanism,
+regardless of whether the imaging study is published to an XDS.b or MHD environment.
+The Imaging Document Consumer may reach out to an Imaging Document Source located
+390 within the same community (See Section X.4.1.2) or to an Imaging Document Source located in
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 21 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+a different community by grouping the MADO Profile with the XC-WADO Profile (See Section
+X.4.1.3).
+X.4.1.2 Intra-community sharing infrastructure
+The Imaging Document Consumer is located within the same community as the Imaging
+395 Document Source.
+The Imaging Document Source may gain access to imaging studies internally or from an Image
+Manager/Image Archive, via standard mechanism such as the Retrieve Images [RAD-16]
+transaction.
+MADO defines a WADO-RS transaction for instance retrieval by the Imaging Document
+400 Consumer from the Imaging Document Source (see TF-2: 4.1xy).
+The Imaging Study Manifest content includes location pointers (See Section 6.X.1.2.3.4
+Hierarchical Series Reference Macro) for each series of the imaging study. Two modes of
+addressing are defined and shall be supported:
+1. Retrieve URL based Mode. In this mode, the manifest contains a Retrieve URL location
+405 pointer to convey a base URI for the end-point that supports the WADO-RS instance
+retrieve service (although possibly present the Retrieve Location UID is not used in this
+addressing mode as there is no look-up service available).
+2. Retrieve Location UID based Mode. In this mode, the manifest contains a Retrieve
+Location UID as a pointer to be used as input to a look-up service that returns the base
+410 URI for the end-point that supports the WADO-RS instance retrieve service. Such a look-
+up service is outside the scope of the MADO Profile and may be supported by local
+configuration or via a directory such as using the IHE mCSD Profile.
+One of these two modes must be selected by all Imaging Document Sources and Imaging
+Document Consumers at the time of deployment. All Imaging Document Consumers and
+415 Imaging Document Source deployed in a specific community use the same mode of addressing.
+X.4.1.3 Cross-community sharing infrastructure
+The Imaging Document Consumer located within one community may request instances of
+imaging studies from an Imaging Document Source located in a different community. Each
+community is served by initiating and responding gateways that interconnect the communities.
+420 Such an extension to the use of MADO in cross-community environments requires grouping
+with the IHE XC-WADO Profile. This results in grouping actors from the two profiles. (See XC-
+WADO RAD-TF-1: 58.4.2.1 Use Case #1: Image Set sharing between communities.)
+The formatting of the URL used in the [RAD-160) WADO-RS transaction is specified by the
+XC-WADO Profile and supports communities that use different modes of addressing a) Retrieve
+425 URL based, and b) Retrieve Location UID based (see Section X.4.1.2).
+As a result, the Imaging Document Consumer can retrieve imaging studies from an Imaging
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 22 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Document Source using a consistent mechanism, regardless of whether the imaging study is
+published to an XDS.b or MHD environment, or an XCA community.
+X.4.1.4 Imaging Reports
+430 MADO focuses on retrieving DICOM Instances using RESTful services. Other imaging study-
+related documents, such as radiology reports in CDA or FHIR based formats are outside the
+scope of the MADO Profile and may be retrieved using the ITI MHD actors or the XDS.b actors.
+X.4.1.5 Selecting an imaging study
+This section discusses the selection of a study to set the overall context for the ability offered to
+435 the user to select imaging studies. The below two steps need to be supported by the document
+sharing infrastructure, which is out of scope of the MADO Profile.
+The first step is to search for imaging study manifests matching search parameters for a selected
+patient. The search parameters used to obtain a list of matching imaging studies typically include
+parameters such as Modality, Anatomical Region, Study Date, and Time. These search
+440 parameters are associated with the Imaging Study Manifest and further specified in RAD TF-3:
+4.3.X Imaging Study Manifest Search Metadata.
+The second step is to perform a selection among the entries of this initial list of matching study
+manifests using the full set of document search metadata returned to identify the desired imaging
+study manifests and request their retrieval.
+445 X.4.1.6 Selecting a subset of an imaging study
+Retrieving an entire imaging study gives the user (and the application they are using) full access
+to all the data and metadata. However, if the study is large and the network bandwidth is limited,
+the user may wish to start by retrieving a selected subset of the study, i.e., particular series or
+instances.
+450 The subset is typically based on selection metadata that describes the series and the instances in
+the study. Common attributes include modality, series description, body part, image number,
+number of frames, etc.
+This selection metadata is obtained by the Imaging Document Consumer (see step 2 in X.4.5)
+from the MADO Imaging Study Manifest (See section X.4.1.1 Role of an imaging Study
+455 Manifest) and used by the user to select their subset of interest.
+X.4.1.7 Launching a Remote Image Display
+An Imaging Document Consumer may invoke or launch an image display viewer on a remote
+server, using a complete URL stored by the Imaging Study Manifest Creator in an Imaging Study
+Manifest (or in an imaging report). The invocation of such a remote image display is expected to
+460 follow a number of principles that are important to the MADO Profile:
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 23 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+1. The remote image display launched shall offer access only to the imaging study whose
+Study Instance UID is the same as the Study Instance UID referenced by its associated
+imaging study manifest. This principle is important to ensure the privacy of other studies
+that may also be stored on the same system hosting the remote image display (e.g., an
+465 Imaging Document Source). This enforcement on the remote image display is critical.
+2. The consequence of the above requirement is to provide a means to track and audit the
+Study Instance UID upon which the web transaction that launches the remote image
+display. Because this transaction is uniquely identified by the URL that is included in the
+launch, it is recommended that the URL includes the UID associated to the study UID in
+470 a way that can be extracted from audit trail events (e.g., a parameter such as
+“
+studies/2.999.1.59.40211.12345678.678910”).
+3. The MADO Profile specifies in its imaging study manifest (both the DICOM-KOS based
+and the FHIR based formats) the inclusion of a complete URL without constraints
+(except the one stated in point 2 above). This flexibility allows to support a variety of
+475 remote image display implementations. However, it is recommended to use the URL
+specified by the Invoke Image Display (IID Profile – See RAD TF-1: 35).
+X.4.2 Use Cases
+X.4.2.1 Use Case #1: DICOM Instances Retrieval
+X.4.2.1.1 DICOM Instances Retrieval Use Case Description
+480 This use case focuses on the retrieve of the DICOM encoded instances which can be displayed or
+processed.
+• A user on the Imaging Document Consumer uses the content of an Imaging Study
+Manifest to choose an entire imaging study or a subset (series, set of instances).
+• The Imaging Document Consumer requests the retrieval of these selected DICOM
+485 instances from the remote Imaging Document Sources using the location information
+provided in the Imaging Study Manifest.
+X.4.2.1.1.1 Pre-conditions
+• Imaging Study Manifest is available to the Imaging Document Consumer.
+X.4.2.1.1.2 Post-conditions
+490 • Selected DICOM instances are available in the Imaging Document Consumer for viewing
+and/or processing.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 24 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+X.4.2.1.2 Instance Retrieval Process Flow
+495 Figure X.4.2.1.2-1: Basic Process Flow in MADO Profile
+The text in Figure X.4.2.1.2-2 was used to generate the diagram in Figure X.4.2.1.2-1. Readers
+will generally find the diagram more informative. The text is included here to facilitate editing.
+@startuml Basic Process Flow in MADO
+500
+participant "Imaging Document Consumer" as IDC
+participant "Imaging Document Source" as IDS
+== Get and Select study/series/instance uids ==
+IDC->IDC: //Access Imaging Study Manifest//
+alt study level
+505
+IDC->IDC: Select Study references
+else series level
+IDC->IDC: Select Series references
+else instance level
+IDC->IDC: Select Image references
+510
+end
+== Get Instances ==
+IDC->IDS: Intra-Community WADO-RS Retrieve [RAD-1xy] for study/series/instances
+activate IDS
+IDS-->IDC: Return instances
+515
+deactivate IDS
+@enduml
+Figure X.4.2.1.2-2: Basic Process Flow in MADO Profile Pseudocode
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 25 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+X.4.2.2 Use Case #2: Key DICOM Instances Retrieval
+X.4.2.2.1 Key Instances Retrieval Use Case Description
+520 This use case focuses on the retrieve of the DICOM encoded instances that are flagged as key
+images, which can be displayed or processed. This avoids to selectively retrieve all DICOM Key
+Object Selection instances to identify which images have been flagged as key by one or more
+Key Image Note (IHE KIN Profile, See RAD TF-1: 8).
+• A user on the Imaging Document Consumer uses the content of an Imaging Study
+525 Manifest to learn that key images are available and choose to retrieve only these key
+images flagged by one or more KIN within the imaging study. It uses the coded title and
+the optional description associated to the KIN to identify the key images of interest.
+• The imaging document consumer requests the retrieval of these selected key DICOM
+instances from the remote Imaging Document Sources using the location information
+530 provided in the imaging study manifest.
+X.4.2.2.1.1 Pre-conditions
+• Imaging Study Manifest is available to the Imaging Document Consumer.
+• The imaging Study contains one or more key images flagged by one or more KIN.
+X.4.2.2.1.2. Post-conditions
+535 ● DICOM instances flagged as key images are available in the Imaging Document
+Consumer for viewing and/or processing.
+X.4.2.2.2 Key Instances Retrieval Process Flow
+Figure X.4.2.2.2-1: Key Instances Retrieval Flow
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 26 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+540 The text in Figure X.4.2.2.2-2 was used to generate the diagram in Figure X.4.2.2.2-1. Readers
+will generally find the diagram more informative. The text is included here to facilitate editing.
+@startuml Key Instance Retrieval Process Flow
+participant "Imaging Document Consumer" as IDC
+545
+participant "Imaging Document Source" as IDS
+== Get and Select study/series/instance uids for Key Images ==
+IDC->IDC: //Access Imaging Study Manifest//
+IDC->IDC: //Present Title of Key Images and optional description for user selection//
+IDC->IDC: //Get Study/Series/Instance UIDs of selected Key Images//
+550
+== Get Key Images ==
+IDC->IDS: Intra-Community WADO-RS Retrieve [RAD-1xy] to retrieve Key Image
+activate IDS
+IDS-->IDC: Return Key Image
+deactivate IDS
+555
+@enduml
+Figure X.4.2.2.2-2: Key Instances Retrieval Flow Pseudocode
+X.4.2.3 Use Case #3: Invoke Remote Image Display
+X.4.2.3.1 Invoke Remote Image Display Use Case Description
+This use case focuses on the retrieve of the rendered transformation of corresponding DICOM
+560 instances which only need an off-the-shelf browser to be displayed (no need for a DICOM
+viewer).
+• A user on the Imaging Document Consumer wishes to launch a remote image viewer for
+the display of the imaging study related to the imaging manifest.
+• The Imaging Document Consumer uses a URL provided in the Imaging Study Manifest
+565 to launch a remote Image Display on the specific imaging study.
+• The user navigates among the series and instances of the imaging study as desired using
+the remote viewer user interface.
+X.4.2.3.1.1 Pre-conditions
+• Imaging Study Manifest is available to Imaging Document Consumer.
+570 • The imaging Study Manifest contains a remote Invoke Image Display URL
+X.4.2.3.1.2 Post-conditions
+• The imaging study is displayed without the need for a requester side DICOM viewer
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 27 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+X.4.2.3.2 Invoke Remote Image Display Process Flow
+575 Figure X.4.2.3.2-1: Invoke Remote Image Display Process Flow
+The text in Figure X.4.2.3.2-2 was used to generate the diagram in Figure X.4.2.3.2-1. Readers
+will generally find the diagram more informative. The text is included here to facilitate editing.
+@startuml Invoke Remote Image Display Process Flow
+580
+box "Grouped"
+participant "Image Display Invoker" as IDI
+participant "Imaging Document Consumer" as IDC
+end box
+participant "Imaging Document Source" as IDS
+585
+participant "Image Display" as ID
+== Get server-side viewer URL ==
+IDC->IDC: //Access Imaging Study Manifest//
+IDC->IDC: //User is aware that a remote viewer may be invoked//\n//and chooses to
+launch it//
+590
+IDC->IDC: //Get server-side viewer URL from Imaging Study Manifest//
+== Launch server-side viewer using URL ==
+IDC-->IDI: //User requests server-side viewer//\n//launch passing the Study Instance
+UID//
+activate IDI
+595
+activate ID
+IDI->ID: Request Display of Study Images
+ID->ID: Display Study Images
+deactivate ID
+deactivate IDI
+600
+@enduml
+Figure X.4.2.3.2-2: Invoke Remote Image Display Process Pseudocode
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 28 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+X.5 MADO Security Considerations
+The MADO Profile has similar security considerations to other IHE profiles that are based on
+605 HTTP or REST. See ITI TF-2: Appendix Z.8 for recommendations for secure transportation,
+authentication, authorization, and securing patient identifiers in URLs. Implementers are
+encouraged to review that section for applicability to their product environment.
+Implementers may also consider implementing Cross-Origin Resource Sharing (CORS)
+(https://www.w3.org/TR/cors/) support to allow browser-based clients to retrieve information
+610 from distributed sources (for example, queries are performed on server A, and instances are
+downloaded from server B).
+Deployments should consider whether or not:
+• The Imaging Document Consumer performs user authentication to access patient data.
+• The Imaging Document Source uses credentials or tokens supplied by the Imaging
+615 Document Consumer in the WADO-RS Retrieve transaction.
+• The Imaging Document Consumer or the Imaging Document Source (or both) records
+access in an audit log.
+This profile does not define how the Imaging Document Consumer supplies credentials to the
+Imaging Document Source to provide the user with a seamless "single sign-on" experience. The
+620 HTTP GET URL transaction allows for a range of authentication mechanisms, including use of
+mTLS authentication, digest authentication, client certificate-based authentication, provision of a
+SAML assertion in an authentication header, or other mechanisms suitable for stateless atomic
+transactions.
+The user authentication and authorization methods are outside the scope of the MADO Profile.
+625 Implementers should consider implementing the IHE ITI Profile such as Internet User
+Authorization (IUA).
+Implementations should also consider how availability and integrity will be protected, including
+intentional attacks such as maliciously crafted queries that interfere with service availability.
+The WADO-RS transactions may include in their response a URL specifying where the
+630 corresponding instances can be retrieved. In the absence of protection, such as TLS, a malicious
+attacker may intercept the response and rewrite these URLs to a location of suspect origin. An
+Imaging Document Consumer should verify that any received URL is valid and corresponds to a
+known secure location.
+X.6 MADO Cross Profile Considerations
+635 The table below describes some optional groupings in other related profiles.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 29 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+MADO Actor Actor(s) may be grouped Reference Content Bindings
+with Reference
+Imaging Document ITI XDS.b / Document ITI TF-1: 10.1
+Consumer Consumer
+OR ITI TF-1: 33
+ITI MHD / Document Consumer
+RAD XDS-I / Imaging RAD TF:1-18
+Document Consumer
+RAD XC-WADO Imaging RAD TF-1 XC-WADO
+Document Consumer Supplement
+ITI CT / Time Client ITI TF-1: 7.1
+ITI ATNA / Secure Node or ITI TF-1: 9.1
+Secure Application
+RAD IID Image Display RAD TF-1 Section 35
+Invoker
+Imaging Document ITI XDS.b / Document Source ITI TF-1: 10.1
+Source OR
+ITI MHD / Document Source ITI TF-1: 33
+RAD XDS-I / Imaging RAD TF:1-18
+Document Source
+RAD XC-WADO Imaging RAD XC-WADO
+Document Source Supplement
+ITI CT / Time Client ITI TF-1: 7.1
+ITI ATNA / Secure Node or ITI TF-1: 9.1
+Secure Application
+Content Creator ITI XDS.b / Document ITI TF-1: 10.1
+Consumer
+OR ITI TF-1: 33
+ITI MHD / Document Consumer
+RAD XDS-I / Imaging Source
+ITI CT / Time Client ITI TF-1: 7.1
+ITI ATNA / Secure Node or ITI TF-1: 9.1
+Secure Application
+640
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 30 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Volume 2 – Transactions
+Add Section 4.1xy to Volume 2.
+645 4.1xy Intra-Community WADO-RS Retrieve [RAD-1xy]
+4.1xy.1 Scope
+This transaction is used to retrieve DICOM instances in an imaging study based on information
+extracted from the imaging study manifest.
+Reviewer Note: The specification below is largely based on the Cross-Community WADO-RS
+650 Retrieve [RAD-160]. Where identical, it is simply referenced, where different, specific text is
+provided for the [RAD-1xy] transaction.
+4.1xy.2 Actor Roles
+Table 4.1xy.2-1: Actor Roles
+Role: Requester:
+Submit retrieve DICOM instance requests
+Actor(s): The following actor plays the role of Requester:
+Imaging Document Consumer
+Role: Responder:
+Returns the requested DICOM instance(s)
+Actor(s): The following actor plays the role of Responder:
+Imaging Document Source
+655 The transaction text specifies the behavior for each Role. When behavior goes beyond that of the
+general role, the behavior of specific actors may also be specified.
+4.1xy.3 Referenced Standards
+See section 4.160.3 Referenced Standards.
+4.1xy.4 Messages
+660
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 31 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Figure 4.1xy.4-1: Interaction Diagram
+This transaction defines request/response message pairs:
+• Get Instances (Section 4.1xy.4.1 and 4.1xy.4.2),
+665 • Get Rendered Instances (Section 4.1xy.4.3 and 4.1xy.4.4) when the Rendered Instances
+Option is supported.
+A Requester and a Responder shall support Get Instances request/response message pair as
+defined in DICOM. They may optionally implement Get Rendered Instances request/response
+message pair as defined in DICOM.
+670 4.1xy.4.1 Get Instances Request Message
+See section 4.160.4.1 Get Instances Request Message.
+4.1xy.4.1.1 Trigger Events
+See section 4.160.4.1.1 Trigger Events.
+4.1xy.4.1.2 Message Semantics
+675 The Get Instances Request message is a Retrieve transaction of the DICOM Studies Service. See
+DICOM PS3.18 Section 10.4.
+The Requester is the User Agent, and the Responder is the Origin Server.
+The message shall correspond to one of the Instance Resources in Table 4.1xy.4.1.2-1.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 32 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Table 4.1xy.4.1.2-1: Retrieve Transaction Instance Resources
+Resource Reference
+Study
+Series DICOM PS3.18 Section 10.4.1.1.1
+Instance
+680 Although DICOM also includes the Frame Pixel Data resource, it is not required for this
+transaction.
+Imaging Document Consumers acting as Requester may consider replacing a study level requests
+by issuing multiple series level requests in order to achieve performance improvements.
+The HTTP Request URI for the DICOMweb Retrieve Transaction of the Studies Service is
+685 formed from the component, component, < component.
+<protocol> <endpoint> resource>
+• The value of the < component shall be set to .
+protocol> https://
+• The component of DICOMweb Study Service Retrieve transaction URI is
+<endpoint>
+formed from hostname, port, and endpoint path of the RESTful service of the responder,
+as follows:
+<hostname[:port]>/<endpoint path>/.
+690 • The component is formed from appropriate resource UIDs depending on the
+<resource>
+resource being retrieved as well as the type of the resource. The value of the <
+resource>
+component shall be formatted as specified in the definition of the WADO-RS Get
+Instances [RAD-1xy] transaction. See RAD-TF-2: 4.1xy.4.3
+4.1xy.4.1.2.1 Example of a Get Instances Request message
+695 The following is an example of an HTTP Request URI for retrieving a composite DICOM
+Instance. This example uses an Accept header to request the DICOM Instance returned in the
+Native DICOM binary format.
+https://www.imaging-document-source.org/
+studies/2.999.1.59.40211.12345678.678910/series/2.999.1.59.40211.789001
+700
+276.14556172.67789/instances/2.999.1.59.40211.2678810.87991027.899772.2
+Accept: multipart/related; type=application/dicom
+4.1xy.4.1.3 Expected Actions
+See section 4.160.4.1.3 Expected Actions.
+705 4.1xy.4.2 Get Instances Response Message
+The Responder reports the outcome of the Get Instances Request Message.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 33 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+4.1xy.4.2.1 Trigger Events
+See Section 4.160.4.2.1 Trigger Events.
+4.1xy.4.2.2 Message Semantics
+710 The message is a Response to a Retrieve Transaction as specified in DICOM PS3.18 Section
+10.4.3.
+The Requester is the User Agent, and the Responder is the Origin Server.
+The Responder shall provide a response as described in Table 4.1xy.4.2.2-1.
+Table 4.1.xy.4.2.2-1: Response Message Semantics
+Resource Reference
+Study
+Series DICOM PS3.18 Section 10.4.3.3.1
+Instance
+715 The Responder shall provide a response message header containing the appropriate status code
+indicating success, warning, or failure as described in DICOM PS3.18 Section 10.4.3.1.
+4.1xy.4.2.3 Expected Actions
+See Section 4.160.4.2.3 Expected Actions.
+4.1xy.4.3 Get Rendered Instances Request Message
+720 The Requester retrieves one or more representations of a DICOM Resource, rendered as
+appropriate images or other representations, from the Responder.
+4.1xy.4.3.1 Trigger Events
+See Section 4.160.4.3.1 Trigger Events.
+4.1xy.4.3.2 Message Semantics
+725 The Get Rendered Instances Request message is a Retrieve transaction of the DICOM Studies
+Service. See DICOM PS3.18 Section 10.4.
+The Requester is the User Agent, and the Responder is the Origin Server.
+The message shall correspond to one of the Instance Resources in Table 4.1.xy.4.3.2-1.
+Table 4.1xy.4.3.2-1: Retrieve Transaction Instance Resources
+Resource Reference
+Rendered Instance DICOM PS3.18 Section 10.4.1.1.3
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 34 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+730 Note: Although DICOM also includes the Rendered Study, Rendered Series, and Rendered Frame Pixel Data resource, they
+are not required for this transaction.
+The HTTP Request URI for the DICOMweb Retrieve Transaction of the Studies Service is
+formed from the component, component, and < component.
+<protocol> <endpoint> resource>
+• The value of the component shall be set to .
+<protocol> https://
+735 • The component of DICOMweb Study Service Retrieve transaction URI is
+<endpoint>
+formed from the hostname, port, and endpoint path of the RESTful service of the
+responder, as follows:
+<hostname[:port]>/<endpoint path>/.
+• The component is formed from the appropriate resource UIDs depending on
+<resource>
+the resource being retrieved as well as the type of the resource.
+740 4.1xy.4.3.2.1 Example of a Get Instances Request message
+The following is an example of an HTTP Request URI for retrieving a rendered composite
+DICOM Instance. This example uses an Accept header to request the DICOM Instance returned
+in the JPEG format.
+https://www.imaging-document-source.org/
+745
+studies/2.999.1.59.40211.12345678.678910/series/2.999.1.59.40211.789001
+276.14556172.67789/instances/2.999.1.59.40211.2678810.87991027.899772.2
+/rendered
+Accept: multipart/related; type=image/jpeg
+4.1xy.4.3.3 Expected Actions
+750 See Section 4.160.4.3.3 Expected Actions.
+4.1xy.4.4 Get Rendered Instances Response Message
+See Section 4.160.4.4 Get Rendered Instances Response Message.
+4.1xy.5 Security Considerations
+See Section 4.160.4.6 Security Considerations.
+755
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 35 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Add Appendix XA to Volume 2x appendices
+Appendix XA – Managing the addresses of the sources of images to
+760 retrieve beyond a single community
+This appendix provides information about the way the addresses of image sources are handled
+both within a community where the DICOM instances are accessed through the MADO Profile,
+as well as cross-community where the MADO Profile is grouped with the XC-WADO Profile.
+In particular, the way the WADO-RS Request conveys address information in such a mixed
+765 environment is handled.
+The following four figures present an example of cross-community handling of the retrieve URL
+used in the WADO-RS transactions. Figures XA-1 and XA-2 depicts the case of a Community A
+that uses a Retrieve Location UID. Figures XA-3 and XA-4 depicts the case of a Community A
+that uses a Retrieve URL in the Imaging Study Manifest (See section X.4.1.2 Intra-community
+770 sharing infrastructure).
+In these examples, a Cross-community WADO-RS Retrieve transaction initiates from a
+Community B Imaging Document Consumer and progresses via Initiating and Responding
+Imaging Gateways to reach the Community A where the Imaging Document Source is located.
+The example focuses on the WADO-RS retrieve URL, and the value it contains, as it moves
+775 from B to A. These transformations are specified by the XC-WADO Profile using the MADO
+specified Imaging Study Manifest (See section 58.4.1.5 DICOM web Study Service Retrieve
+transaction URI).
+Color highlights below show important and manipulated elements during transactions used in
+Figures XA-1, XA-2, XA-3, XA-4 that provide examples of the URL transformation by the
+780 gateways where the responding community either include or not the Retrieve URL (0008,1190)
+attribute into the published Imaging Manifests:
+• Initiating Imaging Gateway hostname: initiating-gateway.example.com
+• Initiating Imaging Gateway endpoint_path: wado
+• Responding Imaging Gateway hostname: responding-gateway.example.org
+785 • Responding Imaging Gateway endpoint_path: wado-rs
+• Initiating Community homeCommunityId: urn:oid:1.2.3.4
+• Responding Community homeCommunityId: urn:oid:5.6.7.8
+• RetrieveLocationUID: 1.2.840.9.10.11.12
+• Retrieve URL (base URI): hostname/dicom-web-rs/
+790 • Imaging Document Source hostname: document-source.example.org
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 36 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Image retrieval by XC-WADO with Domain A
+using lookup of Retrieve Location UID
+795
+i
+ii
+iii
+iv
+800
+Figure XA-1: WADO-RS Retrieve URL with Domain A using lookup of Retrieve Location
+805 UID – Transaction flows
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 37 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+Get
+Manifest
+Get
+Images
+with
+XC-WADO
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+810
+Given a manifest for the imaging study
+coming from
+1.2.840.113619.2.207.28521.42888.1640475282.450/
+homeCommunityID/5.6.7.8 and containing a retrieveLocationUID 1.2.840.. and no retrieve URL
+The Manifest is associated with homeCommunityID/5.6.7.8 which is not the Local Home CommunityID
+The B_IDC sees a different homeCommunityID than its own and can construct the appropriate URL.
+815 https://initiating-gateway.example.com/wado/
+homeCommunityId/5.6.7.8/RetrieveLocationUID/1.2.840.9.10.11.12/study
+/1.2.840.113619.2.207.28521.42888.1640475282.450/
+B_IIGW uses A_homeCommunityID to map (lookup) the hostname for A_RGW according to local
+configuration in B_IGW and constructs the appropriate URL
+https://responding-gateway.example.org/wado-rs/
+homeCommunityId/5.6.7.8/RetrieveLocationUID/1.2.840.9.10.11.12/study
+/1.2.840.113619.2.207.28521.42888.1640475282.450/
+820
+A_RIGW The initial string document-source.example.org/pacs/wado-rs needs to be obtained from
+local lookup using the retrieve location UID (OID)
+https://document-source.example.org/pacs/wado-rs/
+study/1.2.840.113619.2.207.28521.42888.1640475282.450
+Domain A document source responds with multi-part encoded DICOM objects (images) as payload
+825
+Figure XA-2: WADO-RS Retrieve URL with Domain A using lookup of Retrieve Location
+UID – Related URL values
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 38 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+830
+Image retrieval by XC-WADO with Domain A directly using the
+Retrieve URL (no Retrieve Location UID lookup)
+835
+840
+i
+845
+ii
+iii
+850
+iv
+855
+Figure XA-3: WADO-RS Retrieve URL with Domain A using the Retrieve URL –
+Transaction flows
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 39 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+Get
+Manifest
+Get
+Images
+with
+XC-WADO
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+860
+Given a manifest for imaging study coming from
+1.2.840.113619.2.207.28521.42888.1640475282.450/
+homeCommunityID/5.6.7.8 and containing a retrieveLocationUID 1.2.840.. and with a retrieve URL
+hostname/dicom-
+web-rs
+The Manifest is associated with a homeCommunityID/5.6.7.8 which is not the Local Home CommunityID
+865
+The B_IDC sees a different homeCommunityID than its own and can construct the appropriate URL.
+https://initiating-gateway.example.com/wado/
+homeCommunityId/5.6.7.8/RetrieveLocationUID/1.2.840.9.10.11.12/study/1.2.840
+.113619.2.207.28521.42888.1640475282.450?retrieveurl=hostname/dicom-web-rs/
+B_IIGW uses A_homeCommunityID to map (lookup) the hostname for A_RGW according to local
+configuration in B_IGW and constructs the appropriate URL
+870
+https://responding-gateway.example.org/wado-rs/
+homeCommunityId/5.6.7.8/RetrieveLocationUID/1.2.840.9.10.11.12/study/1.2.840
+.113619.2.207.28521.42888.1640475282.450?retrieveurl=hostname/dicom-web-rs/
+A_RIGW uses the URL to obtain the imaging locally . The URL used it is in this form:
+https://hostname/dicom-web-rs/
+study/1.2.840.113619.2.207.28521.42888.1640475282.450
+875
+Domain A document source responds with pixels as payload
+Figure XA-4: WADO-RS Retrieve URL with Domain A directly using the Retrieve URL –
+Example of related URL values
+880
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 40 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Volume 3 – Content Modules
+885
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 41 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+4 IHE Namespaces, Concept Domains and Vocabularies
+Add to Section 4 IHE Namespaces, Concept Domains and Vocabularies
+4.1 IHE MADO Namespaces
+890 No new OID, UID or URN have been introduced.
+4.2 IHE MADO Concept Domains
+Not Applicable.
+4.3 IHE MADO Format Codes and Vocabularies
+4.3.1 IHE Format Codes
+895
+List in the table below any new format codes to be added to the IHE Format Codes wiki page at
+http://wiki.ihe.net/index.php/IHE_Format_Codes. For public comment, the additions must be
+listed in the table below. The domain technical committee must ensure any new codes are also
+added to the wiki page prior to publication for trial implementation.
+900
+Profile Format Code Media Template ID
+Type
+Manifest Based Access to Use the XDS-I assigned Format Code for
+DICOM Objects (MADO) DICOM KOS-Based Imaging Study Manifest:
+“1.2.840.10008.5.1.4.1.1.88.59” (DICOM KOS
+SOP Class UID) as the Format Code Value and
+“1.2.840.10008.2.6.1” (DICOM UID Registry
+UID) as the Format Coding Scheme OID for a
+DICOM Manifest document.
+Manifest Based Access to <urn:ihe: > Request to IHE ITI (Oliver Egger).
+DICOM Objects (MADO) HL7 FHIR-Based Imaging Study Manifest
+4.3.X Imaging Study Manifest Search Metadata
+A set of non-imaging specific and imaging specific search parameters is defined in this section
+for the search of imaging study manifests.
+905 All these search parameters are expected to be available to the search Document Consumer
+Actors of the document sharing infrastructure grouped with MADO.
+These parameters have been selected based on the experience with deployments of XDS-I and
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 42 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+MHD (Comprehensive Metadata option). They are directly supported by the XDS, XDS-I, XCA,
+XCA-I, MHD and MHDS profiles.
+910 Note: Any given query might use only a subset of these search parameters.
+4.3.X.1 Generic Search Request Parameters
+The following generic (not specific to imaging) search request parameters are applicable to
+medical imaging:
+• Patient Business Identifier – patient id
+915 • Period – the time of service that is being documented by the DocumentReference.
+• The period search parameter specifies an interval which the time of service overlaps
+• Date - document date/time created
+• Category – class of document (e.g., image for imaging manifest)
+• Practice Setting – specialty where care documented was performed/provided (e.g.,
+920 radiology, cardiology, surgery, endoscopy for imaging study manifest)
+4.3.X.2 Imaging-Specific Search Request Parameters
+The medical imaging search extends the generic search parameters with the following
+parameters:
+• Modality type
+925 • Anatomical Region - body part
+• Study Instance UID
+• Accession Number
+4.3.X.3 Return Response Parameters
+The search parameters defined in the query will be used by the receiver to match against any
+930 known records in the source. For each matching entry, a response will be returned to the
+consumer defining some of the following:
+• Document Location URL – retrieve location (mandatory)
+• Document
+Identifier
+o
+935 Date
+o
+Type
+o
+Format
+o
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 43 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+mime type
+o
+Author(s)
+o
+940 Owner/Organization
+o
+• Category
+• Practice Setting
+• Order identifier
+• Procedure code
+945 • Modality type
+• Anatomical Region - body part
+• Study Instance UID
+• Accession Number
+The Health Professional can then use the returned parameter values to filter out any relevant
+950 imaging study manifest of interest which can then be retrieved individually.
+4.3.X.4 Anatomical Region Value Set
+This is defined as a short set of anatomical region values optimized for use as a search parameter,
+to facilitate a coarse grain filtering among large numbers of imaging studies, performed across a
+wide range of treatment specialties and imaging modalities. Coarse grain filtering on anatomical
+955 Regions needs to rely on a short classification set, meaning:
+1. Only one or two values are typically needed to identify, at a high-level, the anatomies
+associated with most imaging procedures, thus making imaging procedure to anatomy
+mappings easy and reliable to implement.
+2. A pull-down menu of 20, 30 or more values used by the requester to set the filter in a
+960 query is avoided.
+A short set of high-level anatomical region values, combined with the more robust selection
+process of the meaningful anatomies (point a above) and on the reliability of the setting of the
+query filter (point b above) by the requester, results in avoiding false negative query matches.
+Note: A possible way assigning the value(s) for anatomical regions is to automate the process at the time the imaging order is
+965 processed by the imaging department:
+• When processing incoming clinical orders, one or more imaging procedure request(s) is
+created with a corresponding imaging procedure code selected.
+• Such an imaging procedure code comes from a value set (typically around a thousand
+values) that may be locally defined or nationally standardized, based on an ad-hoc or
+970 international terminology.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 44 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+• The variety of terminologies used is not a barrier to map each imaging procedure code
+used locally to one or more anatomical region(s) as proposed by the MADO Profile (See
+TID 1600 in section .X.1.2.2.5 SR Document Content Module). This example may not
+require changes on imaging modalities.
+975
+Add to Volume 3 Section 6, Section 6.X MADO Content Definition
+6.X MADO Content Definition
+6.X.1 MADO DICOM KOS-Based Imaging Study Content Definition
+980 6.X.1.1 Conventions
+IHE Profiles may constrain the use of instances of specific DICOM IODs (also referred to as
+DICOM objects). This typically means placing requirements on the creators of those instances,
+although requirements may also be placed on the receivers and users. These profiling
+conventions on DICOM IOD are defined in Appendix E to the IHE Technical Frameworks
+985 General Introduction. These conventions are copied in this section (as extracted from section E.2
+of CP-RAD-562 which is not yet approved at the time of issuing this Public Comment).
+• The IHE Technical Framework uses the following legend to specify requirements for
+DICOM IOD module encoding:
+Table 6.X.1.1-1: Usage of DICOM Modules in IHE
+M / C / U As defined in DICOM PS 3.3
+R The Module is defined as Conditional (C) or User Option (U) in DICOM. The Requirement is an
+IHE extension of the DICOM requirements, and the module shall be present.
+RC The Module is defined as Conditional (C) or User Option (U) in DICOM. The Requirement is an
+IHE extension of the DICOM requirements, and the module shall be present when the specified
+conditions apply.
+990
+• The IHE Technical Framework uses the following legend to specify requirements for
+DICOM attribute encoding:
+Table 6.X.1.1-2: Usage of DICOM Attributes in IHE
+O The attribute or its value is optional, i.e., in DICOM it is Type 2 or 3.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 45 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+O+* The attribute is optional, but additional constraints have been added. Note: The specification
+approach does not force a Type 2 or Type 3 value to become a Type 1 by stating O+.
+R The attribute shall be present with a value, and is not an IHE extension of the DICOM
+requirements; i.e., it is already Type 1 in DICOM, but additional constraints are placed by IHE,
+for example on the value set that may be used for the attribute.
+R+ The Requirement is an IHE extension of the DICOM requirements, and the attribute shall be
+present with a value, i.e., is Type 1, whereas the DICOM requirement may be Type 2 or 3.
+RC+ The Requirement is an IHE extension of the DICOM requirements, and the attribute shall be
+present when the condition is satisfied, i.e., is Type 1C, whereas the DICOM requirement may be
+Type 2 or 3. If the condition is not fulfilled, the DICOM definitions apply. Note, that this means
+that the attribute may be present / have a value also in case the condition does not apply.
+D The requirements of DICOM apply unchanged, but the attribute needs to be displayed.
+- No IHE extension of the DICOM requirements is defined. The attribute is listed for better
+readability or similar purpose.
+X+ The attribute information is required to be absent. DICOM Type 2 attributes shall be present with
+no value. DICOM Type 3 attributes shall be absent.
+995 Specifications for constraining instances of DICOM Structured Reports follow the conventions
+in the tables above. In many cases, requiring the use of a specific DICOM SR Template may be
+sufficient.
+6.X.1.2 General Definitions
+None.
+1000 6.X.1.2.1 Imaging Study Manifest IOD Definition
+This section contains a DICOM IOD specification referenced in the IHE MADO profile
+specifying the parts of the DICOM Standard used and the extended IHE requirements.
+6.X.1.2.1.1 Referenced Standards
+• DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+1005 6.X.1.2.1.2 IOD Definition
+Table 6.X.1.2.1.2-1: Usage of DICOM Modules in MADO Imaging Study Manifest
+IE Module Reference Usage IHE Usage
+Patient Patient C.7.1.1 M M
+See Section
+6.X.1.2.2.1
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 46 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+IE Module Reference Usage IHE Usage
+Study General Study C.7.2.1 M M
+See Section
+6.X.1.2.2.2
+Series Key Object Document C.17.6.1 M M
+Series
+Equipment General Equipment C.7.5.1 M M
+See Section
+6.X.1.2.2.3
+SR Document Key Object Document C.17.6.2 M M
+See Section
+6.X.1.2.2.4
+SR Document Content C.17.3 M M
+See Section
+6.X.1.2.2.5
+SOP Common C.12.1 M M
+See Section
+6.X.1.2.2.6
+In the modules specified below only the DICOM attributes profiled by MADO are listed. The
+DICOM standard applies for all other attributes.
+1010 6.X.1.2.2 Module Definitions
+This section contains the MADO specific DICOM Module specifications referenced in Section
+6.X.1.2.1 IOD Definitions.
+6.X.1.2.2.1 Patient Module
+6.X.1.2.2.1.1 Referenced Standards
+1015 • DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+6.X.1.2.2.1.2 Module Definition
+Table 6.X.1.2.2.1.2-1: Usage of DICOM Attributes in Patient Module
+Attributes from Table C.7-1 Patient Module
+Attribute Name Tag IHE Attribute Description
+Usage
+Patient ID (0010,0020) R+ Primary identifier for the patient.
+See Section 6.X.1.2.2.1.2.1.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 47 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Attributes from Table C.7-1 Patient Module
+Attribute Name Tag IHE Attribute Description
+Usage
+Include Table 6.X.1.2.2.1.3.2-1 “Issuer of Patient ID Macro Attributes” - see section 6.X.1.2.2.1.3 Issuer of Patient ID Macro
+Patient Comments (0010,4000) O+ Used for national extensions (e.g., birth place) associated
+to patient demographics information used to validate the
+consistency between the patient ID and its demographic
+details beyond sex, birth date, and names.
+Other Patient IDs Sequence (0010,1002) R+ A Sequence of identification numbers or codes used to
+identify the Patient, which may or may not be human
+readable, and may or may not have been obtained from an
+implanted or attached device such as an RFID or barcode.
+One or more Items shall be included in this Sequence.
+See Section 6.X.1.2.2.1.2.1.
+>Patient ID (0010,0020) R+ An identifier for the Patient.
+>Include Table 6.X.1.2.2.1.3.2-1 “Issuer of Patient ID Macro Attributes” - see section 6.X.1.2.2.1.3 Issuer of Patient ID Macro
+6.X.1.2.2.1.2.1 Patient Identification Attribute Descriptions
+1020 6.X.1.2.2.1.2.1.1 Patient ID (0010,0020)
+The Patient ID (0010,0020), whether used as the primary patient identifier or one of the other
+patient ids, shall be combined with the Issuer of Patient ID Qualifiers Sequence (0010,0024) to
+provide a globally unique patient identifier in all cases.
+6.X.1.2.2.1.2.1.2 Other Patient IDs Sequence (0010,1002)
+1025 The Other Patient IDs Sequence (0010,1002) should provide a list of the national, regional and
+local patient identifiers. A local patient identifier is known in the imaging source at the time of
+the manifest creation.
+Note: It is recommended that the Other Patient IDs Sequence (0010,1002) should also contain the primary patient identifier in
+addition to the other identifiers. This will allow primary patient identifier re-mapping from one of the Other Patient IDs
+1030 Sequence identifiers without the need to continually update this sequence.
+6.X.1.2.2.1.3 Issuer of Patient ID Macro
+6.X.1.2.2.1.3.1 Referenced Standards
+• DICOM PS 3.3: 10.18 Issuer of Patient ID Macro
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 48 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+6.X.1.2.2.1.3.2 Macro Definition
+1035 Table 6.X.1.2.2.1.3.2-1: Usage of DICOM Attributes in Issuer of Patient ID Macro
+Attributes from Table 10-18 Issuer of Patient ID Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Issuer of Patient ID (0010,0021) O+ Identifier of the Assigning Authority (system,
+organization, agency, or department) that issued the
+Patient ID.
+If present should contain a label that corresponds to the
+authority identified by the Universal Entity ID
+(0010,0032) in the Issuer of Patient ID Qualifiers
+Sequence (0010,0024).
+Issuer of Patient ID Qualifiers (0010,0024) R+ Attributes specifying or qualifying the identity of the
+Sequence Issuer of the Patient ID (0010,0021), or scoping the
+Patient ID (0010,0020).
+Only a single Item shall be included in this Sequence.
+>Universal Entity ID (0010,0032) R+ Globally unique identifier (OID) for the Patient ID
+Assigning Authority.
+The authority identified by this attribute shall be the same
+as that labelled by the Issuer of Patient ID (0010,0021).
+>Universal Entity ID Type (0010,0033) RC+ Standard defining the format of the Universal Entity ID.
+Required if Universal Entity ID (0040,0032) is present.
+Fixed value: “ISO”
+>Type of Patient ID (0010,0022) R+ The type of identifier in the Patient ID (0010,0020).
+Fixed value (if present): “TEXT”
+6.X.1.2.2.2 General Study Module
+6.X.1.2.2.2.1 Referenced Standards
+• DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+1040 6.X.1.2.2.2.2 Module Definition
+Table 6.X.1.2.2.2.2-1: Usage of DICOM Attributes in General Study Module
+Attributes from Table C.7-3 General Study Module
+Attribute Name Tag IHE Attribute Description
+Usage
+Study Date (0008,0020) R+ Date the Study started.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 49 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Attributes from Table C.7-3 General Study Module
+Attribute Name Tag IHE Attribute Description
+Usage
+See Section 6.X.1.2.2.2.2.1.
+Study Time (0008,0030) R+ Time the Study started.
+See Section 6.X.1.2.2.2.2.1.
+Accession Number (0008,0050) O+ Shall be empty when there are multiple accession numbers for the
+study (see Referenced Request Sequence 6.X.1.2.3.2.1).
+Issuer of Accession (0008,0051) RC+ Identifier of the Assigning Authority that issued the Accession
+Number Sequence Number (0008,0050). A value shall be present.
+Required if Accession Number (0008,0050) is not empty.
+Only a single Item shall be included in this Sequence.
+>Include Table 6.X.1.2.3.2.2-1 “HL7v2 Hierarchic Designator Macro Attributes” – see 6.X.1.2.3.2 HL7v2 Hierarchic
+Designator Macro
+6.X.1.2.2.2.2.1 Date/Time Attribute Descriptions
+6.X.1.2.2.2.2.1.1 Manifest Study Date and Time
+1045 The Study Date (0008,0020) and Study Time (0008,0030) in the referenced imaging study are
+Type 2 attributes. When values for these attributes are not present in the referenced imaging
+study, it may be necessary to copy values from other date and time attribute values e.g., a Series
+or Instance Creation date and time.
+6.X.1.2.2.2.2.1.2 Referenced imaging study Dates and Times
+1050 In a document sharing context, all date, time and datetime attribute values in the referenced
+imaging study should be specified in the same timezone.
+However, the Timezone Offset From UTC (0008,0201) in the referenced imaging study is a
+Type 3 attribute in the imaging study and so a value may not be present (See Open Issue #3).
+6.X.1.2.2.3 General Equipment Module
+1055 6.X.1.2.2.3.1 Referenced Standards
+• DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 50 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+6.X.1.2.2.3.2 Module Definition
+Table 6.X.1.2.2.3.2-1: Usage of DICOM Attributes in General Equipment
+Attributes from Table C.7-8 General Equipment Module
+Attribute Name Tag IHE Attribute Description
+Usage
+Manufacturer (0008,0070) R+ Manufacturer of the equipment that produced the KOS manifest. This
+attribute is required to facilitate the discovery of errors’ sources in the
+creation of KOS Manifests.
+Institution Name (0008,0080) R+ Defines the institution that created the KOS manifest. This
+information is important to trace back any content error in a KOS
+Manifest.
+Fixed value configured onsite at install time of the software that
+created the KOS Manifests.
+Note: It is recommended to format this attribute according to the HL7
+V2.5 XON data type so that it contains, in addition to the institution
+name, its globally unique identifier. This format is identical to the
+format of the authorInstitution Attribute of the MHD, XDS and XCA
+metadata.
+Institution Code Sequence (0008,0082) O+ Institution or organization to which the identified individual is
+responsible or accountable.
+>Include Table 8.8-1 “Code Sequence Macro Conveys same values as would be in Institution Name (0008,0080).
+Attributes”
+1060 6.X.1.2.2.4 Key Object Document Module
+6.X.1.2.2.3.1 Referenced Standards
+● DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+6.X.1.2.2.3.2 Module Definition
+Table 6.X.1.2.2.3.2-1: Usage of DICOM Attributes in Key Object Document Module
+Attributes from Table C.17.6-2 Key Object Document Module
+Attribute Name Tag IHE Attribute Description
+Usage
+Referenced Request (0040,A370) R+ Identifies Requested Procedures to which this Document pertains.
+Sequence One or more Items shall be included in this Sequence.
+See Section 6.X.1.2.2.3.2.1.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 51 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Attributes from Table C.17.6-2 Key Object Document Module
+Attribute Name Tag IHE Attribute Description
+Usage
+>Include Table 6.X.1.2.3.1.2-1 “Referenced Request Macro Attributes” – see section 6.X.1.2.3.1 Referenced Request Macro
+Current Requested (0040,A375) R List of all Composite SOP Instances references in Content
+Procedure Evidence Sequence (0040,A730), including all presentation states, real
+Sequence world value maps and other accompanying composite instances
+that are referenced from the content items.
+>Include Table6.X.1.2.3.3.2-1 “Hierarchical SOP Instance Reference Macro Attributes” – see section 6.X.1.2.3.3 Hierarchical
+SOP Instance Reference Macro
+1065
+6.X.1.2.2.3.2.1 Referenced Request Sequence Attribute Description
+Identifies Requested Procedures that are being fulfilled (completely or partially) in the imaging
+study referenced by the manifest.
+Figure 6.X.1.2.2.3.2.1-1 shows the many to many relationships between the workflow entities
+1070 Clinical Order and Imaging Procedure Request and the Imaging Study. The MADO Profile is
+designed to handle all of these relationships to ensure interoperability even between the broadest
+number of existing and future Imaging Document Consumers and Sources.
+Figure: 6.X.1.2.2.3.2.1-1: Entities Identifiers and their linkages
+1075 The Referenced Request Sequence (0040,A370) will contain the same number of items as the
+number of unique combinations of Accession Numbers and Order Placer Numbers
+associated with the Imaging Study.
+The following examples are used to illustrate possible combinations:
+1. An intensive care physician orders a series of portable chest x-ray for a patient, every 12
+1080 hours over 72 hours.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 52 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+• 1 Clinical Order
+• 6 Imaging Procedure Requests
+• 6 Imaging Studies
+Six Items present in the Referenced Request Sequence (0040,A370) (for the unique
+1085 combinations of Accession Number and Order Placer Number).
+2. An ED physician orders a chest and an abdominal CT for a patient in a tertiary care
+center. A combo chest/abdominal CT is carried out. The two components are read by two
+different radiologists.
+• 2 Clinical Orders
+1090 • 1 Imaging Procedure Request
+• 1 Imaging Study
+Two Items present in the Referenced Request Sequence (0040,A370).
+3. An angiography procedure is ordered by a vascular surgeon. During the course of this
+radiology intervention, an ultrasound exam is performed in the Angio room.
+1095 • 1 Clinical Order
+• 1 Imaging Procedure Request
+• 2 Imaging Studies
+One Item present in the Referenced Request Sequence (0040,A370).
+6.X.1.2.2.5 SR Document Content Module
+1100 Reviewers note: This Public Comment has selected approach (2) which is specified in this
+section, based on its backward compatibility and design consistency with the DICOM KOS
+despite the somewhat increased overhead of the DICOM SR based constructs. Comments are
+welcome on the use of this approach (2), or the use of the alternative approach (1)with less
+overhead. (See Volume 3 Appendix B).
+1105 6.X.1.2.2.5.1 Referenced Standards
+• DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+6.X.1.2.2.5.2 Module Definition
+The SR Document Content Module shall be constructed from TID 2010 “Key Object
+Selection” invoked at the root node.
+1110 The TID 2010 “Key Object Selection” Template shall include the TID 1600 “Image Library”
+Template and the CID 7010 “Key Object Selection Document Title shall be set to “Manifest with
+Description" per the DICOM Change Proposal CP-2595 (the IHE Radiology proposed variant to
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 53 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+that CP is found in Appendix A of this public comment document and is used until approved by
+DICOM WG6).
+1115 In the TID 1600 “Image Library” the following content Items shall be present in the associated
+Image Library Container:
+Rel with VT Concept Name VM Req Condition Value Set
+Parent Type Constraint
+HAS ACQ CODE EV (121139, DCM, 1-n R+
+CONTEXT "Modality")
+HAS ACQ UIDREF EV (ddd011, DCM, 1 R+
+CONTEXT “Study Instance UID”)
+HAS ACQ CODE EV (123014, DCM, 1-n R+ DCID 403X High-level
+CONTEXT "Target Region") anatomic regions and
+systems (See Note
+below, and see
+Appendix A Proposed
+CP on TID 2010)
+Note: The High-level anatomic regions and systems value set defined by the proposed CID 403X is intended to be used for
+the metadata search parameter (See section 4.3.X.2 Imaging-Specific Search Request Parameters) used to support
+1120 filtering queries. This value set is made of a small number of coarse-level anatomical regions and main systems, a
+small number that:
+Optimizes the use of such filtering queries by clinicians (short pull down menus)
+Simplifies the mapping from procedure codes to automate their selection for specific studies and makes implementation on
+existing storage systems reasonable.
+1125 Includes little overlapping values so that in most cases, any study can be correctly labelled with one or two values (e.g., a hip is
+classified as “lower extremity” and “lower trunk”). So queries remain very simple and filtering errors largely avoided.
+The following content Items shall be present in the “Image Library Group” where each group is
+associated with a Series with the following Content Items per the TID 1602 “Image Library
+Entry Descriptors
+1130
+Rel with VT Concept Name VM Req Condition Value Set
+Parent Type Constraint
+HAS ACQ CODE EV (121139, DCM, 1 R+
+CONTEXT "Modality")
+HAS ACQ DATE EV (ddd003, DCM, 1 R+
+CONTEXT "Series Date")
+HAS ACQ TIME EV (ddd004, DCM, 1 R+
+CONTEXT "Series Time")
+HAS ACQ TEXT EV (ddd002, DCM, 1 R+
+CONTEXT “Series Description”)
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 54 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Rel with VT Concept Name VM Req Condition Value Set
+Parent Type Constraint
+HAS ACQ TEXT EV (ddd005, DCM, 1 R+ The text string shall be
+CONTEXT “Series Number”) consistent with the
+value of Series
+Number (0020,0011).
+HAS ACQ UIDREF EV (ddd006, DCM, 1 R+
+CONTEXT “Series Instance UID”)
+The following content Items shall be present in the “Image Library Entry” where each entry is
+associated with each Instance with the following Content Items per the TID 1602 “Image
+Library Entry Descriptors
+1135
+Rel with VT Concept Name VM Req Condition Addtl Value Set
+Parent Type Constraint
+HAS ACQ NUM EV (121140, DCM, 1 RC+ Present
+CONTEXT “Number of Frames”) when the
+SOP Class is
+multiframe
+HAS ACQ TEXT EV (ddd005, DCM, 1 RC+ Present The text string shall be
+CONTEXT “Instance Number”) when consistent with the value of
+present in Instance Number
+the (0020,0013).
+referenced
+SOP
+Instance
+CONTAINS INCLUDE DTID 16XX Image 1 RC+ Present if
+Library Entry Descriptors this instance
+for Key Object Selection is a KOS
+Object
+The following content Items shall be present in a container within the “Image Library Entry”
+when the related instance is a KOS Instance within the Imaging Study as described in TID 16XX
+“Image Library Entry Descriptors for Key Object Selection”.
+1140 These content items are selected information from the referenced KOS instance, when present, in
+an imaging study manifest (e.g., flagging using the IHE KIN profile). The purpose is to allow the
+user of any Imaging Document Consumer to determine by simply processing the content of the
+imaging manifest:
+• the presence of flagged significant images (when one or more such container is present in
+1145 references to KOS instances in series of modality KO),
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 55 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+• accessing the title codes and associated KOS description in the manifest to offer the
+ability to only retrieve the significant images referenced.
+• Accessing SOP instance(s) referenced by the h corresponding KOS.
+Rel with VT Concept Name VM Req Condition Addtl Value Set
+Parent Type Constraint
+CONTAINS CONTAIN DTID 16XX Image 1
+ER Library Entry Descriptors
+for Key Object Selection
+HAS ACQ CODE EV (ddd008, DCM, "KOS 1 R+
+CONTEXT Title Code")
+HAS ACQ TEXT EV (ddd009, DCM, “KOS 1 RC+ Required
+CONTEXT Object Description when
+present in
+the
+referenced
+KOS
+instance
+HAS ACQ UIDREF EV (ddd007, DCM, “SOP 1-n R+ Instances flagged as
+CONTEXT Instance UID”) significant by the KOS
+instance
+1150 The information in this container allows retrieval of key images flagged as significant without
+first retrieving the KOS instances.
+Note: the series instance UID for each instance flagged is not present in TID 16XX, as it is present both in the Library Image
+TID 1600/Library Group TID 1602 as well as the Key Object Selection Module.
+The data model underlying the relationship between the values conveyed by the above list of
+1155 content items.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 56 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Imaging Study
+Manifest Study Identifier
+1
+n n
+Series Series
+identifier identifier
+n 1 Flagging as significant 1 n
+Reference to n • Coded Reason Reference to
+• Optional Description Text
+an instance • Flagged instance(s) referenced 0 1 an instance
+1 by SOP Instance UID 1
+Reference to Reference to a KOS Instance
+Image Instance flagged as significant by a KIN
+DICOM 1
+1
+Imaging Key Object
+Study Image 1 Flagged as n Selection (KOS)
+significant • Coded Reason
+• Comments
+Figure 6.X.1.2.2.5.2-1: Data Model for Image Library Entry Descriptors for Key Object
+Selection in the Context of an Imaging Study Manifest
+6.X.1.2.2.6 SOP Common Module
+1160 6.X.1.2.2.6.1 Referenced Standards
+• DICOM PS 3.3: A.35.4 Key Object Selection Document IOD
+6.X.1.2.2.6.2 Module Definition
+Table 6.X.1.2.2.6.2-1: Usage of DICOM Attributes in SOP Common Module
+Attributes from Table C.12-1 SOP Common Module
+Attribute Name Tag IHE Attribute Description
+Usage
+Timezone Offset From (0008,0201) R+ Contains the offset from UTC to the timezone for all DA and TM
+UTC Attributes present in this SOP Instance, and for all DT Attributes
+present in this SOP Instance that do not contain an explicitly encoded
+timezone offset.
+See Open Issue #3.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 57 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+1165 6.X.1.2.3 Macro Definitions
+6.X.1.2.3.1 Referenced Request Macro
+6.X.1.2.3.1.1 Referenced Standards
+• DICOM PS 3.3: C.17.2.8 Referenced Request Macro
+6.X.1.2.3.1.2 Macro Definition
+1170 Table 6.X.1.2.3.2.1-1: Usage of DICOM Attributes in Referenced Request Macro
+Attributes from Table C.17-3c Referenced Request Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Study Instance UID (0020,000D) R+ Unique Identifier for the Study.
+Copy of the referenced study’s Study Instance UID
+(0020,000D).
+Note: There is a 1 to 1 relationship between this KOS
+manifest and the study that this KOS manifest references.
+Accession Number (0008,0050) R+ A departmental IS generated number that identifies the
+imaging order for the Study. Shall contain a value
+associated with the Placer Order Number (0040,2016) in
+the sequence item.
+Issuer of Accession Number (0008,0051) R+ Identifier of the Assigning Authority that issued the
+Sequence Accession Number (0008,0050). A value shall be present.
+Only a single Item shall be included in this Sequence.
+>Include Table 6.X.1.2.3.2.2-1 “HL7v2 Hierarchic Designator Macro Attributes” – see section 6.X.1.2.3.2 HL7v2 Hierarchic
+Designator Macro
+Placer Order Number / Imaging (0040,2016) R+ The order number assigned to the Imaging Service
+Service Request Request by the party placing the order.
+Shall contain a value associated with the Accession
+Number (0008,0050) in the sequence item.
+Order Placer Identifier Sequence (0040,0026) RC+ Identifier of the Assigning Authority that issued the Placer
+Order Number (0040,2016).
+Required if Placer Order Number / Imaging Service
+Request (0040,2016) is not empty.
+Only a single Item shall be included in this Sequence.
+>Include Table 6.X.1.2.3.2.2-1 “HL7v2 Hierarchic Designator Macro Attributes” – see section 6.X.1.2.3.2 HL7v2 Hierarchic
+Designator Macro
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 58 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+6.X.1.2.3.2 HL7v2 Hierarchic Designator Macro
+6.X.1.2.3.2.1 Referenced Standards
+• DICOM PS 3.3: 10.14 HL7v2 Hierarchic Designator Macro
+1175 6.X.1.2.3.2.2 Macro Definition
+Table 6.X.1.2.3.2.2-1: Usage of DICOM Attributes in HL7v2 Hierarchic Designator Macro
+Attributes from Table 10-17 HL7v2 Hierarchic Designator Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Universal Entity ID (0010,0032) R+ Globally unique identifier (OID) for the Accession
+Number (0008,0050) Assigning Authority.
+Universal Entity ID Type (0010,0033) RC+ Standard defining the format of the Universal Entity ID.
+Fixed value: “ISO”
+Required if Universal Entity ID (0040,0032) is present.
+6.X.1.2.3.3 Hierarchical SOP Instance Reference Macro
+6.X.1.2.3.3.1 Referenced Standards
+1180 • DICOM PS 3.3: C.17.2.1 Hierarchical SOP Instance Reference Macro
+6.X.1.2.3.3.2 Macro Definition
+Table 6.X.1.2.3.3.2-1: Usage of DICOM Attributes in Hierarchical SOP Instance Reference
+Macro
+Attributes from Table C.17-3 Hierarchical SOP Instance Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Study Instance UID (0020,000D) R Unique identifier for the Study.
+Copy of the referenced study’s Study Instance UID
+(0020,000D).
+Note: There is a 1 to 1 relationship between this KOS
+manifest and the study that this KOS manifest references.
+Retrieve URI (IID use) (0040,E010) O The value of this attribute is a complete URL representing
+the endpoint of a system supporting a study request to
+launch server-side viewer using for example the IHE IID
+profile (See the concepts described in section X.4.1.7
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 59 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Attributes from Table C.17-3 Hierarchical SOP Instance Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Launching a Remote Image Display).
+This URL shall include the value from the Study Instance
+UID (0020,000D) from this manifest..
+Referenced Series Sequence (0008,1115) R Sequence of Items where each item includes the Attributes
+of a Series containing referenced Composite Object(s)
+>Include Table 6.X.1.2.3.4.2-1 “Hierarchical Series Reference Macro Attributes” – See 6.X.1.2.3.4 Hierarchical Series
+Reference Macro
+1185 6.X.1.2.3.4 Hierarchical Series Reference Macro
+6.X.1.2.3.4.1 Referenced Standards
+• DICOM PS 3.3: C.17.2.1 Hierarchical Series Reference Macro
+6.X.1.2.3.4.2 Macro Definition
+Table 6.X.1.2.3.4.2-1: Usage of DICOM Attributes in Hierarchical Series Reference Macro
+Attributes from Table C.17-3a Hierarchical Series Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Retrieve Location UID (0040,E011) R+ Unique identifier of the system where the Composite
+Object(s) may be retrieved on the network.
+The value of this attribute is an OID that may be used as a
+reference to obtain the endpoint of the corresponding
+WADO-RS service returned as a Base URI (See concept
+section X.4.1.2 Intra-community sharing infrastructure).
+WADO-RS retrieval URLs can be composed by the
+consumer using this Base URI and the
+study/series/instance UIDs from this manifest.
+Retrieve URL (0008,1190) O URL specifying the location of the referenced Instance(s).
+The value of this attribute is a Base URI representing the
+endpoint for the corresponding WADO-RS service (See
+concept section X.4.1.2 Intra-community sharing
+infrastructure).
+WADO-RS retrieval URL can be composed by the
+consumer using this Base URI and the
+study/series/instance UIDs from this manifest.
+Note: The definition of this Retrieve URL being a Base
+URI aligns with its use in the IHE XDS-I.b profile
+(DICOM Retrieve by WADO-RS option) and the IHE
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 60 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Attributes from Table C.17-3a Hierarchical Series Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+XC-WADO profile.
+1190
+6.X.2 MADO HL7 FHIR Based Imaging Study Manifest Content Definitions
+The MADO HL7 FHIR Imaging Study Manifest Implementation Guide is an integral part of the
+MADO Profile.
+In the present draft for public comment of the MADO Profile, the MADO HL7 FHIR Imaging
+1195 Study Manifest specification may be accessed at: http://hl7.eu/fhir/imaging-manifest-r5/0.2.0-
+snapshot1
+Note: To focus on the imaging manifest go to the “Artifacts tab” in the top bar. Then, when accessing the different resource
+profiles, it automatically selects the "Key Elements" tab which does not show all elements in the resource. In order to
+see all elements, select the "Snapshot Table" tab.
+1200 6.X.3 MADO Envelope Content Definitions
+The MADO HL7 FHIR Envelope is an integral part of the MADO Profile.
+In the present draft for public comment of the MADO Profile, the MADO HL7 FHIR Envelope
+specification to be used in conjunction with the IHE MHD Profile may be accessed at:
+http://hl7.eu/fhir/imaging-manifest-r5/0.2.0-snapshot1/manifest-envelop.html.
+1205
+6.X.4 MADO DICOM – FHIR Manifest Mapping Specification
+Reviewers note: This mapping specification section will be completed once Open Issue #2 has
+been resolved. The text and sample mappings shown below give the reader an indication of the
+content of this section.
+1210 The purpose of such a mapping between the two imaging study manifest formats specified by the
+IHE MADO Profile as defined in the above section 6.X.2 and 6.X.3.
+Ensuring that such a mapping supports the transformation of a manifest in one format into the
+other one enhances the ability to bridge between infrastructures that may have chosen to deploy
+different imaging study manifest formats.
+1215 In this draft of the MADO Profile, two mapping table extracts are proposed to the reviewers to
+preview what a complete mapping would be when completed.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 61 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Sample 1: Extract of the DICOM General Study Module Mapping to FHIR
+1220 Sample 2: Extract of the DICOM Key Object Module Mapping to FHIR
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 62 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Appendices to Volume 3
+1225
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 63 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Appendix A – Updated DICOM Change Proposal for DICOM KOS in the
+IHE MADO Manifest specification
+Reviewers note: This appendix contains the version of DICOM CP2595-01 available at the time
+1230 of the development of this Public Comment version of the MADO Profile and has been used as
+the basis to develop the MADO DICOM KOS based Imaging Study Manifest. Where possible, the
+TID 2010 extensions proposed by CP-2595 have been used; however, some gaps and need for
+clarification have been identified. The resulting revised version of CP-2595 with the
+corresponding extensions are proposed in this Appendix. The original extensions proposed by
+1235 DICOM in CP2595 have been left with their yellow highlight. The proposed additions/changes
+are highlighted in green.
+IHE Radiology intends to contribute these proposals to the DICOM WG6 in order to progress
+this CP towards approval along with the progression of the MADO Profile to Trial
+Implementation.
+1240 This appendix will be removed once the formal CP2595 has been handled by DICOM.
+Updated DICOM Change Proposal
+Change Number CP-
+Log Summary: Extend KOS to support more metadata for manifest use case
+Name of Standard
+PS3.3, PS3.16
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 64 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Rationale for Change:
+The KOS has been extensively utilized in the context of cross-enterprise document sharing, including for images, particularly in
+IHE XDS-I.
+There is a desire to allow selection of a subset of images described in a KOS rather than retrieving an entire set of images (such as
+a Study), based on metadata included in the manifest, or performing a query by some other mechanism.
+Though TID 2010 required for the KOS IOD and Storage SOP Class is defined as non-extensible, it is thought to be preferrable to
+allow its extension in a non-breaking manner, rather than to sanction the use of extension of DICOM data set attributes in a
+manner that would not be in keeping with the design of the KOS IOD.
+Inclusion of the Image Library sub-template, which is already defined for the purpose of describing referenced images in more
+detail, allows for sufficient but constrained extensibility in keeping with the spirit of the KOS design, albeit requiring (a) parsing
+of the Content Tree and (b) replication of the image references (in order to preserve compatibility with the existing flat list of
+image references in the TID 2010).
+It is proposed to add TID 1600 “Image Library” as an additional row to TID 2010, and requiring its presence if a specified (new)
+Document Title code is used.
+The Image Library sub-templates are extended to include some of the metadata proposed for the extended manifest based on
+experience of what is useful for selecting Series from Studies for viewing, and without harming their current use in other
+templates that already make use of them.
+The Image Library sub-templates are extensible, and their contents are mostly optional, so for specific-use cases, additional
+constraints may be specified in an externally defined profile (such as in IHE MADO), which might require the presence of
+specific Content Items, and/or the use of specific value sets.
+TBD. Cross-check mapping to FHIR ImagingStudy.
+Change Wording:
+1245 Modify PS3.3 as indicated to expand the relationship constraints to support the Image Library
+(changes to existing text are bold and underlined for additions and bold and strikethrough for
+removals):
+A.35.4 Key Object Selection Document IOD
+...
+1250
+A.35.4.3.1 Key Object Selection Document IOD Content Constraints
+A.35.4.3.1.1 Value Type
+Value Type (0040,A040) in Content Sequence (0040,A730) of the SR Document Content
+Module is constrained to the following Enumerated Values (see Table C.17.3-7 for Value Type
+1255 definitions):
+Enumerated Values:
+TEXT
+CODE
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 65 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+UIDREF
+1260 PNAME
+COMPOSITE
+IMAGE
+WAVEFORM
+CONTAINER
+1265 DATE
+TIME
+DATETIME
+NUM
+1270 A.35.4.3.1.2 Relationship Constraints
+Relationships between Content Items in the content of this IOD shall be conveyed in the by-
+value mode. See Table C.17.3-8 for Relationship Type definitions.
+Note: Relationships by-reference are forbidden. Therefore, Referenced Content Item Identifier (0040,DB73) is not present in
+any of the Content Items within the SR Document Content Module.
+1275 Table A.35.4-2 specifies the relationship constraints of this IOD.
+Table A.35.4-2. Relationship Content Constraints for Key Object Selection Document IOD
+Source Value Relationship Type (Enumerated Target Value Type
+Type Values)
+CONTAINER CONTAINS TEXT, IMAGE, WAVEFORM, COMPOSITE
+CONTAINER HAS OBS CONTEXT TEXT, CODE, UIDREF, PNAME, CONTAINER
+CONTAINER HAS CONCEPT MOD CODE
+CONTAINER HAS ACQ CONTEXT
+IMAGE HAS ACQ CONTEXT CODE, DATE, TIME, DATETIME, UIDREF,
+NUM, TEXT, CONTAINER
+COMPOSITE HAS ACQ CONTEXT CODE, DATE, TIME, DATETIME, UIDREF,
+NUM, TEXT, CONTAINER
+WAVEFORM HAS ACQ CONTEXT CODE, DATE, TIME, DATETIME, UIDREF,
+NUM, TEXT, CONTAINER
+Note: The SOP Classes to which an IMAGE, WAVEFORM or COMPOSITE Value Type may refer are documented in the
+Conformance Statement for an application (see PS3.2 and PS3.4).
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 66 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+A.35.4.3.1.3 Template Constraints
+1280 The document shall be constructed from TID 2010 “Key Object Selection” invoked at the root
+node.
+Modify PS3.16 TID 2010 as indicated, to include Image Library
+(changes to existing text are bold and underlined for additions and bold and strikethrough for
+1285 removals):
+TID 2010 Key Object Selection
+The Key Object Selection Template is intended for flagging one or more significant images,
+waveforms, or other composite SOP Instances. Key Object Selection contains:
+• coded document title stating the reason for significance of the referenced objects in the
+1290 Key Object Selection,
+• optional free form text comment in an explicitly identified language, and
+• optional identification of the observer (device or person) that created the Key Object
+Selection.
+Note:
+1295 1. For instance, when this Template is used to identify images rejected for quality reasons, the device or person
+performing the quality assessment is identified in observation context items (invoked through TID 1002 “Observer
+Context”). The reason for rejection can be included both as a code used as a concept modifier for the document title,
+and as text description.
+2. The order of object references may be significant, e.g., when the title concept is "For Conference".
+1300 3. Instances referenced in a Key Object Selection Document may be securely referenced by Digital Signature or MAC
+mechanisms within the SR Document General Module (see PS3.3).
+• optional Image Library to further describe the reference instances.
+1305 The Template can only be instantiated at the root node and cannot be included in other
+Templates. The Template is not extensible; that is, no other Content Items may be added to this
+Template, or the Templates that are included, recursively.
+Type: Non-Extensible
+1310 Order: Non-Significant
+Root: Yes
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 67 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Table TID 2010. Key Object Selection
+N Rel with Parent VT Concept Name V Req Condition Value Set
+L M Type Constraint
+1 CONTAINER DCID 7010 “Key 1 M Root node
+Object Selection
+Document Title”
+2 > HAS CONCEPT CODE EV (113011, DCM, 1-n U
+MOD "Document Title
+Modifier")
+3 > HAS CONCEPT CODE EV (113011, DCM, 1 UC IF Row 1 Concept DCID 7011
+MOD "Document Title Name = (113001, “Rejected for
+Modifier") DCM, "Rejected for Quality Reason”
+Quality Reasons")
+or (113010, DCM,
+"Quality Issue")
+4 > HAS CONCEPT CODE EV (113011, DCM, 1 MC IF Row 1 Concept DCID 7012 “Best in
+MOD "Document Title Name = (113013, Set”
+Modifier") DCM, "Best In
+Set")
+5 > HAS CONCEPT INCLUDE DTID 1204 “Language 1 U
+MOD of Content Item and
+Descendants”
+6 > HAS OBS INCLUDE DTID 1002 “Observer 1-n U
+CONTEXT Context”
+7 > CONTAINS TEXT EV (113012, DCM, 1 U
+"Key Object
+Description")
+8 > CONTAINS IMAGE 1-n MC At least one of
+Rows 8, 9 and 10
+shall be present
+9 > CONTAINS WAVEFORM 1-n MC At least one of
+Rows 8, 9 and 10
+shall be present
+10 > CONTAINS COMPOSIT 1-n MC At least one of
+E Rows 8, 9 and 10
+shall be present
+DTID 1600 “Image
+11 > CONTAINS INCLUDE 1 MC IF Row 1 Concept
+Library”
+Name = (ddd001,
+DCM, "Manifest
+with Description")
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 68 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+1315
+Content Item Descriptions
+Rows 8, 9, 10 Purpose of reference shall not be present.
+Row 11 Though TID 2010 itself is non-extensible, the included TID 1600 is extensible.
+Modify PS3.16 TID 1600 and sub-templates as indicated, to add metadata needed for extended
+1320 manifest
+(changes to existing text are bold and underlined for additions and bold and strikethrough for
+removals):
+TID 1600 Image Library
+The Image Library contains references to images and selected attributes describing them that
+1325 facilitate analysis without having to retrieve the entire set of referenced images.
+Type: Extensible
+Order:Non-Significant
+Root: No
+Table TID 1600. Image Library
+NL Rel with VT Concept Name VM Req Condition Value Set Constraint
+Parent Type
+1 CONTAINER EV (111028, DCM, 1 M
+"Image Library")
+1b > HAS ACQ CODE EV (121139, DCM, 1-n U DCID 29 “Acquisition
+CONTEXT "Modality") Modality”
+1c > HAS ACQ UIDREF EV (110181, DCM, 1-n U
+CONTEXT “SOP Class UID”)
+1d > HAS ACQ CODE EV (123014, DCM, 1-n U DCID 4031 “Common
+CONTEXT "Target Region") Anatomic Region”
+or
+DCID 403X High-level
+anatomic regions and
+systems (See Appendix
+A Proposed CP on TID
+2010)
+1e > HAS ACQ UIDREF EV (ddd011, DCM, 1 R+
+CONTEXT “Study Instance
+UID”)
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 69 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+NL Rel with VT Concept Name VM Req Condition Value Set Constraint
+Parent Type
+2 > CONTAINS CONTAINER EV (126200, DCM, 1-n U
+"Image Library
+Group")
+3 >> HAS ACQ INCLUDE DTID 1602 “Image 1 U
+CONTEXT Library Entry
+Descriptors”
+4 >> CONTAINS INCLUDE DTID 1601 “Image 1-n U
+Library Entry”
+1330
+Row 1b The Modality may be specified at the entire library level to factor out common information, such as
+all of the Modalities within a Study (similar to the PS3.4 Modalities in Study (0008,0061) additional
+Query/Retrieve Attribute).
+Row 1c The SOP Class UIDs may be specified at the entire library level to factor out common information,
+such as all of the SOP Classes within a Study (similar to the PS3.4 SOP Classes in Study
+(0008,0062) additional Query/Retrieve Attribute).
+Row 3 These Image Library Entry Descriptors apply to all Image Library Entries in this Image Library Group.
+Though any grouping may be defined, all of the images within a single Series might be considered
+as a group.
+TID 1601 Image Library Entry
+Each instance of the Image Library Entry Template contains the Image SOP Class and Instance UIDs, and selected
+attributes for an image that facilitate analysis without having to retrieve the entire set of referenced images.
+1335 Type: Extensible
+Order: Non-Significant
+Root: No
+Table TID 1601. Image Library Entry
+NL Rel with VT Concept Name VM Req Conditi Value Set
+Parent Type on Constraint
+1 IMAGE 1 MC
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 70 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+NL Rel with VT Concept Name VM Req Conditi Value Set
+Parent Type on Constraint
+1a COMPO 1 MC One of the
+SITE rows 1, 1a
+and 1b
+shall be
+present.
+1b WAVEFO 1 MC
+RM
+2 > HAS ACQ INCLUDE DTID 1602 “Image Library 1 U
+CONTEXT Entry Descriptors”
+Row 2 These Image Library Entry Descriptors apply to the IMAGE in Row 1 and override descriptors in Row 3 of
+Section TID 1600 in case of conflict.
+1340
+TID 1602 Image Library Entry Descriptors
+This Template contains selected attributes for an image or group of images. The descriptive information may be copied
+from images or derived.
+Type: Extensible
+1345 Order: Non-Significant
+Root: No
+Table TID 1602. Image Library Entry Descriptors
+NL Rel with Parent VT Concept Name VM Req Condition Value Set
+Type Constraint
+1 HAS ACQ CODE EV (121139, DCM, 1 U DCID 29
+CONTEXT "Modality") “Acquisition
+Modality”
+2 HAS ACQ CODE EV (123014, DCM, 1 U DCID 4031
+CONTEXT "Target Region") “Common Anatomic
+Region”
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 71 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+NL Rel with Parent VT Concept Name VM Req Condition Value Set
+Type Constraint
+2b HAS ACQ TEXT EV (123014, DCM, 1 U
+CONTEXT "Target Region")
+3 HAS ACQ CODE EV (111027, DCM, 1 U DCID 244
+CONTEXT "Image Laterality") “Laterality”
+4 HAS ACQ DATE EV (111060, DCM, 1 U
+CONTEXT "Study Date")
+5 HAS ACQ TIME EV (111061, DCM, 1 U
+CONTEXT "Study Time")
+5a HAS ACQ DATE EV (ddd003, DCM, 1 U
+CONTEXT "Series Date")
+5b HAS ACQ TIME EV (ddd004, DCM, 1 U
+CONTEXT "Series Time")
+6 HAS ACQ DATE EV (111018, DCM, 1 U
+CONTEXT "Content Date")
+7 HAS ACQ TIME EV (111019, DCM, 1 U
+CONTEXT "Content Time")
+8 HAS ACQ DATE EV (126201, DCM, 1 U
+CONTEXT "Acquisition Date")
+9 HAS ACQ TIME EV (126202, DCM, 1 U
+CONTEXT "Acquisition Time")
+10 HAS ACQ UIDREF EV (112227, DCM, 1 U
+CONTEXT "Frame of Reference
+UID")
+11 HAS ACQ NUM EV (110910, DCM, 1 U UNITS = EV
+CONTEXT "Pixel Data Rows") ({pixels}, UCUM,
+"pixels")
+12 HAS ACQ NUM EV (110911, DCM, 1 U UNITS = EV
+CONTEXT "Pixel Data Columns") ({pixels}, UCUM,
+"pixels")
+12 HAS ACQ TEXT EV (ddd002, DCM, 1 U
+b CONTEXT “Series Description”)
+12 HAS ACQ CODE EV (ddd002, DCM, 1 U
+c CONTEXT “Series Description”)
+12 HAS ACQ TEXT EV (ddd005, DCM, 1 U
+d CONTEXT “Series Number”)
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 72 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+NL Rel with Parent VT Concept Name VM Req Condition Value Set
+Type Constraint
+12 HAS ACQ NUM EV (121140, DCM, 1 U UNITS = EV
+e CONTEXT “Number of Frames”) ({frames}, UCUM,
+"frames")
+12 HAS ACQ NUM EV (ddd007, DCM, 1 U UNITS = EV
+f CONTEXT “Number of Series ({instances},
+Related Instances”) UCUM,
+"instances")
+12 HAS ACQ UIDREF EV (ddd006, DCM, 1 U
+g CONTEXT “Series Instance UID”)
+12 HAS ACQ TEXT EV (ddd008, DCM, 1 U
+h CONTEXT “Instance Number”)
+13 HAS ACQ INCLUD DTID 1603 “Image 1 MC IFF Row 1 is
+CONTEXT E Library Entry Descriptors present with a
+for Projection value of "CR",
+Radiography” "DX", "IO", "MG,
+"PX", "RF", "RG" or
+"XA"
+14 HAS ACQ INCLUD DTID 1604 “Image 1 MC IFF Row 1 is
+CONTEXT E Library Entry Descriptors present with a
+for Cross-Sectional value of "CT", "MR"
+Modalities” or "PT"
+15 HAS ACQ INCLUD DTID 1605 “Image 1 MC IFF Row 1 is
+CONTEXT E Library Entry Descriptors present with a
+for CT” value of "CT"
+16 HAS ACQ INCLUD DTID 1606 “Image 1 MC IFF Row 1 is
+CONTEXT E Library Entry Descriptors present with a
+for MR” value of "MR"
+17 HAS ACQ INCLUD DTID 1607 “Image 1 MC IFF Row 1 is
+CONTEXT E Library Entry Descriptors present with a
+for PET” value of "PT"
+18 CONTAINS INCLUD DTID 160X “Image 1-n U
+E Library Entry
+Descriptors for Key
+Object Selection”
+Content Item Descriptions
+Row The Target Region may be a text value (e.g., the Value of Body Part Examined (0018,0015), and/or a
+2, 2b code value (e.g., tThe value of Anatomic Region Sequence (0008,2218) in the Image IOD, or a code derived
+from Body Part Examined (0018,0015) using the mapping described in Annex L).
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 73 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Row The Series Description may be a text value (e.g., the Value of Series Description (0008,103E), and/or a
+12b, code value (e.g., the Value of Series Description Code Sequence (0008,103F)).
+12c
+1350
+TID 1603 Image Library Entry Descriptors for Projection Radiography
+This Template contains selected attributes for a projection radiography image or group of such images. The descriptive
+information may be copied from images or derived.
+Type: Extensible
+1355 Order: Non-Significant
+Root: No
+Table TID 1603. Image Library Entry Descriptors for Projection Radiography
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+1 HAS ACQ CONTEXT CODE EV (111031, DCM, "Image 1 U
+View")
+2 > HAS CONCEPT CODE EV (111032, DCM, "Image 1-n U
+MOD View Modifier")
+3 HAS ACQ CONTEXT TEXT EV (111044, DCM, "Patient 1 U
+Orientation Row")
+4 HAS ACQ CONTEXT TEXT EV (111043, DCM, "Patient 1 U
+Orientation Column")
+5 HAS ACQ CONTEXT NUM EV (111026, DCM, 1 U UNITS = EV (mm, UCUM,
+"Horizontal Pixel Spacing") "millimeter")
+6 HAS ACQ CONTEXT NUM EV (111066, DCM, "Vertical 1 U UNITS = EV (mm, UCUM,
+Pixel Spacing") "millimeter")
+7 HAS ACQ CONTEXT NUM EV (112011, DCM, 1 U UNITS = EV (deg, UCUM,
+"Positioner Primary Angle") "deg")
+8 HAS ACQ CONTEXT NUM EV (112012, DCM, 1 U UNITS = EV (deg, UCUM,
+"Positioner Secondary "deg")
+Angle")
+Content Item Descriptions
+Rows 3, First (row) and second (column) components of Patient Orientation (0020,0020) in the Image IOD. See
+4 Section C.7.6.1.1.1 “Patient Orientation” in PS3.3.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 74 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Row 5 The second component of Imager Pixel Spacing (0018,1164) in the Image IOD. See Section C.8.11.4 “DX
+Detector Module” in PS3.3.
+Row 6 The first component of Imager Pixel Spacing (0018,1164) in the Image IOD. See Section C.8.11.4 “DX
+Detector Module” in PS3.3.
+1360
+TID 1604 Image Library Entry Descriptors for Cross-Sectional Modalities
+This Template contains selected attributes for a cross-sectional image or group of such images. The descriptive
+information may be copied from images or derived.
+Type: Extensible
+1365 Order: Non-Significant
+Root: No
+Table TID 1604. Image Library Entry Descriptors for Cross-Sectional Modalities
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+1 HAS ACQ NUM EV (111026, DCM, 1 U UNITS = EV (mm, UCUM,
+CONTEXT "Horizontal Pixel Spacing") "millimeter")
+2 HAS ACQ NUM EV (111066, DCM, "Vertical 1 U UNITS = EV (mm, UCUM,
+CONTEXT Pixel Spacing") "millimeter")
+3 HAS ACQ NUM EV (112226, DCM, "Spacing 1 U UNITS = EV (mm, UCUM,
+CONTEXT between slices") "millimeter")
+4 HAS ACQ NUM EV (112225, DCM, "Slice 1 U UNITS = EV (mm, UCUM,
+CONTEXT Thickness") "millimeter")
+5 HAS ACQ NUM EV (110901, DCM, "Image 1 U UNITS = EV (mm, UCUM,
+CONTEXT Position (Patient) X") "millimeter")
+6 HAS ACQ NUM EV (110902, DCM, "Image 1 U UNITS = EV (mm, UCUM,
+CONTEXT Position (Patient) Y") "millimeter")
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 75 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+7 HAS ACQ NUM EV (110903, DCM, "Image 1 U UNITS = EV (mm, UCUM,
+CONTEXT Position (Patient) Z") "millimeter")
+8 HAS ACQ NUM EV (110904, DCM, "Image 1 U UNITS = EV ({-1:1}, UCUM,
+CONTEXT Orientation (Patient) Row X") "{-1:1}")
+9 HAS ACQ NUM EV (110905, DCM, "Image 1 U UNITS = EV ({-1:1}, UCUM,
+CONTEXT Orientation (Patient) Row Y") "{-1:1}")
+10 HAS ACQ NUM EV (110906, DCM, "Image 1 U UNITS = EV ({-1:1}, UCUM,
+CONTEXT Orientation (Patient) Row Z") "{-1:1}")
+11 HAS ACQ NUM EV (110907, DCM, "Image 1 U UNITS = EV ({-1:1}, UCUM,
+CONTEXT Orientation (Patient) Column "{-1:1}")
+X")
+12 HAS ACQ NUM EV (110908, DCM, "Image 1 U UNITS = EV ({-1:1}, UCUM,
+CONTEXT Orientation (Patient) Column "{-1:1}")
+Y")
+13 HAS ACQ NUM EV (110909, DCM, "Image 1 U UNITS = EV ({-1:1}, UCUM,
+CONTEXT Orientation (Patient) Column "{-1:1}")
+Z")
+Content Item Descriptions
+Row The second component of Pixel Spacing (0028,0030) in the Image IOD. See Section 10.7.1.1 “Pixel Spacing” in
+1 PS3.3 and Section C.7.6.2 “Image Plane Module” in PS3.3.
+Row The first component of Pixel Spacing (0028,0030) in the Image IOD. See Section 10.7.1.1 “Pixel Spacing” in
+2 PS3.3 and Section C.7.6.2 “Image Plane Module” in PS3.3.
+1370
+TID 1605 Image Library Entry Descriptors for CT
+This Template contains selected attributes for a CT image or group of such images. The descriptive information may
+be copied from images or derived.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 76 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Type: Extensible
+1375 Order: Non-Significant
+Root: No
+Table TID 1605. Image Library Entry Descriptors for CT
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+1 HAS ACQ CODE EV (113820, DCM, "CT 1 U DCID 10013 “CT Acquisition
+CONTEXT Acquisition Type") Type”
+2 HAS ACQ CODE EV (113961, DCM, 1 U DCID 10033 “CT
+CONTEXT "Reconstruction Algorithm") Reconstruction Algorithm”
+Content Item Descriptions
+Row 1 A code derived from the Value of Acquisition Type (0018,9302) in the Image IOD. See Section C.8.15.3.2 “CT
+Acquisition Type Macro” in PS3.3.
+Row 2 A code derived from the Value of Reconstruction Algorithm (0018,9315) in the Image IOD. See Section C.8.15.3.7
+“CT Reconstruction Macro” in PS3.3.
+1380
+TID 1606 Image Library Entry Descriptors for MR
+This Template contains selected attributes for a MR image or group of such images. The descriptive information may
+be copied from images or derived. Specialized coded Content Items allow more precise description of imaging
+sequences used for interpretation of multiparametric prostate MRI.
+1385 Type: Extensible
+Order: Non-Significant
+Root: No
+Table TID 1606. Image Library Entry Descriptors for MR
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+1 HAS ACQ TEXT EV (128230, DCM, "Pulse 1 U
+CONTEXT Sequence Name")
+2 HAS ACQ NUM EV (130542, DCM, 1 U UNITS = (T, UCUM,
+CONTEXT "Magnetic field strength") "Tesla")
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 77 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+3 HAS ACQ NUM EV (RID10813, RADLEX, 1-n U DCID 6349 “MR Coil Type”
+CONTEXT "MR coil")
+4 HAS ACQ NUM EV (110852, DCM, "MR 1 U BCID 6311 “MR Signal
+CONTEXT signal intensity") Intensity”
+5 HAS ACQ NUM EV (130546, DCM, "Cross- 1 U BCID 6312 “Cross-sectional
+CONTEXT sectional scan plane Scan Plane Orientation”
+orientation")
+6 HAS ACQ NUM EV (113240, DCM, "Source 1-n U UNITS = (s/mm2, UCUM,
+CONTEXT image diffusion b-value") "s/mm2")
+7 HAS ACQ INCLUDE DTID 1608 “Image Library 1 U
+CONTEXT Entry Descriptors for
+Prostate Multiparametric
+MR”
+Content Item Descriptions
+1390
+Row The value of Pulse Sequence Name (0018,9005) or Sequence Name (0018,0024) in the Image IOD. See
+1 Section C.8.13.4 “MR Pulse Sequence Module” in PS3.3.
+Row Multiple values may apply when entry descriptor corresponds to a parametric map such as Apparent Diffusion
+6 Coefficient (ADC) map, which utilizes multiple b-values from a Diffusion-Weighted acquisition.
+TID 1607 Image Library Entry Descriptors for PET
+This Template contains selected attributes for a PET image or group of such images. The descriptive information may
+be copied from images or derived.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 78 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+1395 Note
+The content of this Template is similar to that in TID 15101 NM/PET Protocol Context, but is in the form of an
+SR Template rather than a Protocol Context Template, and the Content Items are not nested as modifiers.
+There is also some similarity to TID 3307 NM/PET Perfusion Measurement Group.
+Type: Extensible
+1400 Order: Non-Significant
+Root: No
+Table TID 1607. Image Library Entry Descriptors for PET
+N Rel with VT Concept Name V Req Condition Value Set Constraint
+L Parent M Type
+1 HAS ACQ CODE EV (89457008, SCT, 1 U DCID 4020 “PET
+CONTEXT "Radionuclide") Radionuclide”
+2 HAS ACQ CODE EV (349358000, SCT, 1 U DCID 4021 “PET
+CONTEXT "Radiopharmaceutical Radiopharmaceutical”
+agent")
+3 HAS ACQ NUM EV (304283002, SCT, 1 U UNITS = EV (s, UCUM,
+CONTEXT "Half-life of "s")
+radiopharmaceutical")
+3b HAS ACQ TEXT EV (121022, DCM, 1 U
+CONTEXT "Accession Number")
+4 HAS ACQ DATETIME EV (123003, DCM, 1 U
+CONTEXT "Radiopharmaceutical
+Start DateTime")
+5 HAS ACQ DATETIME EV (123004, DCM, 1 U
+CONTEXT "Radiopharmaceutical
+Stop DateTime")
+6 HAS ACQ NUM EV (123005, DCM, 1 U UNITS = DT (cm3,
+CONTEXT "Radiopharmaceutical UCUM, "cm3")
+Volume")
+7 HAS ACQ NUM EV (123006, DCM, 1 U UNITS = DT (Bq, UCUM,
+CONTEXT "Radionuclide Total "Bq")
+Dose")
+8 HAS ACQ NUM EV (123007, DCM, 1 U UNITS = DT (Bq/mol,
+CONTEXT "Radiopharmaceutical UCUM, "Bq/mol")
+Specific Activity")
+9 HAS ACQ CODE EV (410675002, SCT, 1 U BCID 11 “Administration
+CONTEXT "Route of Administration") Route”
+10 HAS ACQ NUM EV (123009, DCM, 1 U UNITS = DT ({counts}/s,
+CONTEXT "Radionuclide Syringe UCUM, "counts/s")
+Counts")
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 79 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+N Rel with VT Concept Name V Req Condition Value Set Constraint
+L Parent M Type
+11 HAS ACQ NUM EV (123010, DCM, 1 U UNITS = DT ({counts}/s,
+CONTEXT "Radionuclide Residual UCUM, "counts/s")
+Syringe Counts")
+12 HAS ACQ NUM EV (126203, DCM, "PET 1 U UNITS = EV (min, UCUM,
+CONTEXT Radionuclide Incubation "min")
+Time")
+13 HAS ACQ NUM EV (14749-6, LN, 1 U UNITS = EV (mmol/l,
+CONTEXT "Glucose") UCUM, "mmol/l")
+14 HAS ACQ DATE EV (127857, DCM, 1 MC IF Row 13
+CONTEXT "Glucose Measurement Glucose is
+Date") present and does
+not contain
+Observation
+DateTime
+(0040,A032).
+15 HAS ACQ TIME EV (127858, DCM, 1 MC IF Row 13
+CONTEXT "Glucose Measurement Glucose is
+Time") present and does
+not contain
+Observation
+DateTime
+(0040,A032).
+Content Item Descriptions
+Row 3 Half-life of The units for half life are chosen to be seconds, to match the units used for
+radiopharmaceutical Radionuclide Half Life (0018,1075). See Section C.8.9.2 “PET Isotope Module” in
+PS3.3.
+Row 14 Glucose Measurement Date In an earlier edition of the Standard, an incorrect DCM code was used for this
+concept, which was already assigned as (109081, DCM, "Prospective gating").
+Row 15 Glucose Measurement Time In an earlier edition of the Standard, an incorrect DCM code was used for this
+concept, which was already assigned as (109082, DCM, "Retrospective gating").
+1405
+TID 1608 Image Library Entry Descriptors for Prostate Multiparametric MR
+This Template includes attributes for image library entries that define the type of the sequence, as needed for PI-RADS
+interpretation of multiparametric MRI, specify most important sequence-specific attributes, and provide a location for
+reporting prostate imaging and sequence-specific technical characteristics of the acquisition.
+1410 Note
+A descriptor specific to prostate MRI and PI-RADS is provided to record Prostate DCE temporal resolution.
+This term follows the conventions used in the PI-RADS guidelines.
+Type: Extensible
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 80 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Order: Non-Significant
+1415 Root: No
+Table TID 1608. Image Library Entry Descriptors for Prostate Multiparametric MR
+N Rel with Parent VT Concept Name V Req Conditi Value Set Constraint
+L M Type on
+1 HAS ACQ TEXT EV (130544, DCM, "Endorectal 1 U
+CONTEXT coil type")
+2 HAS ACQ CODE EV (130545, DCM, "Inflatable 1 U DCID 6350 “Endorectal
+CONTEXT endorectal coil fill substance") Coil Fill Substance”
+3 HAS ACQ NUM EV (130547, DCM, "Dynamic 1-n U UNITS = (s, UCUM,
+CONTEXT contrast-enhanced temporal "second")
+resolution")
+Modify PS3.16 CID 7010 as indicated, to include new concepts
+(changes to existing text are bold and underlined for additions and bold and strikethrough for
+1420 removals):
+Modify PS3.16 to add a new Image Library Entry template TID 16XX as indicated, to include
+new concepts for describing the properties of the flagging of instances with a key (KOS SOP
+Class)
+1425 (changes to existing text are bold and underlined for additions and bold and strikethrough for
+removals):
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 81 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+TID 16XX Image Library Entry Descriptors for Key Object Selection
+This Template includes attributes for image library entries that specify most important attributes for optimizing access
+1430 to instances flagged by Key Object Selection.
+Type: Extensible
+Order: Non-Significant
+Root: No
+Table TID 16XX. Image Library Entry Descriptors for Key Object Selection
+NL Rel with Parent VT Concept Name VM Req Type Condition Value Set Constraint
+1 CONTAINS CONTAINER DTID 16XX Image Library 1
+Entry Descriptors for
+Key Object Selection
+2 > HAS ACQ CODE EV (121144, DCM, 1 M
+CONTEXT "Document Title")
+3 > HAS ACQ TEXT EV (113012, DCM, “ Key 1 MC Required
+CONTEXT Object Description when
+present in
+the
+reference
+d KOS
+instance
+4 > HAS ACQ IMAGE 1-n MC
+CONTEXT
+One of the Instances flagged as
+rows 4, 5 significant by the KOS
+5 > HAS ACQ COMPOSITE 1-n MC and 6 shall
+CONTEXT be present.
+instance
+6 > HAS ACQ WAVEFORM 1-n MC
+CONTEXT
+1435
+CID 7010 Key Object Selection Document Title
+Resources: HTML | FHIR JSON | FHIR XML | IHE SVS XML
+Keyword: KeyObjectSelectionDocumentTitle
+FHIR Keyword: dicom-cid-7010-KeyObjectSelectionDocumentTitle
+1440 Type: Extensible
+Version: 20190915yyyymmdd
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 82 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+UID: 1.2.840.10008.6.1.490
+Table CID 7010. Key Object Selection Document Title
+Coding Scheme Designator Code Value Code Meaning
+DCM 113000 Of Interest
+DCM 113001 Rejected for Quality Reasons
+DCM 113002 For Referring Provider
+…
+DCM 113021 For Litigation
+DCM 113030 Manifest
+DCM 113031 Signed Manifest
+DCM ddd001 Manifest with Description
+DCM 113032 Complete Study Content
+…
+1445 Modify PS3.16 to add a new Template on high-level anatomic regions and systems concepts
+(changes to existing text are bold and underlined for additions and bold and strikethrough for
+removals):
+CID 403X High-Level Anatomic Regions and systems
+Resources: HTML | FHIR JSON | FHIR XML | IHE SVS XML
+1450 Keyword: highlevelanatomicregionssystems
+FHIR Keyword: dicom-cid-403X- HighLevelAnatomicRegions
+Type: Extensible
+Version: TBD
+UID: 1.2.840.10008.6.1.TBD
+1455 Table CID 403X. High-Level Anatomic Regions and systems
+Coding Scheme Code Value Code Meaning
+Designator
+SCT 63337009 Lower trunk
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 83 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Coding Scheme Code Value Code Meaning
+Designator
+SCT 38266002 Entire body
+SCT 53120007 Upper limb
+SCT 61685007 Lower limb
+SCT 67734004 Upper trunk
+SCT 774007 Head and neck
+SCT 113257007 Cardiovascular system
+SCT 80891009 Heart
+SCT 76752008 Breast
+SCT 737561001 Spine and/or cord
+Note: The above codes and associated definitions are an extract from CID-4031. They are selected to be a short set
+of values optimized to facilitate a coarse filtering among large number of imaging studies performed across a wide
+range of treatment specialties and imaging modalities.
+1460 Modify PS3.16 Annex D as indicated, to include new concepts
+(changes to existing text are bold and underlined for additions and bold and strikethrough for
+removals):
+Table D-1: DICOM Controlled Terminology Definitions (Coding Scheme Designator
+1465 “DCM” Coding Scheme Version “01”)
+Code Value Code Meaning Definition Notes
+113030 Manifest A list of objects that have 113030
+been exported out of one
+organizational domain into
+another domain. Typically,
+the first domain has no
+direct control over what
+the second domain will do
+with the objects.
+113031 Signed Manifest A signed list of objects
+that have been exported
+out of one organizational
+domain into another
+domain, referenced
+securely with either Digital
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 84 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Code Value Code Meaning Definition Notes
+Signatures or MACs.
+Typically, the first domain
+has no direct control over
+what the second domain
+will do with the objects.
+ddd001 Manifest with A list of objects that
+Description have been exported out
+of one organizational
+domain into another
+domain, including
+additional descriptive
+metadata that may
+facilitate its use to
+determine relevance of
+the listed objects.
+111018 Content Date The date the data creation
+started.
+111019 Content Time The time the data creation
+started.
+111060 Study Date Date on which the
+acquisition of the study
+information was started.
+111061 Study Time Time at which the
+acquisition of the study
+information was started.
+126201 Acquisition Date The date the acquisition of
+data started
+126202 Acquisition Time The time the acquisition of
+data started
+ddd003 Series Date Date the Series started.
+ddd004 Series Time Time the Series started.
+ddd002 Series Description Description of the
+Series.
+ddd005 Series Number A number that identifies
+the Series.
+ddd006 Series Instance UID A UID that uniquely
+identifies the Series
+ddd008 Instance Number A number that identifies
+the Instance.
+121139 Modality Type of device, process or
+method used to acquire or
+derive data.
+121140 Number of Frames Number of Frames in a
+multi-frame image.
+ddd007 Number of Series The number of
+Related Instances Composite Object
+Instances in a Series.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 85 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Code Code Meaning Definition Notes
+Value
+113030 Manifest A list of objects that
+have been exported out
+of one organizational
+domain into another
+domain. Typically, the
+first domain has no
+direct control over what
+the second domain will
+do with the objects.
+113031 Signed Manifest A signed list of objects
+that have been exported
+out of one organizational
+domain into another
+domain, referenced
+securely with either
+Digital Signatures or
+MACs. Typically, the
+first domain has no
+direct control over what
+the second domain will
+do with the objects.
+ddd001 Manifest with Description A list of objects that
+have been exported
+out of one
+organizational domain
+into another domain,
+including additional
+descriptive metadata
+that may facilitate its
+use to determine
+relevance of the listed
+objects.
+111018 Content Date The date the data
+creation started.
+111019 Content Time The time the data
+creation started.
+111060 Study Date Date on which the
+acquisition of the study
+information was started.
+111061 Study Time Time at which the
+acquisition of the study
+information was started.
+126201 Acquisition Date The date the acquisition
+of data started
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 86 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Code Code Meaning Definition Notes
+Value
+126202 Acquisition Time The time the acquisition
+of data started
+ddd003 Series Date Date the Series
+started.
+ddd004 Series Time Time the Series
+started.
+ddd002 Series Description Description of the
+Series.
+ddd005 Series Number A number that
+identifies the Series.
+ddd006 Series Instance UID A UID that uniquely
+identifies the Series
+ddd008 Instance Number A number that
+identifies the Instance.
+121139 Modality Type of device, process
+or method used to
+acquire or derive data.
+121140 Number of Frames Number of Frames in a
+multi-frame image.
+ddd007 Number of Series Related Instances The number of
+Composite Object
+Instances in a Series.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 87 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Appendix B – Alternative MADO KOS Manifest format using a
+1470 Standard Extended SOP Class
+Reviewers note: This appendix will be removed once the Open Issue #2 has been resolved. The
+contents of Section 6.X.1 “MADO DICOM KOS-Based Imaging Study Content Definition” will
+be updated to fully describe either alternative 1 or 2.
+1475
+Several approaches have been considered to extend the Key Object Selection (KOS) DICOM
+with additional information to offer Imaging Document Consumers more flexibility to search for
+relevant imaging studies, as well as to select relevant series or images. Three approaches have
+been considered and discussed with DICOM WG6:
+1480 1. Extend the DICOM KOS IOD with standard Data Elements. This approach is the one
+used in the initial draft of the MADO Profile. Although being formally allowed by the
+DICOM Standard, it’s use has been discouraged by the DICOM WG6 as being not
+consistent with the design of the KOS IOD.
+2. DICOM created a CP to extend the TID2010 Template that is used by the DICOM KOS
+1485 IOD. DICOM forbids extensions to the TID 2010 Template, by profilers or
+implementers. This Change Proposal proposes to add the existing TID 1600 Image
+Library Template to TID 2010.
+3. Use a different SOP Class than an extended KOS SOP Class. The use of the DICOM
+Inventory IOD has been considered and found functionally capable to support the
+1490 extensions needed. However, this approach has not been selected because it breaks the
+backward compatibility with many existing deployments and products support of KOS
+Manifests per the XDS-I Profile.
+The current Public Comment has selected approach 2, based on its backward compatibility and
+design consistency with the DICOM KOS despite the somewhat increased overhead of the
+1495 DICOM SR based constructs.
+This appendix specifies approach 2, as an alternative, with less overhead than approach 1, using
+a Standard Extended SOP Class that adds attributes into the Standard KOS (manifest) SOP
+Class. These extensions to the standard KOS Manifest SOP Class Modules are placed in context
+and summarized (highlighted in light blue) in Table B-1.
+1500
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 88 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Table B-1: Usage of DICOM Modules in MADO Imaging Study Manifest
+IE Module Reference Usage IHE Usage
+Patient Patient C.7.1.1 M M
+See Section
+6.X.1.2.2.1
+Study General Study C.7.2.1 M M
+See Section
+6.X.1.2.2.2
+Series Key Object Document C.17.6.1 M M
+Series
+Equipment General Equipment C.7.5.1 M M
+See Section
+6.X.1.2.2.3
+SR Document Key Object Document C.17.6.2 M M
+See Sections
+6.X.1.2.2.4 modified
+with B.1 “Extension
+to Hierarchical SOP
+Instance Reference
+Macro”
+SR Document Content C.17.3 M M
+SOP Common C.12.1 M M
+See Section
+6.X.1.2.2.6
+In the modules specified below only the DICOM attributes profiled by MADO are listed. The
+1505 DICOM standard applies for all other attributes.
+The KOS IOD Modules and Macros defined in Section 6.X.1.2.2 and 6.X.1.2.3 are reused with
+the following changes:
+1. Removal of MADO SR Document Content Module (see section 6.X.1.2.2.5) with its
+TID1600/TID1601/TID1602 and TID/16XX nested extensions to be reverted back to the
+1510 standard KOS SR Document Module - Using TID 2010 “Key Object Selection” with
+Document Title: (113030, DCM, Manifest).
+2. Extension to Hierarchical SOP Instance Reference Macro (see section 6.X.1.2.3.4) to add
+the following Series level (descriptive) attributes:
+• Series Date (0008,0021)
+1515 • Series Time (0008,0031)
+• Modality (0008,0060)
+• Series Description (0008,103E)
+• Series Number (0020,0011)
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 89 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+3. Extension to Hierarchical Series Reference Macro (see section 6.X.1.2.3.5) to add the
+1520 following Instance level (descriptive) attributes:
+• Instance Number (0020,0013)
+• Number of Frames (0028,0008)
+4. Extension to Hierarchical Series Reference Macro (see section 6.X.1.2.3.5) to add a
+number of Instance level attributes for the KOS SOP Instance referenced and flagging
+1525 significant (Key) images Reference.
+The macro extensions are all defined in the following sections highlighted in light-blue.
+B.1 Extension to Hierarchical SOP Instance Reference Macro
+B.1.1 Referenced Standards
+• DICOM PS 3.3: C.17.2.1 Hierarchical SOP Instance Reference Macro
+1530 B.1.2 Macro Definition
+Table B.1.2-1: Usage of DICOM Attributes in Hierarchical SOP Instance Reference Macro
+Attributes from Table C.17-3 Hierarchical SOP Instance Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Study Instance UID (0020,000D) R Unique identifier for the Study.
+Copy of the referenced study’s Study Instance UID
+(0020,000D).
+Note: There is a 1 to 1 relationship between this KOS
+manifest and the study that this KOS manifest references.
+Retrieve URI (IID use) (0040,E010) O The value of this attribute is a complete URL representing
+the endpoint of a system supporting a study request to
+launch server-side viewer using for example the IHE IID
+profile (See the concepts described in section X.4.1.7
+Launching a Remote Image Display).
+This URL shall include the value from the Study Instance
+UID (0020,000D) from this manifest.
+Referenced Series Sequence (0008,1115) R Sequence of Items where each item includes the Attributes
+of a Series containing referenced Composite Object(s)
+>Include Table 6.X.1.2.3.4.2-1 “Hierarchical Series Reference Macro Attributes” – see section 6.X.1.2.3.4 Hierarchical Series
+Reference Macro
+>Include Table B.3.2-1 “MADO Series Metadata (Descriptive) Macro Attributes” – see section B.3 MADO Series Metadata
+(Descriptive) Macro
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 90 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+B.2 Extension to Hierarchical Series Reference Macro
+B.2.1 Referenced Standards
+1535 • DICOM PS 3.3: C.17.2.1 Hierarchical Series Reference Macro
+B.2.2 Macro Definition
+Table B.2.2-1: Usage of DICOM Attributes in Hierarchical Series Reference Macro
+Attributes from Table C.17-3a Hierarchical Series Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Retrieve Location UID (0040,E011) R+ Unique identifier of the system where the Composite
+Object(s) may be retrieved on the network.
+The value of this attribute is an OID that may be used as a
+reference to obtain the endpoint of the corresponding
+WADO-RS service returned as a Base URI (See concept
+section X.4.1.2 Intra-community sharing infrastructure).
+WADO-RS retrieval URLs can be composed by the
+consumer using this Base URI and the
+study/series/instance UIDs from this manifest.
+Retrieve URL (0008,1190) O URL specifying the location of the referenced Instance(s).
+The value of this attribute is a Base URI representing the
+endpoint for the corresponding WADO-RS service (See
+concept section X.4.1.2 Intra-community sharing
+infrastructure).
+WADO-RS retrieval URL can be composed by the
+consumer using this Base URI and the
+study/series/instance UIDs from this manifest.
+Note: The definition of this Retrieve URL being a Base
+URI aligns with its use in the IHE XDS-I.b profile
+(DICOM Retrieve by WADO-RS option) and the IHE
+XC-WADO profile.
+Referenced SOP Sequence (0008,1199) R References to Composite Object SOP Class/SOP Instance
+pairs that are part of the Study defined by Study Instance
+UID and the Series defined by Series Instance UID
+(0020,000E).
+One or more Items shall be included in this Sequence.
+>Include Table 10-11 "SOP Instance Reference Macro Attributes"
+>Include Table B.4.2-1 "MADO SOP Instance Metadata (descriptive) Macro Attributes" – see section B.4 MADO SOP
+Instance Metadata (descriptive) Macro
+>Include Table B.5.2-1 "MADO Significant (Key) Image Reference Macro Attributes". This macro shall be included only if
+the referenced instance is a DICOM KOS SOP Class – see section B.5 MADO Significant (Key) Image Reference Macro
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 91 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+B.3 MADO Series Metadata (Descriptive) Macro
+1540 B.3.1 Referenced Standards
+• IHE MADO Profile
+B.3.2 Macro Definition
+Table B.3.2-1: Usage of DICOM Attributes in MADO Series Metadata (Descriptive) Macro
+MADO Series Metadata (Descriptive) Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Series Date (0008,0021) R+ Date the Series started.
+See Section B.3.2.1.
+Series Time (0008,0031) R+ Time the Series started.
+See Section B.3.2.1.
+Modality (0008,0060) R+ Type of device, process or method that created the
+Instances in this Series.
+Series Description (0008,103E) R+ Description of the Series.
+Series Number (0020,0011) R+ A number that identifies this Series.
+1545 B.3.2.1 Series Date/Time Attribute Descriptions
+The Series Date (0008,0021) and Series Time (0008,0031) in the referenced imaging study are
+Type 3 attributes. When values for these attributes are not present in the referenced imaging
+study, it may be necessary to copy values from other date and time attribute values e.g., Instance
+Creation date and time.
+1550 B.4 MADO SOP Instance Metadata (Descriptive) Macro
+B.4.1 Referenced Standards
+● IHE MADO Profile
+B.4.2 Macro Definition
+1555
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 92 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Table B.4.2-1: Usage of DICOM Attributes in MADO SOP Instance Metadata (Descriptive)
+Macro
+MADO SOP Instance Metadata (Descriptive) Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Instance Number (0020,0013) R+ A number that identifies this SOP Instance.
+Number of Frames (0028,0008) RC+ Number of frames in a Multi-frame Image.
+Required if the instance contains multi-frame pixel data.
+1560 B.5 MADO Significant (Key) Image Reference Macro
+B.5.1 Referenced Standards
+• IHE MADO Profile
+B.5.2 Macro Definition
+The attributes in this Macro contain selected information from the referenced KOS instances,
+1565 when present, in an imaging study (e.g., flagging using the IHE KIN profile). The purpose is to
+allow user of any imaging consumer to determine by simply processing the content of the
+imaging manifest:
+• the presence of flagged significant images (when one or more such Referenced Sequence
+is present in references to KOS instances in series of modality KO),
+1570 • accessing the title codes and associated KOS description in the manifest to offer the
+ability to only retrieve such significant images to his own system.
+• Accessing SOP reference to each corresponding KOS to support their retrieval.
+With such information present along with the references to KOS instances within the manifest,
+there is no need for additional retrieve transactions to access key images flagged as significant
+1575 and referenced by KOS instances which is important in large-scale image sharing.
+The data model underlying the relationship between the values conveyed by the above list of
+content items.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 93 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+Imaging Study
+Manifest Study Identifier
+1
+n n
+Series Series
+identifier identifier
+n 1 Flagging as significant 1 n
+Reference to n • Coded Reason Reference to
+• Optional Description Text
+an instance • Reference to flagged 0 1 an instance
+1 instance 1
+Reference to Reference to a KOS Instance
+Image Instance flagged as significant by a KIN
+DICOM 1
+1
+Imaging Key Object
+Study Image 1 Flagged as n Selection (KOS)
+significant • Coded Reason
+• Comments
+Table B.5.2-1: Usage of DICOM Attributes in MADO Significant (Key) Image Reference
+1580 Macro
+MADO Significant (Key) Image Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Purpose of Reference Code (0040,A170) R+ This sequence shall contain a single item.
+Sequence
+> Code Value (0008,0100) R Shall use the Code Value “113000” if this Item (of the
+enclosing Referenced SOP Sequence (0008,1199)) is
+flagged as a significant image.
+May use any other code value from BCID 7010.
+> Coding Scheme Designator (0008,0102) R Identifier of the coding scheme in which the Code Value
+(0008,0100).
+DICOM coding scheme. Shall use a fixed value: Coding
+Scheme Designator “DCM”.
+> Code Meaning (0008,0104) R Convey the code meaning as specified by BCID 7010.
+E.g., “Of Interest” for the code value “113000”.
+Text Value (0040,A160) R+ Contains the Concept Name (113012, DCM, "Key Object
+Description") Text Value copied from the KOS/KIN
+instance referenced.
+Non-formatted textual data, allowing for implementation
+specific display. This value may contain spaces as well as
+CR LF separators for one or more lines.
+Expresses the fact that the Referenced KOS/KIN SOP Instance flags a number of instances from series described within the
+imaging study manifest. These flagged series and instances are referenced within the Reference SOP Sequence below.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 94 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS
+
+IHE Radiology Technical Framework Supplement – Manifest-based Access to DICOM Objects
+(MADO)
+______________________________________________________________________________
+MADO Significant (Key) Image Reference Macro Attributes
+Attribute Name Tag IHE Attribute Description
+Usage
+Referenced SOP Sequence (0008,1199) R This sequence shall contain as many Related Series
+Sequences (0008,1250) as there are Series with instances
+flagged by the above referenced KOS/KIN.
+> Series Instance UID (0020,000E) R Series Instance UID of the series present in the referenced
+KOS/KIN.
+> Referenced SOP Instance UID (0008,1155) R List of the SOP Instance UID of the instances flagged by
+the referenced KOS/KIN.
+This sequence shall contain as many instance UID as there
+are instances flagged within the above referenced Related
+Series Sequences (0008,1250).
+>> SOP Instance UID (0008,0018) R SOP Instance UID of an instance flagged by the
+referenced KOS/KIN.
+___________________________________________________________________________
+Rev. 1.0 – 2025-12-08 95 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6 DO NOT IMPLEMENT PUBLIC COMMENT VERSIONS

@@ -1,0 +1,247 @@
+23 February 2026
+Submission Method: Submitted electronically via Regulations.gov.
+Department of Health and Human Services
+Office of the Deputy Secretary and Assistant Secretary for Technology Policy (ASTP)
+Office of the National Coordinator for Health Information Technology (ONC)
+(collectively, ASTP/ONC)
+Attention: ASTP/ONC Representatives
+Subject: Comments to RIN 0955-AA13
+Dear ASTP/ONC Representatives
+About Code360:
+Code360 Inc. is a digital IT services company supporting federal agencies, state and local
+governments, and commercial sector clients. We specialize in Health IT, Data Analytics, IT
+Governance, Advanced Statistics, AI/ML, Solution Architecture, Cloud Engineering, Software Modernization, and Business
+Intelligence. As an SBA-certified 8(a) and HUBZone minority owned small business, we are committed to delivering
+innovative, cutting-edge IT solutions that drive impact and transformation across the public sector.
+
+Background:
+On December 4, 2025, the Department of Health and Human Services (HHS) issued the HHS Artificial Intelligence (AI)
+Strategy [1] in response to Office of Management and Budget (OMB) Memorandum 25-21.[2] The HHS AI Strategy represents a
+“OneHHS” approach to AI and is primarily focused on the Department's internal interests and ambitions to harness the
+transformative potential of AI and embed it into HHS's operations, while upholding patient privacy, civil rights, and civil
+liberties. Consistent with the President's artificial intelligence (AI) Action Plan,[3] recent Executive Orders [4] on AI, and Office
+of Management and Budget AI memoranda,[5] the Department seeks public feedback on the actions it can take to establish a
+forward-leaning, industry-supportive, and secure approach to accelerate the adoption and use of AI [6] as part of clinical care.
+In the past 12 months, HHS Divisions, including the Food and Drug Administration (FDA),[7] National Institutes of Health
+(NIH),[8] Centers for Medicare & Medicaid Services (CMS),[9] and ASTP/ONC [10] have sought public feedback on various
+aspects of AI and how it intersects with the Department's policy interests. In this RFI we seek concrete, experience-based
+feedback from those building, buying, evaluating, using, and receiving care from AI tools that are part of clinical care as well
+as from those who wish to do so but face barriers. Public feedback will inform HHS-wide use of three different approaches:
+regulation, reimbursement, and research & development. In general, HHS seeks feedback on ways in which these
+approaches can be most effectively applied to support the rapid adoption and use of AI in clinical care, to foster public trust
+and confidence in modern technology solutions, to reduce uncertainty that impedes AI innovation, and to align federal
+incentives so that AI is deployed in ways that enhance productivity, reduce burden, lower health care costs, and improve
+health outcomes for patients, caregivers, and communities.
+Section A:
+Partner Response — Architecture and Business Systems Engineering for Safe AI Adoption in
+Clinical Care (Non-Device and Device-Adjacent)
+A.1 Perspective and focus
+This response is provided by a small business advisory focused on AI-adoption architecture (enterprise/business/technical)
+and business systems engineering for AI, with emphasis on governed, auditable, human-centered operation of AI
+capabilities in regulated environments. The offering is advisory + architecture (no product claims; no implementation
+commitments), with the intent to support primes and health-sector organizations as they operationalize HHS goals for rapid
+adoption that maintains public trust.
+HHS is seeking “concrete, experience-based feedback” to accelerate AI in clinical care using regulation, reimbursement, and
+R&D, while fostering trust, reducing uncertainty, and aligning incentives.
+A.2 Core thesis: adoption bottlenecks are governance-and-operations bottlenecks, not “model”
+bottlenecks
+Across federal and state health programs, we see a consistent pattern: the biggest adoption drag is rarely the algorithm in
+isolation; it is the system around it—including requirements, accountability, change control, evidence, interoperability,
+and operational oversight.
+
+Three practical implications:
+1. AI is operated, not delivered. Intelligent behavior changes over time (data drift, prompt/tool changes, workflow
+changes) and must be governed continuously.
+2. Regulated trust requires traceability from intent/requirement → decision → action → evidence, including auditable
+approvals and governed change.
+3. Requirements for AI are not just “features.” They must explicitly model: what is off-limits, when to escalate, how
+humans intervene, and what evidence must be produced.
+Practical “method call-outs” (used as concepts, not marketing)
+A. Structured, agent-aware requirements
+A proven approach is to surface ambiguous needs early, classify requirements (including agentive and policy/constraint
+requirements), and link them to events/actors to preserve design traceability.
+B. Capability-governed, event-driven operating model
+For governed intelligent systems, model behavior on an “event spine,” define explicit approval gates, maintain audit trails
+for each run/case, enforce change control for prompts/tools/thresholds, and produce “evidence packs” suitable for audit
+sampling.
+A.3 Responses to HHS Specific Questions (1–10)
+1) Biggest barriers to private-sector innovation and adoption in clinical care
+HHS asks: “What are the biggest barriers…?”
+Barrier themes (adoption horizontal):
+• Unclear governance boundary for non-device AI (documentation, validation, accountability expectations vary by
+organization and legal posture).
+• Operational risk and “silent change” (prompt/tool updates, model drift, workflow drift) without standardized
+change-control patterns.
+• Evidence deficit: organizations cannot reliably answer “what changed / who approved / what data / can we
+reproduce outputs,” which blocks scale-out.
+• Interoperability friction: costly, inconsistent integration to clinical data types; uneven benchmarking; and limited
+“shared evaluation infrastructure.”
+• Procurement mismatch: acquisition often funds pilots but not the operational controls (monitoring, governance,
+evidence, sustainment) needed for production.
+Actionable HHS enablers:
+
+• Publish a Non-Device Clinical AI Governance Profile (minimum “operational control set”): approvals, audit trail,
+traceability, monitoring, change control, escalation paths, and evidence artifacts. (These are the controls regulated
+organizations repeatedly need to scale safely.
+• Fund reusable reference architectures for: clinical workflow integration + evidence logging + controlled
+deployment (patterns, not products).
+• Create “fast-lane” adoption guidance for low-risk, assistive AI with clearly bounded autonomy and required
+safeguards.
+2) Regulatory, payment, or program design changes HHS should prioritize (include CFR references)
+HHS asks what changes to prioritize and requests CFR citations. HHS-AI-RFI
+Regulatory priorities (reduce uncertainty without weakening protections):
+• Clarify how existing privacy/security obligations apply to AI workflows, especially where AI vendors act as business
+associates and where models/logs may contain sensitive data. HIPAA’s Privacy and Security framework is already
+grounded in 45 CFR Part 160 and Part 164. HHS+1
+• Address adoption friction for sensitive subdomains (e.g., SUD records) by aligning practical implementation
+guidance with 42 CFR Part 2 while protecting patient trust. eCFR+1
+• Reinforce that interoperability is not optional: reduce “AI data lock-in” by aligning AI deployment expectations with
+ONC’s information blocking framework in 45 CFR Part 171. eCFR+1
+Programmatic / reimbursement design (architecture lens):
+• Encourage payment models that reimburse the operational controls that make AI safe (monitoring, human
+oversight time, evidence production), not just the “tool.” HHS notes reimbursement can unintentionally slow
+innovation and seeks payment policy modernization.
+• Where AI is used in coverage/utilization processes, reinforce individualized decision requirements and
+transparency. Medicare Advantage regulations include medical-necessity determination requirements (see 42 CFR §
+422.101). GovInfo+1
+Concrete “do now” changes (low regret):
+• Issue implementation guidance (not necessarily new regulation) defining acceptable patterns for: model/prompt
+versioning, approval gates, run-level audit logging, and evidence packs—especially for non-device AI embedded in
+clinical workflow.
+• Expand HHS/ONC procurement playbooks to require vendors to deliver operational governance artifacts (change
+logs, monitoring plans, escalation policies, reproducibility strategy) as first-class deliverables.
+3) Novel legal and implementation issues for non-medical-device AI; HHS’s role
+HHS highlights liability, indemnification, privacy, and security for non-device AI.
+
+Novel issues (implementation reality):
+• Accountability ambiguity when AI participates in decisions but humans remain responsible; “who is the decision-
+maker” is often unclear in practice.
+• Duty-to-monitor and change-control: if the AI behavior evolves, the organization needs a defensible, repeatable
+oversight process.
+• Evidence expectations: legal defensibility depends on being able to reconstruct the basis for outputs (data
+provenance, model/prompt/tool versions, human overrides).
+• Privacy/security risk surfaces expand: prompts, logs, embeddings, and fine-tuning datasets can inadvertently
+become regulated data stores (HIPAA/Part 2 implications). HHS+1
+Recommended HHS role:
+• Publish a shared vocabulary and minimum controls for non-device AI in clinical workflow: autonomy levels,
+escalation triggers, evidence artifacts, and approval expectations (a “common contract” between builders, buyers,
+and auditors).
+• Convene a cross-OpDiv working group (ASTP/ONC + CMS + NIH, as relevant) to align “trust & safety” expectations
+with interoperability and reimbursement incentives. HHS is explicitly taking a “OneHHS” posture and seeks to
+accelerate adoption while upholding privacy/civil liberties.
+4) Promising evaluation methods (pre/post), metrics, robustness testing; how HHS should support
+HHS asks for pre- and post-deployment evaluation methods and mechanisms.
+Evaluation must be lifecycle-based (not a one-time “validation”):
+• Pre-deployment: define the operational boundaries (allowed actions, prohibited actions, escalation rules) and test
+them, not just model accuracy.
+• Post-deployment: continuous monitoring for behavioral drift, workflow misfit, error modes, and human override
+patterns (signals of unsafe automation).
+Metrics categories that accelerate trust:
+• Clinical/workflow outcomes (burden reduction, time-to-task completion, error rates, escalation quality).
+• Safety-of-execution metrics (rate of off-limits outputs, near-miss frequency, override frequency, “exception raised”
+patterns).
+• Governance metrics (evidence completeness score; % of runs traceable to approved versions; time-to-
+revoke/rollback). These map directly to auditability controls.
+How HHS should support (highest leverage):
+• Fund shared test harnesses + benchmark toolchains for clinical AI workflows (including human-centered
+evaluation), not just datasets.
+
+• Use prize competitions for: (a) “best evidence pack / reproducibility design,” (b) “best controlled escalation UX,”
+and (c) “best drift detection + rollback patterns,” because these are adoption blockers across domains.
+5) Supporting private-sector accreditation/certification/testing/credentialing
+HHS asks how it can best support accreditation/certification and industry-driven testing.
+Recommendation: certify the *operating controls*, not the “AI.”
+A pragmatic approach is to support accreditation programs that assess whether an AI-enabled workflow has:
+• explicit approval gates,
+• run-level audit trails,
+• governed change control for prompts/tools/thresholds,
+• traceability from requirement → decision → action → evidence,
+• operational UX for review/override.
+HHS contribution options:
+• Publish reference checklists and “audit-ready evidence templates” (machine-readable where possible) so
+accreditation is consistent across organizations.
+• Sponsor an “AI for Clinical Care Controls Catalog” aligned to privacy/security and interoperability expectations.
+6) Where AI has met/exceeded expectations vs fallen short; most promising novel AI tools
+HHS asks where AI has met expectations and where it falls short; and what novel tools have greatest potential.
+Where expectations are often met (pattern-level):
+• Administrative burden reduction (documentation assistance, summarization, routing/triage) when autonomy is
+bounded and human review is designed well.
+• Decision support augmentation (surface relevant context, suggest next-best actions) when traceability and
+escalation are explicit.
+Where tools fall short (adoption failure modes):
+• “Pilot success” but production failure due to missing operating controls: monitoring, versioning, change approval,
+evidence packs, and interoperability plumbing.
+• Opaque or inconsistent behavior caused by ungoverned prompt/tool changes (“silent production change”).
+• Integration costs and data friction overwhelm value when interoperability isn’t planned early.
+Most promising “novel” tools (framed as capabilities):
+
+• Agentic workflow orchestration with strict boundaries: AI that can coordinate tasks across systems (e.g., gather
+context, draft artifacts, route for approvals) while being constrained by policy and escalation rules. The key is a
+governed event spine + approval gates + evidence.
+• Evidence-producing AI: systems designed to generate audit-ready evidence packs (inputs, versions, decisions,
+overrides) as a native output.
+7) Who influences adoption inside healthcare orgs; primary admin hurdles
+HHS asks which roles/bodies influence adoption and what hurdles exist.
+Decision-makers and governing bodies (typical):
+• Clinical leadership (CMO/CNO), Quality & Safety, Compliance/Privacy/Security, IT/EHR leadership, and
+Procurement—often with enterprise risk committees involved for anything that touches clinical workflow at scale.
+Primary administrative hurdles (systemic):
+• No shared “definition of done” for production AI (governance artifacts missing from acquisition packages).
+• Fragmented accountability (clinical vs IT vs compliance) and unclear escalation/override design.
+• Evidence burden: teams cannot efficiently produce the artifacts risk/compliance needs to approve and sustain AI.
+What helps (architecture lever):
+• Use an agent-as-role accountability model: explicitly assign which human or automation role fulfills each
+requirement and what triggers their actions.
+• Treat operational UX (review queues, explanation views, delta dashboards) as part of governance, not “nice-to-
+have.”
+8) Where enhanced interoperability widens market opportunities; data types, standards, benchmarking
+tools
+HHS asks where interoperability would widen opportunities and accelerate development (data types, standards,
+benchmarking).
+Highest-leverage interoperability targets:
+• Clinical context + provenance: not only “clinical facts,” but “what changed and why” (orders, results, meds,
+problems, notes) with time context and source attribution.
+• Workflow events: standardized event semantics for common transitions (admission/discharge/transfer; lab-result-
+available; referral-created; prior-auth-requested; etc.)—because AI is event-driven in operation.
+• Quality and outcomes signals to support post-deployment monitoring and continuous evaluation.
+What HHS can do:
+
+• Promote interoperability approaches that include benchmarking and evaluation harnesses, not just data exchange.
+(Benchmarking is explicitly requested by HHS here.
+• Encourage “composable” integrations so organizations can swap AI components without rebuilding pipelines
+(reduces lock-in; accelerates competition).
+9) Patient/caregiver challenges to address; concerns about AI adoption in clinical care
+HHS asks what patients/caregivers want addressed and what concerns they have.
+Challenges patients/caregivers often want improved (system-level):
+• Reduced administrative friction (scheduling, referrals, prior auth navigation, instructions clarity).
+• Better continuity and coordination (the system “remembers” context across encounters).
+• More transparent decision pathways (why something was recommended/denied).
+Common concerns (trust & safety):
+• Privacy and secondary use of sensitive data (HIPAA/Part 2 contexts). HHS+1
+• Bias, unequal performance across populations, and lack of recourse when AI is wrong.
+• Opaqueness: “who is accountable” and “how do I appeal or correct the record.”
+Adoption recommendation:
+• Require that AI-enabled workflows expose: (a) what the AI did, (b) what the human decided, (c) what data was
+used at a high level, and (d) how to contest/correct—and log those interactions as part of the evidence trail.
+10) AI research areas HHS should prioritize; published findings; costs/benefits/transfers
+HHS asks what AI research to prioritize and how literature approaches impacts and economics.
+Priority research gaps that unlock adoption (and align to ONC + CMS interests):
+1. Operational governance science for AI in clinical workflow: measurement, auditability, safety-of-execution, and
+how to design escalation/override UX that clinicians actually use.
+2. Interoperability + benchmarking infrastructure: shared evaluation harnesses, standardized task definitions, and
+reproducible “evidence packs” as first-class research outputs.
+3. Implementation science for AI: what organization/role structures and operating models reliably scale beyond pilots
+(cross-site generalizability).
+4. Economics of operational controls: quantify the costs and benefits of monitoring, evidence, and governance (so
+reimbursement and procurement can finance the controls that make AI safe).
+
+Mechanisms likely to be most impactful:
+• Cooperative agreements and contracts for reference architectures and open evaluation toolchains.
+• Prize competitions for governance artifacts (evidence packs, reproducibility, drift detection/rollback), because these
+are reusable across many clinical applications and reduce adoption friction.
+A.4 Closing: what we can contribute in a prime-led response
+Consistent with HHS’s call for experience-based input and a secure, industry-supportive approach to accelerate AI adoption
+in clinical care, this partner’s contribution is to help primes and health-sector customers:
+• design enterprise AI adoption architectures aligned to trust & safety,
+• build governed operating models (approvals, evidence, change control, monitoring),
+• engineer agentive requirements that make AI behavior bounded, testable, and auditable.

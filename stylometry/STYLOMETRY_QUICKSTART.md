@@ -40,11 +40,11 @@ Each voice group gets its own markdown file:
 CMS-2025-0050/
 └── stylometry/
     ├── individual_consumer-low.md          (79 comments)
-    ├── individual_consumer-medium.md       (491 comments)
+    ├── individual_consumer_medium.md       (491 comments)
     ├── individual_consumer-high.md         (58 comments)
-    ├── industry-medium-org.md              (188 comments)
-    ├── industry-high-org.md                (17 comments)
-    ├── advocacy_group-medium-org.md        (112 comments)
+    ├── industry_medium_org.md              (188 comments)
+    ├── industry_high_org.md                (17 comments)
+    ├── advocacy_group_medium_org.md        (112 comments)
     └── ...
 ```
 
@@ -96,8 +96,8 @@ Voice groups are based on **explicit CSV properties**:
 
 **Example Voice IDs:**
 - `individual_consumer-low` → Short, simple personal comments
-- `industry-high-org` → Long, formal organizational submissions
-- `advocacy_group-medium-org` → Mid-length professional advocacy
+- `industry_high_org` → Long, formal organizational submissions
+- `advocacy_group_medium_org` → Mid-length professional advocacy
 
 ## Example: CMS-2025-0050-0031 Results
 
@@ -105,13 +105,13 @@ From 980 comments, identified 9 distinct voices:
 
 | Voice | Count | Avg Words | Structure | Citations |
 |-------|-------|-----------|-----------|-----------|
-| individual_consumer-medium | 491 | 267 | Some bullets | 0.1/comment |
-| industry-medium-org | 188 | 328 | 54% bullets | 0.5/comment |
-| advocacy_group-medium-org | 112 | 358 | 63% bullets | 0.7/comment |
+| individual_consumer_medium | 491 | 267 | Some bullets | 0.1/comment |
+| industry_medium_org | 188 | 328 | 54% bullets | 0.5/comment |
+| advocacy_group_medium_org | 112 | 358 | 63% bullets | 0.7/comment |
 | individual_consumer-low | 79 | 93 | 38% bullets | 0.0/comment |
 | individual_consumer-high | 58 | 535 | 64% bullets | 2.2/comment |
-| industry-high-org | 17 | 572 | 82% bullets | 1.1/comment |
-| academic-medium-org | 13 | 362 | 46% bullets | 0.9/comment |
+| industry_high_org | 17 | 572 | 82% bullets | 1.1/comment |
+| academic_medium_org | 13 | 362 | 46% bullets | 0.9/comment |
 
 ## What's in a Skill File?
 
@@ -215,11 +215,11 @@ print(f"Skills available for: {dockets}")
 └── stylometry/
     ├── index.json                          # Summary metadata
     ├── individual_consumer-low.md          # Voice skill
-    ├── individual_consumer-medium.md       # Voice skill
+    ├── individual_consumer_medium.md       # Voice skill
     ├── individual_consumer-high.md         # Voice skill
-    ├── industry-medium-org.md              # Voice skill
-    ├── industry-high-org.md                # Voice skill
-    ├── advocacy_group-medium-org.md        # Voice skill
+    ├── industry_medium_org.md              # Voice skill
+    ├── industry_high_org.md                # Voice skill
+    ├── advocacy_group_medium_org.md        # Voice skill
     └── ...
 ```
 

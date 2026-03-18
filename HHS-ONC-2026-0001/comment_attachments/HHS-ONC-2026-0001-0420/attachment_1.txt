@@ -1,0 +1,1282 @@
+Response to RFI: Accelerating the Adoption and Use
+of Artificial Intelligence as Part of Clinical Care
+Public Comment Submission
+Prepared for Department of Health and Human Services (HHS) / Office of the Assistant
+Secretary for Technology Policy (ASTP) / Office of the National
+Coordinator for Health Information Technology (ONC)
+Docket No. HHS-ONC-2026-0001
+Document Number 2025-23641
+Submission Date February 23, 2026
+Deadline February 23, 2026
+Authors Christian Chartier, MD
+Comment identification HHS Health Sector AI RFI
+RFI title Request for Information: Accelerating the Adoption and Use of Artificial
+Intelligence as Part of Clinical Care
+Point of contact Christian Chartier, MD
+Email christian@pcare.ca
+Phone (514) 893-0338
+Mailing address 9 Harding Street, Kirkland, QC H9J 3Z1
+Organization Type Health IT / Standards Contributor
+Primary Topic Clinical AI Governance, Auditability, and Interoperability
+Submission Type Public Comment
+This comment is intended for public posting and does not include patient-level protected health
+information (PHI) or confidential business information.
+It includes limited organizational contact information solely to support follow-up on technical
+standards and policy implementation questions.
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Table of Contents
+Section Page
+1. Executive Summary and Key Recommendations 3
+5
+2. RFI Compliance Crosswalk (Exhibits 1 and 1A)
+3. Understanding of HHS Context and Objectives (Exhibit 2 and 2A) 7
+4. Responses to RFI Questions (Questions 1–10b) 10
+Question 1: Barriers and opportunities 10
+Question 2: Policy changes and applicable CFR citations (Exhibit 3 and 3A) 13
+Question 3: Legal and implementation considerations 16
+Question 4: Evaluation and monitoring approaches (Exhibit 4) 17
+Question 5: Supporting private sector accreditation/certification 19
+Question 6: Examples of expectations met/fell short and future potential 20
+Question 7: Decision-makers and administrative hurdles (Exhibit 5) 23
+Question 8: Interoperability opportunities and standards needs (Exhibit 6) 24
+Question 9: Patient and caregiver priorities and concerns (Exhibit 7) 26
+Question 10: Research priorities for HHS (Exhibit 8) 27
+10a. Published findings on deployed clinical AI 28
+10b. Costs, benefits, and transfers in the literature 28
+5. Conclusion 30
+6. Appendices 31
+Appendix A: Acronyms and Definitions 31
+Appendix B: Evaluation and Monitoring Reporting Template 34
+Appendix C: AI Audit Artifact Package (Expanded) 35
+Appendix D: References 36
+Appendix E: Candidate CFR Anchors (for counsel validation) 38
+Public Comment (intended for public posting) Page 2 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+1. Executive Summary: Risk-tiered governance and verification can accelerate
+responsible AI adoption in clinical care
+Governing thought: HHS can accelerate safe and equitable clinical AI adoption by making governance
+and auditability requirements legible, portable, and interoperable across products and sites.
+Many adoption failures stem less from algorithmic novelty than from gaps in traceability (what ran,
+when, for whom, and under which configuration), change control, and accountable human use in
+workflow.
+This comment recommends risk-tiered minimum governance and auditability expectations for
+non-device clinical AI / decision support, tailored by runtime behavior (deterministic guideline-logic
+artifacts vs probabilistic inference services), and implemented through HHS levers that do not alter FDA
+jurisdiction over medical devices.
+Key message to HHS
+● Publish a risk-tiered “minimum governance + auditability expectations” framework for
+non-device clinical AI / decision support that is tailored by runtime behavior and intended use,
+and explicitly does not modify FDA device jurisdiction.
+● Extend (not replace) ONC’s Decision Support Interventions (DSI) transparency and intervention
+risk management concepts by emphasizing runtime auditability: version/configuration capture,
+provenance, user actions, and change logs that enable retrospective reconstruction.
+● Make the “AI audit artifact package” feasible as a minimum: a small set of artifacts that can be
+produced, exported, and reviewed across developers, certified health IT, and deployers without
+requiring proprietary disclosure of model internals.
+● Use ONC Certification implementation guidance and test procedures to ensure certified health IT
+can capture/export AI-relevant provenance and user actions for AI-influenced documentation
+and orders using FHIR building blocks (SMART, CDS Hooks, SDC, Provenance).
+● Use CMS levers (CMMI model terms, MIPS Improvement Activities / Promoting Interoperability
+pathways, and hospital quality reporting guidance) to create incentives for deployers to maintain
+governance artifacts and post-deployment monitoring appropriate to risk tier and runtime
+behavior, with candidate CFR anchors provided for counsel validation.
+● Certain internal logical properties of deterministic guideline-logic artifacts (e.g., consistency,
+reachability, completeness over defined states) can be formally verified; this does not prove
+clinical benefit, data quality, or appropriateness of guideline interpretation across contexts.
+● Deterministic artifacts do not require statistical “model drift” monitoring, but they still require
+post-deployment safety monitoring for data quality/missingness, user overrides/escalations,
+disparate application, and guideline/version updates with regression test outcomes.
+● OCR should operationalize Section 1557 requirements for patient care decision support tools (45
+CFR § 92.210) through implementation guidance that links nondiscrimination duties to concrete
+documentation, monitoring, and mitigation steps.
+Public Comment (intended for public posting) Page 3 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+About the submitter / transparency
+PCare+ is a health IT and standards-focused organization that participates in interoperability
+implementation and governance discussions relevant to clinical decision support and AI-enabled
+workflow integration.
+PCare+ may have professional and/or commercial interests in approaches that favor interoperable
+auditability and standards-based integration, and this comment is offered to support implementable HHS
+policy and program design rather than to advocate for any single product or vendor.
+Recommendations are framed as minimum expectations that can be met by multiple technical
+architectures and multiple market participants.
+Summary recommendation
+(1) Distinguish between AI-compiled deterministic artifacts and probabilistic AI services in regulatory,
+evaluation, and monitoring frameworks. These are fundamentally different technologies with different
+risk profiles. Regulating compiled guideline logic under monitoring rules designed for chatbots imposes
+compliance costs without safety benefit.
+(2) Adopt formal verification of logical completeness (exhaustiveness, determinism, reachability) as the
+evaluation standard for deterministic clinical decision logic, beyond the necessary but insufficient
+baseline of audit logging.
+(3) Align reimbursement incentives to verified guideline-concordant care, measured by screening
+completion, provenance traceability, and patient outcomes, rather than to AI tool access or adoption
+volume.
+These recommendations are complementary to the existing computable guideline, eCQM, and clinical
+decision support ecosystem, and are intended to improve provenance, verification of internal logic
+properties where appropriate, workflow integration, and accountability rather than to imply that
+computable CDS does not already exist.
+Evidence base referenced in this submission: Our analysis of 227 million T-MSIS Medicaid claims rows,
+2.99 million CDC BRFSS survey responses, and HRSA UDS data from 18,751 FQHC sites indicates that
+preventive screening is declining nationally, even where the infrastructure and coverage mandates to
+deliver it exist. Patients and caregivers need understandable disclosure and practical recourse when AI
+influences clinical recommendations; a decision artifact whose correctness is provable provides a
+stronger foundation than transparency-by-logging alone.
+Public Comment (intended for public posting) Page 4 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+2. RFI Compliance Crosswalk: Responses are provided in the required question order
+Exhibit 1 maps each RFI question to the corresponding response section(s) and supporting exhibits/appendices.
+Exhibit 1. RFI Compliance Crosswalk
+ID RFI question Response location Page
+Q1 1. The RFI states that there are numerous challenges that prevent the use of AI in clinical Question 1 (Section 4.1); 10
+care, and that HHS is seeking input on how to address these challenges. What are the Exhibit 2; Appendix A
+barriers and opportunities to accelerate AI adoption as part of clinical care?
+Q2 2. The RFI states that AI use in clinical care poses new challenges for policy and regulation, Question 2 (Section 4.2); 13
+and that HHS seeks input on potential policy changes to safely accelerate adoption. What Exhibit 3; Exhibit 1A;
+specific changes, including applicable CFR citations, should HHS consider? Appendix C; Appendix E
+Q3 3. The RFI states that the complexity of AI technology raises new challenges for Question 3 (Section 4.3); 16
+implementation, including risks to privacy, civil rights and civil liberties. What issues should Exhibit 7; Appendix E
+be considered to best address these concerns and which HHS offices should be involved?
+Q4 4. The RFI states that robust safety and effectiveness monitoring is essential. What Question 4 (Section 4.4); 17
+evaluation methods and metrics should be used and how should monitoring be Exhibit 4; Appendix B;
+conducted? Appendix C
+Q5 5. The RFI states that private sector accreditation, certification, and industry-driven testing Question 5 (Section 4.5); 19
+can promote effective and safe AI use. How can HHS best support private sector activities Exhibit 3; Exhibit 4
+(e.g., accreditation, certification, industry-driven testing, and credentialing) to promote
+innovative and effective AI use in clinical care?
+Q6 6. The RFI seeks real-world examples of where AI tools met or exceeded cost and Question 6 (Section 4.6); 20
+performance expectations, and where they fell short. In addition, are there novel AI tools Exhibits 3–4; Exhibit 7
+that have high potential to improve clinical care, but are not currently in widespread use?
+Please provide examples.
+Q7 7. The RFI asks: What are the most significant decision-makers and stakeholders for Question 7 (Section 4.7); 23
+adoption of AI tools in clinical care, and what are key administrative, workflow, and Exhibit 5; Exhibit 3; Appendix
+resource hurdles to adoption? C
+Q8 8. The RFI asks: Where would enhanced interoperability widen market opportunities, fuel Question 8 (Section 4.8); 24
+research, and accelerate the development of AI for clinical care? Please consider specific Exhibit 6; Exhibit 3; Appendix
+data types, data standards, and benchmarking tools. C
+Q9 9. The RFI asks: What challenges within health care do patients and caregivers wish to see Question 9 (Section 4.9); 26
+addressed by use of AI? Equally, what concerns do patients and caregivers have about the Exhibit 7; Appendix E
+use of AI in clinical care?
+Q10 10. Are there specific areas of AI research that HHS should prioritize to accelerate the Question 10 (Section 4.10); 27
+adoption of AI as part of clinical care? Exhibit 8
+Q10a a. Are there published findings about the impact of adopted AI tools and their use clinical Question 10a (Section 4.10a); 28
+care? Exhibit 8; Appendix B
+Q10b b. How does the literature approach the costs, benefits, and transfers of using AI as part of Question 10b (Section 28
+clinical care? 4.10b); Exhibit 8
+Public Comment (intended for public posting) Page 5 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Exhibit 1A. What HHS should do (summary)
+HHS Time
+Mechanism Action / deliverable
+component horizon
+ASTP/ONC Guidance / playbook Publish a risk-tier trigger rubric and minimum governance + auditability 0–6 months
+expectations for non-device clinical AI / decision support, explicitly scoped to
+interoperability and accountability practices and not FDA device jurisdiction.
+ONC Implementation guidance Clarify that DSI-aligned transparency is necessary but not sufficient, and add 6–18 months
+Certification + test procedure updates testable expectations for runtime auditability (version/config, provenance,
+Program user action capture/export) when AI materially influences
+documentation/orders.
+ONC / ASTP Standards implementation Publish recommended FHIR profiles/patterns for recording AI tool identity, 6–18 months
+guidance version/configuration, and provenance for AI-influenced notes, orders, and
+decision support.
+OCR Implementation guidance Issue guidance on operationalizing 45 CFR § 92.210 for patient care decision 0–6 months
+support tools, including what constitutes “reasonable efforts” to identify and
+mitigate discrimination risk and how to document ongoing monitoring and
+mitigation.
+CMS / CMMI Model participation terms Add participation/reporting terms in CMMI models that require deployers to 6–18 months
++ reporting maintain and produce an AI audit artifact package and post-deployment
+monitoring signals when AI materially influences clinical decisions or
+documentation.
+CMS Program scoring pathways Create an Improvement Activity and/or Promoting Interoperability 6–18 months
+(QPP/MIPS) (candidate rulemaking / attestation pathway for maintaining governance artifacts and enabling
+subreg guidance) provenance/audit export for AI-influenced documentation/orders.
+CMS (Hospital Hospital quality reporting In Hospital IQR program guidance, specify documentation expectations 6–18 months
+Quality) guidance when AI materially influences eligibility/ordering and require retention of
+governance artifacts sufficient to reconstruct AI-influenced care processes.
+AHRQ Grants / contracts / Fund implementation science on human factors failure modes, monitoring 6–18 months
+implementation science dashboards, and “safety signal” operations for AI-influenced workflow
+(overrides, data quality, disparity signals, incident response).
+AHRQ + ONC + Convening + shared test Stand up an open, governance-backed test harness/benchmark suite for 18+ months
+NIST (and infrastructure common clinical workflow scenarios that includes provenance-aware
+partners) writeback and auditing patterns, enabling reproducible evaluation and
+procurement-ready conformance testing.
+Public Comment (intended for public posting) Page 6 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+3. Understanding of HHS Context and Objectives: Adoption depends on
+governance, interoperability, and accountability in real workflows
+This RFI appropriately frames clinical AI adoption as a multi-component HHS problem that spans
+interoperability, safety, privacy, civil rights, reimbursement incentives, and evidence generation.
+We interpret HHS’s objective as enabling clinically meaningful use of AI with accountable oversight,
+without creating duplicative or conflicting regulatory regimes.
+We also note that a substantial computable guideline, eCQM, and clinical decision support ecosystem
+already exists (e.g., eCQMs, CDS artifacts, SMART-based apps), and our recommendations are intended
+to be complementary by improving auditability, provenance, verification of internal logic properties
+where appropriate, and workflow integration.
+Evaluator-relevant objectives reflected in this comment
+● Differentiate AI technologies by runtime behavior and risk profile (e.g., deterministic decision
+artifacts vs probabilistic inference services) to apply proportionate controls.
+● Emphasize testability, provenance, and retrospective review for higher-risk non-device AI used in
+clinical workflows.
+● Reduce adoption friction through standards-based interoperability patterns (structured data capture,
+app launch, event-driven CDS, and provenance-aware writeback).
+● Use federal payment and program mechanisms to shift demand toward tools that are measurable,
+governable, and aligned to guideline-concordant care.
+● Support learning health system approaches through reusable evaluation materials (test cases,
+reporting templates, and monitoring metrics) that can be applied across sites.
+Exhibit 2 summarizes why deterministic compiled artifacts and probabilistic AI services warrant different
+evaluation and monitoring expectations.
+Exhibit 2. Deterministic compiled artifacts and probabilistic AI services warrant different controls
+Dimension Deterministic compiled artifact Probabilistic AI service
+Runtime Deterministic execution; no inference-time Runtime inference; outputs may vary and
+behavior probabilistic reasoning. depend on model/prompt/version.
+Primary safety Logic errors/omissions and update governance Stochastic behavior, drift, and
+risk gaps. prompt/model changes.
+Evaluation Build-time verification and traceability to Pre/post deployment performance and
+emphasis guideline version/text. robustness; subgroup analysis.
+Monitoring Version control, regression testing, Operational monitoring, thresholds,
+emphasis provenance-aware audit artifacts. escalation, incident response.
+Evidence basis Guideline/page/paragraph and encoded logic Reconstruction from logs (inputs,
+for recourse path. model/version, prompts/config, user
+actions).
+Public Comment (intended for public posting) Page 7 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Operational risk-tier triggers (qualitative rubric)
+● Does the output influence diagnosis, treatment, medication, triage, eligibility, or access to services
+(vs purely administrative support)?
+● Is the output patient-facing (directly consumed by patients/caregivers) or clinician-facing only?
+● Is the tool autonomous (acts by default) or clinician-confirmed (requires deliberate
+acceptance/attestation)?
+● Does the tool generate or modify the legal medical record (documentation/writeback) or only
+provide a transient suggestion?
+● What is the scale of use (single clinic vs enterprise vs multi-tenant service) and the speed of
+propagation of errors?
+● How reversible is harm (can incorrect outputs be quickly detected and corrected before patient
+impact)?
+● Does the tool use protected class variables or proxies in ways that raise discrimination risk (triggering
+heightened nondiscrimination governance)?
+Operational risk-tier triggers (qualitative rubric)
+● Tier 1 (low): administrative or informational support; clinician review; no autonomous actions;
+minimal audit artifacts and change logs.
+● Tier 2 (moderate): influences documentation/orders/clinical decisions but remains
+clinician-confirmed; full “AI audit artifact package” plus monitoring of overrides, data quality, and
+disparate application.
+● Tier 3 (higher): patient-facing and/or affects triage/access and/or operates with default/autonomous
+actions at scale; full audit artifact package plus enhanced evaluation, incident response, and
+nondiscrimination documentation aligned to 45 CFR § 92.210.
+Public Comment (intended for public posting) Page 8 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Exhibit 2A. HHS objectives and jurisdiction-aware framing
+HHS objective Why it matters for adoption Implementation-oriented framing
+Enable accountable Adoption stalls when decision-makers cannot Publish risk-tiered minimum governance + auditability
+adoption of clinical AI verify what a tool did, under which configuration, expectations for non-device clinical AI/decision support,
+across settings and and how it affected documentation/orders. tailored by runtime behavior and intended use.
+vendors
+Improve AI that cannot integrate with EHR workflows and Use ONC Certification implementation guidance and testing to
+interoperability for standards-based writeback creates operational require standards-based capture/export of provenance and
+AI-enabled workflow risk and limits measurable benefit. user actions for AI-influenced documentation/orders (SMART
+integration + CDS Hooks + SDC + Provenance).
+Support privacy and Clinicians and organizations need confidence that Reference HIPAA Security Rule audit controls and require
+security without AI does not introduce uncontrolled data flows documented retention/access policies for AI-related logs and
+over-prescribing and that audit controls exist for access and artifacts rather than implying fixed retention durations.
+implementation modification events.
+Uphold civil rights Patient care decision support can amplify Operationalize OCR’s 45 CFR § 92.210 through guidance that
+and inequities if inputs/outputs are not monitored ties “reasonable efforts” to concrete governance artifacts,
+nondiscrimination and mitigations are not documented. monitoring, and mitigation workflows.
+Create aligned If governance and monitoring are unfunded Use CMS program terms and quality pathways to incent
+incentives (avoid pure “uncompensated compliance,” adoption will skew governance artifacts and monitoring proportional to risk,
+fee-for-service toward well-resourced systems and vendors. without defaulting to new standalone “AI billing codes.”
+distortions)
+Public Comment (intended for public posting) Page 9 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+4. Responses to RFI Questions (in RFI order)
+The sections below respond to each RFI question in the order presented, retaining the verbatim question
+text for evaluator convenience.
+Recommendations are scoped to HHS-implementable levers (guidance, certification
+implementation/testing, program terms, quality pathways, grants/contracts) and are tailored by runtime
+behavior and risk tier.
+Question 1: Adoption barriers are governance, interoperability, and operational accountability
+RFI question: 1. What are the biggest barriers to private sector innovation in AI for health care and its
+adoption and use in clinical care?
+In practice, the most material barriers to innovation and adoption often emerge after development. The
+friction typically resides in governance, interoperability, and operational accountability once AI outputs
+can influence clinical decisions, documentation, or access to services.
+Key barriers observed across deployments
+● Lack of a regulatory distinction between deterministic and probabilistic clinical AI: Current
+frameworks often treat all AI in clinical care as a single category, applying similar evaluation,
+monitoring, and governance expectations whether a tool performs probabilistic runtime inference or
+executes a pre-compiled, formally verified decision artifact. This can overburden deterministic tools
+with requirements such as drift monitoring for logic that cannot drift, while underspecifying
+oversight for non-deterministic systems whose runtime behavior is inherently less predictable.
+● Accountability and auditability gaps: Many deployments cannot reliably support retrospective
+reconstruction of what the tool recommended, under which version and configuration, what inputs
+were used, and how the output affected documentation, orders, task routing, or clinician actions.
+This limits incident investigation, documentation integrity review, and organizational trust.
+● Workflow integration and interoperability burden: AI tools often fail to produce measurable clinical
+benefit when they are not integrated into ordering, documentation, and task routing workflows.
+Common barriers include launch context, authorization, latency, writeback, provenance capture, and
+variability across certified health IT implementations. Inconsistent support for standards-based
+invocation and data exchange makes implementation costly and brittle across sites.
+● Unstructured guidance and inconsistent clinical data capture: Clinical guidance is often ambiguous
+or not computable, and data capture practices vary substantially across organizations. This reduces
+reproducibility, increases site-specific customization, and complicates cross-site evaluation.
+● Change-control and update management gaps: Organizations frequently lack practical processes for
+safe updates, including regression testing, version transition controls, rollback procedures, and
+governance over rapid tool iterations and guideline changes. These gaps create operational risk and
+slow deployment.
+Public Comment (intended for public posting) Page 10 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+● Monitoring gaps not tailored to risk and runtime behavior: Many deployments lack feasible
+post-deployment monitoring that is proportional to risk and appropriate to runtime behavior.
+Deterministic and probabilistic tools require different monitoring approaches, but deployers often
+lack clear operational guidance on what is sufficient and practical.
+● Unclear minimum governance expectations for non-device AI: For non-device AI used in clinical
+care, there is often no clear baseline for auditability, provenance, update control, performance
+monitoring, and recourse. This uncertainty slows procurement and results in inconsistent controls
+across organizations.
+● Procurement, legal, and contracting friction: Health systems often repeat security, privacy, and
+clinical governance reviews across vendors and products. Adoption is further slowed by unclear
+allocation of responsibility between developers and deployers for tool errors, documentation
+integrity, and nondiscrimination obligations.
+● Equity and civil rights implementation complexity: Deployers often lack practical guidance on how
+to document and operationalize reasonable efforts to identify and mitigate discrimination risks,
+especially when protected characteristics may be proxied indirectly.
+● Resource constraints for smaller, rural, and safety-net providers: Many providers cannot absorb the
+ongoing costs of governance, integration, evaluation, and monitoring without aligned incentives,
+shared infrastructure, or technical assistance. This risks widening inequities in adoption and access.
+● Limited reusable evaluation and conformance tools: There is limited availability of standardized test
+cases, reporting templates, and post-deployment monitoring metrics that can be reused across sites.
+As a result, organizations duplicate validation and integration work.
+Opportunities for Acceleration
+● Standardize a portable minimum audit evidence package: HHS can define a baseline AI audit
+artifact package that is reusable across products and sites, including intended use, versioning,
+provenance, configuration, validation summary, monitoring plan, and recourse process. This would
+reduce duplicative review burden and improve accountability.
+● Build on existing ONC transparency and intervention risk foundations: HHS can extend existing ONC
+transparency and intervention risk approaches toward runtime traceability that supports audits,
+incident response, and continuous improvement in clinical operations.
+● Strengthen existing computable clinical infrastructure: HHS can accelerate adoption by improving
+current ecosystems, including computable guidelines, CDS artifacts, eCQMs, SMART apps, and
+standards-based workflows, through stronger provenance, versioning, verification, and conformance
+practices rather than replacing them.
+● Create shared, governance-backed test harnesses for common workflows: A shared conformance
+and testing infrastructure for common integration patterns, including standards-based launch and
+invocation, structured data capture, and provenance-aware writeback, would reduce custom
+integration burden and improve procurement readiness.
+Public Comment (intended for public posting) Page 11 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+● Align payment and program incentives with governable deployment: Federal payment and
+program levers can encourage adoption of tools that are auditable, monitorable, and operationally
+accountable, rather than tools selected primarily on claimed functionality.
+Recommendations to HHS
+● Publish risk-tiered minimum governance expectations for non-device AI used in clinical care: HHS
+should publish clear, risk-tiered minimum expectations for auditability and operational governance,
+including versioning, provenance, input/output traceability, update control, monitoring, and
+recourse, with greater requirements for higher-risk uses.
+Why this helps: A predictable baseline reduces procurement uncertainty, supports consistent
+controls across settings, and improves investigation when safety, equity, or documentation integrity
+concerns arise.
+● Distinguish deterministic AI-compiled artifacts from probabilistic AI services: HHS should publish
+guidance that differentiates AI-compiled deterministic artifacts from probabilistic runtime AI services
+and sets proportionate evaluation and monitoring expectations for each.
+Why this helps: This avoids imposing unnecessary monitoring burdens on deterministic artifacts
+while ensuring probabilistic systems receive oversight appropriate to their risk.
+● Fund open conformance tools and reference implementations for common integration patterns:
+HHS should support reusable conformance tools and reference implementations for standards-based
+launch, invocation, structured data capture, and provenance-aware writeback.
+Why this helps: Interoperability friction is a major source of cost and delay. Shared infrastructure
+reduces duplicative implementation work and supports safer deployments.
+● Use payment and program policy to require a basic governance package for higher-risk AI-enabled
+workflows: For higher-risk AI-enabled workflows, HHS should condition federal payment support or
+program participation on submission of a basic governance package, such as intended use,
+monitoring plan, audit artifact package, and recourse process, rather than relying only on claimed
+functionality.
+Why this helps: Payment levers can shift demand toward tools that are governable and measurable
+and reduce incentives to deploy poorly monitored systems.
+● Provide practical implementation templates for equity and discrimination risk mitigation: HHS
+should publish practical templates and examples that help deployers document reasonable efforts to
+identify and mitigate discrimination risks in implementation and monitoring.
+Why this helps: Many organizations support equity safeguards but lack operational clarity. Templates
+can improve consistency and reduce implementation uncertainty.
+● Support shared infrastructure and technical assistance for smaller and safety-net providers: HHS
+should support shared governance resources, reusable evaluation tools, and technical assistance
+pathways for smaller, rural, and safety-net providers.
+Why this helps: This reduces structural barriers to adoption and helps ensure that benefits from
+AI-enabled care are not limited to large, well-resourced systems.
+Public Comment (intended for public posting) Page 12 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 2: Policy changes should focus on auditability, provenance, and verification,
+supported by program incentives and CFR anchors
+RFI question: 2. What regulatory, payment policy, or programmatic design changes should HHS prioritize
+to incentivize the effective use of AI in clinical care and why? What HHS regulations, policies, or programs
+could be revisited to augment your ability to develop or use AI in clinical care? Please provide specific
+changes and applicable Code of Federal Regulations citations.
+HHS should implement a jurisdiction-aware approach that focuses on minimum governance, auditability,
+and interoperability expectations for non-device clinical AI / decision support, tailored by runtime
+behavior and clinical risk.
+This approach should be explicitly scoped so that it does not alter FDA jurisdiction over medical devices
+and does not purport to “approve” model quality, but instead makes accountability and reconstruction
+feasible when AI materially influences clinical care, documentation, or ordering.
+Specific changes HHS should consider (with candidate CFR anchors where applicable)
+1. ASTP/ONC: publish risk-tiered minimum expectations for non-device clinical AI / decision
+support
+a. Mechanism: ASTP/ONC guidance/playbook (non-binding) with templates.
+b. Deliverable: A risk-tier trigger rubric and minimum expectations for governance artifacts,
+auditability, and monitoring tailored by runtime behavior (deterministic guideline-logic
+artifacts vs probabilistic inference services).
+c. CFR anchor concept (ONC program context): ONC Certification Program decision support
+criteria context at 45 CFR 170.315(b)(11) (DSI).
+2. ONC Certification Program: make runtime auditability testable where AI materially influences
+documentation/orders
+a. Mechanism: Implementation guidance + test procedure updates (and, if needed, future
+certification criterion refinement through rulemaking).
+b. Deliverable: Testable capabilities for (a) capturing tool identity + version/configuration at
+runtime, (b) recording provenance for AI-influenced notes/orders, and (c) exporting
+relevant audit/provenance data for governance review.
+c. CFR anchor: 45 CFR 170.315(b)(11) and related ONC certification provisions (see
+Appendix E for candidate anchors).
+d. Alignment note: The ONC DSI Resource Guide emphasizes transparency and risk
+management and clarifies that the program does not “approve” predictive DSI quality;
+our proposal extends DSI by focusing on runtime auditability that enables retrospective
+reconstruction.
+Public Comment (intended for public posting) Page 13 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+3. OCR: operationalize nondiscrimination expectations for patient care decision support tools
+a. Mechanism: OCR implementation guidance and examples.
+b. Deliverable: Practical documentation and monitoring guidance for “reasonable efforts”
+to identify and mitigate discrimination risk when using patient care decision support
+tools, especially where protected class variables are used or proxied.
+c. CFR anchor: 45 CFR § 92.210 (patient care decision support tools) and related Part 92
+requirements (see Appendix E).
+4. CMS: incent governance artifacts and monitoring through existing program levers rather than
+new standalone “AI billing codes”
+a. Mechanism (three implementation routes):
+i. CMMI model participation/reporting terms (model-specific terms and reporting
+requirements)
+ii. MIPS (QPP) Improvement Activities and Promoting Interoperability pathways
+iii. Hospital quality reporting guidance (e.g., Hospital IQR) where AI materially
+influences eligibility/ordering/documentation
+b. Deliverable: Program terms and attestations that require maintenance of an AI audit
+artifact package and tailored post-deployment monitoring signals when AI materially
+influences care processes.
+c. Candidate CFR anchors for counsel validation: 42 CFR Part 414, Subpart O (Quality
+Payment Program), including 42 CFR § 414.1375 (Promoting Interoperability) and related
+Improvement Activities provisions, and 42 CFR § 412.140 (Hospital IQR Program).
+Reimbursement realism (standalone billing vs incentives)
+The RFI correctly highlights that fee-for-service incentives can distort adoption toward volume rather
+than accountability.
+We recommend CMS avoid creating a standalone “AI billing code” as the default policy response and
+instead tie incentives to (1) outcomes/value-based constructs, (2) validated burden reduction in
+bounded workflows, and (3) auditable governance and evaluation artifacts rather than model claims.
+This framing supports adoption while reducing incentives for overuse, underdocumentation of risks, or
+deployment without monitoring.
+Exhibit 3 defines the minimum “AI audit artifact package,” and Appendix C provides an expanded version
+intended for procurement and governance use.
+Public Comment (intended for public posting) Page 14 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Exhibit 3. Recommended minimum AI audit artifact package (field set)
+Minimum artifact element Purpose (what it enables)
+Tool identity and scope (name, developer, intended use, Prevents repurposing beyond intended use and supports
+clinical context, contraindicated uses) appropriate governance review.
+Version and configuration at runtime (model/artifact version, Supports reconstruction of what actually ran for a given output and
+prompt/config parameters where applicable, enabled enables safe update governance.
+features)
+Input data dependencies (data types used, required fields, Supports data quality monitoring and explains failure modes tied to
+known missingness sensitivities) missing/incorrect inputs.
+Output characterization (output type, confidence/uncertainty Clarifies how outputs should be interpreted and used in workflow.
+handling where applicable, recommended user action)
+Known limitations and failure modes (including Supports safe use, informed oversight, and targeted monitoring.
+fairness/robustness considerations)
+Provenance + writeback behavior (what is written to the Protects record integrity and enables traceability for downstream
+record, where, and how provenance is attached) consumers and audits.
+User interaction capture (accept/override/modify, escalation Enables monitoring of reliance, overrides, and human-in-the-loop
+paths) performance.
+Update/change log and regression testing evidence (including Enables controlled updates and reduces the risk of silent behavior
+guideline/version changes for deterministic artifacts) changes.
+Exhibit 3A. Clarifying “who must produce which artifacts” (implementability)
+Actor Primary responsibility Examples of artifacts/capabilities
+Certified health IT / Capture and export runtime evidence Provenance attachment to writeback targets; exportable user action logs;
+EHR module of AI use in workflow. standardized interfaces (SMART/CDS Hooks/FHIR) for invocation and data
+access; audit event export patterns.
+AI developer (tool Provide tool identity, limitations, Version/config disclosure; known limitations; change logs; intended use;
+supplier) versioning, and change transparency. interface specifications; safety and fairness limitations statements.
+Deployer (health Define local intended use, Local configuration documentation; monitoring dashboards and review
+system/clinic) governance, monitoring, and cadence; incident response and escalation; patient/clinician recourse
+recourse. processes; nondiscrimination documentation aligned to 45 CFR § 92.210
+where applicable.
+Public Comment (intended for public posting) Page 15 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 3: Novel issues are practical: allocation of responsibility, update governance, record
+integrity, and audit access
+RFI question: 3. For non-medical devices, we understand that use of AI in clinical care may raise novel
+legal and implementation issues that challenge existing governance and accountability structures... What
+novel legal and implementation issues exist and what role, if any, should HHS play to help address them?
+For non-device AI that influences clinical decisions, documentation, or access decisions, the most
+consequential legal and implementation issues are often operational: reproducibility, allocation of
+responsibilities, update governance, and record integrity.
+Issues that commonly create compliance and safety risk
+● Privacy and security (HIPAA and beyond): AI integrations increase data flows and new access
+pathways, so deployers need audit controls and documented retention/access policies appropriate
+to their risk tier and workflow.
+● Record integrity and provenance: when AI generates or influences documentation/orders,
+organizations must be able to identify AI-influenced content, reconstruct inputs/outputs, and
+preserve clinician accountability for final actions.
+● Civil rights and nondiscrimination: patient care decision support tools can introduce discriminatory
+effects through input selection, proxies, workflow routing, or differential error rates across pop.
+● Patient trust and autonomy: patient-facing or patient-impacting AI requires clear disclosures,
+meaningful recourse, and safeguards against deceptive or coercive automation.
+● Liability and responsibility allocation: contracts and governance should allocate responsibility for
+tool defects, configuration errors, data quality failures, and monitoring omissions.
+● Information access and information blocking: interoperability obligations must be implemented
+carefully within existing exceptions frameworks rather than implying blanket access rights.
+● Patient rights applicability: access/amendment rights depend on whether information is maintained
+in the designated record set, and disclosures should avoid overpromising rights that are
+context-dependent.
+Which HHS offices should be involved (and why)
+● ASTP/ONC: to lead interoperability and certification-aligned auditability expectations and convene
+standards implementation guidance.
+● OCR: to provide implementation guidance for nondiscrimination obligations for patient care decision
+support tools under 45 CFR § 92.210 and for privacy-related considerations in patient-facing tools.
+● CMS/CMMI: to align incentives and reporting expectations (governance artifacts and monitoring)
+through program terms and quality pathways.
+● AHRQ: to fund implementation science on human factors, monitoring operations, and equitable
+deployment practices, and to support evaluation infrastructure.
+● OIG (as appropriate): to align compliance program guidance and oversight concepts with auditability
+expectations, especially where AI affects documentation, coding, or medical management processes.
+Public Comment (intended for public posting) Page 16 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 4: Evaluation should be staged and risk-tiered, with formal verification for
+deterministic guideline logic
+RFI question: 4. For non-medical devices, what are the most promising AI evaluation methods (pre- and
+post-deployment), metrics, robustness testing, and other workflow and human-centered evaluation
+methods for clinical care? Should HHS further support these processes? If so, which mechanisms would
+be most impactful (e.g., contracts, grants, cooperative agreements, and/or prize competitions)?
+Evaluation should be proportional to risk tier and tailored to runtime behavior, with emphasis on
+reproducible measurement and feasible post-deployment monitoring.
+HHS should avoid implying that any single evaluation method “proves” clinical correctness, and should
+instead emphasize traceability, auditability, and post-deployment safety monitoring.
+Deterministic guideline-logic artifacts can support formal verification of internal logical properties (e.g.,
+consistency, reachability, completeness over defined states), but this does not prove clinical benefit, data
+quality, or appropriate interpretation across contexts.
+Exhibit 4 summarizes evaluation components for higher-risk non-device clinical AI across pre- and
+post-deployment stages, including human-centered and equity-focused methods.
+Exhibit 4. Risk-tiered evaluation lifecycle for non-device clinical AI
+Lifecycle stage Minimum evaluation elements (all tools) Tailoring by runtime behavior
+Pre-deployment Define intended use, workflow, and user role; Deterministic: verify internal logical properties over defined states
+(fit-for-use) identify failure modes; validate data and perform regression tests against test cases for guideline/version
+availability/quality; perform baseline changes. Probabilistic: evaluate discrimination risk,
+performance testing in representative settings. calibration/uncertainty handling where applicable, robustness to
+distribution shifts, and performance across subgroups.
+Implementation Document tool identity/version/config; define Deterministic: ensure executable logic is version-controlled and
+(integration + human-in-the-loop responsibilities; establish linked to source guideline versions and local policy choices.
+governance) incident response and escalation; ensure Probabilistic: ensure model update policy is explicit and changes are
+provenance + user action capture. auditable.
+Post-deployment Monitor for safety signals proportional to risk Deterministic: no statistical drift monitoring, but monitor data
+monitoring tier; review overrides/escalations; monitor data quality, overrides/escalations, disparate application, and
+(safety signals) quality/missingness; monitor disparate guideline/version update impacts with regression test outcomes.
+application/outcomes; maintain recourse Probabilistic: include performance monitoring and drift detection
+pathways. where appropriate in addition to the above.
+Periodic Periodic governance review, documentation Deterministic: re-run regression tests when guidelines, local policies,
+re-evaluation updates, and evaluation refresh based on or input mappings change. Probabilistic: re-evaluate when model
+(learning + incidents, updates, or workflow changes. retrains, input features change, or drift signals occur.
+accountability)
+Transparent reporting using established guidance (e.g., CONSORT-AI, SPIRIT-AI, and DECIDE-AI) can
+support comparability across tools and contexts when supplemented with deployment context and
+governance artifacts for non-device AI.
+Public Comment (intended for public posting) Page 17 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Formal verification for deterministic clinical decision logic
+For clinical AI that encodes guideline logic as deterministic decision trees (as opposed to runtime
+probabilistic inference), evaluation can include formal verification of logical properties using established
+methods from safety-critical software engineering.
+Satisfiability Modulo Theory (SMT) solvers can prove, across the full input space rather than a finite test
+suite, that: (a) every possible combination of patient inputs leads to at least one recommendation
+(exhaustiveness); (b) no combination triggers contradictory recommendations (determinism); and (c)
+every encoded recommendation is reachable by at least one patient profile (no dead rules).
+Graph-theoretic analysis can verify structural properties including acyclicity (no infinite assessment
+loops), connectivity (no orphan recommendations), and minimum path length (minimum patient
+burden).
+These methods are established practice in aviation software and nuclear safety systems. They are
+directly applicable to clinical decision logic encoded in standards-based formats such as FHIR Structured
+Data Capture. HHS should fund development of formal verification tooling and reference
+implementations for clinical decision artifacts, and should recognize formal verification evidence in
+evaluation and procurement frameworks.
+Transparency is necessary but insufficient for clinical decision logic that determines screening eligibility
+and treatment pathways; the logical correctness of the encoded artifact should be provable, even
+though clinical benefit and safe use in context must still be demonstrated through empirical evaluation
+and post-deployment monitoring.
+Recommendations to HHS
+● R&D: Support development and adoption of standardized evaluation and reporting templates for
+non-device clinical AI that can be completed without disclosing proprietary model details, aligned to
+CONSORT-AI, SPIRIT-AI, and DECIDE-AI.
+Why it helps: Standard templates reduce duplicative procurement burden and improve comparability
+across sites and tools, accelerating a learning health system approach.
+● R&D: Use grants, cooperative agreements, and prize competitions to fund pragmatic, multi-site
+evaluations that measure workflow impact, safety outcomes, and equity, and that require version
+and provenance reporting.
+Why it helps: Real-world performance depends on local context; pragmatic evaluation reduces the
+gap between retrospective technical performance and deployed impact.
+● Regulation: Encourage risk-tiered post-deployment monitoring expectations (metrics, thresholds,
+and escalation) anchored to NIST AI RMF functions (GOVERN, MAP, MEASURE, MANAGE) and
+compatible with DSI intervention risk management concepts.
+Why it helps: A governance anchor helps operationalize monitoring and response without
+prescribing a single technical method, enabling proportionate control across AI types and risks.
+Public Comment (intended for public posting) Page 18 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 5: Accreditation works when it certifies what is testable: conformance, auditability,
+and monitoring readiness
+RFI question: 5. How can HHS best support private sector activities (e.g., accreditation, certification,
+industry-driven testing, and credentialing) to promote innovative and effective AI use in clinical care?
+HHS can support private sector accreditation and testing by defining a clear “floor” of auditable
+governance expectations and enabling conformance testing that does not require HHS to certify model
+quality.
+A practical approach is to support accreditation/testing programs that verify the presence and
+exportability of governance artifacts (identity/version/config, provenance, user action capture,
+monitoring plans) and the ability to run reproducible workflow tests.
+Alignment with ONC DSI (reduce duplication and increase credibility)
+ONC’s DSI framework already emphasizes transparency and intervention risk management and explicitly
+does not aim to approve or guarantee predictive DSI quality.
+Our proposal extends (not replaces) DSI “source attributes” and intervention risk management concepts
+by focusing on runtime auditability—version/config traceability, provenance, and user actions—that
+enables retrospective reconstruction and supports monitoring and incident response.
+Concrete HHS support actions
+● RASTP/ONC: convene a public-private technical working group to define minimal conformance tests
+for AI audit artifacts and provenance-aware writeback in common workflows.
+● AHRQ: fund and evaluate independent testing protocols and implementation science studies of
+accredited programs’ impact on safety, equity, and operational burden.
+● CMS/CMMI: recognize accredited governance/auditability conformance as evidence in program
+participation/reporting terms, without treating accreditation as proof of clinical benefit.
+● OCR: provide guidance to ensure accreditation programs incorporate nondiscrimination
+documentation consistent with 45 CFR § 92.210 when patient care decision support tools are in
+scope.
+Public Comment (intended for public posting) Page 19 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 6: AI value is most consistent in tight, reviewable workflows; verified
+preventive-care logic remains high potential
+RFI question: 6. Where have AI tools deployed in clinical care met or exceeded performance and cost
+expectations and where have they fallen short? What kinds of novel AI tools would have the greatest
+potential to improve health care outcomes, give new insights on quality, and help reduce costs?
+The clearest operational wins so far have come from narrow, high-volume workflows where outputs are
+reviewable and integration is tight. AI tools are most likely to meet or exceed expectations when
+intended use is clear, workflow boundaries are defined, and organizations can monitor how outputs are
+actually used.
+AI has fallen short when inputs are poorly structured, workflow integration is weak, governance artifacts
+are incomplete, or updates are pushed without clear change control. Those gaps create safety and
+compliance risk and make it harder to tell whether a tool is creating real value or just shifting work and
+cost elsewhere.
+Below are short, de-identified vignettes that reflect common deployment patterns, with lessons tied to
+governance, auditability, and interoperability:
+● Ambient documentation (met expectations in bounded workflows): In multiple deployments,
+ambient documentation tools have reduced clinician documentation burden and improved
+perceived usability when deployed with clear intended use and workflow boundaries.
+Where these deployments perform best, organizations can reconstruct tool
+version/configuration and can review edits/overrides, enabling safe iteration and targeted
+monitoring.
+Lesson: success depends on provenance-aware writeback and user action capture more than on
+headline accuracy claims, because the record integrity and clinician accountability requirements
+are operationally determinative.
+● Imaging worklist triage (met expectations when integrated and monitored): In settings using
+imaging triage/priority tools, value is most evident when integration supports measurable
+time-to-review improvements and when outputs are monitored for subgroup performance and
+alerting fatigue.
+Where these tools fall short, the common failure mode is not a single “bad model,” but poor
+integration into clinical routing and insufficient auditing of when/why clinicians override.
+Lesson: auditability and monitoring should be treated as part of the intervention, not optional
+post-hoc documentation.
+Public Comment (intended for public posting) Page 20 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+● Patient-facing symptom checkers (often fell short on diagnostic accuracy and consistency):
+Systematic reviews continue to find low and variable diagnostic accuracy across online symptom
+checkers, with triage accuracy generally higher but still variable across tools and studies.
+Common failure modes include incomplete data capture, inconsistent recommendations across
+similar presentations, limited transparency about limitations, and unclear recourse when
+outputs are wrong.
+Lesson: patient-facing or patient-impacting tools should trigger higher risk-tier expectations,
+including clear disclosures, documentation of limitations, and ongoing monitoring and
+mitigation, aligned to nondiscrimination duties where applicable.
+● Administrative utilization/authorization support (mixed results with transfer/payment
+effects): Tools that support prior authorization workflows can reduce staff burden or speed
+decisions in narrow use cases, but may also shift costs and burdens across payers, providers, and
+patients depending on how criteria are implemented and how appeals/overrides are handled.
+Where deployments fall short, it is often due to opaque criteria application, limited audit trails
+for why an outcome occurred, and insufficient recourse for correction.
+Lesson: governance artifacts and traceability are necessary to manage transfer effects and to
+support fair, appealable, and auditable processes.
+Promising areas for novel tools (as observed)
+● Preventive care identification and outreach grounded in computable guideline logic: A
+high-potential category is preventive care identification and outreach built on structured data
+capture and published guidelines, with traceable logic and auditable outputs.
+One promising approach is AI-assisted compilation of guideline artifacts into constrained, reviewable
+workflow logic (including deterministic decision trees where appropriate), paired with clinician
+review and interoperable writeback. This can support point-of-care identification of eligible services,
+more consistent outreach, and clearer documentation of why a recommendation was made.
+This category remains especially promising because the core problem is often not lack of
+evidence-based recommendations, but unreliable translation of those recommendations into
+repeatable workflow execution.
+● Care coordination and navigation tools with provenance-aware workflows: strong potential when
+they reduce friction across settings while preserving provenance, role-based access control, and
+reviewable workflow actions.
+High-value use cases include referral completion, follow-up scheduling, preventive service
+completion, and transitions across care settings. The opportunity is not only automation of tasks, but
+better continuity and accountability across fragmented systems.
+Public Comment (intended for public posting) Page 21 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+● Decision support that writes back reviewable, provenance-tagged artifacts: could improve quality
+and efficiency if outputs are clearly reviewable and correctable before they affect the record or
+downstream decisions.
+The design requirement is critical: AI-generated suggestions should remain distinguishable from
+clinician-authored content, with clear attribution and user action capture.
+● Risk-tiered operational monitoring and “safety signal” dashboards have substantial potential to
+make AI deployment performance visible in routine operations, rather than only during periodic
+review.
+Examples include dashboards that track override rates, missingness/data quality patterns, subgroup
+performance signals, incident reports, alert fatigue, and workflow delays. These tools could improve
+early detection of unintended consequences and support safer scaling, procurement, and
+governance.
+● Documentation and coding support that preserves record integrity: continue to improve
+administrative efficiency, but the highest-value designs will preserve record integrity through
+provenance, attribution, and separation of suggestions from finalized clinician documentation.
+This is especially important where generated content may affect billing, quality measurement,
+audits, or downstream clinical decision-making. Efficiency gains are more durable when
+organizations can reconstruct what was suggested, what was accepted, and what was changed.
+Evidence referenced on preventive care screening gaps
+Analysis of 227 million T-MSIS Medicaid claims rows, cross-validated against 2.99 million CDC BRFSS
+survey responses and HRSA UDS data from 18,751 FQHC sites, identifies a confounder-adjusted $320-450
+million annual Medicaid billing gap in USPSTF-recommended preventive services.
+Self-reported screening rates from BRFSS confirm the gap is real and worsening: national breast cancer
+screening completion declined from 77.7% in 2014 to 74.4% in 2024. Seventy-seven percent of FQHC
+sites report below the 75th percentile on three or more HRSA-mandated screening measures.
+This gap is not attributed in this submission to coverage barriers. ACA Section 2713 mandates $0 copay
+for USPSTF A and B grade services, affecting 150-180 million insured Americans. The gap is attributed
+here to the absence of computable, verifiable clinical decision logic at the point of encounter.
+AI-compiled guideline artifacts that encode USPSTF recommendations as formally verified decision trees
+(deterministic, zero marginal cost per patient, FHIR-compliant) are presented as one approach to address
+this supply-side bottleneck directly.
+Public Comment (intended for public posting) Page 22 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 7: Adoption decisions span clinical, IT, privacy, and finance; standard checklists can
+reduce administrative burden
+RFI question: 7. Which role(s), decision maker(s), or governing bodies within health care organizations
+have the most influence on the adoption of AI for clinical care? What are the primary administrative
+hurdles to the adoption of AI in clinical care?
+Adoption decisions for clinical AI are multi-stakeholder decisions, and adoption often fails when governance
+artifacts and monitoring responsibilities are not clearly assigned.Decision-makers require confidence that a
+deployment can be audited, monitored, and updated safely, and that responsibilities are clear across developer,
+EHR, and deployer roles.
+Exhibit 5 summarizes the decision makers who commonly influence adoption decisions and the recurring
+administrative hurdles that slow deployment.
+Exhibit 5. Typical decision makers and administrative hurdles for clinical AI adoption
+Decision-maker / stakeholder Adoption questions each must answer Primary administrative
+hurdles
+Clinical leadership Does the tool fit clinical workflow, preserve clinician accountability, and have a. Duplicated and
+(CMIO/CMO, nursing clear intended use/limitations and escalation pathways? inconsistent
+leadership, service line leads) security/privacy reviews
+(including uncertainty
+about log retention and
+Quality and safety leadership Can we monitor safety signals, reconstruct events, and manage incidents,
+access controls)
+(quality, patient safety, risk including disparate impact and recourse?
+b. Integration complexity
+management)
+and variability across EHR
+implementations (launch,
+IT leadership (CIO/CTO, Can we integrate via standards-based interfaces (SMART/CDS Hooks/FHIR),
+authorization, writeback)
+integration teams) support provenance-aware writeback, and avoid brittle custom interfaces?
+c. Limited standardized
+documentation for
+Security and privacy (CISO, Are audit controls in place, and do we have documented retention/access
+evaluation and monitoring
+HIPAA security, privacy officer) policies and risk analysis appropriate to the data flows and risk tier?
+d. Update management
+and change control
+Compliance and legal Are nondiscrimination obligations addressed (45 CFR § 92.210 where
+concerns
+(including civil rights applicable), and are contracting, liability, and documentation integrity
+e. Lack of category-specific
+compliance) responsibilities clear?
+evaluation criteria
+(deterministic vs
+Operations and finance Are benefits measurable and sustainable, and are costs and transfer effects
+probabilistic), driving
+(administration, revenue cycle (who pays vs who benefits) understood and managed?
+duplicative and inconsistent
+where relevant)
+reviews
+Key hurdles
+● Operational burden of governance and monitoring without standardized, exportable artifacts.
+● Integration costs and variability across EHRs and sites when standards-based patterns are not
+consistently implemented.
+● Unclear update governance (includes regression testing) and inability to manage rapid iteration
+safety management
+● Unclear accountability for record content when AI-generated content is written back without
+provenance.
+● Limited staff and expertise to run ongoing monitoring, especially in smaller and safety-net settings.
+Public Comment (intended for public posting) Page 23 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 8: Interoperability priorities are structured capture, standard launch/invocation, and
+provenance-aware writeback
+RFI question: 8. Where would enhanced interoperability widen market opportunities, fuel research, and
+accelerate the development of AI for clinical care? Please consider specific data types, data standards,
+and benchmarking tools.
+Enhanced interoperability widens market opportunities when it reduces per-site integration costs,
+enables portable governance artifacts, and supports reproducible evaluation across settings.
+Interoperability should be framed not only as “data access,” but as end-to-end workflow integration:
+invocation, context passing, writeback, and provenance/audit export that supports governance and
+research.
+Specific data types and standards (examples, non-exhaustive)
+● Core clinical data via USCDI/US Core (problems, meds, allergies, labs, vitals, notes, procedures,
+immunizations) to support broad clinical AI inputs and evaluation.
+● Orders, results, and documentation writeback targets with provenance for AI-influenced
+ordering and note generation.
+● Quality measurement data pathways (eCQMs and related constructs) to support evaluation and
+monitoring aligned to existing measurement ecosystems.
+● Patient-generated and patient-facing data pathways where relevant, with heightened privacy and
+nondiscrimination governance.
+Benchmarking tools (what is most useful for HHS to support)
+Benchmarking that matters for clinical care is workflow-centric and provenance-aware, not only
+model-centric.
+HHS should support benchmark suites and test harnesses that evaluate integration patterns (SMART
+launch context, CDS Hooks invocation, provenance-aware writeback, audit export) in representative
+scenarios, enabling reproducible evaluation and procurement-ready conformance testing.
+Exhibit 6 summarizes interoperability priorities and why they matter for scalable, governable clinical AI
+deployments.
+Public Comment (intended for public posting) Page 24 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Exhibit 6. Interoperability building blocks for scalable clinical AI
+Building block Role in clinical AI integration Why it matters for governance and auditability
+SMART App Launch Standards-based app launch, context passing, Enables consistent access control and supports
+(FHIR) + scopes and authorization for data access. auditable, least-privilege integration patterns.
+CDS Hooks Event-driven invocation for decision support at Supports traceable “when invoked” events and
+workflow moments (ordering, chart open, etc.). structured context exchange for auditing.
+FHIR Provenance (and Represent who/what generated data and how it Enables identification of AI-influenced record content
+related audit patterns) was derived, including AI-influenced content. and supports retrospective reconstruction.
+FHIR Structured Data Structured capture, prepopulation, and Supports consistent input capture and downstream
+Capture (SDC) extraction support for forms and questionnaires. extraction, but is not the sole reasoning substrate for
+deterministic guideline logic.
+Computable guideline / Represent deterministic eligibility logic and Supports auditability and regression testing when
+CDS representations guideline-driven decision support in computable linked to provenance, versioning, and source guideline
+(multiple formats) forms. references.
+Callable tool/API A generic pattern for invoking external Useful as an implementation pattern, but not a core
+invocation interfaces tools/services in a controlled way. HHS policy recommendation; auditability expectations
+(optional architecture should be architecture-neutral.
+note)
+Based on these building blocks, HHS can improve comparability across deployments by encouraging a
+small set of minimum conformance expectations for interoperable clinical AI integrations.
+Minimum conformance expectations
+● Implement standards-based invocation (for example, SMART and/or CDS Hooks) with
+documented context passing.
+● Maintain provenance-aware writeback for AI-influenced documentation or orders where
+writeback occurs.
+● Capture/export user interaction signals (accept, override, modify) for governance monitoring.
+● Capture/export runtime tool metadata (identity, version, configuration) for retrospective
+reconstruction.
+Public Comment (intended for public posting) Page 25 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 9: Patients need transparent notice and practical recourse when AI influences care
+decisions
+RFI question: 9. What challenges within health care do patients and caregivers wish to see addressed by
+the adoption and use of AI in clinical care? Equally, what concerns do patients and caregivers have
+related to the adoption and use of AI in clinical care?
+Patients and caregivers do not read audit logs. They want to know: “Was the recommendation I received
+based on the actual guidelines? Can I trust it? And if it was wrong, how do I get it fixed?”
+Patient-centered operational needs and concerns
+● Clear, understandable notice when AI meaningfully influences a recommendation, documentation,
+or access decision, including what data types were used at a high level.
+● A practical recourse pathway: how to request correction of underlying data, how to contest an
+AI-influenced recommendation, and how to request human review.
+● Ability to access AI-influenced artifacts that are part of the designated record set and to obtain an
+explanation of how the tool is intended to be used, including known limitations.
+● Assurance that data use and retention are minimized and protected, and that access is role-based
+and logged.
+Exhibit 7 summarizes disclosure and recourse elements that can be operationalized for higher-risk
+AI-enabled workflows.
+Exhibit 7. Patient-facing disclosure and recourse elements for higher-risk AI-enabled workflows
+Element What patients/caregivers should receive Why it matters
+Plain-language Whether AI was used in generating a recommendation, documentation, or Supports informed trust and avoids
+disclosure of AI routing decision, and at what point in workflow. deceptive automation.
+involvement
+Purpose and The intended use and key limitations in plain language, including when not to Reduces misuse and supports
+limitations rely on the tool. appropriate escalation.
+Recourse and How to ask questions, request review, and seek correction where appropriate Supports accountability and trust.
+correction path (including documentation correction pathways).
+Privacy and data use What data are used, whether data are shared externally, and key safeguards. Supports informed consent-like
+summary expectations even where formal consent
+is not required.
+Non-discrimination A statement that the organization makes reasonable efforts to identify and Aligns patient-facing transparency with
+safeguards (where mitigate discrimination risk for relevant decision support tools and how 45 CFR § 92.210 obligations and supports
+applicable) concerns can be raised. accountability.
+Designated record When patients inquire about access/amendment, clarify that HIPAA rights Avoids overpromising rights and
+set nuance depend on whether information is maintained in the designated record set improves procedural clarity.
+and explain the organization’s process.
+Public Comment (intended for public posting) Page 26 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Question 10: HHS should prioritize implementation, governance, and reproducible evaluation
+infrastructure
+RFI question: 10. Are there specific areas of AI research that HHS should prioritize to accelerate the
+adoption of AI as part of clinical care?
+HHS research priorities should emphasize implementation and governance, not only model
+performance. Even strong models can fail in production if integration, monitoring, and update
+governance are weak.
+Exhibit 8 summarizes research areas and support mechanisms referenced in this submission.
+Exhibit 8. Research priorities and support mechanisms to accelerate responsible adoption
+Priority area What HHS can do (fund/convene/standardize) Why it accelerates adoption
+Workflow-centric benchmark Fund and convene an open test harness for common clinical Reduces duplicative evaluation burden and
+suites and shared test workflows that includes provenance-aware writeback and audit enables procurement-ready conformance
+infrastructure export patterns. testing.
+Post-deployment monitoring Fund methods research and implementation science on Makes monitoring feasible and proportional,
+methods (“safety signals”) monitoring dashboards (overrides, data quality, disparity signals, reducing risk and increasing trust.
+incidents) and operational review cadence.
+Human factors and workflow Fund pragmatic trials and implementation science on clinician Addresses the most common deployment
+integration failure modes interaction, automation bias, alert fatigue, and documentation failure modes beyond model performance.
+integrity.
+Provenance and audit event Convene standards work on provenance tagging and export Enables retrospective reconstruction and
+standardization for AI-influenced patterns for AI-influenced notes/orders and user actions. accountable governance across vendors.
+actions
+Generalizability and external Fund evaluation research on transportability and site-to-site Improves confidence in deployed
+validity evaluation variability, including subgroup performance and fairness. performance across settings.
+Nondiscrimination measurement Support research and guidance prototypes that operationalize Aligns adoption with civil rights obligations
+and mitigation in patient care “reasonable efforts” to identify/mitigate discrimination, aligned and reduces risk of harmful inequities.
+decision support to OCR requirements.
+Economic evaluation methods for Fund work to standardize AI-specific cost accounting Improves credibility of ROI claims and
+AI interventions (including (implementation, maintenance, monitoring, update) and transfer supports better incentive design.
+transfer effects) analysis (who pays vs who benefits).
+Public Comment (intended for public posting) Page 27 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+10a. Published findings on the impact of adopted clinical AI tools
+RFI question: 10a. Are there published findings about the impact of adopted AI tools and their use clinical
+care?
+The published evidence base for deployed clinical AI is growing but remains heterogeneous in study
+design quality, outcomes measured, and generalizability across sites.
+HHS can strengthen adoption by prioritizing reproducible evaluation infrastructure and consistent
+reporting rather than relying on isolated model-specific claims.
+Examples of relevant findings
+● A recent scoping review of randomized trials evaluating AI interventions in clinical practice
+highlights both growth in evaluation activity and persistent variability in study designs and
+endpoints, reinforcing the need for standardized reporting and workflow-context
+documentation.
+● Ambient documentation studies have reported improvements in clinician time/burden and
+related measures in specific settings, but outcomes depend strongly on implementation details
+and governance controls for writeback and review.
+● Systematic reviews of online symptom checkers continue to find low and variable diagnostic
+accuracy, with triage accuracy generally higher but still variable, suggesting that patient-facing
+tools require careful risk-tiering, disclosures, and monitoring.
+HHS can increase the utility of published findings by requiring or incentivizing minimum reporting of tool
+identity/version/configuration, provenance/writeback behavior, and monitoring signals so that studies
+are interpretable and comparable across sites.
+10b. Literature on costs, benefits, and transfers of using AI in clinical care
+RFI question: 10b. How does the literature approach the costs, benefits, and transfers of using AI as part
+of clinical care?
+The economic evaluation literature generally suggests that AI interventions can be cost-effective in
+specific contexts, but systematic reviews identify recurring methodological gaps and inconsistent
+reporting of AI-specific cost components and implementation realities.
+These gaps directly affect HHS’s ability to design incentives that reward real-world value rather than
+optimistic modeling assumptions.
+What the recent systematic review literature emphasizes (examples)
+● A 2025 systematic review of cost-effectiveness analyses of AI applications in healthcare reports
+that many studies conclude AI strategies are cost-effective or cost-saving, but also notes
+Public Comment (intended for public posting) Page 28 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+limitations in modeling assumptions and reporting completeness, including incomplete
+accounting of implementation and lifecycle costs.
+● A 2025 systematic review of economic evaluations for AI-assisted cancer screening/diagnosis
+highlights “widespread neglect” of AI dynamic learning capability and population differences and
+reports significant omissions in AI cost components, learning-over-time modeling, and
+implementation barriers.
+● These reviews underscore the importance of AI-specific reporting standards (e.g., CHEERS-AI)
+and the need to report costs for integration, monitoring, maintenance, retraining/updates,
+governance operations, and incident response—costs that materially affect net value and
+transfer effects.
+Transfer and incentive considerations (who pays vs who benefits)
+In many workflows, costs (integration, monitoring, governance operations) accrue to providers while
+financial benefits may accrue to payers or may be diffuse, creating adoption barriers under
+fee-for-service.
+HHS should therefore design incentives that (1) support measurable workflow burden reduction and
+safety monitoring in bounded scenarios, (2) reward auditable governance practices rather than model
+claims, and (3) reduce inequitable adoption skew toward highly resourced systems.
+Reimbursement realism
+Where payment policy is needed, CMS should prefer value-based constructs, quality pathways, and
+model participation terms that require auditable governance artifacts, rather than defaulting to a
+standalone AI billing code that could create utilization incentives without accountability.
+Public Comment (intended for public posting) Page 29 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+5. Conclusion: Verified, computable clinical reasoning can connect evidence to
+action at the point of care
+HHS can accelerate responsible clinical AI adoption by making accountability feasible in real-world care
+delivery: risk-tiered governance expectations, interoperable auditability (provenance, user actions, and
+version/configuration traceability), and incentives for monitoring and evaluation that are proportional to
+clinical impact and reversibility.
+A central distinction in this submission is that deterministic guideline-logic artifacts and probabilistic
+inference services have different runtime behaviors and should not be treated as interchangeable. That
+distinction matters for evaluation, monitoring, and reimbursement design. At the same time, both
+require core safeguards: documentation integrity, nondiscrimination protections, and post-deployment
+safety monitoring appropriate to risk.
+The opportunity is not only to expand AI use, but to improve how evidence is translated into action at
+the point of care. Clinical guidelines exist. Interoperability standards exist. Coverage pathways often
+exist. The remaining gap is frequently operational: reliable, reviewable, computable workflow execution
+that can be audited, monitored, and improved across settings.
+Priorities emphasized in this submission
+● Adopt risk-tiered governance expectations tied to runtime behavior, clinical impact, and
+reversibility.
+● Strengthen interoperable auditability expectations for invocation, provenance-aware writeback,
+user action capture, and runtime version/configuration traceability.
+● Differentiate evaluation and monitoring expectations for deterministic guideline-logic artifacts
+versus probabilistic inference services, while preserving shared baseline safeguards.
+● Align incentives to demonstrated workflow and care value (including monitoring and
+governance quality), not just tool deployment or unverified performance claims.
+Near-term progress is achievable through existing HHS levers, including guidance, ONC certification
+implementation and testing pathways, OCR implementation guidance for 45 CFR § 92.210, and CMS
+program terms and quality pathways that reward governable, monitorable deployment.
+The infrastructure for safer, scalable clinical AI is already largely in place. The near-term policy task is to
+align governance, interoperability, and reimbursement so the market rewards systems that can be
+reviewed, reconstructed, and trusted in practice.
+Public Comment (intended for public posting) Page 30 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+6. Appendices
+The appendices below provide working definitions, feasible reporting templates, and source references
+cited in the body text.
+Appendix A. Acronyms and Definitions
+A.1 Acronyms
+Acronym Definition
+AI Artificial Intelligence
+AHRQ Agency for Healthcare Research and Quality
+ASTP Assistant Secretary for Technology Policy
+CDS Clinical Decision Support
+CDSi Clinical Decision Support intervention
+CDS Hooks Clinical Decision Support Hooks
+CFR Code of Federal Regulations
+CISO Chief Information Security Officer
+CIO Chief Information Officer
+CMIO Chief Medical Information Officer
+CMS Centers for Medicare & Medicaid Services
+CMMI Center for Medicare & Medicaid Innovation
+DSI Decision Support Intervention
+EHR Electronic Health Record
+eCQM Electronic Clinical Quality Measure
+FDA Food and Drug Administration
+FHIR Fast Healthcare Interoperability Resources
+HIPAA Health Insurance Portability and Accountability Act
+HHS Department of Health and Human Services
+HRRP Hospital Readmissions Reduction Program
+IQR Hospital Inpatient Quality Reporting Program
+Public Comment (intended for public posting) Page 31 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+MIPS Merit-based Incentive Payment System
+NIST National Institute of Standards and Technology
+OCR Office for Civil Rights
+OIG Office of Inspector General
+ONC Office of the National Coordinator for Health Information Technology
+PI Promoting Interoperability
+PHI Protected Health Information
+PII Personally Identifiable Information
+QPP Quality Payment Program
+RFI Request for Information
+SDC Structured Data Capture
+SMART Substitutable Medical Applications, Reusable Technologies
+SSA Social Security Act
+USCDI United States Core Data for Interoperability
+US Core US Core Implementation Guide
+Public Comment (intended for public posting) Page 32 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+A.2 Definitions
+The working definitions below are included as provided in the source submission.
+Term Definition
+Clinical AI / decision Software-enabled methods that generate recommendations, predictions, summaries, or workflow actions
+support used in clinical care, including both deterministic and probabilistic approaches.
+Deterministic A deterministic, version-controlled artifact that applies defined guideline/policy logic to inputs to produce
+guideline-logic artifact repeatable outputs for the same inputs and configuration.
+Probabilistic inference A service that produces outputs based on statistical inference, often sensitive to data distributions and
+service subject to performance variation over time and across populations.
+Formal verification Verification of internal logical properties of a deterministic artifact over defined states (e.g., consistency,
+(bounded) reachability, completeness), which does not establish clinical benefit or appropriateness across contexts.
+AI audit artifact A minimum set of artifacts (identity, version/config, provenance/writeback behavior, user action capture,
+package limitations, monitoring plan, change logs) sufficient to support retrospective reconstruction, governance
+review, and incident response.
+Provenance Machine-readable representation of who/what generated information and how it was derived, used to
+identify AI-influenced content and enable traceability.
+Post-deployment Ongoing monitoring for safety signals proportional to risk, including data quality/missingness,
+safety monitoring overrides/escalations, disparate application, incidents, and update impacts (and drift monitoring for
+probabilistic tools where appropriate).
+Risk tier A qualitative classification driven by clinical impact, autonomy, patient-facing use, record writeback, scale,
+reversibility, and discrimination risk triggers.
+Public Comment (intended for public posting) Page 33 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Appendix B. Lightweight Evaluation and Reporting Template (feasible minimum)
+The fields below are intended to be feasible for developers and deployers to complete and to support
+procurement review, monitoring, and retrospective analysis without disclosing proprietary model
+internals.
+Field Minimum content to report
+Tool identity Name, developer, intended use, clinical setting, user roles
+Risk tier justification Trigger-based rationale (clinical impact, autonomy, patient-facing, writeback,
+reversibility, discrimination risk)
+Runtime behavior type Deterministic guideline-logic artifact vs probabilistic inference service (or hybrid)
+Version/configuration Version, configuration parameters, enabled features, update policy
+Data dependencies Data types used, required fields, missingness sensitivities, data quality checks
+Output and use Output type, how clinicians should interpret/use outputs, escalation/override
+processes
+Evaluation endpoints Workflow endpoints, safety endpoints, subgroup/fairness endpoints where
+relevant
+Monitoring signals Override rates, data quality/missingness, disparity signals, incident tracking,
+update impacts; drift/performance monitoring where appropriate
+Governance operations Review cadence, responsible roles, incident response process, regression testing
+(including guideline/version updates)
+Patient-facing elements Disclosure, recourse, privacy summary, nondiscrimination safeguards
+(if applicable) communication
+Public Comment (intended for public posting) Page 34 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Appendix C. AI Audit Artifact Package (suggested minimum field set)
+This package is intended to be stored and accessible for governance and retrospective review. For
+higher-risk use cases, it should be reviewable by the deploying organization’s clinical governance and
+compliance functions and support patient recourse requests.
+Artifact category Expanded minimum content (portable across vendors/sites)
+Identity and intended use Intended use statement; contraindications; workflow description;
+user role assumptions
+Versioning and configuration Artifact/model version; configuration; prompt templates where
+applicable; feature flags; update cadence
+Data lineage and dependencies Input data types; mappings; missingness sensitivities;
+pre-processing; source systems
+Provenance and record writeback Writeback targets; provenance attachment method; separation of
+AI-suggested vs clinician-authored content
+User interaction capture Accept/override/modify; escalation triggers; audit export capability
+Limitations and failure modes Known limitations; subgroup considerations; robustness notes;
+security/privacy considerations
+Verification and testing evidence Deterministic: internal logical property checks + regression tests;
+Probabilistic: validation approach + robustness checks
+Monitoring plan Signals, thresholds, review cadence, roles, incident response,
+documentation updates
+Nondiscrimination documentation Reasonable-efforts documentation aligned to 45 CFR § 92.210;
+(if applicable) monitoring and mitigation approach
+Transfer/payment considerations Workflow cost accounting approach; who bears costs vs who
+(where relevant) benefits; documentation for program reporting if required
+Public Comment (intended for public posting) Page 35 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Appendix D. References
+Note: Full URLs are provided in this section only. Citations in the body refer to these numbered
+references.
+[1] Federal Register. “Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care;
+Request for Information.” Official published Federal Register PDF (GovInfo), December 23, 2025.
+https://www.govinfo.gov/content/pkg/FR-2025-12-23/pdf/2025-23641.pdf
+[2] Office of the National Coordinator for Health Information Technology (ONC). “As a Catalyst for
+Change, the Evolving Decision Support Interventions (DSI) Certification Criterion is a Game Changer,”
+June 18, 2024.
+https://www.healthit.gov/buzz-blog/health-it/as-a-catalyst-for-change-the-evolving-decision-support-int
+erventions-dsi-certification-criterion-is-a-game-changer
+[3] ONC. “Decision Support Interventions (DSI) Certification Criterion Resource Guide,” May 2024.
+https://www.healthit.gov/wp-content/uploads/2024/05/DSI-Criterion-Resource-Guide_508.pdf
+[4] eCFR. 45 CFR 170.315(b)(11) (Decision Support Interventions).
+https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-170/subpart-C/section-170.315
+[5] ONC. “Decision Support Interventions (DSI) – Test Method.”
+https://www.healthit.gov/test-method/decision-support-interventions-dsi
+[6] HL7. SMART App Launch (FHIR) Implementation Guide (published). Scopes and launch context page.
+https://hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html
+[7] HL7. CDS Hooks Implementation Guide (published). https://cds-hooks.hl7.org
+[8] HL7. FHIR Structured Data Capture (SDC) IG (published). Extraction operation.
+https://www.hl7.org/fhir/uv/sdc/extraction.html
+[9] HL7. FHIR R4 Provenance Resource (published). https://www.hl7.org/fhir/R4/provenance.html
+[10] eCFR. HIPAA Security Rule (45 CFR 164.312 and related).
+https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-C/section-164.312
+[11] eCFR. Information Blocking Regulations (45 CFR Part 171).
+https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-D/part-171
+[12] eCFR. HIPAA Right of Access (45 CFR 164.524).
+https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-E/section-164.524
+[13] eCFR. HIPAA Right to Request Amendment (45 CFR 164.526).
+https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-E/section-164.526
+[14] Vasey B, et al. “DECIDE-AI: New reporting guidelines to bridge the development-to-implementation
+gap in clinical artificial intelligence.” Nature Medicine. 2022.
+https://www.nature.com/articles/s41591-022-01988-5
+Public Comment (intended for public posting) Page 36 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+[15] Liu X, et al. “CONSORT-AI extension.” Nature Medicine. 2020.
+https://www.nature.com/articles/s41591-020-1034-x
+[16] Liu X, et al. “SPIRIT-AI extension.” The Lancet Digital Health. 2020.
+https://www.thelancet.com/journals/landig/article/PIIS2589-7500(20)30219-3/fulltext
+[17] Han SH, et al. “The clinical and implementation characteristics of randomized controlled trials
+evaluating AI interventions in clinical practice: A scoping review.” npj Digital Medicine. 2024.
+https://www.nature.com/articles/s41746-024-01111-9
+[18] Rao A, et al. “Effect of Generative Artificial Intelligence on Physician Time in Notes, Orders, and After
+Hours.” JAMA Network Open. 2025.
+https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2833250
+[19] Jamieson T, et al. “Evaluating the impact of ambient artificial intelligence scribes on clinical
+documentation.” JAMIA. 2025. https://academic.oup.com/jamia/article/32/1/64/7820055
+[20] El Arab RA, Al Moosa OA. “Cost-effectiveness analyses of artificial intelligence applications in
+healthcare: a systematic review.” npj Digital Medicine. 2025.
+https://www.nature.com/articles/s41746-025-01722-y.pdf
+[21] Zhang Y, et al. “A Systematic Review of the Methods and Quality of Economic Evaluations for
+Artificial-Intelligence-Assisted Cancer Screening or Diagnosis.” Value in Health. 2025.
+https://www.sciencedirect.com/science/article/pii/S1098301525056815
+[22] HL7. US Core Implementation Guide (published versions landing). https://www.hl7.org/fhir/us/core/
+[23] NIST. “Artificial Intelligence Risk Management Framework (AI RMF 1.0).” 2023.
+https://www.nist.gov/itl/ai-risk-management-framework
+[24] eCFR. 45 CFR 92.210 (Patient care decision support tools).
+https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-92/subpart-B/section-92.210
+[25] Wallace W, et al. “The diagnostic and triage accuracy of digital and online symptom checker tools: a
+systematic review.” npj Digital Medicine. 2022.
+https://www.nature.com/articles/s41746-022-00658-6.pdf
+[26] Riboli-Sasco EF, et al. “Triage and Diagnostic Accuracy of Online Symptom Checkers: Systematic
+Review.” JMIR. 2023. https://www.jmir.org/2023/1/e43868/
+Public Comment (intended for public posting) Page 37 of 38
+
+HHS Health Sector AI RFI - Public Comment Docket ID: HHS-ONC-2026-0001
+Appendix E. Candidate CFR Citations for Legal Review
+The CFR citations below are provided as candidate anchors to support counsel validation and to increase
+responsiveness to the RFI’s request for “specific changes” with “applicable CFR citations.”
+This appendix is not legal advice and should be reviewed and finalized by counsel for any formal compliance
+interpretation.
+ONC / ASTP / interoperability and certification context (candidate anchors)
+● 45 CFR 170.315(b)(11) (Decision Support Interventions) and related ONC Certification Program provisions
+supporting transparency and intervention risk management concepts.
+● Associated ONC test methods and implementation guidance as the primary operational mechanism for
+making auditability and export expectations testable.
+OCR / nondiscrimination (candidate anchors)
+● 45 CFR § 92.210 (patient care decision support tools), including requirements prohibiting discrimination
+through use of such tools and the duty to make reasonable efforts to identify and mitigate discrimination
+risk where tools employ input variables measuring protected characteristics.
+HIPAA Security Rule (candidate anchors)
+● 45 CFR 164.312 and related Security Rule provisions addressing audit controls and security safeguards,
+implemented through documented policies rather than fixed retention-duration mandates.
+Information blocking (candidate anchors)
+● 45 CFR Part 171 (information blocking regulations), implemented with appropriate reliance on the
+exceptions framework (e.g., privacy, security, infeasibility, fees, licensing), rather than implying blanket
+access rights.
+CMS (candidate anchors for counsel validation; mechanism-level proposals in Section 4.2)
+● MIPS / Quality Payment Program: 42 CFR Part 414, Subpart O (Quality Payment Program framework).
+● Promoting Interoperability (PI): 42 CFR § 414.1375 (Promoting Interoperability performance category).
+● Improvement Activities (IA): Candidate anchor within Part 414 Subpart O for Improvement Activities
+performance category (e.g., provisions addressing IA scoring/requirements), to be validated by counsel for
+the specific mechanism used.
+● Hospital quality reporting (IQR): 42 CFR § 412.140 (Hospital Inpatient Quality Reporting (IQR) Program).
+Public Comment (intended for public posting) Page 38 of 38

@@ -1,0 +1,133 @@
+February 20, 2026
+Assistant Secretary Thomas Keane, MD
+Assistant Secretary for Technology Policy / Office of the National Coordinator for Health
+Information Technology
+Attention: HHS Health Sector AI RFI
+Mary E. Switzer Building, Mail Stop: 7033A,
+330 C Street SW
+Washington, DC 20201.
+CC: Steven Posnack, Principal Deputy Assistant Secretary for Technology Policy, ASTP/ONC
+Re: Request for Information: Accelerating the Adoption and Use of Artificial Intelligence as
+part of Clinical Care
+RIN 0955-AA13
+Dear Assistant Secretary Keane,
+This comment is by 1upHealth, a scalable serverless cloud data provider leveraging the power of
+the FHIR data standard to combine claims and clinical data for analytics and APIs to change
+behavior. We applaud the work of ASTP/ONC to enable modern APIs and power a digital health
+economy giving patients apps of their choice. We appreciate the ongoing work of ASTP/ONC in
+exploring how to make AI more practical for patient care.
+General Points
+AI relies on data and in particular good AI relies on good data. Without adequate data downstream
+HHS AI policies will be ineffective. HHS, in particular CMS payment policies, should focus on data
+fluidity and transparency and do so with robust privacy protections. As a practical matter this
+means incenting use of FHIR APIs and requiring public key cryptographic protections for the only
+parties with an actual right to patient data – namely the patient, the patient’s providers and the
+patient’s payer.
+The fundamental challenge to get data for legitimate uses including AI is that CMS provider
+payment policies heavily incent making data NOT AVAILABLE whether for AI or any pro-
+280 Summer St, Floor 7, Boston MA 02210 | 508-245-8558 | 1up.health
+
+competitive purpose. Core to this is disproportionate payment for procedures so the dominant US
+business model has become that of an oligopoly provider using a single EHR where vast amounts
+of data are used internally and shared with other oligopoly customers but where external release of
+that same information to potential competition is heavily gated by cumbersome procedures,
+disproportionate costs, ancient protocols and at times outright throttling of data flows. This
+“information blocking” has been the pattern in healthcare for decades after widespread
+interoperability became the norm in every other sector of the economy.
+As a start CMS payments should be made dependent on provider documentation being made
+available with modern RESTful APIs. The CMS standards group could modify X12 so that every
+provider claim includes the URL where documentation for the billed service becomes available to
+patient’s, their apps (both AI and otherwise) as well as true HIPAA Covered Entities.
+HHS could be the center of a modern digital healthcare economy serving patients. While HHS has
+historically supported FHIR APIs in the original 2020 Cures Act rule and with payer provided APIs
+under the CMS 0057 rule. Now HHS appears to support institutional information blocking in the
+form of TEFCA. The 2016 Cures Act defines information blocking as interfering with the “access,
+exchange and use” of patient data – TEFCA does all three. TEFCA’s brokers interfere with data
+access, TEFCA’s ancient AOL / Yahoo era protocols interfere with data exchange and TEFCA’s
+document-only architecture interferes with data use. TEFCA proponents (not surprisingly
+incumbent data holders and those trying to sell patient data to third parties circumventing HIPAA)
+state that TEFCA will be moving to FHIR (the JSON based data standard). They have claimed this
+for the last 5 years yet TEFCA does not appear to have performed a single bona fide API
+transaction using FHIR.
+Modern AI works best with massive amounts of data. TEFCA’s antiquated architecture and
+baroque protocols are not up the task of moving the large amounts of data needed for robust AI.
+The cellphone Internet economy does billions of JSON transactions DAILY.
+The Internet uses robust public key cryptography and “zero-trust” security for data needing
+protection. This is in stark contrast to TEFCA’s “just trust me” faux-HIPAA “permitted uses”. This
+end run around HIPAA is so brittle that TEFCA participants – the same QHINs which are supposed
+to vet other participants – are currently engaged in multiple lawsuits around their wholesale
+misappropriation of patient data. The data being resold here has almost invariably been
+subsidized by taxpayers.
+Actual privacy and security should be the ground assumption for HHS AI work. RESTful and Bulk
+FHIR APIs anchored by public key cryptography can provide this level of privacy and security just
+as they do in banking and defense. HL7 has extensive implementation guides for healthcare
+versions of these APIs. HHS AI use should build on these APIs. Using such APIs CMS could
+analyze Medicare claims for fraud (matching actual diagnoses, plausible providers and appropriate
+services). MA, Medicaid and commercial plans could use similar tools and because working APIs
+are real-time this can be done before fraudulent claims are paid. Using the Bulk FHIR APIs which
+are batch mode population level APIs, CMS and other payers such as the VA and DOD could use
+AI to correlate patterns of care and best practices with outcomes and do so on a broad basis.
+280 Summer St, Floor 7, Boston MA 02210 | 508-245-8558 | 1up.health
+
+Today CMS measures quality with cumbersome data collection - QRDA for providers and Primary
+Source Verification for payers.
+It is key for HHS to realize that enablement of ethical AI and patient-controlled digitally based
+competition are largely one and the same. Both rely on the same data and the same privacy
+security models. While one can see alternate data acquisition tools such as screen-scraping
+(robotic process automation) or any number of proprietary EHR vendor-gated strategies
+widespread use of AI in healthcare will require public APIs. Patients want apps which are smart,
+real-time, low cost and maximally effective. They do not want to be bound to only those services
+provided by incumbents and their “portals” or TEFCA’s convoluted IAS barriers.
+1. What are the biggest barriers to private sector innovation in AI for health care and its adoption
+and use in clinical care?
+The biggest barrier to the use of AI in healthcare is the reality that much if not most clinical data is
+held by a few EHR vendors and only available to whatever AI programs those vendors decide to
+allow. The vast bulk of data hidden here has been paid for by US taxpayers.
+One major HHS policy would be to require that the EHR vendors patient-portals are required to run
+entirely through public APIs rather than hidden connections. Any patient data including scheduling
+which is not available at the same level of performance to outside competitive patient record
+products should be considered information-blocking. Cures Act enforcement should be initiated
+against both the EHR and the provider using that EHR. Having patient-controlled apps on a
+somewhat level playing field with provider / vendor-controlled apps would allow patients to get
+apps giving the patient their AI optimized medical advice and guidance the form patients as
+consumers decide on rather than being bound to their provider portal.
+Another massive policy opportunity to open up data for AI is in how CMS pays Medicare
+Advantage plans. The Star ratings program and HEDIS measures use outdated data feeds. This
+data is not exposed to public APIs which AI vendors could use to improve the efficiency and cost-
+effectiveness care. One outgrowth of current Star rating policy are the so-called vendor Payer
+Platforms where EHR vendors use private APIs to help providers and payers game higher Star
+ratings. CMS should zero out payments for any relevant Star rating measures unless that data
+was obtained through a public API with each data element tagged with the metadata of that public
+API call. By requiring all Star ratings exclusively use public API data the entire quality
+measurement landscape could then be modernized by AI. This would have secondary public
+benefits of helping reform quality measurement and helping payers better negotiate on behalf of
+taxpayers and beneficiaries.
+2. What regulatory, payment policy, or programmatic design changes should HHS prioritize to
+incentivize the effective use of AI in clinical care and why? What HHS regulations, policies, or
+programs could be revisited to augment your ability to develop or use AI in clinical care? Please
+provide specific changes and applicable Code of Federal Regulations citations.
+The Cures Act requires that ALL data be made available. The 2020 ONC Cures Act rule predated
+widespread use of LLMs and had as its only requirement that each data field had a vocabulary tag
+280 Summer St, Floor 7, Boston MA 02210 | 508-245-8558 | 1up.health
+
+of the vendor’s choice. ASTP should consider fleshing out the opportunities to more richly enable
+AI with this Cures Act requirement.
+3. For non-medical devices, we understand that use of AI in clinical care may raise novel legal and
+implementation issues that challenge existing governance and accountability structures (e.g.,
+relating to liability, indemnification, privacy, and security). What novel legal and
+implementation issues exist and what role, if any, should HHS play to help address them?
+Requiring patient permission using modern cryptographic principles would be a solid foundation for
+AI data use.
+8. Where would enhanced interoperability widen market opportunities, fuel research, and
+accelerate the development of AI for clinical care? Please consider specific data types, data
+standards, and benchmarking tools.
+Requiring the large volumes of healthcare data needed for quality measurement and Star ratings to
+flow through public APIs rather than NCQA Primary Source Verification screen reviews or private
+payer provider platforms (which inevitably become anti-competitive) would be fundamental
+interoperability reforms. Incenting modern high-performance RESTful FHIR APIs rather than
+TEFCA’s brittle, expensive, slow and insecure document flows should be central to Federal policy.
+Thank you for reviewing these comments.
+Sincerely,
+Donald W. Rucker, MD
+Chief Strategy Officer, 1upHealth
+280 Summer St, Floor 7, Boston MA 02210 | 508-245-8558 | 1up.health

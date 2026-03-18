@@ -1,0 +1,1649 @@
+February 23, 2026
+Assistant Secretary for Technology Policy
+The Office of the National Coordinator for Health Information Technology
+U.S. Department of Health and Human Services
+Mary E. Switzer Building
+7033A, 330 C Street SW, Washington, DC 20201
+Re: RFI: Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care
+To Whom It May Concern:
+The Health AI Partnership (HAIP) appreciates the opportunity to respond to this RFI. HAIP is a national
+multi-stakeholder community of practice comprising 35+ healthcare delivery organizations (HDOs) and
+ecosystem partners, launched in April 2022 as an initiative of the Duke Institute for Health Innovation
+(DIHI) and Duke University School of Medicine. Our mission is to empower healthcare professionals to
+use AI effectively, safely, and ethically through community-informed, up-to-date best practices.
+HAIP occupies a distinctive position in the healthcare AI landscape. We are a working collaborative that
+develops freely available governance tools, tests them across diverse healthcare settings, and generates
+peer-reviewed evidence on what it takes to adopt AI responsibly. Our members span academic medical
+centers, integrated health systems, and community hospitals, alongside ecosystem partners including the
+ONC/ASTP, DLA Piper, and Roche. What distinguishes HAIP is its combination of AI implementation
+support for both high- and low-resource environments, best-practice development shaped by a
+multidisciplinary stakeholder team, amplification of HDO voices from safety-net organizations to
+academic medical centers, and policy advocacy that raises awareness for local capacity building.
+This response draws on HAIP's published research and implementation experience. About 50 external
+partners with experience implementing AI in healthcare delivery, industry, legal, and academic settings
+contributed input that shaped the final response. We welcome the opportunity to discuss these
+recommendations further and to support the Department's efforts to accelerate responsible AI adoption
+across the healthcare system.
+Sincerely,
+Suresh Balu, MS, MBA Alifia Hasan, BPharm, MBA
+Co-Founder, Health AI Partnership Manager, Health AI Partnership
+Executive Director, Innovation Portfolio Manager,
+Duke Institute for Health Innovation Duke Institute for Health Innovation
+
+Table of Contents
+Question 1: Barriers to Innovation ........................................................................................................ 2
+Question 2: Policy Changes ................................................................................................................... 6
+Question 3: Legal and Implementation Issues (Non-Medical Devices) .............................................. 12
+Question 4: AI Evaluation Methods (Non-Medical Devices) ............................................................. 16
+Question 5: Supporting Private Sector Activities ................................................................................ 21
+Question 6: AI Performance and Promising Tools .............................................................................. 26
+Question 7: Decision Makers and Administrative Hurdles ................................................................. 32
+Question 8: Interoperability ................................................................................................................. 37
+Question 9: Patient and Caregiver Perspectives .................................................................................. 40
+Question 10: Research Priorities ......................................................................................................... 44
+1
+
+Question 1: Barriers to Innovation
+Summary
+• Workforce and capacity: AI expertise is concentrated in large academic medical centers.
+Community hospitals, rural facilities, and safety-net providers lack the staff and processes to
+evaluate, implement, or monitor AI tools, leaving most of the healthcare market unable to
+participate in AI innovation. Public-private technical assistance programs, modeled on ONC's
+Regional Extension Centers, could close this gap without expanding government.
+• Data infrastructure: Fragmented health data and proprietary EHR platforms prevent AI tools
+validated at one institution from working at another. Stronger interoperability standards and cost-
+effective pathways for shared computing infrastructure would unlock AI deployment for smaller
+providers currently priced out of the market.
+• Payment misalignment: Fee-for-service payment cannot capture AI-driven improvements in
+outcomes and efficiency, and no reimbursement mechanism covers the cost of adopting AI
+responsibly, creating a race to the bottom where organizations that skip rigorous evaluation
+deploy faster and cheaper. Value-based care models offer a more natural alignment but remain far
+from universal.
+• Regulatory fragmentation: Overlapping guidance from FDA, ONC/ASTP, OCR, and CMS
+creates compliance costs that large incumbents can absorb but smaller innovators cannot.
+Harmonizing requirements through a "OneHHS" approach and making guidance proportionate to
+risk would level the playing field for competition.
+2
+
+Barrier 1: Workforce Capacity Gap
+Most healthcare delivery organizations (HDOs) lack the people, skills, and organizational processes
+needed to adopt AI responsibly. AI expertise remains concentrated in well-resourced academic medical
+centers, while community hospitals, federally qualified health centers (FQHCs), rural facilities, and
+safety-net providers often have no dedicated staff to evaluate, implement, or monitor AI tools. Without
+trained personnel and standardized processes, these organizations cannot determine whether an AI tool is
+safe, effective, and fair for their patient populations.
+A nationwide analysis of 3,560 US hospitals found that nearly half reported no evaluation of AI model
+accuracy (47%) and over half reported no evaluation for bias (51%), with hospitals in medically
+underserved areas and health professional shortage areas significantly less likely to have adopted AI at
+all.1 Among hospitals within HAIP's community of practice, our survey also found that only 61% conduct
+local evaluations for accuracy, and just 44% assess for fairness.2 Interviews across 10 healthcare
+organizations revealed no consensus on how to evaluate whether AI performs fairly for all patients.3 The
+HEAAL framework, a structured fairness assessment protocol, found that rigorous evaluation requires
+investment "beyond reach for most organizations" without external support.4
+HAIP has developed freely available best-practice guides covering the full AI lifecycle, organized around
+8 key decision points.5 Through its Practice Network, HAIP operates a hub-and-spoke model in which
+experienced healthcare delivery organizations in the Corps Network serve as hubs, providing mentorship
+on governance, implementation, and workflow design, while organizations new to AI serve as spokes,
+receiving structured support to build local capacity. In its inaugural cohort, HAIP paired 5 safety-net
+providers with mentors from 15+ organizations, building foundational governance capacity, including AI
+use policies, governance committees, and staff training at each site.
+There is an opportunity for HHS to support AI technical assistance programs built on public-private
+partnerships. Our experience shows that the hub-and-spoke model is effective for disseminating
+knowledge, governance best practices, and organizational readiness, but implementation, monitoring, and
+ongoing management require technical infrastructure and expertise that go beyond what hub organizations
+alone can provide. A sustainable model would pair hub-and-spoke knowledge networks with cloud and
+AI technology partners that provide compute infrastructure, technical tooling, and deployment expertise,
+while adopting institutions contribute their local clinical context, workflow requirements, and
+community-specific needs. Programs such as HRSA's Telehealth Resource Centers and ONC's Regional
+Extension Centers demonstrate that this approach works when each partner contributes its strengths.
+1Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+2Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity to address community health
+challenges." PLOS Digital Health (2025).
+3Kim JY, et al. "Organizational governance of emerging technologies: AI adoption in healthcare." ACM FAccT
+(2023).
+4Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+5Health AI Partnership Key Decision Points. https://healthaipartnership.org/key-decisions-in-adopting-an-ai-solution
+3
+
+Without capacity-building before compliance mandates, providers serving Medicare and Medicaid
+populations risk falling further behind, widening the access-to-care and quality gaps.
+Barrier 2: Data Infrastructure and Interoperability
+Even when organizations have the workforce to adopt AI, many lack the underlying data infrastructure.
+AI tools require access to structured, high-quality health data, but healthcare data remains fragmented
+across systems, locked behind proprietary platforms, and difficult to share. Smaller providers are
+particularly affected: over 20% of office-based practices still lack certified electronic health record (EHR)
+technology, the most basic foundation for AI.6
+ONC data shows persistent gaps in health IT adoption among smaller practices and safety-net providers.7
+The lack of data interoperability means that AI tools validated at one institution often cannot be reliably
+deployed at another without significant adaptation, a barrier that disproportionately burdens organizations
+with fewer technical resources. Through its Practice Network, HAIP has seen these infrastructure gaps up
+close, particularly at safety-net sites where data readiness is often the first barrier to AI adoption, well
+before questions of governance or clinical validation arise.
+Continued advancement of data interoperability standards through ONC/ASTP, with specific attention to
+ensuring AI tools can access and operate on health data across different systems, would meaningfully
+reduce this barrier. There is also an opportunity to explore pathways for healthcare organizations to use
+protected health information on shared computing infrastructure in a cost-effective, HIPAA-compliant
+manner, recognizing that computational costs may be prohibitive for smaller providers operating on thin
+margins.
+Barrier 3: Misaligned Payment Incentives
+There is no clear mechanism to reimburse healthcare organizations for the work required to adopt AI
+responsibly. Fee-for-service payment does not reward AI efficiency gains, and there is no financial
+support for the substantial effort required to validate AI tools locally and assess their safety and fairness.
+This creates a perverse incentive: organizations that skip rigorous evaluation can deploy faster and at
+lower cost than those that do it properly.
+Organizations that conduct thorough AI evaluation, including local validation, safety review, and fairness
+analysis, bear higher costs with no financial return under current payment models.8 Some experts have
+proposed value-based and outcome-linked reimbursement approaches, but these models remain
+immature.9 Meanwhile, mixed evidence on AI return on investment suggests that current payment
+6Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity to address community health
+challenges." PLOS Digital Health (2025).
+7Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity to address community health
+challenges." PLOS Digital Health (2025).
+8Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+9Hasan A, et al. "Aligning AI principles and healthcare delivery organization best practices." npj Digital Medicine
+(2025).
+4
+
+structures do not yet capture the full value AI can deliver.10 HAIP is beginning to track implementation
+costs and outcomes across its Practice Network sites, with the goal of generating real-world evidence on
+the resources required for responsible AI deployment. This data does not yet exist at scale, which is itself
+part of the problem: without clear evidence on what responsible adoption costs, it is difficult to design
+payment models that account for it.
+Under value-based care, the incentives align more naturally: better outcomes translate to financial reward,
+which makes the upfront investment in governance and validation worthwhile. Existing value-based
+programs like ACO and MSSP frameworks offer a natural vehicle for recognizing AI-driven outcome
+improvements without creating new standalone reimbursement mechanisms. But with fee-for-service still
+dominant across much of the healthcare system, most organizations have no business case for investing in
+AI adoption, let alone doing it responsibly. As the evidence base matures, HAIP's ongoing work to
+quantify implementation costs and outcomes across its Practice Network can help inform how these
+programs account for AI value.
+Barrier 4: Regulatory Fragmentation
+Healthcare organizations face fragmented AI guidance from multiple HHS agencies, each issuing separate
+requirements. External frameworks from NIST, WHO, and state attorneys general add further complexity.
+The resulting confusion is especially burdensome for smaller organizations that lack dedicated regulatory
+or legal staff to navigate overlapping, sometimes conflicting requirements.
+HAIP's research mapped 31 best practices against 8 regulatory frameworks, distilling 58 raw principles
+down to 13 synthesized principles and translating them into step-by-step procedures with identified
+stakeholders and data sources, revealing substantial redundancy and inconsistency across frameworks.11
+State-level actions, including the California Attorney General's inquiry into AI bias and the Colorado AI
+Act, add yet another layer of complexity.12 HAIP has maintained ONC as an ecosystem partner since its
+founding and has engaged legal and regulatory experts from DLA Piper throughout its framework
+development.
+Advancing the "OneHHS" approach described in the HHS AI Strategy by harmonizing guidance across
+FDA, ONC/ASTP, OCR, and CMS into coordinated, actionable guidance would significantly reduce this
+burden. Translating high-level principles into practical, step-by-step implementation guidance would give
+organizations a clear path forward. Making compliance requirements proportionate to risk and pairing
+them with capacity-building support would help ensure that under-resourced providers are not penalized
+for lacking the resources to navigate regulatory complexity.
+10Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity to address community health
+challenges." PLOS Digital Health (2025).
+11Hasan A, et al. "Aligning AI principles and healthcare delivery organization best practices." npj Digital Medicine
+(2025).
+12Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity to address community health
+challenges." PLOS Digital Health (2025).
+5
+
+Question 2: Policy Changes
+Summary
+• Regulatory harmonization: A "OneHHS" approach that harmonizes requirements across FDA,
+ONC/ASTP, OCR, and CMS, preserves market transparency as certification is streamlined,
+enforces information-blocking rules to enable independent AI developers to compete on merit,
+and modernizes HIPAA to clarify permissible uses of data for AI development would level the
+playing field for innovators of all sizes.
+• Payment alignment: Value-based programs offer a natural vehicle for incentivizing responsible
+AI adoption by tying payment to demonstrated outcomes rather than creating standalone
+reimbursement codes. The ACCESS Model's outcome-aligned payments point in this direction,
+but broader recognition of AI-enabled interventions across existing CMS programs is needed.
+• Capacity-building infrastructure: A national hub-and-spoke network for AI technical
+assistance, embedded within existing federal programs such as Rural Health Transformation,
+would build capacity within under-resourced organizations without expanding government.
+Capacity-building needs to precede compliance mandates to avoid penalizing the organizations
+least equipped to comply.
+• Agentic AI and autonomous care: AI in healthcare is moving from decision support toward
+autonomous clinical action, as illustrated by Utah's AI prescription renewal program and ARPA-
+H's ADVOCATE program. Current regulatory, payment, and governance frameworks are not
+designed for AI that acts independently. HHS will need to address how to classify and oversee
+autonomous clinical AI, how to structure liability, when human oversight is required and when it
+is not, and how to reimburse care delivered by AI agents rather than practitioners.
+6
+
+Regulatory Changes
+As discussed in Question 1, healthcare organizations face fragmented AI guidance from multiple HHS
+agencies, each issuing separate requirements alongside external frameworks from NIST, WHO, and state
+attorneys general. Here we focus on specific regulatory changes that would reduce this burden while
+preserving the market conditions needed for competition and innovation.
+The HTI-1 Final Rule (45 CFR § 170.315(b)(11)) took a meaningful step by requiring certified health IT
+developers to disclose source attributes for predictive decision support interventions, enabling users to
+assess whether tools are Fair, Appropriate, Valid, Effective, and Safe (the FAVES framework). However,
+these transparency requirements apply only to certified health IT, leaving a large and growing category of
+clinical AI tools outside their scope, including generative AI applications like ambient scribes that are
+deployed across hundreds of health systems without FDA approval and with minimal transparency
+requirements. The subsequent withdrawal of remaining HTI-2 proposals and publication of the HTI-5
+Proposed Rule in December 2025 signal a welcome shift toward streamlining certification requirements
+and reducing compliance burden on health IT developers.13 However, HTI-5's proposal to eliminate
+source-attribute disclosure requirements for predictive decision-support interventions risks eroding the
+market transparency that enables competition.
+HAIP's experience piloting the AI Vendor Disclosure Framework with safety-net hospitals and FQHCs
+illustrates why.14 Without structured disclosure, organizations with limited technical staff cannot
+independently evaluate vendor claims about model performance, training data, or fairness, and default to
+the AI bundled with their EHR, not because it is superior, but because evaluating alternatives requires
+expertise they lack. Standardized transparency gives these organizations and independent AI developers a
+common basis for comparing products on merit. Removing it does not reduce the burden on healthcare
+purchasers; it shifts the advantage toward incumbents. As discussed in our response to the capacity-
+building question below, building local capacity to evaluate AI tools is an essential complement to
+streamlined certification; without both, competitive markets will not be achieved.
+The transparency gap is compounded by a lack of data access. Enforcement of information blocking rules
+(45 CFR Part 171) has not kept pace with the extent to which dominant EHR vendors control access to
+clinical data and workflow integration points. As we have previously documented, this creates a market
+failure: well-validated AI built outside EHR platforms struggles with adoption, while less rigorously
+tested AI bundled into EHR systems achieves rapid uptake simply because it is cheaper to deploy.15 A
+13Health Data, Technology, and Interoperability: ASTP/ONC Deregulatory Actions to Unleash Prosperity (HTI-5
+Proposed Rule), 90 Fed. Reg. 60970 (proposed Dec. 29, 2025).
+https://www.federalregister.gov/documents/2025/12/29/2025-23896
+14Kpodzro S, et al. "A Collaborative Best Practice Guide for Promoting AI Vendor Transparency in Healthcare: The
+HAIP AI Vendor Disclosure Framework." SSRN (2025).
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5440315
+15Sendak MP, Balu S, Price WN II. "A market failure is preventing efficient diffusion of health care AI software."
+STAT News (2022). https://www.statnews.com/2022/05/24/market-failure-preventing-efficient-diffusion-health-
+care-ai-software/
+7
+
+recent state antitrust action against a major EHR vendor alleges exactly this pattern.16 Without stronger
+enforcement, small and mid-sized AI developers will remain unable to compete on the merits of their
+technology.
+HIPAA's privacy framework, written well before AI, adds another layer of uncertainty. Healthcare
+organizations and AI developers face unclear rules about how protected health information can be used
+for model development, local validation, and ongoing monitoring, all activities essential to responsible AI
+adoption. Smaller developers and community providers, which cannot afford specialized legal counsel to
+navigate these ambiguities, are disproportionately affected. Modernizing HIPAA to clarify permissible
+uses of health data for AI development and validation while maintaining patient privacy protections
+would reduce regulatory uncertainty and enable broader participation in AI innovation.
+A "OneHHS" approach to regulatory harmonization, as articulated in the December 2025 HHS AI
+Strategy, would address the most immediate barriers. Key priorities include: (1) as the HTI-5 rulemaking
+streamlines certification, preserving and extending source attribute transparency requirements to cover all
+clinical AI tools that substantively influence care decisions, building on the HTI-1 FAVES framework so
+that a modernized program retains the market transparency needed for fair competition; (2) strengthening
+enforcement of information blocking rules (45 CFR Part 171) to ensure that EHR vendors cannot use data
+control to disadvantage independent AI developers, leveling the playing field for market competition and
+innovation; and (3) translating high-level principles into practical, step-by-step guidance proportionate to
+risk, so that compliance is achievable for organizations of all sizes rather than only those with the
+resources to hire dedicated regulatory teams. Relevant regulations include 45 CFR Parts 164, 170, and
+171, and 21 CFR Parts 800–898.
+Payment Policy Changes
+Clinical AI spans direct patient care (e.g., sepsis prediction, diagnostic imaging), operations (ambient
+scribes, care coordination), and administration (coding, prior authorization), and its value shows up
+differently in each: cost savings in some cases, provider well-being in others, improved quality in still
+others. Fee-for-service reimbursement was not designed for any of these, and there is no straightforward
+billing mechanism for an ambient scribe that reduces burnout or a care coordination tool that avoids
+downstream utilization. Many of AI's strongest applications, including prevention, risk stratification, care
+coordination, and early intervention, are systematically under-supported in fee-for-service payment,
+which rewards volume rather than the proactive, longitudinal care that AI enables.
+Value-based and capitated payment models create stronger alignment with AI's strengths, but current
+programs do not yet explicitly recognize AI-enabled interventions as qualifying activities. Meanwhile,
+with shrinking margins, health systems rationally minimize adoption costs by skipping validation and
+monitoring altogether, or defaulting to whatever AI their EHR vendor bundles in. The result is
+widespread adoption of poorly governed AI, reinforcing the vendor lock-in and market concentration
+problems discussed in the regulatory section above.
+16State of Texas v. Epic Systems Corporation, No. 236-372872-25 (Tarrant County District Court, filed Dec. 11,
+2025).
+8
+
+Several payment shifts within existing CMS programs would incentivize responsible AI adoption: (1)
+adding MSSP quality measures that recognize validated AI use (42 CFR Part 425); (2) creating MIPS
+Improvement Activities crediting clinicians for implementing AI tools meeting HTI-1 transparency
+standards (42 CFR § 414.1380); (3) using CMMI authority (§ 1115A) to test payment models that reward
+demonstrated AI value, building on the ACCESS Model precedent; (4) within Medicare Advantage (42
+CFR Part 422) and Medicaid managed care (42 CFR Part 438), explicitly allowing AI-enabled
+interventions, such as predictive outreach, risk identification, and care navigation, to count toward
+performance measures and medical loss ratio activities, so that organizations investing in these
+capabilities are not penalized under existing program rules; (5) providing time-limited downside risk
+protection for providers adopting AI-enabled care transformation, particularly safety-net providers
+serving high-need populations who lack the reserves to absorb losses during the potentially long runway
+before AI demonstrates durable value (CMS Innovation Center models under 42 CFR Part 512; HRSA
+cooperative agreements under 42 CFR Part 51c); and (6) revisiting narrow definitions of reimbursable
+services that exclude AI-enabled preventive interventions, such as predictive outreach, social risk
+identification, and early intervention, so that AI tools supporting prevention and cost containment are not
+structurally disadvantaged under current benefit definitions (42 CFR Part 410; 42 CFR §440.130).
+Programmatic Design Changes
+The most immediate barrier to AI adoption is capacity. Most healthcare organizations, particularly those
+in rural and underserved communities, lack the technical personnel, data infrastructure, and organizational
+processes to evaluate, implement, and govern AI tools. Community demand for AI is already emerging:
+patients and families are asking for AI-powered tools like multilingual virtual assistants that provide
+support and connect them to community resources, but most organizations lack the capacity to deploy
+such tools responsibly. Because AI implementation and health policy operate primarily at the state level,
+federal infrastructure for AI capacity-building, embedded within existing programs like Rural Health
+Transformation, would address this gap most effectively.
+The Rural Health Transformation Program offers a natural venue for this work. Its digital modernization
+investments are already creating state-level structures, including technical assistance centers, regional
+hubs, and innovation funds, that require AI governance expertise to function effectively.17 HAIP and
+DIHI have direct experience building this kind of capacity. As described in Question 1, HAIP's Practice
+Network hub-and-spoke model has built foundational governance at safety-net sites, and its inaugural
+cohort launched AI tool pilots at 3 of 5 sites within 12 months.
+Key elements of this infrastructure include: (1) a national hub-and-spoke network for AI technical
+assistance, with centers of excellence providing governance frameworks, evaluation standards, and
+mentorship to regional and state-level partners; (2) embedding AI readiness criteria within existing
+federal programs (Rural Health Transformation, Telehealth Resource Centers, AHRQ collaboratives) so
+that capacity-building is integrated into digital modernization investments rather than siloed; (3) funding
+research on AI applications that address community health needs, including patient-facing tools designed
+for the populations that community health organizations serve; and (4) building foundational AI capacity,
+17North Carolina Department of Health and Human Services. "North Carolina Rural Health Transformation Program
+Application." (2025). https://www.ncdhhs.gov/divisions/office-rural-health/rural-health-transformation-program
+9
+
+including governance, workforce skills, and technical infrastructure, as a prerequisite for meaningful
+compliance rather than imposing requirements that under-resourced providers cannot meet.
+Looking Ahead: Policy Frameworks for Autonomous and Agentic AI
+The regulatory, payment, and capacity challenges discussed above assume AI systems that assist or
+augment human clinicians. But AI in healthcare is already moving toward autonomous clinical action.
+Utah's AI regulatory sandbox recently approved the first program allowing an AI system to independently
+renew prescription medications for chronic conditions, with no physician in the decision loop for routine
+renewals.18 ARPA-H's ADVOCATE program is developing agentic AI for cardiovascular care with a 39-
+month timeline to FDA authorization.19 Combined with the ACCESS Model's outcome-aligned payments
+and the FDA's TEMPO enforcement discretion pilot, these developments point toward a near-term future
+in which AI systems act as independent clinical agents, not just decision support tools. The policy
+framework is not keeping pace, and HHS will need to address this across all three dimensions: regulatory,
+payment, and programmatic.
+On the regulatory side, a threshold question is how to classify autonomous clinical AI. The current FDA
+framework regulates AI as Software as a Medical Device (SaMD), which assumes a human clinician
+interpreting or acting on the AI's output. When the AI itself makes the clinical decision, that framework
+breaks down. The Healthy Technology Act (H.R. 238) takes the opposite approach, proposing that AI
+systems qualify as practitioners authorized to prescribe medications.20 These are fundamentally different
+regulatory models with different implications for oversight, accountability, and market structure. Closely
+related is the question of human oversight. Not all clinical decisions carry the same risk, and a one-size-
+fits-all requirement for physician-in-the-loop would prevent AI from reaching the settings where it is most
+needed, particularly underserved communities with severe clinician shortages.
+Liability is equally unresolved. The medical malpractice framework assumes a physician-patient
+relationship. When an autonomous AI system makes a clinical error, it is unclear whether liability falls on
+the developer, the deploying institution, the supervising physician, or some combination. Utah's approach
+places liability on the AI company (Doctronic carries malpractice insurance covering the AI system), but
+this is an ad hoc state-level solution. Without a federal framework, liability rules will develop
+inconsistently across states, creating the same kind of regulatory fragmentation that already burdens the
+healthcare AI market.
+On payment, the existing reimbursement system is built around paying practitioners for services. CPT
+codes assume a human clinician performing or supervising work. The sole precedent for autonomous AI
+reimbursement is CPT 92229, created for an autonomous diabetic retinopathy detection system that
+18Utah Department of Commerce, Office of AI Policy. "Utah and Doctronic Announce Groundbreaking Partnership
+for AI Prescription Medication Renewals." (Jan. 6, 2026). https://commerce.utah.gov/2026/01/06/news-release-utah-
+and-doctronic-announce-groundbreaking-partnership-for-ai-prescription-medication-renewals/
+19ARPA-H. "Agentic AI-Enabled Cardiovascular Care Transformation (ADVOCATE)." (Jan. 2026). https://arpa-
+h.gov/explore-funding/programs/advocate
+20Healthy Technology Act, H.R. 238, 119th Congress (2025). https://www.congress.gov/bill/119th-congress/house-
+bill/238
+10
+
+operates without a physician at the point of service.21 CPT Appendix S now classifies AI services across a
+spectrum from assistive to augmentative to autonomous22, but the payment infrastructure for the
+autonomous end of that spectrum remains largely theoretical. As agentic AI enters clinical practice, CMS
+will need to determine how outcome-based payment models account for the quality of AI governance, not
+just downstream clinical results.
+On the programmatic side, the governance infrastructure needed for agentic AI is substantially greater
+than what current AI tools require. The organizations that will be asked to deploy autonomous AI systems
+need governance capacity now, before agentic AI arrives at scale. Building that capacity, through the
+programmatic investments described above, is the most important thing HHS can do to ensure that
+autonomous AI is deployed responsibly when it is ready.
+21Digital Diagnostics. CPT 92229 for autonomous AI diabetic retinopathy detection established the first nationally
+reimbursed autonomous AI clinical service through Medicare.
+22American Medical Association. "CPT Appendix S: AI Taxonomy for Medical Services and Procedures." Effective
+January 2022.
+11
+
+Question 3: Legal and Implementation Issues (Non-Medical Devices)
+Summary
+• Liability framework misaligned with AI reality: Standard vendor contracts shift risk entirely to
+providers through limitation-of-liability and hold-harmless provisions, creating an uneven playing
+field that disadvantages smaller innovators and under-resourced health systems. AI compounds
+the problem by making it harder to identify when and how harm occurs. Model contract language
+tied to CMS participation requirements, combined with AI incident reporting, would level the
+playing field without requiring new statutory authority.
+• Non-device AI lacks meaningful oversight: The CDS exclusion framework was designed
+before generative AI and assumes clinicians actively verify AI outputs. The 2026 FDA CDS
+guidance made important advances, but ambiguity remains for AI that avoids the CDS label
+entirely or whose outputs cannot be meaningfully reviewed. Automation bias already undermines
+the premise that human-in-the-loop oversight is sufficient, and that premise breaks down entirely
+for agentic AI that acts without human intermediation. Classification based on clinical function,
+and actual clinical workflow impact rather than manufacturer labeling would give developers the
+predictability they need to invest and compete.
+• Governance structures not designed for AI: Non-device AI falls between existing institutional
+governance structures, and every organization currently builds AI governance from scratch. This
+costly duplication slows adoption, burdens health systems that want to deploy AI responsibly, and
+creates unpredictable procurement environments for vendors. As autonomous AI enters clinical
+care, governance needs will only intensify. There is an opportunity for HHS to support the
+development of standardized governance models that reduce this burden on individual
+organizations while giving vendors more predictable markets.
+12
+
+Liability Framework Misaligned with AI Reality
+The current liability landscape for clinical AI is uncertain and unevenly distributed. Vendor contracts
+routinely include limitation-of-liability and hold-harmless provisions that shift risk entirely to providers.
+Large incumbent vendors have the legal resources to insulate themselves, while smaller innovators and
+under-resourced health systems absorb liability by default. AI adds a further complication: when AI
+systems contribute to adverse outcomes, the complexity of these tools can make it difficult to determine
+that harm has occurred, who is responsible, and what went wrong.23 This uncertainty discourages both
+developers and health systems from pursuing responsible AI adoption.
+Because liability is primarily a matter of state law, HHS's direct role is limited. However, there are
+practical steps within existing authorities that would reduce uncertainty and level the playing field.
+Developing model contract language for AI procurement, tied to CMS conditions of participation or
+government procurement requirements, would help ensure fair risk allocation and particularly benefit
+smaller AI developers and community health systems that lack resources to negotiate bespoke
+agreements. Establishing AI incident reporting requirements would help illuminate when and how AI-
+related harms occur. Recognizing organizations that follow established AI governance frameworks
+through existing quality program incentives, such as the CMS Quality Payment Program, would
+encourage responsible adoption without requiring new statutory authority.
+Looking further ahead, as AI takes on more autonomous clinical roles, a federal compensation program
+modeled on the National Vaccine Injury Compensation Program (VICP) could provide a mechanism for
+compensating patients harmed by AI while reducing liability uncertainty. This would require legislation,
+but it is within HHS's policy domain and worth advancing as AI's clinical role expands.
+Non-Device AI Lacks Meaningful Oversight
+The CDS exclusion framework was a sound deregulatory step, and FDA's updated CDS guidance
+(January 2026) made further progress by introducing a "meaningful independent review" standard and
+clarifying that generative AI outputs may fall outside the non-device exclusion.24 However, regulatory
+ambiguity remains and creates real costs for innovation. Developers, particularly startups, cannot easily
+predict whether their products will be classified as devices, making it difficult to plan development
+timelines, raise capital, or bring products to market efficiently.
+Some areas remain unclear. The enforcement discretion policy does not cover time-critical scenarios or
+AI systems whose basis cannot be meaningfully reviewed, precisely where generative AI raises the
+greatest concern. The framework still relies on manufacturers' stated "intended use" to determine
+classification, allowing companies to position clinically influential products outside the CDS framework
+entirely. AI systems that avoid the CDS label altogether while still influencing clinical decisions through
+workflow integration are not addressed. This ambiguity disadvantages responsible developers who seek
+clarity while allowing less scrupulous competitors to exploit gray areas.
+23Price WN. "Artificial Intelligence in Health Care: Applications and Legal Issues." SciTech Lawyer (2019).
+24FDA. "Clinical Decision Support Software: Guidance for Industry and Food and Drug Administration Staff."
+(January 6, 2026).
+13
+
+Building on the 2026 guidance, there is an opportunity to reduce this ambiguity by adopting a more
+function-based approach to classification, where actual clinical workflow impact rather than manufacturer
+labeling determines the level of oversight.
+More fundamentally, the entire oversight architecture for non-device clinical AI rests on the premise that
+a clinician independently reviews AI outputs before they affect patient care. Automation bias already
+strains this premise, and for generative AI, where outputs cannot be traced to verifiable sources,
+meaningful independent review may be impossible even when clinicians attempt it. As AI moves toward
+agentic and autonomous clinical roles, as discussed in Question 2, there is no human review step to rely
+on at all. Human-in-the-loop oversight remains important, but it cannot serve as the sole regulatory
+strategy. Additional safeguards, including outcome-based monitoring, automated safety checks, and
+override capabilities, are needed to complement human oversight where it exists and substitute for it
+where it does not.
+Governance Structures Not Designed for AI
+Non-device AI falls between existing HDO governance structures in ways that create real barriers to
+responsible adoption. Medical device committees oversee FDA-regulated products but have no
+jurisdiction over non-device AI. IT governance manages technology procurement and security but
+typically lacks the clinical expertise to evaluate AI's impact on care decisions. Clinical practice
+committees set treatment protocols, but AI represents a novel technology category without established
+clinical standards. Compliance and risk management offices handle regulatory obligations, but there is no
+clear regulatory framework for non-device clinical AI to comply with. The result is that AI governance
+responsibility is fragmented across multiple internal committees and external stakeholders, including
+vendors, integrators, and clinicians, each holding partial jurisdiction with none having complete oversight
+or clear accountability.
+This fragmentation means every HDO must create new governance structures from scratch, a costly
+duplication of effort with no standardized models to follow. HAIP's research across 10 HDOs found no
+consensus on how to govern AI, with organizations independently "figuring it out" through trial and
+error.25 The development of HEAAL demonstrated the substantial investment in personnel, data
+infrastructure, and organizational capacity that rigorous AI governance demands, an investment that
+stretches the budgets of even well-resourced organizations.26 Separate research on algorithm deployment
+found that regulatory affairs involvement is often ad hoc rather than systematic, brought in too late to
+shape implementation decisions.27 The burden of this piecemeal approach falls hardest on under-
+resourced health systems, including rural hospitals, safety-net providers, and community health centers,
+which face the same governance challenges as large academic medical centers but with a fraction of the
+25Kim JY, et al. "Organizational governance of emerging technologies: AI adoption in healthcare." ACM FAccT
+(2023).
+26Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+27Boag W, et al. "The Algorithm Journey Map." npj Digital Medicine (2024). https://doi.org/10.1038/s41746-024-
+01061-4
+14
+
+personnel and expertise. For AI vendors, particularly smaller companies and startups, the lack of
+standardized governance creates unpredictable procurement requirements that vary across every
+customer, raising the cost of market entry and disadvantaging innovators who cannot afford to navigate
+idiosyncratic institutional processes.
+Most governance attention has also focused on pre-deployment evaluation, with far less attention to post-
+deployment workflow optimization and impact measurement. A predictive model that accurately
+identifies patients at risk of falling will not reduce falls if the clinical workflow does not ensure timely,
+effective intervention. Post-deployment governance, including workflow integration, outcome
+monitoring, and ongoing optimization, is where AI's potential benefit is most likely to be lost and where
+harm is most likely to occur.
+There is an opportunity for HHS to reduce the governance burden on individual organizations by
+supporting the development of model AI governance structures that HDOs can adapt to their own context
+and scale. Rather than requiring every organization to build frameworks independently, standardized
+models would allow health systems to focus their limited resources on implementation rather than
+framework design. Standardized governance would also benefit AI vendors by creating more predictable
+procurement environments, lowering the cost of market entry and enabling smaller companies to compete
+on the quality of their technology rather than their ability to navigate idiosyncratic institutional processes.
+Guidance on AI documentation requirements for clinical settings, specifically what to record about AI's
+role in care decisions, would reduce liability exposure and improve post-deployment monitoring. These
+are the kinds of enabling conditions that encourage responsible AI adoption without expanding
+government mandates.
+These governance frameworks also need to evolve for autonomous AI. Current frameworks, including
+HAIP's, were designed for AI that augments human decisions. As AI moves toward autonomous clinical
+roles, as discussed in Question 2, governance will need to address fundamentally new questions: how to
+establish accountability when there is no human in the decision loop, how to monitor and override
+autonomous systems, how to document AI-initiated clinical actions, and how to ensure that governance
+structures keep pace with rapidly advancing capabilities. The governance capacity that HAIP's Key
+Decision Points framework and Practice Network represent becomes more critical, not less, as AI
+autonomy increases. HHS can accelerate this work by supporting the development of next-generation
+governance frameworks through the same mechanisms described throughout this response: technical
+assistance networks, model governance structures, and capacity-building at under-resourced
+organizations. As emphasized throughout, capacity-building needs to come before compliance mandates.
+15
+
+Question 4: AI Evaluation Methods (Non-Medical Devices)
+Summary
+• Pre-deployment local validation: Vendor-reported performance metrics may not reflect how an
+AI tool performs within a given organization's patient population and clinical context, yet a
+national analysis of 3,560 hospitals found that fewer than a third evaluate AI accuracy across all
+their models. Grants to build validation infrastructure and cooperative agreements to enable
+shared learning across organizations would address this capacity gap most directly.
+• Fairness metrics and assessment: AI models can produce meaningfully different predictions
+across patient subgroups, yet only 22% of U.S. hospitals assess for these performance
+discrepancies across all their AI models. No consensus exists on which metrics to use, because
+the appropriate measures depend on each organization's patient population and the AI use case.
+Investment in demographic data infrastructure and cooperative agreements for multi-site
+evaluation would enable organizations to move from working in isolation to learning from each
+other.
+• Post-deployment monitoring: AI performance drifts as patient populations and clinical practices
+change, yet a national analysis found that only about a quarter of hospitals monitor all their AI
+models after deployment, and nearly half report no monitoring at all. Inadequate monitoring is a
+key reason many AI implementations remain stuck in the pilot phase. Cooperative agreements for
+shared monitoring infrastructure and grants for longitudinal outcome studies would help
+organizations move beyond ad hoc approaches.
+• Human-centered evaluation: AI tools are sociotechnical systems whose impact depends on
+workflow integration, user trust, and organizational context. As AI moves toward greater
+autonomy, evaluation methods also need to address scenarios where there is no human reviewer.
+Grants for human factors research and technical assistance for under-resourced organizations
+would strengthen the evidence base for effective AI integration.
+16
+
+Pre-Deployment Local Validation
+Vendor-reported performance metrics may not reflect the value and risks an AI solution presents within a
+given organization's own patient population and clinical context. Each organization needs to assess these
+locally, yet most lack the capacity to do so rigorously. National survey data shows fewer than a third of
+hospitals evaluate AI accuracy across all deployed models, and nearly half have no accuracy evaluation
+process at all.28 Rigorous evaluation requires significant investment in personnel, capabilities, and data
+infrastructure that is beyond reach for most organizations, even well-resourced ones.2930 No standardized
+procedures exist for what local validation entails. Some vendors have begun providing open-source
+validation tools, such as Epic's Seismometer, which HAIP sites have tested.31 However, effective use of
+these tools still requires underlying technical expertise and dedicated teams to implement, customize, and
+interpret results accurately. The lack of standardization and capacity underscores the need for shared
+networks where organizations serving similar patient populations can pool knowledge and resources for
+validation.
+HAIP's HEAAL framework offers step-by-step guidance for evaluating AI tools across five domains:
+Reliability and Validity, Fairness, Fitness for Purpose, Transparency, and Accountability. With 37
+procedures for existing AI and 34 for new AI development, the framework provides the kind of
+structured, practical evaluation protocol that individual organizations otherwise have to create from
+scratch, and it has been adopted by organizations across the health system.32 HAIP's best practice guides
+provide structured evaluation protocols with identified stakeholders and data sources for each stage of the
+AI lifecycle. These tools can serve as the basis for standardized local validation protocols, and
+aggregating best practices and use cases across organizations can help inform these standards over time.
+Grants to build technical and data infrastructure, train the workforce, and support dedicated evaluation
+staff would directly address the capacity barrier. Cooperative agreements that enable organizations to
+share lessons learned and validation approaches would strengthen system-wide capacity, allowing under-
+resourced organizations to benefit from the experience of those further along. This is the kind of
+investment that accelerates responsible adoption by making evaluation feasible rather than mandating it
+before organizations have the means to comply.
+Fairness Metrics and Assessment
+The core fairness challenge in clinical AI is performance discrepancy: AI models can produce
+meaningfully different predictions, recommendations, or outputs across patient subgroups defined by
+race, ethnicity, age, sex, insurance status, or language preference. HEAAL's Fairness domain provides
+28Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+29Gulamali FF, et al. "Eliminating the AI Digital Divide by Building Local Capacity." PLOS Digital Health (2025).
+30Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL)." PLOS
+Digital Health (2024).
+31Epic Systems. "Seismometer: AI model evaluation with a focus on healthcare." GitHub (2024).
+https://github.com/epic-open-source/seismometer
+32Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+17
+
+procedures for detecting and measuring these discrepancies through subgroup analysis protocols and
+disparity impact assessments that evaluate whether AI will widen or narrow existing disparities. However,
+even within the framework, identifying appropriate fairness metrics is something each organization must
+determine based on its own patient population and the specific AI use case. There is no universal set of
+fairness metrics that can be prescribed in advance because the right measures depend on context, and this
+was one of the most frequent questions HAIP received from organizations adopting the framework.33
+The scale of this challenge is significant. Only 22% of U.S. hospitals assess for bias across all their AI
+models, and more than half report no bias assessment at all.34 HAIP's research found no consensus across
+organizations on how to measure or address performance discrepancies, with each developing its own
+institutional practices independently.35 Detecting these discrepancies requires granular demographic data
+that many organizations lack, often due to poor documentation workflows or barriers to accessing existing
+records. Open-source tools like Aequitas and Fairlearn exist but still require domain expertise and
+carefully selected cohorts to produce meaningful results. The result is that organizations are working in
+silos on one of the hardest problems in AI governance.
+Investment in fairness assessment infrastructure through grants would help address the underlying
+capacity constraints: workforce development for staff with technical and ethics expertise to conduct
+assessments, infrastructure for demographic data collection and subgroup analysis, and resources for
+community engagement to understand patient needs and context. Cooperative agreements would enable
+organizations to share what they are learning, since pooling knowledge across sites working on the same
+hard questions is more efficient than each organization solving them alone. Multi-site fairness evaluation,
+where the same AI tool is assessed across diverse populations served by different organizations, would
+generate direct evidence on where and how performance discrepancies emerge.
+Post-Deployment Monitoring
+AI performance drifts as patient populations, clinical practices, and EHR systems change, making
+continuous monitoring essential to ensure safety, effectiveness, and fairness after deployment. The same
+national analysis found that only about a quarter of hospitals conduct post-deployment monitoring across
+all their AI models, and 47% report no monitoring at all.36 Inadequate monitoring is a key reason many AI
+implementations remain stuck in the pilot phase, unable to advance from promising pilots to sustained,
+production-quality deployment. Organizations that cannot systematically track how AI tools perform over
+time cannot identify when performance degrades, when patient populations shift, or when a tool is no
+longer safe to use.
+33Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+34Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+35Kim JY, et al. "Organizational Governance of Emerging Technologies: AI Adoption in Healthcare." ACM FAccT
+(2023).
+36Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+18
+
+Promising approaches include dashboards that track both AI performance and underlying data quality
+over time, statistical methods to detect performance drift, clinician feedback loops for reporting errors or
+concerns, and clearly defined decommissioning criteria. Investing in data quality monitoring and
+longitudinal trend analysis can help organizations identify data drift early, before it manifests as AI risk.
+The FDA's Predetermined Change Control Plans (PCCP) approach applies only to regulated devices,
+leaving non-device AI without comparable monitoring expectations. Organizations lack clarity on who is
+accountable for post-deployment monitoring, how to set thresholds for updating or decommissioning
+tools, and how to assess impacts on patient outcomes and clinical workflow.37 Generative AI and
+emerging agentic AI systems present additional monitoring challenges: their outputs are less predictable,
+harder to benchmark against fixed performance standards, and can shift with model updates that occur
+outside the organization's control. Standardized approaches for monitoring these newer AI categories do
+not yet exist, and developing them is an area where federal investment could have significant impact.
+The resource demands of ongoing monitoring compound the problem. Many organizations expend most
+of their resources on initial deployment, leaving limited capacity for sustained oversight. Under-resourced
+organizations often remain stuck in the pilot phase, unable to advance to full deployment. Even well-
+resourced organizations frequently rely on vendors for monitoring support. While vendor support is
+valuable, organizations need the capacity to evaluate vendor services, determine what to request, and
+retain ownership of oversight rather than outsourcing accountability.
+Cooperative agreements that enable organizations to share monitoring approaches and establish
+benchmarks would help build systematic capacity across the field. Grants for longitudinal evaluation
+studies would generate evidence on how AI performance changes over time in real-world settings and its
+impact on patient outcomes and clinical workflow. Supporting the development of standardized
+monitoring frameworks for generative and agentic AI would give organizations practical tools rather than
+leaving each to develop its own approach.
+Human-Centered Evaluation
+AI tools are sociotechnical systems whose performance depends not only on technical accuracy but on
+how they are integrated into clinical workflows, aligned with organizational structures, and designed
+around the people who use and are affected by them. HAIP's Algorithm Journey Map documented the full
+sociotechnical process of AI implementation and found that workflow integration is a critical factor in
+whether AI succeeds or fails, and that engaging end users from the very beginning of the adoption journey
+is essential for identifying affected stakeholders and anticipating implementation challenges.38
+Automation bias leads clinicians to over-rely on AI recommendations. Alert fatigue, cognitive load, and
+trust calibration all influence whether AI improves or harms care, and AI may disrupt clinical workflows
+even when it is technically accurate.
+As AI moves toward greater autonomy, human-centered evaluation also needs to evolve beyond the
+assumption that a human reviewer is always in the loop. For fully automated AI systems, evaluation must
+37Kim JY, et al. "Organizational Governance of Emerging Technologies: AI Adoption in Healthcare." ACM FAccT
+(2023).
+38Boag W, et al. "The Algorithm Journey Map." npj Digital Medicine (2024).
+19
+
+address how to monitor performance and safety without relying on clinician review as the primary
+safeguard. This includes automated quality checks, outcome tracking, override mechanisms, and
+protocols for escalation when systems operate outside expected parameters. Under-resourced
+organizations in particular need technical assistance to build evaluation capacity for these emerging AI
+categories, not just the current generation of decision-support tools.
+Grants for human factors research would strengthen the evidence base on critical questions including how
+workflow integration affects adoption rates and clinical outcomes, how clinicians perceive and interact
+with different AI use cases, the impact of AI adoption on clinician productivity and patient care, strategies
+for mitigating automation bias, and best practices for training and change management. Cooperative
+agreements could support multi-site workflow studies that identify what works across different
+organizational contexts and patient populations.
+Building Evaluation Capacity at Scale
+The evaluation challenges described above share a common thread: individual organizations, especially
+under-resourced ones including FQHCs, community hospitals, and safety-net providers, cannot build
+comprehensive evaluation capacity alone. Through the Practice Network, HAIP is currently implementing
+HEAAL-based evaluation at 5 under-resourced sites (4 FQHCs, 1 community hospital), generating real-
+world evidence on the feasibility of rigorous AI evaluation in resource-constrained settings. The
+SepsisWatch case study at Duke documents the end-to-end process of integrating a deep learning tool into
+routine clinical care, from problem assessment through implementation and evaluation planning,
+illustrating what sustained AI lifecycle management looks like in practice.39 These tools and experience
+could serve as the foundation for a national evaluation network where institutions with established
+expertise support under-resourced organizations through cooperative agreements, while grants fund local
+capacity at spoke sites.
+HAIP has already demonstrated the viability of this kind of cross-sector collaboration. The consortium's
+industry partners, including Roche, have contributed to developing evaluation frameworks and co-
+investment approaches, and HAIP has worked with Epic on testing open-source validation tools at
+Practice Network sites. An industry co-investment model that brings HDOs, HHS, and private-sector
+partners together could leverage the resources and expertise of all parties to accelerate evaluation
+infrastructure while reducing the burden on any single one. There is also an opportunity to explore AI
+sandbox environments where developers and organizations that agree to share pre- and post-deployment
+performance data, including subgroup analyses and sociotechnical evaluation of impact on clinical teams,
+receive streamlined regulatory treatment. This kind of approach would incentivize transparency and
+evidence generation while giving developers and health systems a clear, predictable path to responsible
+deployment.
+39Sendak MP, et al. "Real-World Integration of a Sepsis Deep Learning Technology Into Routine Clinical Care:
+Implementation Study." JMIR Medical Informatics (2020).
+20
+
+Question 5: Supporting Private Sector Activities
+Summary
+• Multi-stakeholder collaboratives: Private sector collaboratives that bring together healthcare
+delivery organizations (HDOs), technology vendors, academics, and community representatives
+can develop shared AI governance resources more responsively than government programs
+working alone. Because solutions are driven by end users addressing real operational challenges,
+the resulting frameworks carry practical relevance and broad adoption. Grants and cooperative
+agreements to fund this collaborative infrastructure, with safety-net and rural health
+representation built in, would scale what is already working.
+• Vendor transparency and disclosure standards: Information asymmetry between AI vendors
+and HDOs remains a barrier to responsible adoption and healthy market competition.
+Standardized vendor disclosure frameworks level the playing field for under-resourced
+organizations while giving vendors, particularly smaller innovators, clear and predictable
+expectations. Aligning federal requirements with industry-developed standards would extend
+their reach without creating duplicative systems.
+• Technical assistance programs: Under-resourced organizations need hands-on support to build
+AI governance capacity, not just frameworks to follow. Hub-and-spoke technical assistance
+programs where institutions with established expertise support organizations earlier in their AI
+journey can adapt to local needs and evolve alongside the field. Federal funding through grants
+and cooperative agreements could enable nationally what philanthropy has demonstrated at
+modest scale.
+• Certification and accreditation: Voluntary, industry-developed certification and credentialing
+programs create positive incentives for responsible AI governance without imposing regulatory
+burden. These programs can respond to organizational needs faster than federal regulation and
+build practitioner buy-in because standards come from the field. Recognizing private sector
+certifications in federal programs and linking them to meaningful incentives would drive
+adoption, particularly among organizations that cannot pursue certifications without a clear
+return.
+21
+
+Multi-Stakeholder Collaboratives
+Private sector collaboratives can convene diverse stakeholders around shared AI governance goals more
+responsively than government programs working alone. By bringing together HDOs, technology vendors,
+academics, legal experts, safety-net providers, rural health systems, minority-serving institutions, and
+community representatives, these collaboratives develop shared resources that reduce duplicative effort
+across organizations. Because participation is voluntary and solutions are driven by end users addressing
+real operational challenges rather than imposed from the top down, the resulting frameworks carry greater
+practical relevance and broader adoption than prescriptive mandates.40 Organizations across the
+healthcare system are independently developing their own AI governance practices, with each solving the
+same problems from scratch, a costly duplication that collaborative infrastructure is designed to prevent.41
+A reasonable concern is whether organizations will share challenges and solutions or view one another as
+competitors. HAIP's experience demonstrates that structured collaboration can overcome this barrier
+when the collaborative is designed around shared problems rather than competitive interests. The
+consortium operates as a multi-stakeholder collaborative of HDOs alongside ecosystem partners including
+the American Medical Association, DLA Piper, and UC Berkeley, with ASTP/ONC serving as a federal
+observer.42 HAIP also collaborates with industry partners including Roche. This structure has produced
+freely available governance resources spanning the full AI lifecycle, from procurement through
+monitoring and decommissioning, including a fairness evaluation framework and the AI Vendor
+Disclosure Framework, demonstrating that collaboration designed around shared governance challenges
+can achieve broad impact without government direction.4344
+Grants and cooperative agreements to fund collaborative infrastructure would directly support the
+operational costs of convening and coordinating multi-stakeholder efforts. Ensuring diverse
+representation, including safety-net providers, rural health systems, and community-based organizations,
+is essential because these settings collectively serve more patients than any individual health system and
+are often left out of AI design and evaluation. Federal agencies participating as observers, as ASTP/ONC
+already does with HAIP, can stay informed and ensure alignment with federal priorities without directing
+outcomes. Recognizing and amplifying outputs from successful collaboratives would lend federal
+visibility to frameworks that have demonstrated real-world effectiveness.
+40Sendak MP, et al. "Empowering US healthcare delivery organizations to safely, effectively, and responsibly use
+health AI through communities of practice." PLOS Digital Health (2024).
+41Kim JY, et al. "Organizational Governance of Emerging Technologies: AI Adoption in Healthcare." ACM FAccT
+(2023).
+42Sendak MP, et al. "Empowering US healthcare delivery organizations to safely, effectively, and responsibly use
+health AI through communities of practice." PLOS Digital Health (2024).
+43Hasan A, et al. "Aligning AI principles and healthcare delivery organization best practices." npj Digital Medicine
+(2025).
+44Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+22
+
+Vendor Transparency and Disclosure Standards
+Information asymmetry between AI vendors and HDOs remains a significant barrier to responsible
+adoption and healthy market competition. National data reveals that most hospitals lack the capacity to
+evaluate vendor AI claims, with fewer than a quarter assessing AI fairness across patient populations.45
+Vendors, meanwhile, face unpredictable, ad hoc disclosure requests from each prospective customer.
+Standardized disclosure frameworks address both problems: they level the playing field so that under-
+resourced organizations can apply the same evaluation criteria as academic medical centers, and they give
+vendors, particularly smaller innovators who may lack the brand recognition of larger incumbents, clear
+and predictable expectations that reward product quality over marketing resources.
+HAIP developed the AI Vendor Disclosure Framework, a community-informed procurement tool that
+structures vendor evaluation across key dimensions of system performance, data governance, and
+integration requirements. DIHI researchers created the Model Facts Label in 2020, the first AI product
+label in healthcare, which was cited in the HTI-1 Final Rule. HTI-1 requires disclosure of source
+attributes for predictive decision support interventions, a requirement that HAIP helped shape through its
+ongoing engagement with ASTP/ONC. The proposed HTI-5 rule would further refine these transparency
+requirements, and continued alignment between federal rules and industry-developed standards will be
+important as the regulatory landscape evolves.
+Aligning federal requirements with industry-developed standards rather than creating parallel systems
+would reduce regulatory duplication and extend the reach of frameworks that have already demonstrated
+effectiveness. For example, referencing private sector disclosure frameworks in ASTP/ONC guidance or
+CMS conditions of participation would encourage adoption through existing federal programs without
+imposing additional regulatory burden. There is also a need for technical assistance that helps
+organizations, particularly smaller ones, understand and apply these disclosure requirements, since a
+standard is only useful if organizations have the capacity to use it. More broadly, ensuring that third-party
+AI vendors have fair access to health IT integration interfaces, without overly restrictive contractual
+obligations from incumbent EHR firms, would support the kind of competitive market that disclosure
+standards are designed to enable.
+Technical Assistance Programs
+Private sector technical assistance programs can deliver hands-on AI governance support in ways that
+adapt to local needs and evolve alongside the field. Hub-and-spoke approaches leverage existing expertise
+at institutions with established AI programs to support organizations earlier in their AI journey, while
+peer learning communities with shared curricula and mentorship build relationships and knowledge that
+sustain beyond program timelines.46 Shared infrastructure for common functions like vendor evaluation
+and performance monitoring can reduce fragmentation across healthcare organizations and allow under-
+resourced settings to focus their limited capacity on governance and workflow integration rather than
+duplicating technical work that could be done collectively.
+45Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+46Sendak MP, et al. "Empowering US healthcare delivery organizations to safely, effectively, and responsibly use
+health AI through communities of practice." PLOS Digital Health (2024).
+23
+
+HAIP's Practice Network demonstrates this approach. The program supports 4 federally qualified health
+centers (FQHCs) and 1 community hospital through a 12-month engagement, with hub institutions
+including Duke, Mayo Clinic, and Kaiser Permanente providing structured guidance on governance, best
+practices, and workflow design. One important lesson from the Practice Network is the value of
+offloading vendor evaluation to hub institutions and the collaborative itself, allowing health centers to
+focus on building governance capacity and monitoring practices rather than conducting technical
+assessments they are not resourced to perform. The experience of HAIP's FQHC partners also illustrates
+how collaborative development between health centers and early-stage AI startups can produce solutions
+tailored to safety-net settings in ways that differ fundamentally from traditional vendor-purchaser
+relationships. Currently funded by philanthropy, the Practice Network shows what is possible at modest
+scale and what federal funding could enable nationally.
+Grants and cooperative agreements directed toward private sector technical assistance programs that reach
+safety-net providers, FQHCs, and rural facilities would maximize impact while keeping delivery in the
+hands of practitioners who understand local needs. Setting explicit goals for resource sharing and
+collaboration across healthcare organizations, particularly in primary care and rural areas, would further
+reduce fragmentation. Infrastructure investments through programs like the Rural Health Transformation
+Program can extend AI capabilities to community and rural settings, though it will be important that such
+programs benefit new market entrants and do not only advantage incumbent firms already experienced at
+navigating government contracts. Successful precedents exist: programs like HRSA's Telehealth Resource
+Centers and the Regional Extension Centers for EHR adoption demonstrate that public-private
+partnerships in healthcare technology can achieve national scale when properly supported.
+Certification and Accreditation
+Voluntary certification and accreditation programs can raise the bar for AI governance without imposing
+additional regulatory burden. Industry-developed certification for HDOs demonstrating rigorous AI
+governance, accreditation standards for AI evaluation processes, and credentialing, including stackable
+credentials, for workforce members with AI governance competencies all create positive incentives for
+responsible adoption. Because these standards are developed by practitioners, they carry greater buy-in
+than top-down requirements and can respond faster to organizational needs as the field matures.47
+A concrete model for what institutional AI certification could look like already exists in a familiar
+regulatory framework. HAIP researchers have proposed adapting the Clinical Laboratory Improvement
+Amendments (CLIA) structure for clinical AI, arguing that AI systems and laboratory tests share a
+fundamental characteristic: both are highly sensitive to local factors and require ongoing quality
+management by trained professionals.48 Under this approach, healthcare organizations would hold tiered
+AI certification based on their capabilities, with requirements for local validation, proficiency testing
+across sites running the same AI tools, defined recalibration triggers, and regular quality monitoring.
+Organizations lacking internal AI expertise could reference a certified "AI Ops" unit at another
+47Sendak MP, et al. "Empowering US healthcare delivery organizations to safely, effectively, and responsibly use
+health AI through communities of practice." PLOS Digital Health (2024).
+48Jackson BR, et al. "Regulation of artificial intelligence in healthcare: CLIA as a model." JAMIA (2024).
+24
+
+institution, analogous to how smaller labs reference high-complexity laboratories. Existing accreditation
+bodies such as the Joint Commission could develop AI-specific inspection standards rather than creating
+new regulatory infrastructure. This distributed, institution-based model complements centralized FDA
+product review by placing quality management where data originates and where AI outputs affect patient
+care.
+HAIP's HEAAL framework, with its 37 procedures for evaluating existing AI across five domains
+including fairness, reliability, and transparency, could serve as the basis for the evaluation standards
+within such a certification structure.49 HAIP's best practice guides define what responsible governance
+looks like in practice across 8 key decision points, providing a foundation for credentialing standards.50
+HAIP is exploring the development of a formal certification program in partnership with accrediting
+bodies. An important design consideration is distinguishing between organizational accreditation, which
+evaluates whether an HDO has appropriate governance structures and processes, and workforce
+credentialing, which evaluates whether individual staff members have the competencies needed to fulfill
+AI governance roles. Both are necessary and serve different purposes.
+Recognizing private sector certifications in federal programs would give organizations credit for
+voluntary standards they have already achieved. Linking certifications to meaningful incentives, such as
+favorable treatment in quality programs or streamlined regulatory pathways, would drive adoption,
+particularly among FQHCs and safety-net providers that cannot afford to pursue certifications without
+clear return on investment. Federal recognition can set expectations for the quality and rigor that
+certifications must demonstrate while preserving the flexibility that makes private sector standards
+responsive to the field's rapid evolution.
+Scaling Private Sector Approaches with Federal Support
+Across each of these areas, the most impactful federal role is not to build new programs but to fund
+successful private sector approaches, participate as a convener and connector, recognize private sector
+standards in federal programs, and scale proven approaches to reach more organizations. HAIP has built
+functioning infrastructure for each activity described above: a multi-stakeholder collaborative with
+diverse partners and federal engagement, a vendor disclosure framework now influencing federal policy,
+a technical assistance program reaching safety-net providers, and foundational work toward certification
+based on its evaluation frameworks and best practice guides. With support through grants and cooperative
+agreements, these approaches could scale nationally, expanding the Practice Network to more
+communities, developing formal certification in partnership with accrediting bodies, and broadening
+industry engagement to bring more vendors into developing shared standards. An industry co-investment
+approach that brings HDOs, federal agencies, and private-sector partners together could leverage the
+resources and expertise of all parties while reducing the burden on any single one.
+49Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+50Hasan A, et al. "Aligning AI principles and healthcare delivery organization best practices." npj Digital Medicine
+(2025).
+25
+
+Question 6: AI Performance and Promising Tools
+Summary
+• Evidence has not kept pace with adoption: Over 1,250 FDA-authorized AI devices are on the
+market and the ambient AI scribe category alone generated $600 million in 2025, yet rigorous
+evidence on clinical outcomes and cost-effectiveness remains sparse. Most research evaluates
+algorithm accuracy rather than clinical impact, making it difficult for organizations to make
+informed purchasing decisions and for genuinely superior products to differentiate themselves in
+a competitive market.
+• Operational AI is showing the clearest early returns: AI tools for revenue cycle management,
+prior authorization, and patient access are demonstrating consistent efficiency gains. FQHCs have
+found AI-powered call centers particularly valuable given staffing shortages. Ambient AI scribes
+show strong evidence of burnout reduction, though business models increasingly center on
+revenue capture, and direct clinical-facing tools continue to emerge with uncertain return on
+investment.
+• Fairness, generalizability, and workforce concerns: Nearly half of hospitals report no AI
+accuracy evaluation, and tools validated at academic medical centers may not perform
+equivalently elsewhere. Separately, significant efficiency gains from administrative AI have led
+some organizations to consider workforce reductions, raising questions about labor market impact
+in communities where healthcare organizations are a primary employer.
+• Implementation capacity is the core barrier: The most significant challenge is not algorithm
+development but organizational capacity for implementation, governance, and monitoring. Under-
+resourced organizations lack dedicated personnel, data infrastructure, connectivity, and
+governance processes. Shared evaluation infrastructure, technical assistance, and attention to
+foundational AI readiness would address this more efficiently than expecting each organization to
+build capacity independently.
+26
+
+The Evidence Gap
+The private sector has moved fast on clinical AI. Over 1,250 FDA-authorized AI/ML-enabled medical
+devices are on the market as of mid-2025,51 and the ambient AI scribe category alone generated $600
+million in 2025 with 2.4x year-over-year growth.52 Yet rigorous evidence on whether these tools actually
+improve patient outcomes or reduce costs has not kept pace. Most published AI research evaluates
+algorithm accuracy rather than measuring what matters to health systems, clinicians, and patients: clinical
+outcomes, workflow impact, and return on investment.53 Randomized controlled trials remain limited, and
+most evidence is retrospective, drawn from single academic medical center sites.54 A national analysis of
+3,560 U.S. hospitals found that nearly half reported no evaluation of AI model accuracy and more than
+half reported no assessment for bias, pointing to widespread gaps in the evidence organizations need to
+make informed decisions.55
+This evidence gap creates a market problem. Without reliable performance data, healthcare delivery
+organizations (HDOs) cannot make informed purchasing decisions, and vendors developing genuinely
+superior products struggle to differentiate themselves from competitors making unsubstantiated claims.
+The organizations most affected are those with the fewest resources to conduct their own evaluations,
+which means the market's information asymmetry falls hardest on safety-net providers and community
+hospitals.
+Where Clinical AI Is Delivering Value
+AI tools deployed in clinical care extend well beyond direct patient-facing applications. Administrative
+and operational AI, particularly tools for revenue cycle management, prior authorization, claims
+processing, and patient access, is showing some of the most consistent early returns. These use cases
+carry lower clinical risk, lend themselves to clearer performance metrics, and address pressing workforce
+constraints. FQHCs in HAIP's Practice Network have reported that AI-powered call center tools are
+particularly valuable given chronic staffing shortages, allowing smaller organizations to maintain patient
+access at levels that would otherwise require additional hires they cannot afford. The efficiency gains in
+these operational areas are real, though they raise a separate set of questions about workforce impact
+discussed below.
+Among clinical applications, ambient AI scribes represent healthcare AI's first breakout success, and the
+evidence base is now substantial. A three-arm randomized controlled trial of 238 physicians across 14
+specialties found approximately 7% improvement in burnout scores, reduced cognitive workload, and a
+9.5% decrease in time-in-note for the AI-assisted group compared to control.56 A quality improvement
+study across 6 health systems with 263 providers showed burnout decreasing from 51.9% to 38.8%, with
+51FDA. "Artificial Intelligence-Enabled Medical Devices." https://www.fda.gov/medical-devices/software-medical-
+device-samd/artificial-intelligence-enabled-medical-devices
+52Menlo Ventures. "2025: The State of AI in Healthcare." (2025).
+53Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity." PLOS Digital Health (2025).
+54Hassan M, et al. "Barriers to and facilitators of artificial intelligence adoption in health care: Scoping review."
+JMIR Human Factors (2024).
+55Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+56Lukac PJ, et al. "Ambient AI scribes in clinical practice: A randomized trial." NEJM AI (2025).
+27
+
+improved cognitive task load and reduced after-hours documentation time.57 A separate RCT at UW
+Health found that ambient AI reduced after-hours work by approximately 30 minutes per day and
+improved clinician well-being on the Stanford Professional Fulfillment Index.58 These results matter not
+only for clinician quality of life but for workforce retention at a time when healthcare faces persistent
+staffing shortages.
+However, the cost picture is more complicated. The PHTI AI Taskforce concluded that the evidence base
+for ambient scribes improving efficiency through reduced documentation time "is limited" and that the
+financial impact on health systems remains "unclear."59 Business models in this space are increasingly
+centered on revenue capture through more intensive coding rather than cost reduction, and payers have
+begun responding with automatic downcoding of evaluation and management claims, raising questions
+about whether the current value proposition is sustainable.60 Safety also warrants attention: RCTs report
+that AI-generated notes occasionally contain clinically significant inaccuracies, most commonly
+omissions and pronoun errors, with one mild patient safety event reported.61
+Medical imaging AI represents the largest category of FDA-cleared AI devices, yet real-world results
+have been mixed. A 2024 survey of leading U.S. health systems found that while most organizations have
+deployed AI in imaging and radiology, only 19% report a "high degree of success."62 More broadly, direct
+clinical-facing AI tools are increasingly entering the market across specialties, but the evidence base for
+their return on investment remains thin compared to operational applications.
+Where Clinical AI Has Fallen Short
+The most persistent shortcoming is the gap between algorithm performance and clinical impact. High
+accuracy in controlled research settings often does not translate to real-world benefit because the critical
+challenge is integrating AI into clinical workflows, not building a better model. Alert-based clinical
+decision support systems illustrate the problem: override rates routinely exceed 90% due to alert fatigue,
+rendering even technically sound tools clinically irrelevant.63
+Fairness remains a serious concern. Well-documented cases of algorithmic bias include racial bias in
+widely used risk prediction algorithms that systematically underestimated the health needs of Black
+patients.64 Yet more than half of hospitals report no bias assessment for their AI models, and only 12% of
+57Olson KD, et al. "Use of ambient AI scribes to reduce administrative burden and professional burnout." JAMA
+Network Open (2025).
+58Afshar M, et al. "A Pragmatic Randomized Controlled Trial of Ambient Artificial Intelligence to Improve Health
+Practitioner Well-Being." NEJM AI (2025). https://doi.org/10.1056/AIoa2500945
+59Peterson Health Technology Institute. "Adoption of Artificial Intelligence in Healthcare Delivery Systems."
+(2025).
+60Adler-Milstein J, Aggarwal N. "Ambient AI scribes and the coding arms race." npj Digital Medicine (2025).
+61Lukac PJ, et al. "Ambient AI scribes in clinical practice: A randomized trial." NEJM AI (2025).
+62Poon EG, et al. "Adoption of artificial intelligence in healthcare: Survey of health system priorities, successes, and
+challenges." JAMIA (2025).
+63van der Sijs H, et al. "Overriding of drug safety alerts in computerized physician order entry." JAMIA (2006).
+64Obermeyer Z, et al. "Dissecting racial bias in an algorithm used to manage the health of populations." Science
+(2019).
+28
+
+implementation studies even note risks of exacerbating existing disparities.6566 Without systematic
+fairness evaluation, AI tools risk widening the very gaps they could help close.
+Generalizability across settings is a related failure point. AI validated at large academic medical centers
+may not perform equivalently at community hospitals, FQHCs, or rural facilities, yet only 61% of
+hospitals conduct local validation before deployment.67 The problem is compounded for safety-net
+providers, many of whom do not manage their own EHR instance or can only afford less sophisticated
+systems, limiting which AI tools they can even run. This infrastructure gap means the organizations
+serving the most complex patient populations are often the least equipped to evaluate or deploy AI.
+A newer concern is emerging around workforce impact. Where AI tools have delivered significant
+efficiency gains, particularly in administrative and operational functions, some organizations have begun
+considering workforce reductions. In rural and safety-net settings, where healthcare delivery
+organizations are frequently the largest local employer, these decisions carry consequences that extend
+well beyond the organization itself. AI-powered call centers, revenue cycle automation, and coding
+assistance can reduce costs, but if those savings come primarily through job displacement in economically
+fragile communities, the net benefit is less clear. Workforce transition planning and attention to local
+economic effects deserve consideration alongside efficiency metrics as these tools scale.
+The Core Barrier: Implementation Capacity
+The most significant barrier to realizing AI's potential in clinical care is not algorithm development but
+organizational capacity for implementation, governance, and monitoring. Systematic reviews of AI
+adoption barriers find that technical challenges, technological adoption capacity, and reliability and
+validation concerns collectively dominate, alongside workforce knowledge gaps and insufficient
+stakeholder trust.6869 Under-resourced HDOs face these challenges most acutely: they lack dedicated AI
+governance personnel, the data infrastructure for local validation, the connectivity and internal systems
+needed for basic AI readiness, and the organizational processes for lifecycle management.
+HAIP's work directly addresses this implementation gap. The Practice Network is generating real-world
+implementation evidence from safety-net settings, including deployment of ambient AI scribes and
+operational AI tools alongside governance support. The HEAAL framework provides a standardized
+approach for fairness evaluation, addressing the reality that most hospitals lack any systematic method for
+bias assessment.70 HAIP's 31 best practice guides provide the kind of practical implementation
+65Hassan M, et al. "Barriers to and facilitators of artificial intelligence adoption in health care: Scoping review."
+JMIR Human Factors (2024).
+66Hwang YM, et al. "The landscape of AI implementation in US hospitals." Nature Health (2026).
+67Gulamali FF, et al. "Eliminating the AI digital divide by building local capacity." PLOS Digital Health (2025).
+68Hassan M, et al. "Barriers to and facilitators of artificial intelligence adoption in health care: Scoping review."
+JMIR Human Factors (2024).
+69Katirai A. "A comprehensive overview of barriers and strategies for AI implementation in healthcare." PLOS ONE
+(2024).
+70Kim JY, et al. "Health Equity Across the AI Lifecycle (HEAAL)." PLOS Digital Health (2024).
+29
+
+frameworks that systematic reviews consistently identify as missing from the field.71 And the AI Vendor
+Disclosure Framework addresses information asymmetry in procurement, giving under-resourced
+organizations a structured way to evaluate vendor claims without building evaluation capacity from
+scratch.72
+Promising Tools and Federal Opportunities
+The novel AI tools with the greatest potential to improve outcomes and reduce costs are not necessarily
+the most technically sophisticated. They are the ones that can be implemented effectively across diverse
+healthcare settings, with the organizational resources and infrastructure needed to adopt them responsibly.
+AI tools that reduce administrative burden deserve continued federal attention. Ambient scribes have
+demonstrated the strongest evidence to date, but their long-term value will depend on whether business
+models evolve toward genuine efficiency rather than coding intensity. Operational AI for patient access,
+prior authorization, and revenue cycle management is delivering measurable gains, particularly for
+resource-constrained organizations. Independent evaluations that measure clinical outcomes and cost-
+effectiveness, not just vendor-reported metrics, would help organizations and payers distinguish effective
+products from those that primarily capture revenue.
+Shared infrastructure for AI evaluation and monitoring would be transformative. No individual FQHC or
+community hospital can build the technical capacity to validate AI tools locally, yet local validation is
+essential for patient safety. Shared evaluation platforms, benchmarking tools, and monitoring systems
+would allow organizations of all sizes to assess AI on the merits, creating the conditions for a competitive
+market where better products win.
+Capacity building for under-resourced settings addresses the most common reason AI tools fail to deliver
+value: organizations lack the people, processes, and infrastructure to implement them effectively.
+Technical assistance programs using hub-and-spoke approaches, where institutions with established
+expertise provide structured guidance to safety-net providers, can close this gap far more efficiently than
+expecting each organization to build capacity independently. These programs also need to address
+foundational AI readiness, including connectivity, internal systems, and workforce skill development, not
+just governance and workflow design. HAIP's Practice Network provides a demonstrated approach, and
+federal funding through grants and cooperative agreements could enable national scale.
+Standardized vendor transparency would accelerate market efficiency. When organizations can compare
+AI products on a common basis through consistent disclosure of training data, performance metrics,
+fairness evaluations, and integration requirements, the market rewards quality and innovation rather than
+marketing spend. This particularly benefits smaller AI developers who build better products but lack the
+distribution advantages of dominant EHR vendors.
+71Hasan A, et al. "Aligning AI principles and healthcare delivery organization best practices." npj Digital Medicine
+(2025).
+72Kpodzro S, et al. "A Collaborative Best Practice Guide for Promoting AI Vendor Transparency in Healthcare."
+SSRN (2025).
+30
+
+Finally, workforce planning deserves attention as AI adoption scales. The efficiency gains that make AI
+attractive, particularly in operational and administrative functions, can translate into job displacement if
+organizations optimize solely for cost reduction. Federal programs that support AI adoption could
+incorporate workforce transition considerations, particularly for rural and safety-net settings where the
+economic ripple effects of healthcare workforce changes are most significant.
+HAIP is positioned to contribute to each of these areas: publishing Practice Network outcomes to add
+real-world evidence from the settings where it is most needed, serving as a multi-site research
+infrastructure for implementation studies, developing shared AI monitoring infrastructure, and scaling
+capacity building nationally.
+31
+
+Question 7: Decision Makers and Administrative Hurdles
+Summary
+• No single role owns AI adoption decisions: AI adoption requires coordination across executive
+leadership, including the CEO/COO, CMO/CMIO, CIO/CTO, CNO, and CFO, yet most
+organizations lack an established process for reconciling competing priorities into coherent
+decisions. Organizations with centralized decision processes and an executive sponsor tend to
+move faster and more consistently.
+• Frontline clinicians and their supervisors determine whether AI is actually used: Leadership
+sets strategy, but adoption succeeds or fails at the point of care. Clinician buy-in depends on
+workflow integration, demonstrated patient benefit, and trust. Constructing the right incentive
+structures, from peer influence to performance recognition to awareness of patient impact,
+remains an underappreciated challenge.
+• In FQHCs, influence is distributed across multiple levels: Health center leadership and boards,
+Health Center Controlled Networks (HCCNs), and external regulators and payers all shape AI
+adoption decisions, but most HCCNs currently lack the resources and governance capacity to lead
+AI adoption on behalf of their member centers.
+• Primary administrative hurdles are organizational, not technical: Immature governance
+processes, lack of dedicated AI personnel, absence of standardized procurement criteria, resource
+constraints, and unresolved legal questions collectively slow adoption and disadvantage smaller
+organizations and innovative startups.
+32
+
+Who Influences AI Adoption
+AI adoption in healthcare delivery organizations (HDOs) requires coordination across executive
+leadership, but no single role owns the decision, and that absence of clear authority is itself one of the
+primary administrative hurdles slowing private sector innovation. The CEO or COO sets strategic
+priorities and allocates resources. The CMO or CMIO evaluates clinical appropriateness and physician
+adoption. The CIO or CTO manages technical integration and infrastructure. The CNO determines
+nursing workflow impact. The CFO evaluates return on investment. Each brings legitimate concerns, yet
+in most organizations there is no established process for reconciling them into a coherent AI adoption
+decision.73 HAIP's research, based on 89 interviews across its member organizations, found no clear
+ownership of AI lifecycle management activities, including decisions about whether to implement or
+decommission AI tools. Some organizations give that authority to budget holders; others favor centralized
+governance committees. Organizations with clear, centralized decision processes and an executive
+sponsor tend to move faster and more consistently, while those where authority is diffuse often stall or
+produce contradictory decisions across departments.
+The emergence of dedicated AI leadership roles signals that some health systems recognize this gap.
+Cleveland Clinic appointed its first Chief AI Officer in 2024, and other organizations including HCA
+Healthcare and NewYork-Presbyterian have created dedicated AI leadership positions to consolidate
+strategy and governance. But these appointments remain the exception. Most organizations distribute AI
+responsibilities across existing roles, creating coordination overhead that slows adoption and increases the
+risk of inconsistent decisions.
+However, executive leadership alone does not determine whether AI is adopted in practice. Frontline
+clinicians and their immediate supervisors are, in many respects, the most important influence on whether
+AI tools are actually used in clinical care. Leadership can set strategy, allocate resources, and build
+governance structures, but adoption succeeds or fails at the point of care. Clinician resistance driven by
+workflow disruption, alert fatigue, lack of trust, or insufficient training can render even well-governed AI
+tools ineffective.74 Constructing incentive structures that drive frontline buy-in, whether through
+leadership engagement, peer influence, performance and career development, financial incentives, or
+awareness of patient impact, is an underappreciated challenge that organizational governance structures
+alone cannot solve. HAIP's Practice Network experience reinforces this: even with governance support
+and leadership commitment, the organizations seeing the strongest adoption are those that invest in
+clinician engagement and workflow co-design from the outset.
+The picture is different, and more challenging, in the safety net. Within the FQHC system, influence is
+distributed across three levels: health center leadership and boards, who are responsible for clinical
+quality and fiduciary oversight but often lack the technical expertise to evaluate AI solutions; Health
+Center Controlled Networks (HCCNs), designated by HRSA to provide shared services and
+infrastructure, which function as de facto system-level decision makers for technology adoption; and
+73Kim JY, et al. "Organizational governance of emerging technologies: AI adoption in healthcare." ACM FAccT
+(2023).
+74Hassan M, et al. "Barriers to and facilitators of artificial intelligence adoption in health care: Scoping review."
+JMIR Human Factors (2024).
+33
+
+external regulators and payers, whose compliance and reimbursement requirements shape whether AI
+tools are viewed as feasible or risky to deploy. Despite their formal role in technology coordination, most
+HCCNs currently lack the dedicated resources, workforce capacity, and governance structures required to
+lead AI adoption responsibly on behalf of their member health centers, leaving individual centers to
+navigate these decisions largely on their own.
+Primary Administrative Hurdles
+The most pervasive administrative hurdle is that organizations are deploying AI while simultaneously
+trying to build governance structures for it. HAIP's research found that across multiple HDOs, clinical
+committees, IT departments, and compliance offices each held partial jurisdiction over AI, but none had
+complete oversight, and there was no consensus on how governance processes should work.75 A
+systematic review of 35 AI governance frameworks confirmed that most existing frameworks were not
+designed for real-world application in complex healthcare environments.76 The problem is compounded
+by the pace of change: AI capabilities are evolving so rapidly that static governance frameworks risk
+becoming outdated before they are fully implemented, requiring governance approaches that are adaptive
+by design rather than fixed.
+The barriers fall into three reinforcing categories. First, process barriers: organizations lack standardized
+guidance on what to request from AI vendors, vendor responses are inconsistent, and there are no
+common procurement criteria. Without standardized procurement criteria, many HDOs default to the AI
+embedded in their existing EHR platform, not because it outperforms alternatives, but because the effort
+of evaluating independent products exceeds their available resources. This dynamic favors incumbent
+vendors over innovative startups developing better tools. Unclear regulation adds friction: liability
+allocation between vendors and HDOs remains unresolved, data use agreements are complex and
+variable, intellectual property disputes are common, and the absence of standard contract language for AI
+procurement means every deal is negotiated from scratch.
+Second, people barriers: most HDOs lack dedicated AI governance personnel. IT and clinical staff are
+stretched thin across existing responsibilities, and the specialized expertise needed to evaluate AI tools,
+including algorithm performance, fairness assessment, and workflow integration, is in short supply. This
+expertise gap affects every stage of the AI lifecycle, from procurement through monitoring and
+decommissioning.
+Third, resource barriers: budgets at most organizations cannot absorb the overhead of building
+governance infrastructure from scratch, particularly when the return on investment for governance itself is
+difficult to quantify. These costs are real but invisible: staff time diverted from clinical work, consultant
+fees for legal and technical review, and the opportunity cost of delayed adoption while governance
+structures mature.
+75Kim JY, et al. "Organizational governance of emerging technologies: AI adoption in healthcare." ACM FAccT
+(2023).
+76Hussein R, et al. "Advancing healthcare AI governance: A comprehensive maturity model based on systematic
+review." npj Digital Medicine (2026).
+34
+
+Each of these barriers represents duplicative effort across the healthcare system, with every HDO solving
+the same problems independently rather than building on shared solutions. For FQHCs, these barriers are
+structural: the absence of standardized governance frameworks leaves individual health centers to assess
+clinical risk, fairness, and accountability on their own; competitive rather than collaborative funding
+environments prevent system-level solutions; and misalignment between funding structures and shared
+services means the organizations serving the most complex patient populations are often the least
+equipped to govern AI responsibly.
+Strategies That Overcome These Hurdles
+Despite these challenges, a growing number of health systems have published their governance
+experiences, and they converge on a recognizable pattern. Organizations that successfully adopt AI,
+whether large academic medical centers like Memorial Sloan Kettering and Mass General Brigham,
+integrated systems like Kaiser Permanente, share several structural features.777879 They establish
+centralized, multidisciplinary governance committees that span clinical, technical, legal, and operational
+expertise rather than leaving AI decisions siloed in any one department. They create structured intake and
+assessment processes so that every new AI tool is evaluated against consistent criteria rather than ad hoc
+judgment. They take a lifecycle approach, governing AI from pre-deployment evaluation through ongoing
+monitoring and potential decommissioning. And they calibrate oversight to the level of risk, giving
+higher-risk clinical AI more intensive scrutiny while allowing lower-risk administrative tools to move
+through streamlined pathways.
+The absence of these structures is precisely the administrative hurdle. Organizations without centralized
+committees see AI decisions stall in turf disputes between IT, clinical leadership, and compliance.
+Organizations without structured intake processes waste months in ad hoc evaluation cycles that exhaust
+staff time and produce inconsistent results. Organizations without lifecycle governance deploy tools and
+then discover performance problems only when harm has occurred. And organizations without tiered risk
+frameworks apply the same heavy process to low-risk scheduling tools and high-risk clinical decision
+support, creating unnecessary burden that slows adoption of both. Governance that is proportionate to
+organizational capacity and AI risk, with lighter-touch approaches for smaller or lower-risk settings, is
+more likely to be adopted and sustained.
+HAIP has developed practical tools to make these governance structures accessible beyond the well-
+resourced institutions that pioneered them. The PPTO framework (People, Process, Technology, and
+Operations) defines the organizational roles, workflows, technology requirements, and operational
+procedures needed for AI lifecycle management. Originally developed through qualitative research across
+77Stetson PD, et al. "Responsible artificial intelligence governance in oncology." npj Digital Medicine (2025).
+78Tsoi AH, et al. "Establishing and implementing a responsible artificial intelligence framework: A 1-year review."
+JAMIA (2025).
+79Saenz AD, et al. "Establishing responsible use of AI guidelines: A comprehensive case study for healthcare
+institutions." npj Digital Medicine (2024).
+35
+
+HAIP's member organizations, the framework has been validated at a Canadian hospital system.8081
+HAIP's 31 best practice guides, organized around 8 key decision points, translate governance principles
+into step-by-step procedures with identified stakeholders and data sources, covering both predictive AI
+(such as clinical risk scores) and generative AI (such as ambient documentation tools).82 HAIP is
+currently conducting a new wave of interviews with health system leaders across the U.S. to identify best
+practices for constructing governance structures, with the goal of making these practitioner-oriented
+insights available to the broader field and applying them in safety-net settings through the Practice
+Network.
+Federal Opportunities
+The most productive federal role is to disseminate and support the private sector frameworks that already
+work. Through ASTP/ONC and AHRQ, there is an opportunity to publish tiered implementation guidance
+and template documents, including intake surveys, assessment tools, and committee charters, so that each
+organization is not forced to reinvent governance from scratch. In the safety net, HRSA investment in
+governance capacity building at FQHCs and strengthening HCCNs as trusted intermediaries would reduce
+the duplicative burden that currently forces each health center to solve the same problems independently.
+HAIP is positioned to support these efforts. The PPTO framework, best practice guides, and Practice
+Network collectively provide a ready-made foundation for governance capacity building across diverse
+settings. The consortium's ongoing research on governance structures at health systems nationwide is
+generating the kind of practical, practitioner-oriented insights that implementation guidance requires, and
+HAIP's Practice Network provides a demonstrated model for governance capacity building, with hub
+institutions providing structured guidance to safety-net organizations through a learning community.
+80Kim JY, et al. "Organizational governance of emerging technologies: AI adoption in healthcare." ACM FAccT
+(2023).
+81Kim JY, et al. "People, process, technology, and operations framework for establishing AI governance in
+healthcare organizations." npj Digital Medicine (2026).
+82Hasan A, et al. "Aligning AI principles and healthcare delivery organization best practices." npj Digital Medicine
+(2025).
+36
+
+Question 8: Interoperability
+Summary
+• Data standards for market competition: Dominant EHR vendors control access to clinical data
+and workflow integration points, giving bundled AI tools a structural advantage regardless of
+quality. FHIR-based interoperability and continued USCDI expansion would break this
+bottleneck and let AI tools compete on performance. Broadening USCDI to include data elements
+critical for AI, such as the Medication Administration Record for inpatient models, and
+strengthening information blocking enforcement would open the market to independent
+developers, including startups building superior products.
+• Research data flows: TEFCA does not currently include research as a permitted exchange
+purpose, forcing AI developers to negotiate bilateral data sharing agreements that effectively limit
+AI research to well-resourced institutions. Expanding TEFCA to include research would
+accelerate development, validation, and monitoring of AI across diverse populations.
+• Benchmarking that reflects real-world care: Widely used benchmark datasets come
+disproportionately from academic medical centers and do not reflect the data quality, patient
+populations, or infrastructure of community hospitals, FQHCs, or rural facilities. Federated
+benchmarking approaches that include diverse care settings would generate evidence on how AI
+actually performs where it is needed most.
+37
+
+Data Standards That Enable Market Competition
+The most impactful step toward widening market opportunities for clinical AI is to ensure that health data
+flows freely and in standardized formats across systems. Today, dominant EHR vendors control access to
+clinical data and workflow integration points, creating a structural advantage for AI tools bundled into
+their platforms, regardless of whether those tools are the best available. As discussed in our response to
+Question 2, enforcement of information blocking rules (45 CFR Part 171) has not kept pace with how this
+data control restricts competition. Independent AI developers, including startups building genuinely
+superior products, struggle to access the data they need to validate and deploy their tools in clinical
+settings. Enhanced interoperability would break this bottleneck, enabling a competitive market where AI
+tools win on performance rather than distribution.
+FHIR (Fast Healthcare Interoperability Resources), HL7's modern API-based standard, provides the
+technical foundation for this vision and is the appropriate primary standard for AI-related data exchange.
+The United States Core Data for Interoperability (USCDI) establishes which data elements flow through
+FHIR-based APIs. ONC/ASTP has continued advancing USCDI adoption, and the HTI-5 Proposed Rule
+calls for USCDI version 3.1, which would expand the data classes and elements available through
+standardized APIs.83 Future USCDI versions present an opportunity to prioritize the data elements most
+critical for AI development, including domains not yet well represented. The Medication Administration
+Record (MAR), for example, is particularly relevant for inpatient AI models but is not currently required
+as a standardized data element, limiting the ability of AI developers to build and validate tools across
+institutions.84 Standardized data also enables what is currently difficult to achieve: fair comparative
+analysis of AI solutions across vendors, giving payers, providers, and patients the information they need
+to evaluate products on merit and driving quality-based competition across the market.
+Beyond data access, there are contractual barriers that limit market competition for AI. Some EHR
+vendors impose requirements that third-party AI vendors seek approval before hiring employees who
+have had access to the EHR firm's proprietary information within the past 12 months. These restrictions
+limit independent AI developers' ability to recruit the technical expertise needed to build effective
+integrations, further entrenching the incumbents' advantage. Strengthening information blocking
+protections to address these contractual practices would help ensure that market competition reflects
+product quality rather than vendor lock-in.
+Expanding Data Exchange to Fuel Research
+The Trusted Exchange Framework and Common Agreement (TEFCA) establishes national infrastructure
+for health information exchange, but its current permitted purposes do not include research. Expanding
+TEFCA to include research as a permitted purpose for data exchange would significantly improve the
+data flows needed to develop, validate, and monitor clinical AI across diverse patient populations and
+care settings.85 Without this expansion, researchers and AI developers must negotiate bilateral data
+83Health Data, Technology, and Interoperability: ASTP/ONC Deregulatory Actions to Unleash Prosperity (HTI-5
+Proposed Rule), 90 Fed. Reg. 60970 (proposed Dec. 29, 2025).
+84ONC/ASTP. "United States Core Data for Interoperability (USCDI)." https://isp.healthit.gov/united-states-core-
+data-interoperability-uscdi
+85Sequoia Project. "TEFCA Exchange Purposes." https://rce.sequoiaproject.org/exchange-purposes-explained/
+38
+
+sharing agreements with individual health systems, a process so burdensome that it effectively limits AI
+research to well-resourced academic medical centers with existing data partnerships.
+The data types where enhanced interoperability would most accelerate AI development span both
+structured and unstructured information. Medical imaging data, standardized through DICOM, already
+supports the largest category of FDA-cleared AI devices and represents a relative interoperability success
+story. Clinical notes, the unstructured text that captures the richness of clinical reasoning, are critical for
+the current generation of generative AI tools. Large language models can now process clinical text
+effectively without requiring extensive standardization beyond consistent use of English, a point that
+argues for prioritizing other data domains where standards are more urgently needed. Social determinants
+of health (SDOH) data remains poorly standardized and raises important questions about how such
+information is collected, shared, and used. As AI tools increasingly incorporate social context into clinical
+predictions, establishing minimum SDOH data standards through USCDI would improve both the
+fairness and accuracy of these tools, though careful attention to how this sensitive information is governed
+will be essential. Real-world outcomes data, including patient-reported outcomes and longitudinal follow-
+up information, is often missing from EHRs entirely, creating a fundamental gap in the evidence base for
+evaluating whether AI tools actually improve patient outcomes over time.
+Benchmarking Tools That Reflect Real-World Care
+Current benchmarking datasets for clinical AI skew heavily toward academic medical centers and do not
+reflect the diversity of care settings, patient populations, or data quality that AI tools encounter in real-
+world deployment. Widely used research datasets like MIMIC-IV (an EHR dataset covering emergency
+department and ICU admissions at Beth Israel Deaconess Medical Center) and the eICU Collaborative
+Research Database provide valuable resources for algorithm development, but their populations and data
+quality do not generalize to community hospitals, FQHCs, or rural facilities.86 An AI tool validated
+against these benchmarks may perform well in a research paper and fail in a safety-net clinic.
+There is an opportunity to address this gap through AHRQ and ONC/ASTP by supporting the
+development of benchmarking infrastructure that includes data from diverse care settings, particularly
+safety-net providers, rural facilities, and FQHCs whose patients are underrepresented in existing datasets.
+Rather than building massive centralized datasets, which raise privacy and governance concerns,
+federated benchmarking approaches that allow AI tools to be evaluated across sites without requiring data
+to leave local systems offer a more practical path forward. This would enable smaller healthcare
+organizations to participate in benchmarking without the infrastructure burden of large-scale data sharing,
+while generating evidence on how AI performs in the settings where it is needed most.
+86Johnson AEW, et al. "MIMIC-IV, a freely accessible electronic health record dataset." Scientific Data (2023).
+https://doi.org/10.1038/s41597-022-01899-x
+39
+
+Question 9: Patient and Caregiver Perspectives
+Summary
+• Access and administrative burden: Patients consistently identify access to care as the challenge
+they most want AI to address, with 30% of US adults citing improved access as AI's top expected
+benefit. Patients also feel the downstream effects of clinician burnout and administrative burden.
+In an AMA survey, 57% of physicians identified administrative burden automation as AI's
+biggest opportunity. AI tools that free clinician time for patient interaction, reduce wait times, and
+extend care to underserved areas align with patient priorities.
+• Trust and human oversight: Patient acceptance depends on maintaining the human relationship.
+Only about 20% of US adults expect AI to improve their relationship with their doctor. Patients
+want transparency about how AI is used in their care, how their data is handled, and whether AI
+recommendations can be explained. The degree of transparency provided to patients can be
+proportionate to the clinical risk the AI tool presents.
+• Patients as partners: Patient perspectives remain underrepresented in AI development and
+governance. Patient and provider priorities diverge: patients focus on barriers to accessing care,
+while providers focus on workflow efficiency. Meaningful patient engagement in problem
+identification, design, and monitoring would help ensure AI development serves the people it is
+meant to benefit.
+40
+
+What Patients Want AI to Fix
+Patients and caregivers consistently identify access to care as the challenge they most want AI to address.
+Approximately 30% of US adults expect AI to improve their access to healthcare, the highest-rated
+expected benefit in recent surveys, with patients in underserved communities particularly prioritizing
+solutions that reduce wait times, enable remote monitoring, and extend specialty care to areas where it is
+currently unavailable.87 AI also holds promise for better management of chronic disease through
+personalized health management systems. Approximately half of chronic disease patients view AI-
+enabled monitoring technologies as beneficial for their ongoing care.88
+Patients also feel the downstream effects of the administrative burden that consumes clinician time. In the
+AMA's 2024 physician survey, 57% of physicians identified administrative burden automation as AI's
+biggest opportunity, 75% said AI helps work efficiency, and 54% said it helps reduce burnout.89 These are
+not just provider concerns: when physicians spend more time on documentation than on patient
+interaction, patients experience the consequences through shorter visits, delays in test results and follow-
+up communications, and fragmented coordination between providers. AI applications like ambient
+documentation tools directly target this problem by freeing clinician time for the patient relationship.
+There is also emerging potential for large language models to provide patients with basic information
+about test results directly, improving timely access to their own health information.
+Beyond access and administrative burden, patients value AI's potential to improve diagnostic accuracy
+and timeliness, detecting conditions earlier through imaging analysis, reducing diagnostic errors, and
+providing second opinions on complex cases. At the same time, AI detection of subclinical disease that
+clinicians cannot yet correlate or mitigate raises questions about how to communicate such findings
+responsibly. Cost and affordability also matter: roughly 19% of US adults expect AI to make healthcare
+more affordable, though evidence on whether current AI tools actually reduce costs for patients remains
+limited.90
+Patient and Caregiver Concerns
+Patient acceptance of AI is not unconditional, and trust is paramount. The most consistent concern across
+the research literature is that AI should assist rather than replace human clinicians.9192 Only about 20% of
+US adults expect AI to improve their relationship with their doctor, and patients express strong
+preferences for human oversight in sensitive, complex, or long-term care situations.93 Ensuring that
+87Nong P & Ji M. "Expectations of healthcare AI and the role of trust." JAMIA (2025).
+88Moy S, et al. "Patient perspectives on the use of AI in health care: A scoping review." J Patient-Centered
+Research and Reviews (2024).
+89American Medical Association. "Augmented Intelligence Research: Physician Sentiment Report." (February
+2025). https://www.ama-assn.org/system/files/physician-ai-sentiment-report.pdf
+90Peterson Health Technology Institute. "Adoption of AI in healthcare delivery systems: Early applications and
+impacts." (2025). https://phti.org/ai-adoption-early-applications-impacts/
+91Moy S, et al. "Patient perspectives on the use of AI in health care." J Patient-Centered Research and Reviews
+(2024).
+92Richardson JP, et al. "Patient apprehensions about the use of artificial intelligence in healthcare." npj Digital
+Medicine (2021).
+93Nong P & Ji M. "Expectations of healthcare AI and the role of trust." JAMIA (2025).
+41
+
+humans remain in the loop to verify that outcomes are accurate, explainable, and unbiased is central to
+maintaining the trust that effective care requires.
+Data privacy ranks among the top concerns. Patients want to understand how their information is used in
+AI systems, whether data is appropriately protected, and who has access to AI-derived insights about their
+health. This concern takes on particular urgency as AI tools increasingly incorporate social determinants
+of health data, sensitive information about housing, food security, and economic circumstances that
+patients may share in one care setting without expecting it to flow across systems. As one of our
+community partners observed, this data is being collected repeatedly across different parts of the system,
+creating administrative burden and raising questions about whether the information is managed in the
+interest of the patient. Ensuring appropriate governance of this data, including updates to how protected
+health information requirements apply to AI use, is essential to maintaining trust.94 Revising digital
+patient privacy rules has the potential to both strengthen patient protections and incentivize innovation
+through clearer pathways for data access.
+Transparency is closely related. Patients are concerned about AI systems that cannot explain their
+recommendations, the "black box" problem, because lack of interpretability undermines informed
+decision-making and damages trust.95 Patients also worry about AI perpetuating or worsening existing
+disparities: whether data-source bias affects recommendations, whether AI trained on limited populations
+will work for them, and whether AI will narrow or widen gaps in care quality. Patients in low-income
+communities and communities of color have a higher prevalence of chronic diseases and could benefit
+most from AI-assisted screening and diagnosis, but only if those tools are designed with appropriate
+fairness considerations.96
+Finally, patients want to know when AI is being used in their care. Rather than treating this as a binary
+question of informed consent, which refers to a specific legal process not feasible for every AI interaction,
+a more practical approach is progressive degrees of patient transparency proportionate to the model's
+clinical risk. Low-risk AI applications such as scheduling optimization may require only general
+disclosure, while AI that directly influences diagnostic or treatment decisions warrants more detailed
+communication about the tool's role relative to clinician judgment. The FDA has authorized over 1,250
+AI-enabled medical devices as of mid-2025, yet a recent analysis found that many AI tools have entered
+clinical use without rigorous evaluation or meaningful public scrutiny, with critical details such as testing
+procedures, validation cohorts, and bias mitigation strategies often missing from regulatory
+documentation.9798
+9445 C.F.R. § 164.506(c)(5).
+95Fehr J, et al. "A trustworthy AI reality-check: The lack of transparency of AI products in healthcare." Frontiers in
+Digital Health (2024).
+96Dankwa-Mullan I. "Health Equity and Ethical Considerations in Using Artificial Intelligence in Public Health and
+Medicine." Preventing Chronic Disease (2024).
+97FDA. "Artificial Intelligence-Enabled Medical Devices." https://www.fda.gov/medical-devices/software-medical-
+device-samd/artificial-intelligence-enabled-medical-devices
+98Abulibdeh R, Celi LA, & Sejdic E. "The illusion of safety: A report to the FDA on AI healthcare product
+approvals." PLOS Digital Health (2025).
+42
+
+Patients as Partners, Not Just Recipients
+A consistent finding across the research is that patient perspectives are underrepresented in AI
+development and governance.99100 Patients prioritize being engaged from the beginning, at problem
+identification and prioritization stages, not consulted after tools have already been built. This gap matters
+because patient and provider priorities differ: patients focus on barriers to accessing care, while providers
+tend to focus on efficiency and workflow. Research on what patients actually want from AI remains
+scarce despite rapid adoption, and without systematic patient input, the market for clinical AI risks
+optimizing for provider and vendor priorities rather than the patient outcomes that should ultimately drive
+value.
+HAIP has built patient engagement into its governance structure from the outset. A community
+representative serves on HAIP's founding leadership team, bringing connections to grassroots coalitions
+including the Comunidad de Durham network that engage communities on AI and health advocacy. The
+HEAAL framework explicitly identifies patient and community stakeholders for each of its 37 assessment
+procedures, making patient involvement a structural feature of AI evaluation rather than an
+afterthought.101 The Practice Network extends this commitment by working with FQHCs and community
+hospitals that serve populations whose voices are least represented in AI development.
+There are several opportunities for HHS to strengthen patient engagement in AI through existing
+authorities. AHRQ could fund research on patient priorities for AI across diverse communities, building
+the evidence base that the field currently lacks. CMS could incorporate patient experience measures into
+AI-related quality programs, ensuring that patient outcomes, not just technical performance, drive
+adoption incentives. And ONC/ASTP could include patient-facing transparency requirements in future
+rulemaking, giving patients the information they need to make informed decisions about AI in their care.
+99Moy S, et al. "Patient perspectives on the use of AI in health care." J Patient-Centered Research and Reviews
+(2024).
+100Adus S, et al. "Exploring patient perspectives on how they can and should be engaged in AI development." BMC
+Health Services Research (2023).
+101Kim JY, et al. "Development and preliminary testing of Health Equity Across the AI Lifecycle (HEAAL): A
+framework for healthcare delivery organizations to mitigate the risk of AI solutions worsening health inequities."
+PLOS Digital Health (2024).
+43
+
+Question 10: Research Priorities
+Summary
+• Implementation science, not algorithm development: Despite thousands of AI models
+validated in research settings, translation into clinical practice has been remarkably slow. The
+evidence base is strongest for diagnostic accuracy and workflow efficiency, but evidence on
+whether AI actually improves patient health outcomes, reduces costs, or narrows disparities
+remains sparse. Federal research funding continues to favor algorithm development over the
+implementation science that would close this gap.
+• Costs, benefits, and value: Even for ambient AI, the most mature generative AI application, the
+Peterson Health Technology Institute found that evidence on financial performance is uncertain.
+Implementation costs are consistently understudied. Who captures the value from AI efficiency
+gains is poorly understood, and the return on investment extends beyond financial metrics to
+include clinician well-being and workforce retention.
+• Priority areas: HHS is uniquely positioned to fund implementation science research, close the
+capacity gap between well-resourced and safety-net providers, support AI tools that expand the
+healthcare workforce, invest in shared evidence infrastructure, and develop research methods for
+emerging applications like agentic AI systems.
+44
+
+Published Evidence: What Exists and What Is Missing
+Published evidence on AI's clinical impact has grown substantially, though critical gaps remain. The
+strongest evidence exists for diagnostic accuracy, where controlled studies show AI often rivals clinicians
+in tasks like medical image interpretation, and for workflow efficiency, where ambient AI documentation
+tools have demonstrated clinician time savings.102 The Peterson Health Technology Institute's evaluation
+of major health systems found that ambient scribes likely reduce clinician burnout, though financial
+impact remains unclear.103 Approximately half of chronic disease patients view AI-enabled monitoring
+technologies as beneficial for their ongoing care, and there is growing evidence that AI can improve
+chronic disease management through personalized health management systems.104
+However, this evidence comes disproportionately from academic medical centers and does not generalize
+well to safety-net settings where data quality, patient populations, and technical infrastructure differ
+significantly. Evidence on clinical outcomes, whether AI actually improves patient health, remains sparse,
+with few randomized controlled trials measuring patient outcomes rather than algorithm performance
+metrics. A 2024 study of AI randomized controlled trials found that only about 15% explicitly cited the
+CONSORT-AI reporting guidelines, and much of the available data has been acquired retrospectively,
+making it difficult to draw causal conclusions about AI's impact on care delivery.105106 Evidence on
+downstream effects of workflow tools, whether time saved translates into more patient interaction,
+reduced burnout, or improved throughput, also remains limited. Most published research evaluates
+algorithm accuracy metrics rather than the outcomes that matter to patients, providers, and the healthcare
+system: improved health, reduced cost, better access, and enhanced clinician well-being.
+Costs, Benefits, and Who Captures Value
+The literature on AI costs and benefits remains immature. Even for ambient AI, the PHTI evaluation
+found that evidence on productivity and financial performance is uncertain, with health system leaders
+reporting gaps in evidence regarding impact on the number of patients providers can see or the accuracy
+of billing codes.107 Implementation costs are consistently understudied: the substantial resources required
+for local validation, governance, workforce training, and ongoing monitoring are rarely quantified, yet
+these costs often determine whether an AI tool is feasible for a given organization. Initial implementation
+costs remain particularly prohibitive for safety-net settings, where the return on investment must be
+demonstrated before budgets can absorb the upfront burden.108
+102Rajpurkar P, et al. "AI in health and medicine." Nature Medicine 28(1): 31-38 (2022).
+103Peterson Health Technology Institute. "Adoption of AI in healthcare delivery systems." (2025). https://phti.org/ai-
+adoption-early-applications-impacts/
+104Moy S, et al. "Patient perspectives on the use of AI in health care: A scoping review." J Patient-Centered
+Research and Reviews (2024).
+105CDA-AMC (Canada's Drug Agency). "2025 Watch List: Artificial Intelligence in Health Care." (2025).
+https://www.cda-amc.ca/2025-watch-list-artificial-intelligence
+106Plana D, et al. "Concordance of randomised controlled trials for artificial intelligence interventions with the
+CONSORT-AI reporting guidelines." Nature Communications (2024).
+107Peterson Health Technology Institute. "Adoption of AI in healthcare delivery systems." (2025). https://phti.org/ai-
+adoption-early-applications-impacts/
+108Yousefi F, et al. "Opportunities, challenges, and requirements for AI in primary health care." BMC Primary Care
+(2025).
+45
+
+A key question the literature has not adequately addressed is how the value from AI efficiency gains is
+distributed across stakeholders, including patients, clinicians, health systems, and payers. There is
+substantial anecdotal evidence about the potential for AI to create value across the care delivery system,
+but very little rigorous evidence on how that value is captured by different stakeholders. One area where
+the dynamics are becoming clearer is ambient AI scribes, where a recent policy brief documented how
+vendor marketing is shifting from burnout reduction to revenue-cycle performance, with business models
+increasingly focused on more intensive coding rather than cost reduction for patients.109 This raises
+questions about whether the current market is directing AI innovation toward genuine value creation.
+The return on investment for AI also extends beyond financial metrics. Decreased clinician burnout,
+improved staff retention, and enhanced workforce satisfaction are real benefits that take time to
+materialize and are rarely measured in current cost-benefit analyses, yet they may ultimately prove more
+important to sustainable AI adoption than short-term productivity gains. At the same time, cost reduction
+through AI-driven automation of functions like call centers and revenue cycle management raises
+legitimate concerns about workforce displacement, particularly in rural communities where healthcare
+organizations are often a primary employer.
+Priority Research Areas
+The most critical gap in the AI evidence base is not algorithm development but implementation science.
+The field has shifted from internal validation to external validation and deployment, yet federal research
+funding continues to favor algorithm development.110 HHS is uniquely positioned to correct this
+imbalance, and doing so would accelerate the private sector's ability to bring effective AI tools to patients.
+First, implementation science research through AHRQ, NIH, and CMS would address the most urgent
+gap, studying how to integrate AI into clinical workflows, manage organizational change, and sustain
+adoption across diverse care settings. Pragmatic multicenter trials that evaluate AI in real-world
+conditions, rather than controlled research environments, would generate the evidence that healthcare
+delivery organizations need to make informed adoption decisions. This includes research on effective AI
+governance structures for organizations of different sizes and resources, ongoing monitoring approaches
+for detecting performance drift and emerging risks, decommissioning criteria for when and how
+underperforming AI tools should be retired, and methods for assessing the behavioral changes AI
+introduces in clinical decision-making.
+Second, research on closing the capacity gap between well-resourced health systems and safety-net
+providers would help ensure that AI benefits reach all patients. Studies on effective technical assistance
+models, including hub-and-spoke approaches where resource-rich institutions support community
+providers, would generate evidence on how to scale AI adoption beyond the academic medical centers
+that currently dominate the field. Research on AI readiness, particularly connectivity and infrastructure
+109Dai T, Kvedar JC, & Polsky D. "Policy brief: Ambient AI scribes and the coding arms race." npj Digital Medicine
+(2025).
+110CDA-AMC (Canada's Drug Agency). "2025 Watch List: Artificial Intelligence in Health Care." (2025).
+https://www.cda-amc.ca/2025-watch-list-artificial-intelligence
+46
+
+requirements in rural settings, is essential to ensuring that federal investments in AI reach the
+communities that stand to benefit most. FDA and ARPA-H also have roles to play in supporting
+translational research that bridges the gap between validated algorithms and deployable clinical tools.
+Third, research on AI tools that expand the reach of the healthcare workforce deserves priority,
+particularly tools supporting community health workers and home-based caregivers. International
+evidence demonstrates that community health workers can cost-effectively manage chronic disease,
+maternal health, and preventive care, yet in the US their impact is often constrained by administrative
+burden and limited clinical scope. Research on AI tools that reduce documentation burden for frontline
+workers, enable safe use of clinical decision support in community settings, and develop appropriate
+training and governance models for non-physician AI use could significantly extend care capacity without
+requiring new workforce pipelines.
+Fourth, the field needs shared infrastructure for generating and synthesizing real-world evidence.
+Standardized reporting frameworks building on CONSORT-AI and SPIRIT-AI, shared benchmarking
+tools that enable cross-site performance comparison, and federated data approaches that support evidence
+generation without requiring centralized data repositories would all reduce the burden on individual
+organizations while producing evidence that reflects the diversity of care delivery in the United States.
+Fifth, emerging AI capabilities require new research methods. Agentic AI systems that can take
+autonomous actions in clinical workflows, rather than simply providing recommendations, present novel
+questions about impact assessment, downstream propagation of errors, and appropriate governance.
+Research on systematic methods for evaluating these more autonomous AI applications, before they reach
+widespread clinical deployment, would help the field stay ahead of the technology curve rather than
+reacting after problems emerge.
+47

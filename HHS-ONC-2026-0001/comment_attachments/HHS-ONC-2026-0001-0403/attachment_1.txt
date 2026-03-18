@@ -1,0 +1,1527 @@
+RFI Response: HHS-ONC-2026-0001
+RESPONSE TO REQUEST FOR INFORMATION
+RIN 0955-AA13 90 Fed. Reg. 60,108 (Dec. 23, 2025)
+Docket No. HHS-ONC-2026-0001
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+Submitted by
+PHAROS HEALTH
+San Francisco, California
+February 23, 2026
+Submitted to:
+Assistant Secretary for Technology Policy (ASTP)
+U.S. Department of Health and Human Services
+Pharos Health | Page 1
+
+RFI Response: HHS-ONC-2026-0001
+Dr. Thomas Keane, MD, MBA.
+Assistant Secretary for Technology Policy
+Mr. Steve Posnack
+Principal Deputy National Coordinator
+Re: HHS-ONC-2026-0001 | Accelerating the Adoption and Use of Artificial Intelligence as Part of
+Clinical Care
+Dear Sirs,
+We appreciate the opportunity to provide concrete, experience-based feedback on how the
+Department of Health and Human Services (HHS) can accelerate the adoption of Artificial
+Intelligence (AI) across the healthcare continuum. As an AI vendor with deep experience in
+healthcare data analytics, clinical NLP, and real-world AI deployment, we offer this response
+grounded in operational reality.
+While significant attention is appropriately being paid to AI applications at the point of care such as
+ambient documentation, clinical decision support, and diagnostic assistance, our response focuses on
+a complementary domain: interoperability and surveillance, where AI can transform quality
+improvement, reporting, patient safety monitoring, health information exchange and data
+normalization.
+Our response details 10 specific use cases across burden reduction, patient safety, interoperability,
+and quality improvement. These use cases emerged from hundreds of conversations with clinicians,
+quality leaders, health plan executives, and health IT professionals. Our team combines clinical
+expertise with years of production AI and traditional software deployment in healthcare settings. We
+present only applications where we have observed genuine operational need and where we are
+actively developing solutions. This is not theoretical speculation; it reflects what healthcare
+organizations are asking for and what we are building.
+We look forward to partnering with HHS to move these concepts from pilot to policy.
+Kind regards
+Felix Brann
+Chief Executive Officer
+Pharos Health, San Francisco CA
+Pharos Health | Page 2
+
+RFI Response: HHS-ONC-2026-0001
+Overview
+For more than two decades, federal agencies and standards development organizations have worked
+to make clinical information computable. The goal has been straightforward: when data can be read
+by machines, organizations can automate processes that would otherwise require someone to open a
+chart, read through documentation, and manually record what they find. This manual work, known as
+chart abstraction, remains one of the largest drivers of administrative cost in American healthcare.
+Quality measure reporting alone costs U.S. physician practices an estimated $15.4 billion annually,
+much of it spent on exactly this kind of review.
+The EHR Incentive Program, HL7 v2, C-CDA, and FHIR are examples of successive efforts to
+reduce this burden by encouraging digitizing health data and establishing common data formats.
+These standards have enabled significant automation, yet chart abstraction persists because clinicians
+document much of what they know in narrative form. A physician's assessment, a nurse's
+observations, a social worker's notes: this information often appears in free text rather than structured
+fields. Furthermore there continues to be weak adoption and implementation of standardization of
+data across the healthcare continuum.
+AI-based clinical natural language processing offers a way to extend existing interoperability
+infrastructure into narrative documentation and weakly standardized data. These methods extract
+structured meaning from clinical notes, discharge summaries, and legacy records without requiring
+clinicians to change how they document. The result is programmable access to information that was
+previously available only through human review.
+This response describes use cases where AI-enabled processing works alongside existing standards to
+reduce administrative burden, support patient safety surveillance, and strengthen health information
+infrastructure. The examples reflect operational deployments within health plans, health systems, and
+healthcare analytics organizations. Each use case connects directly to ASTP's long standing
+priorities: making clinical data computable, reducing the cost of manual abstraction, and enabling the
+interoperability infrastructure that supports a learning health system.
+Pharos Health | Page 3
+
+RFI Response: HHS-ONC-2026-0001
+Use Case Summary
+Clinical Registry Reporting: Hospitals submit detailed patient data to national quality databases,
+but extracting this information requires staff to manually read through charts for hours per case. AI
+reads operative notes, pathology reports, and clinical documentation to extract registry variables
+automatically, reducing review time by 70-90%.
+Clinical Quality Measurement and Reporting: Healthcare quality measurement depends on
+standardized, structured data, but implementation of data standardization continues to lag across the
+industry. Extending measurement into the free-text clinical notes where much of the relevant
+information lives remains prohibitively expensive, affordable only to the most resource-intensive
+measurement programs that can fund manual chart review. Emerging AI technology enables less
+dependency on implementation of standards and extension of measurement into the free text.
+Guideline Adherence Monitoring: Hospitalized patients often fail to receive recommended
+preventive treatments like blood clot prophylaxis, but gaps remain invisible until harm occurs. AI
+monitors patients in real-time against clinical guidelines and can identify trends where adherence to
+clinical practice guidelines is responsible for harm and additional costs.
+Utilization Management: Determining whether a hospital admission is medically necessary requires
+case managers to hunt through records finding scattered clinical data points. AI pre-populates
+medical necessity reviews by extracting vital signs, lab values, and clinical findings from across the
+chart, letting reviewers focus on judgment rather than data gathering.
+Incidental Findings: Unexpected medical observations discovered during diagnostic tests or
+procedures conducted for unrelated clinical reasons. Because these findings often reside in
+unstructured narrative notes rather than standardized codes, they frequently lack systematic follow-up
+or administrative visibility.
+Elimination of Prior Authorization: Combined implementation of AI powered Guideline
+Adherence Monitoring and Utilization Management enable a "gold card" qualification where trusted
+providers receive automatic approval rather than per-request review.
+Population Health Gap Closure: Patients appear overdue for preventive care when their screenings
+were done at outside facilities and documented only in scanned PDFs. AI extracts procedure dates
+and findings from narrative documents to identify which gaps are real and which were already
+addressed elsewhere.
+Safety Event Detection: Most patient harm goes undetected because voluntary safety reporting
+captures only 10-20% of adverse events. AI scans all patient records for clinical warning signs.
+Root Cause Analysis: When serious safety events occur, investigators must reconstruct what
+happened from fragmented notes written by different clinicians. AI synthesizes documentation from
+all sources into a unified timeline, revealing communication gaps and missed warning signs.
+Sensitive Data Segmentation: Privacy laws require protecting certain health information before
+sharing records, but code-based filters miss sensitive content documented in narrative text. AI
+understands the meaning of clinical documentation and identifies protected information regardless of
+how it was recorded.
+Pharos Health | Page 4
+
+RFI Response: HHS-ONC-2026-0001
+Clinical Registry Reporting
+Understanding of Need
+Hospitals and physician practices voluntarily participate in clinical registries to benchmark their
+performance against national standards and identify opportunities for improvement. A registry is
+essentially a database that collects standardized information about patients with specific conditions or
+procedures, stroke patients, surgical cases, cancer diagnoses, cardiac interventions. By comparing
+their outcomes to aggregated data from hundreds of other institutions, healthcare organizations can
+see where they excel and where they fall short.
+The challenge is that registries require detailed clinical information that must be manually extracted
+from medical records. A trained abstractor, typically a nurse or health information specialist, reads
+through operative notes, progress notes, laboratory results, and discharge summaries to find specific
+data elements and enter them into the registry system. This process is called chart abstraction, and it
+is extraordinarily time-consuming.
+A typical health system participates in dozens of registries across clinical domains: ACS NSQIP
+alone collects 135 variables per case. A routine case takes an experienced abstractor about 60
+minutes; complex cases with multiple complications can require 5-6 hours of chart review. A health
+system performing 22,000 surgical cases annually dedicates over 11,000 labor hours, more than five
+full-time employees, to this single registry.
+DOMAIN EXAMPLE REGISTRIES
+Surgical ACS TQIP, ACS NSQIP, ACS MBSAQIP, STS ACSD
+Cardiac & Thoracic ACC CathPCI, ACC/SVS VQI, ACC LAAO, ACC Chest Pain-MI, GWTG
+Resuscitation
+Oncology NAACCR-NPCR, ACS NCDB, NAACCR-SEER, ASCO QOPI
+Neurology GWTG Stroke, AANS N2QOD, AANS SRS
+Current barriers:
+• Registry variables reside in operative notes and clinical documentation, not structured fields
+• Determining complications requires clinical judgment applied to narrative text
+• EHR implementations vary in how clinicians document the same concepts
+Proposed Approach
+AI-based natural language processing can read clinical documentation and extract registry variables
+programmatically. Rather than replacing human abstractors, these systems accelerate their work by
+identifying relevant information across hundreds of pages of medical records and presenting findings
+with links to source documentation for human verification. The AI accommodates the variability in
+how different clinicians and different EHR systems document the same clinical concepts. When
+information is ambiguous or conflicting across sources, the system flags the discrepancy for human
+Pharos Health | Page 5
+
+RFI Response: HHS-ONC-2026-0001
+review rather than making assumptions. Production deployments demonstrate 95% agreement with
+expert human abstractors while reducing time per case by as much as 90%.
+Regulatory Alignment
+Registry participation supports CMS quality reporting requirements and accreditation standards.
+AI-assisted abstraction reduces the burden on participating practices without requiring changes to
+how clinicians document care, aligning with federal goals for administrative simplification.
+Complexity of “Last Known Well”
+Scenario: For the Get With The Guidelines-Stroke registry from the AHA, the abstractor must
+determine the "Last Known Well" time, the last moment the patient was observed to be neurologically
+normal. This single data element is critical because it determines eligibility for clot-dissolving
+medication (tPA), which must be administered within hours of symptom onset.
+Clinical Context:
+The abstractor finds conflicting time references across multiple documentation sources: Data validation
+audits show "Last Known Well" achieves only 85.3% abstractor agreement, the lowest reliability of
+any variable in the registry. The complexity arises because abstractors must determine which source is
+most reliable (direct witness accounts take precedence over second-hand reports) and reconcile
+conflicting information.
+Pt: Male, 72 | Encounter: ED Stroke Alert
+EMS run sheet:Patient found on floor at 14:32, daughter states 'he was fine
+at breakfast'
+ED triage note (14:58): Last known well per EMS: 08:00
+Neurology note (15:20): Spoke with daughter, patient watched morning news,
+she left for work at 10:15
+Nursing note (15:05): Family states patient took medications at 9 AM
+Code Stroke form: field left blank
+AI Application: The AI extracts all time references from EMS documentation, nursing notes, and
+physician notes. It identifies the daughter's direct witness account in the neurology note as the most
+reliable source according to registry abstraction hierarchy guidelines. It determines Last Known Well
+as 10:15 and presents a complete timeline showing all documented times with links to source
+documentation, allowing the abstractor to verify the determination in minutes rather than
+reconstructing the timeline manually.
+Measurable Impact:
+• Addresses the registry variable with lowest inter-rater reliability (85.3%)
+• Synthesizes 4+ documentation sources in seconds vs. 15-20 minutes manual review
+• Reduces tPA eligibility determination errors from conflicting timestamps
+Pharos Health | Page 6
+
+RFI Response: HHS-ONC-2026-0001
+Clinical Quality Measurement and Reporting
+At its core, healthcare quality measurement is an abstraction problem. Clinical research identifies the
+markers of high-quality, evidence-based care; quality measurement then seeks to abstract those
+markers from the primary medical record to evaluate performance. For decades, this abstraction was
+a manual, labor-intensive process performed by human reviewers. The transition to electronic
+Clinical Quality Measures (eCQMs) is designed to automate this, reducing the cost and effort of
+abstraction by standardizing both the data format such as CCDA and FHIR and the measure logic
+expression with the Clinical Quality Language or CQL.
+The Limitations of Structural Standardization
+Standardizing clinical data, moving from HL7 v2 to C-CDA and now toward FHIR has resulted in a
+matrix of non-uniformity where even when organizations adopt a shared standard, local
+implementation choices, custom data mappings, and varying rates of adoption across the continuum
+of care leave the data "messy."
+As a result, a Chief Quality Officer at an academic medical center cannot simply "run" a measure
+across their enterprise and trust the result. They find that even standardized fields for common labs or
+vitals remain unreliable until they undergo resource-intensive, organization-specific reconciliation. In
+this environment, the administrative data still fails to speak the language of the clinician, remaining
+an abstraction of a proxy rather than an abstraction of the care itself.
+The Clinical Narrative and Free Text
+The second, more significant challenge is that the most vital parts of the clinical story are never
+"coded." Critical indicators of clinical judgment, patient nuance, and medical necessity reside in
+unstructured clinical notes and free text. Because these narratives are not standardized, they remain
+invisible to eCQM developers and the rigid logic of CQL.
+The move toward Digital Quality Measures (dQMs) is intended to expand the data ecosystem to
+include registries and devices, but it does not resolve this fundamental visibility gap. dQMs still
+largely rely on Clinical Quality Language (CQL), a machine-readable expression language that,
+while powerful, is restricted to structured inputs. Consequently, the industry faces a compounding
+barrier: the logic standard lacks broad adoption, and the clinical narrative remains unreadable to the
+machine.
+Proposed Approach
+AI-based natural language processing can normalize poorly standardized data and extend the reach of
+electronic quality measurement by extracting measure-relevant data elements from clinical
+documentation.
+Pharos Health | Page 7
+
+RFI Response: HHS-ONC-2026-0001
+AI functions as a dynamic abstraction service that can interpret "messy" standardized data and
+unstructured narrative text with equal high-fidelity, no longer requiring every health system to
+perfectly map every data element to a rigid schema before a measure can function.
+AI can also expand the range of clinical quality measures that can be implemented because the
+complexity of data standardization and chart abstraction is no longer a barrier to implementation.
+Regulatory Alignment
+This approach supports ASTP requirements for electronic quality measurement while acknowledging
+the practical reality that not all clinical information exists in structured form. It extends the reach of
+CQL-based quality measurement to the unstructured content that currently requires manual
+abstraction. AI enabled abstraction allows for more complex and relevant measures to be
+implemented that can focus incentive payments directly to high quality care.
+The SEP-1 Challenge
+Scenario: The SEP-1 measure (Severe Sepsis and Septic Shock Management Bundle) is one of the most
+complex and time-consuming quality measures in healthcare. It requires determining "time zero", the
+moment when a patient first met criteria for severe sepsis, and then verifying that a bundle of treatments
+(blood cultures, antibiotics, fluids, repeat lactate) was completed within 3 and 6 hours of that moment.
+Clinical Context:
+Consider a patient who arrives at the emergency department. Determining "time zero" requires clinical
+judgment: when did this patient first meet the clinical definition of severe sepsis? Was it at triage when
+infection was suspected? At 14:45 when vital signs showed organ dysfunction? Studies show that
+abstractors agree on time zero only 36% of the time, meaning nearly two-thirds of cases involve legitimate
+disagreement about measure interpretation.
+Pt: Male, 58 | Encounter: ED Sepsis Alert
+Triage note at14:32: fever, cough, confusion
+Vital signs at14:45: temp 39.1°C, BP 88/54, RR 24
+Lactate at15:18: 4.2 mmol/L
+Antibiotics administered at16:15
+AI Application: The AI reviews all documentation from the encounter, identifies the earliest evidence of
+suspected infection combined with evidence of organ dysfunction, and determines time zero as 14:45 (when
+vital signs demonstrated hypotension meeting SIRS criteria in a patient with suspected infection). It then
+calculates whether each bundle element was completed within the required timeframe, presenting a timeline
+with linked source evidence for each determination.
+Expanding Measure Development: The CAP-Pharos Collaboration
+When abstraction costs fall, entirely new categories of quality measurement become feasible. Pharos is
+currently collaborating with the College of American Pathologists (CAP) to apply neurosymbolic AI to
+Pharos Health | Page 8
+
+RFI Response: HHS-ONC-2026-0001
+pathology quality measures, work presented at the Council of Medical Specialty Societies (CMSS) Annual
+Meeting in 2025.
+The Problem: CAP’s Qualified Clinical Data Registry (QCDR) measures require data elements that live
+exclusively in narrative pathology reports: histologic tumor grade, margin status, lymphovascular invasion,
+depth of invasion. Consider what a real pathology report looks like:
+CPT Code(s): 88305x4
+SPECIMEN SOURCE:
+RIGHT FOREHEAD / RIGHT ANTERIOR NECK LINE / LEFT MID STERNUM / LEFT FOREARM
+FINAL PATHOLOGIC DIAGNOSIS:
+A. Skin, right forehead, shave biopsy: Actinic keratosis.
+B. Skin, right anterior neck line, shave biopsy: Basal cell carcinoma,
+nodular type; - present at peripheral and deep margins.
+C. Skin, left mid sternum, shave biopsy: Basal cell carcinoma, superficial
+type; - present at peripheral margin.
+D. Skin, left forearm, shave biopsy: Squamous cell carcinoma in situ; -
+present at peripheral and deep margins.
+This case has been reviewed and dictated by [Name], M.D., Ph.D., Board Certified
+Dermatopathologist.
+The yellow-highlighted elements are precisely what the quality measure needs to capture, but they exist only
+in narrative text. No structured code or billing field contains this information. Existing keyword and
+rule-based extraction tools proved inadequate: a rule searching for “GE* biops*” to find gastric biopsies
+would match on a patient named George who had an ear biopsy. CAP was forced to abandon automated
+collection of clinically important measures, including a gastric intestinal metaplasia measure, because no
+existing technology could reliably extract the required data elements from narrative pathology text.
+See Exhibit 1 - Neurosymbolic AI for automated clinical quality measure abstraction in pathology -
+CMSS 25
+The Approach: Rather than prompting a general-purpose large language model, the system converts each
+measure specification into a neurosymbolic decision tree: a structured pipeline that decomposes the measure
+into discrete sub-problems. This approach constrains AI tightly to the precise definitions laid out in the
+measure specifications, minimizing hallucination and producing fully auditable reasoning and evidence
+citations for every determination.
+The Results: The system was evaluated across four CAP QCDR measures on 2,000 pathology reports (500
+randomly subsampled per measure from a feed of 100,000 reports). All reports were independently
+double-abstracted by experienced third-party abstractors trained on each measure, establishing a human
+inter-rater reliability (IRR) baseline. Final gold-standard labels were determined by third-party RN
+abstraction managers. The neurosymbolic models were then evaluated against the same gold standard.
+IRR Accuracy
+Human 0.918 95.4%
+AI 0.922 95.7%
+No statistical difference between human and AI abstractors.
+Pharos Health | Page 9
+
+RFI Response: HHS-ONC-2026-0001
+The Implication: This collaboration demonstrates a broader principle directly relevant to this RFI.
+Over-simplifying quality measures to rely only on structured data fields, simply because that is what current
+tools can process, undermines the clinical purpose of measurement.
+Clinically complex measures without added burden. Professional societies can develop measures that
+reflect current clinical practice guidelines without requiring costly manual abstraction or adding
+documentation burden to clinicians. Measure data can be collected directly from the narrative
+documentation clinicians already create. Furthermore measures could be developed that leverage patient
+interviews, sentiment analysis and other non-structured data sources to capture the patient’s “voice” in their
+care.
+Reduced friction for participating practices. Practices no longer need to filter or pre-process data before
+submission to registries. Vastly more accurate measurement means dramatically fewer case corrections and
+resubmissions, reducing the operational cost of registry participation.
+Accelerated measure development. New measures can be applied instantly to a large corpus of existing
+reports, with AI surfacing edge cases for review by measure developers. This allows measure refinement
+before deployment, compressing the development cycle from years to weeks. The CAP collaboration is an
+early proof point: measures that were previously intractable are now being automated at human-level
+accuracy, enabling quality measurement to expand into domains that were inaccessible to existing
+technology.
+Pharos Health | Page 10
+
+RFI Response: HHS-ONC-2026-0001
+Guideline Adherence Monitoring
+Clinical practice guidelines exist for nearly every dimension of patient care: when to initiate
+antibiotics, how to manage blood glucose, which prophylactic therapies hospitalized patients should
+receive, and how to respond to early signs of clinical deterioration. These recommendations reflect
+decades of accumulated evidence about what improves outcomes and prevents harm.
+Medicine will always require clinical judgment and nuance. But guidelines define a baseline standard
+of care - specifying the interventions, timing, and thresholds most consistently associated with better
+outcomes. When care systematically deviates from that baseline, it can signal breakdowns in
+processes, communication, or oversight. Detecting those deviations early offers a powerful
+opportunity to identify emerging safety risks before they result in patient harm. And when avoidable
+harm does occur, a central question remains: was there a moment when care diverged from best
+practice?
+Today, answering that question is extraordinarily labor-intensive. Determining whether care was
+guideline-concordant requires a trained clinician to manually review the chart - every note, order, lab
+result, and nursing assessment - reconstruct the clinical timeline, and compare it against what
+evidence-based recommendations dictate. This depth of review is typically reserved for retrospective
+root cause analyses and applied to only a small subset of cases. Performing the same analysis
+continuously, across an entire patient population, remains effectively intractable.
+Complicating matters further, guidelines include exceptions. A patient may have a legitimate
+contraindication to a recommended treatment. A clinician may document sound reasoning for an
+alternative approach. Distinguishing a process failure from an appropriate clinical decision requires
+reading and interpreting the documentation.
+Finally, clinical practice guidelines are not static. New evidence emerges continuously, yet formal
+guideline updates often lag behind the science by months or years. Conversely, some
+recommendations persist long after their evidentiary basis has weakened or been superseded. Once
+new guidance is issued, there is rarely a systematic mechanism to evaluate how rapidly it is adopted,
+how faithfully it is implemented, or whether it produces the intended outcomes in real-world settings.
+This creates a feedback gap: guidelines shape care, but care data are not routinely used to inform the
+refinement, retirement, or recalibration of the guidelines themselves.
+Proposed Approach
+AI can continuously monitor whether actual care delivery aligns with guideline expectations across
+the full scope of clinical practice. For each patient, the system maps their clinical situation against
+relevant guideline pathways, identifying what should happen based on their conditions and risk
+factors, checking whether those care steps occurred, and reading clinical documentation to determine
+whether any deviation has documented clinical justification. AI does more than just identify
+guideline misses, it can reason about which process failures actually drive harm and provide targeted
+intervention opportunities to the quality team.
+Pharos Health | Page 11
+
+RFI Response: HHS-ONC-2026-0001
+This transforms quality monitoring from expensive retrospective chart abstraction on a small
+sampling of patients into prospective surveillance at scale, on every patient for every care
+transaction.. Furthermore, rather than discovering guideline gaps only after harm occurs,
+organizations can identify deviations while there is still time to intervene. AI can surface to Care
+teams only high value alerts when a patient's care appears to diverge from guidelines without
+documented rationale, enabling correction before complications develop.
+Regulatory Alignment
+This approach supports CMS quality programs by shifting from measuring harm after the fact to
+preventing it prospectively. It enables organizations to demonstrate systematic guideline adherence
+rather than relying on outcome-based measures that capture only the cases where process failures
+resulted in detectable harm. Furthermore, it leads to tighter feedback loops - new processes can be
+implemented and then immediately evaluated and tuned to specific patient populations.
+Missed VTE Protocol
+Scenario: Orthopedic surgery patients are at particularly high risk for VTE due to the nature of the
+procedure and post-operative immobility. Hospital protocol and national guidelines require VTE
+prophylaxis for all orthopedic surgery patients unless specifically contraindicated.
+Clinical Context:
+The admission nursing assessment correctly identifies the patient as high-risk for VTE based on the planned
+procedure. Pre-operative orders are placed by the surgical team, including antibiotics, pain management,
+and post-operative physical therapy, but no VTE prophylaxis order is included in the order set. On
+post-operative day 1, the patient begins ambulating with physical therapy as documented in the PT notes.
+By post-operative day 2, the medication administration record still shows no prophylaxis has been given. A
+review of all clinical documentation, nursing notes, physician progress notes, pharmacy notes, reveals no
+documented contraindication to anticoagulation and no documentation that the patient declined mechanical
+prophylaxis. The omission appears to be an inadvertent failure to order a standard component of
+post-operative care.
+TIME CLINICAL NOTE GUIDELINE COMPLIANCE
+Day Admission nursing assessment completed. VTE risk score ✓ Joint Commission NPSG.03.05.01 — VTE risk
+0 calculated: HIGH (orthopedic procedure, age 68, BMI 32). Risk assessment required for all surgical admissions.
+14:00 documented in chart.
+Day Pre-op orders placed: Cefazolin 2g IV, Morphine PCA, PT ✗ ACCP / AAOS — VTE prophylaxis required for
+0 consult. No VTE prophylaxis ordered. No contraindication all major orthopedic surgery patients unless
+16:00 documented. specifically contraindicated.
+Day Total knee replacement completed without complication. ✗ WHO Surgical Safety Checklist — VTE
+0 Standard post-op order set activated. VTE prophylaxis not prophylaxis plan must be verified before incision.
+18:30 included in order set. Order set gap allowed omission.
+Day AM nursing assessment. Patient ambulating with walker. MAR: ✗ ACCP — Chemical and mechanical prophylaxis
+1 Cefazolin, Morphine, Ondansetron. No anticoagulant should begin within 12–24 hours post-operatively for
+06:00 administered. No contraindication on file. high-risk patients.
+Day Patient reports increasing left calf pain and swelling. Positive ✗ Symptoms consistent with developing DVT.
+1 Homan’s sign. Stat duplex ultrasound ordered. Prophylaxis window missed. No protocol triggered
+15:00 reassessment.
+Pharos Health | Page 12
+
+RFI Response: HHS-ONC-2026-0001
+Day Duplex ultrasound confirms acute DVT, left popliteal vein. ⚠ AVOIDABLE HARM — DVT secondary to
+2 Heparin drip initiated. Discharge delayed. Vascular surgery missed prophylaxis. Guideline-compliant
+08:00 consult. prophylaxis reduces post-surgical VTE risk by
+50–60%.
+AI Application: On post-operative day 1, the AI system detects the combination of high VTE risk, absence
+of any prophylaxis order, and no documented contraindication. It generates an alert to the charge nurse and
+the clinical pharmacist, identifying the specific gap: high-risk orthopedic surgery patient without
+prophylaxis, no contraindication documented. The pharmacist contacts the surgical team, an order is placed,
+and prophylaxis begins on post-operative day 1, before any harm occurs.
+Pharos Health | Page 13
+
+RFI Response: HHS-ONC-2026-0001
+Utilization Management
+Understanding of Need
+When a physician decides that a patient needs to be admitted to the hospital, stay in the ICU, or
+receive a particular treatment, someone has to verify that the clinical situation justifies that level of
+care. This process is called utilization management, and it exists because healthcare resources are
+expensive and sometimes overused. A patient who could safely recover at home shouldn't occupy a
+hospital bed.
+Health plans and hospitals employ nurses and other clinical staff as case managers or utilization
+review specialists. These reviewers compare patient information against standardized medical
+necessity criteria, commercial products like InterQual or MCG that specify what clinical findings
+justify different levels of care.
+Healthcare administrative costs reached an estimated $274.5 billion in 2017, with utilization
+management representing a substantial component. Case managers spend hours each day on data
+extraction tasks that don't require clinical judgment, simply finding and copying information from
+one system to another.
+The Utilization Management Criteria Landscape
+Health plans rarely rely on a single criteria set. Utilization management operates through a patchwork of
+guideline products, each governing different clinical domains, layered with plan-specific customizations and
+subject to a strict hierarchy of authority.
+Medical Necessity Criteria Sets in Use
+CRITERIA SET DOMAIN TYPICAL USE
+InterQual General acute, subacute, Primary criteria for most large commercial and
+Optum / Change rehab, long-term care Medicare Advantage plans
+Healthcare
+MCG General acute, ambulatory, Primary criteria for many payers; often used
+Hearst Health behavioral health alongside InterQual
+ASAM Criteria Substance use disorder Mandated by most states for SUD level-of-care
+American Society of determinations
+Addiction Medicine
+LOCUS / Behavioral health Adults (LOCUS) and children/adolescents
+CALOCUS-CASII (CALOCUS-CASII) service intensity
+NCCN Guidelines Oncology Chemotherapy protocols, cancer-related imaging,
+National Comprehensive treatment pathways
+Cancer Network
+Hayes Technology New / experimental Evidence sufficiency for emerging technologies
+Assessments procedures and novel treatments
+Carelon Radiology, cardiology, Delegated specialty UM using proprietary clinical
+formerly AIM / Beacon musculoskeletal guidelines
+Pharos Health | Page 14
+
+RFI Response: HHS-ONC-2026-0001
+Apollo Managed General acute Lower-cost alternative used by smaller plans, IPAs,
+Care and TPAs
+UM Decision Hierarchy
+Each review follows a defined hierarchy of authority. Federal mandates override all other sources.
+SOURCE AUTHORITY EXAMPLE
+Federal / State Legal requirement to be applied NCDs, LCDs for Medicare; state-mandated
+1
+Mandates first SUD criteria
+Plan-Specific Medical Internal policy supersedes Bariatric Surgery Policy with plan-specific
+2
+Policies commercial criteria BMI thresholds
+Commercial Criteria InterQual, MCG, NCCN, ASAM, Standard level-of-care review for acute
+3
+etc. medical admission
+Physician Clinical Escalation when no criteria fit Peer-to-peer review with Medical Director
+4
+Judgment
+The AI Opportunity
+This patchwork creates the core problem AI can solve. A single admission review may require the
+case manager to determine which criteria set applies, navigate the decision hierarchy, extract clinical
+data from the EHR, map it against the correct criteria, and document the determination, all within
+increasingly compressed turnaround requirements.
+Proposed Approach
+AI can extract clinical data from electronic health records and map it against medical necessity
+criteria automatically. Rather than requiring a case manager to search through the chart for each data
+point, the system identifies relevant clinical information, calculates any derived scores (like
+pneumonia severity indices), and presents a pre-populated review with links to source
+documentation.
+This approach doesn't remove the case manager from the process, it removes the tedious data
+extraction that consumes most of their time.
+Regulatory Alignment
+Accurate level-of-care determination supports appropriate resource utilization without changing
+clinical workflows. The approach reduces administrative burden while maintaining the clinical
+oversight that utilization management requires.
+Operational Example
+Optum/Change Healthcare Webinar August 31, 2023
+Pharos Health | Page 15
+
+RFI Response: HHS-ONC-2026-0001
+Scenario:
+An 89-year-old patient presents to the emergency department with a three-day history of shortness of breath,
+cough, weakness, and fever. O2 saturation ranges from 85-87% on room air, improving to 93-97% on 3L
+nasal cannula. The emergency physician orders admission for community-acquired pneumonia.
+Clinical Context:
+The case manager needs to find specific clinical data points scattered across the medical record. She opens
+the patient's chart in one screen, the medical necessity criteria tool in another, and the hospital's submission
+portal in a third. She navigates to vital signs to find the O2 saturation. This process takes 15-25 minutes of
+pure data extraction before any clinical judgment is applied.
+AI Application: When the admission order is placed, the AI automatically triggers a utilization review. It
+extracts vital signs from the nursing flowsheet, lab values from the laboratory system, and imaging results
+from radiology reports. It confirms that antibiotics were administered (a treatment criterion). It presents a
+pre-populated InterQual review showing each criterion, the patient's corresponding value, and links to the
+source documentation. The case manager reviews the populated form, verifies accuracy, and approves the
+admission in a fraction of the time manual review would require.
+Pharos Health | Page 16
+
+RFI Response: HHS-ONC-2026-0001
+Incidental Findings
+Understanding the Need: The Abstraction of Secondary Clinical Data
+Clinical documentation is primarily structured to support the immediate reason for a patient
+encounter. However, diagnostic procedures frequently reveal incidental findings which are
+unexpected abnormalities that are unrelated to the primary complaint but represent significant early
+warning signs for chronic disease or malignancy. These findings, such as a lung nodule identified
+during a cardiac scan, often contain the "second story" of a patient’s health. While these observations
+are clinically relevant, they are difficult to track systematically because they fall outside the
+immediate scope of the primary diagnosis and the resulting billing codes.
+The Limitations of Billing-Centric Records
+The central barrier to managing incidental findings is that current documentation systems are
+designed for targeted, episodic care. Because an incidental finding is secondary to the chief
+complaint, it is rarely assigned a discrete ICD-10 code during the initial encounter. Without a
+standardized code, the finding does not trigger administrative alerts or follow-up protocols. The data
+exists only within the narrative text of the clinical record. This gap creates a significant risk where
+the physician notes may contain actionable findings, yet a majority do not receive the recommended
+follow-up care because manual chart review is too resource-intensive to perform at scale.
+The Challenges of Manual and Rules-Based Review
+Traditional methods of identifying these findings rely on manual abstraction by nursing or
+administrative staff, which is often cost-prohibitive. Attempts to automate this process using
+rules-based logic or simple keyword searches frequently fail. These systems often produce high rates
+of false positives by flagging benign variations or miss subtle clinical nuances because they cannot
+interpret the context of the physician's prose.
+Proposed Approach
+AI-based natural language processing provides a mechanism to bridge this gap by performing
+high-fidelity abstraction across the entire clinical narrative. Unlike manual review, AI models can
+process vast quantities of unstructured text to identify specific, actionable findings and reconcile
+them with existing patient data. This technology allows organizations to move from reactive
+documentation to a proactive system of care. By automating the identification of incidental findings,
+AI ensures that secondary clinical data is captured and integrated into the patient’s longitudinal
+record, enabling timely intervention and more accurate risk assessment without increasing the
+administrative burden on clinicians.
+Pharos Health | Page 17
+
+RFI Response: HHS-ONC-2026-0001
+Elimination of Prior Authorization
+Understanding of Need
+Prior authorization is a requirement imposed by health insurance payers that physicians obtain
+approval before delivering certain medical services. Prior authorization exists because payers lack
+visibility into whether providers make appropriate clinical decisions. When a physician orders an
+expensive biologic medication or an advanced imaging study, the payer has no way of knowing
+whether that decision reflects sound clinical judgment or unnecessary utilization. Prior authorization
+fills this information gap by requiring providers to submit documentation proving medical necessity
+for each individual request ahead of time.
+The time to respond to a prior authorization request can impact patient care and CMS recognized this
+burden in the CMS-0057-F Interoperability and Prior Authorization Final Rule, which requires
+payers to process standard requests within 72 hours and urgent requests within 24 hours. The rule
+acknowledges that authorization delays directly harm patients and impose unsustainable costs on
+providers.
+The burden is significant. Physicians spend an average of 14 hours per week on prior authorization
+(American Medical Association, 2024). Practices complete 43 requests per physician per week
+(AMA 2023 Physician Survey, 2024). Staffing costs have increased 43% since 2019 (MGMA
+Regulatory Burden Report, 2024). Patients wait for treatments their physicians have already
+determined they need (AMA, 2024).
+This is one area where we see cautionary misuse of AI as a way to augment process with AI on both
+sides of a prior authorization exchange - where two AI bots are battling each other and the winner is
+likely not going to be the patient.
+But the underlying question prior authorization tries to answer is straightforward: does this provider
+make clinically appropriate decisions? If a payer could answer that question at the provider level
+rather than the request level, individual prior authorizations would become unnecessary.
+This is the concept behind "gold carding" which is granting trusted providers automatic approval for
+services that would otherwise require prior authorization. Several states have enacted gold carding
+legislation, and CMS has encouraged payers to reduce prior authorization burden for providers with
+strong track records.
+State Gold Carding Legislation
+THRESH
+STATE LEGISLATION PERIOD VOLUME NOTES
+OLD
+HB 3459 (2021); First state to enact; updated
+Texas 90% 12 Months 5 per service
+HB 3812 (2025) 2025
+Michigan PA 60 (2022) 90%+ Annual Payer-defined Threshold varies by payer
+Arkansas Act 575 (2023) 90% 12 Months N/A 6-month period for Rx drugs
+Pharos Health | Page 18
+
+RFI Response: HHS-ONC-2026-0001
+THRESH
+STATE LEGISLATION PERIOD VOLUME NOTES
+OLD
+W. Va. Code 6 Consecutive
+West Virginia 90% 30 requests/yr
+§33-15-4s Mos.
+Louisiana La. R.S. 22:1020.61 92% 2 Years 10 requests/yr Longest evaluation window
+Wyoming WY §26-55-112 90% 12 Months 5 per service
+Colorado CO §10-16-112.5 80%* 12 Months 24 requests *Lowest threshold enacted
+Vermont HB 960 100% 6 Months 30 requests/yr Highest threshold required
+New Mexico 13.10.31.12 NMAC 90% Annual N/A Regulation-based, not statute
+Proposed Approach
+AI enables providers to demonstrate evidence-based care and sound decision-making directly from
+clinical documentation, creating an vehicle for gold card qualification that goes far beyond claims
+metrics. By applying the capabilities described in Utilization Management and Guideline Adherence
+Monitoring across a provider's patient panel, payers can systematically assess whether that provider's
+care aligns with medical necessity criteria and clinical guidelines.
+Providers who demonstrate consistent alignment earn gold card status, the automatic approval for
+categories of services that would otherwise require prior authorization. The authorization burden
+shifts from per-request documentation to periodic provider-level validation.
+This approach benefits both sides. Providers escape the administrative burden of individual
+authorizations. Payers reduce their own processing costs while maintaining confidence that approved
+services are medically appropriate. Patients receive timely care without authorization delays.
+Regulatory Alignment
+CMS has explicitly encouraged payers to reduce prior authorization burden for providers with
+demonstrated quality. State gold carding laws in Texas, Michigan, and elsewhere require payers to
+exempt qualifying providers from prior authorization requirements. AI-based provider evaluation
+creates the measurement infrastructure these policies require, systematic, auditable assessment of
+clinical decision-making that can support gold card qualification at scale.
+Pharos Health | Page 19
+
+RFI Response: HHS-ONC-2026-0001
+Population Health Gap Closure
+Understanding of Need
+Value-based care contracts reward healthcare organizations for keeping patients healthy, not just for
+treating them when they're sick. A key component of this approach is identifying "care gaps",
+patients who are overdue for recommended preventive services or chronic disease management.
+Reporting can show which patients are overdue for services, conduct outreach campaigns
+encouraging patients to schedule appointments, and work to ensure that preventive care doesn't fall
+through the cracks.
+The challenge is that care gap identification requires knowing the complete picture of a patient's
+healthcare, and no single organization has that complete picture. A patient might have their
+colonoscopy done by a gastroenterologist who uses a different EHR system or the record of a
+completed preventive service can appear in the free text of a clinical note or coded in a non-standard
+format that current reporting systems miss. Organizations will often manually review charts (or pay
+outside services) to find patients eligible for care gaps by reviewing poorly standardized data and free
+text.
+Health information exchanges (HIEs) have emerged to address this fragmentation by aggregating
+data across healthcare organizations in a region. When a patient visits the emergency department, the
+HIE can pull together records from their primary care doctor, specialists, and previous hospital visits.
+This gives providers a more complete picture, but only if they can actually find and interpret the
+relevant information.
+CANDIDATE CARE GAPS HEDIS OR CMS MEASURE ALIGNMENT
+Preventive and Proactive Care
+Whether eligible patients received Breast Cancer Screening HEDIS BCS; CMS125v14
+recommended preventive services or risk Cervical Cancer Screening HEDIS CCS; CMS124v14
+screenings within defined time intervals Colorectal Cancer Screening HEDIS COL; CMS130v14
+Childhood Immunization Status HEDIS CIS; CMS117v14
+Depression Screening CMS2v15
+Falls Risk Screening CMS139v14
+HIV Screening CMS349v8
+Timely assessment and follow-up after Documented Assessment After Mammogram HEDIS DBM-E
+abnormal or incomplete preventive screening Follow-Up After Abnormal Mammogram HEDIS FMA-E
+results
+Care Coordination and Transitions
+Pharos Health | Page 20
+
+RFI Response: HHS-ONC-2026-0001
+Completion of required follow-up, Transitions of Care HEDIS TRC
+coordination, or reconciliation activities after Medication Reconciliation Post-Discharge HEDIS MRP
+a qualifying clinical event Follow-Up After Hospitalization for Mental Illness HEDIS FUH
+Follow-Up After ED Visit for Mental Illness HEDIS FUM
+Follow-Up After High-Intensity SUD Care HEDIS FUI
+Closing the Referral Loop CMS50v14
+Whether clinical information is transmitted Closing the Referral Loop: Receipt of Specialist Report
+back to the referring provider following CMS50v14
+specialty or external care
+Chronic and Longitudinal Care
+Evidence of ongoing monitoring or control for Controlling High Blood Pressure HEDIS CBP; CMS165v14
+patients with chronic conditions across care Diabetes Glycemic Control HEDIS GSD; CMS122v14
+settings Kidney Health Evaluation HEDIS KED; CMS951v4
+Eye Exam for Diabetes HEDIS EED; CMS131v14
+Asthma Medication Ratio HEDIS AMR
+Initiation and persistence of evidence-based Antidepressant Medication Management CMS128v14
+therapies over defined treatment periods Statin Therapy for ASCVD HEDIS SPC; CMS347v9
+Statin Therapy for Diabetes HEDIS SPD
+Beta-Blocker Persistence After MI HEDIS PBH
+Ongoing management following acute events Cardiac Rehabilitation HEDIS CRE
+requiring sustained therapy or rehabilitation Pharmacotherapy Management of COPD Exacerbation HEDIS
+PCE
+Safety and Appropriateness of Care
+Avoidance of unnecessary, low-value, or Appropriate Testing for Pharyngitis CMS146v14
+non-recommended services Appropriate Treatment for URI CMS154v14
+Avoidance of Antibiotics for Bronchitis HEDIS AAB
+Imaging for Low Back Pain HEDIS LBP
+Non-Recommended PSA Screening HEDIS PSA
+Exposure to high-risk medications or unsafe High-Risk Medications in Older Adults HEDIS DAE;
+prescribing patterns CMS156v14
+Drug-Disease Interactions HEDIS DDE
+Opioid High Dosage / Multiple Providers HEDIS HDO, UOP
+Deprescribing Benzodiazepines HEDIS DBO
+Behavioral Health and Whole-Person Care
+Pharos Health | Page 21
+
+RFI Response: HHS-ONC-2026-0001
+Monitoring, follow-up, and continuity of care Depression Remission at Twelve Months CMS159v14
+for behavioral health conditions Follow-Up Care for Children Prescribed ADHD Medication
+HEDIS ADD-E; CMS136v15
+Initiation and Engagement of SUD Treatment HEDIS IET;
+CMS137v14
+Assessment of functional status, symptoms, or Functional Status After Hip Replacement CMS56v14
+patient-reported outcomes Heart Failure Functional Status CMS90v15
+CAHPS / HOS Measures
+Clinical Documentation Integrity / Completeness
+Whether required clinical information is Documentation of Current Medications in the Medical Record
+documented, updated, or returned in a CMS68v15
+structured and timely manner to support Closing the Referral Loop: Receipt of Specialist Report
+continuity of care, quality reporting, and CMS50v14
+downstream clinical decision-making Transitions of Care: Receipt of Discharge Information HEDIS
+TRC
+Proposed Approach
+AI-based natural language processing can extract clinical evidence from narrative documentation and
+scanned documents flowing through health information exchanges. When structured data doesn't
+capture completed care, the AI reads consultation notes, procedure reports, and other documentation
+to identify the information that would close care gaps.
+The system processes HIE data across multiple contributing organizations, looking for evidence that
+recommended services have been completed.
+Regulatory Alignment
+This approach supports value based pay models and helps organizations keep their populations
+healthy.
+Cancer Screenings
+Scenario: The care management team at an ACO is preparing an outreach campaign to encourage patients
+to schedule colonoscopies.
+Clinical Context:
+The ACO's EHR shows no colonoscopy on file for this patient. However, an HIE query reveals that the
+patient had an emergency department visit at an outside hospital six months ago. Among the documents
+returned is a scanned PDF of a gastroenterology consultation note from that visit. The note states: "Prior
+colonoscopy 3/15/2023 at [outside facility], no polyps, recommended surveillance interval 10 years. Patient
+does not require repeat screening at this time." The patient is not actually overdue for colorectal cancer
+Pharos Health | Page 22
+
+RFI Response: HHS-ONC-2026-0001
+screening, he had a normal colonoscopy less than two years ago and doesn't need another one for eight more
+years.
+AI Application: The AI processes the scanned PDF from the HIE query. It identifies the reference to
+colonoscopy, extracts the date (March 15, 2023), the findings (no polyps), and the recommended
+surveillance interval (10 years). It determines that this patient's colorectal cancer screening gap should be
+closed. The patient is removed from the outreach list, and the quality measure is calculated correctly.
+HEDIS 2026
+https://www.ncqa.org/report-cards/health-plans/state-of-health-care-quality-report/colorectal-cancer-
+screening-col/
+Pharos Health | Page 23
+
+RFI Response: HHS-ONC-2026-0001
+Safety Event Detection
+Understanding of Need
+Voluntary incident reporting, the primary mechanism hospitals use to identify patient harm, captures
+only 10 to 20 percent of actual adverse events as many of the safety events are not visible to staff but
+are buried in the clinical documentation.
+To address this gap, the Institute for Healthcare Improvement developed the Global Trigger Tool
+(Griffin & Resar, 2009). In addition to voluntary reports, trained reviewers examine patient records
+for "triggers," clinical findings statistically associated with adverse events: a creatinine value that
+doubles from baseline, administration of an opioid reversal agent, an unexpected ICU transfer. Each
+trigger flags a case for clinical review to determine whether harm occurred. The triggers can be
+automated with current reporting and technology but they only identify that an event “might” have
+occurred and require manual review by a trained clinician to determine if a safety event occurred.
+The methodology is effective but constrained by manual effort. IHI recommends reviewing 10
+randomly selected records every two weeks. At that rate, the vast majority of discharges are never
+examined, and the events within them are never counted.
+Proposed Approach
+AI can execute trigger tool logic against all patient records, not just a random sample. The system
+scans clinical data, laboratory values, medication administrations, vital signs, and clinical
+documentation, looking for the same trigger conditions that human reviewers would identify. When
+triggers fire, the AI can then inspect the entire record of a patient identified by an IHI trigger to
+determine if a safety event has occurred avoiding the clinician review step current IHI trigger
+methodology requires.
+Regulatory Alignment
+This approach supports Joint Commission patient safety requirements by enabling more
+comprehensive surveillance. It allows organizations to identify systemic issues without the
+proportional staffing increase that manual comprehensive review would require.
+IHI Trigger Tool Study
+Scenario: In 2011, researchers applied the IHI Global Trigger Tool to 795 patient records at three
+major academic medical centers, comparing it against voluntary incident reporting and AHRQ
+Patient Safety Indicators using the same patient sample. Voluntary reporting identified 4 adverse
+events. AHRQ indicators identified 35. The trigger tool identified 354. Adverse events were
+present in one-third of all admissions.
+Pharos Health | Page 24
+
+RFI Response: HHS-ONC-2026-0001
+The trigger tool works by scanning clinical data for specific signals, called triggers, that are
+statistically associated with harm. The IHI defines triggers across six categories:
+CATEGORY TRIGGER
+Medication (M) Antidote administration, abrupt stops, creatinine doubling → adverse drug
+events, overdoses, nephrotoxicity
+Care (C): Unexpected ICU transfer, blood transfusion, code/arrest → clinical
+deterioration, missed warning signs
+Intensive Care (I) Re-intubation, new dialysis in ICU → ICU-specific complications
+Surgical (S) Return to OR, operative time >6 hours, post-op intubation → surgical
+complications, procedural failures
+Perinatal (P) Apgar <7 at 5 min, birth trauma, NICU transfer → labor and delivery
+adverse events
+ED (E) Return to ED within 48 hours → premature discharge, missed diagnosis
+Each trigger does not confirm harm, it identifies a case that warrants clinical review. The
+methodology was designed for a 20-record monthly sample reviewed manually by trained nurses.
+It was never designed to scale to every patient. AI changes that constraint.
+AI Application: An automated implementation of the trigger tool runs nightly across all
+discharges. When a trigger fires, the system cross-references related clinical documentation to
+assess whether the trigger represents a likely adverse event.
+Data that shows medication-associated kidney injury clustering in elderly surgical patients become
+institutional quality targets..
+Classen, D. C., Resar, R., Griffin, F., Federico, F., Frankel, T., Kimmel, N., Whittington, J. S.,
+Lichtner, A., & James, B. C. (2011). ‘Global trigger tool’ shows that adverse events in hospitals may
+be ten times greater than previously measured. Health Affairs, 30(4), 581–589.
+https://doi.org/10.1377/hlthaff.2011.0190
+Pharos Health | Page 25
+
+RFI Response: HHS-ONC-2026-0001
+Root Cause Analysis
+Understanding of Need
+When a serious patient safety event occurs, a wrong-site surgery, a fatal medication error, a patient
+death from an unrecognized deterioration, healthcare organizations are required to conduct a
+thorough investigation to understand what went wrong and prevent similar events in the future. The
+Joint Commission, which accredits most American hospitals, mandates that these "sentinel events"
+trigger a root cause analysis within strict timeframes: the investigation must begin within 72 hours
+and be completed within 45 days.
+Root cause analysis is a systematic approach to understanding not just what happened, but why it
+happened. The goal is to look beyond the individual who made the final error and understand the
+system failures, communication breakdowns, and process gaps that allowed the error to occur.
+The challenge is that the same clinical event is documented differently by different staff members.
+Reconstructing a coherent timeline from these fragmented accounts is extraordinarily labor-intensive.
+Investigators must read through pages of nursing notes, physician documentation, respiratory therapy
+records, pharmacy records, and safety reports. They must identify where the accounts align and
+where they conflict.
+In the same way that Guideline Adherence can scale to include the entire patient population, it's
+valuable (completely impractical today) to run some version of an RCA on every harm event, not just
+sentinel events. In conversations with safety leaders, the concept of “mini-RCAs” are emerging as a
+promising approach to use AI to do an RCA of every event which massively reduces the burden on
+safety managers to review and triage reported events. AI does the initial RCA and uses reasoning to
+identify trends and focus review on only the highest value RCA results.
+Joint Commission Root Cause Analysis: Chart Review Requirements
+The categories below represent the questions that demand the most intensive clinical chart review,
+where AI-assisted timeline reconstruction and cross-source synthesis can most significantly
+accelerate the investigation.
+RCA CHART REVIEW
+QUESTION SOURCES TO REVIEW
+CATEGORY CHALLENGE
+Communication Were critical findings Nursing notes, physician Escalations documented in one
+communicated between notes, RT notes, handoff system may be absent from
+providers and records another
+acknowledged?
+Assessment Were changes in condition Vital sign trends, nursing Requires mapping deterioration
+recognized and acted on in assessments, lab against data available at the time
+time? trajectories, scoring tools
+Information Did the decision-maker Lab acknowledgment logs, Results can exist in the system but
+Availability have access to critical radiology reports, allergy never be opened or referenced
+results? records
+Medication Use Were medications ordered, CPOE orders, pharmacy Requires tracing the full chain
+dispensed, and monitored logs, MAR, renal labs, alert from order to administration
+Pharos Health | Page 26
+
+RFI Response: HHS-ONC-2026-0001
+correctly? override logs
+Continuum of Care Was information preserved Transfer orders, handoff Information loss at handoff is a
+across care transitions? notes, discharge summaries leading cause of sentinel events
+Operative Care Were safety checklists Surgical checklists, Multiple providers document
+completed and intra-op anesthesia records, overlapping timeframes in
+events communicated? operative reports, recovery separate systems
+notes
+Staffing Were staffing levels and Schedules, assignment Staffing data often lives in HR
+competencies adequate for sheets, acuity scores, systems separate from clinical
+patient acuity? overtime logs records
+Patient Were ID protocols and Consent forms, time-out Requires verifying every
+Identification consent verification documentation, wristband checkpoint in the identification
+followed at each step? logs chain
+Source: Joint Commission Framework for Root Cause Analysis and Corrective Actions.
+Proposed Approach
+AI can dramatically accelerate the information-gathering phase of root cause analysis by extracting
+relevant details from across the medical record and synthesizing them into a unified timeline. The
+system reads documentation from nursing, physicians, respiratory therapy, pharmacy, and other
+sources, identifies details relevant to the event under investigation, and constructs a chronological
+reconstruction that makes gaps and discrepancies visible.
+This does not replace the clinical judgment and systems thinking that quality professionals bring to
+root cause analysis but rather it compresses the time-consuming work of reading through records and
+reconstructing timelines.
+Regulatory Alignment
+This approach directly supports compliance with Joint Commission sentinel event requirements by
+accelerating the information-gathering process. Organizations can more reliably meet the 72-hour
+initiation requirement and 45-day completion deadline while conducting more thorough
+investigations.
+Sentinel Event Review
+Scenario: Two days into the hospitalization, a patient suffers a respiratory arrest requiring emergent
+intubation. He survives but requires an extended ICU stay. The safety team initiates a root cause analysis to
+understand what led to this preventable deterioration.
+Clinical Context:
+The investigator must piece together what happened from multiple documentation sources that tell
+overlapping but incomplete parts of the story. A nurse escalates a concern. A respiratory therapist responds
+with a recommendation. A physician writes a progress note that references neither. A critical lab result
+enters the system but is never acknowledged. By the time the rapid response is called, every piece needed to
+prevent the deterioration was present in the record but never assembled into a coherent picture.
+Pharos Health | Page 27
+
+RFI Response: HHS-ONC-2026-0001
+Pt: Male, 74 | Encounter: ICU/Rapid Response
+Nursing note 6:00 AM:working harder to breathe, using accessory muscles |
+requested RT evaluation
+RT note 7:15 AM:Recommended BiPAP initiation, order placed, awaiting
+physician acknowledgment
+Physician note 8:30 AM:will continue current O2 therapy and monitor closely
+(NO mention of BiPAP)
+Blood gas 7:00 AM:pCO2 67, pH 7.28
+Rapid response called: 9:45 AM,O2 sat 82%
+AI Application: The AI ingests all documentation sources and constructs a unified timeline. It surfaces
+what no single clinician could see: a BiPAP recommendation never acted upon, a critical blood gas never
+acknowledged, and a two-hour window where intervention could have prevented the arrest. It maps these
+gaps to Joint Commission root cause categories automatically.
+Pharos Health | Page 28
+
+RFI Response: HHS-ONC-2026-0001
+Sensitive Data Segmentation
+Understanding of Need
+Healthcare records contain some of the most personal information imaginable, and certain categories
+of health data require extra protection under the law. When someone seeks treatment for substance
+use disorder, receives reproductive healthcare, or accesses mental health services, that information
+carries legal protections beyond standard HIPAA privacy rules. The challenge for health information
+exchanges is that this sensitive information does not always announce itself with convenient labels or
+codes.
+The recent (2024) introduction of TEFCA has drastically increased the volume of data exchange
+across state lines and will require scaled approaches to data segmentation, security and patient
+consent.
+Federal and state regulations mandate that healthcare organizations segment certain types of sensitive
+health information before sharing it. The 2024 rule modifying 42 CFR Part 2 aligns substance use
+disorder confidentiality requirements with HIPAA, with full compliance required by February 2026.
+Meanwhile, California's AB352 requires segmentation of reproductive health data before sharing it
+across state lines. These regulations exist to protect patients from discrimination and to encourage
+people to seek care for stigmatized conditions without fear that their information will be
+inappropriately disclosed.
+Modern clinical documents like C-CDAs contain both structured coded fields and extensive narrative
+sections where clinicians document the nuances of care. These documents frequently include
+Base64-encoded PDF attachments containing consultation notes, imaging reports, or historical
+records. Code-based filtering systems cannot read narrative text or decode and analyze PDF content,
+creating significant gaps in privacy protection.
+Examples of Laws that protect data by type
+Scope Law What Data Is Protected
+Substance use disorder (SUD) treatment records from
+Federal 42 CFR Part 2 federally assisted programs. Protects any information that
+would identify a patient as having or having had an SUD.
+Psychotherapy notes are defined as notes recorded (in any
+45 CFR § 164.501 & § medium) by a mental health professional documenting or
+Federal
+164.508(a)(2) analyzing the contents of conversation during a private,
+group, joint, or family counseling session.
+Sensitive services including abortion, contraception, and
+AB 352 (CMIA Civil Code
+California gender-affirming care. Mandates technical segregation of
+§§56.101, 56.108, 56.110)
+these records and prohibits automatic transmission to HIEs.
+Medical information and PHI including an individual's
+California SB 81
+immigration status and place of birth.
+Pharos Health | Page 29
+
+RFI Response: HHS-ONC-2026-0001
+Scope Law What Data Is Protected
+Electronic health records. Protects metabolic health and diet
+SB 1188 (Health & Safety
+Texas records. Prohibits storing credit scores or voter registration
+Code Ch. 183)
+status within an EHR.
+Health & Safety Code Ch. Communicable disease records including HIV/AIDS test
+Texas
+81 results, infection status, and partner notification information.
+All mental health and drug or alcohol abuse treatment
+Oklahoma Title 43A §1-109 information and communications between patients and
+licensed professionals.
+Communicable disease records. Protects HIV-related test
+Oklahoma Title 63 §1-502.2
+results, infection status, illness, and exposure information.
+Mandates provider reporting to state HIE but strictly excludes
+SB 1369 (63 O.S. §1-133 /
+Oklahoma psychotherapy notes and 42 CFR Part 2 data from automatic
+OKSHINE)
+transmission without explicit consent.
+Proposed Approach
+AI-powered segmentation addresses these gaps by identifying sensitive information based on what it
+actually means rather than what codes are present. The system reads and interprets narrative text the
+way a human reviewer would, understanding that a phrase like "discussed pregnancy options, patient
+elected termination" describes reproductive healthcare even without a specific procedure code
+attached.
+Regulatory Alignment
+This capability directly supports compliance with 42 CFR Part 2 as modified by the 2024 rule,
+ensuring that substance use disorder information receives appropriate protection. It also enables
+compliance with state-specific requirements like California's AB352 reproductive health privacy law.
+For organizations participating in the Trusted Exchange Framework and Common Agreement
+(TEFCA), comprehensive segmentation capability is essential for meeting the network's privacy and
+consent requirements.
+AI Data Cop
+Scenario: A California-based health information exchange receives a query from an out-of-state clinician
+requesting records for a patient who recently relocated. Under California law, reproductive health
+information requires segmentation before release to out-of-state requesters.
+Clinical Context:
+The patient's record includes a 47-page C-CDA document with several embedded PDF attachments. The
+structured problem list in the document contains only two conditions: hypertension and anxiety, neither of
+which triggers any privacy restrictions. However, one of the embedded PDFs is a consultation note from an
+OB/GYN visit about pregnancy options, including the patient's ultimate decision to have an abortion.
+Pharos Health | Page 30
+
+RFI Response: HHS-ONC-2026-0001
+Pt: Female, 42 | Encounter: HIE Query/Out-of-State Request
+Structured Problem List:hypertension, anxiety
+Embedded PDF (OB/GYN Note):
+Content:pregnancy options discussion, decision to have abortion
+System Filter Result:Code-based filter: APPROVED for release (no codes
+trigger restrictions)
+AI Analysis Result:REQUIRES SEGMENTATION per CA AB352 (reproductive health
+narrative)
+AI Application: The AI system processes the complete document, including decoding and analyzing all
+embedded PDF attachments. Upon reading the OB/GYN consultation note, it recognizes the reproductive
+health content based on the meaning of the text.
+Pharos Health | Page 31
+
+RFI Response: HHS-ONC-2026-0001
+Cautionary Framework: Responsible AI Deployment in Clinical Settings
+Two failure modes pose significant risk if left unaddressed by federal policy. The first is operational:
+AI systems that overwhelm the humans they serve. The second is technical: AI systems whose
+reasoning cannot be trusted, explained, or reproduced.
+I. Signal Overload
+The IHI Global Trigger Tool demonstrated that adverse events occur in roughly one-third of hospital
+admissions, ten times the rate captured by voluntary reporting. When one multi-hospital system
+deployed electronic trigger tools, the volume was so overwhelming the organization disabled it
+entirely. The tool worked. The humans had no framework for processing the output.
+Our team experienced this directly in sepsis detection work at emergency department triage. The
+model achieved strong performance (F1 0.71, published in JMIR). The modeling succeeded. The
+implementation failed. We did not account for clinical workflow and saved zero lives.
+The principle: detection must be paired with prioritization, and prioritization with workflow
+integration. Systems should perform counterfactual analysis to surface the guideline failures most
+strongly associated with harm, transforming a firehose into a ranked, actionable list. Federal
+guidance should require AI safety tools demonstrate operational integration, not just detection
+accuracy.
+II. Hallucination and Reasoning
+LLMs produce hallucinations: clinically plausible statements that are factually wrong. Research
+documents hallucination rates of 1.47% and omission rates of 3.45% in clinical note generation. At
+health system scale, these translate directly to patient safety events.
+The deeper issue is that LLMs reason by pattern completion, not clinical logic. Consider "last known
+well" in stroke care: establishing this timestamp requires synthesizing nursing notes, EMS reports,
+and family interviews, resolving contradictory accounts across multiple sources. An LLM might
+produce the correct answer, but there is no way to verify why, and no guarantee the same model
+produces the same answer after a version update. A wrong timestamp determines whether a patient
+receives tPA or is excluded from treatment.
+Neurosymbolic reasoning as an alternative. Our approach, validated with the College of American
+Pathologists, decomposes clinical questions into logic trees of constrained sub-problems. Each node
+uses AI in a tightly scoped role. The tree composes results using explicit, inspectable logic,
+producing auditability (answers trace to source evidence), reproducibility (same inputs, same outputs
+regardless of model version), and targeted validation (each node tested independently).
+Recommended Policy Guardrails
+Require structured output over free-text generation for clinical determinations. Mandate hallucination
+and omission rate disclosure tested against clinician ground truth. Require reasoning transparency so
+every clinical determination has an auditable chain. Distinguish extraction from generation in federal
+Pharos Health | Page 32
+
+RFI Response: HHS-ONC-2026-0001
+certification. Require post-deployment monitoring per FDA GMLP principles. Mandate
+implementation outcome disclosure, including cases where accurate detection failed to improve
+outcomes due to workflow barriers.
+These recommendations align with FDA Good Machine Learning Practice principles and ASTP
+transparency requirements. We urge validation frameworks that hold vendors accountable for what
+they deliver in clinical practice, not just what their models achieve in a laboratory.
+Pharos Health | Page 33
+
+RFI Response: HHS-ONC-2026-0001
+Conclusion
+Healthcare quality improvement runs on chart abstraction and for twenty years, federal policy has
+pursued a straightforward goal: make clinical data machine-readable so this manual work becomes
+unnecessary.
+Despite this investment, chart abstraction persists. Quality measure reporting alone costs U.S.
+physician practices $15.4 billion annually. Health systems dedicate entire teams to registry
+abstraction - one academic medical center employs five full-time staff just to abstract surgical cases
+for a single registry. CMS leadership acknowledges that even basic structured data, such as blood
+pressure readings, often remain unreliable until organizations individually correct their workflows.
+The data standardization that was supposed to eliminate manual review never fully arrived.
+The result is that quality improvement remains constrained by what organizations can afford to
+abstract. Registries limit their data elements. Quality measures simplify their specifications. Safety
+surveillance samples only a handful of records each month. Organizations discover guideline failures
+only after harm occurs because comprehensive monitoring would require reading every chart.
+AI-based clinical natural language processing changes this calculus. Systems that achieve
+human-level accuracy while reducing abstraction time by 70–90% do not merely lower costs—they
+remove the constraint that has shaped what quality improvement can attempt.
+When abstraction costs drop by an order of magnitude, quality measurement works the way it was
+always intended:
+● Registries collect the clinical detail that drives improvement, extracted directly from
+operative notes and pathology reports, without requiring large abstraction teams
+● Quality measures extend into narrative documentation where relevant clinical information
+actually resides, rather than contorting specifications to fit available structured fields
+● Safety surveillance scales from monthly samples to continuous monitoring, surfacing adverse
+events that voluntary reporting misses
+● Guideline adherence shifts from retrospective discovery of failures to prospective
+identification of care gaps while intervention is still possible
+● Root cause analysis compresses from weeks of manual reconstruction to hours, enabling
+more thorough investigations that prevent recurrence
+When the constraint lifts entirely, new possibilities emerge and applications that were never feasible
+when abstraction required human review:
+● Quality measures too complex for manual abstraction become practical, such as the CAP
+pathology measures we validated at human-level accuracy after previous automation attempts
+failed
+● Real-time guideline monitoring across entire patient populations, identifying the specific
+protocol failures most strongly associated with harm
+Pharos Health | Page 34
+
+RFI Response: HHS-ONC-2026-0001
+● Provider-level performance measurement that enables gold-card qualification, replacing
+per-request prior authorization with demonstrated trust
+This is not speculative. Our collaboration with the College of American Pathologists demonstrated
+AI abstraction matching experienced human abstractors on measures that had defeated prior
+automation. The capability exists. The question is how federal policy accelerates responsible
+adoption.
+We urge caution alongside ambition. AI systems that overwhelm clinical workflows with
+unactionable alerts help no one. Hallucination rates that appear low in aggregate translate into patient
+safety risks at scale.
+Pharos Health welcomes the opportunity to partner with HHS to make this transition responsible,
+validated, and real.
+Pharos Health | Page 35
+
+RFI Response: HHS-ONC-2026-0001
+References
+American Medical Association. 2024 Prior Authorization Physician Survey. 2024.
+Bates DW, et al. The Safety of Inpatient Health Care. NEJM. 2022;386(20):2038-2048.
+Casalino LP, et al. US Physician Practices Spend More Than $15.4 Billion Annually To Report Quality
+Measures. Health Affairs. 2016;35(3):401-406.
+CMS. Interoperability and Prior Authorization Final Rule (CMS-0057-F). 2024.
+CMS Measures Management System. eCQM Specifications and Tools. https://mmshub.cms.gov/
+eCQI Resource Center. MADiE. https://ecqi.healthit.gov/tool/madie
+Get With The Guidelines-Stroke. American Heart Association. Data Validation Audit Results.
+Griffin FA, Resar RK. IHI Global Trigger Tool, 2nd Ed. IHI. 2009.
+HIMSS Analytics. Healthcare IT Market Intelligence Report. 2024.
+HL7 International. CQL Specification v1.5.3. https://cql.hl7.org/
+HHS OIG. Hospital Incident Reporting Systems Do Not Capture Most Patient Harm. OEI-06-09-00091. 2012.
+NCQA. SNS-E Measure Specifications. HEDIS MY2023.
+Skau C, Brann F, Clarke A. Neurosymbolic AI for Quality Measure Abstraction. CMSS. 2025.
+The Joint Commission. Sentinel Event Data Summary. 2024.
+42 CFR Part 2 Final Rule. Federal Register. 2024.
+MGMA: Medical Group Management Association. (2024). 2024 Prior Authorization Issue Brief. Washington,
+DC. Retrieved from https://www.mgma.com/advocacy
+Pharos Health | Page 36
+
+RFI Response: HHS-ONC-2026-0001
+EXHIBIT 1
+Neurosymbolic AI for automated clinical quality measure
+abstraction in pathology
+CMSS 25
+Pharos Health | Page 37
+
+Neurosymbolic AI for
+automated clinical quality
+measure abstraction in
+pathology
+Colleen Skau, PhD (College of American Pathologists)
+Felix Brann (Pharos)
+Alex Clarke, MD, PhD (Pharos)
+
+Disclosures
+Presenters
+● Colleen Skau, PhD — Assistant Director, College of American Pathologists
+● Felix Brann — CEO, Pharos
+● Alex Clarke, MD, PhD — CMO, Pharos
+Relevant Relationships
+● Mr. Brann and Dr. Clarke serve as executive officers of Pharos, a company
+collaborating with the College of American Pathologists (CAP) and other professional
+societies to develop AI-enabled automated clinical abstraction tools.
+● Dr. Skau has no disclosures.
+
+Agenda
+1: Introduction
+Extracting clinically relevant measures is challenging
+2: A New Paradigm
+Neurosymbolic AI for automated quality measure abstraction
+3: Current Status
+Development, evaluation and results
+4: Next Steps
+
+1: Introduction
+Extracting clinically relevant measures
+is challenging
+
+Introduction
+The Goal: Capture clinically relevant
+measures while minimizing friction
+● It’s crucial to minimize the burden
+Adding more More documentation burden
+structured fields on clinicians
+of registry submission for partner
+health systems
+Requiring manual Significant cost and burden
+abstraction on operational teams
+● Data is useless unless it’s accurate
+
+Introduction
+But… Over-simplifying measures to
+rely only on structured fields undermines
+the purpose of a clinical registry
+● Measures become clinically irrelevant and fail to
+reward high-quality care
+● The dataset loses the richness needed for nuanced
+research, risk adjustment, and subgroup analyses
+
+SPECIMEN SOURCE:
+A. Urinary bladder
+FINAL PATHOLOGIC DIAGNOSIS:
+Urinary bladder, bladder tumor, poorly differentiated
+Poorly differentiated malignancy, see comment.
+Angiolymphatic invasion is present; muscle is present but not involved.
+CLINICAL HISTORY: BPH, local w/urinary obstruct w/other low urinary tract sx, hydronephrosis bilateral, urinary
+retention.
+Unspecified hydronephrosis [ ICD-10 : N13.30 ]
+COMMENT: Tumor cells are very focally positive for Oscar, and positive for CD68. CD43 is negative. Ki-67 is 80%.
+The tumor morphology was compared to his previous biopsy and resection, with a similar appearance, and the
+biopsy had a more reassuring keratin profile, supporting the diagnosis.
+The following immunostains are negative: DESMIN, CD45, SMA, CAM5.2, AE1/3, ALK1, CK7, CK20, Gata3,
+S-100, NKX3.1, p40, CDX2, SOX10.
+Intradepartmental consultation was performed with concurrence.
+GROSS DESCRIPTION
+A. Bladder tumor
+Received in formalin labeled with proper patient identification and "bladder tumor". The specimen consists multiple
+pieces of tan friable tissue measuring 7.0 x 6.5 x 2.5 cm in aggregate. The specimen is filtered through a biopsy
+bag and totally submitted in 12 cassettes labeled A1-A12.
+MICROSCOPIC EXAMINATION:
+Introduction
+The Challenge: Clinically relevant concepts live
+in messy narrative data
+SPECIMEN SOURCE:
+A. Urinary bladder
+Measure Description
+FINAL PATHOLOGIC DIAGNOSIS:
+Urinary bladder, bladder tumor, poorly differentiated Percentage of urinary bladder carcinoma
+Poorly differentiated malignancy, see comment.
+pathology reports that include:
+Angiolymphatic invasion is present; muscle is present but not involved.
+Procedure
+CLINICAL HISTORY: BPH, local w/urinary obstruct w/other low urinary tract sx, hydronephrosis bilateral, urinary retention. Unspecified
+hydronephrosis [ICD-10 : N13.30 ]
+● Histologic tumor grade
+COMMENT: Tumor cells are very focally positive for Oscar, and positive for CD68. CD43 is negative. Ki-67 is 80%. The tumor ● Histologic type
+morphology was compared to his previous biopsy and resection, with a similar appearance, and the biopsy had a more reassuring ● Presence/absence of muscularis
+keratin profile, supporting the diagnosis. The following immunostains are negative: DESMIN, CD45, SMA, CAM5.2, AE1/3, ALK1, CK7,
+propria
+CK20, Gata3, S-100, NKX3.1, p40, CDX2, SOX10.Intradepartmental consultation was performed with concurrence.
+● Presence/absence of
+GROSS DESCRIPTION
+lymphovascular invasion
+A. Bladder tumor
+● Tumor extent
+Received in formalin labeled with proper patient identification and "bladder tumor". The specimen consists multiple pieces of tan friable
+tissue measuring 7.0 x 6.5 x 2.5 cm in aggregate. The specimen is filtered through a biopsy bag and totally submitted in 12 cassettes
+labeled A1-A12.
+
+SPECIMEN SOURCE:
+A. Urinary bladder
+FINAL PATHOLOGIC DIAGNOSIS:
+Urinary bladder, bladder tumor, poorly differentiated
+Poorly differentiated malignancy, see comment.
+Angiolymphatic invasion is present; muscle is present but not involved.
+CLINICAL HISTORY: BPH, local w/urinary obstruct w/other low urinary tract sx, hydronephrosis bilateral, urinary
+retention.
+Unspecified hydronephrosis [ ICD-10 : N13.30 ]
+COMMENT: Tumor cells are very focally positive for Oscar, and positive for CD68. CD43 is negative. Ki-67 is 80%.
+The tumor morphology was compared to his previous biopsy and resection, with a similar appearance, and the
+biopsy had a more reassuring keratin profile, supporting the diagnosis.
+The following immunostains are negative: DESMIN, CD45, SMA, CAM5.2, AE1/3, ALK1, CK7, CK20, Gata3,
+S-100, NKX3.1, p40, CDX2, SOX10.
+Intradepartmental consultation was performed with concurrence.
+GROSS DESCRIPTION
+A. Bladder tumor
+Received in formalin labeled with proper patient identification and "bladder tumor". The specimen consists multiple
+pieces of tan friable tissue measuring 7.0 x 6.5 x 2.5 cm in aggregate. The specimen is filtered through a biopsy
+bag and totally submitted in 12 cassettes labeled A1-A12.
+MICROSCOPIC EXAMINATION:
+Introduction
+The Challenge: Clinically relevant concepts require
+deep contextual understanding
+CPT Code(s): 88305x4
+Laboratory Provided ICD & SNOMED Code(s): C44.41, C44.519, D04.62, L57.0 238528004, 402509003, 92352002, Measure Description
+403878007, 201101007, 254701007,92380000, 254656002
+SPECIMEN SOURCE: Percentage of final pathology reports
+RIGHT FOREHEAD
+for basal cell carcinoma of the skin that
+RIGHT ANTERIOR NECK LINE
+include:
+LEFT MID STERNUM
+LEFT FOREARM
+● Histologic subtype
+FINAL PATHOLOGIC DIAGNOSIS:
+● Margin status
+A. Skin, right forehead, shave biopsy: Actinic keratosis.
+● Presence or absence of invasion
+B. Skin, right anterior neck line, shave biopsy: Basal cell carcinoma, nodular type; - present at peripheral and deep
+beyond the reticular dermis (or for
+margins.
+C. Skin, left mid sternum, shave biopsy: Basal cell carcinoma, superficial type; - present at peripheral margin. Mohs specimens, anatomic level of
+D. Skin, left forearm, shave biopsy: Squamous cell carcinoma in situ; - present at peripheral and deep margins. invasion)
+● Perineural invasion where required
+This case has been reviewed and dictated by
+M.D., Ph.D., Board Certified Dermatopathologist.
+
+Introduction
+Existing solutions fall short
+Human abstraction Keyword based data extraction Rules based data extraction
+● Expensive ● “thyroid, right isthmus nodule” ● “*bronc* biops*” would identify
+● Time-consuming would miss a nodule on the left “bronchial biopsy”, “bronchus,
+● Requires validation and training side of the thymus biopsy”, and “bronchial biopsies”
+● Intractable to develop a ● Rules are complex to develop
+complete set of discrete and brittle in practice
+keywords ● High rate of false positives
+● High rate of false negatives
+
+Introduction
+Existing solutions fall short… sometimes
+catastrophically
+Rule Data Received
+GE* biops* The patient is “ , George”; biopsy, left ear
+
+Introduction
+Some valuable measures are completely
+intractable with current solutions
+SPECIMEN SOURCE: Measure Description
+A. GASTRIC BIOPSY
+B. MID ESOPHAGEAL BIOPSY
+Percentage of pathology reports for gastric specimens
+with intestinal metaplasia that comment on:
+FINAL PATHOLOGIC DIAGNOSIS:
+A. Stomach, biopsy:
+● Presence or absence of H. pylori
+- Intestinal metaplasia (complete-type), involving corpus/fundic mucosa.
+● Presence or absence of dysplasia and if dysplasia
+- Pathologic evidence of Helicobacter infection is not identified.
+- See comment. is present, grade of dysplasia
+● If dysplasia is absent, completeness of metaplasia
+B. Esophagus, mid, biopsy:
+- Squamous mucosa with no significant histopathologic change.
+- Pathologic evidence of eosinophilic esophagitis is not identified. The College of American Pathologists had to abandon
+automatic collection of this measure.
+
+2: A New Paradigm
+Neurosymbolic AI for automated quality
+measure abstraction
+
+A New Paradigm
+Modern AI gives us tools to tackle this problem -
+but a naive approach comes with significant risks
+● Models directly hallucinate facts from the
+medical record
+The result:
+● Models use ‘common sense definitions’, instead of
+Insufficient accuracy
+the precise definitions laid out in measures and high variance
+● Model decision-making is opaque and arbitrary
+
+Current Status
+Neurosymbolic AI breaks down the problem and
+composes many different models together to solve it
+
+A New Paradigm
+Neurosymbolic AI breaks down the problem and
+composes many different models together to solve it…
+● Measure definitions are broken down into
+small sub-problems
+○ How many samples are in the report?
+○ Is a lesion in situ only?
+○ Is a grading statement required?
+● Custom models are used to solve each
+sub-problem, and the solutions are
+composed together
+
+A New Paradigm
+… letting us leverage powerful models, with tight
+constraints and auditable reasoning
+● Use of AI is tightly scoped, minimizing
+hallucination and forcing models to
+use precise definitions
+● Evaluation is highly consistent, resulting
+in low-variability outputs
+● Produces fully auditable abstraction
+reasoning and confidence for every decision
+
+A New Paradigm
+Reasoning and evidence are first-order outputs
+Variable answer
+Sourcing
+into raw data for
+evidence points
+Supporting
+evidence and
+reasoning
+
+3: Current Status
+Development, evaluation and results
+
+Current Status
+Initial Neurosymbolic trees are generated from
+existing manual abstraction instructions
+
+Current Status
+Neurosymbolic trees are refined against real
+and synthetic patient examples…
+Edge cases are reviewed by
+clinicians and clarifications
+iteratively improve trees
+⚠Case needs review
+
+Current Status
+…with edge cases automatically identified and added
+to the measure definition and model tree
+Edge cases are reviewed by
+clinicians and clarifications
+iteratively improve trees
+⚠Case needs review
+
+Current Status
+Model evaluation process
+● Evaluation was split over 4 different CAP ● Final decisions were made on each report by
+measures. Reports were assigned to each using third-party RN abstraction managers
+diagnosis codes. producing a gold-label.
+● 500 pathology reports randomly subsampled ● The neurosymbolic models were then run on
+from each measure from a feed of 100k reports the same reports and compared to the gold
+- giving 2,000 reports. standard.
+● All reports were independently double-
+abstracted by experienced third-party
+abstractors trained on each measure, giving
+a human vs human IRR.
+
+Current Status
+The result: Human-level abstraction performance
+IRR Accuracy
+Denominator
+Exclusion
+Numerator Human 0.918 95.4%
+Pass
+Numerator
+Fail
+0.922 95.7%
+AI
+Numerator
+Exception
+Denominator Numerator Numerator Numerator
+No statistical difference between human
+Exclusion Pass Fail Exception
+and AI abstractors
+Model Predicted
+dloG
+dradnatS
+
+4: Next Steps
+Project evolution
+
+Current Status
+Advantages of human-level automated abstraction
+New measures can be clinically Reduced friction and increased Hugely accelerated measure
+complex without adding burden value for partner practices development loop
+● Complex measure data can be ● Practices don’t have to ● New measures can be applied
+collected without requiring filter data before sending it instantly to a corpus of
+costly abstraction to the registry pathology reports.
+● Measures can be created to ● Vastly more accurate ● AI surfaces edge cases for
+reflect new clinical practice measurement means review by measure developer
+guidelines without adding dramatically fewer case to allow measure refinement
+documentation burden corrections before deployment
+
+Next Steps
+Next steps for this project
+Adding new measures Expanding the Developing
+training/testing set deployment pathway
+● Continuing to train and
+validate model on
+● Different clinicians ● Goal is to enable the
+additional complex
+use different phrases College to deploy
+Results will be
+measures
+Pharos abstraction to
+● Different LISs capture
+collect data for new, published!
+● Learnings from new data differently—if
+clinically interesting
+measures provide
+you’ve seen one LIS,
+measures
+opportunities to
+you’ve seen one LIS
+improve existing
+measures
+
+Next Steps
+What else can AI do for us?
+Current pathology measures are More complex measures that Beyond measurement: AI to
+limited: process measures focusing would be a burden on a practice help practices identify areas of
+on documentation improvement
+● Example: “diagnostic uncertainty”
+● Partly a limitation due to the measurement—can we quantify ● Subtle opportunities
+complexity of narrative reports how often a practice uses phrases
+● Turnaround time for specific
+such as “consistent with” or
+● PRO/PROMs are not possible for specimen types, e.g. placental
+“suspicious for”? Stratify by
+pathology (right now) specimens
+specimen type? By anatomic
+● What about outcome/ location? ● Clinical practice guideline failures
+intermediate outcome measures? not present in measures
+
+Next Steps
+Other use cases: Automated detection of
+clinical practice guideline deviation
+
+Next Steps
+Other use cases: Automated detection
+& analysis of safety events
+
+Acknowledgements
+Sarah O’Connor
+former Assistant Director, Pathologists Quality Registry
+Dr Gregary Bocsi, DO, FCAP
+Chair, Value-Based Payment and Healthcare Policy Committee, CAP
+Dr Thomas Cooper, MD, FCAP
+Member, Value-Based Payment and Healthcare Policy Committee, CAP
+The Team at Kiser Healthcare Solutions
+
+Questions?
+Speak with us at Table 10

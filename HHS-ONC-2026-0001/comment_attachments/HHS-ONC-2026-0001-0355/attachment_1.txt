@@ -1,0 +1,236 @@
+Department of Health and Human Services (HHS)
+Office of the Deputy Secretary and Assistant Secretary for Technology
+Policy and Office of the National Coordinator for Health Information
+Technology (ASTP/ONC)
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+RFI Document #2025-23641
+Submitted to: Steven Posnack, via Regualtions.gov
+Date of Submission: February 23, 2026
+Prepared by:
+Mettle Solutions, LLC
+An SBA Certified 8(a) Business
+POC: Kishore Metla (Chief Executive Officer)
+Phone: (443) 545-3852 | Fax: (443) 545-3401 | Email: kishore.metla@mettles.com
+10320 Little Patuxent Pkwy, Suite 233-02, Columbia, MD 21044 | Website: www.mettles.com
+SAM UEI: CURWPHLP9PK9 | DUNS: 079346709 | FEIN: 27-4746158 | Cage Code: 7NKX3
+GSA MAS: 47QTCA21D004Y | GSA STARS III: 47QTCB21D0023
+
+ASTP/ONC
+RFI Document #2025-23641
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+Table of Contents
+1 Executive Summary & Perspective .......................................................................................... 1
+2 Responses to Specific Questions ............................................................................................. 2
+2.1 Question 1: Barriers to Private Sector Innovation .......................................................... 2
+2.2 Question 2: Regulatory and Payment Policy Levers ....................................................... 2
+2.3 Question 3: Novel Legal and Implementation Issues ..................................................... 2
+2.4 Question 4: Evaluation Methods, Metrics, and Robustness .......................................... 3
+2.5 Question 5: Accreditation and Certification ................................................................... 3
+2.6 Question 6: Performance and Limitations ...................................................................... 4
+2.7 Question 7: Governance and Decision Making............................................................... 4
+2.8 Question 8: Interoperability ........................................................................................... 4
+2.9 Question 9: Patient and Caregiver Priorities and Concerns ........................................... 4
+2.10 Question 10: Research Priorities and Evidence .............................................................. 4
+3 Conclusion ............................................................................................................................... 5
+i | P ag e
+
+ASTP/ONC
+RFI Document #2025-23641
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+1 Executive Summary & Perspective
+Mettle Solutions respectfully submits this response to the Department of Health and Human
+Services (HHS). We respond not as an AI developer ("Builder"), but as a specialized Evaluator
+and Builder of Assurance Tools that support the safe adoption of AI in clinical care. Our
+perspective is informed by working across diverse care settings, from large academic health
+systems to resource-constrained community practices, with AI tools that are often classified
+as non-medical device technologies.
+Regulatory Impact on AI Adoption: The Validation Gap
+Current HHS regulatory frameworks appropriately emphasize patient safety, privacy, and public
+trust. However, for many clinical AI tools, particularly those that fall outside traditional medical
+device classifications—regulatory expectations for post-deployment validation and ongoing
+performance monitoring remain unclear or implicit. This lack of clarity contributes to what we
+describe as a “Validation Gap”: uncertainty among providers regarding how AI models perform
+on their local patient populations over time.
+In practice, validation is often retrospective, static, and disconnected from real-world clinical
+workflows. Existing regulations do not consistently specify how health care organizations
+should generate local evidence, monitor model drift, or demonstrate continued safety and
+effectiveness once an AI tool is deployed. As a result, providers face two undesirable outcomes:
+1) blind adoption, which introduces patient safety and liability risks, or
+2) adoption paralysis, where otherwise valuable AI tools are delayed or rejected due to
+regulatory ambiguity and unclear accountability.
+This uncertainty disproportionately affects smaller and rural practices, which often lack the
+resources to interpret evolving regulatory expectations or to independently design robust
+validation processes.
+An Independent Safety Layer as a Regulatory Enabler
+To support a regulatory posture that is predictable, proportionate to risk, and enabling of
+innovation, we advocate for an Independent Safety Layer approach that distinguishes
+between building AI and assuring AI. This approach aligns with HHS’s goals of protecting
+patients and maintaining public trust while allowing innovation to proceed more rapidly.
+Our response outlines two implementation pathways to promote equitable adoption:
+• Enterprise Track: “Shadow mode” validation prior to clinical use, combined with
+continuous post-deployment surveillance (“sidecar” monitoring) to ensure models
+perform safely across changing populations and conditions.
+• Resource-Constrained Track: Mettle Solutions is currently developing a Local AI
+Evaluator (under a contract with ASTP) which is a lightweight, no server backend
+application that enables resource constrained healthcare providers to evaluate the
+accuracy metrics of AI tools.
+1 | P ag e
+
+ASTP/ONC
+RFI Document #2025-23641
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+2 Responses to Specific Questions
+2.1 Question 1: Barriers to Private Sector Innovation
+What are the biggest barriers to private sector innovation in AI for health care and its adoption
+and use in clinical care?
+The single greatest impediment is uncertainty. Healthcare organizations operate in a zero-
+failure environment. Providers cannot confidently adopt AI because they lack reliable tools to
+answer the fundamental question: "Will this model work for my patients, in my workflow,
+today?"
+Key observed barriers include:
+• The "Local Validity" Gap: A model validated in an urban academic center often
+degrades when deployed in a rural clinic due to differences in demographics and
+workflow.
+• Undefined Liability: Providers fear that relying on AI advice creates new liability
+exposure, particularly when models "hallucinate" or drift.
+• The "Resource Gap": While large systems can hire data science teams to evaluate tools,
+small practices cannot. This process risks creating a "two-tier" health system where AI
+benefits are restricted to well-resourced centers.
+2.2 Question 2: Regulatory and Payment Policy Levers
+What regulatory, payment policy, or programmatic design changes should HHS prioritize to
+incentivize the effective use of AI in clinical care and why? What HHS regulations, policies, or
+programs could be revisited to augment your ability to develop or use AI in clinical care? Please
+provide specific changes and applicable Code of Federal Regulations citations.
+We are open to collaborating with HHS to determine the best solution.
+2.3 Question 3: Novel Legal and Implementation Issues
+For non-medical devices, we understand that use of AI in clinical care may raise novel legal and
+implementation issues that challenge existing governance and accountability structures (e.g.,
+relating to liability, indemnification, privacy, and security). What novel legal and
+implementation issues exist and what role, if any, should HHS play to help address them?
+1) Liability & Standard-of-Care Ambiguity
+When "non-medical device" AI errors, it is unclear whether the fault lies with the clinician
+(malpractice) or the vendor (product defect). This ambiguity stalls procurement and adoption.
+Proposed Solution: "Gated Decision" Architecture
+We recommend HHS endorse "Gated Decision" Architectures (or Safety Interlocks) as a
+standard governance control. In this framework, an AI prediction does not reach the clinician
+unless it passes a real-time safety check (e.g., Is the patient already on treatment? Is the
+confidence score above threshold?).
+2 | P ag e
+
+ASTP/ONC
+RFI Document #2025-23641
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+• HHS Role: Recognize that providers utilizing "Gated" architectures are exercising due
+diligence. This shifts reliance from "gut feeling" to auditable safety protocols.
+2) Indemnification & Cryptographic Evidence
+Indemnification is difficult because post-event forensic analysis is often impossible. Parties
+cannot prove what the AI "saw" or "thought" at the moment of care.
+• HHS Role: Encourage the adoption of Cryptographic Evidence Chains. By digitally
+signing every validation event (input, prediction, safety check, user action), providers
+and vendors create an immutable "Audit Package" that can factually resolve disputes
+and support indemnification clauses.
+2.4 Question 4: Evaluation Methods, Metrics, and Robustness
+For non-medical devices, what are the most promising AI evaluation methods (pre- and post-
+deployment), metrics, robustness testing, and other workflow and human-centered evaluation
+methods for clinical care? Should HHS further support these processes? If so, which mechanisms
+would be most impactful (e.g., contracts, grants, cooperative agreements, and/or prize
+competitions)?
+Validation is not a one-time event; it is a continuous lifecycle. We propose the following
+standard methods:
+A. Pre-Deployment: "Shadow Mode" Validation
+The most effective evaluation method is Shadow Mode, where the AI runs silently alongside
+clinical workflows. It captures real-time data and generates predictions without alerting the
+clinician.
+B. Post-Deployment: The "Auditor Sidecar"
+To address "robustness testing”, An "Auditor Sidecar" sits parallel to the AI, continuously
+monitoring for "Drift" (statistical changes in input data) and "Degradation" (drops in confidence
+or accuracy).
+HHS Support Mechanism:
+HHS should use Contracts and Cooperative Agreements to fund "Clinical AI Innovation
+Sandboxes." These programs would subsidize the cost of third-party validation (Shadow Mode
+infrastructure) for participating health systems, allowing them to test AI tools risk-free before
+purchase.
+2.5 Question 5: Accreditation and Certification
+How can HHS best support private sector activities (e.g., accreditation, certification, industry-
+driven testing, and credentialing) to promote innovative and effective AI use in clinical care?
+Certification must be based on local, ongoing evidence, not just static vendor claims. The entity
+that evaluates AI models in production cannot be the same as the developers of those
+models.
+3 | P ag e
+
+ASTP/ONC
+RFI Document #2025-23641
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+Recommendation: HHS should support an "AI Assurance Evidence Package" standard.
+Rather than a one-time seal of approval, certification should require a dynamic Evidence
+Package containing:
+1) Local Shadow Mode Results: How the model performed on this site's data.
+2) Monitoring Plan: Defined thresholds for drift and safety signal detection.
+3) Incident Response Protocol: Pre-agreed pathways for when the model fails.
+2.6 Question 6: Performance and Limitations
+Where have AI tools deployed in clinical care met or exceeded performance and cost
+expectations and where have they fallen short? What kinds of novel AI tools would have the
+greatest potential to improve health care outcomes, give new insights on quality, and help
+reduce costs?
+We are open to collaborating with HHS to determine the best solution.
+2.7 Question 7: Governance and Decision Making
+Which role(s), decision maker(s), or governing bodies within health care organizations have the
+most influence on the adoption of AI for clinical care? What are the primary administrative
+hurdles to the adoption of AI in clinical care?
+We are open to collaborating with HHS to determine the best solution.
+2.8 Question 8: Interoperability
+Where would enhanced interoperability widen market opportunities, fuel research, and
+accelerate the development of AI for clinical care? Please consider specific data types, data
+standards, and benchmarking tools.
+Interoperability is usually focused on patient data (USCDI). To accelerate AI adoption, we need
+Interoperability of Evaluation Evidence.
+The Opportunity:
+If HHS promotes a standard for "AI Evaluation Event Logs", then independent Evaluators can
+audit any model from any vendor.
+• Data Standards Needed: A schema that standardizes:
+o Input Context (what the model saw)
+o Prediction & Confidence (what the model said)
+o Outcome Linkage (what actually happened to the patient)
+2.9 Question 9: Patient and Caregiver Priorities and Concerns
+What challenges within health care do patients and caregivers wish to see addressed by the
+adoption and use of AI in clinical care? Equally, what concerns do patients and caregivers have
+related to the adoption and use of AI in clinical care?
+We are open to collaborating with HHS to determine the best solution.
+4 | P ag e
+
+ASTP/ONC
+RFI Document #2025-23641
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+2.10 Question 10: Research Priorities and Evidence
+Are there specific areas of AI research that HHS should prioritize to accelerate the adoption of AI
+as part of clinical care?
+a. Are there published findings about the impact of adopted AI tools and their use clinical
+care?
+b. How does literature approach the costs, benefits, and transfers of using AI as part of
+clinical care?
+We are open to collaborating with HHS to determine the best solution.
+3 Conclusion
+The barriers to effective clinical AI adoption are not primarily technical; they are rooted in
+uncertainty. Health care organizations lack clear, scalable mechanisms to verify how AI tools
+perform in their specific clinical environments over time. This uncertainty affects regulatory
+confidence, liability management, procurement decisions, and ultimately patient trust.
+Throughout this response, we have described how an ecosystem of independent, post-
+deployment validation and continuous assurance can address these challenges in a manner
+that is predictable, proportionate to risk, and equitable across care settings. Approaches such
+as enterprise-scale Shadow Mode validation, standardized evaluation evidence, and auditable
+safety controls offer HHS practical levers to reduce adoption friction while maintaining strong
+patient protections.
+By clarifying expectations for ongoing performance verification, supporting independent
+assurance mechanisms, and enabling interoperable evaluation evidence, HHS can help shift the
+clinical AI market from reliance on static claims to reliance on real-world performance data.
+This shift would strengthen public trust, support responsible innovation, and ensure that the
+benefits of AI in clinical care are accessible to providers and patients across the U.S. health
+system.
+5 | P ag e

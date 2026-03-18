@@ -1,0 +1,179 @@
+Comment on “Request for Information: Accelerating the Adoption
+and Use of Artificial Intelligence as Part of Clinical Care.”
+A Deterministic Semantic Validation Layer to Support Safe AI and
+Longitudinal Interoperability
+Executive Summary
+The U.S. healthcare ecosystem has made substantial progress in enabling electronic data access
+and exchange, particularly through increasing adoption of FHIR-based APIs. These advances have
+improved patient-centered access, enabled third-party innovation, and laid the groundwork for AI-
+enabled clinical tools.
+As AI and machine learning systems increasingly operate downstream of interoperable data flows,
+a new technical challenge emerges—ensuring that clinical data and quality measurement inputs
+retain consistent semantic meaning as they move across systems, organizations, and time. While
+data transport is increasingly standardized, semantic interpretation is not. Semantic interoperability
+gaps—differences in units, measurement context, specimen, method, or transformation rules—can
+affect AI reasoning, longitudinal analysis, and the interpretation of trends across patient
+populations.
+This comment proposes exploring a deterministic, hybrid human–AI semantic validation layer: a
+complementary, auditable framework designed to stabilize clinical meaning for AI-enabled
+analysis, longitudinal monitoring, and quality learning, without constraining innovation, and to
+extend the value of existing FHIR-based interoperability.
+1. The Emerging Challenge: Semantic Drift and Context Loss in an Interoperable, AI-
+Enabled Ecosystem
+FHIR-based APIs have succeeded in enabling data movement. However, interoperability at the
+transport layer does not guarantee semantic equivalence at the interpretation layer.
+As data moves across systems, system-specific transformations may occur upstream—including
+unit conversions, aggregation, normalization, or omission of contextual attributes. These
+
+transformations may be valid within a local system, given local configuration and reference
+context, but may not be visible, traceable, or interpretable downstream.
+These issues are often manageable within:
+• a single clinical endpoint
+• a limited-radius application ecosystem
+• or a single EHR context
+However, they become increasingly problematic when:
+• patients move between health systems
+• data is compared longitudinally across years
+• multiple AI models consume the same data
+• or research and monitoring span heterogeneous sources
+2. When Data Cannot Be Compared at All
+In some cases, two clinical values cannot be meaningfully compared under the rules of
+measurement science without explicit transformation rules.
+For example, a laboratory result for serum iron produced under one assay method and specimen
+matrix cannot be meaningfully compared to a result produced under a different method or matrix
+unless the underlying measurand and validated harmonization logic are known; unit conversion
+alone is insufficient when the measurement procedure differs. In such cases, longitudinal
+comparison is not merely imprecise—it is invalid.
+AI systems, particularly large language models, will often attempt to infer over whatever data is
+provided. Without explicit semantic context and deterministic rules, these systems may infer
+continuity where none exists.
+This behavior is often described as hallucination; however, in many cases the root cause is missing
+semantic ground truth rather than model failure.
+When clinical data lacks explicit semantic definition—such as standardized units, measurement
+conditions, or clearly defined reference meaning—AI systems must rely on probabilistic inference
+to interpret gaps or inconsistencies. While probabilistic reasoning is not inherently unsafe, it limits
+precision and reproducibility, particularly as data moves across systems or is analyzed over time.
+By contrast, deterministic semantic validation ensures that values, transformations, and
+interpretation boundaries are explicit and auditable, reducing reliance on inference and enabling
+
+AI to operate on known, well-defined inputs rather than assumptions. This distinction becomes
+increasingly important as healthcare moves from isolated clinical snapshots toward longitudinal
+monitoring, where small semantic differences compound over time and can otherwise prevent
+meaningful comparison, trend analysis, or early pattern detection.
+3. Hybrid Deterministic Semantic Validation Layer
+A hybrid deterministic semantic validation layer introduces explicit, auditable rules that define
+how clinical data is interpreted for downstream use—particularly for AI-enabled analysis and
+longitudinal monitoring.
+Key characteristics include:
+• deterministic processing for unit normalization, reference alignment, and semantic
+validation
+• explicit provenance and audit logs capturing transformations, assumptions, and
+unresolved gaps
+• a hybrid design in which AI assists but does not replace human oversight
+Clinical reference catalogs can be derived or synthesized with assistance from large language
+models using clearly defined source constraints, followed by human expert review, approval, and
+versioned publication as shared benchmarks.
+This approach does not constrain AI; it supports safer and more reproducible AI reasoning.
+4. Why This Enables AI Rather Than Restricting It
+AI and machine learning systems are highly flexible, but they will attempt to infer meaning when
+semantic gaps are not explicitly defined.
+A deterministic semantic layer:
+• prevents implicit inference when data is incomplete or non-comparable
+• enables AI systems to explicitly represent and communicate uncertainty
+• allows machine learning models to operate on semantically stable, well-defined inputs
+
+Large language models can synthesize clinical context, documentation, and explanations. Machine
+learning models can validate hypotheses, detect trends, and surface emerging patterns. Both benefit
+from a shared, explicit semantic foundation that reduces ambiguity and improves reliability.
+5. Concrete Example: Semantic Equivalence in Longitudinal Laboratory Monitoring
+Consider a patient whose triglyceride values are reported over time by different laboratories:
+• one using mg/dL
+• another using mmol/L
+• with differing reference ranges and assay context
+Without explicit normalization rules and provenance:
+• longitudinal trends may be misinterpreted
+• clinical thresholds may be applied inconsistently
+• and AI-generated insights may appear contradictory
+With deterministic semantic validation:
+• values are converted using validated rules appropriate to the underlying measurand
+• reference ranges and interpretation context are applied consistently
+• and AI systems are explicitly aware of what is known, transformed, or missing
+In other laboratory contexts—such as measurements based on enzyme activity versus mass (e.g.,
+CK-MB), biological potency (e.g., insulin, FSH), or immunoassay-based versus mass
+spectrometry–based results (e.g., testosterone)—differences in reported units reflect
+fundamentally different measurands or measurement bases. In these cases, mathematical
+conversion is scientifically invalid, and values should not be compared.
+To preserve data integrity, non-comparable results should be represented using distinct LOINC
+codes or equivalent semantic identifiers, ensuring that automated systems do not normalize or
+compare incompatible measurement bases.
+FHIR provides flexible mechanisms—such as the Observation and Provenance resources—to
+capture structured measurements, attribution, and contextual metadata, while leaving
+transformation logic and semantic interpretation to implementers. As healthcare data exchange
+increasingly supports longitudinal monitoring, cross-system reuse, and AI-enabled analysis, a
+governed, hybrid semantic validation layer upstream can complement these capabilities by
+stabilizing semantic interpretation and validated transformation logic at the point of reuse.
+
+In practice, this enables data pipelines to apply method-specific semantic differentiation before
+longitudinal analysis occurs, improving precision and consistency over time and making
+provenance and audit information more interpretable as data is reused at scale.
+6. Placement Within the Interoperability Stack
+This semantic validation layer does not require a single architectural placement.
+In general, placement of the deterministic semantic validation layer closer to data origination
+enables more precise semantic validation and higher downstream impact, while later placement
+can still provide meaningful stabilization for longitudinal reuse.
+It can be deployed, independently or in combination:
+• within a clinical source system prior to external data exposure
+• immediately before FHIR-based API publication
+• or downstream of FHIR consumption by applications or AI systems
+This flexibility allows stakeholders to evaluate where deterministic semantic stabilization is most
+effective as interoperability and data reuse scale, without constraining architectural choice or
+prescribing a single deployment model.
+7. Applicability Beyond Laboratory Data
+
+While laboratory data and medications provide the most explicit semantic starting points, the same
+principles apply to:
+• clinical observations
+• device-generated data
+• and longitudinal clinical assessments
+Each domain benefits from explicit semantic context as data is reused across systems and over
+time, particularly for AI-enabled decision support, longitudinal monitoring, and research. In these
+domains, determinism is achieved through explicit semantic constraints and comparability rules
+rather than purely mathematical normalization.
+8. Relationship to Current Progress
+Significant progress has already been achieved:
+• health data is more portable than ever
+• patient access initiatives continue to expand
+• clinicians are increasingly supported by interoperable tools
+• and AI and machine learning systems are already helping patients better understand health
+information, navigate care decisions, and engage with the healthcare system, while also
+supporting analytical and clinical workflows
+The remaining challenge is not ambition, but orchestration—aligning data movement, semantic
+clarity, and AI reasoning into a coherent, auditable workflow that supports longitudinal use and
+reuse over time.
+9. Collaborative Evaluation Opportunity
+Participation in such an approach could be complementary to existing FHIR-based
+interoperability. Coordinated, multi-stakeholder evaluation efforts could help assess where
+semantic validation is most effective across the data exchange pipeline, how deterministic layers
+evolve over time, and how AI system reliability and longitudinal comparability improve when
+explicit semantic context is preserved. HHS could consider providing guidance or serving as a
+coordinating convener for such efforts as a means of enabling shared learning without disrupting
+existing implementations.
+
+In addition, HHS could play a constructive role in convening clinical and standards bodies to help
+establish governance for the clinical reference inputs used in deterministic semantic layers. This
+could include supporting clinician-led review and sign-off on source materials, reference ranges,
+and transformation rules, as well as encouraging the synthesis of shared benchmark references.
+Once established, such clinically governed reference layers could be reused across the ecosystem,
+enabling consistency, transparency, and trust while preserving innovation and implementation
+flexibility.
+Conclusion
+As the healthcare ecosystem continues to evolve from isolated data exchange toward longitudinal,
+AI-assisted monitoring and discovery, semantic clarity becomes foundational infrastructure.
+A hybrid deterministic semantic validation layer could provide a pragmatic, incremental approach
+to supporting safer AI reasoning, more reliable longitudinal analysis, and continued innovation—
+while complementing existing interoperability standards and preserving architectural flexibility.
+Submitted by:
+Daniela Jelatancev
+Founder & CEO, HealthFramework
+daniela@hlthframework.com
+https://hlthframework.com

@@ -1,0 +1,537 @@
+International Business Machines (IBM) Corporation
+Request for Information (RFI)
+February 23, 2026
+Department of Health and Human Services (HHS)
+Office of the Secretary
+Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care
+In Response to 90 FR 60108
+Submitted by: International Business Machines (IBM) Corporation
+6710 Rockledge Drive
+Bethesda, MD 20817
+Kristine Allen, MPH, PMP
+Associate Partner, HHS
+770.843.7486
+Kristine.Allen@ibm.com
+RESTRICTION ON DISCLOSURE AND USE OF DATA
+This proposal includes data that shall not be disclosed outside the Government and shall not be duplicated, used or disclosed—in
+whole or in part—for any purpose other than to evaluate this proposal. If, however, a contract is awarded to this offeror as a result
+of—or in connection with—the submission of this data, the Government shall have the right to duplicate, use, or disclose the data
+to the extent provided in the resulting contract. This restriction does not limit the Government’s rights to use information
+contained in this data if it is obtained from another source without restriction. The data subject to this restriction are contained on
+pages marked: “Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal.”
+The data in the pages of this proposal where so annotated contain trade secrets and commercial or financial information that are
+either specifically, exempted from disclosure by statute or privileged or confidential within the meaning of the exemption set
+forth in Sections 552(b)(3) and (4), respectively, of the Freedom of Information Act, 5 U.S.C. 552, the disclosure of which could
+invoke criminal sanctions of 18 U.S.C. 1905.
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+Table of Contents
+Section Page
+0. Introduction...........................................................................................................................1
+1. Barriers to AI Innovation and Adoption (RFI Question #1)............................................1
+2. HHS Regulatory Priorities (RFI Question #2)...................................................................2
+3. Governance and Accountability (RFI Question #3)..........................................................3
+4. Evaluation and Robustness (RFI Question #4)..................................................................5
+5. Supporting Private Sector Innovation (RFI Question #5)................................................5
+6. Successes, Lessons Learned, and Priority Areas for AI in Clinical Care (RFI
+Question #6)...........................................................................................................................6
+7. AI Adoption Dynamics in Health Care Organizations (RFI Question #7)......................9
+8. Interoperability as a Catalyst (RFI Question #8)...............................................................9
+9. Patient and Caregiver Perspectives (RFI Question #9)...................................................10
+10. Research Priorities (RFI Question #10)............................................................................11
+11. Conclusion...........................................................................................................................12
+List of Figures
+Figure 1 - IBM's AI Governance Framework.............................................................................4
+Figure 2 Case Study: From AI Model to Compliant Medical Device.......................................7
+Figure 3 IBM Consulting Advantage Platform – Centralized AI Control Tower
+Enabling Scalable, Federated Governance.........................................................................8
+Figure 4 – Examples of Interoperability Driving AI Innovation.............................................10
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page i
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+0. Introduction
+A report published by the IBM Institute for Business Value (IBV) in August 2025 found that 77%
+of healthcare executives report AI is delivering clear and measurable competitive advantage, and
+69% expect it to contribute significantly to financial performance within the next three years. AI
+in clinical care has moved beyond proof-of-concept experimentation and now presents an
+implementation challenge. The central barriers to adoption are no longer model capability, but
+structural conditions: payment alignment, regulatory clarity, interoperable data infrastructure, and
+mature governance frameworks. HHS is uniquely positioned to address these systemic constraints.
+By modernizing reimbursement policy, establishing adaptive regulatory pathways, and enforcing
+standards-based interoperability, HHS can accelerate safe and scalable AI deployment in clinical
+care while reinforcing public trust.
+IBM Consulting, together with IBM’s Technology and Research divisions, brings decades of
+experience supporting federal health agencies, academic medical centers, integrated delivery
+networks, life sciences organizations, and payers in implementing and advancing AI within highly
+regulated healthcare environments. Drawing on this cross-sector experience, we offer practical
+insights into how policy, reimbursement, governance, and technology must align to translate
+strategy into operational impact. We look forward to continued collaboration with HHS to advance
+a trusted, scalable, and patient-centered AI ecosystem that strengthens clinical care delivery.
+1. Barriers to AI Innovation and Adoption (RFI Question #1)
+The most significant barriers to private sector innovation and clinical adoption of AI are
+structural rather than technical. Regulatory fragmentation remains a persistent obstacle.
+Developers and health systems must navigate overlapping and occasionally inconsistent
+requirements across FDA, CMS, NIH, and ASTP/ONC. This ambiguity increases compliance
+costs, delays commercialization, and creates disproportionate burden for smaller innovators.
+Even when AI tools demonstrate measurable clinical value, predictable reimbursement pathways
+are often absent. Medicare regulations do not consistently recognize or value AI-enabled
+diagnostic interpretation and decision support services. As a result, providers face financial
+disincentives to adopt tools that require integration, monitoring, and governance oversight.
+Adoption therefore remains concentrated in well-capitalized health systems, exacerbating
+disparities in access to advanced care capabilities.
+Data access and interoperability limitations further constrain innovation. Although progress
+has been made under the 21st Century Cures Act, clinical data remain fragmented across
+electronic health record platforms and proprietary systems. Variability in FHIR implementation
+and restrictive data-use practices limit the ability to train, validate, and benchmark AI models at
+scale. Significant engineering effort is frequently diverted toward data normalization rather than
+performance validation, bias mitigation, or workflow integration.
+Workforce readiness remains a challenge, with gaps in trust and digital literacy among
+clinicians. Many providers lack formal training in algorithmic performance metrics, bias
+evaluation, or appropriate-use boundaries, limiting their ability to critically interpret AI-
+generated outputs. Concerns regarding patient safety, liability exposure, and accountability for
+AI-influenced decisions further suppress confidence, particularly in environments where
+governance frameworks and oversight mechanisms are not clearly defined.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 1
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+Clinical workflow alignment also represents material barriers. AI tools that are not
+embedded seamlessly into care pathways risk increasing documentation burden or contributing
+to alert fatigue. Fragmented implementation can also create ambiguity regarding responsibility
+for acting on recommendations, particularly in team-based care environments. Without tight
+integration with existing clinical workflow, AI systems risk being treated as optional overlays
+rather than embedded components of clinical decision-making.
+2. HHS Regulatory Priorities (RFI Question #2)
+Based on IBM’s experiences supporting providers, payers, regulators, and industry partners,
+HHS should prioritize regulatory and payment policy changes that directly address the structural
+barriers preventing AI from being deployed at scale in routine clinical care.
+CMS should urgently modernize reimbursement frameworks to recognize AI-assisted
+diagnostic interpretation and clinical decision support as covered and appropriately valued
+services under Medicare Part B. This includes clarifying coverage under 42 CFR Part 410,
+establishing valuation methodologies under the Physician Fee Schedule (42 CFR Part 414), and
+updating National Coverage Determinations to address AI tools systematically. AI adoption
+should also be aligned with value-based care by expanding incentives under the Medicare Shared
+Savings Program (42 CFR Part 425) and updating Merit-based Incentive Payment System
+(MIPS) measures (42 CFR Part 414.1305) to recognize measurable improvements in cost,
+quality, safety, and coordination attributable to validated AI tools.
+FDA regulatory modernization is equally critical, particularly for developers seeking to
+deploy adaptive AI tools responsibly. Current approval pathways under 21 CFR Part 814 and 21
+CFR Part 807 are designed for static technologies and do not accommodate continuously
+learning algorithms without repeated, costly resubmissions. HHS should formalize the use of
+predetermined change control plans and establish AI-specific Software as a Medical Device
+guidance under 21 CFR Part 807, enabling algorithm updates within defined boundaries. In
+parallel, FDA should refine device classification criteria under 21 CFR Part 860.7 to account for
+clinical impact and the degree of human oversight, while shifting greater emphasis toward post-
+market, real-world performance monitoring.
+Interoperability and data access reforms are foundational to both AI development and
+deployment. HHS should strengthen ONC Health IT Certification requirements under 45 CFR
+Part 170 to mandate standardized API access to all clinically relevant data types, including
+imaging and longitudinal records, and require comprehensive FHIR implementation across EHR-
+generated data. At the same time, HHS should expand information blocking prohibitions under
+45 CFR Part 171.103 to ensure that legitimate data access for AI development and validation is
+not improperly restricted. Clarifying HIPAA de-identification standards under 45 CFR Part
+164.514 would further augment AI development by providing clearer safe harbors for training
+data, while expedited pathways for minimal-risk validation studies under 45 CFR Part 46 would
+reduce unnecessary research friction.
+Beyond agency-specific reforms, HHS should establish a coordinated, risk-based regulatory
+framework aligning the roles of FDA, CMS, ONC, and OCR. Oversight should be tiered
+according to clinical risk, with rigorous standards for high-risk decision support tools and
+proportionate governance for lower-risk operational applications. Transparency and bias
+mitigation requirements could be incorporated into hospital Conditions of Participation (42 CFR
+Part 482), alongside clearer federal guidance on liability and standard-of-care considerations.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 2
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+Finally, workforce development should be advanced through graduate medical education
+incentives and expanded federal support for AI validation, implementation science, and equity
+research.
+Collectively, these reforms would directly augment providers’ and developers’ ability to deploy
+effective AI in clinical care while maintaining appropriate safeguards for safety, equity, and
+accountability.
+3. Governance and Accountability (RFI Question #3)
+The integration of AI into clinical care introduces governance and accountability challenges that
+extend beyond traditional health IT oversight. Unlike static clinical software, AI systems may
+evolve over time, rely on probabilistic outputs, and depend heavily on the quality and
+representativeness of training data. These characteristics raise novel questions related to
+liability, transparency, bias mitigation, lifecycle monitoring, and shared responsibility
+among developers, providers, and institutions.
+HHS should play a central coordinating and standard-setting role in addressing these
+challenges. Federal leadership is necessary to establish consistent national expectations, ensure
+risk-proportionate oversight, and safeguard equity across the healthcare ecosystem while
+avoiding fragmentation across agencies and states.
+IBM’s AI Governance framework (Figure 1) provides a useful operational blueprint,
+demonstrating how policy objectives can be translated into practice through the integration of
+enterprise-level governance structures with continuous AI technical lifecycle management,
+aligning institutional accountability with ongoing AI model validation, monitoring, and
+oversight.
+At the organizational level, this framework emphasizes maintaining a comprehensive AI
+inventory that documents system purpose, risk classification, validation evidence, intended use
+boundaries, and known limitations. It incorporates structured risk-tiering to differentiate
+administrative automation tools from clinical decision support systems and higher-risk
+autonomous or semi-autonomous applications. Clearly defined governance bodies and decision
+rights guide procurement, validation, deployment, monitoring, and retirement, ensuring
+accountability across clinical, technical, compliance, and executive leadership.
+At the technical level, the framework extends governance across the full AI lifecycle. This
+includes rigorous pre-deployment validation, ongoing post-deployment performance monitoring,
+version control, documentation of training data provenance, and formal processes for detecting
+and addressing model drift, performance degradation, or emerging bias. Ongoing subgroup
+performance monitoring promotes equitable outcomes across populations. Transparency is
+operationalized through structured documentation of model assumptions, context-appropriate
+explainability mechanisms, and auditable records of system behavior, reinforcing both regulatory
+compliance and public trust.
+At IBM, dedicated Safety Officers play a central role in supporting this model by providing
+independent assurance, overseeing safety cases, monitoring AI‑related risks, and supporting
+incident management and escalation. Human‑in‑the‑loop oversight remains mandatory for
+safety‑critical use cases, supported by full auditability and traceability of AI outputs. Governance
+bodies continuously monitor performance, bias, and unintended impacts, enabling rapid response
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 3
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+to emerging risks, new evidence, or policy change while maintaining trust and regulatory
+confidence.
+Figure 1 - IBM's AI Governance Framework
+HHS has a critical role in promoting consistent governance expectations and best practices
+across institutions. Robust governance and accountability frameworks are essential to the safe
+and effective use of AI in healthcare and should be embedded by design rather than applied
+retrospectively. This includes formal clinical risk assessment, clearly defined accountability
+across the AI lifecycle, and multidisciplinary oversight spanning clinical, technical, policy, and
+operational leadership. Clinical governance should be embedded directly within the AI enterprise
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 4
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+platform, ensuring that safety, auditability, compliance, and traceability are native architectural
+and operational capabilities that scale consistently as AI systems evolve.
+4. Evaluation and Robustness (RFI Question #4)
+AI systems used in clinical care require rigorous, lifecycle-based evaluation methodologies
+that extend beyond traditional software testing. Evaluation should be conceptualized as a
+continuous process rather than a one-time validation event.
+Pre-deployment validation must assess clinical performance in realistic conditions. This
+includes sensitivity, specificity, positive predictive value, and calibration across relevant patient
+populations. Subgroup equity analysis should be mandatory for systems influencing diagnosis,
+treatment selection, or care prioritization. Robust testing should evaluate performance under data
+perturbation, missingness, and potential adversarial inputs. Importantly, validation should
+include workflow simulation to determine how outputs are interpreted and acted upon in
+practice, not merely whether predictions are statistically accurate.
+Post-deployment monitoring is equally critical. AI performance may degrade over time due to
+changes in patient populations, clinical practice patterns, data collection methods, or external
+factors. Continuous monitoring should track drift in input distributions, outcome divergence,
+override patterns by clinicians, and unexpected error clusters. Monitoring systems should support
+rapid root-cause analysis and structured remediation pathways. For higher-risk applications,
+periodic revalidation or recalibration thresholds should be defined in advance.
+Human-centered evaluation must complement technical metrics. Clinical AI effectiveness
+depends on comprehension, trust calibration, and usability. Evaluation should therefore assess
+clinician understanding of model outputs, alignment with cognitive workflow, and impact on
+decision confidence. Metrics such as alert fatigue rates, time-to-decision, and override frequency
+can provide insight into real-world integration quality. Patient-centered measures, including
+understanding of AI-supported recommendations and satisfaction with transparency, are also
+important components of trust-building.
+HHS can meaningfully advance evaluation standards through a mix of grants, cooperative
+agreements, prize competitions, and targeted contract vehicles. Grants and cooperative
+agreements are well suited to academic-led methodological research and the development of
+standardized benchmarking frameworks. In contrast, contract mechanisms may be more effective
+for building shared benchmarking infrastructure, reference implementations, and standardized
+evaluation toolkits that require clearly defined deliverables, timelines, and cross-sector technical
+coordination.
+Longitudinal studies examining clinical outcomes, cost implications, health equity impacts, and
+workforce effects will be essential to inform reimbursement reform and regulatory
+modernization. These efforts may benefit from blended funding models that combine academic
+research rigor with industry implementation expertise. Establishing common evaluation norms
+through coordinated funding approaches will reduce variability in institutional review processes
+and support safe, scalable adoption of AI in clinical care.
+5. Supporting Private Sector Innovation (RFI Question #5)
+HHS can materially accelerate Clinical Care AI development and adoption by harmonizing
+governance expectations across agencies and establishing a predictable evaluation
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 5
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+environment. A unified cross-agency AI governance framework would reduce duplication and
+clarify expectations regarding risk classification, transparency requirements, bias evaluation, and
+post-deployment monitoring. Aligning these expectations across FDA, CMS, NIH, and
+ASTP/ONC would significantly reduce uncertainty for developers and providers. HHS continues
+to collaborate and build their AI council with a comprehensive AI governance program to ensure
+the responsible and ethical use of AI technologies. HHS should focus on effective AI governance
+which transcends technical solutions, requiring a holistic approach encompassing societal, ethical,
+and organizational considerations alongside technical aspects.
+The creation of a national AI testing and evaluation infrastructure would further lower
+barriers to innovation. Standardized benchmarking datasets, including synthetic and de-
+identified real-world data, combined with FHIR-native interoperability testing suites and
+workflow-based simulation environments, would allow consistent safety and performance
+validation. Such infrastructure would particularly benefit smaller innovators who lack access to
+large-scale validation environments.
+Accreditation and certification mechanisms can also strengthen trust. HHS could support
+model certification programs aligned with ONC Health IT certification, vendor accreditation
+standards focused on responsible AI development practices, and clinician credentialing pathways
+that improve AI literacy. These mechanisms would help create consistent quality expectations
+across the ecosystem.
+Finally, aligning AI adoption with value-based care objectives is essential. Incorporating AI-
+enabled outcome improvements into CMS quality programs and expanding reimbursement
+pathways for validated AI tools would directly link adoption to measurable clinical and financial
+performance.
+6. Successes, Lessons Learned, and Priority Areas for AI in Clinical Care
+(RFI Question #6)
+Where AI Succeeds in Healthcare
+Based on IBM’s experience supporting healthcare providers, payers, and life sciences
+organizations, AI tools in clinical environments tend to meet or exceed expectations when
+deployed in well-defined workflows with clear performance metrics and strong human
+oversight. Administrative and operational applications, such as documentation support, coding
+assistance, prior authorization analytics, scheduling optimization, and revenue cycle intelligence,
+have consistently demonstrated measurable improvements in cycle time, throughput, and staff
+productivity. In these contexts, outputs are verifiable, risk tolerance is manageable, and success
+metrics are concrete. Similarly, AI applied to bounded clinical tasks, such as imaging triage,
+signal interpretation, deterioration risk scoring within defined populations, and medication safety
+surveillance, has shown strong performance when integrated into existing workflows and paired
+with clinician review. These tools add value by improving prioritization, consistency, and early
+detection rather than replacing clinical judgment. For instance, IBM has successfully deployed
+AI-enabled scheduling, workflow optimization, and operational analytics platforms that
+improved throughput and reduced administrative burden in UK hospitals. These deployments
+achieved measurable gains because they were embedded within existing workflows, aligned with
+organizational governance structures, and evaluated against defined operational metrics such as
+cycle time, staffing efficiency, and quality performance indicators.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 6
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+Case Study: From AI Model to Compliant Medical Device
+IBM collaborated with a Swiss life sciences company to develop an AI-powered medical
+device for diabetes management that met EU regulatory standards. The project
+exemplified how AI predictions become regulated, safe user experiences through
+rigorous engineering Trustworthy AI controls such as robustness testing, explainability,
+and uncertainty communication to reduce false prediction and improve transparency.
+Key Success Factors
+Cross-functional operating model: Integrated teams spanning data science, engineering,
+regulatory affairs, and clinical expertise
+Evidence pipeline mindset: Continuous generation of audit-ready artifacts throughout the
+development lifecycle
+Reusable assets: Framework templates, model documentation, V&V test suites, and
+monitoring dashboards
+Outcome
+This approach enabled faster iteration under control, delivering innovation without
+sacrificing safety, demonstrating that regulatory compliance and agility are not mutually
+exclusive.
+Figure 2 Case Study: From AI Model to Compliant Medical Device
+AI has also performed well in population health and value-based care settings, where
+predictive analytics support risk stratification, gap-in-care identification, and targeted outreach.
+When organizations have operational mechanisms to act on these insights, such as care
+management programs and closed-loop referral processes, AI-enabled interventions can reduce
+avoidable utilization and improve quality measure performance.
+Where AI Falls Short
+Conversely, AI tools have fallen short when introduced into complex, high-stakes clinical
+decision-making without sufficient integration, explainability, and governance. Systems
+positioned as standalone diagnostic or treatment engines often struggle with real-world
+variability in data quality, patient populations, and evolving standards of care. Even technically
+accurate models underperform if they generate excessive false positives, lack contextual
+explanation, or disrupt clinical workflow. In addition, organizations sometimes overestimate
+cost savings by focusing on model development without investing in process redesign,
+training, monitoring infrastructure, and accountability structures required to
+operationalize insights. Without clear ownership of downstream actions and ongoing lifecycle
+oversight, early gains can diminish over time.
+Priority Areas for Future Development
+Looking forward, the AI tools with the greatest potential to improve outcomes and reduce
+costs are those that combine predictive intelligence with governed workflow orchestration.
+Agent-enabled systems that synthesize longitudinal patient data and guideline-based evidence,
+while preserving clear human oversight, can support more coordinated, proactive care. Evidence-
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 7
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+grounded clinical intelligence and personalized treatment sequencing models, particularly in
+chronic and specialty care, can reduce unwarranted variation, minimize trial-and-error
+prescribing, and lower avoidable adverse events.
+IBM’s national-scale advisory work with NHS England demonstrates that accelerating AI
+adoption in clinical care requires coordinated strategy, shared governance, and operational
+alignment across a federated system. Fragmented, use-case pilots frequently fail to scale, leading
+to duplication, inconsistent assurance, and “pilot fatigue.” Establishing common standards and
+enterprise-level oversight early enables safe, repeatable deployment while maintaining clinical
+safety, regulatory confidence, and public trust. This has driven a shift toward enterprise AI
+platforms with embedded governance and operational controls. Recent large-scale
+deployments across global enterprises and public-sector organizations such as Scuderia Ferrari,
+Riyadh Air, demonstrate that centralized operating models, providing visibility, performance
+monitoring, and policy enforcement, enable scalable and trusted AI. Healthcare organizations are
+now piloting IBM Consulting Advantage Platform (Figure 3) as a centralized “control tower,”
+supporting overall governance consistency while preserving local flexibility and enabling AI to
+scale beyond perpetual pilots.
+Ultimately, AI delivers sustained value when deployed within a governed, interoperable, and
+outcome-oriented ecosystem. Aligning reimbursement, regulatory oversight, interoperability
+standards, and institutional governance is essential to unlocking the full impact of these
+capabilities.
+Figure 3 IBM Consulting Advantage Platform – Centralized AI Control Tower Enabling
+Scalable, Federated Governance
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 8
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+7. AI Adoption Dynamics in Health Care Organizations (RFI Question #7)
+Adoption of AI in clinical care is shaped as much by institutional dynamics as by technical merit.
+Within healthcare organizations, decision-making authority is distributed across clinical
+leadership, digital and information technology leadership, data governance bodies,
+compliance committees, and financial executives. Chief Medical Officers often determine
+whether AI tools are clinically credible and aligned with standards of care, while Chief
+Information or Digital Officers assess infrastructure readiness and integration feasibility. Finance
+committees evaluate return on investment and budget trade-offs, and compliance and privacy
+officers scrutinize risk exposure. Adoption frequently stalls when these constituencies are not
+aligned or when accountability boundaries are unclear.
+One of the primary administrative hurdles is limited AI literacy across clinical and
+operational leadership. Without a shared understanding of capabilities, limitations, and
+governance safeguards, decision-makers may either overestimate risk or place inappropriate trust
+in system outputs. Structured education initiatives, including executive briefings, clinician
+training modules, and competency frameworks, can significantly reduce hesitation and improve
+responsible use.
+Another barrier is the absence of standardized internal evaluation pathways. Many
+institutions apply procurement processes designed for traditional medical devices to AI software
+that may iterate more rapidly. This can lead to prolonged approval cycles and inconsistent review
+criteria. Establishing streamlined AI review committees with defined evaluation frameworks,
+risk-tiering protocols, and clear escalation pathways would improve efficiency while maintaining
+safety oversight.
+Budget constraints also play a significant role. AI deployment requires investment in
+integration, monitoring infrastructure, cybersecurity controls, and ongoing governance. Without
+reimbursement alignment or shared savings incentives, these investments may compete
+unfavorably with other priorities such as staffing, EHR modernization, or cybersecurity
+upgrades. Linking AI adoption to value-based care metrics and outcome improvements is
+therefore essential to support internal business justification.
+Workflow redesign represents an additional challenge. AI systems can inadvertently
+reinforce inefficient processes if underlying documentation or care pathways are poorly
+structured. Successful adoption requires parallel workflow optimization and change management
+efforts to ensure that AI augments rather than disrupts clinical operations.
+Sustained AI adoption in healthcare requires clear, measurable ROI, including revenue
+improvement, cost reduction, efficiency gains, throughput, quality, and safety outcomes.
+Standardized KPIs and baseline benchmarking are essential to link deployment to value; without
+demonstrable impact, initiatives rarely scale beyond pilots.
+8. Interoperability as a Catalyst (RFI Question #8)
+Enhanced interoperability, anchored in HL7 FHIR-based APIs and nationally standardized
+datasets, delivers outsized downstream impact by providing the high-volume, high-variety, and
+well-labeled data AI requires. Standardized data access enables clinical AI model training (e.g.,
+early disease detection, risk stratification, medication optimization), supports enterprise-scale
+learning through Bulk FHIR for large cohorts and federated approaches, and significantly
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 9
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+reduces data engineering effort, allowing teams to focus on feature development, validation, and
+deployment rather than ingestion.
+Figure 4 includes a few examples that demonstrate how enhanced interoperability translates into
+concrete datasets, data flows, and actionable AI use cases across clinical care, research, and
+healthcare operations. Collectively, they show that interoperability is not simply about improving
+data exchange; it is a foundational enabler that materially accelerates the development, rigorous
+evaluation, and scalable deployment of AI in clinical care.
+Figure 4 – Examples of Interoperability Driving AI Innovation
+9. Patient and Caregiver Perspectives (RFI Question #9)
+Patients and caregivers generally view AI in clinical care through a practical lens: they are less
+concerned with the technical architecture of models and more concerned with whether AI
+meaningfully improves access, accuracy, timeliness, and coordination of care. Many patients
+wish to see AI address persistent systemic challenges, including long wait times for specialty
+care, delayed diagnoses, fragmented medical records, administrative burden, and inconsistent
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 10
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+communication across providers. AI-supported triage tools, early detection systems, and care
+coordination platforms hold promise in reducing diagnostic delays, preventing avoidable
+hospitalizations, and improving medication safety. For caregivers managing chronic or complex
+conditions, AI-enabled monitoring and predictive analytics may provide earlier warning of
+deterioration, improved treatment personalization, and better alignment across multidisciplinary
+care teams.
+Patients are also interested in more personalized and proactive care. AI has the potential to
+synthesize longitudinal health records, genomic information, and lifestyle data to support
+individualized treatment recommendations rather than one-size-fits-all protocols. In addition, AI-
+driven automation of administrative processes, such as prior authorization, scheduling, and
+documentation, could reduce delays and free clinicians to spend more time in direct patient
+interaction. From the patient perspective, the most compelling value proposition is not
+technological sophistication but improved outcomes, clearer communication, and a more
+responsive care experience.
+At the same time, significant concerns remain. Transparency is paramount: patients want
+understandable explanations of how AI-informed recommendations are generated and what their
+limitations are. Equity is another major concern, particularly the risk that models trained on
+non-representative data could reinforce disparities. Privacy and data use practices must be
+clearly governed and communicated, especially regarding secondary use of health information.
+Patients also emphasize that AI should augment, not replace, clinician judgment. Preserving
+the human relationship in care and maintaining clear accountability when errors occur are
+essential to sustaining trust. Ultimately, adoption will depend on whether AI demonstrably
+improves outcomes and experience while maintaining transparency, fairness, privacy, and
+meaningful human oversight.
+10.Research Priorities (RFI Question #10)
+HHS should prioritize AI research areas that directly strengthen clinical decision-making
+by connecting upstream biomedical evidence to point-of-care actions. A particularly high-
+impact area is AI-enabled integration of the full therapeutic lifecycle, from preclinical discovery
+through regulatory approval and post-market evidence, into clinically usable intelligence.
+Advances in Large Language Models (LLMs) and Agentic AI make it technically feasible to
+compress and contextualize vast bodies of heterogeneous data (e.g., molecular mechanisms, New
+Alternative Methodologies (NAMs), clinical trial outcomes, and regulatory submissions) and
+surface them at the moment a clinician is selecting among therapeutic options. Prioritizing
+research that enables traceability and explainability across this lifecycle would help clinicians
+move beyond trial-and-error prescribing toward more informed decisions, reducing avoidable
+treatment failures and downstream harm.
+HHS should also invest in AI research focused on agentic AI systems with long-term
+memory, reasoning, and workflow orchestration for clinical care. Unlike static decision
+support tools, agentic systems can autonomously synthesize patient-specific data with evolving
+scientific evidence, guidelines, and real-world outcomes. The complexity and scale of data
+generated by modern drug development, particularly human-relevant NAMs and multi-omic
+cellular models, exceed what individual clinicians can reasonably internalize. Research into
+agentic architectures that can reason across these data sources, maintain provenance, and adapt
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 11
+
+HHS RFI - AI in Clinical Care
+90 FR 60108
+February 23, 2026
+recommendations as new evidence emerges would materially enhance clinical judgment without
+supplanting it.
+Finally, HHS should prioritize AI research that enables personalized therapeutic selection
+and sequencing, especially in conditions where the order of treatment materially affects
+outcomes. Prescribing the “wrong” drug first can reduce the effectiveness of subsequent
+therapies due to physiological effects, even when all prescribing is technically permissible. AI
+models that combine mechanistic biology, patient-specific characteristics, and historical response
+patterns could help clinicians identify the most appropriate initial therapy rather than relying on
+iterative trial-and-error. Targeted federal investment in this area would accelerate adoption by
+aligning AI capabilities with clinicians’ real decision points, while advancing HHS goals of
+improved outcomes, reduced waste, and greater trust in AI-supported clinical care.
+11.Conclusion
+AI will not scale in clinical care through technical advancement alone. Sustainable adoption
+requires coordinated reform across reimbursement policy, regulatory oversight, interoperability
+standards, governance structures, and workforce readiness. When these structural enablers are
+aligned, AI can improve diagnostic accuracy, personalize treatment selection, reduce
+administrative burden, and strengthen care coordination, while maintaining safety, equity, and
+transparency.
+IBM is well positioned to support HHS in advancing this effort. Our cross-sector experience
+working with federal agencies, healthcare delivery organizations, life sciences companies, and
+payers enables us to translate policy intent into practical, operational implementation. We bring a
+deep understanding of the technical, regulatory, and organizational complexities involved in
+embedding AI responsibly into clinical and operational workflows, while balancing innovation
+with safety, governance, and accountability. We would also welcome the opportunity to partner
+with HHS through discovery, user-centered design, and proof of value to help shape, test, and
+scale solutions in a way that is grounded in real-world needs and delivers measurable impact
+across the system.
+We look forward to continued collaboration with HHS to help build a trusted, scalable, and
+patient-centered AI ecosystem that strengthens clinical care delivery nationwide while upholding
+the highest standards of safety, equity, and public trust.
+Use or disclosure of data contained on this sheet is subject
+to the restriction on the title page of this proposal. Page 12

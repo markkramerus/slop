@@ -1,8 +1,8 @@
-"""Quick verification script for the translated CMS format.
+"""Quick verification script for the translated PSV format.
 
 Usage:
-    python shuffler/verify_translation.py <csv_file>
-    python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_cms.csv
+    python shuffler/verify_translation.py <psv_file>
+    python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/synthetic.psv
 """
 
 import csv
@@ -13,7 +13,7 @@ if len(sys.argv) > 1:
     csv_file = sys.argv[1]
 else:
     print("Usage: python shuffler/verify_translation.py <csv_file>")
-    print("Example: python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/comments_cms.csv")
+    print("Example: python shuffler/verify_translation.py CMS-2025-0050/synthetic_comments/synthetic.psv")
     sys.exit(1)
 
 # Read the translated file

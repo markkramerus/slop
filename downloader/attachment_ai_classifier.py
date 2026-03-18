@@ -725,12 +725,16 @@ def classify_attachment_tree(
     verbose: bool = True,
     progress_every: int = 10,
     concurrency: int = 10,
+    max_consecutive_errors: int = 5,
 ) -> dict[str, Any]:
     """Classify all PDF attachments under a directory tree.
 
     Up to ``concurrency`` attachments (default 10) are sent to the AI endpoint
     in parallel using a :class:`~concurrent.futures.ThreadPoolExecutor`, which
     dramatically reduces wall-clock time when the bottleneck is network I/O.
+
+    If ``max_consecutive_errors`` AI request failures occur in a row (default 5),
+    the run is aborted early to avoid wasting time when the endpoint is down.
 
     Returns a small stats dict.
     """
@@ -749,6 +753,7 @@ def classify_attachment_tree(
         "classified": 0,
         "errors": 0,
         "output_csv": str(out),
+        "aborted_early": False,
     }
 
     all_items = list(iter_pdf_attachments(root))
@@ -777,6 +782,10 @@ def classify_attachment_tree(
     )
 
     csv_lock = threading.Lock()
+    # Track consecutive request failures for early-abort detection.
+    # "consecutive" means the last N completed results were all errors.
+    consecutive_errors = 0
+    abort_flag = threading.Event()
 
     with out.open("a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
@@ -819,12 +828,16 @@ def classify_attachment_tree(
                         "error": err,
                     }
 
-                if ai.get("error"):
+                is_request_error = bool(ai.get("error"))
+                if is_request_error:
                     if err:
                         err = err + "; " + str(ai.get("error"))
                     else:
                         err = str(ai.get("error"))
                     stats["errors"] += 1
+                    consecutive_errors += 1
+                else:
+                    consecutive_errors = 0
 
                 try:
                     size_bytes = item.pdf_path.stat().st_size
@@ -854,19 +867,60 @@ def classify_attachment_tree(
                 existing.add(str(item.pdf_path))
                 stats["classified"] += 1
 
-                if progress is not None:
-                    progress.update(1)
-                elif verbose and progress_every and (completed % progress_every == 0):
-                    print(
-                        f"[{completed}/{len(work_items)}] classified={stats['classified']}"
-                        f" skipped_existing={stats['skipped_existing']}"
-                        f" errors={stats['errors']}"
-                        f" last={item.document_id}/{item.filename}"
-                        f" ai={row['ai_label']}",
-                        flush=True,
+                # ── Per-item status line ────────────────────────────────
+                if verbose:
+                    status_icon = "✓" if not is_request_error else "✗"
+                    status_detail = (
+                        f"{row['ai_label']} ({row['ai_confidence']})"
+                        if not is_request_error
+                        else err[:80]
                     )
+                    status_line = (
+                        f"[{completed}/{len(work_items)}] {status_icon} "
+                        f"{item.document_id}/{item.filename}  →  {status_detail}"
+                        f"  [ok={stats['classified'] - stats['errors']} "
+                        f"err={stats['errors']}]"
+                    )
+                    if progress is not None:
+                        progress.set_postfix_str(
+                            f"ok={stats['classified'] - stats['errors']} "
+                            f"err={stats['errors']} "
+                            f"last={'OK' if not is_request_error else 'ERR'}"
+                        )
+                        progress.update(1)
+                        # Also write a plain line so failures are visible in logs.
+                        if is_request_error:
+                            tqdm.write(status_line)
+                    else:
+                        # Always print each result when tqdm is unavailable.
+                        print(status_line, flush=True)
+                elif progress is not None:
+                    progress.update(1)
 
-    if progress is not None:
+                # ── Early-abort check ───────────────────────────────────
+                if (
+                    max_consecutive_errors > 0
+                    and consecutive_errors >= max_consecutive_errors
+                ):
+                    abort_msg = (
+                        f"\n⚠  ABORTING: {consecutive_errors} consecutive request failures "
+                        f"(last error: {err[:120]}).\n"
+                        f"   Check that the AI endpoint is reachable and your API key is valid.\n"
+                        f"   Partial results saved to: {out}\n"
+                        f"   Re-run with --force to retry failed items."
+                    )
+                    if progress is not None:
+                        tqdm.write(abort_msg)
+                        progress.close()
+                    else:
+                        print(abort_msg, flush=True)
+                    stats["aborted_early"] = True
+                    # Cancel pending futures so we don't keep hammering a dead endpoint.
+                    for pending_future in future_to_item:
+                        pending_future.cancel()
+                    break
+
+    if progress is not None and not stats["aborted_early"]:
         progress.close()
 
     return stats

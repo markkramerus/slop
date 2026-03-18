@@ -58,14 +58,97 @@ ARCHETYPE_KEYWORDS: dict[str, list[str]] = {
     ]
 }
 
+# ── Regulations.gov Category → Archetype mapping ──────────────────────────────
+# Maps known regulations.gov Category field prefixes/values to archetypes.
+# Checked before keyword inference; more specific entries should come first.
+CATEGORY_TO_ARCHETYPE: list[tuple[str, str]] = [
+    # Government
+    ("Federal Government", "government"),
+    ("State Government", "government"),
+    ("Other Government", "government"),
+    ("Government - Federal", "government"),
+    ("Government - State", "government"),
+    ("Government - Local", "government"),
+    ("Government - Other", "government"),
+    ("Government", "government"),
+    ("Congressional", "government"),
+    # Advocacy / associations
+    ("Health Care Professional/Association", "advocacy_group"),
+    ("Health Care Provider/Association", "advocacy_group"),
+    ("Health Plan or Association", "advocacy_group"),
+    ("Association", "advocacy_group"),
+    ("Device Association", "advocacy_group"),
+    # Industry
+    ("Health Care Industry", "industry"),
+    ("Private Industry", "industry"),
+    ("Device Industry", "industry"),
+    ("Drug Industry", "industry"),
+    ("Hospital", "industry"),
+    ("Home Health Facility", "industry"),
+    ("Hospice", "industry"),
+    ("Ambulatory Surgical Center", "industry"),
+    ("Long-term Care", "industry"),
+    ("Other Health Care Provider", "industry"),
+    # Academic
+    ("Academic", "academic"),
+    # Professionals (individual practitioners)
+    ("Physician", "professional"),
+    ("Nurse", "professional"),
+    ("Pharmacist", "professional"),
+    ("Other Health Care Professional", "professional"),
+    ("Occupational Therapist", "professional"),
+    ("Physical Therapist", "professional"),
+    ("Physician Assistant", "professional"),
+    ("Radiologist", "professional"),
+    ("Social Worker", "professional"),
+    ("Attorney/Law Firm", "professional"),
+    # Individuals / consumers
+    ("Individual", "individual_consumer"),
+    ("Consumer Group", "individual_consumer"),
+]
+
+
+def classify_archetype_from_category(category: str) -> str | None:
+    """
+    Map a regulations.gov Category field value to an archetype.
+
+    Returns the archetype string if a match is found, or None if the category
+    is blank or unrecognized (caller should fall back to keyword inference).
+    """
+    cat = category.strip()
+    if not cat:
+        return None
+    cat_lower = cat.lower()
+    for prefix, archetype in CATEGORY_TO_ARCHETYPE:
+        if cat_lower.startswith(prefix.lower()):
+            return archetype
+    return None
+
 
 def classify_archetype(org: str, name: str, category: str) -> str:
-    """Heuristically classify a submitter into one of five archetypes."""
+    """
+    Classify a submitter into an archetype.
+
+    Priority:
+    1. If the regulations.gov ``category`` field is populated and recognized,
+       use that directly (authoritative).
+    2. Otherwise fall back to keyword matching on the organization name and
+       category text.
+    3. If still unresolved and a name is present, default to
+       ``individual_consumer``; otherwise ``unknown``.
+    """
+    # 1. Authoritative category lookup
+    archetype = classify_archetype_from_category(category)
+    if archetype is not None:
+        return archetype
+
+    # 2. Keyword inference on org + category text
     combined = f"{org} {category}".lower()
-    for archetype, keywords in ARCHETYPE_KEYWORDS.items():
+    for kw_archetype, keywords in ARCHETYPE_KEYWORDS.items():
         if any(kw in combined for kw in keywords):
-            return archetype
-    # Short comments with no org → individual
+            return kw_archetype
+
+    # 3. Default
     if name:
         return "individual_consumer"
     else:

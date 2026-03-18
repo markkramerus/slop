@@ -18,6 +18,7 @@ Both modes handle progress reporting (tqdm), retry logic, and QC.
 from __future__ import annotations
 
 import asyncio
+import os
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -38,12 +39,15 @@ from .argument_mapper import (
 from config import Config
 from .export import export_to_txt
 from .generator import generate_comment, generate_comment_async, GeneratedComment
+from .org_pool import load_or_build_org_pool
 from .persona import (
     sample_persona, sample_persona_async,
     sample_persona_by_voice_id, sample_persona_by_voice_id_async,
 )
 from .phrase_check import run_phrase_check
+from .phrase_fix import run_phrase_fix
 from .quality_control import QualityController
+from .rewriter import RewriterConfig, judge_rewrite_loop, build_persona_context
 from .world_model import build_world_model, build_or_load_world_model, WorldModel
 from stylometry.stylometry_loader import build_population_model
 
@@ -115,18 +119,24 @@ def _sample_argument_angle_for_voice(
     plan,
     voice_id: str,
     rng: np.random.Generator,
-) -> tuple[str, str]:
+) -> tuple[str, str, list[str], str, list[str]]:
     """
     Sample an argument angle for a given voice using P(A|V).
-    Returns (angle_id, angle_text).
+    Returns (angle_id, angle_text, key_claims, rhetorical_approach, avoid).
     """
     if not plan.argument_angles:
-        return ("", "")
+        return ("", "", [], "", [])
 
     probs = plan.compute_angle_distribution(voice_id)
     idx = int(rng.choice(len(plan.argument_angles), p=probs))
     angle = plan.argument_angles[idx]
-    return (angle.id, angle.angle)
+    return (
+        angle.id,
+        angle.angle,
+        angle.key_claims,
+        angle.rhetorical_approach,
+        angle.avoid,
+    )
 
 
 # ── Campaign-plan-aware pipeline (v2.0) ──────────────────────────────────────
@@ -148,6 +158,7 @@ def run_campaign(
     skip_embedding_check: bool = False,
     verbose: bool = True,
     rebuild_world_model: bool = False,
+    rebuild_org_pool: bool = False,
 ) -> RunResult:
     """
     Run the synthetic comment generation pipeline using a v2.0 campaign plan.
@@ -208,10 +219,35 @@ def run_campaign(
         print(f"      Rule  : {world_model.rule_title}", file=sys.stderr)
         print(f"      Agency: {world_model.agency}", file=sys.stderr)
 
-    # ── Stage 3: Distribute volume and generate ──────────────────────────
+    # ── Stage 2b: Compute voice allocation and load/build org pool ────────
+    # Voice allocation is computed here (before pool build) so we can pass
+    # per-archetype counts to the pool builder for right-sized generation.
     voice_allocation = _distribute_volume(
         volume, plan.normalized_voice_weights(), rng
     )
+
+    # Derive per-archetype counts from the voice allocation
+    from syncom.persona import parse_voice_id as _parse_voice_id_for_pool
+    archetype_counts: dict[str, int] = {}
+    for voice_id, count in voice_allocation.items():
+        archetype, _ = _parse_voice_id_for_pool(voice_id)
+        archetype_counts[archetype] = archetype_counts.get(archetype, 0) + count
+
+    if verbose:
+        print(f"[2b/4] Loading org pool…", file=sys.stderr)
+    org_pool = load_or_build_org_pool(
+        world_model=world_model,
+        population=population,
+        config=config,
+        docket_id=docket_id,
+        volume_hint=volume,
+        archetype_counts=archetype_counts,
+        rebuild=rebuild_org_pool,
+        verbose=verbose,
+    )
+
+    # ── Stage 3: Distribute volume and generate ──────────────────────────
+    # (voice_allocation already computed above)
 
     if verbose:
         print(f"[3/4] Generating {volume} comment(s) across voices:", file=sys.stderr)
@@ -247,17 +283,23 @@ def run_campaign(
     for voice_id, voice_count in sorted(voice_allocation.items()):
         for _ in range(voice_count):
             success = False
-            # Sample argument angle using P(A|V)
-            angle_id, angle_text = _sample_argument_angle_for_voice(plan, voice_id, rng)
+            # Sample argument angle using P(A|V) — returns full angle metadata
+            angle_id, angle_text, key_claims, rhetorical_approach, avoid = (
+                _sample_argument_angle_for_voice(plan, voice_id, rng)
+            )
 
             for attempt in range(max_retries):
                 attempted += 1
                 try:
                     persona = sample_persona_by_voice_id(
                         voice_id, world_model, config, rng, docket_id=docket_id,
+                        org_pool=org_pool,
                     )
                     frame = build_campaign_frame(
                         objective, angle_text, persona, world_model, config, rng,
+                        key_claims=key_claims,
+                        rhetorical_approach=rhetorical_approach,
+                        avoid=avoid,
                     )
                     comment = generate_comment(
                         persona, frame, world_model, 0, objective, config, rng,
@@ -292,6 +334,43 @@ def run_campaign(
     result.total_skipped = skipped
     result.comments = all_comments
 
+    # ── Judge-rewrite: polish each accepted comment to reduce AI tells ────
+    _rewriter_config = RewriterConfig()
+    if _rewriter_config.is_available():
+        _to_rewrite = [c for c in all_comments if c.qc_passed]
+        if verbose:
+            print(
+                f"[judge-rewrite] Running judge-rewrite loop on "
+                f"{len(_to_rewrite)} accepted comment(s)…",
+                file=sys.stderr,
+            )
+        for _i, _comment in enumerate(_to_rewrite, 1):
+            _persona_ctx = build_persona_context(_comment.persona)
+            if verbose:
+                _cid = _comment.document_id or f"comment-{_i}"
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] {_cid} — judging…",
+                    file=sys.stderr,
+                )
+            _rr = judge_rewrite_loop(
+                _comment.comment_text, _persona_ctx, _rewriter_config, verbose=verbose
+            )
+            _comment.comment_text = _rr.final_text
+            if verbose:
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] → final score={_rr.final_score}/100  "
+                    f"rewrites={_rr.rewrites_performed}  "
+                    f"({'pass' if _rr.passed else 'fail'})",
+                    file=sys.stderr,
+                )
+    else:
+        if verbose:
+            print(
+                "[judge-rewrite] Skipping — JUDGE_API_KEY / REWRITE_COMMENT_API_KEY "
+                "not configured.",
+                file=sys.stderr,
+            )
+
     # ── Stage 4: Export ───────────────────────────────────────────────────
     if verbose:
         print(f"[4/4] Exporting → {output_path}", file=sys.stderr)
@@ -315,6 +394,17 @@ def run_campaign(
         verbose=verbose,
     )
 
+    # ── Phrase fix: classify and rewrite suspicious repeated phrases ──────
+    _world_model_path = os.path.join(docket_id, "world_model.json")
+    run_phrase_fix(
+        psv_path=output_path,
+        report_path=phrase_report_path,
+        rule_text=rule_text,
+        output_path=output_path,
+        world_model_path=_world_model_path if os.path.exists(_world_model_path) else None,
+        verbose=verbose,
+    )
+
     if verbose:
         print(result.summary(), file=sys.stderr)
 
@@ -334,10 +424,17 @@ async def _generate_one_campaign_comment_async(
     max_retries: int,
     verbose: bool,
     docket_id: str,
+    key_claims: list[str] | None = None,
+    rhetorical_approach: str = "",
+    avoid: list[str] | None = None,
+    org_name: str = "",
 ) -> tuple[GeneratedComment | None, int, int]:
     """
     Async helper: generate one campaign-plan-aware comment with retries.
     Returns (comment, attempts, qc_failures).
+
+    Note: org_name is pre-assigned before this coroutine is launched to avoid
+    race conditions on the shared OrgPool when running concurrently.
     """
     attempts = 0
     qc_failures = 0
@@ -347,9 +444,16 @@ async def _generate_one_campaign_comment_async(
         try:
             persona = await sample_persona_by_voice_id_async(
                 voice_id, world_model, config, rng, docket_id=docket_id,
+                org_pool=None,  # org_name already pre-assigned below
             )
+            # Override the org_name with the pre-assigned value
+            if org_name:
+                persona.org_name = org_name
             frame = await build_campaign_frame_async(
                 objective, argument_angle, persona, world_model, config, rng,
+                key_claims=key_claims,
+                rhetorical_approach=rhetorical_approach,
+                avoid=avoid,
             )
             comment = await generate_comment_async(
                 persona, frame, world_model, 0, objective, config, rng,
@@ -388,6 +492,7 @@ def run_campaign_async(
     verbose: bool = True,
     max_concurrent: int = 10,
     rebuild_world_model: bool = False,
+    rebuild_org_pool: bool = False,
 ) -> RunResult:
     """
     Run the v2.0 campaign-plan-aware pipeline with async parallelization.
@@ -435,10 +540,35 @@ def run_campaign_async(
         print(f"      Rule  : {world_model.rule_title}", file=sys.stderr)
         print(f"      Agency: {world_model.agency}", file=sys.stderr)
 
-    # ── Stage 3: Distribute and generate (async) ─────────────────────────
+    # ── Stage 2b: Compute voice allocation and load/build org pool ────────
+    # Voice allocation is computed here (before pool build) so we can pass
+    # per-archetype counts to the pool builder for right-sized generation.
     voice_allocation = _distribute_volume(
         volume, plan.normalized_voice_weights(), rng
     )
+
+    # Derive per-archetype counts from the voice allocation
+    from syncom.persona import parse_voice_id as _parse_voice_id_for_pool_async
+    archetype_counts_async: dict[str, int] = {}
+    for voice_id, count in voice_allocation.items():
+        archetype, _ = _parse_voice_id_for_pool_async(voice_id)
+        archetype_counts_async[archetype] = archetype_counts_async.get(archetype, 0) + count
+
+    if verbose:
+        print(f"[2b/4] Loading org pool…", file=sys.stderr)
+    org_pool = load_or_build_org_pool(
+        world_model=world_model,
+        population=population,
+        config=config,
+        docket_id=docket_id,
+        volume_hint=volume,
+        archetype_counts=archetype_counts_async,
+        rebuild=rebuild_org_pool,
+        verbose=verbose,
+    )
+
+    # ── Stage 3: Distribute and generate (async) ─────────────────────────
+    # (voice_allocation already computed above)
 
     if verbose:
         print(f"[3/4] Generating {volume} comment(s) with {max_concurrent}-way parallelism:", file=sys.stderr)
@@ -457,26 +587,40 @@ def run_campaign_async(
         skip_embedding_check=skip_embedding_check,
     )
 
-    # Build task list: (voice_id, argument_angle) for each comment
-    task_specs: list[tuple[str, str]] = []
+    # Build task list: (voice_id, angle_text, key_claims, rhetorical_approach, avoid, org_name)
+    # Org names are pre-assigned here (before async tasks launch) to avoid race conditions
+    # on the shared OrgPool when multiple coroutines run concurrently.
+    from syncom.persona import parse_voice_id as _parse_voice_id
+    task_specs: list[tuple[str, str, list[str], str, list[str], str]] = []
     for voice_id, voice_count in sorted(voice_allocation.items()):
         for _ in range(voice_count):
-            _, angle_text = _sample_argument_angle_for_voice(plan, voice_id, rng)
-            task_specs.append((voice_id, angle_text))
+            _, angle_text, key_claims, rhetorical_approach, avoid = (
+                _sample_argument_angle_for_voice(plan, voice_id, rng)
+            )
+            # Pre-assign org name synchronously to avoid concurrent pool access
+            archetype, _ = _parse_voice_id(voice_id)
+            pre_org_name = org_pool.sample(archetype, rng=rng) if archetype != "individual_consumer" else ""
+            task_specs.append((voice_id, angle_text, key_claims, rhetorical_approach, avoid, pre_org_name))
 
     # Run async
     async def _run_all():
         semaphore = asyncio.Semaphore(max_concurrent)
 
-        async def gen_with_semaphore(vid: str, angle: str):
+        async def gen_with_semaphore(
+            vid: str, angle: str, kc: list[str], ra: str, av: list[str], org: str
+        ):
             async with semaphore:
                 return await _generate_one_campaign_comment_async(
                     world_model, vid, objective, angle,
                     config, qc, rng,
                     max_retries, verbose, docket_id,
+                    key_claims=kc,
+                    rhetorical_approach=ra,
+                    avoid=av,
+                    org_name=org,
                 )
 
-        tasks = [gen_with_semaphore(v, a) for v, a in task_specs]
+        tasks = [gen_with_semaphore(v, a, kc, ra, av, org) for v, a, kc, ra, av, org in task_specs]
 
         all_comments = []
         total_attempted = 0
@@ -510,6 +654,43 @@ def run_campaign_async(
     result.total_skipped = volume - accepted
     result.comments = all_comments
 
+    # ── Judge-rewrite: polish each accepted comment to reduce AI tells ────
+    _rewriter_config = RewriterConfig()
+    if _rewriter_config.is_available():
+        _to_rewrite = [c for c in all_comments if c.qc_passed]
+        if verbose:
+            print(
+                f"[judge-rewrite] Running judge-rewrite loop on "
+                f"{len(_to_rewrite)} accepted comment(s)…",
+                file=sys.stderr,
+            )
+        for _i, _comment in enumerate(_to_rewrite, 1):
+            _persona_ctx = build_persona_context(_comment.persona)
+            if verbose:
+                _cid = _comment.document_id or f"comment-{_i}"
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] {_cid} — judging…",
+                    file=sys.stderr,
+                )
+            _rr = judge_rewrite_loop(
+                _comment.comment_text, _persona_ctx, _rewriter_config, verbose=verbose
+            )
+            _comment.comment_text = _rr.final_text
+            if verbose:
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] → final score={_rr.final_score}/100  "
+                    f"rewrites={_rr.rewrites_performed}  "
+                    f"({'pass' if _rr.passed else 'fail'})",
+                    file=sys.stderr,
+                )
+    else:
+        if verbose:
+            print(
+                "[judge-rewrite] Skipping — JUDGE_API_KEY / REWRITE_COMMENT_API_KEY "
+                "not configured.",
+                file=sys.stderr,
+            )
+
     # ── Stage 4: Export ───────────────────────────────────────────────────
     if verbose:
         print(f"[4/4] Exporting → {output_path}", file=sys.stderr)
@@ -530,6 +711,17 @@ def run_campaign_async(
         comments=all_comments,
         output_path=phrase_report_path,
         only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
+
+    # ── Phrase fix: classify and rewrite suspicious repeated phrases ──────
+    _world_model_path = os.path.join(docket_id, "world_model.json")
+    run_phrase_fix(
+        psv_path=output_path,
+        report_path=phrase_report_path,
+        rule_text=rule_text,
+        output_path=output_path,
+        world_model_path=_world_model_path if os.path.exists(_world_model_path) else None,
         verbose=verbose,
     )
 
@@ -640,6 +832,43 @@ def run(
     result.total_skipped = skipped
     result.comments = all_comments
 
+    # ── Judge-rewrite: polish each accepted comment to reduce AI tells ────
+    _rewriter_config = RewriterConfig()
+    if _rewriter_config.is_available():
+        _to_rewrite = [c for c in all_comments if c.qc_passed]
+        if verbose:
+            print(
+                f"[judge-rewrite] Running judge-rewrite loop on "
+                f"{len(_to_rewrite)} accepted comment(s)…",
+                file=sys.stderr,
+            )
+        for _i, _comment in enumerate(_to_rewrite, 1):
+            _persona_ctx = build_persona_context(_comment.persona)
+            if verbose:
+                _cid = _comment.document_id or f"comment-{_i}"
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] {_cid} — judging…",
+                    file=sys.stderr,
+                )
+            _rr = judge_rewrite_loop(
+                _comment.comment_text, _persona_ctx, _rewriter_config, verbose=verbose
+            )
+            _comment.comment_text = _rr.final_text
+            if verbose:
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] → final score={_rr.final_score}/100  "
+                    f"rewrites={_rr.rewrites_performed}  "
+                    f"({'pass' if _rr.passed else 'fail'})",
+                    file=sys.stderr,
+                )
+    else:
+        if verbose:
+            print(
+                "[judge-rewrite] Skipping — JUDGE_API_KEY / REWRITE_COMMENT_API_KEY "
+                "not configured.",
+                file=sys.stderr,
+            )
+
     if verbose:
         print(f"[4/4] Exporting CSV → {output_path}", file=sys.stderr)
 
@@ -659,6 +888,17 @@ def run(
         comments=all_comments,
         output_path=phrase_report_path,
         only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
+
+    # ── Phrase fix: classify and rewrite suspicious repeated phrases ──────
+    _world_model_path = os.path.join(docket_id, "world_model.json")
+    run_phrase_fix(
+        psv_path=output_path,
+        report_path=phrase_report_path,
+        rule_text=rule_text,
+        output_path=output_path,
+        world_model_path=_world_model_path if os.path.exists(_world_model_path) else None,
         verbose=verbose,
     )
 
@@ -807,6 +1047,43 @@ def run_async(
     result.total_skipped = volume - accepted
     result.comments = all_comments
 
+    # ── Judge-rewrite: polish each accepted comment to reduce AI tells ────
+    _rewriter_config = RewriterConfig()
+    if _rewriter_config.is_available():
+        _to_rewrite = [c for c in all_comments if c.qc_passed]
+        if verbose:
+            print(
+                f"[judge-rewrite] Running judge-rewrite loop on "
+                f"{len(_to_rewrite)} accepted comment(s)…",
+                file=sys.stderr,
+            )
+        for _i, _comment in enumerate(_to_rewrite, 1):
+            _persona_ctx = build_persona_context(_comment.persona)
+            if verbose:
+                _cid = _comment.document_id or f"comment-{_i}"
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] {_cid} — judging…",
+                    file=sys.stderr,
+                )
+            _rr = judge_rewrite_loop(
+                _comment.comment_text, _persona_ctx, _rewriter_config, verbose=verbose
+            )
+            _comment.comment_text = _rr.final_text
+            if verbose:
+                print(
+                    f"      [{_i}/{len(_to_rewrite)}] → final score={_rr.final_score}/100  "
+                    f"rewrites={_rr.rewrites_performed}  "
+                    f"({'pass' if _rr.passed else 'fail'})",
+                    file=sys.stderr,
+                )
+    else:
+        if verbose:
+            print(
+                "[judge-rewrite] Skipping — JUDGE_API_KEY / REWRITE_COMMENT_API_KEY "
+                "not configured.",
+                file=sys.stderr,
+            )
+
     if verbose:
         print(f"[4/4] Exporting CSV → {output_path}", file=sys.stderr)
 
@@ -826,6 +1103,17 @@ def run_async(
         comments=all_comments,
         output_path=phrase_report_path,
         only_passed_qc=not include_failed_qc,
+        verbose=verbose,
+    )
+
+    # ── Phrase fix: classify and rewrite suspicious repeated phrases ──────
+    _world_model_path = os.path.join(docket_id, "world_model.json")
+    run_phrase_fix(
+        psv_path=output_path,
+        report_path=phrase_report_path,
+        rule_text=rule_text,
+        output_path=output_path,
+        world_model_path=_world_model_path if os.path.exists(_world_model_path) else None,
         verbose=verbose,
     )
 

@@ -1,0 +1,677 @@
+ATTACHMENT B
+Docket ID: HHS-ONC-2026-0001
+FR Doc.: 2025-23641
+EXECUTIVE SUMMARY
+HHS’s RFI recognizes that AI adoption in clinical care is constrained not only by technology but
+by the rules, incentives, and operational infrastructure that govern care delivery. The RFI explicitly
+frames HHS’s levers as regulation, reimbursement, and research & development—and seeks
+concrete, experience-based input from builders, buyers, evaluators, users, and recipients of AI-
+enabled care. [FR-1]
+This comment advances a system-design position: the central challenge for clinical AI at scale is
+governance and incentive alignment, not model capability alone—particularly if AI is to reduce
+administrative redundancy, consolidate longitudinal health information (including biologic, social,
+and structural determinants), and improve continuity of care at scale. HHS’s AI Strategy similarly
+emphasizes governance and risk management, public trust, transparency, accountability, and
+respect for Americans’ rights and protections associated with health information. With aligned
+governance, AI can reduce duplicative documentation and testing while improving longitudinal
+continuity; without it, AI risks amplifying fragmentation and administrative burden. [HHS-AI-1]
+To clarify roles and failure modes, this comment uses three operational definitions and
+recommends that HHS prioritize (1) a reimbursable pathway for evaluation and implementation
+work, (2) “AI-ready interoperability and security,” (3) governance expectations for non-device AI,
+(4) anti-extraction safeguards, and (5) an evidence agenda emphasizing implementation science
+and post-deployment system behavior. [FR-1]
+PURPOSE AND FRAMING
+HHS’s RFI seeks to accelerate adoption and use of AI “as part of clinical care,” while fostering
+public trust, reducing uncertainty that impedes innovation, and aligning incentives so AI reduces
+burden and improves outcomes. The RFI also notes that HHS divisions—including FDA, NIH,
+CMS, and ASTP/ONC—have recently sought public feedback on AI-related issues, and this RFI is
+intended to bring those threads into a coordinated posture. [FR-1]
+This response is intentionally neutral and non-promotional. It does not propose a specific
+commercial product. Instead, it describes conditions under which AI can operate responsibly at
+scale—particularly for longitudinal and agentic systems—without compromising privacy, trust,
+equity, or clinician judgment. [FR-1]
+OPERATIONAL DEFINITIONS
+Health Principal: the individual whose health, well-being, and health data are implicated across the
+lifespan, regardless of episodic contact with the health system. This term distinguishes longitudinal
+agency from the episodic framing often implied by “patient” and aligns with federal policy
+emphasizing enforceable access rights and patient-directed data exchange (e.g., HIPAA access
+rights; CMS patient access APIs). [HIPAA-ACCESS-1] [CMS-API-1]
+Unusable Friction: governance, consent, or oversight requirements that are individually well-
+intentioned but—when applied transaction-by-transaction or without automation—render
+responsible systems infeasible at scale, thereby restricting access and exacerbating inequity,
+particularly in under-resourced settings. This concept underscores the need for lifecycle evaluation
+and continuous monitoring rather than episodic or manual oversight models. [NIST-1]
+
+In the loop / on the loop: the Health Principal is “in the loop” because their intent, values, and
+permissions should guide system behavior longitudinally; clinicians and other professionals are
+“on the loop,” engaged through risk-tiered oversight, escalation pathways, and accountability
+mechanisms rather than embedded in every routine interaction. This distinction supports scalable
+safety controls consistent with lifecycle governance approaches reflected in NIST and
+FDA/IMDRF lifecycle framing. [NIST-1] [FDA-GMLP-1]
+PRIORITIES ACROSS THE RFI QUESTIONS
+Across the RFI questions, this comment recommends that HHS prioritize:
+1. A reimbursable pathway for AI evaluation and implementation work (including silent-
+mode testing and structured post-deployment monitoring);
+2. “AI-ready interoperability and security” capabilities (provenance, audit logs, version
+control, secure access controls, adversarial resilience, and computable permissions);
+3. Clear governance and cybersecurity expectations for non-medical-device AI used in
+clinical operations;
+4. Anti-extraction and anti-capture safeguards to prevent vendor lock-in, data hoarding, and
+assurance regimes that entrench incumbency;
+5. An evidence agenda emphasizing implementation science, human factors, equity
+monitoring, security performance, and post-deployment system behavior. [FR-1]
+This comment includes a one-page Pilot Invitation outlining an IRB-governed, phased, real-world
+evaluation of a longitudinal, multi-agent AI support model (non-branded), with explicit
+commitments to patient-directed permissions, security safeguards, and tribal data stewardship.
+[45CFR46-1]
+CONTEXT: WHY GOVERNANCE MATTERS NOW
+The diagnostic and care delivery system’s baseline error burden is substantial. A National
+Academies report states that a conservative estimate found that 5% of U.S. adults who seek
+outpatient care each year experience a diagnostic error, and diagnostic errors contribute to
+significant harm. Meanwhile, major national analyses have identified clinician burnout and
+administrative burden as threats to quality and professional well-being, reinforcing the need for
+systems that reduce unusable friction rather than adding to it. [NASEM-1] [NAM-1]
+AI will not automatically resolve these systemic problems. Evidence shows that AI systems can
+match or exceed clinician performance in certain constrained tasks, but real-world outcomes
+depend on workflow integration, escalation pathways, and governance design. For example, a
+randomized clinical trial found that physicians with access to an LLM did not significantly
+improve diagnostic reasoning compared with conventional resources, even though the LLM alone
+scored higher. A 2025 systematic review and meta-analysis comparing generative AI with
+physicians in diagnostic tasks found no significant overall difference in aggregate performance and
+worse performance compared with expert physicians, supporting a cautious, risk-tiered
+implementation approach. [GOH-1] [TAKITA-1]
+The relevant policy question is therefore not whether AI can answer a diagnostic prompt, but
+whether it can be governed to reduce preventable health loss across time—while preserving safety,
+accountability, and equity. Without aligned governance and incentive structures, AI risks
+automating fragmentation and administrative burden; with them, it may help reduce delay,
+
+strengthen continuity, and mitigate the cumulative harms embedded in current workflows. [NIST-
+1] [WHO-LMM-1]
+OVERARCHING RECOMMENDATIONS ALIGNED TO HHS’S STATED LEVERS
+HHS should use the RFI’s three levers to create a coherent and scalable adoption environment:
+Regulation: codify scalable governance and cybersecurity expectations for non-device clinical AI;
+define risk-tiered oversight models; strengthen interoperability requirements for provenance,
+auditability, and secure access controls; and clarify privacy guidance for AI-enabled clinical and
+operational use cases. [ONC-DSI-1] [ONC-USCDI-1] [IB-1] [HIPAA-TPO-1]
+Reimbursement: establish payment pathways that support real-world evaluation, phased
+implementation, and structured post-deployment monitoring—similar to how CMS recognizes
+non-face-to-face care management and clinical complexity within existing payment policy. [CMS-
+CCM-1] [PFS-STAT-1] [PFS-REG-1]
+Research & development: fund implementation science and shared evaluation infrastructure;
+support multi-site learning networks and lifecycle monitoring toolkits; and prioritize equity, human
+factors, and security performance. AHRQ’s CDSiC provides a model for incorporating clinicians,
+patients, and advocates into evaluation design and resource development. [AHRQ-CDSIC-1]
+QUESTION 1
+What are the biggest barriers to private sector innovation in AI for health care and its adoption and
+use in clinical care?
+The largest barriers to innovation and adoption are structural, economic, and governance-related:
+Misaligned incentives under episodic payment models. Many clinically valuable AI interventions
+are deflationary: they reduce avoidable utilization, administrative burden, and capacity strain.
+Entities bearing longitudinal risk are more naturally incentivized to promote high-value adoption,
+whereas fee-for-service payment structures may delay coverage and create unintended spending
+distortions. [FR-1]
+Fragmented and uneven interoperability implementation. Longitudinal AI depends on consistent,
+standards-based access to data elements (USCDI) and interoperable APIs (FHIR) that function
+reliably across settings. Although federal policy has established these foundations through ONC
+certification criteria and CMS interoperability rules, implementation remains uneven and costly,
+increasing integration friction and favoring incumbent vendors. [ONC-USCDI-1] [ONC-API-1]
+Workflow integration, human factors, and embedded bias risk. Even high-performing AI systems
+can fail if they increase cognitive workload, exacerbate alert fatigue, or introduce new failure
+modes such as automation bias. Adoption must therefore include human factors evaluation, equity
+monitoring, and lifecycle governance—not accuracy metrics alone. [NIST-1]
+Unclear accountability for non-medical-device AI. Many AI systems influencing care (e.g.,
+documentation support, triage routing, care navigation) fall outside traditional medical device
+pathways. ONC’s Predictive Decision Support Intervention (Predictive DSI) requirements
+introduce transparency and intervention risk management expectations, but operational AI uses
+remain inconsistently governed, increasing procurement uncertainty and slowing adoption. [ONC-
+DSI-1]
+Absence of standardized lifecycle evaluation for non-device AI. Regulatory frameworks
+increasingly emphasize lifecycle management, including post-deployment monitoring and change
+
+management. However, standardized expectations for drift detection, performance monitoring,
+cybersecurity resilience, and incident response remain uneven for non-device AI, requiring
+individual health systems to build bespoke oversight infrastructure and raising barriers to diffusion.
+[NIST-1] [FDA-GMLP-1]
+Safety, security, and trust considerations in the use of general-purpose AI. As access gaps,
+administrative burden, and unusable friction persist within the delivery system, individuals
+increasingly turn to general-purpose AI tools to seek information and guidance. This behavior
+reflects unmet need rather than misconduct. The policy concern is not the exercise of individual
+autonomy, but the absence of governance frameworks that ensure transparency, validation
+standards, escalation pathways, documentation integrity, and security safeguards when AI
+influences health-related decisions. [ECRI-1] [WHO-LMM-2]
+These barriers intersect with existing statutory and regulatory authorities governing payment
+policy, interoperability and certification, privacy protections, and information blocking
+enforcement (see, e.g., 42 U.S.C. 1395w-4; 42 CFR parts 410, 414, 425, and 438; 45 CFR parts
+160, 164, 170, and 171). [PFS-STAT-1] [PFS-REG-1] [ONC-USCDI-1] [IB-1] [HIPAA-160-1]
+[MSSP-1] [MMC-1]
+QUESTION 2
+What regulatory, payment policy, or programmatic design changes should HHS prioritize to
+incentivize the effective use of AI in clinical care and why? Provide specific changes and
+applicable CFR citations.
+HHS should prioritize reforms that align incentives with outcomes, longitudinal continuity, access,
+equity, privacy, accountability, and individual autonomy and responsibility—rather than volume or
+administrative throughput. The following priority actions would create a coherent adoption
+environment that supports trustworthy collaboration among individuals, clinicians, and AI-enabled
+systems. [FR-1]
+Applicable authorities (valuation and physician fee schedule anchors): 42 U.S.C. 1395w-4; 42 CFR
+part 414. [PFS-STAT-1] [PFS-REG-1]
+1. Establish a reimbursable pathway for AI evaluation, implementation, and lifecycle
+monitoring.
+Adoption is constrained not by model availability, but by the absence of reimbursement for
+responsible deployment activities: silent-mode testing, workflow redesign, staff training,
+monitoring infrastructure, equity assessment, cybersecurity safeguards, and incident
+response processes. HHS should create a time-limited, reimbursable implementation
+pathway modeled on existing non-face-to-face care management and longitudinal
+complexity payment structures, while explicitly recognizing safety and monitoring work as
+clinical infrastructure.
+Applicable authorities: 42 CFR part 410; 42 CFR part 414. [PFS-410-1] [PFS-REG-1]
+[CMS-CCM-1]
+2. Modernize valuation methodologies and strengthen transparency in the representation of
+longitudinal value.
+Current valuation methodologies are structurally organized around discrete services and
+procedures. Advisory processes that inform RVU development have historically focused on
+time, intensity, and procedural work, which can limit representation of longitudinal
+prevention, care coordination, stabilization, and infrastructure that preserves clinical
+
+capacity. As a result, activities that reduce avoidable deterioration or downstream
+utilization are under-recognized in payment design. Because CMS retains ultimate statutory
+authority over valuation and payment policy, HHS should strengthen transparency and
+public accountability in how longitudinal value is represented. Governance, monitoring,
+and AI-enabled risk detection infrastructure that supports prevention and continuity should
+be recognized as core components of clinical care delivery—not treated as administrative
+overhead. [PFS-STAT-1] [PFS-RVU-1]
+3. Treat validated AI systems as allowable clinical infrastructure within risk-bearing models.
+Risk-bearing entities are structurally positioned to capture deflationary value and capacity
+preservation. HHS should clarify that validated AI-enabled monitoring and coordination
+systems qualify as allowable clinical infrastructure investments within accountable care and
+managed care models.
+Applicable authorities: 42 CFR part 425; 42 CFR 438.242. [MSSP-1] [MMC-1]
+4. Strengthen “AI-ready interoperability,” including provenance, traceability, auditability, and
+secure version control.
+Accountable AI requires more than data exchange; it requires verifiable provenance,
+traceability of outputs, audit logs, version control, and secure access controls. ONC’s
+Predictive DSI criterion establishes source attribute transparency and intervention risk
+management as enforceable foundations. HHS should expand operational audit and
+lifecycle expectations for AI systems influencing care.
+Applicable authorities: 45 CFR 170.213; 45 CFR 170.215; 45 CFR 170.315(b)(11). [ONC-
+USCDI-1] [ONC-API-1] [ONC-DSI-1]
+5. Support computable, revocable permissions aligned with patient-directed exchange.
+CMS interoperability policy emphasizes patient access and patient-directed data exchange
+via APIs. HHS should promote computable, machine-readable, and revocable permission
+frameworks that allow individuals to authorize longitudinal AI-enabled systems without
+transaction-by-transaction consent processes that create unusable friction.
+Applicable authorities: 45 CFR 164.524; 45 CFR 164.506; 42 CFR 422.119. [HIPAA-
+ACCESS-1] [HIPAA-TPO-1] [CMS-API-1]
+6. Clarify HIPAA guidance for AI-enabled clinical operations while preserving purpose
+fidelity.
+HHS should issue updated guidance clarifying permissible uses of protected health
+information (PHI) for AI-enabled care delivery, quality improvement, and safety
+monitoring within treatment, payment, and operations boundaries. Clear delineation of
+secondary use limitations would reduce uncertainty while preserving privacy protections.
+Applicable authorities: 45 CFR part 160; 45 CFR 164.506; 45 CFR 164.524. [HIPAA-160-
+1] [HIPAA-TPO-1] [HIPAA-ACCESS-1]
+7. Establish baseline governance expectations for non-medical-device AI used in clinical care.
+Many AI systems influencing care fall outside medical device pathways. HHS should
+articulate baseline expectations for non-device AI, including system-level oversight rather
+than per-output review; defined monitoring and escalation thresholds; auditability; version
+control; cybersecurity safeguards; and clear allocation of accountability. [NIST-1] [FDA-
+GMLP-1]
+8. Adopt explicit anti-extraction and anti-capture safeguards.
+Interoperability policy may be undermined if actors preserve control through lock-in,
+selective access, or friction-based barriers. HHS should reinforce information blocking
+
+prohibitions and certification requirements to discourage practices that interfere with
+access, exchange, or use of electronic health information except as permitted under defined
+exceptions.
+Applicable authorities: 45 CFR part 171; 45 CFR part 170. [IB-1] [ONC-USCDI-1]
+9. Address liability and responsibility tensions in human–AI decision-making.
+Uncertainty regarding responsibility in AI-influenced care may suppress adoption or
+incentivize defensive documentation rather than safety improvement. HHS should convene
+stakeholders to develop predictable, patient-centered harm resolution pathways, including
+standardized reporting frameworks, shared learning mechanisms, and exploration of
+administrative compensation models—while preserving due process and avoiding
+concealment incentives.
+As AI systems operate at varying levels of autonomy, responsibility should align with degree of
+control and clinical involvement. When individuals independently use AI tools outside formal
+clinical workflows, traditional medical liability frameworks operate differently than when
+clinicians are directly engaged in risk-tiered oversight. HHS should support development of clearer
+responsibility allocation standards based on system design, escalation pathways, and documented
+clinician involvement—so that accountability follows governance structure rather than defaulting
+to defensive documentation practices.
+Applicable authorities (demonstration/program mechanisms and privacy baseline): 42 U.S.C.
+1315a; 42 CFR part 425; 45 CFR parts 160 and 164. [CMMI-1] [MSSP-1] [HIPAA-160-1]
+QUESTION 3
+For non-medical devices, what novel legal and implementation issues exist and what role should
+HHS play?
+Non-medical-device AI used in clinical operations raises governance and implementation issues
+distinct from traditional medical device regulation. These systems influence prioritization,
+documentation, routing, and decision support without fitting neatly within existing device
+oversight frameworks. Key issues include:
+Accountability diffusion. When AI influences prioritization, documentation, routing, triage, or
+recommendations, responsibility may be distributed across developers, deployers, clinicians, and
+institutions. ONC’s Predictive DSI criterion establishes transparency and intervention risk
+management expectations within certified health IT. HHS should extend this logic through
+guidance clarifying role delineation, documentation standards, monitoring obligations, and
+escalation expectations for non-device AI deployed in clinical workflows. [ONC-DSI-1]
+Contracting and indemnification friction. Health systems and vendors frequently face uncertainty
+regarding audit rights, update control, data access, responsibility allocation, and indemnification.
+These ambiguities increase transaction costs and slow responsible deployment. HHS can reduce
+friction by publishing model contract principles and baseline expectations for logging, version
+control, auditability, incident reporting, and cybersecurity safeguards. [NIST-1]
+Oversight models that do not scale. Requiring per-output human review for all AI-influenced
+decisions creates unusable friction and may restrict access without proportionate safety benefit.
+HHS should explicitly endorse risk-tiered monitoring frameworks that define escalation thresholds,
+retrospective audit mechanisms, and system-level oversight rather than transaction-by-transaction
+review. [NIST-1]
+Versioning and change management. Non-device AI systems evolve through software updates,
+retraining, parameter shifts, and configuration changes. Lifecycle governance implies clear
+
+expectations for change control documentation, performance monitoring, drift detection, impact
+assessment, and security validation across the total product lifecycle. HHS should articulate
+baseline expectations for version transparency and post-deployment monitoring. [NIST-1] [FDA-
+GMLP-1]
+Privacy, trust, and patient rights. HIPAA establishes enforceable rights of access and defined
+permissions for treatment, payment, and operations. However, AI-enabled clinical operations—
+particularly longitudinal and agentic systems—introduce new complexity regarding durable
+control, purpose fidelity, secondary use boundaries, and auditability of protected health
+information across time and contexts. HHS should clarify how existing privacy authorities apply to
+AI-mediated workflows while reinforcing the principle that individuals retain ongoing, enforceable
+rights to access, direct, and revoke use of their health information across longitudinal systems.
+Governance frameworks should ensure that permissions are computable, revocable, and traceable;
+that AI-related data flows are auditable; and that interoperable longitudinal records reduce
+redundant data capture while improving data integrity.
+Applicable authorities: 45 CFR parts 160 and 164; 45 CFR part 170; 45 CFR part 171. [HIPAA-
+160-1] [HIPAA-TPO-1] [ONC-USCDI-1] [IB-1]
+QUESTION 4
+For non-medical devices, what evaluation methods and metrics are most promising pre- and post-
+deployment? Should HHS support these processes?
+Evaluation for non-medical-device AI should move beyond static pre-deployment checks toward
+risk-tiered, lifecycle evaluation that measures real-world outcomes, workflow effects, equity
+impact, and system behavior over time. [NIST-1]
+Pre-deployment evaluation (risk-tiered):
+1. Context-specific validation in intended clinical environments, including prospective testing
+where feasible, rather than reliance solely on retrospective datasets.
+2. Silent-mode (“shadow”) testing to assess reliability, calibration, bias, and workflow fit
+without influencing live clinical decisions.
+3. Human factors evaluation, including cognitive load, automation bias, interpretability, alert
+fatigue, and usability.
+4. Equity-stratified performance analysis across demographic, socioeconomic, geographic,
+and clinical subgroups.
+Post-deployment evaluation (continuous, lifecycle-based): 5. Automated monitoring for
+performance drift, safety signals, equity drift, and unintended workflow consequences. 6.
+Structured audit logs that enable retrospective analysis, reproducibility, and harm review. 7.
+Version transparency with post-update monitoring and documented change management. 8.
+Defined escalation thresholds that engage clinicians “on the loop” when risk profiles change or
+uncertainty exceeds predefined bounds. [NIST-1]
+Evaluation should include metrics that extend beyond model accuracy to encompass impact on
+utilization, time to intervention, preserved clinical capacity, documentation burden, patient
+experience, and access. HHS should support these processes through grants, cooperative
+agreements, shared monitoring infrastructure, and multi-site learning networks that generate
+implementation science and reproducible evaluation toolkits. AHRQ’s CDSiC provides a model
+for incorporating clinicians, patients, and advocates into evaluation design and resource
+development. [AHRQ-CDSIC-1]
+
+QUESTION 5
+How can HHS best support private sector accreditation, certification, industry-driven testing, and
+credentialing?
+HHS should support private sector accreditation and credentialing models that enable trust at scale
+while avoiding unnecessary rigidity, market concentration, or barriers to innovation.
+Strengthen scalable accreditation without creating capture points. Private sector accreditation
+should align with baseline lifecycle governance expectations—continuous monitoring, auditability,
+version transparency, equity reporting, and cybersecurity safeguards—rather than rely solely on
+static, one-time certification that may become outdated as systems evolve. HHS can articulate
+minimum governance expectations while allowing industry bodies flexibility in implementation.
+[NIST-1]
+Prevent incumbent capture and exclusion. Assurance frameworks should promote transparency and
+comparability of claims and avoid proprietary or cost-prohibitive requirements that entrench
+market power or exclude smaller or innovative entrants. HHS can support open standards and
+comparability benchmarks to reduce information asymmetry without prescribing specific vendors
+or technical architectures. [IB-1]
+Align with existing ONC governance structures. ONC’s Predictive DSI transparency and
+intervention risk management requirements provide a structured baseline for developer-facing
+disclosure and risk analysis. HHS should encourage accreditation bodies to incorporate these
+principles to reduce duplication and promote coherence across regulatory and private assurance
+ecosystems. [ONC-DSI-1]
+Strengthen workforce competency rather than expand licensure. Credentialing should focus on
+defined competency tiers rather than creation of new licensure categories. Baseline clinician
+education should include understanding model limitations, automation bias, calibration and
+uncertainty, escalation thresholds, documentation implications, and privacy and security
+fundamentals. Advanced competencies should prepare designated clinical AI stewards or oversight
+leads in lifecycle monitoring, performance and equity drift detection, incident review, human
+factors integration, version change management, and governance design. [NIST-1]
+HHS should also support development of patient-facing AI literacy resources aligned with clinical
+governance frameworks. As individuals increasingly use AI tools to seek health information, clear
+guidance on appropriate use, limitations, escalation triggers, privacy considerations, and
+integration with clinical workflows will be essential. [ECRI-1]
+HHS should avoid creating new licensure barriers that fragment practice across states and should
+study how state-level variability in scope of practice, licensure, and practice rules affects continuity
+and access.
+Applicable authorities: 45 CFR part 170; 45 CFR part 171; 42 U.S.C. 299b-33. [ONC-USCDI-1]
+[IB-1] [AHRQ-AUTH-1]
+QUESTION 6
+Where have AI tools deployed in clinical care met or exceeded performance and cost expectations
+and where have they fallen short? What kinds of novel AI tools would have the greatest potential?
+Where AI has met or exceeded expectations:
+AI has performed most consistently where tasks are bounded, data are structured, workflows are
+stable, and accountability remains clear—such as selected imaging analysis, signal detection,
+structured classification, and narrowly defined prediction tasks. Systematic reviews demonstrate
+
+strong performance under controlled study conditions, while also noting reporting limitations,
+dataset bias, and challenges in generalizability. [DL-IMAGING-1]
+Where AI has fallen short:
+AI has struggled when deployed as isolated point solutions within fragmented care environments
+lacking longitudinal context, interoperability, and clear oversight. Performance often degrades
+when models are introduced into complex workflows without defined escalation pathways or
+lifecycle monitoring. Evidence regarding generative AI suggests variable real-world performance;
+meta-analytic comparisons indicate that aggregate performance is not reliably superior to clinicians
+and may underperform expert physicians in complex cases. [TAKITA-1]
+What is needed next:
+The greatest potential lies not in increasingly autonomous point tools, but in integrated,
+longitudinal, and governed AI systems that support continuity, prevention, early risk detection,
+care coordination, and administrative simplification across settings. Novel AI architectures should
+emphasize: • Longitudinal context aggregation rather than encounter-level inference. • Risk
+stratification and escalation design embedded in workflow. • Automated monitoring for
+performance, safety, and equity drift. • Interoperable, auditable data flows aligned with patient-
+directed permissions. • Infrastructure that reduces unusable friction rather than adding cognitive
+burden. [NIST-1]
+WHO guidance on large multi-modal models for health underscores systemic risks and governance
+requirements, reinforcing that AI should be treated as accountable clinical infrastructure within
+coordinated systems—not as autonomous decision-makers detached from oversight. [WHO-LMM-
+1]
+QUESTION 7
+Which role(s), decision maker(s), or governing bodies within health care organizations have the
+most influence on the adoption of AI for clinical care? What are the primary administrative hurdles
+to the adoption of AI in clinical care?
+Adoption decisions for clinical AI are distributed across clinical leadership, information
+technology and cybersecurity, compliance and legal teams, finance, risk governance committees,
+and operational management. Multidisciplinary review is appropriate for safety and accountability;
+however, in the absence of standardized evaluation frameworks and contracting templates,
+decision-making can become duplicative, inconsistent, and slow.
+Primary administrative hurdles include integration burden; liability uncertainty; lack of
+standardized lifecycle evaluation models; limited internal capacity for monitoring and drift
+detection; privacy and security interpretation variability under HIPAA; and information-sharing
+friction resulting from uneven interoperability implementation. [ONC-USCDI-1] [HIPAA-160-1]
+HHS can reduce these hurdles by articulating baseline governance expectations (including
+monitoring, auditability, version transparency, and escalation design); clarifying HIPAA guidance
+for AI-enabled clinical operations; reinforcing interoperable exchange requirements; and using
+information blocking enforcement mechanisms where appropriate to reduce friction that impedes
+lawful access and reuse of electronic health information. [ONC-DSI-1] [IB-1] [HIPAA-TPO-1]
+Separately, payment and valuation architecture materially influences adoption incentives. Current
+valuation methodologies are oriented toward discrete services and may not fully reflect
+longitudinal stabilization, prevention, preserved capacity, or the contributions of the broader care
+workforce, including nursing and advanced practice roles. HHS should strengthen transparency
+and public accountability in valuation processes to ensure that payment design supports continuity,
+
+workforce sustainability, and responsible AI deployment rather than reinforcing administrative
+throughput incentives. [PFS-STAT-1] [PFS-RVU-1]
+QUESTION 8
+Where would enhanced interoperability widen market opportunities, fuel research, and accelerate
+the development of AI for clinical care? Consider data types, data standards, and benchmarking
+tools.
+Enhanced interoperability would widen markets and accelerate AI development most where it
+enables longitudinal, permissioned, and accountable use of health information across settings. The
+objective is not merely data transport, but continuity of clinically relevant context and patient-
+directed permissions—enabling portable, risk-tiered support capabilities that operate across
+organizations without bespoke integrations at each site. [ONC-USCDI-1] [ONC-API-1]
+Priority interoperability capabilities include: • Longitudinal clinical context: structured and
+computable access to problem lists, medications, allergies, laboratory results, imaging reports, vital
+signs, notes metadata, and care plans, aligned with USCDI and exchanged via FHIR-based APIs.
+[ONC-USCDI-1] [ONC-API-1]
+• Provenance and traceability: standardized fields for data source, timestamp, authoring system,
+version identifiers, and transformation history for both data inputs and AI-generated outputs used
+in clinical care. [ONC-DSI-1]
+• Auditability and accountability: tamper-evident logs for access, inference events, and output use
+(e.g., whether an output was displayed, accepted, modified, overridden, or ignored), enabling
+retrospective review and quality improvement. [ONC-DSI-1]
+• Computable, revocable permissions: machine-readable permissioning frameworks that support
+patient-directed exchange, revocation, emergency access pathways with strict auditing, and
+culturally or tribally aligned data stewardship requirements when applicable. [HIPAA-ACCESS-1]
+[CMS-API-1]
+• Benchmarking and monitoring toolkits: shared post-deployment monitoring specifications—
+including performance drift, safety signals, equity effects, and workload impact—that allow
+comparison across systems without imposing proprietary reporting formats. [NIST-1]
+Key federal building blocks include: • USCDI content requirements (45 CFR 170.213). [ONC-
+USCDI-1]
+• API standards, including FHIR (45 CFR 170.215). [ONC-API-1]
+• ONC Predictive DSI transparency and intervention risk management requirements (45 CFR
+170.315(b)(11)). [ONC-DSI-1]
+• CMS interoperability rules expanding patient access and prior authorization APIs (including
+CMS Interoperability and Patient Access and the Interoperability and Prior Authorization final
+rule). [CMS-IPA-1] [CMS-PA-1]
+• TEFCA as a nationwide interoperability framework intended to provide a floor for exchange
+across proprietary boundaries. [TEFCA-1]
+Benchmarking should prioritize post-deployment performance, safety and equity monitoring,
+auditability, and real-world workflow impact—not retrospective accuracy alone. Interoperability
+that enables portable monitoring artifacts (not just portable data) will widen markets without
+sacrificing safety, accountability, and public trust. [NIST-1]
+QUESTION 9
+What challenges within health care do patients and caregivers wish to see addressed by the
+
+adoption and use of AI in clinical care? Equally, what concerns do patients and caregivers have
+related to the adoption and use of AI in clinical care?
+Patients and caregivers want continuity, timely access, reduced administrative burden, and clearer
+explanations aligned with their goals and circumstances. Patient-centered clinical decision support
+work highlights the importance of integrating patient needs, values, and preferences into decision
+support, moving beyond clinician-only point-of-care tools. [AHRQ-CDSIC-1]
+Challenges patients and caregivers want AI to address (real-world burdens): • Navigation across
+fragmented systems: referrals, follow-up, prior authorization, and handoffs. [CMS-PA-1]
+• Continuity of the plan: preserving the clinical “story” across time, settings, and clinicians. [ONC-
+USCDI-1]
+• Administrative overload on households: forms, scheduling, billing confusion, and repeated
+history-taking. [NAM-1]
+• Access constraints: long waits, geographic barriers, and limited after-hours guidance. [FR-1]
+• Bias and variability: inconsistent standards of care across locations and institutions.
+Core concerns (trust and agency): • Loss of agency and consent fatigue if systems require constant
+micro-permissions or apply opaque defaults. [HIPAA-ACCESS-1]
+• Opaque decision-making and inability to see why a recommendation was made or what data
+drove it. [ONC-DSI-1]
+• Secondary use of data that exceeds the purpose of care without meaningful transparency or
+patient-directed control. [HIPAA-TPO-1]
+• Equity risks: performance gaps, differential access, and drift that harms under-resourced groups.
+[NIST-1]
+• Safety failures that shift burden back onto patients and clinicians through denials, delays, or
+automated gatekeeping. [ECRI-1]
+These concerns are intensified by the current burnout environment. When clinicians are
+overloaded, the health system offloads work to patients and families—who become the de facto
+coordinators of care. AI that merely adds new portals, messages, or alerts will worsen this. The
+standard should be measurable burden reduction: fewer repeated steps, fewer avoidable calls and
+forms, fewer untracked handoffs, and clearer accountability when something fails. [NAM-1]
+QUESTION 10
+Are there specific areas of AI research that HHS should prioritize to accelerate the adoption of AI
+as part of clinical care?
+Research priority: implementation science and post-deployment system behavior.
+HHS should prioritize research that evaluates AI as deployed infrastructure rather than as isolated
+models. This includes workflow integration, lifecycle monitoring methods, decision support
+governance, equity effects, audit log standards, and incident response. AHRQ’s CDSiC and
+patient-centered CDS initiatives provide relevant infrastructure and precedent for patient-inclusive
+work. [AHRQ-CDSIC-1]
+Published findings (clinician error vs AI): a careful synthesis.
+The literature does not support a simple claim that “AI is broadly safer than physicians” across all
+contexts. It supports a more precise statement: humans and AI fail differently, and outcomes
+depend on integration and governance. Baseline diagnostic error burden is non-trivial (NASEM’s
+conservative estimate), and AI tools can perform well in constrained settings. However,
+randomized evidence suggests clinician access to an LLM does not automatically improve
+diagnostic reasoning, and meta-analytic evidence suggests generative AI is not superior to expert
+physicians in diagnostic tasks in aggregate. Because the pace of change is significant, periodic
+
+evaluation as AI evolves toward more agentic models is necessary. [NASEM-1] [GOH-1]
+[TAKITA-1] [WHO-LMM-1]
+Economic and transfer analyses.
+HHS should prioritize research that measures costs and transfers: who pays for implementation and
+monitoring; who captures savings; how AI changes clinician workload; and how reimbursement
+structures shape diffusion. Incentives differ across risk-bearing models and legacy payment
+systems can impede access to high-value AI. [FR-1]
+Recommendation to HHS (human–AI complementarity):
+The evidence suggests that access to an LLM does not automatically improve clinicians’ diagnostic
+reasoning, even when the model alone performs well in controlled evaluation. This implies that the
+binding constraint is not model capability but the design of human–AI collaboration—training,
+workflow integration, calibration, and accountability. HHS should therefore prioritize research and
+guidance that identifies and operationalizes the distinct elements of human involvement that confer
+safety and clinical value, including (1) value-laden judgment and shared decision-making, (2)
+accountability-bearing escalation and override decisions in high-risk contexts, and (3) verification
+behaviors that mitigate automation bias. These “human advantage functions” should be embedded
+into risk-tiered lifecycle evaluation requirements and workforce readiness initiatives so human
+judgment is applied where it measurably reduces harm rather than being imposed transaction-by-
+transaction in ways that create unusable friction and reduce access. [NIST-1] [GOH-1]
+HHS could convene a multi-stakeholder working group to publish a standardized human–AI
+teaming framework and evaluation toolkit, aligned with lifecycle risk management approaches,
+usable by CMS in payment demonstrations and by ASTP/ONC in governance expectations for
+clinical AI. [FR-1] [NIST-1]
+TABLE A: RECOMMENDATION-TO-AUTHORITY MAPPING
+Recommendation (summary) | Primary CFR / program authority | HHS lever(s) | Notes
+Reimbursable AI evaluation/implementation pathway (silent-mode testing, workflow evaluation,
+training, monitoring, equity assessment) | 42 CFR part 410; 42 CFR part 414; 42 U.S.C. 1395w-4;
+care management precedents | Reimbursement | Use a time-limited pathway; require auditable
+reporting and monitoring.
+Risk-tiered lifecycle evaluation expectations for non-device clinical AI | NIST AI RMF 1.0;
+FDA/IMDRF GMLP guiding principles | Regulation + R&D | Encourage scalable monitoring and
+escalation rather than per-output review.
+“AI-ready interoperability”: provenance, audit logs, versioning for AI outputs used in care | 45
+CFR 170.315(b)(11) | Regulation | Build on certified health IT requirements; require traceability.
+Content and API floors for longitudinal data access | 45 CFR 170.213; 45 CFR 170.215 |
+Regulation | Make longitudinal context feasible across systems.
+Computable, revocable permissions aligned to patient-directed exchange | 45 CFR 164.524; 45
+CFR 164.506; 42 CFR 422.119 | Regulation + Reimbursement | Treat permissioning as governance
+infrastructure.
+Reduce friction-based control; enforce information blocking constraints | 45 CFR part 171 |
+Regulation | Use exceptions for privacy/security appropriately while discouraging strategic
+blocking.
+Allowable AI infrastructure in risk-bearing models (ACO/MA/Medicaid managed care) | 42 CFR
+part 425; 42 CFR 438.242 | Reimbursement + R&D | Align infrastructure investments to outcomes
+and monitoring.
+Privacy/security governance for AI-enabled operations | 45 CFR part 160; 45 CFR part 164 |
+
+Regulation | Clarify permissible operational use vs secondary use; emphasize auditability.
+Patient-centered CDS design and evaluation | AHRQ CDSiC and patient-centered CDS resources |
+R&D | Build learning networks and shared toolkits to reduce duplication.
+Safe non-device AI governance baseline (monitoring, escalation, incident response) | 45 CFR
+170.315(b)(11); FDA/IMDRF lifecycle framing; ECRI hazard communications | Regulation +
+R&D | Standardize controls and boundary testing; address real-world misuse.
+Tribal partnership and data stewardship commitments in pilots | HHS Tribal Consultation Policy;
+IHS TEC data sharing guidance | R&D + Regulation | Co-design permissions and governance;
+respect sovereignty and Tribal Epidemiology Center roles.
+TABLE B: STAKEHOLDER RECRUITMENT
+Stakeholder | Role | Specific ask | Timeline (eight-week arc)
+Delivery systems (academic + community) | Pilot sites; workflow integration; safety governance |
+Participate in phased rollout; appoint governance and clinical safety leads; enable monitoring |
+Weeks 2–4
+Employer/purchasers | Population access; benefits integration; evaluation of utilization and access |
+Identify eligible population; agree to parallel evaluation; support claims-based endpoints | Weeks
+3–6
+Patients/caregivers | Health Principal governance; consent and trust design | Co-design
+permissioning and transparency; define acceptable use boundaries | Weeks 1–8
+Tribal partners / TECs / IHS-aligned stakeholders | Sovereignty-respecting governance; community
+priorities | Establish consultation path; define data stewardship and permissions; co-author
+governance terms | Weeks 1–6
+Health IT vendors / EHR/API implementers | Interoperability; provenance/audit schema |
+Implement minimal provenance + audit logs; support FHIR/USCDI exchange | Weeks 2–5
+Privacy/security council | HIPAA/OCR alignment; incident response | Draft purpose-fidelity
+policy; define breach/incident pathways; review audit logging | Weeks 1–4
+Human factors and safety experts | Evaluate automation bias; usability; risk controls | Design
+human factors protocol; define escalation thresholds and rollback triggers | Weeks 2–6
+Independent evaluators (academic methodologists) | Study design and analysis | Pre-specify
+endpoints; power calculations; reporting templates | Weeks 2–5
+AHRQ-style learning network partners | Shared toolkit dissemination | Convert pilot learnings into
+reusable templates and monitoring toolkits | Weeks 6–8
+ONE-PAGE PILOT INVITATION (ATTACHMENT B APPENDIX)
+Health 4.0 Alliance | H4 Alliance Trust invites delivery systems, employer purchasers, patient
+organizations, and tribal partners to explore a multi-site, governed longitudinal AI support pilot
+(non-branded). The purpose is to evaluate whether risk-tiered, lifecycle-governed AI can improve
+continuity, access, safety, clinician burden, and equity—while preserving patient-directed
+permissions and auditability. [FR-1]
+Pilot principles: • Health Principal–centered permissions and transparency (lifespan framing, not
+episodic-only). [HIPAA-ACCESS-1]
+• Risk-tiered lifecycle governance, monitoring, and escalation (“on the loop” clinician oversight).
+[NIST-1]
+• AI-ready interoperability: USCDI/FHIR access plus provenance and audit logging for outputs
+used in care. [ONC-USCDI-1] [ONC-API-1] [ONC-DSI-1]
+• Anti-extraction safeguards: no friction-based capture; purpose fidelity for data use and auditable
+
+access patterns. [IB-1]
+• Equity and cultural alignment as measurable constraints, not marketing. [NIST-1]
+• Tribal sovereignty and data stewardship co-design where tribal participation occurs, aligned with
+HHS’s tribal consultation policy posture. [HHS-TRIBAL-1]
+Proposed design (illustrative; to be finalized with partners): • Phase 0 (4–6 weeks): silent-mode
+testing + baseline workflow/human factors evaluation + monitoring dashboard setup. [NIST-1]
+• Phase 1 (8–12 weeks): controlled rollout using stepped activation by site/team; continuous
+monitoring; predefined escalation and rollback thresholds. [NIST-1]
+• Phase 2 (6–12 months): expansion contingent on meeting safety and equity thresholds; evaluation
+of utilization, access, and continuity endpoints in employer and delivery-system pathways.
+[AHRQ-CDSIC-1]
+Ethics and oversight: The pilot will follow applicable human-subjects protections under 45 CFR
+part 46 where relevant; participating institutions will use their IRB/QI determination processes,
+with appropriate consent/authorization pathways and privacy/security controls consistent with
+HIPAA and institutional policy. [45CFR46-1] [HIPAA-160-1]
+Endpoints (core set): • Safety signals: escalation events, diagnostic delay proxies, incident reports,
+rollback frequency. [NASEM-1]
+• Burden: clinician time, documentation burden proxies, perceived workload. [NAM-1]
+• Access/continuity: time-to-appointment, follow-up completion, longitudinal plan adherence. [FR-
+1]
+• Equity: stratified outcomes and drift monitoring consistent with Predictive DSI governance
+dimensions. [ONC-DSI-1]
+Partner ask: Interested partners are invited to provide a pilot site lead, governance liaison, and
+technical integration lead to define scope, data pathways, monitoring thresholds, and reporting
+templates that can be shared to reduce duplication across sites. [AHRQ-CDSIC-1]
+Mermaid timeline (plain text):
+mermaid
+Copy
+flowchart LR
+A[Partner onboarding and governance setup] --> B[Phase 0: silent-mode testing (4–6 weeks)]
+B --> C[Phase 1: controlled rollout (8–12 weeks)]
+C --> D[Phase 2: expansion contingent on thresholds (6–12 months)]
+REFERENCES (PRIMARY URLS)
+[FR-1] https://www.govinfo.gov/content/pkg/FR-2025-12-23/pdf/2025-23641.pdf
+[HHS-AI-1] https://www.hhs.gov/sites/default/files/hhs-artificial-intelligence-strategy.pdf
+[ONC-USCDI-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-D/part-170/subpart-
+B/section-170.213
+[ONC-API-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-D/part-170/subpart-
+B/section-170.215
+[ONC-DSI-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-D/part-170/subpart-
+C/section-170.315
+[IB-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-D/part-171
+
+[HIPAA-ACCESS-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-
+164/subpart-E/section-164.524
+[HIPAA-TPO-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-
+E/section-164.506
+[HIPAA-160-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-160
+[45CFR46-1] https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-46
+[CMS-API-1] https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-
+C/section-422.119
+[CMS-IPA-1] https://www.cms.gov/priorities/burden-reduction/overview/interoperability/policies-
+regulations/cms-interoperability-patient-access-final-rule-cms-9115-f
+[CMS-PA-1] https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-and-prior-
+authorization-final-rule-cms-0057-f
+[CMS-CCM-1] https://www.cms.gov/files/document/chroniccaremanagement.pdf
+[TEFCA-1] https://healthit.gov/policy/tefca/
+[MSSP-1] https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-425
+[MMC-1] https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-438/subpart-
+D/section-438.242
+[PFS-STAT-
+1] https://uscode.house.gov/view.xhtml?edition=prelim&num=0&req=granuleid%3AUSC-prelim-
+title42-section1395w-4
+[PFS-REG-1] https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-414
+[PFS-410-1] https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-410
+[PFS-RVU-1] https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-414/subpart-
+B/section-414.22
+[CMMI-1] https://www.law.cornell.edu/uscode/text/42/1315a
+[AHRQ-AUTH-1] https://www.law.cornell.edu/uscode/text/42/299b-33
+[NASEM-1] https://www.nationalacademies.org/read/21794/chapter/2
+[NAM-1] https://nam.edu/wp-content/uploads/2020/09/4.-NAM-Taking-Action-Against-Clinician-
+Burnout-systems-approach.pdf
+[GOH-1] https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2825395
+[TAKITA-1] https://www.nature.com/articles/s41746-025-01543-z
+[NIST-1] https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
+[FDA-GMLP-1] https://www.fda.gov/media/153486/download
+[IMDRF-GMLP-1] https://www.imdrf.org/documents/good-machine-learning-practice-medical-
+device-development-guiding-principles
+[WHO-LMM-1] https://www.who.int/publications/i/item/9789240084759
+[WHO-LMM-2] https://www.who.int/news/item/18-01-2024-who-releases-ai-ethics-and-
+governance-guidance-for-large-multi-modal-models
+[AHRQ-CDSIC-1] https://digital.ahrq.gov/health-it-tools-and-resources/clinical-decision-support-
+cds/cds-innovation-collaborative
+[ECRI-1] https://home.ecri.org/blogs/ecri-news/misuse-of-ai-chatbots-tops-annual-list-of-health-
+technology-hazards
+[DL-IMAGING-1] https://pubmed.ncbi.nlm.nih.gov/33323251/
+[HHS-TRIBAL-1] https://www.hhs.gov/sites/default/files/iea/tribal/tribalconsultation/hhs-
+consultation-policy.pdf

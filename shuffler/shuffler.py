@@ -2,13 +2,13 @@
 shuffler/shuffler.py — Core shuffler logic for the slop pipeline.
 
 This module:
-  1. Pre-processes the real CMS comments file, substituting attachment text
+  1. Pre-processes the real comments file, substituting attachment text
      for the comment body when the attachment contains the bulk of the comment,
      then writes the result as a ♔-delimited PSV file.
-  2. Translates syncom output (♔-delimited) to a ♔-PSV using the CMS schema.
+  2. Translates syncom output (e.g., synthetic.txt) to a PSV (e.g. synthetic.psv) using regulations.gov schema.
   3. Randomly interleaves the translated synthetic comments with the
      pre-processed real comments file.
-  4. Produces a combined ♔-PSV (with attachment URLs and tracking numbers
+  4. Produces a combined PSV (with attachment URLs and tracking numbers
      cleared) and a key CSV that identifies every row as "real" or "synthetic".
 
 PSV format (♔-Separated Values)
@@ -38,18 +38,18 @@ csv.field_size_limit(2**31 - 1)
 # ── Step 0: Pre-process real comments (resolve attachments) ───────────────────
 
 def preprocess_real_comments(
-    real_cms_file: str,
+    real_file: str,
     attachments_dir: str,
     output_file: str,
     verbose: bool = True,
 ) -> dict:
     """
-    Pre-process the real CMS comments CSV by substituting attachment text when
+    Pre-process the real comments CSV by substituting attachment text when
     the attachment contains the bulk of the comment, then write the result as a
     ♔-delimited PSV file so that downstream steps never touch the fragile
     comma-CSV format.
 
-    For each row in real_cms_file:
+    For each row in real_file:
       - Look up the comment's Document ID in attachments_dir/<Document ID>/
       - If multiple attachment text files exist (attachment_N.txt), use ONLY
         the lowest-numbered N (e.g., attachment_1.txt always wins).
@@ -60,7 +60,7 @@ def preprocess_real_comments(
     cleared by shuffle_comments() in the final merged output.
 
     Args:
-        real_cms_file:   Path to the original real CMS comments CSV.
+        real_file:   Path to the original real comments CSV.
         attachments_dir: Path to the directory containing per-comment attachment
                          subdirectories (e.g. "CMS-2025-0050/comment_attachments").
         output_file:     Path where the pre-processed PSV will be written.
@@ -73,7 +73,7 @@ def preprocess_real_comments(
     Path(output_file).parent.mkdir(parents=True, exist_ok=True)
 
     # Always read the source from comma-CSV (official docket export format)
-    rows, fieldnames = _load_csv(real_cms_file)
+    rows, fieldnames = _load_csv(real_file)
 
     attachments_root = Path(attachments_dir)
     rows_with_attachments = 0
@@ -81,7 +81,7 @@ def preprocess_real_comments(
 
     if verbose:
         print(f"[shuffler] Pre-processing real comments")
-        print(f"           Input       : {real_cms_file}")
+        print(f"           Input       : {real_file}")
         print(f"           Attachments : {attachments_dir}")
         print(f"           Output      : {output_file}")
 
@@ -157,13 +157,13 @@ def preprocess_real_comments(
 
 # ── Step 1: Translation ────────────────────────────────────────────────────────
 
-def translate_syncom_to_cms(
+def translate_syncom_to_psv(
     syncom_input: str,
     cms_output: str,
     verbose: bool = True,
 ) -> int:
     """
-    Translate a ♔-delimited syncom output file to a ♔-PSV using the CMS schema.
+    Translate a ♔-delimited syncom output file to a ♔-PSV using the regulations.gov schema.
 
     Args:
         syncom_input: Path to the ♔-delimited syncom output (.txt).
@@ -175,14 +175,14 @@ def translate_syncom_to_cms(
     """
     Path(cms_output).parent.mkdir(parents=True, exist_ok=True)
 
-    from shuffler.translate_to_cms_format import translate_synthetic_to_cms
+    from shuffler.translate_to_psv_format import translate_synthetic_to_psv
 
     if verbose:
-        print(f"[shuffler] Translating syncom output → CMS PSV format")
+        print(f"[shuffler] Translating syncom output → PSV format")
         print(f"           Input  : {syncom_input}")
         print(f"           Output : {cms_output}")
 
-    count = translate_synthetic_to_cms(syncom_input, cms_output)
+    count = translate_synthetic_to_psv(syncom_input, cms_output)
 
     if verbose:
         print(f"[shuffler] Translation complete — {count} synthetic records written.\n")
@@ -193,11 +193,11 @@ def translate_syncom_to_cms(
 # ── Step 2: Shuffle ────────────────────────────────────────────────────────────
 
 def shuffle_comments(
-    synthetic_cms_file: str,
-    real_cms_file: str,
+    synthetic_psv_file: str,
+    real_file: str,
     combined_output: str,
     key_output: str | None = None,
-    seed: int = 42,
+    seed: int = random.randint(0, 2**32 - 1),
     verbose: bool = True,
 ) -> dict:
     """
@@ -205,11 +205,11 @@ def shuffle_comments(
     the result as a ♔-delimited PSV.
 
     Args:
-        synthetic_cms_file: Path to translated synthetic comments in CMS ♔-PSV
-                            format (output of translate_syncom_to_cms).
-        real_cms_file:      Path to the real comments file — either the ♔-PSV
+        synthetic_psv_file: Path to translated synthetic comments in PSV
+                            format (output of translate_syncom_to_psv).
+        real_file:          Path to the real comments file — either the ♔-PSV
                             produced by preprocess_real_comments (.psv) or the
-                            original CMS comma-CSV (.csv) when pre-processing
+                            original comma-CSV (.csv) when pre-processing
                             is skipped.
         combined_output:    Path where the combined shuffled ♔-PSV will be written.
         key_output:         Path where the key CSV will be written.  If None, a
@@ -230,17 +230,17 @@ def shuffle_comments(
     Path(key_output).parent.mkdir(parents=True, exist_ok=True)
 
     if verbose:
-        print(f"[shuffler] Loading real comments      : {real_cms_file}")
-        print(f"[shuffler] Loading synthetic comments : {synthetic_cms_file}")
+        print(f"[shuffler] Loading real comments      : {real_file}")
+        print(f"[shuffler] Loading synthetic comments : {synthetic_psv_file}")
 
     # ── Load real comments ──────────────────────────────────────────────────
     # Auto-detect format by extension for backward compatibility
-    real_rows, fieldnames = _load_by_extension(real_cms_file)
+    real_rows, fieldnames = _load_by_extension(real_file)
     if verbose:
         print(f"[shuffler] Real comments loaded       : {len(real_rows):,} rows")
 
     # ── Load synthetic comments ─────────────────────────────────────────────
-    synth_rows, _synth_fieldnames = _load_by_extension(synthetic_cms_file)
+    synth_rows, _synth_fieldnames = _load_by_extension(synthetic_psv_file)
     if verbose:
         print(f"[shuffler] Synthetic comments loaded  : {len(synth_rows):,} rows")
 
@@ -261,8 +261,8 @@ def shuffle_comments(
 
     # ── Assign anonymous UIDs ────────────────────────────────────────────────
     # Replace every Document ID with a neutral "UID-XXXX" identifier so that
-    # synthetic IDs (e.g. "CMS-2025-0050-SYNTH-0077") are indistinguishable
-    # from real IDs in the combined output.
+    # synthetic IDs (e.g. "SYNTH-0077") are indistinguishable
+    # from real IDs (e.g. "HHS-ONC-0001-0046") in the combined output.
     _DOC_ID_COL      = "Document ID"
     _ATTACHMENT_COL  = "Attachment Files"
     _TRACKING_COL    = "Tracking Number"
@@ -336,11 +336,11 @@ def shuffle_comments(
 # ── Full pipeline convenience wrapper ─────────────────────────────────────────
 
 def run_pipeline(
-    real_cms_file: str,
+    real_file: str,
     attachments_dir: str,
     syncom_input: str,
     output_dir: str,
-    seed: int = 42,
+    seed: int = random.randint(0, 2**32 - 1),
     verbose: bool = True,
 ) -> dict:
     """
@@ -348,10 +348,10 @@ def run_pipeline(
 
       Step 0  Pre-process the real comments CSV, substituting attachment text
               where it is longer than the inline comment body.
-              → <output_dir>/preprocessed_real.psv
+              → <output_dir>/real.psv
 
-      Step 1  Translate the syncom ♔-delimited output to CMS ♔-PSV format.
-              → <output_dir>/synthetic_cms.psv
+      Step 1  Translate the syncom ♔-delimited output to PSV format.
+              → <output_dir>/synthetic.psv
 
       Step 2  Shuffle the pre-processed real comments together with the
               translated synthetic comments.  Attachment URLs and tracking
@@ -361,7 +361,7 @@ def run_pipeline(
               → <output_dir>/combined_key.csv   (comma-CSV; small, no free text)
 
     Args:
-        real_cms_file:   Original real CMS comments CSV
+        real_file:   Original real comments CSV
                          (e.g. "CMS-2025-0050/comments/CMS-2025-0050.csv").
         attachments_dir: Directory of per-comment attachment subdirectories
                          (e.g. "CMS-2025-0050/comment_attachments").
@@ -376,30 +376,30 @@ def run_pipeline(
     """
     out = Path(output_dir)
 
-    preprocessed_file  = str(out / "preprocessed_real.psv")
-    synthetic_cms_file = str(out / "synthetic_cms.psv")
+    preprocessed_file  = str(out / "real.psv")
+    synthetic_psv_file = str(out / "synthetic.psv")
     combined_output    = str(out / "combined.psv")
     key_output         = str(out / "combined_key.csv")
 
     # Step 0 – resolve attachments into the real PSV
     pre_result = preprocess_real_comments(
-        real_cms_file=real_cms_file,
+        real_file=real_file,
         attachments_dir=attachments_dir,
         output_file=preprocessed_file,
         verbose=verbose,
     )
 
-    # Step 1 – translate syncom output to CMS PSV
-    synth_count = translate_syncom_to_cms(
+    # Step 1 – translate syncom output to PSV
+    synth_count = translate_syncom_to_psv(
         syncom_input=syncom_input,
-        cms_output=synthetic_cms_file,
+        cms_output=synthetic_psv_file,
         verbose=verbose,
     )
 
     # Step 2 – shuffle and merge
     shuffle_result = shuffle_comments(
-        synthetic_cms_file=synthetic_cms_file,
-        real_cms_file=preprocessed_file,
+        synthetic_psv_file=synthetic_psv_file,
+        real_file=preprocessed_file,
         combined_output=combined_output,
         key_output=key_output,
         seed=seed,
@@ -414,7 +414,7 @@ def run_pipeline(
 def _load_csv(path: str) -> tuple[list[dict], list[str]]:
     """
     Load a comma-delimited CSV file and return (rows, fieldnames).
-    Used only for the original CMS docket export (source of real comments).
+    Used only for the original docket export (source of real comments).
     """
     rows: list[dict] = []
     fieldnames: list[str] = []

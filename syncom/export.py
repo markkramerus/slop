@@ -3,7 +3,7 @@ export.py — Emit accepted synthetic comments as a CSV that mirrors the
 Regulations.gov docket export format.
 
 The output CSV has two layers of columns:
-  1. Standard Regulations.gov columns (Comment ID, Document ID, Submitter Name,
+  1. Standard Regulations.gov columns (Document ID, Docket ID, Submitter Name,
      Organization Name, Government Agency Type, Government Agency, Abstract,
      Comment, Attachment Files, Posted Date, …) — so synthetic rows can be
      interleaved with real rows for detector evaluation.
@@ -29,8 +29,8 @@ from .generator import GeneratedComment
 # ── Column definitions ────────────────────────────────────────────────────────
 
 _REGS_GOV_COLUMNS = [
-    "Comment ID",
     "Document ID",
+    "Docket ID",
     "Submitter Name",
     "Organization Name",
     "Submitter's Representative",
@@ -77,11 +77,9 @@ ALL_COLUMNS = _REGS_GOV_COLUMNS + _RESEARCH_COLUMNS
 
 # ── ID generation ─────────────────────────────────────────────────────────────
 
-def _make_comment_id(docket_id: str, index: int) -> str:
-    """Generate a plausible-looking comment ID."""
+def _make_comment_id(index: int) -> str:
     suffix = str(index + 1).zfill(4)
-    return f"{docket_id}-SYNTH-{suffix}"
-
+    return f"SYNTH-{suffix}"
 
 # ── Timing ────────────────────────────────────────────────────────────────────
 
@@ -135,8 +133,8 @@ def _build_row(
 
     # Regulations.gov columns
     row: dict[str, str] = {
-        "Comment ID": _make_comment_id(docket_id, index),
-        "Document ID": docket_id,
+        "Document ID": _make_comment_id(index),
+        "Docket ID": docket_id,
         "Submitter Name": comment.persona.full_name,
         "Organization Name": comment.persona.org_name,
         "Submitter's Representative": "",
@@ -193,7 +191,7 @@ def export_to_txt(
     comment_period_days: int = 60,
     comment_start_date: datetime.date | None = None,
     include_failed_qc: bool = False,
-    seed: int = 42,
+    seed: int = random.randint(0, 2**32 - 1),
 ) -> int:
     """
     Write accepted synthetic comments to a delimited text file.

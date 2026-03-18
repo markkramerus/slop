@@ -1,0 +1,361 @@
+February 23, 2026
+Assistant Secretary for Technology Policy and the Office of the National Coordinator for Health
+Information Technology
+Department of Health and Human Services
+Attention: HHS Health Sector AI RFI
+Mary E. Switzer Building, 330 C Street SW
+Washington, DC 20201
+RE: Comments on Request for Information: Accelerating the Adoption and Use of Artificial
+Intelligence as Part of Clinical Care (“HHS Health Sector AI RFI”)
+EMI Advisors, LLC (EMI) is pleased to submit public comments to the Assistant Secretary for
+Technology Policy/Office of the National Coordinator for Health Information Technology
+(ASTP/ONC), an agency within the Department of Health and Human Services (HHS). EMI is a
+nationally recognized health and human services interoperability firm with more than 15 years of
+experience supporting federal and state agencies in designing, governing, and implementing
+standards-based digital ecosystems.
+EMI designs and guides interoperable systems, coordinated care models, and AI-ready digital
+infrastructure grounded in nationally recognized governance frameworks, including the National
+Institute of Standards and Technology (NIST) AI Risk Management Framework (AI RMF), the
+Coalition for Health AI (CHAI) Blueprint for Trustworthy AI, International Organization for
+Standardization/ International Electrotechnical Commission (ISO/IEC) 42001 Artificial Intelligence
+(AI) Management Systems standard, and ASTP/ONC Health Data, Technology, and
+Interoperability (HTI-1) requirements. We co-founded the Health Level Seven® (HL7) Gravity
+Project, the first HL7 Fast Healthcare Interoperability Resources® (FHIR) Accelerator focused on
+social determinants of health (SDOH), and authored multiple national FHIR implementation
+guides, including the electronic Long-Term Services and Supports (eLTSS) and Multiple Chronic
+Conditions (MCC) Care Plan specifications. These standards are now implemented or in
+production pilots across Centers for Medicare and Medicaid Services (CMS) programs, state
+Medicaid agencies, and provider networks.
+Our recent work has focused on operationalizing trustworthy AI across the full lifecycle. This
+includes governed data foundations, documentation and assurance artifacts consistent with CHAI
+guidance, risk management practices aligned with NIST and ISO/IEC and conceptually aligned
+with the Food and Drug Administration (FDA) Good Machine Learning Practice (GMLP). EMI has
+articulated these themes in other public comments submitted to CMS, National Institutes of
+Health (NIH), Office of Science and Technology Policy (OSTP), and National Quality Forum
+(NQF). The recommendations below synthesize those positions and ground them in real-world
+implementation experience.
+Responses
+1. What are the biggest barriers to private sector innovation in AI for health care and its
+adoption and use in clinical care?
+The most persistent barrier is fragmented and low-fidelity data infrastructure. Many
+organizations operate in hybrid environments with inconsistent data standard implementation,
+1
+
+limited semantic harmonization, and weak data provenance practices leading to models with
+lack of transparency and explainability. This lack of infrastructure undermines reproducibility,
+bias mitigation, safe scaling, and exacerbates existing resistance to AI innovation for health
+care.
+Emerging assurance frameworks such as NIST AI RMF1, Generative AI Profile2, and the
+CHAI Blueprint for Trustworthy AI3 all emphasize that high-quality, governed data and
+traceable inputs are foundational to trustworthy AI. Without standardized data products and
+lineage, model transparency and post-deployment monitoring are difficult to operationalize.
+A second barrier is regulatory ambiguity. Health care organizations remain uncertain about
+how Health Insurance Portability and Accountability Act (HIPAA), 45 Code of Federal
+Regulations §164.514(b)4, 42 CFR Part 25, and information blocking rules6 (45 CFR Part
+171)7, apply to AI training, federated learning, synthetic data generation. This uncertainty
+delays deployment despite NIST’s risk-based management approach articulated in federal
+guidance.
+A third barrier is the lack of shared evaluation infrastructure. Safety-net providers and smaller
+organizations must independently validate AI tools without access to federated benchmarking
+environments, standardized test datasets, or cross-site evaluation protocols aligned with
+CHAI or NIST guidance. This duplication increases cost, reduces equity in access to
+innovation, and slows adoption.
+EMI Perspective:
+EMI’s data modeling platform addresses these barriers by producing governed, standards-
+based schema models and standards mappings aligned to national FHIR implementation
+guides (e.g., Gravity SDOH, eLTSS, MCC Care Plan). The platform supports schema
+discovery, semantic harmonization, standards-aligned mapping artifacts, and conformance
+validation. These capabilities create a reusable, well-defined data foundation that enables
+reproducible AI evaluation, cross-site benchmarking, and infrastructure for safer post-
+deployment monitoring when AI analytics are applied downstream. The foundation provides
+support for CHAI and NIST aligned AI governance practices, reducing the resource burden
+that can be costly, duplicative, and inequitable for safety-net providers.
+References:
+• Innovaccer. (2026). State of Revenue Life cycle in Healthcare.
+https://content.innovaccer.app/hubfs/Flow/THE%20STATE%20OF%20RCM%20IN%20H
+EALTHCARE.pdf
+1 https://www.nist.gov/itl/ai-risk-management-framework
+2 https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-
+generative-artificial-intelligence
+3 https://www.chai.org/workgroup/responsible-ai/blueprint-for-trustworthy-ai
+4 https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164#164.514
+5 https://www.hhs.gov/hipaa/for-professionals/regulatory-initiatives/fact-sheet-42-cfr-part-
+2-final-rule/index.html
+6 https://healthit.gov/information-blocking/
+7 https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-D/part-171
+2
+
+• Hassan, M., Kushniruk, A., & Borycki, E. (2024). Barriers to and facilitators of artificial
+intelligence adoption in health care: Scoping review. JMIR Human Factors, 11, e48633.
+https://doi.org/10.2196/48633
+• Poon, E. G., Lemak, C. H., Rojas, J. C., Guptill, J., & Classen, D. (2025). Adoption of
+artificial intelligence in healthcare: survey of health system priorities, successes, and
+challenges. Journal of the American Medical Informatics Association: JAMIA, 32(7),
+1093–1100. https://doi.org/10.1093/jamia/ocaf065
+2. What regulatory, payment policy, or programmatic design changes should HHS
+prioritize to incentivize the effective use of AI in clinical care and why? What HHS
+regulations, policies, or programs could be revisited to augment your ability to
+develop or use AI in clinical care? Please provide specific changes and applicable
+Code of Federal Regulations citations.
+HHS should prioritize clarifying and aligning existing authorities rather than creating new AI-
+specific regulatory regimes.
+a. Privacy and Data Use Clarification
+HHS should issue guidance clarifying how HIPAA de-identification standards (45
+CFR §164.514(b)) apply to AI training, synthetic data, and federated learning in a
+manner consistent with NIST AI RMF governance principles and ISO/IEC 42001
+management system principles. Continued harmonization of 42 CFR Part 2 with
+HIPAA should clarify how de-identified or consent-governed data may be used for AI-
+driven care coordination and quality improvement, with strict safeguards against re-
+identification.
+b. Payment Policy and Quality Measurement Modernization
+CMS should use its existing authorities under:
+• 42 CFR Parts 412 and 419 (Hospital IPPS/OPPS)8,
+• 42 CFR Part 414 (Medicare Physician Fee Schedule and Quality Payment
+Program)9,
+• 42 CFR Part 422 (Medicare Advantage)10,
+• 42 CFR Part 438 (§438.340 Medicaid quality strategies)11,
+to explicitly recognize and incentivize AI-enabled services that demonstrate
+outcomes, safety, and care coordination.
+Modernization should include:
+• Recognition of digitally derived quality measures,
+• Use of AI-supported risk stratification within value-based programs,
+• Acceptance of longitudinal, FHIR-based care planning artifacts from certified
+health IT as evidence of inputs.
+8 https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-419
+9 https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-414
+10 https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422
+11 https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-438
+3
+
+Payment incentives should align with documented assurance artifacts consistent with
+CHAI, NIST AI RMF, and Joint Commission responsible AI guidance, such as model
+documentation, performance monitoring plans, and subgroup evaluation results.
+c. ASTP/ONC Certification and Trusted Exchange Framework and Common
+Agreement™ (TEFCA) Alignment
+ASTP/ONC should leverage authorities under 45 CFR Part 170 (Health IT
+Certification) and 45 CFR Part 171 (Information Blocking) to strengthen transparency
+and traceability requirements for predictive Decision Support Interventions (DSIs).
+HTI-1 creates the enforceable transparency lever for these interventions.
+Certification criteria should require:
+• Standardized data provenance and lineage,
+• Traceable model input/output documentation,
+• Audit logging of AI-influenced decisions, and
+• Support for continuous performance monitoring.
+As TEFCA matures, ASTP/ONC should clarify how Qualified Health Information
+Network (QHIN) participation may support AI-enabled use cases under Treatment,
+Payment, Health Care Operations, and Public Health exchange purposes, while
+maintaining compliance safeguards.
+EMI Perspective:
+EMI’s platform enables certification-ready AI environments by producing governed schema
+models and standards-aligned mappings that support semantic harmonization and
+conformance validation. This creates the infrastructure required to support HTI-1
+transparency expectations and TEFCA-enabled AI use cases.
+3. For non-medical devices, we understand that use of AI in clinical care may raise novel
+legal and implementation issues that challenge existing governance and accountability
+structures (e.g., relating to liability, indemnification, privacy, and security). What novel
+legal and implementation issues exist and what role, if any, should HHS play to help
+address them?
+Non-medical device AI introduces governance challenges that existing regulatory models
+were not designed to address. These include attribution of liability in multi-party ecosystems;
+management of model drift and performance degradation; accountability for continuously
+learning systems; automation bias and human oversight failures; and security risks, including
+prompt injection and data leakage in generative AI systems.
+Existing governance models assume static software. AI systems are dynamic and socio-
+technical, with risk arising from workflows, data inputs, user interactions, and model behavior.
+HHS should convene stakeholders to harmonize expectations across agencies (ASTP/ONC,
+CMS, FDA, Agency for Healthcare Research and Quality (AHRQ), Office for Civil Rights
+(OCR)) and align with external frameworks such as CHAI, NIST AI RMF, FDA GMLP, and
+ISO/IEC 4200112 AI management systems.
+12 https://www.iso.org/standard/42001
+4
+
+Post-deployment monitoring and incident-reporting pathways should integrate with existing
+patient safety reporting structures, including with FDA Predetermined Change Control
+Plans.13 AI-related adverse events should be incorporated into Patient Safety Organization
+reporting and learning networks. Shared liability frameworks should be linked to
+transparency, documentation, and auditability rather than algorithm design alone.
+References:
+• Elgin, C. Y., & Elgin, C. (2024). Ethical implications of AI-driven clinical decision support
+systems on healthcare resource allocation: a qualitative study of healthcare
+professionals' perspectives. BMC Medical Ethics, 25(1), 148.
+https://doi.org/10.1186/s12910-024-01151-8
+4. For non-medical devices, what are the most promising AI evaluation methods (pre- and
+post-deployment), metrics, robustness testing, and other workflow and human-
+centered evaluation methods for clinical care? Should HHS further support these
+processes? If so, which mechanisms would be most impactful (e.g., contracts, grants,
+cooperative agreements, and/or prize competitions)?
+Evaluation of AI in clinical care must be lifecycle-based and socio-technical. Accuracy testing
+alone is insufficient. Consistent with the NIST AI Risk Management Framework and CHAI’s
+Blueprint for Trustworthy AI, evaluation should include clinical validity, clinical utility, reliability,
+subgroup performance, robustness under changing data conditions, workflow integration, and
+continuous monitoring for drift.
+AI systems that support interoperability and multi-sector coordination require validation
+across heterogeneous environments rather than within a single organization. HHS should
+support the development of a federated testing infrastructure that allows participating health
+systems, Medicaid agencies, community-based organizations, and Qualified Health
+Information Networks to evaluate AI models locally using standardized evaluation protocols.
+Performance results can then be aggregated in de-identified form to enable benchmarking
+and shared learning without centralizing sensitive data.
+A working model would include a standardized FHIR-based longitudinal data layer with
+harmonized terminology and embedded provenance metadata, common evaluation scripts
+aligned with CHAI and NIST guidance, and governance processes for monitoring
+performance over time. Such an infrastructure would also support structured change
+management processes conceptually aligned with FDA GMLP and predetermined change
+control planning principles.
+HHS should also consider supporting regulatory sandbox environments that allow AI tools to
+be tested within defined governance and compliance boundaries prior to scaled deployment.
+These sandboxes can simulate exchange under TEFCA and evaluate interoperability across
+clinical, social, and long-term services and support settings. Digital twin environments or
+synthetic ecosystem simulations may further enable stress testing of AI models under
+variable policy, referral network, and data completeness conditions without exposing
+identifiable information.
+13 https://www.fda.gov/regulatory-information/search-fda-guidance-
+documents/predetermined-change-control-plans-medical-devices
+5
+
+EMI’s work supporting the California Data Exchange Framework (DxF)14 Community
+Sandbox15 demonstrates how standards-aligned, FHIR-based exchange environments can
+be used to test multi-sector care coordination and referral workflows before live deployment.
+This model provides a scalable foundation for federated validation consistent with federal
+transparency and monitoring expectations.
+Sustained cooperative agreements and public-private partnerships would be more impactful
+than isolated pilot grants. Durable testing infrastructure is essential for safe and sustainable
+AI adoption.
+References:
+• Sendak, M. P., D’Arcy, J., Kashyap, S., Gao, M., Nichols, M., Corey, K., Ratliff, W., Balu,
+S., & Barasch, E. (2020). A path for translation of machine learning products into
+healthcare delivery. NPJ Digital Medicine, 3, Article 59.
+https://doaj.org/article/7a4443d7de354f28b16c9f2934cb44e9
+5. How can HHS best support private sector activities (e.g., accreditation, certification,
+industry-driven testing, and credentialing) to promote innovative and effective AI use
+in clinical care?
+HHS should avoid creating duplicative federal certification programs for AI. Instead, it should
+recognize and align with emerging consensus frameworks such as CHAI’s Blueprint and
+Responsible AI Guide, the NIST AI Risk Management Framework, Joint Commission
+guidance on responsible AI use, and organizational governance standards such as ISO/IEC
+42001.
+Federal programs can accelerate adoption by recognizing standardized assurance artifacts,
+including model documentation, data documentation, subgroup evaluation results, monitoring
+plans, and documented governance structures. Aligning expectations across ASTP/ONC,
+CMS, FDA, and NIH will reduce fragmentation and create a coherent signal to the private
+sector.
+HHS should also support open-source monitoring tools and shared evaluation resources so
+that smaller vendors and safety-net providers can participate in responsible AI adoption
+without incurring disproportionate costs. Capacity-building efforts consistent with data.org’s
+governance and workforce development approaches would further strengthen
+implementation readiness across diverse communities.
+6. Where have AI tools deployed in clinical care met or exceeded performance and cost
+expectations and where have they fallen short? What kinds of novel AI tools would
+have the greatest potential to improve health care outcomes, give new insights on
+quality, and help reduce costs?
+AI has met or exceeded expectations when deployed to reduce administrative burden,
+support risk stratification, and synthesize large volumes of structured data for population
+health management. It has fallen short when introduced into fragmented workflows without
+sufficient governance, change management, or monitoring.
+14 https://dxf.chhs.ca.gov/
+15 https://sbx.connectingforbetterhealth.com/
+6
+
+The literature demonstrates that performance gains often depend on integration into clinical
+processes rather than technical performance alone. Overestimation of return on investment
+and underinvestment in implementation science frequently undermine results.
+The greatest opportunity lies in AI applications that synthesize longitudinal, multi-domain data
+to support care coordination, person-centered care planning, quality measurement, and
+integration of long-term services and supports and social care. These use cases augment
+clinical judgment and improve coordination rather than replace clinicians.
+EMI’s experience implementing national FHIR-based care planning and referral standards
+demonstrates that when standardized, computable longitudinal artifacts are available, AI use
+cases become more feasible, portable, and safe across organizations.
+References:
+• Wright, A., Sittig, D. F., Ash, J. S., Sharma, S., Pang, J. E., & Middleton, B. (2018).
+Clinical decision support systems: State of the art. Journal of the American Medical
+Informatics Association, 25(4), 403–414.
+https://pmc.ncbi.nlm.nih.gov/articles/PMC5953825/
+• Bates, D. W., Levine, D., Syrowatka, A., Kuznetsova, M., Craig, K. J. T., Rui, A., Jackson,
+G. P., Rhee, K., & Classen, D. C. (2021). The potential of artificial intelligence to improve
+patient safety: A scoping review. NPJ Digital Medicine, 4, Article 54.
+https://pubmed.ncbi.nlm.nih.gov/33742085/
+• Eric G Poon, Christy Harris Lemak, Juan C Rojas, Janet Guptill, David Classen, Adoption
+of artificial intelligence in healthcare: survey of health system priorities, successes, and
+challenges, Journal of the American Medical Informatics Association, Volume 32, Issue 7,
+July 2025, Pages 1093–1100, https://doi.org/10.1093/jamia/ocaf065
+7. Which role(s), decision maker(s), or governing bodies within health care organizations
+have the most influence on the adoption of AI for clinical care? What are the primary
+administrative hurdles to the adoption of AI in clinical care?
+Adoption decisions are typically driven by executive leadership, compliance and privacy
+officers, and information technology governance bodies. Clinical leaders play an important
+advisory role but often do not control procurement or enterprise risk decisions.
+Administrative hurdles include regulatory uncertainty, lack of internal AI literacy, limited
+governance infrastructure, procurement constraints, and uncertainty regarding long term
+monitoring obligations. Organizations are particularly hesitant when accountability for model
+performance is unclear or when lifecycle oversight expectations are undefined.
+HHS can mitigate these barriers by publishing clear implementation guidance aligned with
+CHAI and NIST frameworks, providing governance templates, supporting workforce training
+programs, and aligning payment incentives with documented assurance practices.
+8. Where would enhanced interoperability widen market opportunities, fuel research, and
+accelerate the development of AI for clinical care? Please consider specific data types,
+data standards, and benchmarking tools.
+Enhanced interoperability would significantly widen market opportunities, fuel research, and
+accelerate responsible AI development. AI systems depend on consistent semantic
+7
+
+normalization, longitudinal data, and large demographically diverse patient cohorts with
+reliable provenance to reduce the risk of bias and enhance accuracy.
+Priority areas include FHIR-based care planning, such as the HL7 FHIR Multiple Chronic
+Conditions Care Plan Implementation Guide16, HL7 FHIR electronic long-term services and
+supports artifacts, HL7 SDOH Clinical Care Implementation Guide17, the CMS Post-Acute
+Care InterOperability (PACIO) Implementation Guides18, and the HL7 FHIR Person-Centered
+Outcomes (PCO) Implementation Guide19. Adoption of these artifacts can further support
+transportable and reproducible AI evaluation across settings.
+Standardized provenance metadata and conformance validation are equally important to
+ensure that AI inputs and outputs can be traced and audited across organizational
+boundaries.
+EMI’s data modeling platform operationalizes this approach by producing harmonized, FHIR
+aligned infrastructure that enables semantic harmonization and conformance validation. This
+infrastructure supports interoperable AI use cases and cross-site benchmarking consistent
+with federal certification and TEFCA expectations, providing the schema foundation on which
+longitudinal data, provenance, and cohort-based analytics can be built.
+9. What challenges within health care do patients and caregivers wish to see addressed
+by the adoption and use of AI in clinical care? Equally, what concerns do patients and
+caregivers have related to the adoption and use of AI in clinical care?
+Patients and caregivers seek AI that reduces repetitive data entry, improves navigation
+across systems, enhances care coordination, and respects individual preferences. They want
+AI to simplify complexity rather than introduce additional burden.
+Their primary concerns include inappropriate secondary use of data, lack of transparency
+regarding model training, bias and inequitable outcomes, and erosion of human oversight.
+Trust depends on meaningful disclosure of AI use, clear accountability pathways (e.g., HTI-1
+DSI certification), and evidence that safeguards are in place.
+Consent-based architectures, equity monitoring, and transparent governance structures
+should be embedded from the outset. Responsible adoption must ensure that AI enhances
+patient agency rather than diminishing it.
+10. Are there specific areas of AI research that HHS should prioritize to accelerate the
+adoption of AI as part of clinical care?
+HHS should prioritize applied research that advances trustworthy implementation of AI in
+real-world clinical settings. This includes methods for bias detection and subgroup evaluation,
+drift monitoring, consent-aware system design, federated validation methodologies, and
+integration of clinical, social, and long-term services data.
+16 https://build.fhir.org/ig/HL7/fhir-us-mcc/
+17 https://hl7.org/fhir/us/sdoh-clinicalcare/
+18 https://pacioproject.org/
+19 https://build.fhir.org/ig/HL7/pco-ig/en/
+8
+
+Research should extend beyond technical performance to assess workforce impact,
+redistribution of administrative burden, safety events, and sustainability over time.
+Implementation of science and organizational change research is particularly critical to
+understanding why some AI deployments succeed while others fail.
+a. Are there published findings about the impact of adopted AI tools and their use
+clinical care?
+b. How does the literature approach the costs, benefits, and transfers of using AI
+as part of clinical care?
+Published findings show AI benefits are most consistent when it replaces manual aggregation
+and pattern recognition tasks within well-governed systems. Costs increase when AI is
+layered onto fragmented infrastructure, shifting work to care coordinators, information
+technology teams, and compliance staff. Longitudinal evaluation is necessary to assess
+whether burden reductions are durable and equitably distributed.
+HHS can accelerate learning by supporting sustained evaluation networks and integrating AI
+monitoring into existing patient safety and quality reporting infrastructures.
+Sincerely,
+Evelyn Gallego, MBA, MPH, CPHIMS
+CEO and Founder
+9

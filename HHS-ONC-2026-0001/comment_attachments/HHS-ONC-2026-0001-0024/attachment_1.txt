@@ -1,0 +1,32 @@
+Submitted By: Anil Bodepudi Sr. Data Engineer, Corteva Agriscience, Austin, Texas,
+anilsai.b@gmail.com
+To: U.S. Department of Health and Human Services (HHS) Re: Request for Information:
+Accelerating the Adoption of Artificial Intelligence in Clinical Care Subject: Technical Advisory
+on Data Infrastructure and Hardware Drift
+To the Committee:
+I am writing to provide technical feedback on the infrastructure requirements necessary for the
+safe acceleration of AI in clinical settings. As a Data Engineering Manager currently overseeing
+petabyte-scale genomic pipelines in the life sciences industry (Corteva Agriscience), I manage
+the "Data Gravity" and lifecycle challenges of biological AI daily.
+While the RFI correctly identifies the potential of AI, it currently overlooks a fundamental
+engineering failure mode: Silent Instrument Drift.
+1. The Engineering Gap: "Batch Effects" in Production In industrial genomics, we frequently
+observe that AI models are highly sensitive to the specific firmware and calibration of the data
+capture hardware (e.g., DNA sequencers or imaging arrays). A model trained on data from
+"Sequencer A" will often degrade silently when applied to "Sequencer B," interpreting the
+hardware noise profile as a biological signal.
+In a clinical setting, if a hospital upgrades its MRI firmware or sequencing hardware, an
+"accelerated" AI model lacking rigid provenance checks will likely produce diagnostic errors that
+are statistically undetectable until patient harm occurs.
+2. Recommendation: Mandate Instrument-Agnostic Validation To safely accelerate
+adoption, HHS standards must look upstream of the model layer. I recommend that any
+framework for AI adoption include a mandatory "Data Engineering Competency" check:
+● Metadata Provenance: AI systems must be required to ingest and validate the
+hardware metadata (Device ID, Firmware Version) of the input data.
+● Drift Normalization: Protocols must be established to distinguish between Biological
+Drift (the patient changing) and Instrument Drift (the machine changing).
+We have solved this in the private sector by enforcing strict schema contracts on our data lakes.
+Clinical systems require the same rigor. Adopting AI without standardizing the underlying data
+engineering layer will result in fragile systems that fail at scale.
+Respectfully,
+Anil Bodepudi

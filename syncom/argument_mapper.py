@@ -108,7 +108,8 @@ Objective (the position to advance or oppose):
 {objective}
 
 Specific argument angle to emphasize:
-  {argument_angle}
+  Summary: {argument_angle}
+{key_claims_block}{rhetorical_approach_block}{avoid_block}
 The core_arguments and framing should be built around this specific angle,
 expressed through this persona's perspective and voice.
 
@@ -210,6 +211,36 @@ def _subsample_rfi_questions(
     return [rfi_qs[int(i)] for i in indices]
 
 
+def _build_angle_detail_blocks(
+    key_claims: list[str],
+    rhetorical_approach: str,
+    avoid: list[str],
+) -> tuple[str, str, str]:
+    """
+    Build the optional detail blocks for the campaign frame prompt.
+    Returns (key_claims_block, rhetorical_approach_block, avoid_block).
+    Each block is either a formatted multi-line string or empty string.
+    """
+    if key_claims:
+        claims_lines = "\n".join(f"    - {c}" for c in key_claims)
+        key_claims_block = f"  Key claims to make:\n{claims_lines}\n"
+    else:
+        key_claims_block = ""
+
+    if rhetorical_approach:
+        rhetorical_approach_block = f"  Rhetorical approach: {rhetorical_approach}\n"
+    else:
+        rhetorical_approach_block = ""
+
+    if avoid:
+        avoid_lines = "\n".join(f"    - {a}" for a in avoid)
+        avoid_block = f"  Do NOT cover in this comment (handled by other angles):\n{avoid_lines}\n"
+    else:
+        avoid_block = ""
+
+    return key_claims_block, rhetorical_approach_block, avoid_block
+
+
 def build_campaign_frame(
     objective: str,
     argument_angle: str,
@@ -217,6 +248,9 @@ def build_campaign_frame(
     world_model: WorldModel,
     config: Config,
     rng: np.random.Generator,
+    key_claims: list[str] | None = None,
+    rhetorical_approach: str = "",
+    avoid: list[str] | None = None,
 ) -> ExpressionFrame:
     """
     Build an ExpressionFrame for campaign mode (v2.0).
@@ -229,7 +263,7 @@ def build_campaign_frame(
     objective : str
         The campaign objective.
     argument_angle : str
-        The specific argument angle text.
+        The specific argument angle text (one-sentence summary).
     persona : Persona
         The instantiated persona (with voice skill loaded).
     world_model : WorldModel
@@ -238,6 +272,16 @@ def build_campaign_frame(
         API config.
     rng : np.random.Generator
         Random number generator.
+    key_claims : list[str] | None
+        Optional specific claims from the ArgumentAngle. When provided,
+        these are passed to the frame LLM to produce more differentiated
+        core_arguments.
+    rhetorical_approach : str
+        Optional rhetorical strategy from the ArgumentAngle. Tells the
+        frame LLM *how* to argue, not just *what* to argue.
+    avoid : list[str] | None
+        Optional list of topics/framings to exclude, preventing angle
+        collapse across comments.
     """
     client = config.openai_client()
 
@@ -247,9 +291,16 @@ def build_campaign_frame(
     rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
     citation_guidance = _derive_citation_guidance(persona)
 
+    key_claims_block, rhetorical_approach_block, avoid_block = _build_angle_detail_blocks(
+        key_claims or [], rhetorical_approach, avoid or []
+    )
+
     prompt = _CAMPAIGN_FRAME_USER.format(
         objective=objective,
         argument_angle=argument_angle,
+        key_claims_block=key_claims_block,
+        rhetorical_approach_block=rhetorical_approach_block,
+        avoid_block=avoid_block,
         archetype=persona.archetype,
         voice_id=persona.voice_id,
         name=persona.full_name,
@@ -323,9 +374,33 @@ async def build_campaign_frame_async(
     world_model: WorldModel,
     config: Config,
     rng: np.random.Generator,
+    key_claims: list[str] | None = None,
+    rhetorical_approach: str = "",
+    avoid: list[str] | None = None,
 ) -> ExpressionFrame:
     """
     Async version of build_campaign_frame.
+
+    Parameters
+    ----------
+    objective : str
+        The campaign objective.
+    argument_angle : str
+        The specific argument angle text (one-sentence summary).
+    persona : Persona
+        The instantiated persona (with voice skill loaded).
+    world_model : WorldModel
+        The rule's world model.
+    config : Config
+        API config.
+    rng : np.random.Generator
+        Random number generator.
+    key_claims : list[str] | None
+        Optional specific claims from the ArgumentAngle.
+    rhetorical_approach : str
+        Optional rhetorical strategy from the ArgumentAngle.
+    avoid : list[str] | None
+        Optional list of topics/framings to exclude.
     """
     client = config.async_openai_client()
 
@@ -335,9 +410,16 @@ async def build_campaign_frame_async(
     rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
     citation_guidance = _derive_citation_guidance(persona)
 
+    key_claims_block, rhetorical_approach_block, avoid_block = _build_angle_detail_blocks(
+        key_claims or [], rhetorical_approach, avoid or []
+    )
+
     prompt = _CAMPAIGN_FRAME_USER.format(
         objective=objective,
         argument_angle=argument_angle,
+        key_claims_block=key_claims_block,
+        rhetorical_approach_block=rhetorical_approach_block,
+        avoid_block=avoid_block,
         archetype=persona.archetype,
         voice_id=persona.voice_id,
         name=persona.full_name,

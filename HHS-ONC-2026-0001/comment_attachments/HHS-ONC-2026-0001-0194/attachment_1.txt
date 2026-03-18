@@ -1,0 +1,167 @@
+February 22, 2026
+Department of Health and Human Services
+Assistant Secretary for Technology Policy
+Office of the National Coordinator for Health Information Technology
+Attention: HHS Health Sector AI RFI
+Mary E. Switzer Building, Mail Stop: 7033A
+330 C Street SW, Washington, DC 20201
+Re: Request for Information: Accelerating the Adoption and Use of Artificial Intelligence
+as Part of Clinical Care (RIN 0955–AA13)
+Dear Assistant Secretary Keane:
+The People’s Health Clinic (PHC) appreciates the opportunity to respond to HHS’s
+Request for Information on accelerating the adoption and use of artificial intelligence in clinical
+care. We write as a 30-person free clinic in Park City, Utah delivering 21,500 patient encounters
+annually to a predominantly Spanish-speaking population, 95% of whom live below 200% of the
+federal poverty level. The number of unique patients served is increasing by approximately 10%
+year over year. We do not receive federal funding. We have no IT department, no compliance
+team, and no dedicated cybersecurity staff.
+Despite these constraints, PHC has direct operational experience with both categories of
+AI now entering clinical care: predictive AI that we have successfully deployed, and generative
+AI for which we have built a governance framework and are preparing to evaluate. Our
+experience illustrates both the promise and the practical barriers that safety-net providers face in
+adopting AI—and suggests specific actions HHS can take to accelerate responsible adoption.
+I. Where AI Has Met or Exceeded Expectations: Autonomous Diabetic Retinopathy
+Screening (RFI Question 6)
+PHC has deployed LumineticsCore® (Digital Diagnostics), the first FDA De Novo-
+cleared autonomous AI diagnostic system, which detects diabetic retinopathy at the point of care
+without requiring specialist overread. This is a predictive AI: the same retinal images produce
+the same diagnostic output every time, and its performance has been validated through rigorous
+clinical trials with published bias mitigation data across sex, race, and ethnicity.
+Results at PHC (August 2025 – January 2026):
+• 175 total exams completed; 154 sufficient for diagnosis (88% diagnosability)
+• 20% positivity rate—one in five patients screened had more than mild diabetic
+retinopathy detected, enabling immediate referral to eye care
+• Median exam time: 5 minutes
+• Zero protocol errors
+
+• 100% camera utilization
+For PHC’s patient population—predominantly uninsured and with limited access to
+specialty care—this AI tool closes a critical gap. Prior to implementing LumineticsCore, diabetic
+retinopathy screening required a separate specialist referral, often resulting in delays of up to a
+year. Many patients were unable to complete screening due to cost or transportation barriers.
+Now, screening happens during the primary care visit. The 20% positivity rate confirms
+that this tool is catching disease that would otherwise go undetected.
+This deployment demonstrates that autonomous predictive AI can work effectively in a
+resource-constrained, safety-net setting with minimal infrastructure. The tool integrates into
+existing workflow, requires no IT support beyond initial setup, and produces deterministic results
+that can be validated using standard statistical methods.
+II. The Generative AI Challenge: Why Current Frameworks Are Insufficient (RFI
+Questions 4 and 5)
+PHC is also preparing to evaluate generative AI tools—specifically ambient AI clinical
+documentation and AI-powered phone answering and triage. These tools present fundamentally
+different challenges from the predictive AI described above, and this distinction has significant
+implications for HHS policy.
+Predictive AI (like LumineticsCore) is deterministic: the same input produces the same
+output every time. It can be validated once using standard statistical methods (sensitivity,
+specificity, AUC) and monitored for drift using established techniques. Generative AI is non-
+deterministic: the same patient encounter processed twice will produce two different clinical
+notes with different wording, different emphasis, and potentially different clinical facts. This
+means:
+• Traditional accuracy metrics do not apply. There is no single “correct” output to measure
+against.
+• Hallucination—the generation of clinically plausible but fabricated content—is an
+inherent failure mode, not an edge case.
+• Validation cannot be a one-time event. Every output is unique and must be evaluated
+continuously.
+• Bilingual performance introduces additional risk. A note generated from a Spanish-
+language encounter may omit clinical facts that would be captured in English, creating a
+two-tier documentation standard that worsens health disparities.
+To address these challenges, PHC developed a generative AI evaluation framework that
+measures four dimensions: clinical completeness, clinical fidelity (with zero tolerance for
+hallucinated content), semantic consistency across repeated runs, and harm potential scoring. The
+framework includes a repeatability test protocol that processes the same encounter five times,
+
+compares the clinical facts extracted across all runs, and requires safety-critical facts to appear in
+at least four of five outputs. It also includes bilingual stress testing with code-switching and
+dialect-specific medical terminology.
+To our knowledge, no published national framework—including the CHAI/Joint
+Commission Responsible Use of AI guidance, NACHC’s AI action guides, or the HEAAL
+equity framework—addresses the specific evaluation challenges of generative AI in clinical
+settings. This is a critical gap. As ambient AI documentation tools proliferate across the
+healthcare system, the absence of evaluation methods designed for non-deterministic outputs
+creates patient safety risk at scale.
+This gap is not limited to safety-net settings. A 2024 case study from Mass General
+Brigham—an integrated academic health system with a dedicated 18-person, multidisciplinary
+AI governance committee—selected ambient documentation as their generative AI test case and
+acknowledged the absence of straightforward metrics for evaluating generative AI performance
+in clinical settings (Saenz et al., “Establishing responsible use of AI guidelines,” npj Digital
+Medicine 7:348, 2024). Their evaluation relied primarily on clinician feedback scores and note
+retention rates. They also reported an inability to measure AI quality across patient demographics
+due to data linkage limitations. If a major academic health system with dedicated AI governance
+resources faces these measurement challenges, the need for standardized evaluation methods that
+smaller organizations can adopt is urgent.
+III. Barriers to AI Adoption in Safety-Net Settings (RFI Question 1)
+PHC’s experience highlights several barriers that are likely shared by free clinics,
+community health centers, and other resource-constrained providers across the country:
+No governance templates for small organizations. The CHAI/Joint Commission guidance
+recommends establishing formal AI governance structures with representatives from compliance,
+IT, clinical programs, operations, and data privacy. PHC does not have separate departments for
+any of these functions. We built a governance framework that assigns these responsibilities to
+specific individuals within a 30-person team. HHS should support the development of
+governance templates scaled to organizations of different sizes—not just large health systems.
+Vendor opacity on generative AI performance. When PHC evaluates AI vendors, we ask:
+which large language model powers your product? Has the vendor run repeatability or
+consistency testing? What is the performance data for non-English and low-income populations?
+Most vendors cannot answer these questions. HHS should consider requiring transparency in
+training data composition, known limitations, and performance benchmarks stratified by
+language and demographics—particularly for tools marketed to safety-net providers.
+Cost barriers. Monthly licensing costs for AI-powered clinical documentation tools can
+represent a significant budget line for a free clinic. PHC cannot currently absorb per-provider-
+per-month pricing designed for large health systems. HHS should explore mechanisms—grants,
+
+subsidies, or tiered pricing incentives—to ensure that the productivity benefits of clinical AI are
+not limited to well-resourced organizations.
+Default-on vendor features. EHR vendors are beginning to activate AI features by default.
+PHC’s framework requires that any vendor-released AI feature pass the same three-gate
+evaluation process as any other tool—but this only works if the clinic is aware the feature has
+been activated. HHS should consider requiring EHR vendors to provide advance notice and opt-
+in consent before activating AI features that process patient data.
+IV. Recommendations for HHS Action (RFI Questions 2, 4, and 5)
+Based on our direct experience deploying predictive AI and building governance for
+generative AI, PHC offers the following recommendations:
+1. Develop evaluation methods specific to generative AI in clinical settings. Current
+evaluation frameworks are designed for predictive models. HHS should fund the development of
+standardized evaluation methods for generative AI—including repeatability testing, hallucination
+detection protocols, and bilingual performance benchmarking—and make these methods freely
+available to providers of all sizes.
+2. Require vendor transparency on AI model composition and performance. Providers
+cannot make informed adoption decisions without knowing which AI models power a product,
+how those models were trained, and how they perform across different languages and patient
+populations. HHS should establish minimum disclosure requirements for AI vendors marketing
+to healthcare organizations.
+3. Support AI governance capacity in safety-net settings. The CHAI/Joint Commission
+playbooks under development should include specific guidance for free clinics, community
+health centers, and critical access hospitals. PHC would welcome the opportunity to contribute
+our framework and operational experience to this effort.
+4. Protect patient trust through transparency requirements. For AI tools that record patient-
+provider conversations—particularly in settings serving immigrant and undocumented
+populations—clear patient notification and consent requirements are essential. HHS should
+provide guidance on minimum patient transparency standards for ambient AI in clinical settings.
+5. Ensure reimbursement pathways do not exclude safety-net providers. PHC’s experience
+with LumineticsCore demonstrates that autonomous AI can deliver measurable clinical value in a
+free clinic setting. As HHS considers reimbursement policy for AI-enabled services, it should
+ensure that payment models account for uninsured and underinsured populations and do not
+create incentives that concentrate AI adoption only in commercially insured settings.
+
+V. Conclusion
+PHC’s experience demonstrates two things simultaneously: that AI can meaningfully
+improve care for underserved populations, and that adopting AI responsibly requires governance
+capacity that most small providers do not have. HHS has an opportunity to accelerate AI
+adoption across the healthcare system—but only if it ensures that safety-net providers are
+included in that acceleration, not left behind by it.
+We welcome the opportunity to discuss our experience further and to contribute to the
+development of evaluation methods and governance frameworks appropriate for resource-
+constrained clinical settings.
+Respectfully submitted,
+Mairi Leining, MD, MPH, FACP
+Chief Executive Officer
+People’s Health Clinic
+650 Round Valley Drive
+PO Box 681558
+Park City, Utah 84060
+Bruce Fryer, MBA
+AI Implementation Lead (pro bono)
+People’s Health Clinic
+650 Round Valley Drive
+PO Box 681558
+Park City, Utah 84060

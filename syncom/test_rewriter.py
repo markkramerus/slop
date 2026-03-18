@@ -633,7 +633,7 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="VOICE_ID",
         default=None,
         help=(
-            "Voice ID to use (e.g. 'individual_consumer-low', 'industry-high-org'). "
+            "Voice ID to use (e.g. 'individual_consumer-low', 'industry_high_org'). "
             "If omitted, you'll be prompted to choose interactively."
         ),
     )

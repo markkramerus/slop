@@ -1,0 +1,200 @@
+HHS RFI Response Guide
+Details
+Issuing Agency: HHS Office of the Deputy Secretary and ASTP/ONC
+Responding Agency: University of Texas MD Anderson Cancer Center
+Questions
+1. What are the biggest barriers to private sector innovation in AI for health care and its adoption and
+use in clinical care?
+• Private sector often jumps into developing products with a narrow, limited or even lack of
+perspective around the clinical workflows, variability in data generation and challenges of
+integrating AI into clinical care. This results in the development of AI products that may be
+difficult to adopt and use in clinical care. Although FDA approval signals regulatory compliance,
+this does not necessarily reflect an AI tool that can readily be implemented into broad clinical
+use. Frameworks and tools to enable local validation of model performance currently do not exist.
+While larger academic centers may have the resources to perform local validation and pilots,
+many smaller and community clinics and centers lack these resources. Further, most
+organizations do not have a functioning model implementation and lifecycle management
+framework. The consequence is a cleared tool may work well at healthcare organizations with
+data quality and capture that matches that of the model training data, but silently fail (mal- or
+non-performance) at less mature organizations. Currently, there are no accountability mechanisms
+to catch either of these outcomes.
+2. What regulatory, payment policy, or programmatic design changes should HHS prioritize to
+incentivize the effective use of AI in clinical care and why? What HHS regulations, policies, or
+programs could be revisited to augment your ability to develop or use AI in clinical care? Please
+provide specific changes and applicable Code of Federal Regulations citations.
+• The expansion and evolution of AI capabilities warrant an updated approach to interoperability
+that emphasizes technological transportability in addition to data exchange. ONC’s USCDI
+initiative (under 45 CFR § 170.213) appropriately expands capture across settings. To facilitate
+clinical implementation, the data used to train AI models should be comparable across sites,
+devices, protocols, and workflows. As stated in the HTI-1 final rule (B part V), “USCDI is not
+specific to a setting of care, a healthcare specialty, or a specific category of health IT user.”
+Including data classes on provenance that emphasize transportability would still apply broadly,
+however, it would enable fit-for-purpose reimbursement mechanisms by ensuring required
+information is holistic and relevant to clinical practice across institutions.
+• Furthermore, reimbursement mechanisms do not condition payment on whether a model is fit for
+the population and data environment where it will be used. This may result in use of AI tools for
+clinical scenarios and populations that were not reflected in the training or validation data thereby
+introducing risk of unreliable outputs. While there are regulations to outline edge cases where the
+AI model might not perform, there are no standardized metrics on real-world implementation
+metrics that contribute heavily to performance across settings. Reimbursement eligibility should
+require a data quality attestation alongside FDA clearance. The deploying site’s data pipeline
+must meet the minimum quality thresholds for the model’s intended use. This also refines the
+necessary volume of clinical data elements exchanged.
+
+o Creates aligned incentives between developers seeking broad billing eligibility and
+healthcare organizations investing in data infrastructures to access reimbursement
+mechanisms
+o CLIA (42 CFR Part 493 - Laboratory Requirements) is an established precedent where
+reimbursement is conditioned on process quality in addition to reagent approval. The
+same logic should be applied to AI-driven clinical care solutions to facilitate safe and
+responsible use of AI along with the associated cost-savings.
+• Quantitative imaging example: CLIA-equivalent standards for imaging data
+o https://fas.org/publication/ai-enabled-precision-medicine/
+3. For non-medical devices, we understand that use of AI in clinical care may raise novel legal and
+implementation issues that challenge existing governance and accountability structures (e.g., relating
+to liability, indemnification, privacy, and security). What novel legal and implementation issues exist
+and what role, if any, should HHS play to help address them?
+• Training models on identifiable data creates a more accurate model, but potentially places data
+privacy in jeopardy. Require developers to utilize de-identified or aggregate data for
+development. If a solution does need identifiable data, the model must be locked per
+implementation. The use of synthetic data could also circumvent the need for real-world de-
+identified data usage.
+• Conditional reimbursement tied to data fitness should be paired with clarification of liability
+allocation between developer, user/site, and attestation framework
+• HHS could define the domain of applicability tests. Requiring ability to test and demonstrate data
+used should be within domain of applicability for regulated AI models.
+4. For non-medical devices, what are the most promising AI evaluation methods (pre- and post-
+deployment), metrics, robustness testing, and other workflow and human-centered evaluation
+methods for clinical care? Should HHS further support these processes? If so, which mechanisms
+would be most impactful (e.g., contracts, grants, cooperative agreements, and/or prize competitions)?
+• Testing and evaluation of AI models will depend heavily on several technical considerations. We
+focus on framework for assessing whether the deployment site’s data meets the conditions of
+training/validation data. The existing framework for data exchange is robust and growing,
+however, as evidenced by medical imaging, AI performance and generalizability will remain
+unstable because the underlying measurements are not sufficiently comparable across real-world
+settings. HHS can support AI adoption in clinical settings by prioritizing the comparison of data
+based on safe reuse, transportability, and post-deployment monitoring through an AI lifecycle
+management process. Conditioning both initial and continued reimbursement based on AI model
+management will incentivize developers and users to consider quality assessment and quality
+control across the AI lifecycle.
+• Cooperative agreements are a likely high-impact mechanism for building shared evaluation
+infrastructure. Allowing federal agencies to actively coordinate standards development, data
+harmonization, QA/QC methods, reference datasets, and multisite validation networks would
+stimulate cross-institutional coordination. Contracts could support time-bounded deliverables to
+develop benchmarks, AI lifecycle maturity assessments, and workflow considerations.
+5. How can HHS best support private sector activities (e.g., accreditation, certification, industry-driven
+testing, and credentialing) to promote innovative and effective AI use in clinical care?
+• HHS can best support private-sector accreditation, certification, and credentialing by encouraging
+certification frameworks that evaluate the deployment environment in which an AI system is
+
+actually used. This means requiring standardized data classes for provenance and implementation
+context (e.g., device type, workflow configuration, staffing patterns) that shape real-world
+performance. Doing so would create a strong incentive for health systems to mature their data
+quality and governance infrastructure, while pushing vendors and certifiers to measure
+effectiveness under real clinical conditions rather than idealized test settings alone. HHS could
+further reinforce this through joint cross-agency certification pathways and voluntary certification
+tied to conditional reimbursement eligibility, so that reimbursement is linked to evidence that AI
+tools are fit for purpose in the settings where they are deployed.
+6. Where have AI tools deployed in clinical care met or exceeded performance and cost expectations
+and where have they fallen short? What kinds of novel AI tools would have the greatest potential to
+improve health care outcomes, give new insights on quality, and help reduce costs?
+• The absence of fit-for-purpose data standards makes underperformance invisible. There should be
+a systematic mechanism to identify why cleared tools are failing in real-world deployment. A
+well-known example of this phenomenon is the Epic Sepsis model that was validated based on
+performance, but failed to sustain external validity in different settings. Models that show robust
+performance using data that can be captured across settings, irrespective of machinery,
+workflows, and system-specific considerations, would have significantly wider appeal than those
+without such considerations. Cost-savings would be an outcome of this improved system because
+the private sector would take on the onus of expanding applicability of their AI model and clinical
+sites would have the necessary information to evaluate use in their setting.
+7. Which role(s), decision maker(s), or governing bodies within health care organizations have the most
+influence on the adoption of AI for clinical care? What are the primary administrative hurdles to the
+adoption of AI in clinical care?
+• A non-exhaustive list is provided below:
+- National Institutes of Health (NIH) (and related organizations such as National Institute
+of Biomedical Imaging and Bioengineering (NIBIB))
+- National Institute of Standards and Technology (NIST)
+- Centers for Disease Control (CDC)
+- Centers for Medicare and Medicaid Services (CMS)
+- U.S. Department of Defense (DoD)
+- Radiological Society of North America (RSNA)
+- American Association of Physicists in Medicine (AAPM)
+- International Society for Magnetic Resonance in Medicine (ISMRM)
+- Society of Nuclear Medicine & Molecular Imaging (SNMMI)
+- American Institute of Ultrasound in Medicine (AIUM)
+- American College of Radiology (ACR)
+- ARPA-H
+- National Comprehensive Cancer Network
+- U.S. Preventative Services Task Force
+• International organizations also have relevant programs, guidance, and insight, including:
+- European Society of Radiology (ESR)
+- European Association of National Metrology Institutes (EURAMET)
+- European Society of Breast Imaging (EUSOBI)
+- European Society of Radiology’s Imaging Biomarkers Alliance (EIBALL)
+- European Association of Nuclear Medicine (EANM)
+- Institute of Physics and Engineering in Medicine (IPEM)
+- Japan Quantitative Imaging Biomarker Alliance (JQIBA)
+
+- National Physical Laboratory (NPL)
+- National Imaging Facility (NIF)
+Administrative barriers to adoption are largely related to systemic factors of implementation. While data
+can be collected for initial validation, continued performance and real point-of-care usage is defined by
+operational feasibility, sociotechnical factors, and the ability to capture longitudinal performance. These
+considerations are not captured by existing data classes and are not standardized across healthcare
+organizations.
+8. Where would enhanced interoperability widen market opportunities, fuel research, and accelerate the
+development of AI for clinical care? Please consider specific data types, data standards, and
+benchmarking tools.
+AI Model Types (examples) Potential Systemic Concerns Examples of Additional Variables
+Medical imaging Lack of standardization across devices Scanner manufacturer and model, software
+and protocols. Image quality differences version, imaging protocol, reconstruction
+can reduce model performance. settings, calibration status, QA and QC status
+Physiologic signals (ECG Signal quality and preprocessing differ Device manufacturer and model, sampling rate,
+alerts, Telemetry by device and hospital unit. Alert burden preprocessing method, signal quality flags, care
+deterioration) depends on workflow conditions. unit type
+EHR risk prediction Coding, documentation, and workflow Care setting, code system and version, missing
+differences change inputs and outcome data rates, timestamp provenance, outcome
+labels. definition
+Clinical language AI Hallucination and omission risk. Output Source note types, note completeness, model
+quality depends on source note quality version, prompt template version, user edits, user
+and how staff use the tool. acceptance rate
+Patient communication or Unsafe or outdated advice. Failure to Knowledge source and update date, language,
+navigation escalate to a human when needed. escalation triggers, human review status
+Operational scheduling Optimization can ignore clinical Clinical constraints including fasting and
+constraints and local exceptions. preparation rules, staffing availability, resource
+availability, override logs, cancellation patterns
+9. What challenges within health care do patients and caregivers wish to see addressed by the adoption
+and use of AI in clinical care? Equally, what concerns do patients and caregivers have related to the
+adoption and use of AI in clinical care?
+• Better scheduling to reduce patient time toxicity
+• Improved ability to select care providers and have patient information follow easily
+• Better integration of clinical data across care systems
+• Better translation of clinical care for patients without medical knowledge (often being addressed
+using large-language models that are dependent on user prompts)
+• Availability of recordings of clinician discussions with patients (high priority initiative with the
+increased use of ambient recording services)
+• Concerns: Clinicians rely only on AI without adequate backup. Consider clinician peer review or
+use of agentic AI to review clinician use of AI in the care setting.
+• Significant improvement if there would be transparency in tracking use of AI predictions along
+with ultimate care decision and realized outcome. These remain separated and unavailable
+10. Are there specific areas of AI research that HHS should prioritize to accelerate the adoption of AI as
+part of clinical care?
+• Establish data fitness benchmarks by clinical domain and AI modality/classification to link FDA
+clearance and real-world deployment conditions
+• Expand interoperability initiatives to capture system-level factors associated with AI
+implementation and adoption beyond clinical performance and post-deployment tracking. The
+
+explicit emphasis on operational workflows and differences in data quality are key determinants
+of feasibility and long-term value generation.
+a. Are there published findings about the impact of adopted AI tools and their use in clinical
+care?
+Hwang et al (2026) showcased a key phenomenon that influences AI adoption in clinical
+care. We emphasize that adoption and implementation are not directly tied to need, but rather,
+are related to institutional capability/maturity. Figure 3 clearly shows that implementation is
+clustered in large metropolitan areas with serious gaps across rural America and low-resource
+settings. An increase in the number of models approved for use does not translate to direct
+impact because institutions lack the capabilities needed to implement and monitor the models,
+such as robust AI lifecycle management. Therefore, we implore HHS and other relevant
+stakeholders to prioritize understanding systemic data classes that relate to implementation
+over model performance and tracking. Transparency and transportability are both
+contributory factors to interoperability.

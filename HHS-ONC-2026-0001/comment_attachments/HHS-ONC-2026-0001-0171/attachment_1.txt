@@ -1,0 +1,97 @@
+Date: 2/20/26
+To: Department of Health and Human Services (HHS), Office of the National Coordinator (ONC)
+Re: RFI: Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care (Docket No.
+2025-23641)
+From: xCures, Inc.
+Executive Summary
+xCures operates an AI-assisted healthcare data platform that extracts and structures clinical
+information from medical records gathered across multiple sources, including from health information
+networks like TEFCA and Carequality. This platform serves as a semantic layer for healthcare data,
+delivering decision-ready intelligence that empowers professionals to act with confidence and clarity.
+We appreciate the opportunity to comment on how HHS can accelerate AI adoption in clinical
+care. Our experience processing millions of patient records across the U.S. healthcare system suggests
+that the primary barrier to AI efficacy is not algorithm availability, but data readiness—specifically, the
+inability of standard systems to process unstructured clinical evidence (PDFs, faxes, and images) where
+the most critical medical insights reside.
+We respectfully submit the following responses to specific questions in the RFI, advocating for a
+regulatory framework that prioritizes Source Verifiability (audit trails), Universal Participation, and
+Semantic Interoperability.
+Responses to Specific Questions
+1. What are the biggest barriers to private sector innovation in AI for health care?
+Barrier A: The "Unstructured Data" Cliff
+The greatest technical barrier is the industry’s over-reliance on structured data feeds (HL7/FHIR) which
+often fail to capture the complete clinical picture.
+● The Reality: While a majority of health data transmission may technically be structured
+(XML/JSON), in reality the high-value clinical indicators—pathology reports, genomic staging, and
+discharge summaries—predominantly reside in unstructured formats like PDFs, faxes, and
+scanned images.
+● The Barrier: Current "standard" interoperability often dumps these files as raw blobs that generic
+AI models struggle to interpret accurately. Without an infrastructure layer capable of normalizing
+this unstructured multimedia data into compute-ready formats, clinical AI will remain limited to
+basic administrative tasks rather than deep clinical decision support.
+Barrier B: Data Access and Network Participation
+Even when data is digital, another barrier is just getting access to all the data. Not all holders of
+patient's health data are participating in TEFCA.
+
+● The Barrier: This non-universal participation in health information networks means AI
+models cannot build a complete, longitudinal view of the patient, leading to
+"hallucinations" born of missing context.
+● The Solution: Innovation requires a federal requirement or penalty for not participating
+in TEFCA's treatment and individual access services pathway, which are critical for
+healthcare providers and patients to have access to their longitudinal data in order to
+use that for AI. Streamlining access through mandatory participation and seamless
+access would allow healthcare providers and patients to rapidly aggregate the necessary
+data to power clinical AI, reducing the cost and time delays currently imposed by
+fragmented retrieval processes.
+2. What regulatory or payment policy changes should HHS prioritize?
+Incentivize "Data Completeness" and Administrative Reduction:
+HHS should prioritize payment models that reimburse for the completeness of clinical documentation,
+not just the volume of care.
+● Reimbursement Leakage: Healthcare organizations currently face significant revenue loss due to
+missing or incomplete documentation. This "administrative friction" delays patient care (e.g.,
+prior authorization bottlenecks).
+● Recommendation: CMS should allow AI-verified data (with direct links to source documents) to
+automatically satisfy documentation requirements for Prior Authorization and Quality Reporting
+(e.g., NCQA ECDS). This would incentivize the adoption of AI tools that solve the "missing data"
+problem, directly reducing administrative burden.
+4. & 5. What are the most promising AI evaluation methods? How can HHS support
+certification?
+The "Trust but Verify" Standard:
+HHS must distinguish between "Black Box" AI (which summarizes without proof) and Source-Verified AI.
+● Safety Risk: Generative AI that summarizes patient history without an audit trail poses a
+significant safety risk (hallucinations).
+● Proposed Standard: We advocate that any AI tool used for clinical decision-making or
+reimbursement must meet a "Source Linking" standard. Every extracted clinical fact (e.g.,
+"Patient has Stage 4 Breast Cancer") must be digitally linked to the specific page, document, and
+timestamp of the source record.
+● Validation: Validation metrics should not just measure "accuracy" against a gold standard, but
+the speed and ability of a human reviewer to verify the AI's claim via these source links. This
+"human-in-the-loop" architecture is the only safe path for clinical AI.
+● Ongoing Quality Control: Initial validation is insufficient given the rapid evolution of AI
+technology. We recommend regulatory frameworks mandate ongoing quality controls—such as
+
+continuous monitoring and regression testing—to ensure that AI tools remain trustworthy and
+stable as models and data sources evolve.
+8. Where would enhanced interoperability widen market opportunities?
+A. Mandate Universal Network Participation
+To widen market opportunities for AI, interoperability must be universal, not optional.
+● The Problem: Currently, participation in networks like TEFCA is voluntary, leaving significant gaps
+in coverage—particularly among smaller practices, rural clinics, and specialists who may still rely
+on fax. AI models trained on or operating with "Swiss cheese" data (data with holes) are
+inherently unsafe and biased.
+● Recommendation: HHS should prioritize regulatory levers that move towards mandatory
+participation in Health Information Networks for all providers. Universal participation ensures
+that AI agents have access to the entire patient journey, not just the episodes that occurred in
+large, tech-enabled health systems.
+B. From "Transport" to "Semantic" Interoperability
+Current interoperability frameworks (TEFCA, QHINs) excel at transporting files but fail at semantic
+understanding.
+● The Gap: Moving a PDF from Hospital A to Hospital B is "interoperability," but it does not help an
+AI system understand the patient's history.
+● Evidence: In representative analyses of patients with complex conditions (e.g., advanced
+oncology), we found that relying solely on standard structured data feeds resulted in missing
+approximately 88% of relevant Hierarchical Condition Category (HCC) coding opportunities
+compared to AI-enhanced extraction from unstructured notes.
+● Recommendation: HHS should broaden the definition of "interoperability" to include the capacity
+to parse, normalize, and structure unstructured data. True interoperability is not just moving the
+file; it is making the content of the file machine-readable for downstream AI applications.

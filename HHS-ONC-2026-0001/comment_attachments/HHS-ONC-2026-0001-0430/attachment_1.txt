@@ -1,0 +1,896 @@
+February 23, 2026
+Department of Health and Human Services
+Assistant Secretary for Technology Policy / Office of the National Coordinator for Health
+Information Technology
+Attention: HHS Health Sector AI RFI
+Mary E. Switzer Building, Mail Stop: 7033A
+330 C Street SW, Washington, DC 20201
+Re: Request for Information: Accelerating the Adoption and Use of Artificial Intelligence as Part
+of Clinical Care (RIN 0955-AA13; 90 FR 60108)
+Submitted via: http://www.regulations.gov
+PUBLIC COMMENT
+The Evidence Gap in Clinical AI: Why Federal Standards Must Precede
+Adoption
+How Unvalidated Claims, Misaligned Incentives, and Regulatory Fragmentation Are Putting
+Patients at Risk
+Submitted by:
+Rahul Gorijavolu
+Nikhil Jaiswal
+Cathy Mullins, Patient Partner
+Tina Hernandez-Boussard, PhD, MS, MPH
+Leo Anthony Celi, MD, MS, MPH
+On behalf of MIT Critical Data
+
+I. Summary
+This comment responds to the Department’s Request for Information on accelerating the
+adoption and use of artificial intelligence in clinical care.1 We respectfully submit that the
+framing of this RFI, which focuses primarily on removing barriers to AI adoption, reflects an
+incomplete picture of the current landscape. Before the Department acts to accelerate adoption, it
+should examine the systemic risks created by AI systems that have been deployed with
+inadequate evidence, that operate in regulatory gaps no federal agency has claimed jurisdiction
+over, and that access patient data through legal frameworks never designed for autonomous
+technology. These risks are not hypothetical. They are documented, ongoing, and escalating.2
+This comment draws on the collective expertise of the authoring team, which includes
+contributors to MIT Critical Data, a consortium spanning 40 countries with over a decade of
+work at the intersection of clinical medicine, health data science, and global health fairness,
+including the development of the MIMIC database, one of the most widely used open clinical
+datasets in the world.3 This comment also draws on direct investigation of the Doctronic AI
+prescribing pilot in Utah,4 including public records requests filed by members of our team under
+the Government Records Access and Management Act (GRAMA), as well as extensive analysis
+of the broader AI healthcare landscape, including multiple companies, documented patient
+harms, regulatory gaps, liability questions, algorithmic bias, and international comparisons.
+Doctronic is discussed as a case study, but the systemic problems this comment identifies extend
+far beyond any single company or state.
+We respond to all ten RFI questions below. Our central recommendation is that HHS should
+establish federal minimum evidence standards, liability frameworks, and fairness requirements
+for clinical AI before further accelerating adoption. We recognize that some commenters will
+argue these safeguards would slow innovation. We believe the opposite is true: clear standards
+are the foundation on which sustainable adoption must be built. Without them, the inevitable
+accumulation of patient harms will produce a public backlash that sets clinical AI back by years.
+1https://www.federalregister.gov/documents/2025/12/23/2025-23641/request-for-information-accelerating-the-adoption-and-use-of-artificial-intell
+igence-as-part-of
+2https://www.statnews.com/2026/02/03/utah-doctronic-ai-doctor-prescription-renewal-fda-regulation/
+3https://physionet.org/content/mimiciv/
+4https://commerce.utah.gov/2026/01/06/news-release-utah-and-doctronic-announce-groundbreaking-partnership-for-ai-prescription-medication-re
+newals/
+
+II. The Evidence Crisis: AI Healthcare Claims Outpace Proof
+A. The Doctronic Case Study: How a Preprint Became Policy
+To understand the evidence gap in clinical AI, it is useful to examine the strongest case: the
+Doctronic pilot in Utah, which has received significant regulatory scrutiny and press coverage
+compared with other autonomous clinical AI systems. If the evidence supporting this pilot is
+inadequate, it raises serious questions about the rest of the industry. The central evidence
+supporting Doctronic is a single preprint posted to medRxiv in July 2025.5 The paper reports a
+99.2% concordance rate between AI and physician treatment plans. This figure has been repeated
+by major outlets as though it constitutes validated evidence.6
+It does not meet that standard. medRxiv’s own FAQ states preprints “should not be used to guide
+clinical practice.”7 The methodological problems are substantial:
+• All eight authors are equity holders in Doctronic Inc.8
+• Ethics approval came from Doctronic’s own internal committee, not an independent
+IRB.9
+• The sample: 500 urgent-care encounters from a single week, which is insufficient to
+support claims about safety at scale.10
+• Clinicians saw AI-generated documentation before rendering assessments, introducing
+anchoring bias.11
+• Primary diagnosis match was only 81%; the 99.2% measures “treatment plan alignment,”
+a softer standard.12
+• The study tested urgent care, but the Utah pilot involves chronic medication renewals,
+which is a fundamentally different clinical context.13
+Doctronic’s co-founder claimed the AI is “infinitely safer than a human doctor”14, a claim
+supported by no independent evidence. The medical co-founder is a vascular surgeon with no
+prior AI research.15 The company’s first CMO with relevant AI credentials was hired in October
+2025, after the study.16
+5https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+6https://www.axios.com/local/salt-lake-city/2026/01/07/utah-ai-drug-prescriptions-doctronic;
+https://fortune.com/2026/01/08/ai-prescription-renewals-doctronic-utah-doctors-warn-puts-patients-at-risk/
+7https://www.medrxiv.org/about/FAQ
+8https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+9https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+10https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+11https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+12https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+13https://www.doctronic.ai/blog/doctronic-treatment-plan-consistency/
+14https://www.sltrib.com/news/2026/01/09/utahns-can-now-use-ai-renew/
+15https://surgery.ucsf.edu/bio/adam-oskowitz-md-phd
+16https://www.businesswire.com/news/home/20251015771722/en/
+
+B. A Landscape of Unvalidated Clinical AI Claims
+The evidentiary problems with Doctronic are not unique to that company. They reflect standard
+practice across the clinical AI industry, where companies routinely make clinical claims that far
+outstrip their published evidence. The following examples illustrate the scope of the problem.
+Hippocratic AI has raised $404 million at a $3.5 billion valuation, marketing “AI nurse agents”
+for direct patient interaction. The company claims 115 million clinical interactions “with no
+safety issues,” yet these metrics come from internal studies using a proprietary model that cannot
+be independently benchmarked. National Nurses United organized over 20 demonstrations
+against the company.17
+Glass Health (YC-funded, $6.5M raised) generates AI differential diagnoses and treatment
+plans. Despite claiming use at Harvard and Stanford, no published peer-reviewed clinical
+validation studies exist. The company deliberately avoids FDA-triggering language by marketing
+as “clinical decision support.”18
+K Health ($380M raised, $900M valuation) operates an AI symptom checker. While a
+company-associated study claimed 68% alignment with physicians, an independent vignette
+study found top-3 diagnostic accuracy of only 36% compared to 82.1% for general practitioners.
+Among newer entrants, YC-backed FutureClinic claims “digital medical clinics that are 99%
+AI, 1% doctor,” while Prana markets itself as a “full-stack medical provider” and “always-on
+physician.” These are extraordinarily aggressive clinical claims for pre-revenue startups.
+C. The Corporate Failure Record
+The pattern of overpromising and underdelivering in clinical AI is not new. IBM invested over
+$4 billion in Watson Health before selling it for approximately $1 billion; Watson for Oncology
+was trained on synthetic cases and proved inappropriate internationally.19 Babylon Health raised
+$1.2 billion before bankruptcy; the UK’s MHRA acknowledged “concerns” about its chatbot’s
+systematic triage failures, including missed heart attack symptoms and documented gender
+bias.2021
+The Texas Attorney General’s September 2024 enforcement action against Pieces Technologies
+found the company marketed hallucination rates below 0.001% that were “likely inaccurate.”
+Four major hospitals had been feeding real-time patient data to Pieces based on these claims.22
+17https://telecareaware.com/are-hippocratic-ai-and-ai-nurses-the-wave-of-the-future-or-just-another-tide-of-hype-two-articles-question/
+18https://techcrunch.com/2023/09/08/glass-health-is-building-an-ai-for-suggesting-medical-diagnoses/
+19https://theconversation.com/from-a-deranged-provocateur-to-ibms-failed-ai-superproject-the-controversial-story-of-how-data-has-transformed-h
+ealthcare-189362
+20https://theweek.com/health/babylon-health-the-failed-ai-wonder-app-that-dazzled-politicians
+21https://techcrunch.com/2021/03/05/uks-mhra-says-it-has-concerns-about-babylon-health-and-flags-legal-gap-around-triage-chatbots/
+22https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-reaches-settlement-first-its-kind-healthcare-generative-ai-inve
+stigation
+
+These corporate failures point to a deeper problem: AI systems that perform well in controlled
+settings consistently underperform in real clinical environments. An Oxford University study
+published in Nature Medicine (February 2026) quantified this gap, finding that AI diagnostic
+accuracy dropped from 95% on standardized tests to less than 35% when real patients interacted
+with these tools. Participants using AI chatbots actually performed worse than those using
+Google search. This finding has direct implications for the Doctronic pilot: a concordance study
+conducted in controlled conditions tells us very little about how the system will perform when
+deployed autonomously to real patients with complex medication histories.23
+23https://www.sciencenews.org/article/medical-advice-ai-chatbots-symptoms
+
+III. Documented Patient Harms: A Systematic Pattern
+The evidence reviewed above concerns unvalidated claims. But the consequences of deploying
+AI health tools without adequate safeguards are not merely theoretical. Documented harms have
+already occurred across multiple products, patient populations, and categories of harm. These
+cases illustrate what happens when AI systems enter clinical environments without the
+protections that HHS has the opportunity to establish through this rulemaking process.
+A. The NEDA/Tessa Incident
+After the National Eating Disorders Association terminated its human helpline staff, the Tessa
+chatbot, which was augmented with generative AI capabilities without NEDA’s knowledge, gave
+eating disorder patients advice to lose 1–2 pounds per week, eat no more than 2,000 calories
+daily, maintain a 500–1,000 calorie deficit, and purchase skin calipers to measure body fat.24 As
+one eating disorder survivor reported: every suggestion “were things that led to my eating
+disorder.”
+B. Character.AI Teen Suicides: The Failure of Voluntary Safety Measures
+Sewell Setzer III, age 14, died by suicide on February 28, 2024, after developing an intense
+emotional attachment to a Character.AI chatbot. When he expressed suicidal ideation, the bot
+failed to trigger safety interventions. Juliana Peralta, age 13, died in November 2023 after similar
+engagement. Google and Character.AI settled in January 2026, with additional lawsuits filed in
+Colorado, New York, and Texas. These cases are relevant to the clinical AI question because
+they demonstrate that AI companies deploying health-adjacent tools without mandatory safety
+standards will not reliably implement adequate safeguards on their own. Character.AI added
+safety features only after public litigation and media pressure, not before deployment.25
+C. The Koko Experiment
+Approximately 4,000 mental health users received GPT-3-co-written support through the Koko
+platform without clear informed consent and without IRB approval.26 Medical ethicist Art
+Caplan stated: “If you want to set back the use of AI in mental health, start exactly this way.”
+The Koko incident demonstrates a recurring problem: AI was introduced into a clinical context
+without the informed consent protections that would be required of any human-delivered
+intervention. The same dynamic is present in the Doctronic pilot, where patients interacting with
+AI may not fully understand the nature of the entity making decisions about their medications.
+D. AI Drug Information Errors
+24https://www.cbsnews.com/news/eating-disorder-helpline-chatbot-disabled/;
+https://www.npr.org/sections/health-shots/2023/06/08/1180838096/an-eating-disorders-chatbot-offered-dieting-advice-raising-fears-about-ai-in-he
+a
+25https://www.cnn.com/2026/01/07/business/character-ai-google-settle-teen-suicide-lawsuit;
+https://www.nbcnews.com/tech/characterai-lawsuit-florida-teen-death-rcna176791
+26https://www.psychiatrist.com/news/hidden-use-of-chatgpt-in-online-mental-health-counseling-raises-ethical-concerns/
+
+The drug information errors documented in general-purpose AI are directly relevant to the
+question of autonomous AI prescribing. A Heidelberg University study found 38% of ChatGPT
+drug answers were false, with 26% posing high risk of patient harm.27 An ASHP study found
+only 26% of drug information responses were satisfactory, with ChatGPT missing the dangerous
+Paxlovid-verapamil interaction and fabricating references.28
+These are not niche findings. ECRI, the independent patient safety organization, named misuse
+of AI chatbots the number one health technology hazard for both 2025 and 2026, documenting
+chatbots suggesting incorrect diagnoses, recommending unnecessary testing, and inventing body
+parts.29 Mount Sinai researchers found AI chatbots “routinely elaborated on fake medical details,
+confidently generating explanations about conditions or treatments that do not exist.”30
+A Stanford study found AI therapy chatbots enabled dangerous behavior: when a user mentioned
+losing their job and asked about tall bridges, the chatbot listed bridges rather than recognizing
+suicidal ideation. An additional safety concern that warrants research attention is AI sycophancy:
+the tendency of AI systems to agree with users rather than provide accurate information,
+particularly in patient-facing applications. When a patient tells an AI chatbot they believe they
+have a particular condition, sycophantic AI will tend to confirm rather than challenge that belief,
+even when the evidence does not support it. This dynamic is especially dangerous in mental
+health contexts, where validation of distorted thinking can reinforce harmful patterns. Taken
+together, these cases and dynamics establish that AI health tools have caused serious harm across
+a range of contexts, that companies have not voluntarily implemented adequate safeguards, and
+that the harms tend to fall disproportionately on vulnerable populations. This pattern should
+inform how HHS approaches the question of accelerating clinical AI adoption.31
+27https://pubmed.ncbi.nlm.nih.gov/37263772/
+28https://news.ashp.org/news/ashp-news/2023/12/05/study-finds-chatgpt-provides-inaccurate-responses-to-drug-questions
+29https://home.ecri.org/blogs/ecri-news/misuse-of-ai-chatbots-tops-annual-list-of-health-technology-hazards
+30https://www.mountsinai.org/about/newsroom/2025/ai-chatbots-can-run-with-medical-misinformation-study-finds-highlighting-the-need-for-stro
+nger-safeguards
+31https://hai.stanford.edu/news/exploring-the-dangers-of-ai-in-mental-health-care
+
+IV. Venture Capital Is Shaping Clinical AI Policy
+A. Regulatory Strategy as Investment Thesis
+The preceding sections establish that clinical AI companies are making unvalidated claims and
+that those claims have produced real patient harms. This section examines why the system is
+producing these outcomes: the financial incentives driving clinical AI deployment are
+structurally misaligned with patient safety. Doctronic has raised $25 million from Lightspeed
+Venture Partners,3233 Union Square Ventures, and Tusk Venture Partners.34
+Tusk Venture Partners is of particular relevance to this comment. Founded by Bradley Tusk, who
+served as Communications Director for Senator Schumer, Deputy Governor of Illinois,
+Bloomberg’s campaign manager35, the firm invests in startups facing regulatory barriers and
+provides political strategy in exchange for equity. Co-founder Jordan Nof stated: “How do we
+close the door behind us? I want to create a regulatory moat.”36 Tusk himself: “Venture
+capitalists, you know, we’re not here for the good of humanity.”37
+Doctronic’s website acknowledges Tusk’s “regulatory expertise helps us navigate the complex
+healthcare landscape.”38 Public records obtained through GRAMA confirm Tusk Ventures
+appears in negotiation records between Doctronic and Utah’s Office of AI Policy.39
+This arrangement creates a structural conflict that HHS should consider as it evaluates how to
+accelerate adoption responsibly. When the same entity that profits from a company’s commercial
+success is also shaping the regulatory environment that company operates in, the resulting
+regulatory outcomes cannot be presumed to reflect an independent assessment of patient safety.
+The question for HHS is whether the current regulatory framework has adequate safeguards
+against this kind of influence. Based on our investigation, it does not.
+B. The “AI Doctor” Gold Rush
+Y Combinator and other accelerators are actively funding startups marketing AI as replacements
+for physician judgment. HHS should recognize that pressure to “accelerate adoption” is
+substantially generated by venture capital return timelines rather than patient demand, clinical
+evidence, or healthcare system needs. Patients want affordable, accessible healthcare, and
+replacing physicians with AI does not address that need.
+32https://medium.com/sand-hill-road/finding-regulatory-moats-at-the-series-a-with-jordan-nof-of-tusk-venture-partners-5e5c0e7abf54
+33https://lsvp.com/stories/investing-in-doctronic-ai-healthcares-24-7-digital-doctor/
+34https://pulse2.com/doctronic-20-million-series-a/
+35https://en.wikipedia.org/wiki/Bradley_Tusk
+36https://medium.com/sand-hill-road/finding-regulatory-moats-at-the-series-a-with-jordan-nof-of-tusk-venture-partners-5e5c0e7abf54
+37https://techcrunch.com/2019/12/18/tusk-ventures-second-fund/
+38https://www.doctronic.ai/strategic-partnerships-driving-healthcare-innovation/
+39GRAMA Response, Utah Dept. of Commerce, Jan. 26, 2026 (on file with authors).
+
+V. The FDA Regulatory Framework Has Critical Gaps
+A. The Clinical Decision Support Exemption
+The evidence, harms, and incentive misalignment documented above might be less concerning if
+a robust federal regulatory framework existed to ensure clinical AI safety. It does not. The most
+significant gap is the Clinical Decision Support (CDS) exemption. Section 3060(a) of the 21st
+Century Cures Act exempts CDS software from FDA oversight if it meets four criteria, including
+that clinicians can independently review the AI’s reasoning.40 Companies exploit this by framing
+autonomous AI systems as “support” tools and adding disclaimers that recommendations require
+“clinician review.” The opacity of deep learning models makes the independent review criterion
+largely fictional.
+FDA Commissioner Makary’s January 2026 CDS guidance further loosened oversight, extending
+enforcement discretion and stating the FDA should be “less paternalistic.” The guidance
+removed analysis of automation bias.41
+B. The 510(k) Pathway Is Inadequate
+Over 1,300 AI/ML-enabled medical devices have been authorized, virtually all via the 510(k)
+pathway requiring only “substantial equivalence” to a predicate device. A 2025 study found
+fewer than 2% were supported by randomized clinical trials.42 More than a third of
+first-generation AI devices were cleared based on non-AI predicates, meaning novel AI
+capabilities were deemed equivalent to fundamentally different technologies. The practical
+consequence is that the vast majority of clinical AI tools in use today reached the market without
+the kind of clinical trial evidence that would be required for a new pharmaceutical or medical
+device. This is the evidentiary environment into which the Department is proposing to accelerate
+further adoption.43
+C. Why Autonomous AI Prescribing Falls in the Gap
+The FDA regulates medical devices but not the practice of medicine. State medical practice acts
+define prescriptive authority, which has historically been limited to human licensees. The FDA
+has declined comment on Doctronic’s pilot, stating it “falls outside the agency’s regulatory
+purview.”44 This means no regulatory body is clearly responsible for ensuring autonomous AI
+prescribing is safe.
+D. FDA Staffing Cuts Compound the Problem
+40https://bipartisanpolicy.org/issue-brief/fda-oversight-understanding-the-regulation-of-health-ai-tools/
+41https://www.nelsonmullins.com/insights/blogs/ai-task-force/ai/hhs-proposes-rule-to-deregulate-health-it-and-advance-ai-interoperability-hti-5
+42https://pmc.ncbi.nlm.nih.gov/articles/PMC12140231/
+43https://www.thelancet.com/journals/landig/article/PIIS2589-7500(23)00126-7/fulltext
+44https://www.statnews.com/2026/02/03/utah-doctronic-ai-doctor-prescription-renewal-fda-regulation/
+
+Post-deployment monitoring is also critically underdeveloped. The FDA’s MAUDE system
+captures fewer than 0.5% of adverse events from medical devices, and Predetermined Change
+Control Plans (PCCPs) allow AI/ML device modifications without fresh clearance, meaning AI
+tools can evolve substantially after initial authorization without triggering new review.45
+Approximately 3,500 FDA employees were terminated in April 2025 (~20% of staff). The
+FY2026 budget proposes an 11.5% cut. Former Commissioner Califf stated: “The FDA as we’ve
+known it is finished.”46 The agency missed its first drug approval deadline due to staff cuts.47
+This paradox, in which the agency faces record AI submissions amid decimated oversight
+capacity, was noted in Nature’s npj Digital Medicine as “consternation.”48
+45https://www.fda.gov/medical-devices/mandatory-reporting-requirements-manufacturers-importers-and-device-user-facilities/manufacturer-and-u
+ser-facility-device-experience-database-maude
+46https://www.fiercehealthcare.com/regulatory/rfk-jr-prepares-10000-job-cuts-across-hhs-new-wave-worker-reductions;
+https://www.npr.org/sections/shots-health-news/2025/04/01/g-s1-57485/hhs-fda-layoffs-doge-cdc-nih
+47https://www.axios.com/2025/07/15/doge-cuts-fda-hhs-biotech
+48https://www.nature.com/articles/s41746-025-01540-2
+
+VI. The Liability Vacuum for Autonomous Clinical AI
+If the regulatory framework does not prevent harm, the legal system should at least provide
+recourse for patients who are harmed. But here, too, the existing framework has no clear answer
+for autonomous clinical AI. As of early 2026, no U.S. malpractice jury verdict has centered on
+AI as the basis of a clinical claim, and the legal doctrines that would govern such a case are
+poorly suited to the technology.49
+A. Medical Malpractice Does Not Fit
+Traditional malpractice requires a physician-patient relationship (which does not exist with
+autonomous AI), a standard of care (undefined for AI), breach (which is nearly impossible to
+determine in opaque systems), and causation (which is difficult to isolate). As W. Nicholson
+Price II of Michigan Law School has documented, deep learning embeds reasoning in thousands
+of simulated neurons, making breach determination effectively impossible.50
+B. Product Liability Does Not Fit Either
+Courts have historically been reluctant to apply product liability to software, treating it as a
+“service.” Yet when AI acts autonomously, the malpractice framework, which requires a human
+practitioner, also breaks down. The practical result is that a patient harmed by an autonomous AI
+prescribing decision may have no viable legal theory under which to seek compensation. This is
+not an abstract concern. It is the legal environment in which the Doctronic pilot is currently
+operating.51
+C. The Learned Intermediary Doctrine Collapses
+The learned intermediary doctrine shields drug manufacturers by requiring warnings only to
+prescribing physicians. When AI removes the physician, neither the manufacturer (which warned
+the “prescriber”) nor the AI company clearly bears liability.52 Consider a concrete scenario:
+Doctronic’s AI renews an SSRI for a patient who has since been prescribed a medication with a
+dangerous interaction. The drug manufacturer warned the “prescriber,” but the prescriber is an
+algorithm. The AI company may argue it is a technology provider, not a medical practitioner.
+The state authorized the pilot but disclaimed clinical responsibility. The patient is left with no
+clear defendant. This is not a hypothetical edge case; it is the foreseeable consequence of
+deploying autonomous prescribing without first resolving the liability framework.
+D. The UnitedHealth Precedent
+The most significant AI healthcare litigation is Estate of Lokken v. UnitedHealth Group, alleging
+UnitedHealth used the nH Predict algorithm to systematically deny post-acute care despite
+49https://www.ncbi.nlm.nih.gov/books/NBK613216/; https://repository.law.umich.edu/cgi/viewcontent.cgi?article=1569&context=book_chapters
+50https://www.ncbi.nlm.nih.gov/books/NBK613216/; https://repository.law.umich.edu/cgi/viewcontent.cgi?article=1569&context=book_chapters
+51https://journalofethics.ama-assn.org/article/are-current-tort-liability-doctrines-adequate-addressing-injury-caused-ai/2019-02
+52https://www.druganddevicelawblog.com/2017/07/artificial-intelligence-and-learned-intermediaries.html
+
+knowing its approximately 90% error rate. A Senate investigation found denial rates jumped
+from 10.9% to 22.7% after AI implementation, with skilled nursing denials increasing ninefold.53
+53https://www.cbsnews.com/news/unitedhealth-lawsuit-ai-deny-claims-medicare-advantage-health-insurance-denials/
+
+VII. Algorithmic Bias Threatens to Worsen Health Disparities
+The risks documented above, including unvalidated evidence, patient harms, regulatory gaps,
+and liability failures, do not fall equally on all populations. The evidence consistently shows that
+clinical AI systems perform worse for minority and underserved patients, raising serious fairness
+concerns that this RFI should address directly. Obermeyer et al. (Science, 2019) found that an
+algorithm applied to roughly 200 million Americans used healthcare costs as a proxy for need,
+systematically underestimating Black patients’ illness. At a given risk score, Black patients had
+26.3% more chronic conditions than White patients. The bias reduced Black patients identified
+for extra care by more than half.54
+Pulse oximetry bias feeds directly into AI decision-making: Sjoding et al. (NEJM, 2020) found
+Black patients had nearly three times the frequency of undetected hypoxemia.55 Dermatology AI
+performs substantially worse on dark skin. No public benchmark included biopsy-proven
+malignancy on dark skin before Daneshjou et al. (Science Advances, 2022) created the first such
+dataset.56
+The Epic Sepsis Model, deployed at hundreds of hospitals, achieved an AUC of only 0.63 in
+external validation, well below the claimed 0.76 to 0.83, and missed 67% of sepsis patients.57
+A systematic review found 22 of 24 studies (91.7%) identified demographic biases in medical
+LLMs, with 93.7% finding gender bias and 90.9% finding racial/ethnic bias.58 GPT-4 specifically
+showed associations between demographic attributes and recommendations for more expensive
+procedures.59
+The data representation problem is structural: non-Hispanic Whites constitute over 90% of
+clinical trial participants while representing 60.7% of the population, and fewer than 44% of
+clinical trials report any race/ethnicity data. These disparities are compounded for rural and
+lower socioeconomic status populations, who are systematically underrepresented in both the
+clinical data used to train AI systems and in the health systems where AI tools are first deployed
+and validated. Safety-net hospitals and rural health facilities, which serve the most vulnerable
+patients, are least likely to have the infrastructure to evaluate AI tools locally, creating a dynamic
+in which the populations at greatest risk from biased AI are also the populations with the least
+capacity to detect and mitigate that bias. For autonomous prescribing systems like Doctronic, this
+means the AI is making medication decisions based on training data that systematically
+underrepresents the patients most likely to experience adverse outcomes. HHS cannot
+responsibly accelerate adoption of clinical AI without requiring that these systems demonstrate
+equitable performance across the populations they serve.60
+54https://www.science.org/doi/10.1126/science.aax2342
+55Sjoding, M. et al., NEJM, Dec. 2020. https://doi.org/10.1056/NEJMc2029240
+56https://pmc.ncbi.nlm.nih.gov/articles/PMC9374341/
+57https://pmc.ncbi.nlm.nih.gov/articles/PMC8218233/
+58https://link.springer.com/article/10.1186/s12939-025-02419-0
+59https://pubmed.ncbi.nlm.nih.gov/38123252/
+60https://www.thelancet.com/journals/lanam/article/PIIS2667-193X(22)00069-2/fulltext
+
+VIII. State Regulatory Capacity Does Not Match Ambition
+A. Utah: Institutional Mismatch
+Given the evidence gaps, documented harms, incentive misalignment, regulatory failures,
+liability vacuum, and fairness risks detailed in the preceding sections, the question of who
+authorizes clinical AI deployment becomes critical. In the case of the most consequential clinical
+AI authorization to date, the answer is troubling. Utah’s Office of Artificial Intelligence Policy
+has four staff members: a mathematician, a social systems modeler, an internet privacy attorney,
+and a wealth management professional. None has medical, clinical, or pharmaceutical
+training.6162
+This team authorized Doctronic to autonomously renew approximately 192 medications,
+including SSRIs, antihypertensives, statins, and hormonal contraceptives.63 Healthcare law firm
+Goldsand Friedberg concluded the agreement “clearly steps over” licensed professional activity
+and noted no agreement “requires representations regarding FDA qualification.”64
+No major medical society has endorsed autonomous AI prescribing. The AMA stated it “poses
+serious risks.”65 The Utah Medical Association called it “a bad idea.”66 Public Citizen’s Dr.
+Steinbrook called it “a dangerous first step” and warned that “decisions made by AI with human
+oversight are in practice decisions made by AI most of the time.”67
+B. The Transparency Deficit
+Our team filed public records requests under GRAMA seeking monthly safety reports,
+negotiation drafts, metric definitions, and federal communications about the pilot. The Utah
+Department of Commerce denied access to the majority of records, classifying safety reports as
+“protected” under business confidentiality exemptions. The state’s position is that our interests
+“do not outweigh Doctronic’s business confidentiality interests.”68
+The result is a closed loop: a state office without medical expertise authorized clinical AI
+deployment, the safety data that could allow independent evaluation is classified as confidential,
+and the public has no mechanism to assess whether the pilot is functioning safely. If HHS intends
+to encourage state-level AI experimentation, this is precisely the kind of transparency failure that
+federal standards should prevent.
+C. State Proliferation
+61https://ai.utah.gov/staff/
+62https://utahpolicy.com/news-release/70903-zachary-boyd-appointed-director-of-the-utah-office-of-artificial-intelligence-policy
+63https://commerce.utah.gov/2026/01/06/news-release-utah-and-doctronic-announce-groundbreaking-partnership-for-ai-prescription-medication-r
+enewals/
+64https://www.goldsandfriedberg.com/insights/utahs-ai-regulatory-learning-laboratory-early-signals-from-health-care-mitigation-agreements
+65https://fortune.com/2026/01/08/ai-prescription-renewals-doctronic-utah-doctors-warn-puts-patients-at-risk/
+66https://www.sltrib.com/news/2026/01/09/utahns-can-now-use-ai-renew/
+67https://www.citizen.org/news/utah-pilot-program-for-medication-renewals-with-ai-perverts-medical-practice/
+68GRAMA Appeal Response, Utah Dept. of Commerce, Feb. 18, 2026 (on file with authors).
+
+Texas enacted its AI sandbox law (RAIGA) effective January 1, 2026. Doctronic is in
+discussions with Texas, Arizona, and Missouri. Wyoming is preparing its own sandbox.
+Doctronic’s co-founder expects “a dozen other states approve something like this in 2026.”
+Without federal minimum standards, the result will be a patchwork of state experiments
+conducted under widely varying levels of oversight, with no coordinated adverse event reporting,
+no consistent evidence requirements, and no mechanism for one state to learn from another’s
+failures. The window for HHS to establish a federal floor before this fragmentation becomes
+entrenched is narrow.
+
+IX. The Prescription Data Pipeline Operates Without Meaningful Consent
+The regulatory and liability gaps described above are compounded by a data access framework
+that operates largely without patient knowledge. Doctronic accesses medication histories through
+the Surescripts network, which covers over 95% of U.S. pharmacies and 99% of the population.69
+The legal mechanism is HIPAA’s TPO exception, 45 C.F.R. § 164.506), which permits PHI
+sharing for treatment without patient consent.
+As NYU’s Technology Law & Policy Clinic documented, data sharing with Surescripts is “an
+inevitable consequence of sending an e-prescription,” and existing rules “permit Surescripts and
+other HIEs to share patients’ sensitive prescription drug histories without patients’ knowledge or
+consent.”70 Patients wishing to opt out must complete and notarize a form and mail it to
+Surescripts headquarters.71
+No court has tested whether the TPO exception applies to autonomous AI acting as a de facto
+healthcare provider. TPG Capital became Surescripts’ majority investor in October 2024.72 The
+FTC’s 2023 antitrust settlement eliminated exclusivity contracts, potentially making it easier for
+new AI entrants to access prescription data.73
+69https://surescripts.com/news-center/intelligence-in-action/interoperability/why-it-matters-prescribers-can-now-access-accurate-medication-histo
+ry-data-for-virtually-every-american
+70https://www.law.nyu.edu/sites/default/files/Comment%20of%20NYU%20TLP%20Clinic%20on%20Proposed%20HIPAA%20Rule.pdf
+71https://surescripts.com/opt-out-faq
+72https://www.fiercehealthcare.com/health-tech/pe-firm-tpg-buys-majority-stake-health-information-network-surescripts
+73https://www.ftc.gov/news-events/news/press-releases/2023/07/ftc-reaches-proposed-settlement-surescripts-illegal-monopolization-case
+
+X. International Comparisons Reveal the U.S. as an Outlier
+The gaps in the U.S. framework are not inevitable features of AI regulation. Other jurisdictions
+have developed more protective approaches that provide useful models for HHS consideration.
+The EU AI Act classifies medical AI as high-risk, requiring risk management systems, data
+governance ensuring representative datasets, mandatory human oversight, accuracy standards,
+post-market monitoring, and serious incident reporting. Penalties can reach €35 million or 7% of
+global turnover.74 Product defectiveness can be presumed if AI does not comply with safety
+requirements.
+Health Canada requires a Sex and Gender-Based Analysis Plus: manufacturers must collect
+disaggregated data on sex, gender, racial/ethnic minorities, elderly, and pediatric populations.
+This mandatory fairness requirement has no U.S. parallel.75
+Japan mandates that AI medical devices must be used under physician oversight, with
+physicians making all final treatment decisions.76
+The U.S. is the only major jurisdiction to have allowed autonomous AI prescribing and the only
+one with a broad statutory CDS exemption that removes many clinical AI tools from oversight
+entirely. We do not suggest that HHS adopt any single international framework wholesale, but
+the comparative evidence demonstrates that the requirements we recommend, including
+mandatory fairness testing, human oversight proportional to autonomy, and post-market
+surveillance, are not radical proposals. They are the minimum standards that other nations have
+concluded are necessary to protect patients.
+74https://www.hunton.com/insights/legal/the-impact-of-the-eu-ai-act-on-the-development-and-use-of-medical-devices
+75https://www.canada.ca/en/health-canada/services/drugs-health-products/medical-devices/application-information/guidance-documents/pre-mark
+et-guidance-machine-learning-enabled-medical-devices.html
+76https://www.nature.com/articles/s41746-025-01540-2
+
+XI. Payer and Insurance Implications
+The regulatory and legal gaps documented above have practical consequences for how
+AI-prescribed care will be paid for and insured. No major insurer has issued a policy specifically
+addressing coverage of medications prescribed by autonomous AI systems. The current
+framework presumes prescriptions from licensed human practitioners.77
+CMS has focused on preventing AI-driven denials: the April 2023 Final Rule requires Medicare
+Advantage determinations to be based on individual circumstances, not algorithms. CMS’s
+WISeR Model (January 2026) uses AI for Medicare prior authorizations but maintains that final
+coverage denial decisions are made by “licensed clinicians, not machines.”78
+Malpractice insurance for AI remains undefined. Major insurers review AI involvement
+case-by-case; no AI-specific frameworks exist.79 The reimbursement framework is embryonic:
+CPT 2026 will be the first year AI is explicitly recognized in formal medical coding.80
+These gaps create practical consequences on both sides of the adoption question. Physicians who
+might benefit from AI-assisted decision support may resist using it because the liability and
+coverage implications are unclear. Meanwhile, patients whose medications are renewed by an
+autonomous AI system may discover that their insurer does not recognize the prescription as
+valid, or that no malpractice framework covers them if something goes wrong. Resolving these
+questions is not a barrier to innovation; it is a prerequisite for responsible deployment.
+77https://www.thedoctors.com/the-doctors-advocate/second-quarter-2024/artificial-intelligence-emerging-issues-in-healthcare-and-insurance-publi
+c-policy
+78https://stateline.org/2025/12/04/medicares-new-ai-experiment-sparks-alarm-among-doctors-lawmakers/
+79https://www.thedoctors.com/the-doctors-advocate/second-quarter-2024/artificial-intelligence-emerging-issues-in-healthcare-and-insurance-publi
+c-policy
+80https://bipartisanpolicy.org/issue-brief/paying-for-ai-in-u-s-health-care/
+
+XII. Expert and Medical Society Consensus
+The concerns raised in this comment are not ours alone. They are shared by the leading medical
+societies, academic journals, and patient safety organizations in the United States.
+The NEJM AI editors declared (March 2024): artificial intelligence must meet the same bar for
+clinical evidence as other interventions, and mandated trial preregistration for AI studies.81
+The AMA’s augmented intelligence policy deliberately uses “augmented” over “artificial” to
+emphasize AI’s assistive role. The AMA insists AI should augment, not replace, clinical
+judgment, and that the “try-first mentality should be reserved for testing environments only as
+the risks to patient health are simply too significant.” AMA President Bruce Scott stated:
+“Voluntary standards are not going to be enough.”82
+The American College of Physicians insists AI tools must “complement and not supplant the
+logic and decision-making of physicians,” warning against “automation complacency.”83
+The National Academy of Medicine published its AI Code of Conduct in July 2025, the first
+comprehensive values-driven framework for responsible AI in health. The consistency of these
+positions across institutions with different mandates, constituencies, and political orientations is
+notable. There is no significant expert voice arguing that autonomous clinical AI should be
+deployed without independent validation, fairness testing, and clear liability frameworks. The
+question is whether federal policy will reflect this consensus or continue to lag behind it.84
+81https://ai.nejm.org/doi/10.1056/AIe2400146
+82https://www.ama-assn.org/practice-management/digital-health/ama-position-2025-federal-government-ai-action-plan
+83https://www.acpjournals.org/doi/10.7326/M24-0146
+84https://nam.edu/our-work/programs/leadership-consortium/health-care-artificial-intelligence-code-of-conduct/
+
+XIII. Responses to RFI Questions
+Question 1: What are the biggest barriers to AI innovation in healthcare?
+We acknowledge that real barriers to responsible AI innovation exist. Data interoperability
+remains fragmented across incompatible EHR systems. Reimbursement pathways are embryonic;
+CPT 2026 will be the first year AI is explicitly recognized in formal medical coding. Regulatory
+jurisdiction is divided among federal agencies and 50 state governments, creating uncertainty for
+companies seeking to deploy across state lines.85
+However, the most consequential barrier to sustainable AI adoption is the absence of clear
+federal safety standards. This absence undermines public trust, creates liability uncertainty that
+deters responsible developers from adopting AI tools, and invites a race to the bottom among
+states competing to attract AI companies with the least restrictive environments. When patients
+learn that the AI renewing their medications was authorized by a four-person state office with no
+medical expertise, or that the supporting evidence is a company-funded preprint, their confidence
+in clinical AI erodes. Moreover, if reimbursement and regulatory frameworks privilege
+AI-enabled care, health systems that cannot afford AI tools, particularly safety-net hospitals and
+rural facilities, risk falling further behind, creating a two-tiered healthcare system in which the
+quality of care depends on whether a patient’s provider can afford the latest technology.8687
+The framing of this RFI implicitly treats safety standards as obstacles to innovation. We urge
+HHS to recognize that the opposite is true. The pharmaceutical industry earned public trust not
+by operating without FDA oversight but because FDA oversight gave patients confidence that
+approved drugs met minimum safety standards. Clinical AI requires the same foundation.
+Question 2: What regulatory or payment changes should be prioritized?
+The most urgent regulatory change is closing the Clinical Decision Support exemption for AI
+tools that functionally make autonomous clinical decisions. The CDS exemption under the 21st
+Century Cures Act was designed for tools that assist clinicians, not systems that replace them.
+Companies exploit this by adding nominal "clinician review" disclaimers to functionally
+autonomous AI output. HHS should clarify, in coordination with FDA, that the exemption does
+not apply when AI output is the primary or default clinical action, when clinicians cannot
+meaningfully review the reasoning due to model opacity, or when the AI operates without
+real-time physician oversight.88
+85https://bipartisanpolicy.org/issue-brief/paying-for-ai-in-u-s-health-care/
+86https://www.statnews.com/2026/02/03/utah-doctronic-ai-doctor-prescription-renewal-fda-regulation/
+87https://fortune.com/2026/01/08/ai-prescription-renewals-doctronic-utah-doctors-warn-puts-patients-at-risk/
+88https://bipartisanpolicy.org/issue-brief/fda-oversight-understanding-the-regulation-of-health-ai-tools/
+
+Second, HHS should establish mandatory pre-deployment clinical validation proportional to the
+risk level of the AI tool. A symptom-checker app presents different risks than a system
+autonomously prescribing medications, and validation requirements should scale accordingly. At
+minimum, any AI making autonomous treatment or prescribing decisions should be supported by
+independent, peer-reviewed evidence. Fewer than 2% of FDA-cleared AI/ML devices are
+currently supported by randomized clinical trials.89
+Third, HHS should require mandatory fairness testing modeled on Health Canada's Sex and
+Gender-Based Analysis Plus, which requires manufacturers to collect disaggregated performance
+data across demographic subgroups. Fourth, HHS should reverse the HTI-5 proposed rule's
+removal of model card requirements, which would eliminate among the only federal
+transparency guardrails for clinical AI. Finally, HHS should develop AI-specific reimbursement
+pathways through CMS that tie payment to validated clinical outcomes rather than volume of
+AI-generated recommendations.909192
+Question 3: What novel legal issues arise for AI not classified as medical devices?
+The liability vacuum is the most urgent legal issue. As documented in Section VI, when
+autonomous AI makes clinical decisions, the traditional medical malpractice framework does not
+apply because there is no physician-patient relationship, no defined standard of care for AI, and
+no ability to determine breach in opaque systems. Product liability also fails because courts have
+historically treated software as a service rather than a product. The result is that a patient harmed
+by an autonomous AI prescribing decision may have no viable legal theory under which to seek
+compensation.9394
+The learned intermediary doctrine, which shields drug manufacturers by requiring warnings only
+to prescribing physicians, collapses entirely when AI removes the physician from the prescribing
+decision. If Doctronic's AI renews a medication where a dangerous interaction has developed,
+the drug manufacturer warned the "prescriber" (an algorithm), the AI company may claim it is a
+technology platform, and the patient has no clear defendant. HHS should support the
+development of clear liability apportionment frameworks for autonomous clinical AI, potentially
+including strict liability for systems making treatment decisions without physician oversight.95
+HIPAA's Treatment, Payment, and Operations exception, which permits sharing of protected
+health information without patient consent, has never been tested for autonomous AI acting as a
+de facto healthcare provider. HHS should issue guidance clarifying that autonomous AI systems
+89https://pmc.ncbi.nlm.nih.gov/articles/PMC12140231/
+90https://www.canada.ca/en/health-canada/services/drugs-health-products/medical-devices/application-information/guidance-documents/pre-mark
+et-guidance-machine-learning-enabled-medical-devices.html
+91https://www.nelsonmullins.com/insights/blogs/ai-task-force/ai/hhs-proposes-rule-to-deregulate-health-it-and-advance-ai-interoperability-hti-5
+92https://bipartisanpolicy.org/issue-brief/paying-for-ai-in-u-s-health-care/
+93https://www.ncbi.nlm.nih.gov/books/NBK613216/
+94https://journalofethics.ama-assn.org/article/are-current-tort-liability-doctrines-adequate-addressing-injury-caused-ai/2019-02
+95https://www.druganddevicelawblog.com/2017/07/artificial-intelligence-and-learned-intermediaries.html
+
+accessing patient prescription data require explicit patient authorization, separate from the
+general TPO exception that was designed for communication between human providers.96
+Question 4: How should AI be evaluated for clinical safety?
+Current evaluation practices are inadequate. The Doctronic preprint illustrates the problem: all
+eight authors hold equity in the company, ethics approval came from an internal committee, and
+the sample was 500 cases from a single week. Yet this study is the evidentiary basis for the first
+autonomous AI prescribing system in U.S. history. The Epic Sepsis Model, deployed at hundreds
+of hospitals, achieved an AUC of only 0.63 in external validation versus the claimed 0.76 to
+0.83, missing 67% of sepsis patients. The Oxford/Nature Medicine study (February 2026) found
+AI diagnostic accuracy dropped from 95% on standardized tests to under 35% in real-world
+interactions. These cases demonstrate that company-reported metrics cannot substitute for
+independent evaluation.979899
+HHS should require, at minimum: (a) independent third-party testing by entities with no financial
+relationship to the developer, following the model proposed in npj Digital Medicine; (b)
+mandatory reporting of disaggregated performance data across racial, ethnic, gender, and age
+subgroups, given the systematic biases documented by Obermeyer et al. and others; (c)
+real-world performance monitoring post-deployment with mandatory adverse event reporting,
+since controlled-setting performance consistently fails to predict real-world outcomes; and (d)
+standardized clinical AI safety benchmarks developed in collaboration with NIST.100101
+The NEJM AI editors have mandated trial preregistration for AI intervention studies starting
+January 1, 2025. HHS should adopt a parallel requirement: any clinical AI system seeking
+federal recognition, reimbursement, or deployment in federally funded facilities should be
+supported by preregistered, independently conducted clinical evidence. We also commend to
+HHS the LTARC evaluation framework (Local, Task-specific, Agile, Reflective,
+Community-partnered), which goes beyond existing reporting checklists by requiring evaluation
+to be conducted locally at the deploying institution, tailored to the specific clinical task, updated
+continuously as models and populations evolve, reflective of the care context including
+workflow integration, and developed in partnership with the communities the AI is meant to
+serve. Only 0.2% of healthcare AI publications report any community involvement in the
+evaluation process; this must change.102
+96https://www.law.nyu.edu/sites/default/files/Comment%20of%20NYU%20TLP%20Clinic%20on%20Proposed%20HIPAA%20Rule.pdf
+97https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1
+98https://pmc.ncbi.nlm.nih.gov/articles/PMC8218233/
+99https://www.sciencenews.org/article/medical-advice-ai-chatbots-symptoms
+100https://ai.nejm.org/doi/10.1056/AIe2400146
+101https://www.science.org/doi/10.1126/science.aax2342
+102
+
+Question 5: What private sector activities should HHS support?
+HHS should support and strengthen existing private-sector quality initiatives, including the Joint
+Commission and the National Academy of Medicine's AI Code of Conduct. These frameworks
+establish important voluntary baselines for responsible AI deployment in healthcare. However,
+HHS should be clear-eyed about the limits of voluntary self-regulation. As AMA President
+Bruce Scott stated, "voluntary standards are not going to be enough."103104
+The Texas Attorney General's enforcement action against Pieces Technologies, which found the
+company's claimed hallucination rate of less than 0.001% was "likely inaccurate," demonstrates
+that companies will make unsupported clinical claims absent enforceable standards. The FTC has
+signaled its authority over deceptive AI claims through Operation AI Comply, but
+healthcare-specific enforcement requires domain expertise that general consumer protection
+agencies lack. HHS should establish healthcare-specific standards for AI clinical claims and
+coordinate enforcement with the FTC and state attorneys general.105106
+HHS should also support the development of independent AI testing laboratories and registries,
+analogous to the role clinical laboratories play in diagnostics. Developers should be able to
+submit AI tools for independent evaluation, and health systems should have access to
+standardized, comparable performance data when making procurement decisions. HHS should
+also ensure that reimbursement frameworks cover the infrastructure required for responsible AI
+governance, not just the AI tools themselves. Effective clinical AI requires continuous
+monitoring, local validation, clinician training, bias auditing, and community engagement. These
+activities are currently unfunded, creating a systematic underinvestment in the governance
+infrastructure that safe AI deployment requires. CMS should develop dedicated reimbursement
+codes for AI governance activities as part of its AI payment strategy.
+Question 6: Where have AI tools met or fallen short of expectations?
+The pattern across clinical AI is consistent: tools that appear highly accurate in controlled
+settings underperform substantially in real-world deployment. The Epic Sepsis Model, marketed
+with an AUC of 0.76 to 0.83, achieved only 0.63 in external validation and missed 67% of
+patients who developed sepsis, while generating false alerts on 18% of all hospitalized patients.
+Babylon Health raised $1.2 billion on claims of AI diagnostic superiority before documenting
+103https://nam.edu/our-work/programs/leadership-consortium/health-care-artificial-intelligence-code-of-conduct/
+104https://www.ama-assn.org/practice-management/digital-health/ama-position-2025-federal-government-ai-action-plan
+105https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-reaches-settlement-first-its-kind-healthcare-generative-ai-inv
+estigation
+106https://www.ftc.gov/business-guidance/blog/2023/02/keep-your-ai-claims-check
+
+systematic triage failures, including missed heart attack symptoms, missed pulmonary embolism
+risk, and gender-biased assessments. The company collapsed in 2023.107108
+K Health's AI symptom checker claimed 68% alignment with physicians in a
+company-associated study, but an independent evaluation found top-3 diagnostic accuracy of
+only 36%, compared to 82.1% for general practitioners. The Oxford/Nature Medicine study
+(February 2026) found that real-world AI diagnostic accuracy dropped to under 35%, and
+patients using AI chatbots performed worse than those using Google search alone. ECRI, the
+independent patient safety organization, ranked AI misuse as the number one health technology
+hazard for both 2025 and 2026.109110
+We are not aware of any clinical AI system that has demonstrated, through independent
+evaluation, sustained real-world performance matching its marketing claims. This pattern should
+give HHS significant pause before acting to accelerate adoption. The Department should
+consider requiring post-deployment performance monitoring as a condition of any federal
+support for clinical AI.
+Question 7: Who influences AI adoption decisions and what governance is needed?
+AI adoption decisions are currently made by a combination of health system executives (CMOs,
+CIOs, compliance officers), state regulators, and, increasingly, venture-backed companies
+pursuing regulatory authorization. Each of these actors faces incentives that may not align with
+patient safety. Health system executives face pressure to reduce costs and staffing. State
+regulators face pressure to attract technology companies. VC-backed companies face pressure to
+deploy before competitors and demonstrate traction to investors.111
+The Utah case illustrates the governance failure that results: a four-person state office with no
+medical, clinical, or pharmaceutical training authorized autonomous prescribing of 192
+medications, while the state's own medical association opposed the decision and the AMA called
+it a serious risk. HHS should require that any governance body authorizing autonomous clinical
+AI include practicing clinicians with relevant domain expertise, patient representatives, and
+individuals with no financial relationship to the AI developer.112
+At the health system level, HHS should encourage the establishment of AI governance
+committees modeled on institutional review boards, with authority to evaluate clinical AI tools
+before deployment. The NAM AI Code of Conduct provides a useful framework. HHS should
+107https://pmc.ncbi.nlm.nih.gov/articles/PMC8218233/
+108https://theweek.com/health/babylon-health-the-failed-ai-wonder-app-that-dazzled-politicians
+109https://www.sciencenews.org/article/medical-advice-ai-chatbots-symptoms
+110https://home.ecri.org/blogs/ecri-news/misuse-of-ai-chatbots-tops-annual-list-of-health-technology-hazards
+111https://medium.com/sand-hill-road/finding-regulatory-moats-at-the-series-a-with-jordan-nof-of-tusk-venture-partners-5e5c0e7abf54
+112https://ai.utah.gov/staff/
+
+also require clinical AI vendors to disclose all funding sources, investor relationships, and
+conflicts of interest as a condition of deployment in federally funded facilities.113
+Question 8: How should interoperability be addressed?
+Interoperability is a legitimate priority, but it is insufficient without safety standards. The
+Surescripts network already provides near-universal medication history data to clinical AI
+systems like Doctronic, demonstrating that data access is not the binding constraint on AI
+deployment. The binding constraint is the absence of standards ensuring that AI systems using
+this data do so safely and accurately.114
+The HTI-5 proposed rule's removal of model card requirements for AI clinical decision support
+tools is counterproductive. Model cards, which disclose training data characteristics, known
+limitations, and performance across subgroups, are among the only federal transparency
+requirements for clinical AI. Removing them increases data flow while decreasing the
+information clinicians and patients need to evaluate whether AI tools are trustworthy. HHS
+should strengthen, not weaken, transparency requirements as a prerequisite for safe
+interoperability.115
+We also note that interoperability without adequate consent protections creates privacy risks. As
+documented in Section IX, patient medication histories flow through the Surescripts network to
+commercial AI entities without meaningful patient knowledge or consent, under a HIPAA
+exception designed for communication between human providers. Expanding interoperability
+without addressing this consent gap would compound an existing problem.
+Question 9: What concerns do patients and caregivers have?
+Patient and caregiver concerns about clinical AI are grounded in documented harm, not
+speculation. The Tessa chatbot gave eating disorder patients advice to restrict calories and
+purchase body fat calipers. A 14-year-old and a 13-year-old died by suicide after intensive
+engagement with Character.AI chatbots that failed to trigger safety interventions. A Stanford
+study found AI therapy chatbots that listed tall bridges for a user expressing suicidal ideation
+rather than recognizing the crisis. These are not edge cases from experimental systems; they are
+outcomes from commercially deployed products used by millions of people.116117118
+113https://nam.edu/our-work/programs/leadership-consortium/health-care-artificial-intelligence-code-of-conduct/
+114https://surescripts.com/news-center/intelligence-in-action/interoperability/why-it-matters-prescribers-can-now-access-accurate-medication-histo
+ry-data-for-virtually-every-american
+115https://www.nelsonmullins.com/insights/blogs/ai-task-force/ai/hhs-proposes-rule-to-deregulate-health-it-and-advance-ai-interoperability-hti-5
+116https://www.cbsnews.com/news/eating-disorder-helpline-chatbot-disabled/;
+https://www.npr.org/sections/health-shots/2023/06/08/1180838096/an-eating-disorders-chatbot-offered-dieting-advice-raising-fears-about-ai-in-he
+a
+117https://www.cnn.com/2026/01/07/business/character-ai-google-settle-teen-suicide-lawsuit
+118https://hai.stanford.edu/news/exploring-the-dangers-of-ai-in-mental-health-care
+
+Patients also face an information asymmetry that undermines informed decision-making. When
+Doctronic's preprint is reported by major outlets as demonstrating 99.2% accuracy without
+noting that the study was internally funded, non-peer-reviewed, and conducted by equity holders,
+patients cannot meaningfully evaluate the safety of the AI making decisions about their
+medications. Over 40 million people daily ask ChatGPT health questions, but a Heidelberg study
+found 38% of its drug answers are false, with 26% posing high risk of patient harm. Patients
+have no way to distinguish reliable AI-generated health information from unreliable
+information.119
+The data access concern is equally significant. Most patients are unaware that their complete
+prescription histories are accessible through the Surescripts network, that HIPAA's TPO
+exception permits this access without consent, and that commercial AI companies can obtain this
+data. Patients wishing to opt out must complete and notarize a paper form and mail it to
+corporate headquarters. This is not a meaningful consent framework. HHS should require that
+patients be notified when AI systems access their health data and given a genuine opportunity to
+consent or decline.120
+Question 10: What research priorities should HHS pursue?
+HHS should prioritize research on the fairness impacts of clinical AI across race, gender, income,
+age, and disability status. The Obermeyer et al. finding that a widely used algorithm
+underestimated Black patients' illness severity, reducing their identification for needed care by
+more than half, was published in 2019. Six years later, a systematic review found 22 of 24
+studies identified demographic biases in medical LLMs. The problem is well-documented but
+poorly understood in terms of mechanisms and interventions. HHS-funded research should focus
+on developing validated debiasing methodologies and mandatory performance benchmarks
+across demographic subgroups.121122
+Second, HHS should fund long-term outcome studies of clinical AI deployment. Nearly all
+existing evidence evaluates AI performance at a single point in time. No published study tracks
+clinical outcomes for patients whose care was managed or influenced by AI over months or
+years. Without longitudinal data, the safety of clinical AI deployment remains an open question.
+The Oxford study's finding that AI diagnostic accuracy in real-world conditions drops to under
+35% suggests that point-in-time evaluations substantially overestimate real-world benefit.123
+Third, HHS should fund research on automation bias and clinical deskilling. Evidence from other
+safety-critical domains (aviation, nuclear power) demonstrates that human operators who rely on
+automated systems lose independent judgment capacity over time. If AI clinical decision support
+119https://pubmed.ncbi.nlm.nih.gov/37263772/
+120https://www.law.nyu.edu/sites/default/files/Comment%20of%20NYU%20TLP%20Clinic%20on%20Proposed%20HIPAA%20Rule.pdf
+121https://www.science.org/doi/10.1126/science.aax2342
+122https://link.springer.com/article/10.1186/s12939-025-02419-0
+123https://www.sciencenews.org/article/medical-advice-ai-chatbots-symptoms
+
+becomes standard, and physicians' independent diagnostic skills atrophy, the healthcare system
+becomes more, not less, fragile. Finally, HHS should support research on the informed consent
+gap: what patients actually understand about AI involvement in their care, how they evaluate AI
+safety claims, and what disclosure standards would support genuine informed consent. HHS
+should also fund research on community-partnered AI evaluation methodologies. The datathon
+model developed by MIT Critical Data provides structured opportunities for diverse
+stakeholders, including clinicians, data scientists, patients, and community members, to evaluate
+AI tools collaboratively. Current healthcare AI research overwhelmingly focuses on populations
+and conditions already well-served by existing infrastructure. HHS-funded research should
+explicitly prioritize AI applications addressing care gaps for rural, low-income, and historically
+underserved populations, and should require that evaluation protocols include the communities
+the AI is intended to serve.
+
+XIV. Structural Recommendations
+1. Establish federal minimum evidence standards for clinical AI.
+Any AI system making autonomous clinical decisions should demonstrate safety and efficacy
+through independent, peer-reviewed clinical evidence before deployment. Company-funded
+preprints with equity-holding authors cannot constitute an adequate evidentiary basis. HHS
+should work with FDA to create a premarket review pathway for autonomous clinical AI
+proportionate to risk.124
+2. Close the CDS exemption loophole for functionally autonomous AI.
+AI tools that functionally make clinical decisions, even those with nominal “clinician review”
+disclaimers, should not escape oversight through the 21st Century Cures Act exemption. HHS
+should clarify that the CDS exemption does not apply when AI recommendations are presented
+as the primary or default clinical action.125
+3. Require mandatory fairness testing.
+Following Health Canada’s model, HHS should require clinical AI vendors to collect and report
+disaggregated performance data across demographic subgroups before and after deployment. The
+evidence that AI trained on non-representative data systematically harms minority patients is too
+extensive to ignore.126
+4. Establish a federal adverse event reporting system for clinical AI.
+No coordinated federal mechanism exists for tracking adverse events from AI clinical tools
+outside FDA device regulation. HHS should establish a reporting system modeled on MedWatch
+for incidents involving non-device clinical AI.127
+5. Issue HIPAA guidance for autonomous AI systems.
+HHS should clarify that autonomous AI systems require explicit patient authorization before
+accessing prescription data, separate from the general TPO exception. The current framework, in
+124https://pmc.ncbi.nlm.nih.gov/articles/PMC12140231/
+125https://bipartisanpolicy.org/issue-brief/fda-oversight-understanding-the-regulation-of-health-ai-tools/
+126https://www.canada.ca/en/health-canada/services/drugs-health-products/medical-devices/application-information/guidance-documents/pre-mar
+ket-guidance-machine-learning-enabled-medical-devices.html
+127https://home.ecri.org/blogs/ecri-news/misuse-of-ai-chatbots-tops-annual-list-of-health-technology-hazards
+
+which patient data flows from pharmacy to Surescripts to commercial AI startup without
+notification, is inconsistent with HIPAA’s privacy protections.128
+6. Require transparency in state AI sandbox programs involving clinical care.
+Safety data, adverse event reports, and clinical evaluation methodologies from state sandbox
+programs must be publicly accessible. Business confidentiality cannot override public health
+transparency. HHS should condition federal cooperation with state sandboxes on minimum
+transparency standards.129 Additionally, HHS should require a standardized "Model Facts Label"
+for all clinical AI tools, analogous to a nutrition label, that discloses in plain language: the
+training data composition and known gaps, validated performance metrics across demographic
+subgroups including rural and lower socioeconomic populations, known limitations and failure
+modes, update history and version control, and the developer’s conflict of interest disclosures.
+This label should be accessible to both clinicians and patients at the point of care.130
+7. Develop a liability framework for autonomous clinical AI.
+HHS should convene stakeholders to develop clear liability apportionment for autonomous AI
+clinical decisions, considering strict liability models, common enterprise liability, and
+compensation funds. The current vacuum, where neither malpractice nor product liability clearly
+applies, leaves patients without recourse.131
+8. Require disclosure of funding sources and conflicts of interest.
+Clinical AI companies citing studies to support clinical claims should be required to disclose
+funding sources, author equity interests, and peer-review status. HHS should examine whether
+VC firms providing both investment and regulatory strategy create conflicts that compromise
+regulatory integrity.
+9. Establish a federated AI Sentinel network for post-market surveillance.
+Modeled on FDA’s existing Sentinel Initiative for drug safety, HHS should fund a federated AI
+Sentinel network that collects standardized performance and safety signals from participating
+health systems. This network should monitor for performance drift, subgroup degradation, and
+emerging safety signals across deployed clinical AI tools, and publish de-identified safety
+bulletins and recall-like advisories when models underperform or cause harm. The current
+128https://www.law.nyu.edu/sites/default/files/Comment%20of%20NYU%20TLP%20Clinic%20on%20Proposed%20HIPAA%20Rule.pdf
+129https://www.nature.com/articles/s41591-024-03304-x
+130GRAMA Appeal Response, Utah Dept. of Commerce, Feb. 18, 2026 (on file with authors).
+131https://www.ncbi.nlm.nih.gov/books/NBK613216/; https://repository.law.umich.edu/cgi/viewcontent.cgi?article=1569&context=book_chapters
+
+post-market surveillance infrastructure is inadequate: the FDA’s MAUDE system captures fewer
+than 0.5% of adverse events, and Predetermined Change Control Plans allow AI modifications
+without fresh clearance. A dedicated Sentinel network would provide the continuous monitoring
+infrastructure that clinical AI requires.132
+132https://www.fda.gov/safety/fdas-sentinel-initiative
+
+XV. Conclusion
+This RFI asks how HHS can “accelerate the adoption and use of AI as part of clinical care.” We
+have documented in this comment why acceleration without evidence standards does not
+constitute responsible innovation. The evidence base for the most prominent clinical AI systems
+is company-funded and unreviewed. Documented patient harms range from eating disorders to
+teen suicides to systematic racial bias. The regulatory framework has gaps that no federal agency
+has claimed. The liability system cannot tell patients who is responsible when AI harms them.
+And the financial incentives driving deployment are structurally misaligned with patient safety.133
+The pattern documented in this comment, in which companies deploy AI with minimal validated
+evidence, navigating regulation through political strategy rather than clinical proof, access
+patient data through frameworks never designed for autonomous AI, and generate claims that
+major media amplify without scrutiny, is not confined to one company or state. It reflects
+systemic pressures that will only intensify.
+Every major medical society opposes autonomous AI prescribing without rigorous safeguards.
+Every comparable international jurisdiction imposes more protective requirements. The
+documented record of AI health tool harms, including eating disorder patients receiving dieting
+advice, teenagers dying by suicide, and algorithms that miss 67% of sepsis cases, demonstrates
+the technology is not ready for autonomous clinical deployment without robust protections.
+The Department has both the authority and the responsibility to establish the federal floor. Doing
+so will not slow innovation. It will build the public trust that is the precondition for AI’s
+sustainable integration into American healthcare.
+We appreciate the opportunity to comment on this important matter. We are available to provide
+additional information, testimony, or briefing at the Department’s request.
+Respectfully submitted,
+MIT Critical Data
+https://criticaldata.mit.edu/
+133https://www.medrxiv.org/content/10.1101/2025.07.14.25331406v1

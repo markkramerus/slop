@@ -1,0 +1,471 @@
+Response to HHS Request for Information:
+Accelerating the Adoption and Use of Artificial
+Intelligence as Part of Clinical Care
+RIN 0955–AA13
+Submitted by: HealthEx 2339 3rd St., Suite 41 San Francisco, CA 94107 info@healthex.io |
+www.healthex.io
+Date: February 23, 2026
+1
+
+1. EXECUTIVE SUMMARY
+HealthEx is building the modern stack for consumer-driven care - combining digital identity,
+real-time records access, and consent management - and is already live powering AI grounded
+in individuals’ personal health history through its partnership with Anthropic, announced in
+January 2026.
+HealthEx appreciates the opportunity to respond to HHS's Request for Information on
+accelerating the adoption and use of AI as part of clinical care. Our response is grounded in a
+core conviction: the single greatest barrier to effective clinical AI is not the model - it is the
+data. AI tools can only deliver personalized, clinically meaningful insights when they are
+grounded in a patient's actual, comprehensive health history. Today, that data remains
+fragmented, institutionally siloed, and inaccessible to the AI tools that patients and clinicians
+increasingly rely on.
+HealthEx solves this problem and we are the only platform live with both TEFCA Individual
+Access Services (IAS) and a FHIR endpoint directory for patient-directed records retrieval,
+enabling individuals to securely access their complete health records across all their places of
+care and share them with AI tools, providers, payers, and trusted third parties of their choosing.
+HealthEx responds to Questions 1, 2, 5, 6, 8, and 9 below. Our recommendations center on
+three themes: (1) interoperability and patient-directed data access are the foundational
+infrastructure for clinical AI; (2) HHS should leverage existing frameworks - particularly TEFCA
+IAS - to accelerate AI adoption rather than creating parallel regimes; and (3) patient
+empowerment and trust must be embedded in AI deployment, not bolted on after the fact. We
+also note the uniquely new requirements emerging from conversational AI contexts around
+more efficient and real-time mechanisms to keep a patient’s clinical record updated, and the
+need for high-quality imaging data to be available to patients to access via IAL2/IAS.
+RFI prepared by:
+● Priyanka Agarwal, MD, MBA, Co-founder and CEO, HealthEx
+● Anand Raghavan, Co-founder and CTO, HealthEx
+● Jeremy Schwarz, Chief Commercial Officer, HealthEx
+2
+
+2. ABOUT HEALTHEX
+HealthEx is building the modern stack for consumer-driven healthcare. Combining digital
+identity, unified longitudinal records, and consent and permissions, HealthEx presents to end
+users as a health data wallet that enables them to securely access and share their health
+records with trusted third parties across payers, digital apps, and AI agents in a repeatable and
+efficient manner.
+Below are key differentiators of our platform and approach:
+● Dual approach to records retrieval across best-in-class TEFCA IAS and FHIR
+endpoint based flows: HealthEx is the only team enabling comprehensive records
+access via IAS under TEFCA and a FHIR endpoint directory. Our record locator service
+automatically matches individuals' demographic information - including historical
+addresses - to find where they have health records across thousands of places of care
+nationwide, eliminating the need for patients to recall every provider they've seen.
+HealthEx connects to the TEFCA network-of-networks infrastructure via our QHIN
+partners, MedAllies and CommonWell, spanning 12,000+ organizations and 72,000+
+unique connections. HealthEx additionally supports direct connections to over 52,000
+healthcare organizations via FHIR-based exchange.
+Through these efforts, HealthEx supports records retrieval for 250M Americans,
+supporting records access for ~90% of provider organizations.
+● The HealthEx Digital Wallet for records powers Identity-powered network effects :
+The HealthEx Digital Wallet enables users to access their records once and share
+across all platforms where they've chosen to connect, creating powerful network effects.
+HealthEx's identity foundation (IAL2/AAL2 via CLEAR) powers the digital wallet
+capabilities- a Claude user can seamlessly share the same data to other AI tools or
+providers. This identity layer is also foundational for agentic care experiences like EHR
+write-back.
+● AI-optimized data delivery: The HealthEx MCP server is built for performance, speed,
+and accuracy while giving users privacy and control. It addresses the unique challenges
+at the intersection of health data and AI: context-window constraints (through proprietary
+data cleaning and compression achieving ~90% improvement), and privacy (honoring
+consent on every tool call, returning only query-relevant data, and operating exclusively
+in contexts where model training is off). AI-ready data can also be delivered via REST
+APIs.
+● Production-proven at scale : Live integration with Anthropic's Claude (January 2026).
+Additional launches in Q1with two top-5 health insurers, and two additional large-scale
+AI teams. Across its ecosystem, HealthEx will be enabled for 10M+ Americans in Q1.
+● Deep ecosystem partnerships: HealthEx is collaborating with every major EHR
+provider across Epic, athenahealth, Cerner, Veradigm (AllScripts), eClinicalWorks,
+3
+
+MEDITECH, NextGen, and NetSmart. These are not proprietary partnerships, rather
+they represent a willingness from HealthEx to work together across the ecosystem.
+● HealthEx collaborates closely with every major EHR provider including Epic,
+athenahealth, Cerner, Veradigm (AllScripts), eClinicalWorks, MEDITECH, NextGen,
+Greenway, and NetSmart. Here are a few recent, relevant public announcements and
+efforts:
+Epic
+Athena/Medallies
+MEDITECH
+CMS Interoperability Initiatives
+Powering AI for Claude & Americans at scale:
+In January 2026, HealthEx launched a live integration with Anthropic's Claude through the
+Model Context Protocol (MCP), enabling consumers to connect their health records and use
+conversational AI for personalized health insights grounded in their clinical history. This was the
+first patient-data MCP integration with a major AI platform. HealthEx has forthcoming partner
+announcements in Q1 2026 that will extend its consumer network to over 10 million US users.
+HealthEx is a San Francisco-based company backed by General Catalyst. HealthEx is SOC2
+and TX-RAMP certified, and is an approved IAS vendor in TEFCA.
+4
+
+3. RESPONSE TO SPECIFIC QUESTIONS
+Question 1: What are the biggest barriers to private sector innovation in AI
+for health care and its adoption and use in clinical care?
+The biggest barrier to clinical AI innovation is the fragmentation and inaccessibility of
+patient health data to provide context to AI.
+AI models are only as useful as the data they can access. Today, a patient's health records are
+scattered across dozens of providers, health systems, and payer platforms, each with its own
+portal, credentials, and data formats. This fragmentation means that even the most advanced AI
+tools operate on incomplete, single-source data – producing generic insights rather than the
+personalized, longitudinal reasoning that transforms clinical care.
+The difference is significant. An AI tool with access to a single EHR system can tell a patient
+what a lab result means in isolation. An AI tool grounded in a patient's full longitudinal record –
+spanning conditions, medications, labs, immunizations, clinical notes, and procedures across
+every provider they've seen – can identify trends over time, surface patterns across specialists,
+and help patients prepare for more informed conversations with their doctors. This is the kind of
+complex, contextual reasoning that meaningfully improves care.
+HealthEx has demonstrated that this barrier is solvable with existing infrastructure. Through
+TEFCA IAS and our FHIR endpoint directory, we enable patients to pull their complete records
+in under five minutes at the median and connect them directly to AI tools. Since launching with
+Anthropic's Claude in January 2026, approximately half of HealthEx connector users return
+within five days to have another conversation using their health data, a strong signal that
+patients find real value in AI grounded in their clinical history.
+Beyond data fragmentation, we see three additional barriers:
+1. The evaluation paradigm for clinical AI has not kept pace with the speed of model
+development. Models are updated on cycles measured in weeks, but evaluation
+frameworks still reflect the cadence of traditional medical device review. HHS should
+support real-time, outcomes-based evaluation methods for a set of templatized use
+cases that can assess AI performance as models evolve - rather than evaluating the
+efficacy of AI on models that are already out of date by the time the assessment is
+complete.
+2. The consent and trust infrastructure for AI-health-data interactions remains
+underdeveloped . Standard MCP server frameworks do not come with native privacy or
+consent semantics. HealthEx has built this layer – honoring consent on every tool call,
+returning only data relevant to a specific query, ensuring users control whether data is
+saved across sessions, and operating only in environments where model training on PHI
+is off. HHS should encourage the development and adoption of these trust-enabling
+5
+
+practices across the ecosystem, and HealthEx would be pleased to lend its expertise
+and experience in the consent arena.
+3. Regulatory uncertainty around non-medical-device AI tools creates hesitancy
+among both developers and health systems . Organizations are unsure how AI tools
+that synthesize patient records, generate care preparation summaries, or support shared
+decision-making fit within existing regulatory and liability frameworks. HHS can reduce
+this uncertainty by clarifying that existing frameworks already accommodate these use
+cases and establishing proportionate guidance - removing ambiguity rather than adding
+new requirements or regulations.
+Question 2: What regulatory, payment policy, or programmatic design
+changes should HHS prioritize to incentivize the effective use of AI in
+clinical care and why?
+HHS should prioritize policy changes that ensure patient health data can flow to AI tools
+of a patient's choosing, securely and at scale. The regulatory and payment infrastructure
+that governs health data exchange will determine whether clinical AI reaches its potential or
+remains constrained by the same data silos that have limited interoperability for decades.
+We recommend the following specific policy actions:
+Strengthen TEFCA IAS (or broader CMS-Aligned network IAS) adoption via Incentivation
+from CMS. TEFCA's Individual Access Services pathway is the most significant federal
+infrastructure enabling patient-directed data exchange at national scale, and we believe is the
+most secure and user-friendly mode for patients to access their data. IAS enables patients to
+retrieve their records from across the TEFCA network and direct them to any trusted third party,
+including AI tools. HHS should incentivize CMS-regulated entities to participate in TEFCA, and
+specifically that all TEFCA Participants and Subparticipants respond to IAS requests. While
+TEFCA adoption has been strong, it is still voluntary and there are some organizations who
+have not yet pledged to join.
+Today, some organizations decline IAS queries due to lingering uncertainty about whether
+TEFCA's identity and authorization verification meets HIPAA requirements. HHS should issue
+guidance confirming that IAL2/AAL2 identity verification plus IAS consent satisfies HIPAA
+identity and authorization requirements under 45 CFR 164.524, removing some of the basis for
+non-response.
+Grant safe harbor to organizations performing patient matching and proposed “double
+checking” as part of IAS fulfillment. Hesitancy to respond to IAS queries is partly driven by
+liability concerns around patient matching. Granting qualified immunity to organizations that
+perform patient matching in response to IAL2-enabled IAS requests would reduce this barrier
+and unlock broader participation.
+6
+
+Reject additional authorization burdens that impede patient access. Some EHR vendors
+currently require patients to provide patient portal credentials on top of IAL2 identity verification
+when fulfilling IAS requests. This added step is not universally required - users of athenahealth
+and eClinical works EHRs, for example, do not face it - and creates a friction point that
+disproportionately burdens patients with limited digital literacy, multiple providers, or complex
+care needs. HHS should clarify if IAS requests using IAL2/AAL2 tokens plus digitally
+enforceable consent are sufficient for authorization as well, without additional portal credential
+requirements. We are advocates to converge on the most friction free flows for end users
+possible, while respecting the applicable legal requirements.
+Enable persistent data connections with extended token validity and refresh
+mechanisms. Nearly all patients expect their health data connections to remain fresh and
+current without manual intervention after each provider visit or lab result. Under the current IAS
+framework, OIDC tokens from credential service providers expire within 30 days, requiring
+patients to re-authenticate biometrically for subsequent data access. This is a significant step
+backward from the refresh token model available under patient portal-based SMART-on-FHIR
+workflows. HHS should update guidance to clarify that IAL2 tokens may persist for an extended
+period – up to 12 months – with appropriate refresh mechanisms, so patients can direct
+recurring data access to AI tools and other trusted parties without repeated identity verification.
+Support push-based data updates to maintain record freshness. Manual refresh workflows
+place an unreasonable burden on patients and create gaps in the data available to AI tools.
+HHS should establish standards and incentives for push-based notifications when new clinical
+data becomes available. This could include webhook-based updates triggered when new
+encounters, lab results, or imaging studies are documented, enabling AI tools to maintain
+current, comprehensive patient context without requiring patients to manually pull updates after
+every healthcare interaction. Push-based updates aligned with patient consent would
+dramatically improve the clinical utility of AI while reducing patient friction.
+Modernize payment policy to accelerate AI adoption . The RFI rightly identifies the limitations
+of legacy fee-for-service regimes in supporting innovation. HHS should explore multiple
+payment mechanisms to ensure AI tools that demonstrably reduce burden, lower costs, or
+improve outcomes can reach patients:
+● Medicare Advantage supplemental benefits: CMS should clarify that AI-enabled care
+navigation, health literacy, and care coordination tools qualify as supplemental benefits
+under MA plans, enabling plans to offer these capabilities to beneficiaries without
+additional regulatory approval.
+● CMMI innovation models: CMS should establish innovation models that test AI-enabled
+care pathways - including AI-assisted prior authorization, care gap identification, and
+care navigation - under value-based payment arrangements that reward outcomes
+rather than volume.
+● Safe harbors for patient-directed AI tools: HHS should consider safe harbor protections
+under anti-kickback statutes for AI tools that are patient-directed and operate on
+7
+
+patient-authorized data, removing the legal uncertainty that currently deters health
+systems from recommending AI tools to patients.
+Accelerate public availability of a national healthcare endpoint directory that maps OIDs
+to Patient portals. Effective AI-driven care requires that patients (or platforms acting on their
+behalf) can discover where their records are held. We were pleased to see CMS’s recent
+commitments toward building a national healthcare endpoint directory, and urge HHS to
+expedite its development. Consistent with the ONC information blocking regulations at 45 CFR
+Part 171, providers should be expected to publish and maintain FHIR API endpoints in this
+directory, ensuring accurate record location at scale.
+Question 5: How can HHS best support private sector activities to promote
+innovative and effective AI use in clinical care?
+HHS can best support private sector AI innovation by strengthening the interoperability
+infrastructure that AI tools depend on and by endorsing trust frameworks for AI-health-data
+interactions.
+The current generation of patient-facing AI tools has focused primarily on information and
+insights-helping patients understand their health data through natural language conversations.
+However, significant consumer demand exists for AI that can move beyond explanation to
+action: booking appointments, messaging providers, requesting prescription refills, and
+coordinating care. To realize this vision, the healthcare ecosystem needs standardized protocols
+that enable AI platforms to both access comprehensive health data and interact with clinical
+systems to fulfill real-world care tasks-all with appropriate patient consent and security controls.
+The HealthEx integration with Anthropic's Claude demonstrates how private sector
+collaboration, built on public infrastructure, can deliver immediate patient value while creating a
+foundation for more advanced capabilities. HealthEx leverages TEFCA-a federal framework-to
+retrieve patient records, then delivers them to Claude via the Model Context Protocol with
+consent honored on every interaction. Today, consumers can ask Claude to explain their lab
+results, identify patterns across their health history, and prepare questions for their doctors, all
+grounded in their actual clinical data. HealthEx is actively working to extend this integration
+beyond information and insights to agentic care fulfillment, creating a comprehensive healthcare
+MCP that supports the full spectrum from understanding health to acting on it.
+HHS should create pathways for patient-directed AI tools to serve Medicare beneficiaries.
+Approaches already demonstrated in the commercial market provide a model for what these
+pathways could enable. For example, the HealthEx-Claude integration has shown that
+consumers will engage deeply with AI grounded in their comprehensive health records. A similar
+approach for Medicare beneficiaries could deliver three transformative capabilities:
+8
+
+Personalized AI for health understanding: Through the HealthEx x Claude integration or
+similar AI-powered experiences, Medicare beneficiaries could access conversational AI
+grounded in their complete longitudinal health record. Members could ask natural
+language questions about their medications, understand what their latest lab results
+mean in the context of their conditions, identify patterns in their vitals over time, and
+prepare informed questions before appointments-all in plain language, with explanations
+tailored to their actual clinical history rather than generic health information.
+Personalized, proactive care enabled by a 360-degree health picture: With a
+comprehensive view of each beneficiary's health-spanning conditions, medications, labs,
+procedures, and care gaps across all their providers-AI can surface personalized,
+proactive recommendations. The system could identify when a diabetic patient is
+overdue for an eye exam, flag potential medication interactions when new prescriptions
+are added, or notice declining kidney function trends that warrant earlier intervention.
+This comprehensive view, made possible by HealthEx's aggregation across the TEFCA
+network and FHIR endpoints, transforms reactive care into proactive health
+management.
+Agentic care fulfillment for real-world action: Beyond insights, AI can help Medicare
+beneficiaries act on recommendations-scheduling that overdue eye exam with an
+in-network ophthalmologist, booking their annual wellness visit, coordinating
+transportation to appointments, or requesting prescription refills. This vision of
+AI-assisted care navigation, grounded in comprehensive patient data and executed with
+patient consent, could meaningfully reduce barriers to care access for Medicare
+beneficiaries while alleviating administrative burden on providers and plans.
+These three capabilities-personalized AI understanding, proactive care recommendations, and
+agentic fulfillment-represent a fundamentally different member experience: one where Medicare
+beneficiaries have a trusted AI companion that knows their complete health story, helps them
+understand it, identifies what care they need, and helps them get it done. HHS should create
+pathways for patient-directed AI tools to serve Medicare beneficiaries, modeled on approaches
+already demonstrated in the commercial market
+HHS can promote more such innovation by supporting industry-driven trust frameworks
+for AI-health-data connectors. These frameworks should address identity verification, consent
+management, data provenance, and data minimization practices. Establishing clear, adoptable
+standards for how AI platforms should handle health data will accelerate responsible innovation
+across the private sector.
+HHS should also support pilot programs and cooperative research agreements that test
+patient-authorized AI use cases in real clinical workflows. Pilot structures could be used to
+test AI-enabled form filling (reducing administrative burden during e-check-in), AI-assisted prior
+authorization (using patient-directed clinical data to accelerate approvals), and AI-driven care
+coordination (surfacing missing screenings and follow-ups from longitudinal records). These are
+9
+
+use cases HealthEx is actively deploying with partners including major national payers and
+health systems.
+HHS should establish mechanisms for real-time evaluation of model performance and
+patient experience with clinical AI. As AI tools move from advisory roles to agentic care
+fulfillment, continuous monitoring becomes essential. This includes tracking accuracy of clinical
+recommendations, patient satisfaction and trust, identification of bias or disparities in
+AI-generated recommendations, and measurement of clinical outcomes and cost impacts.
+Public-private partnerships could establish shared evaluation frameworks and reporting
+standards that enable rapid identification of safety issues while preserving innovation velocity.
+CMS could leverage Medicare claims data combined with patient-reported outcomes to create
+feedback loops that improve AI performance over time, similar to post-market surveillance for
+medical devices but adapted for the unique characteristics of AI systems that learn and evolve.
+Question 6: Where have AI tools deployed in clinical care met or exceeded
+performance and cost expectations and where have they fallen short?
+Patient-facing AI grounded in comprehensive health records has exceeded engagement
+expectations, demonstrating strong demand for personalized health AI.
+The HealthEx integration with Anthropic’s Claude, launched in January 2026, provides early but
+compelling evidence that patient-facing AI tools can exceed engagement benchmarks when
+grounded in comprehensive, longitudinal health data. Key findings from the initial deployment:
+• 87% of users who go through our TEFCA flows have at least 1 site of care automatically
+identified, with a median retrieval time of under five minutes. The average user retrieves
+3.3 records through our TEFCA + FHIR endpoint flows, compared to 1.4 records when
+going through our FHIR endpoint only flow, which requires that the patient provide their
+portal logins in order to gain access. For the average user, TEFCA IAS retrieval is
+approximately 43% faster than FHIR endpoint-only retrieval, reflecting the elimination of
+manual provider search and portal login steps.
+• 83% of users with retrieved records initiate a health conversation, with health summaries
+and lab result interpretation as the most common entry points. This significantly exceeds
+typical engagement rates for patient-facing health tools.
+• Approximately 50% of users return within five days for subsequent conversations,
+indicating sustained utility rather than one-time curiosity.
+• Users engage across the full breadth of their clinical data-conditions, medications, labs,
+immunizations, procedures, and clinical notes-suggesting that comprehensive
+longitudinal data, not single-source snapshots, is what drives meaningful AI interactions.
+Where AI tools have fallen short, data limitations are almost always the root cause. AI tools
+operating on data from a single EHR system or institution produce generic insights that patients
+do not find actionable. The gap between single-source and comprehensive-data AI is not
+incremental-it is the difference between an AI that can explain a lab result and one that can
+identify a trend across three years of visits to multiple specialists. Closing this gap requires the
+interoperability and patient-directed data access reforms outlined in our response to Question 2.
+10
+
+AI tools today also do not have access to imaging data as these sit on PACS systems that are
+not governed by the 21st Century Cures act in terms of access by patients. This limits their
+ability to have a 360 degree view of the patient’s condition.
+Lastly, the current background poll based mechanisms without incremental updates of keeping a
+user’s data up to date result in highly inefficient volumes of queries which return with no new
+information about a patient. This drives up implementation costs as the traditional business
+models in this space rely on the number of successful record pulls which are not always
+incentivized to keep the number of queries to a minimum.
+Question 8: Where would enhanced interoperability widen market
+opportunities, fuel research, and accelerate the development of AI for
+clinical care?
+Enhanced interoperability – specifically, patient-directed interoperability via TEFCA IAS –
+is the single most important accelerant for clinical AI.
+Today, clinical AI tools overwhelmingly operate on data from a single EHR system or a single
+institution. This constrains the quality, completeness, and generalizability of AI insights and
+limits the market to use cases that can function within institutional silos. Patient-directed data
+access, by contrast, unlocks longitudinal, multi-source data that enables fundamentally different
+AI capabilities: cross-provider trend analysis, comprehensive medication reconciliation,
+complete care gap identification, and personalized risk assessment grounded in a patient's full
+clinical history.
+Specific areas where enhanced interoperability would widen market opportunities:
+TEFCA IAS enables AI tools to access comprehensive patient records without requiring bilateral
+data-sharing agreements with every provider organization. This dramatically lowers the barrier
+to entry for AI developers and creates a level playing field where innovation is rewarded based
+on the quality of insights delivered, not the depth of institutional relationships. HealthEx's
+integration with Claude demonstrates this: any Claude Pro or Max subscriber can connect their
+full health record and receive personalized insights, regardless of which health systems they
+visit.
+Production data from the HealthEx-Claude integration illustrates the breadth of interoperability
+required. The average user has records across multiple provider organizations, requiring
+connections to health systems, ambulatory practices, and labs. HealthEx retrieves data via both
+TEFCA IAS and direct FHIR connections, with the dual approach proving essential - TEFCA
+provides broad network reach while FHIR endpoints enable connections to organizations not yet
+participating in TEFCA. Neither pathway alone provides sufficient coverage; the combination is
+what achieves the ~90% provider coverage that makes comprehensive AI possible.
+Enhanced interoperability also accelerates research by making patient-authorized clinical data
+available for outcomes evaluation and implementation science. When patients can direct their
+11
+
+longitudinal records to AI tools and research platforms, it becomes possible to evaluate AI
+performance against real-world outcomes at a scale and speed that institutional data alone
+cannot support.
+Specific data types, standards, and tools where progress is needed:
+USCDI v3 provides a strong baseline, but imaging data (particularly from PACS servers)
+remains difficult to access in lossless formats through standard exchange pathways. Making
+diagnostic imaging available through TEFCA or FHIR-based exchange would significantly
+expand AI capabilities in radiology, oncology, and other imaging-intensive specialties.
+Additionally, establishing a common quality standard for data shared across sources - potentially
+using novel approaches like open-source LLM-based quality scoring with public weights for
+transparency - would help AI developers assess data reliability.
+FHIR R4 and C-CDA are working well as exchange standards, but the practical challenge is that
+not all organizations participate in electronic records exchange. As of 2024, roughly a quarter of
+office-based physicians report never sending electronic records to outside providers. TEFCA's
+network model can reduce connectivity costs, but HHS policy encouraging broader participation
+- particularly among small, rural, and independent practices - is essential to closing the
+remaining gaps that limit AI's access to comprehensive patient data.
+Question 9: What challenges within health care do patients and caregivers
+wish to see addressed by the adoption and use of AI in clinical care?
+Equally, what concerns do patients and caregivers have related to the
+adoption and use of AI in clinical care?
+Patients want three things from AI in their care: the ability to understand their own health
+records, access to comprehensive data across all their providers, and control over who
+sees what.
+As a physician, I have seen firsthand how patients struggle to make sense of fragmented health
+information scattered across multiple portals. The promise of AI in clinical care is that it can
+serve as a bridge - translating clinical data into plain-language insights, identifying what matters
+most, and helping patients prepare for conversations with their doctors. Early results from the
+HealthEx-Claude integration confirm this demand: 83% of users with records start a health
+conversation, with health summaries and lab results as the most common entry points, and
+approximately half of users return within five days.
+Patients also want AI to help them navigate the complexity of a fragmented system. This
+includes understanding medication interactions across providers who don't talk to each other,
+identifying gaps in preventive care, and preparing for specialist visits with a complete picture of
+their history. These are use cases that only work when AI is grounded in comprehensive,
+longitudinal data - not data from a single institution.
+12
+
+Patients and caregivers also want AI to move beyond insights and into real-world care
+action.
+AI tools today excel at synthesizing information, but they do not yet extend into care
+fulfillment-booking appointments, writing back to EHRs, initiating prior authorizations, or
+coordinating referrals. Consumer demand for these capabilities is strong. HealthEx’s identity,
+consent, and records access capabilities are foundational for enabling these agentic care
+experiences, and we are actively co-designing EHR write-back capabilities with Epic. HHS
+should consider how its regulatory and payment frameworks can support the transition from AI
+as an information tool to AI as a care coordination enabler—clarifying, for example, that
+patient-directed AI actions taken with appropriate consent and identity verification are consistent
+with existing HIPAA and HITECH frameworks.
+On the concerns side, patients care deeply about privacy, consent, and control.
+The sensitivity of health data demands a higher standard than what generic AI platforms
+provide. HealthEx has built its MCP server to address these concerns directly: consent is
+honored on every tool call; only data relevant to a specific query is returned to the model; users
+are given a choice about whether their data is saved across sessions; and the integration is only
+available in contexts where model training is off. These are not optional features - they are
+essential to building the trust that enables patients to engage with AI-powered health tools.
+HHS can support patient and caregiver trust by encouraging transparency standards for
+AI-health-data integrations - specifically, requiring that patients be informed about how their data
+is accessed, what it is used for, and how to revoke access. HealthEx's platform provides this
+transparency through auditable consent, granular data sharing controls, and the ability to
+disconnect at any time.
+Caregivers present a particularly important use case that current infrastructure does not
+adequately support .
+Family members coordinating care for aging parents, children, or loved ones with complex
+conditions need consolidated access to health records and the ability to interact with AI tools on
+behalf of those they care for. HHS should support the development of caregiver proxy access
+pathways within IAS, so that legally authorized representatives can retrieve and share records -
+and use AI tools - with appropriate identity verification and consent. Specifically, HHS should
+work with TEFCA participants and credential service providers to establish standardized proxy
+identity flows that allow caregivers to connect records on behalf of dependents without requiring
+the care recipient to perform their own biometric verification.
+Finally, patients and caregivers want AI to move beyond insights and into action. AI tools today
+excel at synthesizing information, but they do not yet extend into real-world care actions like
+appointment booking, EHR write-back, or prior authorization initiation. HealthEx's identity,
+consent, and records access capabilities are foundational for enabling these agentic care
+experiences, and we are actively co-designing EHR write-back capabilities with Epic. HHS
+13
+
+should consider how its regulatory and payment frameworks can support the transition from AI
+as an information tool to AI as a care coordination enabler.
+4. CONCLUSION
+HealthEx appreciates the opportunity to contribute to this important discussion. The potential for
+AI to transform clinical care is immense, but it will only be realized if patients can bring their full
+health history to the AI tools they choose - securely, with consent, and with control.
+The infrastructure exists today. TEFCA IAS provides the regulatory and technical framework for
+patient-directed data exchange at national scale. HealthEx has demonstrated that this
+framework works in practice: retrieving records for 94% of users, in under five minutes at the
+median, and connecting them to AI tools that deliver personalized, clinically grounded insights.
+What is needed now is policy action that accelerates adoption, removes friction, and ensures
+that patient empowerment and trust are built into the foundation of AI in healthcare.
+We welcome the opportunity to engage further with HHS, ASTP/ONC, and other stakeholders to
+support these goals.
+Contact: Priyanka Agarwal, MD, MBA Co-founder and CEO, HealthEx Priyanka@healthex.io
+2339 3rd St., Suite 41, San Francisco, CA 94107 www.healthex.io
+14

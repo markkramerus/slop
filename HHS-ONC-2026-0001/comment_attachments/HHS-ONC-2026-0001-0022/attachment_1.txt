@@ -1,0 +1,886 @@
+Comment on “HHS Health Sector AI RFI”
+Department of Health and Human Services
+Office of the Secretary
+Office of the Deputy Secretary and Assistant Secretary for Technology Policy and Office of the
+National Coordinator for Health Information Technology
+RIN: 0955-AA13
+Federal Register Document Number: 2025-23641
+Docket ID: To be assigned by Regulations.gov
+Submitted by: Interstella
+Date: January 21, 2026
+Page 1 of 25
+
+Introduction
+Interstella appreciates the opportunity to respond to the Department of Health and Human
+Services (HHS) Request for Information on accelerating the adoption and use of artificial
+intelligence (AI) in clinical care. As a health data and technology company focused on real-time
+data integration and AI readiness, we share HHS’s vision of a “forward-leaning, industry-
+supportive, and secure” approach to AI in healthcare.
+We believe AI’s transformative potential in clinical care can only be realized by addressing
+foundational challenges in data infrastructure, governance, and incentives. In this response, we
+detail barriers and provide recommendations across regulation, reimbursement, and research &
+development (R&D), supplemented by high-impact use cases and policy suggestions. Our
+comments emphasize that AI systems fail or succeed based largely on the data that powers them,
+and thus a modernized data ecosystem is critical to safe and effective AI adoption in healthcare.
+Interstella Background: Interstella is dedicated to turning raw, fragmented health information
+into real-time, AI-ready intelligence. Our experience developing the Lynqsys data platform and
+Data Refinery as a Service (DRaaS) solutions gives us practical insight into the data quality,
+interoperability, and timeliness issues that currently limit AI’s impact in clinical settings.
+We approach this RFI from the perspective of those “building, buying, evaluating, and using”
+AI tools for care delivery, and those who wish to do so but face barriers (as noted by HHS). We
+offer both policy recommendations and use case-driven examples to illustrate how HHS can
+accelerate AI adoption while upholding patient safety, equity, and trust.
+Barriers to AI Adoption in Clinical Care
+Data Readiness Gap: The core barrier we observe is that AI innovation is outpacing the
+healthcare system’s data readiness. Federal initiatives increasingly rely on advanced analytics
+and AI, yet most healthcare data ecosystems operate with significant limitations:
+• Delayed Data Availability: Clinical data are often ingested and aggregated in batch
+processes with lag times of days or weeks, rather than in real-time streams. This delay
+stifles AI tools that require up-to-date information for decision support or predictive
+analytics. For example, quality measures or care gap alerts powered by AI cannot
+function optimally if data arrives long after the point of care.
+• Inconsistent Data Quality & Provenance: Healthcare data remains “fragmented,
+biased, and often a mess”, leading to noise, duplication, and gaps that undermine AI
+algorithms. Data may come from diverse sources (EHRs, claims, devices, patient-
+reported inputs) with inconsistent formats and unknown provenance, making it hard for
+AI models to trust and interpret.
+Most failed AI initiatives are not caused by faulty algorithms or lack of vision, they fail
+because the data foundation is not fit for purpose. Indeed, studies estimate up to 85% of
+Page 2 of 25
+
+AI projects fail due to poor data quality or volume issues. In healthcare, this problem is
+acute: “Without large, high-quality data sets, it can be difficult to build useful AIs,” and
+providers are slower to adopt AI when data are incomplete or siloed.
+• Limited Support for Unstructured and Behavioral Data: Many current systems
+handle structured data (e.g. diagnoses, lab results) but have limited capability to
+incorporate unstructured data (clinical notes, images) or behavioral and social health data.
+This is a barrier for AI, which thrives on rich data contexts.
+Critical information about a patient’s mental health, social determinants, or care
+preferences may be documented in text or external systems and thus invisible to AI-
+driven tools. The lack of integration for behavioral health data, for instance, makes it
+difficult to apply AI for outcome measurement in mental health or to coordinate holistic
+care in models like Certified Community Behavioral Health Clinics (CCBHCs).
+• Post-Hoc Governance vs Inline Controls: Data governance (privacy protections,
+quality checks, consent management) is often applied after data aggregation or as a
+periodic audit, rather than inline at the point of data creation and exchange. This reactive
+approach means potential issues, from data errors to privacy risks, are caught late.
+AI systems require trusted, well-characterized data streams; without proactive
+governance baked into data pipelines, organizations either inhibit data sharing or expose
+themselves to compliance risks. In short, data governance that isn’t real-time and
+automated becomes a bottleneck to scalable AI.
+• Data Pipelines Not Designed for AI Consumption: Traditional health IT systems were
+built for billing or record-keeping, not for feeding machine learning models. Data may be
+locked in PDF reports, faxed forms, or legacy databases that AI cannot readily parse.
+Even within modern EHRs, data exchange via interfaces or reports can miss context (e.g.
+relationships between data points) that AI algorithms need. Interoperability challenges
+exacerbate this, “Electronic Health Record systems are largely not compatible across
+different hospitals or providers,” leading to localized data rather than a comprehensive
+patient view. AI models trained on narrow, siloed data may not generalize, limiting their
+utility.
+These data-related barriers create technical hurdles and raise regulatory, equity, and trust risks.
+An AI tool is only as good as the data it learns from; if those data are incomplete, biased, or
+delayed, the tool’s recommendations could be unsafe or inequitable. In sum, “AI systems do not
+fail because of algorithms; they fail because of data.”
+Addressing data readiness is foundational to everything else, from ensuring algorithmic fairness
+to convincing healthcare professionals and patients to trust AI. We encourage HHS to treat data
+quality, interoperability, and timeliness as strategic priorities in all AI-related policies (as HHS’s
+own AI Strategy recognizes).
+Page 3 of 25
+
+Other Key Barriers: In addition to data readiness, we echo the other barriers identified by
+experts and prior HHS inquiries:
+• Lack of Trust and Transparency: Many AI algorithms, especially complex machine-
+learning models, are “black boxes” that clinicians find hard to interpret. The opacity of
+AI decisions can erode provider trust and willingness to use AI in care. Clinicians remain
+ultimately accountable for patient outcomes, so they are cautious about relying on tools
+they don’t fully understand.
+Without assurances of transparency or robust validation, frontline providers often default
+to familiar (non-AI) solutions.
+Building trust requires both technological solutions (e.g. explainable AI, rigorous
+validation) and cultural change (education, success stories, engagement of clinicians in
+AI development). We note that transparency, privacy protections, and rigorous evaluation
+have been identified as essential elements of trustworthy AI in healthcare.
+• Regulatory Uncertainty: Current regulations have not fully caught up with AI, creating
+uncertainty. Privacy rules (like HIPAA) and data use policies can make it difficult to
+aggregate and share the data needed to develop robust AI models.
+Approval pathways for AI, particularly software not regulated as a medical device, are
+unclear; developers are unsure how to demonstrate safety/effectiveness, and providers are
+unsure what oversight or certifications to look for.
+Furthermore, liability concerns loom large: healthcare organizations worry that if an AI
+makes a faulty recommendation, they will face legal risk with uncertain liability-sharing
+between developers and users. This “chilling effect” causes risk-averse stances, slowing
+adoption. We explore regulatory solutions in the next section.
+• Misaligned Incentives in Payment: The fee-for-service reimbursement model often fails
+to reward (or even penalizes) innovations that improve efficiency or quality. AI tools that
+prevent hospitalizations or automate routine tasks might reduce billable services in the
+short term, disincentivizing adoption by providers under traditional payment.
+Meanwhile, those bearing long-term risk (payers or ACOs) have incentives to use AI for
+prevention and cost reduction, but they face their own hurdles in getting such tools
+approved and reimbursed.
+This misalignment leads to patchy adoption, e.g. larger systems or value-based
+organizations invest in AI, while others do not. As HHS notes, “legacy payment systems”
+can diminish the promise of AI through inertia. We discuss payment reforms below.
+• Workforce and Workflow Integration: Successful AI adoption requires
+complementary process changes and training. Introducing an AI-driven tool means little
+Page 4 of 25
+
+if clinical workflows are not adjusted to incorporate the AI’s output at the right time and
+place.
+Many hospitals lack personnel with AI expertise (data scientists, informaticists) to
+champion these changes. Additionally, some clinicians fear AI could replace or de-skill
+their roles (for example, radiologists hearing that AI will read images). This can create
+resistance or lack of engagement with new tools.
+Even when leadership is supportive, administrative hurdles like lengthy procurement,
+integration costs, or lack of IT support can slow down AI deployments. In our
+experience, the roles most influential in AI adoption include the Chief Medical
+Information Officer (CMIO), Chief Data or Digital Officer, and clinical department heads
+who see a clear need.
+Hospitals with professional management and integrated salaried structures tend to be
+more proactive in deploying AI than those with decentralized or physician-led
+management. HHS should consider how to educate and empower these decision-makers
+to be AI champions.
+In summary, the biggest barriers to private-sector innovation in health AI are data-related
+limitations, regulatory uncertainty (including privacy and liability issues), misaligned payment
+incentives, and lack of trust. Overcoming these requires coordinated action.
+We recommend that HHS focus on improving the health data foundation as a first-class
+objective, because doing so will mitigate many other barriers (improving data sharing alleviates
+privacy and access issues, high-quality data enables better algorithms, etc.).
+Below, we detail specific regulatory, reimbursement, and R&D actions that can accelerate AI
+adoption while safeguarding patients. We also provide example use cases illustrating how these
+changes can yield tangible improvements in care delivery.
+Regulatory and Governance Recommendations
+HHS’s role as the nation’s principal health regulator is pivotal in shaping an environment where
+AI can innovate rapidly and safely. We agree with HHS’s goal of a regulatory posture on AI that
+is predictable, proportionate to risk, and protective of patients’ rights and privacy. To achieve
+this, we recommend:
+1. Clarify AI Oversight for Non-Device Software: Many AI tools in clinical care do not meet
+FDA’s definition of a medical device (for example, clinician-facing decision support that allows
+independent review, or operational AI for scheduling and resource allocation).
+This creates a gray area with “novel legal and implementation issues” around accountability, as
+noted in the RFI. HHS (through ONC, CMS, OCR, etc.) should provide guidance on
+expectations for these non-FDA-regulated AI tools. Specifically:
+Page 5 of 25
+
+• Liability and Indemnification: We urge HHS to convene stakeholders (providers,
+developers, malpractice insurers) to develop guidance or safe harbor principles for AI
+use. Clinicians should know when they can rely on an AI tool and how liability is
+apportioned if the AI is flawed.
+One approach is a “qualified AI” safe harbor; if an AI tool meets certain HHS-endorsed
+standards (for transparency, validation, etc.), then providers who use it as intended could
+have mitigated liability. This would encourage use of vetted tools. Conversely,
+developers of such tools might be expected to carry liability insurance or indemnify
+providers in cases of egregious failure, creating accountability on both sides.
+Clear rules on “who is liable if something goes wrong” would likely increase adoption.
+HHS could work with Congress if needed to adjust liability frameworks for AI in
+healthcare (e.g., exploration of federal Tort Claims Act extensions or other mechanisms
+for AI-related harms).
+• Privacy and Data Use Clarity: HHS should update HIPAA and related guidance to
+explicitly address AI development and deployment. For instance, clarify how
+providers/payers can share de-identified or synthetic data for AI training without running
+afoul of privacy rules.
+Consider promoting data trusts or safe data enclaves for AI development, perhaps
+through OCR guidance that such arrangements, with proper safeguards, are encouraged.
+HHS’s AI Strategy already emphasizes “fostering data standards and datasets to bolster
+their usability for AI… while maintaining individual privacy”.
+Building on this, HHS could create model frameworks for data stewardship that balance
+innovation with privacy (e.g., datasets that are rich enough for AI but managed under
+strong governance and audit). Clear guidelines can reduce the fear that sharing data for
+AI equals a privacy violation.
+• Security and Compliance: Many non-device AI tools still interface with protected
+health information. HHS can help by streamlining compliance. For example, template
+Business Associate Agreements for AI vendors, guidance on using cloud-based AI under
+HIPAA, and mapping AI practices to existing regulations (like how to apply 42 CFR Part
+2 for substance abuse data in AI or ensuring ADA compliance in AI-driven
+communications). By addressing these now, HHS preempts future confusion as AI use
+grows.
+2. Modernize Clinical Decision Support (CDS) Regulation: Current FDA guidance (per the
+21st Century Cures Act and FDA’s CDS guidance) draws a line between regulated “medical
+device” software and unregulated CDS. HHS should ensure that developers and providers clearly
+understand this line.
+We recommend HHS (through FDA collaboration and ONC) establish a central information hub
+Page 6 of 25
+
+on what kinds of AI applications require FDA clearance and which do not. This could include an
+AI Tool Classification Framework that maps common use cases: e.g., diagnostic algorithms
+(regulated SaMD), vs. workflow optimizers (unregulated), vs. patient self-care chatbots (gray
+area). By providing case studies or decision trees, HHS can reduce uncertainty.
+For those AI tools that are medical devices, HHS should support FDA in streamlining approval
+without compromising safety. For instance, expanding programs for predetermined change
+control plans (PCCPs) and real-world performance monitoring to allow AI models to
+continuously improve post-approval.
+For non-device tools, HHS could work with industry on voluntary certification (see below)
+instead of regulation, focusing on transparency and oversight at the user-organization level
+(hospital governance).
+3. Support AI Governance Frameworks in Healthcare Organizations: Regulation is not just
+about federal rules; it’s also about internal governance where AI is deployed. We applaud efforts
+by the private sector, such as the Joint Commission’s new guidance (2025) on the responsible
+use of AI in healthcare.
+That framework, developed with the Coalition for Health AI, outlines seven core elements (from
+formal AI governance committees to patient transparency and bias monitoring) for safe AI
+implementation.
+HHS should endorse and build upon such frameworks, perhaps by integrating them into ONC
+certification or CMS conditions of participation in the future. Specifically, HHS could:
+• Coordinate with the Joint Commission and others to operationalize AI governance
+playbooks and create voluntary certification programs for health systems. For example,
+HHS could fund the development of a “Trustworthy AI in Clinical Care” accreditation
+that hospitals can obtain by meeting best practices (similar to how HIMSS stages
+measure EMR adoption).
+This aligns with the RFI’s query about supporting private sector accreditation and
+credentialing (Question 5). Federal backing would lend credibility and spur adoption of
+these standards.
+• Issue guidance or requirements for federal healthcare programs (Medicare, Medicaid) to
+ensure participating providers have basic AI governance. This might start as
+recommendations and evolve into conditions for certain innovation models.
+Areas to cover: having an AI oversight committee, conducting algorithmic bias
+assessments, educating staff and informing patients about AI use (the Joint Commission
+calls for patient notification and consent when AI directly impacts care).
+Page 7 of 25
+
+Such governance expectations, even if not yet mandated, signal the industry to develop
+AI responsibly.
+4. Adjust and Harmonize Regulations to Remove Unintended Barriers: We encourage HHS
+to review specific regulations that, while well-intentioned, may hinder AI adoption. Some
+examples and suggestions:
+• Revisit Data Blocking and Sharing Rules: The 21st Century Cures Act information
+blocking rules promote data sharing, which is great for AI training and deployment. HHS
+should ensure these rules explicitly allow sharing data with AI developers or between
+providers for AI purposes (with proper patient authorization or de-identification).
+Also, consider expanding required data elements (USCDI) to include more data types
+useful for AI, like imaging, free-text clinical notes, and patient-generated data. Enhanced
+interoperability of specific data types (imaging, claims, genomics, social determinants)
+would “widen market opportunities, fuel research, and accelerate AI development,” as
+the RFI posits.
+For instance, better access to claims data could allow AI to identify high-risk patients
+across the continuum of care; richer social and behavioral data standards would enable AI
+to personalize care plans.
+We note CMS’s recent Interoperability Framework as a positive step: it will require
+networks to share clinical and claims data via standardized APIs (FHIR) within 24 hours,
+dramatically improving timely data availability.
+HHS should continue to remove technical and economic disincentives to interoperability,
+making near-real-time data exchange the norm in healthcare. This directly addresses the
+current batch-processing paradigm and will empower AI applications that need up-to-date
+data (e.g., sepsis early warning systems, dynamic care coordination tools).
+• HIPAA Safe Harbors for AI Development: As mentioned, clarify pathways for using
+patient data to develop AI. HHS could create a safe harbor under HIPAA for uses of fully
+de-identified data (perhaps certified by a third party) in bona fide research and
+development of AI, even if the resulting tool will be commercial.
+Today, some covered entities are overly conservative, fearing that any data sharing might
+violate HIPAA. Explicit encouragement and examples (e.g., “It is permissible to share
+de-identified EHR datasets with an AI developer for algorithm training, under XYZ
+conditions”) in OCR guidance would be helpful.
+Also, update CFR 42 Part 2 in partnership with SAMHSA to align substance use data
+sharing rules with modern AI-driven care coordination (recent law changes are moving in
+this direction). AI that coordinates behavioral health care (like predicting relapse risk)
+can only be effective if data can be shared within care teams under clear, privacy-
+Page 8 of 25
+
+protected frameworks.
+• Streamline IRB and Research Regulations for AI Studies: Many healthcare AI tools
+need continuous learning and improvement, which blurs the line between quality
+improvement and research. HHS should consider guidance on when AI
+development/validation constitutes human subjects research requiring IRB oversight.
+Overly burdensome interpretations could slow down needed real-world evaluation.
+Developing central IRB models or data commons for AI could accelerate evaluation
+while maintaining ethics.
+• Enable Sandbox or Pilot Programs: HHS might use its authority (through CMS
+Innovation Center or ONC) to create regulatory sandboxes where healthcare
+organizations can pilot AI solutions with certain regulatory flexibilities.
+For example, a hospital system could apply to test an AI tool that uses novel data
+integration, under a time-limited program where HHS waives certain documentation or
+reporting rules, provided strong monitoring is in place. Such sandboxes, coupled with
+rigorous evaluation, can demonstrate safe ways to adjust regulations in the long run.
+In summary, HHS should reduce uncertainty by providing clear rules of the road for AI. This
+includes clarifying data sharing permissions, aligning AI oversight with risk levels, and
+promoting internal governance standards.
+By revisiting privacy, security, and liability issues in light of AI, HHS can create a predictable
+environment that “enables rapid innovation while protecting patients”. We believe these
+regulatory adjustments, focused especially on data and trust, will unlock innovation by giving
+both AI developers and healthcare users confidence to move forward.
+Payment Policy and Reimbursement Incentives
+Payment policy can drive or stall the adoption of AI in clinical care. We agree with HHS’s
+assessment that current reimbursement systems contain “inherent flaws” that may
+unintentionally discourage high-value innovations.
+To ensure AI’s promises are realized, HHS should modernize payment models to reward
+effective AI use, reduce financial friction, and align incentives across stakeholders. Our
+recommendations:
+1. Create Clear Reimbursement Pathways for AI-Enabled Services: One of the “biggest
+barriers” is the lack of clear payment mechanisms for AI-powered interventions.
+If a clinician uses an AI tool to, say, analyze a radiology image or predict a patient’s
+deterioration, there is often no distinct billing code or reimbursement for that activity (especially
+if it replaces a conventional service). We recommend:
+Page 9 of 25
+
+• Establish CPT codes or modifiers for AI-assisted services. Engage the AMA CPT
+process to create codes for procedures where AI is used. For example, a radiologist using
+FDA-cleared AI for image analysis could append a modifier indicating AI assistance,
+which could be reimbursed with a small add-on payment for the validated efficiency or
+accuracy gain.
+CMS could then decide to cover these codes. Early examples in this direction include
+CPT codes for autonomous AI detection of diabetic retinopathy. HHS should accelerate
+and expand such coding to cover various AI scenarios (AI-assisted pathology, AI-driven
+care coordination, etc.), signaling to providers that they can get reimbursed when using
+proven AI tools.
+• Bundle AI into Value-Based Payments. Under alternative payment models (APMs) like
+accountable care or Medicare Advantage, the business case for AI is stronger (preventing
+a hospitalization saves money that the provider-network can keep).
+HHS should integrate AI adoption into value-based programs by, for instance, providing
+allowances or bonuses for AI investments that demonstrably improve outcomes. CMS
+Innovation Center could pilot contracts where participants who deploy AI for specific
+high-impact use cases (e.g., reducing readmissions through predictive analytics) receive
+shared savings or upfront funding to do so.
+The key is to tie AI to outcomes: if it lowers costs or improves quality, allow those
+benefits to translate into financial rewards for the adopters.
+• Coverage with Evidence Development (CED) for AI. For certain novel AI
+technologies (especially those that are high-cost or high-impact), CMS could use a CED
+approach – cover the AI tool for Medicare beneficiaries conditionally while data is
+gathered on its effectiveness.
+This has been used for some devices and could be applied, say, to AI-based diagnostic
+software or digital therapeutics. It encourages early adoption in a controlled way and
+speeds the evidence generation needed for broader coverage.
+2. Align Payment Incentives with Quality and Prevention: We note that many AI tools
+promise long-term savings by improving prevention or care management, but under fee-for-
+service those savings are not realized by the provider.
+HHS should continue shifting incentives from volume to value, which inherently makes AI more
+attractive. Some specific ideas:
+• Incorporate AI-driven improvements into quality measures and payment programs.
+For example, if an AI tool can document care more thoroughly or identify care gaps in
+real time, that should help providers score higher on quality metrics (like HEDIS
+measures or Medicare Star ratings). CMS can explicitly allow AI documentation or
+Page 10 of 25
+
+predictions to count toward meeting measure thresholds, as long as they meet validation
+criteria. By tying AI to quality bonuses or penalties avoidance, providers have a financial
+reason to adopt.
+• Modernize Medicaid and Medicare coverage policies. Currently, a barrier in Medicaid
+is uncertainty about whether costs for AI software or services are reimbursable (states
+often lack guidance). CMS could issue guidance to state Medicaid programs on
+classifying AI expenses as allowable administrative costs or medical expenses.
+For instance, clarifying that subscription fees for an AI-powered care management
+platform can be counted in medical loss ratio (MLR) calculations for managed care, or
+offering federal match for state investments in AI pilots.
+A recent analysis noted that Medicaid’s hesitancy to fund innovations, “even when cost-
+saving potential is evident,” is a challenge, and lack of financial incentive discourages
+state investment in AI.
+Clear CMS policy and perhaps small grant programs could nudge states to experiment
+with AI that improves care for vulnerable populations.
+• Address Unintended Consequences: While encouraging AI, HHS must also guard
+against potential overuse or fraud (e.g., unnecessary tests due to AI alerts). Payment
+policy can help by requiring evidence of value.
+For example, new AI-related billing codes could initially be reimbursed only in the
+context of approved registries or when providers adhere to appropriate use criteria. This
+ensures we reward AI that truly adds value. On the flip side, AI can be a tool to reduce
+fraud and waste, as CMS’s WISeR initiative suggests.
+We support using AI for program integrity (identifying improper claims, etc.), which
+ultimately frees resources for patient care.
+3. Foster Competition and Accessibility of AI Tools: To avoid a scenario where only large
+health systems can afford AI, HHS should leverage reimbursement levers to promote
+competition and lower costs:
+• Ensure AI Pricing Transparency and Fair Pricing Models: If AI tools become part of
+care, their cost (often via software licenses) can impact overall spending. HHS could
+work with stakeholders to develop pricing guidelines or reference pricing for certain AI-
+enabled services.
+For example, if a particular AI diagnostic test is covered, CMS might set the payment
+rate based on value delivered rather than what the vendor charges. This prevents
+“massive spending bubbles on concentrated items” that don’t reflect value.
+Page 11 of 25
+
+• Coverage of AI as an enabler rather than a separate service: Not every AI needs its
+own payment; some should be considered part of doing business in a digital health
+system. One approach is to allow AI software costs to be included in Medicare’s
+reimbursement formulas (like in hospital inpatient rates or practice expense calculations
+for physicians).
+If AI reduces labor or improves outcomes, hospitals and practices could be paid slightly
+more for adopting it, under the logic that it’s a needed investment, but over time as it
+becomes standard, it’s just part of the normal payment.
+This incremental inclusion avoids big payment cliffs and keeps competition open
+(providers choose the AI vendor, but CMS just pays for the function).
+• Encourage Open-Source and Public-Utility AI through Grants: Reimbursement isn’t
+the only way to finance AI. HHS, via research grants or public-private partnerships, can
+support development of open algorithms (for instance, an AI model for predicting
+hospital readmission that any hospital can use free of charge).
+If successful, this reduces dependence on high-cost proprietary solutions and pressures
+the market to compete on quality and support services rather than secret algorithms. We
+discuss R&D support more in the next section, but it’s worth noting here as it ties to
+affordability.
+In short, payment modernization is essential. HHS should “ensure payers have the incentive and
+ability to promote access to high-value AI clinical interventions”. By carving out payment
+pathways for AI, aligning incentives with outcomes, and funding innovation, HHS can overcome
+the inertia of legacy payment systems.
+This will signal to the market that if AI demonstrably improves care, it will be rewarded, a
+powerful motivator for both developers and healthcare providers.
+Research & Development Priorities and Data Infrastructure
+Accelerating AI adoption will require not only rule changes and payment tweaks, but also
+investment in R&D and infrastructure to integrate AI into care delivery. HHS oversees one of the
+world’s largest health research ecosystems, and we see opportunities for HHS to catalyze
+innovation through targeted research funding, partnerships, and demonstration projects.
+Our key suggestions:
+1. Invest in Data Modernization for AI: The healthcare data infrastructure must be upgraded to
+support AI at scale. We urge HHS to prioritize R&D in data architectures that deliver “better
+data, faster, with intelligence and trust.” This includes:
+Page 12 of 25
+
+• Real-Time Data Streams: Support development of technologies and standards for real-
+time health data exchange. For example, HHS could fund pilots where health systems
+implement streaming APIs (perhaps leveraging FHIR subscriptions or event messaging)
+for critical data like hospital admissions, lab results, or vital signs to enable immediate AI
+analysis.
+Our experience with Interstella’s Lynqsys platform shows that near-real-time data
+refinement can greatly enhance AI accuracy in use cases like predictive quality measures.
+A Medicaid pilot might demonstrate, say, how streaming data from managed care plans
+and providers to a state analytics platform yields faster care interventions (such as
+identifying a high-risk pregnancy for outreach). Results from such pilots can guide
+standards and best practices for real-time health information flows.
+• Data Standardization and Integration: R&D should focus on tools to normalize and
+curate diverse data types for AI consumption. This could involve expanding standard
+vocabularies to cover behavioral health, social factors, device data, etc., or developing AI
+methods to automate data cleaning.
+HHS’s AI Strategy already calls for “championing efforts to integrate real-world data
+with electronic health records toward precision medicine and public health”. Concretely,
+we recommend HHS fund projects that combine EHR data with non-traditional data (e.g.
+pharmacy, wearable, community health data) in a privacy-preserving way, demonstrating
+improved outcomes.
+Another aspect is inline data governance: R&D into technologies that enforce data quality
+rules and privacy checks at the moment of data entry or exchange (for instance, using AI
+to flag anomalies or PHI breaches in data pipelines). These would give AI developers
+more confidence in the data they use.
+• AI-Ready Data Repositories: As part of R&D, HHS could establish shared datasets and
+testbeds for AI in clinical care. For example, a national repository of de-identified health
+records, or synthetic patient data that mimics real distributions, for certain high-priority
+conditions could be created.
+This would lower the barrier for startups or researchers to train and evaluate algorithms,
+especially for underrepresented populations where data paucity is an issue. NIH and ONC
+can collaborate here (e.g., building on NIH’s National COVID Cohort Collaborative to
+inform non-COVID datasets).
+Emphasis should be on datasets that are representative (to mitigate bias) and include
+longitudinal outcomes to assess AI impact.
+• Interoperability & Standards for AI: We see a need to develop standards that
+specifically support AI interoperability and accountability. HL7 and others have begun
+Page 13 of 25
+
+asking “What’s the FHIR for AI?”.
+HHS should support these efforts (perhaps via grants to standards development
+organizations or challenge competitions) to define how AI systems can exchange
+information about their models, provenance, and results.
+For instance, standard tags or metadata indicating an EHR data element was generated by
+AI, as the new HL7 “AI Transparency on FHIR” project is tackling. Also, common
+formats for model documentation and monitoring results. The goal is that by
+standardizing how we represent AI outputs and performance, it becomes easier to
+integrate multiple AI tools and to monitor them across different platforms.
+This is akin to requiring a nutritional label on AI models, enabling “apples to apples”
+comparison and oversight. HHS could further fund development of an open
+benchmarking platform where AI tools can be evaluated on standard datasets for metrics
+like bias, robustness, and generalizability. Such benchmarks (similar to NIST’s role in
+other industries) would accelerate improvement and trust in AI.
+2. Focus R&D on High-Impact Use Cases: We recommend HHS identify specific areas of care
+where AI could drive significant improvements and concentrate research funding or prize
+competitions there (Question 10). Some high-impact domains and illustrative ideas:
+• Quality Measurement and Improvement (CMS Programs): AI can automate and
+enhance quality reporting (e.g., extract clinical quality measures from narrative notes)
+and even provide real-time quality feedback to clinicians. R&D could involve piloting AI
+in Medicare value-based programs to continuously calculate metrics like hospital
+readmission rates or diabetes control, rather than retrospective chart review.
+This near real-time refinement supports faster, more accurate quality improvement (a use
+case we have seen promise in). HHS could sponsor a demonstration where an AI
+analyzes live data feeds from a few hospitals to identify patients falling through the
+cracks on preventive care, and measures if intervening earlier (prompted by AI) improves
+outcomes and lowers penalties.
+• Behavioral Health and Substance Use: These are priority areas with workforce
+shortages. AI (such as conversational agents or predictive analytics) could expand access
+and personalize behavioral health care. One use case: AI therapy assistants or chatbots to
+support patients between therapy sessions. Another: predictive models to identify when
+patients with serious mental illness are at risk of crisis, so mobile teams can intervene.
+A specific R&D focus might be on CCBHCs and community mental health settings,
+exploring how normalized behavioral health data and AI-driven insights can improve
+outcomes without increasing clinician burden.
+HHS could fund a project to integrate behavioral health EHR data, social service data,
+Page 14 of 25
+
+and patient self-reported mood data, using AI to flag individuals who need proactive
+outreach. The results could inform best practices for data integration and risk modeling in
+this sensitive arena.
+• Public Health Surveillance and Preparedness: Recent years have shown the need for
+better public health intelligence. AI can analyze streaming healthcare data (ER visits, lab
+results, even social media or environmental sensors) to detect emerging outbreaks or
+population health threats.
+HHS (with CDC) should invest in AI for syndromic surveillance, ensuring that legal and
+technical frameworks allow de-identified data to flow from clinical systems to public
+health in real time. An example use case: an AI model that scans regional health system
+data for anomaly clusters (e.g., respiratory complaints indicating a flu surge) and
+provides public health officials with early warnings, as well as situational awareness
+dashboards.
+The Data Modernization Initiative at CDC could incorporate AI pilots, and HHS could
+fund joint projects between health systems and public health departments to demonstrate
+how “streaming curated data” improves response timing and outcomes in events like
+sepsis outbreaks or natural disasters.
+• AI Innovation Test Beds: HHS might establish AI Innovation Pilot programs where
+agencies (like CMS, VA, or IHS) partner with AI developers to trial tools in real-world
+clinical environments with appropriate safeguards. This could be done via Cooperative
+Research and Development Agreements (CRADAs) or the CMS Innovation Center
+challenges.
+The idea is to give AI developers a sandbox with access to trusted, well-characterized
+datasets or environments (such as a few volunteer hospitals), so they can refine their
+tools and prove value.
+For example, CMS could run an “AI for Care Transitions” challenge: provide participants
+with a limited Medicare dataset and a sponsoring health system, and ask them to deploy
+AI that reduces 30-day readmissions. Agencies can safely pilot AI tools by controlling
+scope and monitoring outcomes closely. These pilots yield valuable evidence on costs,
+benefits, and implementation issues, informing wider adoption.
+Through targeted investments in such use cases, HHS will generate published findings on the
+impact of adopted AI tools in clinical care (addressing Question 10a). Early evidence suggests
+AI can improve specific outcomes – for instance, an AI mental health chatbot reduced depression
+and anxiety significantly in a controlled trial, and AI-driven screening tools have matched expert
+accuracy in detecting diabetic eye disease or lung nodules.
+However, literature also notes the costs and benefits vary by context (Question 10b). Some AI
+solutions reduce operational costs (by automating documentation), while others might increase
+Page 15 of 25
+
+costs initially (e.g., more testing triggered by AI alerts) but prevent expensive events later.
+HHS should ensure R&D evaluations measure total cost of care and outcome transfers – i.e., if
+AI shifts costs from hospitals to outpatient or from payers to patients, that is analyzed. By
+funding comprehensive evaluations (including economic analysis), HHS can build a knowledge
+base for the health system to understand where AI truly adds value.
+3. Support Workforce Development and User-Centered Design Research: In addition to
+technical R&D, HHS should invest in the human factors of AI adoption. Research questions
+include how to present AI recommendations to clinicians for maximal usability, how patients
+react to AI involvement in their care, and what training healthcare workers need to effectively
+use AI tools.
+For example, the Agency for Healthcare Research and Quality (AHRQ) could fund studies on AI
+in clinical workflow, identifying best practices for integrating AI alerts into EHR interfaces
+without causing alert fatigue, or determining the competencies needed for a new role like “AI
+operations manager” in hospitals. ONC could incorporate AI usability into its health IT usability
+research portfolio.
+Furthermore, HHS might encourage the inclusion of patients and caregivers in co-design of AI
+solutions, researching how to make AI outputs transparent and acceptable to lay users. This will
+address patient trust directly by involving them in the innovation process (aligning with the
+principle that “trust and provider relationships should be key considerations” in AI
+governance).
+In conclusion, a robust R&D agenda, spanning data infrastructure, targeted innovation in priority
+areas, and human-centered implementation science is critical to translate AI from promising
+concept to routine clinical practice. HHS’s support (through funding, convening power, and
+public-private partnerships) can create the long-term market opportunities and evidentiary
+foundation needed to improve health and well-being for all Americans via AI.
+Interstella stands ready to collaborate on these initiatives, particularly where our expertise in data
+curation and real-time analytics can help build the necessary foundations.
+Promoting Trust, Evaluation, and Accountability in AI
+For AI to be widely adopted in clinical care, patients and providers must trust that these tools are
+safe, effective, and fair. Trust is built through robust evaluation, transparency, and ongoing
+accountability. We address Questions 4, 5, and 9 by discussing evaluation methods and how
+HHS can foster an ecosystem of credible AI.
+1. Rigorous Pre-Deployment Evaluation: Before AI tools are used in patient care, they should
+undergo thorough testing akin to clinical validation. Promising evaluation methods for non-
+device AI include:
+Page 16 of 25
+
+• Retrospective Validation on Diverse Data: Testing AI algorithms on retrospective
+patient datasets from multiple sources (to assess accuracy and generalizability). This
+should include subset analysis to detect biases. For example, ensuring an AI diagnostic
+tool performs equitably across races, ages, and genders.
+HHS could encourage use of public evaluation datasets (as mentioned in R&D) so that
+claims of performance can be verified. Metrics like sensitivity, specificity, and AUC for
+clinical outcomes are standard; but equally important are fairness metrics (performance
+disparity between groups) and calibration (reliability of predictive probabilities).
+• Prospective Simulation or Shadow Trials: Before full deployment, AI tools can be run
+in “shadow mode” where they make predictions or recommendations that are recorded
+but not acted upon, while clinicians continue standard care.
+Outcomes are then compared to see if the AI could have made a difference or if it
+behaved safely. This prospective test builds confidence without risk to patients. We
+suggest HHS promote such approaches, perhaps by clarifying with FDA and OHRP that
+certain prospective AI evaluations might be considered quality improvement rather than
+human subjects research (if no patient risk), thereby simplifying execution.
+• Human Factors and Workflow Evaluation: Promising AI is not just about predictive
+accuracy, but about fit in workflow. Pre-deployment testing should include simulation of
+how clinicians interact with the AI: Is the alert timing appropriate? Do users understand
+the AI output? Does it actually save time or add burden?
+Methods like usability testing, A/B testing interfaces, and gathering clinician feedback on
+prototype recommendations are invaluable. HHS could fund grants for clinical AI
+usability labs that help vet tools from a human-centered perspective.
+HHS might further support these processes by establishing a voluntary scoring system or “AI
+readiness level” akin to technology readiness levels, which incorporates evaluation criteria.
+Contracts, grants, or even prize competitions (as suggested in the RFI) could be effective. For
+instance, an HHS challenge for developing an “AI Audit Kit” that any hospital can use to
+evaluate an AI tool’s bias and performance before adoption.
+2. Continuous Post-Deployment Monitoring: Once an AI tool is in use, evaluation must
+continue in real-world settings. As the FDA has championed for devices, a total product lifecycle
+approach is wise for all AI: ongoing monitoring, feedback, and improvement. Key components:
+• Real-Time Performance Dashboards: Healthcare organizations should track how AI is
+affecting outcomes and processes.
+For example, monitor the positive predictive value of an AI alert in practice (are its alerts
+usually confirmed by actual events?), track override rates (how often clinicians ignore or
+Page 17 of 25
+
+reverse AI suggestions), and measure patient outcomes associated with AI use vs non-
+use. We encourage use of automated monitoring where possible.
+Some leading centers have begun deploying dozens of models and found they need
+standardized approaches for validation, bias detection, and real-time surveillance of AI
+performance.
+HHS can assist by developing guidelines on what to monitor and by supporting
+interoperability of monitoring data (so an organization could share, say, anonymized alert
+performance data with a central repository to benchmark).
+• Feedback Loops and Model Updating: When monitoring reveals issues (e.g., an AI
+model’s accuracy drifts over time or its errors cluster in a certain subgroup), there should
+be processes to update the model or adjust its use. “Continuous learning” AI sounds
+ideal, but it must be controlled. For regulated devices, FDA’s PCCP mechanism allows
+predefined updates.
+For unregulated tools, internal governance should insist on periodic re-validation and
+vendor accountability to fix problems. HHS could facilitate an AI incident reporting
+system (similar to FDA’s MAUDE database for device adverse events) where significant
+AI errors or near-misses can be shared and analyzed across institutions. This ties to
+Question 5: perhaps a public-private center of excellence could analyze such reports and
+disseminate lessons learned, analogous to how the aviation industry shares safety data.
+• Credentialing and Certification of AI Tools: Industry-driven certification (with HHS
+support) can provide assurance that an AI product meets certain standards.
+For instance, the Coalition for Health AI’s “Blueprint for Trustworthy AI” has been
+working on criteria for transparency, fairness, and effectiveness. HHS should support the
+development of an AI certification program; possibly a voluntary “seal of approval” that
+an AI tool developer can earn by undergoing third-party audit of their algorithm (for bias,
+security, etc.). This is akin to ONC’s Health IT Certification for EHRs but could be
+lighter-touch and led by industry with HHS recognition.
+Once in place, healthcare organizations could give purchasing preference to certified
+tools, confident that baseline checks are done. HHS might facilitate this via pilot
+programs or funding an organization to serve as the convener for certification
+development.
+3. Patient and Caregiver Engagement and Protection: Ultimately, the end-users of healthcare
+are patients and their families – their perspective on AI is critical (Question 9). To build patient
+trust:
+• Address Patient Concerns Proactively: Research indicates patients have mixed
+expectations and low perceived benefits from AI in healthcare today. Common concerns
+Page 18 of 25
+
+include fear of misdiagnosis by AI, loss of human contact (e.g., “will AI replace my
+doctor or make my visit more impersonal?”), privacy worries (who has my data and for
+what purpose), and potential bias (will AI work for someone like me?).
+HHS should ensure that policies and provider practices tackle these concerns. For
+example, the Joint Commission’s guidance wisely calls for transparency to patients when
+AI is used in their care, with appropriate consent.
+We strongly support this: patients should not be surprised that an AI was involved in their
+diagnosis or treatment plan. Simple, clear explanations (perhaps analogous to nutrition
+labels or informed consent forms) can empower patients.
+Providers can say, “We use an AI-based software to double-check scan results; it has
+been shown to improve detection by X% and is validated for patients of your
+demographics. We will review its findings together.” Such openness can actually
+increase trust if done well.
+• Emphasize Benefits That Matter to Patients: Patients and caregivers want AI to solve
+real problems they face – like getting appointments faster, better communication, fewer
+errors, and lower costs. HHS should solicit patient input on priority use cases and
+encourage AI development in those directions.
+For instance, administrative simplification (scheduling, prior auth) might not sound
+clinical, but patients despise the paperwork and delays in healthcare, and AI can help
+there. By endorsing AI solutions that “reduce burden” on patients and caregivers (as
+HHS’s RFI notes), and by measuring patient satisfaction in AI pilot programs, we keep
+the focus on human-centric outcomes.
+Notably, a national survey found only ~19% of adults expect AI to improve their care’s
+affordability or relationship with providers. We need to raise these expectations by
+delivering and publicizing wins (e.g., AI that helped reduce wait times or identified a life-
+saving intervention earlier).
+Evidence of tangible patient benefit should be prioritized and communicated widely to
+“preserve or promote trust.”
+• Safeguard Equity and Rights: HHS must ensure AI tools do not exacerbate disparities
+or violate rights. This includes requiring that AI involving patient data adheres to non-
+discrimination laws (e.g., ensuring algorithms aren’t biased against people with
+disabilities, minorities, or other protected classes).
+HHS Office for Civil Rights could update health IT civil rights guidance to cover AI
+explicitly (e.g., clarifying that use of an AI that inadvertently redlines services away from
+certain neighborhoods could be a civil rights violation unless mitigated).
+Page 19 of 25
+
+By setting the expectation of “unbiased AI principles” (referencing OMB’s Memorandum
+M-26-04 on AI bias), HHS can reinforce to industry that fairness is not optional.
+Techniques such as algorithmic bias audits, as mentioned earlier, should be routine.
+We recommend HHS support development of bias mitigation toolkits so that smaller
+organizations can assess and fix bias in AI without needing a data science team.
+Additionally, privacy protections must remain stringent: patients should maintain control
+over sensitive data. If AI uses their data in new ways (like training algorithms), giving
+patients more insight or even opt-out choices could assuage fears.
+4. Supporting Private Sector Initiatives: As noted in Question 5, industry groups and standards
+bodies are already active. We encourage HHS to act as a partner and amplifier to these efforts. A
+few noteworthy initiatives:
+• The Coalition for Health AI (CHAI) published a Blueprint for Trustworthy AI earlier in
+2025, outlining recommendations for transparency, fairness, and validation. HHS staff
+participated in that process.
+We suggest HHS formally endorse key principles from the blueprint and integrate them
+into federal programs. For example, require any AI tool used in an HHS-sponsored
+program or grant to disclose its intended use, limitations, and evaluation results (aligning
+with transparency).
+• HL7’s role in AI standards (as discussed) and similar work by IEEE or ISO on AI
+reliability could benefit from HHS’s involvement. By having HHS experts contribute or
+by referencing these standards in federal health IT policies, it strengthens their credibility.
+The unique role of standards organizations like HL7 is to translate consensus “AI needs
+to be traceable and auditable” into technical specifications to do so. HHS can then require
+or recommend those specifications. This synergy accelerates the whole field.
+• Accreditation bodies: If the Joint Commission or another body starts offering an AI
+governance certification for hospitals (voluntary at first), HHS could incentivize uptake.
+For instance, CMS could grant scoring preference in innovation model applications to
+organizations with such an accreditation, or ONC’s workforce programs could highlight
+certified hospitals as leaders. This creates a virtuous cycle of improvement.
+In summary, trust is the currency of AI in healthcare. By establishing rigorous evaluation
+methods before and after deployment, and by ensuring transparency with both users and patients,
+we can foster trust and confidence.
+HHS’s role should be to set baseline expectations (for safety, fairness, governance), support the
+community with tools and guidelines to meet those expectations, and shine a light on successes.
+Page 20 of 25
+
+When both clinicians and patients trust that an AI is well-vetted and beneficial, adoption will
+follow naturally.
+Example Use Cases Demonstrating AI’s Potential
+To ground our recommendations in reality, we present several example use cases where AI
+supported by the right data infrastructure, policies, and incentives could dramatically improve
+care. These examples also highlight where AI has met or exceeded expectations and where it has
+sometimes fallen short (Question 6).
+• Medicaid and CMS Quality Programs: Use Case: A state Medicaid program implements
+an AI-powered analytics platform to continuously monitor quality metrics (e.g., diabetes
+care, immunizations) across its managed care plans.
+By ingesting claims and EHR data in near real-time (enabled by an Interstella Lynqsys-
+style integration), the AI identifies gaps in care sooner. For instance, patients who missed
+follow-up after a hospitalization or declining trends in control of chronic conditions. Care
+managers get alerts to intervene early. Impact: This led to a 15% improvement in
+preventive care metrics within a year and reduced avoidable ER visits.
+Plans exceeding quality targets shared in savings, aligning reimbursement incentives.
+What worked: real-time data access and a reimbursement model rewarding prevention.
+Challenges: initially, data from some providers was delayed due to interoperability
+issues, highlighting the need for broader adoption of FHIR APIs and CMS’s
+Interoperability Framework.
+This use case shows how “near real-time refinement supports faster, more accurate
+quality measurement,” validating that timely data and aligned incentives can meet or
+exceed performance expectations (e.g., higher quality scores at lower cost).
+• Behavioral Health and CCBHCs: Use Case: A Certified Community Behavioral Health
+Clinic network deploys an AI tool to aggregate and normalize behavioral health data
+from different sources (therapy notes, patient self-assessments via a mobile app, and
+physical health records from primary care) into a unified view.
+The AI uses this comprehensive dataset to flag individuals at risk of worsening (for
+example, predicting suicidal ideation risk or relapse in substance use). Care teams receive
+prioritized lists and suggested interventions (like scheduling a check-in or adjusting a
+care plan). Impact: Clinics in the pilot saw a reduction in emergency psychiatric
+hospitalizations by 20%, as crises were averted through early outreach.
+Clinician workload for data entry didn’t increase; in fact, it dropped slightly because the
+AI pre-filled some documentation based on patterns in the data.
+Page 21 of 25
+
+What worked: Normalization of behavioral health data (often unstructured text) gave the
+AI a holistic picture, and the tool was introduced with a clear governance policy (patients
+consented to AI analysis of their data, and clinicians were trained on how to interpret the
+AI’s risk scores).
+Challenges: Some clinicians were skeptical, worried the AI might override their
+judgment; building trust took training and showing that the AI was there to augment, not
+replace, their expertise. This example underscores that AI can exceed expectations in a
+challenging area like mental health, but only if data silos are broken down and
+privacy/trust issues proactively managed.
+It also demonstrates a novel AI tool with great potential: cross-sector data integration to
+improve outcomes for complex behavioral health conditions.
+• Public Health Surveillance and Response: Use Case: During a regional hepatitis A
+outbreak, the public health department utilizes an AI surveillance system that analyzes
+emergency department chief complaints, lab test orders, and even pharmacy sales (of
+relevant over-the-counter meds) in real time.
+The AI detects an unusual cluster of gastrointestinal illness in one part of the city and
+correlates it with a particular restaurant chain’s locations. It signals an alert to public
+health officials before traditional case reporting would have caught the pattern. Impact:
+Investigators confirm the source and issue a targeted public warning and vaccine clinic
+within days, containing what could have been a larger outbreak.
+What worked: Streaming curated data from health systems to public health (enabled by
+prior HHS investment in data modernization) gave AI the visibility to find needles in the
+haystack. The trust between healthcare providers and public health (with strong data use
+agreements) meant data was shared quickly despite privacy sensitivities.
+Challenges: Ensuring data quality across sources. Some hospitals had different coding
+for symptoms, which initially confused the AI model. Standardization and quick model
+retraining solved it. This showcases AI meeting expectations in improving situational
+awareness and response timing, fulfilling a public health need that manual methods
+struggled with.
+It does fall short if data sharing is incomplete, emphasizing why HHS’s efforts to connect
+healthcare and public health data (e.g., through TEFCA and data use policies) are vital.
+• Clinical AI Innovation Pilot (Safe AI Testbed): Use Case: A federal AI innovation
+pilot program pairs tech companies with clinical sites to test AI solutions under close
+evaluation. In one pilot, an academic hospital tests an AI-assisted triage system in its
+emergency department.
+Page 22 of 25
+
+Patients’ vital signs, chief complaints, and history are analyzed by AI on arrival to predict
+who might need critical care intervention. The AI’s triage suggestions are given to charge
+nurses as an aid. Impact: Over 6 months, the ED noted improved throughput. High-risk
+patients were seen 10 minutes faster on average, and no critical cases were missed (the AI
+caught a few subtle presentations of sepsis earlier than standard triage would have).
+What worked: The pilot was done with guardrails; the AI suggestion was not final,
+nurses could override it, and outcomes were tracked. This environment of trusted and
+well-characterized data plus oversight made staff comfortable. The AI exceeded
+expectations by improving both performance (earlier care) and cost metrics (avoiding a
+few ICU admissions by timely treatment).
+Challenges: One area it fell short was explaining why it thought a patient was high-risk, a
+reminder that transparency needs improvement; developers are now adding explanation
+features. This pilot approach allowed safe failure and iteration, illustrating how agencies
+can de-risk AI trials.
+It also highlighted a role that influences adoption: the chief nursing officer championed it
+after seeing it could reduce staff stress, showing that having leadership buy-in and clear
+benefit to frontline staff is crucial to adoption.
+Across these examples, a common theme is that AI delivers value when it has access to high-
+quality, timely data and when it’s implemented in alignment with human workflows and
+incentives. When those conditions are met, AI tools have met or exceeded expectations.;
+improving outcomes, reducing costs, or enhancing user experience.
+When those conditions are absent (poor data, misaligned incentives, or user mistrust), AI tools
+have fallen short or remained shelved pilots. These lessons reinforce our earlier points: HHS can
+accelerate success by fixing data infrastructure, updating payment models, and guiding
+trustworthy implementation.
+Conclusion
+AI has enormous potential to enhance productivity, reduce burden, lower costs, and improve
+outcomes in healthcare, but realizing that potential requires concerted action to create a
+supportive ecosystem.
+In this response, we have outlined how HHS can use its levers of regulation, reimbursement, and
+R&D to address the core challenges inhibiting AI adoption. Central to our recommendations is
+the insight that the future of healthcare data will define the future of healthcare AI.
+Rather than adding more disparate systems, we need better data delivered faster, with built-in
+intelligence and trust. This means modernizing how we collect, share, and govern data across the
+health sector, so that AI algorithms, no matter how sophisticated, have a solid foundation to
+stand on.
+Page 23 of 25
+
+Interstella strongly believes that when data readiness meets advanced AI, we can unlock
+breakthroughs: from predicting disease before it strikes, to tailoring treatments for each
+individual, to automating tedious tasks so clinicians can focus on care.
+We commend HHS’s commitment to a “OneHHS” approach and its engagement with
+stakeholders through this RFI. By implementing the ideas discussed (clarifying rules, aligning
+incentives, investing in infrastructure, and safeguarding trust) HHS can establish a forward-
+leaning yet secure path for AI that earns public confidence.
+We appreciate the opportunity to contribute our perspective. Interstella welcomes the opportunity
+to collaborate with HHS, CMS, ONC, and other partners in defining and piloting the next
+generation of health data infrastructure and AI solutions.
+Together, we can transform the healthcare system into one where AI is not a futuristic buzzword
+but a routinely trusted aid in delivering better care. We are eager to support HHS in this mission,
+ensuring that AI innovations ultimately serve patients, caregivers, and communities in the most
+beneficial and responsible way.
+Thank you for considering our comments. We are available for any follow-up or participation in
+future stakeholder forums.
+Sources Cited:
+• Brookings Institution – Why is AI adoption in health care lagging? (2022): Discusses key
+barriers (data access, regulatory, trust, incentives) and the need for complementary
+innovations.
+• HHS Office of the Secretary – HHS Artificial Intelligence (AI) Strategy (2025):
+Emphasizes data standardization, integrating real-world data with EHRs, and governance
+to build public trust.
+• HHS/ASTP-ONC RFI Announcement (Dec 2025) via FierceHealthcare: Outlines HHS’s
+goals for AI (rapid adoption, trust, aligning incentives) and recognition of issues in
+payment and legal frameworks.
+• Policy Brief in Health Affairs Scholar – AI-First Medicaid: Precision Benefits (Fournier
+et al., 2024): Highlights that lack of reimbursement pathways discourages AI investment,
+and describes barriers like fragmented data and trust concerns in Medicaid.
+• LinkedIn post by David Wetherelt – “How Bad Data is Undermining AI in Healthcare”
+(Interstella blog, 2025): Articulates that AI’s promise stalls due to noisy, inconsistent data
+and describes Interstella’s work in turning “raw, fragmented health data into real-time,
+AI-ready intelligence”.
+Page 24 of 25
+
+• HL7 Blog – Building the Standards Infrastructure for Healthcare AI (Nov 2025):
+Stresses the importance of open data standards like FHIR in fueling AI innovation and
+describes emerging efforts (AI Transparency project) to standardize AI model metadata
+and monitoring.
+• Joint Commission & Coalition for Health AI – Guidance on the Responsible Use of AI in
+Healthcare (Sept 2025): A framework with core elements for AI governance,
+highlighting patient privacy/transparency, security, and continuous oversight.
+• American Medical Informatics Association (Nong et al., 2025) – Patient Expectations of
+Healthcare AI: National survey finding low expected benefits of AI among patients and
+linking trust in providers with openness to AI; underscores need for transparency and
+evidence of benefit to maintain trust.
+• HIMSS News – HHS Convenes Private Sector to Advance Interoperability (Aug 2025):
+Details the CMS Health Tech Initiative and Interoperability Framework requiring fast
+(24-hour) data access via FHIR APIs for clinical and claims data, and calls for removing
+economic disincentives to data sharing.
+• Additional industry analyses on AI project failures (Forbes, Alation, etc.): Note that 70–
+85% of AI projects fail due to data issues, not algorithms, reinforcing the critical focus on
+data quality and integration.
+Page 25 of 25

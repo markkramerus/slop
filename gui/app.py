@@ -28,14 +28,14 @@ from gui.utils.state import (
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="SLOP — Synthetic Comment Platform",
-    page_icon="🤮",
+    page_title="SLOP Generation",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # ── Header ─────────────────────────────────────────────────────────────────────
-st.title("🤮 SLOP — Synthetic Letter-writing Opposition Platform")
+st.title("Synthetic Letter-writing Opposition Platform (SLOP)")
 st.caption("Generate realistic synthetic public comments for regulatory docket research.")
 st.divider()
 

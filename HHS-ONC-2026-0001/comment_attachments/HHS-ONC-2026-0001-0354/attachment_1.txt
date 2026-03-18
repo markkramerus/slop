@@ -1,0 +1,234 @@
+HHS Health Sector AI RFI
+Thank you for the opportunity to comment on HHS’s Request for Information on accelerating the
+adoption and use of artificial intelligence (AI) as part of clinical care. These comments focus on
+concrete, legally grounded steps HHS can take—through regulation, reimbursement, and
+research and development—to reduce barriers, promote trustworthy adoption, and align
+incentives, consistent with HIPAA and the ONC information blocking framework.
+I. Executive summary
+HHS should advance a forward-leaning, industry-supportive approach to clinical AI by: (1)
+removing practical and economic barriers to accessing high-value clinical data for privacy-
+preserving model development and evaluation, with targeted incentives for health record holders
+and electronic health record (“EHR”) developers; (2) facilitating creation of “data twins”
+programs and systems to generate robust, de-identified real-world data assets while protecting
+patient privacy and ensuring patient autonomy via opt-out rights and permissioned compensation
+pathways; (3) promulgating best-practice guidance for meaningful human review in clinical AI,
+emphasizing privacy and security safeguards post-deployment; (4) addressing workflow
+integration and EHR friction as fundamental barriers to sustainable clinical AI adoption; and (5)
+clarifying HIPAA terms—including business associate “management and administration”—to
+define permissible AI training and operations under business associate agreements (BAAs),
+while preserving patients’ trust and rights. These recommendations align with the RFI’s goals to
+use regulation, reimbursement, and R&D to accelerate adoption, lower burden and cost, and
+improve outcomes.
+II. Barriers and Recommendations in Alignment with HHS priorities
+HHS’s RFI seeks input to establish a clear, risk-based regulatory posture and to use
+reimbursement and R&D to enable safe, effective clinical AI at scale. This complements the
+Department’s “OneHHS” AI Strategy and calls for concrete, experience-based feedback to
+ensure rapid adoption while protecting privacy and public trust. The RFI specifically invites
+recommendations on barriers to innovation, regulatory changes and definitions, evaluation
+methods for non-device AI, and ways to support accreditation/certification and interoperability—
+all central to the proposals below.
+Barrier 1: Limitations on ability to access accurate and complete clinical data across
+systems restrict the development of robust, real-world datasets within the health care
+ecosystem
+From a clinical perspective, data access barriers extend beyond legal and technical
+interoperability. Even when fast healthcare interoperability (“FHIR”) application programming
+interfaces (“APIs”) are used, data quality is often inconsistent (for example, often missing
+problem lists, medications, and clinical notes) and APIs do not reliably expose the data types
+needed for meaningful AI applications, including clinical notes, imaging narratives, prior
+authorization data, and longitudinal context. Cost, contracting complexities, and "security
+181858808.2
+182526710.1
+
+reviews" can function as de facto blocking mechanisms, and tools that require extra clicks,
+toggling, copy/paste operations, or dual documentation will not survive in production
+environments. "Pilot success" frequently does not translate to sustainable deployment without
+deep EHR integration and reliable uptime.
+Recommendation 1: Leverage ONC’s interoperability and information blocking
+frameworks to remove barriers to access clinical data across EHR systems while continuing
+to protect patient privacy
+HHS should leverage ONC’s interoperability and information blocking frameworks to reduce
+friction and enable responsible access, exchange, and use of electronic health information (EHI)
+for clinical AI development and evaluation (i) among covered entities and business associates
+subject to HIPAA (including minimum necessary) requirements; and (ii) outside the realm of
+HIPAA protection when consistent with HIPAA de-identification standards. Specifically:
+• Establish targeted incentives and reimbursement supports. HHS should explore payment
+policy options and grant mechanisms that reward providers, health information networks,
+and EHR developers for enabling standardized, automated access to de-identified and
+limited datasets for model development and post-deployment monitoring, consistent with
+information blocking rules and the Manner Exception. Aligning incentives with TEFCA
+participation and USCDI expansion would widen market opportunities and accelerate AI
+development, as the RFI explicitly seeks.
+• Clarify that practices impeding automated, standards-based data access may constitute
+information blocking absent an applicable exception. ONC has already highlighted that
+practices interfering with automation technology’s ability to access, exchange, or use EHI
+are of concern; HHS should reinforce this through FAQs and guidance to support AI
+model lifecycle needs while ensuring privacy and security.
+• Encourage standardized de-identified data export APIs. HHS should consider ONC
+certification criteria enhancements to ensure certified health IT can generate and transmit
+de-identified datasets using consistent standards (e.g., FHIR bulk export profiles) to
+support research and model evaluation, subject to governance controls and HIPAA
+de-identification.
+• Support real-world evaluation through data access. FDA’s ongoing inquiry into
+measuring and evaluating AI-enabled tools in the real world underscores the need for
+reliable post-deployment data access to assess model drift, bias, and safety—principles
+that also apply to non-device clinical AI.
+• Strengthen interoperability expectations for specific high-value data types and benchmark
+data completeness, not just API presence.
+• Create ONC/CMS incentives that favor measurable workflow impact such as time saved
+and reduction in inbox burden, rather than generic "AI available" metrics.
+2
+181858808.2
+182526710.1
+
+These steps would operationalize the RFI’s emphasis on a predictable, proportionate regulatory
+posture and on aligning federal levers while expediting the creation of robust, real-world data
+sets to enhance the reliability of AI tools.
+Barrier 2: Use of personal identifiers without patient or consumer knowledge or consent
+erodes trust and undermines individual autonomy
+Clinicians increasingly report that patients ask questions such as "Is an AI tool involved?" and
+"Did you use my data to train it?" Concerns are particularly acute for sensitive topics including
+behavioral health, reproductive care, and HIV/SUD data. Recommendation 2: Adopt patient
+consent standards and facilitate privacy-protective “data twins” with patient opt-out and
+permissioned compensation
+HHS should provide clearer public-facing guidance and clinician-facing scripts for consent and
+notice in specific clinical contexts.
+To scale high-quality, real-world datasets while protecting privacy, HHS should encourage the
+creation of “data twins”—de-identified datasets that mirror health attributes of real persons—
+under robust governance:
+• Establish a clear policy framework for data twins. HHS should issue guidance clarifying
+how HIPAA de-identification and health care operations concepts apply to creating
+de-identified data twins for quality improvement, safety monitoring, and AI development,
+with guardrails for re-identification risk management and vendor accountability.
+• Require transparent notices and a simple opt-out. HIPAA does not protect de-identified
+data, but HHS should encourage transparent patient notices and a standardized opt-out for
+the creation or use of a data twin, balancing trust and innovation consistent with the RFI’s
+focus on public confidence.
+• Permit compensation pathways with safeguards. HHS should clarify that programs
+offering remuneration to individuals for permitting use of their data for twin creation
+(where applicable under state law and program design) can proceed with appropriate
+disclosures, anti-exploitation protections, and without conditioning treatment or
+benefits—promoting inclusion and representativeness in datasets.
+• Promote interoperability for data twins. ONC should align USCDI/USCDI+ and TEFCA
+policies to support standardized, de-identified data assembly for twins, enabling
+benchmarking and external validation while upholding information blocking’s
+pro-interoperability aims.
+Together, these steps would advance trustworthy data generation for AI while respecting patient
+autonomy and privacy expectations articulated across HHS’s AI posture.
+3
+181858808.2
+182526710.1
+
+Barrier 3: Lack of industry-wide standards for human review, oversight, evaluation, and
+description of clinical AI tools
+The industry lacks standards for clinician involvement in review, oversight, evaluation, and
+description of clinical AI tools throughout the tools’ lifecycles. Clinicians face significant trust
+barriers when AI model outputs are not explainable to patients in terms of clinical rationale and
+evidence anchors. Additionally, providers will not adopt tools that change silently through new
+versions with new behaviors. Recommendation 3: Issue best-practice guidance for human
+review, post-deployment oversight, evaluation, and decription of clinical AI tools
+HHS should promulgate cross-industry guidelines for non-device clinical AI on meaningful
+human involvement, privacy/security controls, and continuous model oversight:
+• “Three-touch” human-in-the-loop for clinical AI decision-support tools. Require expert
+review prior to deployment (to include review of data provenance and labeling, model
+outputs, etc.); at early deployment (pilot validation); and post-deployment (ongoing
+monitoring and governance).
+• Human-in-the-loop for consequential decisions. Building on stakeholder input and
+payer-side constraints that already require clinician involvement, HHS should require
+AI-influenced determinations affecting access to services or clinical care receive timely,
+qualified human review with appropriate documentation, reducing inappropriate denials
+and supporting due process.
+• Pre- and post-deployment monitoring. HHS should encourage routine monitoring for
+model drift, bias, and performance across populations and settings, leveraging both
+automated and human-expert review approaches tailored to the workflow, consistent with
+FDA’s focus on real-world performance. HHS should publish a minimum evaluation and
+monitoring checklist for clinical AI, covering both pre-deployment and post-deployment
+requirements.
+• Interoperability and measurement readiness. HHS should tie R&D support to the use of
+standardized data elements (USCDI) and exchange frameworks (TEFCA) to enable
+replicable evaluations and equitable performance assessments.
+• "Change transparency." HHS should issue requirements for clinical AI tools to monitor
+and provide notice of changes to the tools, including release notes, notification protocols,
+and re-validation requirements when models are updated.
+This guidance would complement the RFI’s aims to foster public trust and reduce uncertainty
+that impedes innovation, particularly for non-device AI workflows in clinical care.
+Barrier 4: Lack of regulatory guidance regarding use of AI in compliance with HIPAA
+4
+181858808.2
+182526710.1
+
+Clinicians need regulatory clarity related to various legal issues, including for example the
+standard of care when AI is used; what constitutes reasonable reliance versus independent
+verification; malpractice risk when AI recommendations are wrong, missing, or biased; and
+documentation expectations (e.g., inclusion in HIPAA notice of privacy practices; patient
+consent). In addition, HIPAA lacks clarity as to the ability of a business associate to use patient
+data for purposes of training its own (or a subcontractor’s) clinical AI tool.
+Recommendation 4: Develop model guidance and safe-harbor concepts for documented,
+risk-tiered AI use; clarify HIPAA terms to define permissible AI uses by covered entities
+and business associates; issue HIPAA security guidelines to simplify procurement.
+To remove ambiguity that slows responsible adoption, HHS should issue clarifications and
+model BAA language addressing:
+• AI training and “management and administration.” HHS should clarify when a business
+associate’s training, tuning, or maintenance of AI models using PHI qualifies as “the
+proper management and administration” of the business associate, and when separate
+authorization or de-identification is required.
+• Purpose limitation and data minimization. HHS should reinforce that business
+associate-conducted AI activities must adhere to purpose limitations, minimum necessary,
+and prohibitions on impermissible secondary uses such as marketing.
+• Transparency and patient notices. HHS should include language regarding use of PHI in
+connection with AI in the model Notice of Privacy Practices and describe permissible
+uses by covered entities, including de-identified uses, consistent with building trust while
+enabling efficient operations under existing HIPAA pathways.
+• Security friction. HHS should issue security guidelines and/or create standardized
+procurement and security templates specific to clinical AI to alleviate the burden on
+smaller organizations that lack resources to navigate complex vendor onboarding
+processes.
+• Harmonization with information blocking. HHS should confirm that HIPAA-compliant
+privacy/security controls and BAA requirements can co-exist with the obligation not to
+engage in information blocking, and that reasonable, standardized safeguards do not
+constitute improper interference with EHI access, exchange, or use.
+These clarifications would help standardize contracting and compliance expectations, reducing
+uncertainty and transaction costs across the health care ecosystem.
+III. General Comments re: Reimbursement and Research and Development (R&D)
+• Reimbursement pilots for validated AI. CMS should test payment models that reimburse
+for the acquisition and use of AI that measurably reduces burden or improves outcomes,
+5
+181858808.2
+182526710.1
+
+with requirements for post-deployment monitoring and equitable performance, as
+contemplated by the RFI’s reimbursement focus. CMS should align payment so that high-
+value AI-enabled workflows are financially viable—whether through time-based codes,
+value-based care incentives, or other payment mechanism that encourages adoption of
+high-value AI tools.
+• R&D to build shared evaluation infrastructure. HHS should fund reference datasets,
+benchmarking tools, and secure enclaves to support external validation and fairness
+testing for non-device AI, aligning with FDA’s real-world performance focus and ONC
+interoperability priorities.
+• Support for accreditation and certification. HHS should catalyze private-sector
+accreditation and certification programs for clinical AI governance and post-market
+oversight, promoting consistency without duplicative regulation.
+These investments directly address the RFI’s call to align regulation, reimbursement, and R&D
+to accelerate adoption and lower costs while preserving safety and privacy.
+IV. Conclusion
+HHS can accelerate trustworthy clinical AI adoption by removing data access barriers through
+interoperability and targeted incentives; addressing workflow integration as a fundamental
+requirement for sustainable deployment; establishing a patient-respectful framework for
+de-identified data twins; issuing best-practice guidance for human review and privacy-preserving
+post-deployment oversight; establishing minimum evaluation standards for non-device AI;
+addressing reimbursement misalignment that burdens clinicians; streamlining procurement and
+security processes; and clarifying HIPAA terms to define permissible AI uses by covered entities
+and business associates. These steps are squarely within the RFI’s vision to deploy AI in ways
+that enhance productivity, reduce burden, lower costs, and improve outcomes while maintaining
+public trust and confidentiality.
+Submitted in response to: Request for Information: Accelerating the Adoption and Use of
+Artificial Intelligence as Part of Clinical Care; comments due February 23, 2026, via
+Regulations.gov or mail/courier as specified.
+Anand Patel, MD, Head of AI & Innovation, Medical Director of Radiology
+Steve Fenlon, Chief Legal Officer
+Rendr
+Elizabeth G. Litten
+Partner and Chief Privacy & HIPAA Compliance Officer
+Fox Rothschild LLP
+6
+181858808.2
+182526710.1

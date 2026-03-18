@@ -1,0 +1,861 @@
+CLINICAL REPORT
+GuidancefortheClinicianinRenderingPediatricCare
+Special Requirements of Electronic
+Health Record Systems in Pediatrics:
+Clinical Report
+KevinR.Dufendach,MD,MS,FAAP,a,bChristophU.Lehmann,MD,FAAP,FACMI,cS.AndrewSpooner,MD,MS,FAAP,b
+COUNCILONCLINICALINFORMATIONTECHNOLOGY
+Pediatricians’useofelectronichealthrecord(EHR)systemshas abstract
+becomenearlyubiquitousintheUnitedStates,yetmanysystemslack aDivisionsofNeonatologyandbBiomedicalInformatics,Universityof
+fullfunctionalitytodelivereffectiveandefficientpediatriccare.This
+Cincinnati,DepartmentofPediatrics,CincinnatiChildren’sHospital
+MedicalCenter,Cincinnati,Ohio;andcClinicalInformaticsCenter,
+clinicalreportseekstoprovideacompendiumofcorepediatric UniversityofTexasSouthwesternMedicalCenter,Dallas,Texas
+functionalityofimportancetochildhealthcareprovidersthatmay
+DrsDufendach,Lehmann,andSpoonereachmadesignificant
+serveasthefocusforEHRdevelopersandcliniciansastheyevaluate contributionstotheresearch,writing,editing,andrevisionofthis
+clinicalreportandcreatedanoutlineofthemanuscript;DrDufendach
+theirEHRneeds.Alsoreviewedareimportantbutlesscriticalfunctions, createdthefirstdraft;DrsLehmannandSpoonereditedand
+anyofwhichmightbeofimportanceinaspecificpediatriccontext.The appendedthedraft;andTheCouncilonClinicalInformationTechnology
+provideddetailededitsandfeedbackthattheprimaryauthorsusedto
+majorareasdescribedhereareimmunizationmanagement,growthand improvethemanuscript.
+development,socialdriversofhealthtracking,decisionsupportfor ThisdocumentiscopyrightedandispropertyoftheAmerican
+AcademyofPediatricsanditsBoardofDirectors.Allauthorshave
+orders,patientidentification,datanormalization,privacy,andsystem
+filedconflictofintereststatementswiththeAmericanAcademyof
+functionalitystandardsinpediatriccontexts. Pediatrics.Anyconflictshavebeenresolvedthroughaprocess
+approvedbytheBoardofDirectors.TheAmericanAcademyof
+Pediatricshasneithersolicitednoracceptedanycommercial
+involvementinthedevelopmentofthecontentofthispublication.
+ClinicalreportsfromtheAmericanAcademyofPediatricsbenefit
+INTRODUCTION fromexpertiseandresourcesofliaisonsandinternal(AAP)and
+externalreviewers.However,clinicalreportsfromtheAmerican
+The technological landscape, including data sources both intra- and ex- AcademyofPediatricsmaynotreflecttheviewsoftheliaisonsor
+tramural to health care, continues to change rapidly, introducing ad- theorganizationsorgovernmentagenciesthattheyrepresent.
+vancements and
+challenges.1–7
+Although pediatrician use of electronic Theguidanceinthisreportdoesnotindicateanexclusivecourse
+oftreatmentorserveasastandardofmedicalcare.Variations,
+health record (EHR) systems has become nearly ubiquitous in the United
+takingintoaccountindividualcircumstances,maybeappropriate.
+States, with nearly 94% of pediatric offices surveyed reporting EHR use in
+AllclinicalreportsfromtheAmericanAcademyofPediatrics
+2016,fewerthan17% reportedusingEHRswithfullpediatricfunctionality automaticallyexpire5yearsafterpublicationunlessreaffirmed,
+atthattime,whichwouldincludebasicfunctionality,likeweight-baseddos- revised,orretiredatorbeforethattime.
+ing, and full functionality, like tracking immunization schedule adherence.7 DOI:https://doi.org/10.1542/peds.2024-068509
+Core pediatric-specific functionalities informed the 21st Century Cures Act
+in 2016, which established a voluntary certification of health information Tocite:DufendachKR,LehmannCU,SpoonerSA;American
+technologyforpediatriccare.5,8 AcademyofPediatrics,CouncilonClinicalInformation
+This clinical report seeks to provide a compendium of the specific Technology.SpecialRequirementsofElectronicHealthRecord
+SystemsinPediatrics:ClinicalReport.Pediatrics.2024;154(4):
+functionalities that facilitate providing effective and efficient pediatric
+e2024068509
+care. This report does not seek to enumerate administrative functions
+FROM THE AMERICAN ACADEMY OF PEDIATRICS
+PEDIATRICSVolume154,number4,October2024:e2024068509
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+in the practice-management system (such as appointment Office oftheNational Coordinator toestablishcriteria for
+management,insuranceeligibilitydetermination,andbilling). this certification. Once the Drummond Group began de-
+Information management is a key requirement for an ef- veloping the certification, AAPexperts participated inthe
+fectivemedicalhome,whichwasenvisionedbytheAmerican program’s design.14 Although the certification will not
+Academy of Pediatrics (AAP) in 1965 but required EHRs test for all functionalities the AAP supports in the safe
+tobecomeareality.5,9,10 ThePatient-CenteredMedicalHome and effective care of children, it will be an important
+Recognition program of the National Committee for Quality stepintoimprovingpediatricfunctionalitiesinEHRs.
+Assurancedemandsthatphysicianpracticesmanageinforma-
+tionforthebenefitofpatientsoverthecontinuumofcare.Al-
+though the National Committee for Quality Assurance does IMMUNIZATIONMANAGEMENT
+not require the use of an electronic system, the committee
+EHR software used in pediatrics must be able to manage
+encourages the use of certified EHR products, recognizing
+the dynamic complexities involved in the scheduling, re-
+that the functions required for Patient-Centered Medical
+cording, analyzing, and reporting details accurately and
+Home certification are difficult to achieve without a sophisti-
+efficiently for a myriad of childhood immunizations. Be-
+catedEHR.11
+ing a dynamic and nimble system is critical, as the EHR
+must adjust its decision support and reporting details
+PEDIATRICFUNCTIONS
+based on current recommendations, time of year, and a
+In 2001, the AAP published a description of the features practice’spurchaseandsupplyofimmunizations.
+that would be desirable in a clinical information system The EHR can also help to document immunization ir-
+to be used in pediatrics.12 Almost none of these features regularities. The EHR must contain the details needed to
+were purely pediatric but could provide value to other report any adverse events to the Vaccine Adverse Event
+specialties as well (eg, geriatrics). Certainly, medication
+Reporting System, and such events should remain a part
+dosing by weight and recording guardianship informa- ofthepatient’simmunizationrecord.15–17Documentation
+tion have examples in both pediatric and adult care;
+of purposefully skipped vaccines because of clinical con-
+however, because these features are vastly more preva-
+traindication or refusal by a caregiver or patient should
+lent and highlighted in pediatrics, we refer to them here
+also remain with the immunization record, along with an
+as “pediatric functions.” Although an ideal EHR would in-
+explanation of why the vaccine was missed.18 Including
+clude at least the functions mentioned in this report, we
+these data in the immunization record will allow for a
+haveattemptedtouseanordinalsystemtogradetheim-
+single sourceofdocumentationforbothreceivedandnot
+portance of these functions from “may” to “should” to
+received vaccines, data that may be used to inform sub-
+“must.”
+sequentimmunizationsandcare.
+CRITICALPEDIATRICEHRFUNCTIONAL AREAS
+Linking toImmunizationInformation Systems
+Several functional areas are so critical to the care of in-
+fants, children, and adolescents that their absence would Immunization information system (IIS) technology has
+impede quality pediatric care. These include the major developed significantlyinthelastdecade. Meaningful use
+areas described here, including immunization manage- incentives for immunization interoperability helped to
+ment; growth, development, and social drivers of health drive this development, and the Centers for Disease Con-
+tracking; decision support for orders; patient identifica- trol and Prevention (CDC)’s National Center for Immu-
+tion; data normalization; privacy; and system functional- nization and Respiratory Diseases helped by providing
+itystandardsinpediatriccontexts. guidancethroughtheImmunizationInformationSystems
+Strategic Plans.19 Although the focus of an IIS is interop-
+RELATIONTO21STCENTURYCURESACT erability of immunization systems, the CDC provides many
+Several studies reviewing pediatric features in outpatient detailsthatmaybehelpfulforEHRdevelopersandcon-
+EHR systems demonstrated a significant misconnect be- sumers for local immunization management and for in-
+tween the features highlighted by the AAP as required tegration with remote systems, along with details and
+for pediatric care and features that were used in pediat- standards found in relevant AAP policy statements and
+ric offices throughout the country.7,13 In no small part technicalreports.20,21
+because of efforts by the AAP, in 2016 the United States Most states and several local jurisdictions have elec-
+Congress passed the 21st Century Cures Act, which in- tronic IISs orregistries.22–24 The EHRshould allow inter-
+cluded the requirement for the Office of the National Co- operability with these systems, including the ability to
+ordinator to establish a voluntary pediatric certification download, upload, and synchronize a child’s immuniza-
+of EHRs.8 Subsequently, AAP experts worked with the tionhistory,includingfrommultipledisparatesources.
+2 FROMTHEAMERICANACADEMYOFPEDIATRICS
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+Immunization Decision Support Graphical RepresentationofGrowth
+Systems for encoding rules about which immunizations Clinicians make important judgments about a child’s health
+are due and when they are projected to be due in the fu- byvisualinspectionofgrowthcharts,plots ofachild’sbody
+ture have existed for years.25 For an EHR system to fully measurements (usually a combination of weight, length or
+support pediatric practice, it must be able to take previ- height,headcircumference,andBMI)overtime.Anindividu-
+ous immunization data and the patient’s medical history al’s measurements are usually plotted against standard per-
+and derive, at the point of care, logical conclusions about centile curves, such as those from the CDC or World Health
+thecurrentimmunizationstatus,recommendappropriate
+Organization.26Theseplotsmustbereadilyavailabletoclini-
+immunizations, and warn against any contraindications. cians during the workflow of a standard patient visit. Per-
+centile calculations and decision support based on historical
+This forecasting requires an understanding of the indi-
+values should be available to detect errors during value en-
+vidual antigens present in each vaccine and analysis of
+when, in what form, and at what age in the child’s life try.TheEHRsystemshouldallowtherepresentationofper-
+eachantigenwas—orwassupposedtobe—administered centile curves from a usual source or others that may
+provideadjustmentforprematurityorotherspecificpopula-
+to ensure historical doses are valid. There may also be
+tions.27–29 The EHR should allow magnification (“zooming”)
+variations in this functionality based on individual pa-
+of the plot to inspect specific areas, differentiating height
+tienthealthneeds,suchasadjustmentsforpretermbirth,
+from length, derivation of growth-velocity values between
+prior immunization reactions, immunoglobulin adminis-
+datapoints,anddisplayofpercentileorz-scoreofavaluein
+tration, or immunodeficiency. These functions might be
+comparison with the reference standard selected. Ideally,
+built into the system or be derived from immunization
+mechanisms would exist to tag specific values as spurious
+registries or third-party programs accessed via a net-
+andtofilterbasedoncriterialikelocationthemeasurement
+work.IfthelogicisbuiltintotheEHRsystemitself,there
+was obtained, such as might be desired in a pediatric nutri-
+should be an easy way to update the logic to reflect
+tion clinic that seeks to obtain very accurate and precise
+changes to immunization rules or local epidemiology and weight,length,height,andheadcircumferencedata.30 These
+to handle new vaccines and new antigen combinations.
+data and visualizations should be available for caregivers
+If the EHR consistently uses an IIS’s forecasting tools,
+throughapatientportal.
+this forecasting might take precedence over EHR-derived
+forecasting. DevelopmentalTracking
+Pediatric clinicians use a variety of developmental screening
+PopulationLevel Immunization Management toolsthroughoutachild’slife,includingbothsurveysand
+direct
+assessment.31–33
+Identification of children with de-
+An EHR supporting pediatric care should facilitate re-
+velopmental disabilities is necessary to implement early
+portingofpediatric-specificqualitymeasures,suchasim-
+intervention services. The EHR should support patient-
+munization management across a population, such as a
+and provider-facing structured data acquisition from
+practice. Generating reports and snapshots based on im-
+provider-supplied forms and screening tools, including a
+munization status may encourage proactive recall and
+means of tracking use of those that require payment for
+engagement to close immunization care gaps. This may
+licensed use. Although the EHR developer itself is not ex-
+also help to inform proactive ordering and inventory
+pected to supply these forms, a method should exist to
+management to ensure no opportunity is lost to vacci-
+import them from an external data source or, at a mini-
+nateatthepointofcarebecauseofinadequatestock.
+mum, allow documentation of the aggregated scores and
+required follow-up actions. In some cases, audiovisual re-
+cordings may help augment developmental assessment
+GROWTH,DEVELOPMENT,ANDSOCIALDRIVERSOFHEALTH
+documentation, such as those used for recording general
+TRACKING
+movementassessmentsinpreterminfants.34
+Central to the role of pediatric clinicians is that they are
+Collecting some developmental, social, and other informa-
+caringforpatientsinadynamicstateofgrowth,develop-
+tion in a previsit survey has now become commonplace.
+ment, and social situations. Unlike adult care, the most This survey can come from the EHR’s patient portal or
+important information is not the measurement itself (eg, through third-party software. Regardless of source, this in-
+height, weight, development) but its rate of acceleration, formationmustbecapturedandimportedintotheEHRina
+which must be compared with age-appropriate norms structured manner that supports review of trends over
+(eg, by recording and presenting a percentile or z-score) time.35 Capture and use of these data must support work-
+to provide meaningful information to pediatricians. The flowsforcaringfortheindividualpatientduringaclinicvisit,
+EHR must support longitudinal management and visuali- chartreview,andbillingandcoding,andalsoreduceadmin-
+zationofthesedata. istrativeburdensforpopulationmanagement.
+PEDIATRICSVolume154,number4,October2024 3
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+SocialDrivers ofHealth support.45 If a historical weight is used to estimate a cur-
+rent weight for prescriptions, the EHR should support
+Sincetheearly2000s,theAAPandothergroupshavead-
+methods for the clinician to determine the validity of the
+vocated for standardized screening for social drivers of
+health.36–38
+The US Department of Health and Human
+estimate, understanding that an infant’s weight will gener-
+allyfluctuatemorerapidlythananadolescent’s.
+Services Office of Disease Prevention and Health Promo-
+Pediatricians must often write prescriptions in which
+tiongroupssocialdeterminantsofhealthinto5domains:
+the medication is divided in two or more labeled pack-
+economic stability, education access and quality, health
+ages—one for home administration and one for adminis-
+care access and quality, neighborhood and built environ-
+ment, and social and community context.39 Because of tration during the day at school, child care, or another
+the important role these factors play on a child’s health, care setting. EHR systems should provide the capability
+to generate instructions to the pharmacy to dispense
+well-being, and quality of life, the EHR should support
+medications in this way, along with administration in-
+mechanisms to document, visualize, and provide decision
+support based on these factors throughout a child’s life. structionstoteachersandchildcareworkers.
+Accurate capturing of race and ethnicity data can estab-
+PATIENTIDENTIFICATION
+lishbaseline datatoaddress existinghealthdisparitiesin
+the practice of pediatrics, with special attention to pri- Children undergo name changes because of the need to
+vacy and confidentiality of such data. EHR integration of changefromatemporarynameassignedatthebirthhos-
+social drivers of health that addresses parents’ and chil- pital,changesinfamilystructure,orchangesinpreferred
+dren or adolescents’ information is key to not only un- name.Becauseclinicaldatamaybeconnectedtooldnames,
+derstanding barriers to achieving health equity but also EHR systems should support retrieval of data via search on
+to connect patients and families to available resources previous names. Ideally, these prior identifiers would trans-
+and document interventions taken by providers to elimi- feracrossdisparatehealthsystems.
+nate health disparities. Because of the sensitive nature of Although some EHR systems depend on the use of a
+these data, special attention must be given to privacy government-issuedidentificationnumber (usuallytheSocial
+andconfidentialityofthedata.40 Security number), newborn infants do not receive these
+numbers forawhileafterbirth.EHRsystemsmustallow
+FACILITATEDECISIONSUPPORTFORORDERS the registration of patients without such identifiers and
+allow retrieval of information based on any temporary
+One key argument for the benefits of using an EHR is
+identifiersthatmaybeused.
+that it can improve safety of medical orders.2,41 Although
+An EHR system that allows storage of prenatal data
+most EHR developers do not wish to develop the rules
+(eg,fromafetalimagingorsurgicalprocedure)shouldallow
+contained in order entry decision support, they should
+the logical connection of these data to the postnatal record
+support a mechanism that allows for decision support
+oncethechild’srecordisestablishedinthesystem.
+recommendationintegrationfrommultiplesourcesintoa
+clinician’s workflow for inpatient as well as outpatient Ambiguous Sex
+orders. These sources could be rules imported directly
+In the case of a child with ambiguous genitalia, an EHR
+into the EHR or clinical decision support service proto-
+system should allow the assignment of sex as unknown
+cols,likeCDSConnectandCDSHooks.21,42,43
+andtooperate normallyuntilthesexof thepatient isas-
+signed. Any decision support that relies on patient sex
+MEDICATIONDOSING
+shouldallowoperationwiththisambiguousassignment.
+For medications, the EHR must provide a mechanism to
+Gender Identity
+integrate information from pharmacological databases
+that provide recommended biometrically appropriate and Similar complexities exist in the assignment of sex under
+technically deliverable doses.44 Suggested dosing parame- conditions of varying gender identity. Systems should be
+ters, rounding factors, calculation steps, biometric data able to store sex assigned at birth, current gender iden-
+used (eg, weight, body surface area, gestational age, or tity, and data on applicable anatomic and physiologic
+chronologic age), and any special comments or considera- characteristicssothatdecisionsupportbasedonsexcon-
+tionsshouldbedisplayedclearlythroughtheEHRinterface tinues to apply accurately. For example, the requirement
+and persist with the order, whether transmitted via paper for a negative pregnancy test before a procedure should
+or electronically. Systems should have checks to ensure apply if the patient retains a uterus. Clinicians should be
+that the biometric data are current relative to expected able to select and use norms for growth and laboratory
+changes for the child. For the case in which dosing guide- values based on applicable physiology. Information sur-
+linesorformularybenefitsvarywithageorgestationalage, rounding gender may also be sensitive information that
+the system should incorporate those data into its decision requiresspecialprovisionstosupportprivacy.
+4 FROMTHEAMERICANACADEMYOFPEDIATRICS
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+NORMSFORPEDIATRICDATA Complex NormativeRelationships
+Numerical Data Not all normative data are based solely on age. In the
+cases of blood pressure, intracardiac measurements, or
+Normal values for almost all numerical data (eg, labora-
+peak flowmeter norms, values may be determined by
+tory results, body measurements, vital signs, and scores age, sex, and height percentile.46,47 Therefore, clinical de-
+on standardized assessments) change continuously with
+cision supportthat flagsabnormal values based solely on
+age and growth, so it is insufficient to provide merely a
+chronologic age are insufficient for blood pressure and
+handful of normative ranges. Visualizing data by plotting peak expiratory flow and may be insufficient for other
+values over time will often facilitate data analysis and measurements in pediatric patients. An appropriate flag
+decision-making, suchasfor laboratoryvalueslikebiliru- will include the decision logic and reference the source
+bin in a newborn infant. Developers should assume that fortheconcern.
+all numeric data collected in a pediatric context have
+Gestational Age
+changing norm values over the lifespan and should pro-
+vide ways of flagging abnormal values and inappropriate For neonates, chronologic age (expressed as the time
+acceleration or deceleration of consecutive values at any since birth) is insufficient for medication-prescribing de-
+age. Percentile values and z-scores (number of SD from cision support, normative ranges for laboratory data,
+the mean) should be available for those data for which normative definitions for physical examination findings,
+the distributions are known, such as height, weight, head vital sign ranges, and guideline-application support. Ges-
+circumference,andBMI. tational age, chronologic age, and corrected age are each
+unique and important ways to present the age of a neo-
+Data Precision nate45; EHR systems should support each of these con-
+To support pediatric practice, an EHR must be able to han- ceptsforageandallowfortheiruseindecisionsupport.
+dle data at appropriate numerical precision and graphical
+resolution,whichmaychangeovertime.Bodyweighttothe PRIVACY
+nearestgramiscommonlyacceptedasanappropriatepreci- Supporting privacy for children and caregivers requires
+sioninneonatalfacilities,whereasatenthofakilogrammay granular metadata and segmentation built into every facet
+bemoreappropriateforolderchildren.Asanotherexample, oftheEHR,asenumeratingeverypotentialprivacyconcern
+anEHRsystemmaypresentgrowthcurvesofheight,weight, isimpossible.48Evenareasasseeminglyinnocuousasbody
+and head circumference, complete with appropriate norma- weight or immunization status could lead to unintended
+tive curves for comparison. However, if those curves are disclosure, such as in a patient with an eating disorder or
+availableinonlyonegraphicalresolution,measurementsob- whenhepatitisBorhumanpapillomavirusvaccinationsare
+tained frequently (daily weight measurements, weekly head administeredaftersexualexposure.Implementationconsid-
+erations must ensure data retain their granular security
+circumference measurements, etc) may become impossible
+and encryption wherever stored or transmitted. For exam-
+to analyze visually. Age in the newborn nursery should be
+ple, medication, implanted device, and problem lists should
+availableinunitsatleastdowntothehour,ifnottothemi-
+retain their security and segmentation even when pulled
+nute. The units for age (hours, days, weeks, months, years)
+into a clinical note so that these data are available to the
+need to grow with the age of the child, as appropriate. De-
+medical providers who need them for directing care but
+velopers of EHR systems should consider how the small
+can be kept private as necessary. Supporting child privacy
+changes in numeric data that one sees in the care of young
+will require special attention to differential access to medi-
+patientsaffectdatarecordinganddisplay.
+cal data, especially with regard to adolescent and maternal
+Nonnumeric Data data, family and social history, cases of abuse, and other
+child-specificsituationsdescribedbelow.
+Whenever an EHR system distinguishes normal from ab-
+normal in nonnumeric data (eg, flagging the presence of AdolescentPrivacy
+a physical sign as abnormal), it should consider age in the
+Laws about age of consent vary from state to state and
+interpretation of normality. For example, a system that con- dependonthepresentingproblem.49–51Adolescentsseeking
+siders“unabletofeedself” auniversallyabnormalfindingin treatmentofmentalhealth disorders,forexample,may con-
+the interpretation of a functional assessment is not taking senttotheirtreatmentatanearlieragethantheageofma-
+the developmentally normal capabilities of young children jorityinmoststates.52Somestatesalsohavelawsregarding
+into account. Another example is “fall risk,” which should parental notification whereby interpretation is based on the
+be able to transition dynamically from a “drop risk,” to patient’s age and presenting problem.53 Practices that serve
+“developmentallyappropriatefalls,” andeventually to atrue adolescentstypicallyhavepolicieswithrespecttowhatpor-
+“fallrisk.” tion of an adolescent’s care should be handled with special
+PEDIATRICSVolume154,number4,October2024 5
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+privacyprotections(eg,insomejurisdictions,theadolescent via a portal may empower them to take ownership of their
+must give explicit permission for the parent to review their ownhealthandaidtransitiontoadulthood.59
+records).Theseprivacyprotectionsmayrequiretheflagging Adolescent medical records will contain some informa-
+of protected information; therefore, EHR systems should tion that must be shared with caregivers to allow them
+supportdatasegmentationand privacy policiesthat varyby tocarefortheadolescent’smedicalneeds,suchasevaluation
+age,accordingtopresentingproblems,diagnoses,andorders and treatment of most acute and chronic conditions. The
+(ie, medications, laboratory tests, and imaging studies) and EHRportalshouldallowdifferential(segmented)accesspro-
+be flexible enough to handle the policies of individual tection to various data. Caregivers and adolescents should
+practices. each have discrete login credentials, which would in turn
+If an EHR system handles record keeping for consent providetiereddataaccess.68,69Ideally,theadolescentshould
+for treatment, it should provide for the recording of as- be able to control the information dissemination directly
+sent for treatment (from an underaged adolescent or withintheportaloritsmobileapplication.
+child) combined with parental informed consent54,55 as
+MaternalData inthe Child’sChart
+well as consent for treatment (from an adolescent) com-
+bined with a record of parental involvement.54 The sepa- The AAP has great concerns that sensitive maternal
+ration of the patient’s consent or assent and the parent’s information (eg, opioid use, domestic violence) may
+or guardian’s consent is particularly important in the be disclosed inappropriately, such as to another care-
+areas of testing for drugs or alcohol, screening for sexu- giver through a patient portal.8,70 Allowing access to
+ally transmitted infections, outpatient mental health care, this information may violate the parent’s privacy and put
+and prenatal care and delivery services. These circum- bothparentandinfantatrisk,whichwouldreducethelike-
+stances may also be impacted by local jurisdiction, which lihoodofseekingmedicalcareinthefuture.Ataminimum,
+may additionally draw a distinction between the right to maternaldataandpotentially inferentialdata,likeneonatal
+consent for services and the right to privacy for health opiate withdrawal scores, neonatal testing, or treatment of
+informationrelatedtothoseservices.56–58 sexually transmitted infections, should retain metadata tag-
+Enabling appropriate external access to adolescent ging and encryption that can trigger additional safeguards
+health information continues to be one of the largest surrounding disclosure. Although defining these safeguards
+challengespediatriciansfaceinofferingpatientportalaccess lies beyond the scope of this report, ensuring such tagging
+to their patients, especially with the stringent information- exists and is appropriately retained during information
+blocking restrictions imposed by the 21st Century Cures transfer is critical to allow safeguards to be built, including
+Act.8,48,59,60 Risks of privacy violations need to be transpar- those that may eventually limit a child’s access to nones-
+enttotheadolescentpatients,andanydisclosureshouldoc- sential maternal information once they are able to access
+cur with the assent of the adolescent. EHR and portal theirownrecords.
+default privacy settings should be strict, comply with state
+and federal laws, and facilitate privacy throughout the DYNAMICCAREGIVERSTRUCTURES
+health care information
+journey.61–64
+Unfortunately, sensi- Childrencanhaveavarietyofcaregivers,includingparents,
+tive information is often transmitted in ways that fail to grandparents, step-parents, foster families, staff at group
+maintain its sensitive status (eg, when a report is scanned homes, and a host of other possibilities. Any of these indi-
+as an image or when revealing billing information, such as viduals or other associated adults may accompany a child
+sexually transmitted infection or pregnancy testing, is sent for a health care visit. The variety of caregivers generates
+toaparentorguarantor). uncertainties about who may provide and receive medical
+Unfortunately, research has shown that more than half information and who may consent for medical treatments
+of adolescent portals were likely accessed by the guardian andimmunizations.TheEHRmustsupporttheongoingdoc-
+using the adolescent’s credentials, diminishing the results of umentation of a wide complex of dynamic family and living
+segmentation efforts.65,66 Authentication to ensure that the structures and must clearly indicate who is allowed to re-
+individual logging in is not an imposter—even a parent—is ceive medical information and who can make decisions for
+important.67AnEHRsystemthatsharespotentiallysensitive the child, and it must keep a historical record of these de-
+data must use modern identity confirmation techniques (eg, tailsaslivingcircumstanceschange.
+2-factorauthentication),preferablywithbiometricsincombi-
+Childrenin ChildWelfare ProtectiveCustody
+nationwithquestionsthatcanonlybeansweredbythecor-
+rect user, in addition to the common practice of usernames When a child is removed from their family of origin and
+and passwords. Although the easiest workaround is simply placed in child welfare protective custody such as foster
+to disallow external access to adolescent health information, care, complex issues of consent and confidentiality of
+this approach prevents adolescents from communicating in medical information arise.71,72 The child will be living
+one of their preferredmethods.Interactingwith adolescents withadultswhodonotholdcustodyofthechildandwill
+6 FROMTHEAMERICANACADEMYOFPEDIATRICS
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+often present for medical care with individuals who do not child’s care and under what limitations.73 EHR systems
+have the ability to provide medical consent or receive all that manage consent for treatment should support re-
+medical information. The EHR should support documenta- cordingthisinformation.
+tion of medical decision-making and health information
+sharing abilities and limitations for those involved in the EMERGENCYTREATMENT
+child’scare,includingwhohasauthoritytoconsenttotreat-
+WhenEHRsystems supportthe recording of consentand
+ment, with references to appropriate legal documentation
+assent for treatment, they should be flexible enough to
+as necessary. An EHR system should allow reasonable ac-
+allow for the emergency treatment of minors, in which
+cess to custodians and court appointed attorneys to the
+the parent or legal guardian may be absent, and the
+medical information within the confines of applicable state
+usualproceduresforconsentmustchange.49
+lawandprivacyregulations.Althoughcaregiversmaynotbe
+grantedaccesstothecompletemedicalrecord,theyoughtto
+OTHERPROTECTEDPOPULATIONS
+be able to communicate about appointments and access the
+minimal amount of information necessary to manage the The EHR should support special privacy protection for
+health careoffosterchildrenintheircare(eg,accessingim- cases of child abuse and neglect. The Health Insurance
+munizationrecordsinpreparationforschoolenrollmentand Portability and Accountability Act (45 CFR §164.502(g))
+being aware of prescriptions or other medical treatments). allows for preventing access to health information by pa-
+Such access will require careful implementation of patient rentsorguardianswhenthechildoradolescenthasbeen
+portals specifically designed for use by caregivers, with ap- or may be subject to abuse or neglect by that person or
+propriatelimitationsonthedurationofaccessandsufficient ifdisclosureofthisinformationisnotinthebestinterest
+authentication methods to prevent inappropriate access. ofthechildormayendangerthem.TheEHRshould have
+When a child is in the temporary custody of child welfare, systems in place to prevent access to protected images
+thefamilyoforigintypicallymaintainsrightstoreceivemed- taken during a medical evaluation for potential physical
+icalinformationandmayneedtoprovideconsentforcertain abuse,sexualabuse,orsexualassault.
+medical decisions (eg, surgeries). Family of origin must be
+considered in the careful implementation of information GENETICINFORMATION
+sharing in patient portals, supporting bidirectional confi-
+Geneticdata,becauseofthepotentialforstigma,discrim-
+dentiality for family of origin, caregivers, and placement
+ination, or bias if public, are challenging for providers.
+location. Access must remain dynamic to allow changes
+Genetic analysis can be beneficial for patients because it
+toaccessifasafetyconcernarisesorthechild’slegalsta-
+may uncover diagnoses otherwise missed and inform
+tus changes, such as restoring full access to a family of
+subsequent treatments. However, broad genetic testing
+origin when a child is reunited and custody is returned
+mightalsoidentifygenesthatareclinicallyimportantbut
+orterminatingaccessifparentalrightsareterminated.
+not actionable in childhood, such as a BRCA mutation.
+Adoption Many genetic tests of a predictive nature (eg, Huntington
+disease or Lynch syndrome), once disclosed, have signifi-
+Records of children undergoing adoption proceedings
+cant repercussions to the life of the individual and their
+and those who have been adopted may need special pri-
+family. Genetic testing may also reveal nonpaternity,
+vacy handling. In cases where state law offers special
+leading to significant effects on family dynamics.74 Al-
+protectionsfortheidentityofbirthparents,EHRsystems
+though research continues in thisspecific area,at amini-
+should allow flagging and special privacy protection. In
+mum, the EHR should facilitate an embargo on genetic
+accordance with state laws, preadoption records may
+information.
+need to have names or other identifying information re-
+dacted or permanently locked. In situations in which an
+ACCESSTOEXTERNALINFORMATION
+adopted child is not initially made aware of their adop-
+tion, it is important to recognize that the information ul- One of the key requirements for an effective EHR is the
+timately belongs to thatadoptedpersonwhen theyreach abilitytointeractwithanddigestexternaldata,including
+theageofmajority. both from other clinical sources (eg, a hospital or clinic)
+and from device- and patient-generated data. To operate
+Consent byProxy
+effectively as a medical home for children, primary care
+Children often present for nonurgent health care in the providers must be able to access subspecialty and care
+company of an adult who is not the custodial parent or support encounter notes. Pediatricians may find particu-
+guardian. The best way to prevent confusion about con- lar benefit in systems that can connect with nonhealth
+sent for care in this situation is to record the custodial system sources, such as schools, community health part-
+parents’ wishes as to which adult can consent to which ners,andothers.
+PEDIATRICSVolume154,number4,October2024 7
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+Another form of interoperability would allow patients that an EHR developer can use to support substitutable ap-
+the opportunity to upload personal data from fitness plications or web services embedded in the EHR.21,78 Some
+trackers, weight scales, blood pressure monitors,glucom- of the earliest functioning applications that use this para-
+eters, and other health-connected technology. Pediatri- digm are pediatric focused, often building functionality for
+cians may want to consider implementing systems that areas where standard EHR implementations have fallen
+haveaframeworkforaccepting thesedata.Formedically short, including aninteractivegrowth chart app,aninterac-
+complex children with technology dependency, the inte- tive neonatal hyperbilirubinemia decision support tool, and
+gration of data from their devices is critical. The care a child blood pressure percentiles application.79 The substi-
+team should be able to see their data in flowsheets and tutable nature of these applications eliminate the need for
+align them temporally with other time series data to as- pediatricians to develop the content and can empower indi-
+certainacompleteviewofthepatient’shealth. vidual pediatricians and groups to use quality resources de-
+Thosewishingtodesignsoftwareavailableforchildren velopedbyothersandfindthebestfitfortheirpractices.
+must follow relevant guidelines from the Children’s On-
+line Privacy Protection Rule.75 These services should also ARTIFICIALINTELLIGENCEANDPRECISIONMEDICINE
+function without requiring the child to have their own
+Machinelearningandartificialintelligencerepresentavari-
+phone. Apps that integrate must be able to recognize
+ety of algorithms in which data are used to train computer
+proxy integration. If the target is the parent but needs
+algorithmstosolvecomplextasks.Machinelearningcanbe
+the child’s information, the app must be careful as to
+used to process heterogenous data types including numeri-
+which is used. If left unchecked, an app that interprets
+caldata;imagingdatasuchas2-dimensional,3-dimensional,
+data outside an appropriate pediatric context may lead
+and video data; written text; spoken text; and streaming
+topatientharm.Caregiversmustunderstandboththese-
+data. These algorithms can be very powerful, but their effi-
+curity and privacy risks of allowing access to a minor’s
+cacyandbestpracticesarecurrentlybeingassessed.These
+data. EHRs can help by providing plain-language guid-
+tools may or may not have validated pediatric approvals
+anceaboutpotentialrisks.
+andshouldbemanagedwithcaution.
+Transferlearningisatechniquethatusesresultsofexist-
+PEDIATRICEHRSYSTEMFUNCTIONALITYSTANDARDS
+ing models to bootstrap learning for new tasks. A model
+Health Level Seven International, a not-for-profit health learning to distinguish pictures of airplanes from birds
+care data-standards organization, created the Health Level might benefit by pretraining with results from one trained
+Seven International EHR-System Functional Model specifica- to distinguish automobiles from pedestrians. A danger in-
+tiontodefinethefunctionsforEHRsystemfunctionsthrough herent in transfer learning and machine learning in general
+its Electronic Health Record Technical Committee.53,76 This is that it can introduce inductive bias into a system.80,81 A
+functional model was used as the basis for the Child Health model that performs well in adult medicine might generate
+Profile,which attempted to describe the modifications to the surprisingresultsinapediatricpopulation.Anyartificialin-
+model needed to create an effective tool for child health.77 telligence or machine learning model being considered for
+This standard is being used as the basis for the EHR system implementation in pediatrics should be trained and bench-
+certification process specified by the federal Office of marked with representative pediatric data to help mitigate
+the National Coordinator for Health Information Technol- any biases inherent in the model. However, such models
+ogy. The purpose of certification is to set a minimum level and applications must also consider special privacy protec-
+offunctionalitythatEHRsystemswillhavetomeettoqual- tions surrounding the storage and use of a minor’s data,
+ify for special treatment, such as participation in pay-for- suchasmightbegeneratedwhileusingadigitalscribe.
+performanceprograms.8,51,52
+TELEHEALTHCAPABILITIESEMBEDDEDINTOEHRS
+EXTENSIBILITY
+EHRsystemsarenolongeronlydocumentation,datareposi-
+Although electronic health record usability has improved tory, and ordering systems. They have become “holistic” in
+throughout the past decade, there remain several avenues thesenseofpromotingabetterandmoreefficientencounter
+for innovation, particularly in pediatrics. One specific oppor- experience between the patient and care team. To that end,
+tunitywouldbetocreateastandardframeworktointegrate some EHRs have added telemedicine capabilities. Pediatrics
+clinical practice guidelines into electronic health records. presents some unique care scenarios that use telemedicine.
+Thiswouldsupportefficientimplementationofclinicalprac- For example, school-based health care can benefit from
+tice guidelines in the pediatric practice, which can signifi- telemedicine capabilities that allow subspecialists and
+cantlyenhancethequalityofcareofpatients. primary care physicians to communicate with school
+The Substitutable Medical Applications, Reusable Tech- nurses. Expanding telehealth capabilities in the EHR may
+nologies initiative is a specific example of a framework also help provide subspecialty pediatric care to patients
+8 FROMTHEAMERICANACADEMYOFPEDIATRICS
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+and geographic areas that have traditionally been diffi- The AAP is working proactively to ensure that knowledge-
+culttoserve. able pediatricians who can thoroughly explain child health
+care issues are invited to address the groups that set these
+OTHERPEDIATRICFUNCTIONS standards. This report should serve as a guide for these ef-
+fortstorepresenttheinterestsofchildhealthcareproviders
+This report outlines the major areas of functionality that
+andpresentaguidetoindividualpractitionerswhoareeval-
+are relatively more important in pediatric care than in
+uating a given system’s ability to perform in the pediatric
+adult care. There are, of course, many other functions
+environment.
+thatareimportant,includingthefollowing:
+COUNCILONCLINICALINFORMATIONTECHNOLOGY
+(cid:1) Archive and manage patient data for a statutorily de-
+EXECUTIVECOMMITTEE,2023–2024
+finedperiod.
+(cid:1) Provide educational materials that are appropriate to SrinivasanSuresh,MD,MBA,FAAP,Chairperson
+JuanD.Chaparro,MD,MS,FAAP
+parentsandchildrenandatvaryingreadinglevels.
+(cid:1) Createpedigreediagrams. KathrynCheek,MD,FAAP
+(cid:1) Display age and weight at all times throughout the KevinR.Dufendach,MD,MS,FAAP
+MarvinB.Harper,MD,FAAP
+userinterface.
+(cid:1) Select age-based documentation templates and order BrandanP.Kennedy,MD,FAAP
+setsbasedonapatient’sage. EliM.Lourie,MD,FAAP
+(cid:1) Indicate whether a guideline applies to a patient based
+HeatherC.O’Donnell,MD,FAAP
+LindsayStevens,MD,FAAP
+onage.
+(cid:1) Indicate the source of patient data, especially when MelissaS.VanCain,MD,FAAP
+AndrewM.Wiesenthal,MD,MS,FAAP
+the source is not the patient or the parent (eg, the
+DavidChartash,PhD,LiaisontoSectiononPediatricTrainees
+schoolteacherorchildcareworker).
+Francis Chan, MD, FAAP, Liaison to Section on Advances
+inTherapeuticsandTechnology
+THEFUTUREOFTHEPEDIATRICEHRSYSTEM
+In the wake of the rapid uptake of EHR systems in the STAFF
+yearssincethefirst AAPstatement,7,13,82 nationalgroups
+LisaKrams,MS
+have expressed increased interest in standardizing the
+features of EHR systems and certifying their functions.82
+Child health care providers want to ensure that pediatric ABBREVIATIONS
+functions, terminology, and data precision are built into AAP:AmericanAcademyofPediatrics
+these standards and certification processes. Pediatric care CDC:CentersforDiseaseControlandPrevention
+providers want this not only to make their own systems EHR:electronichealthrecord
+more effective in improving the health of children but also IIS:immunizationinformationsystem
+tomakeallEHRsystemsmoreusefulforpatientsofallages.
+AddresscorrespondencetoKevinR.Dufendach,MD,MS,FAAP.E-mail:kevin@dufendach.net
+PEDIATRICS(ISSNNumbers:Print,0031-4005;Online,1098-4275).
+Copyright©2024bytheAmericanAcademyofPediatrics
+FUNDING:Noexternalfunding.
+FINANCIAL/CONFLICTOFINTERESTDISCLOSURE:Theauthorshaveindicatedtheyhavenopotentialconflictsofinteresttodisclose.
+REFERENCES medication management system to reduce medication errors, ad-
+1.Koppel R, Lehmann CU. Implications of an emerging EHR mono- versedrugeventsandaveragelengthofstayattwopaediatrichos-
+culture for hospitals and healthcare systems. J Am Med Inform pitals:astudyprotocol.BMJOpen.2016;6(10):e011811
+Assoc.2015;22(2):465–471
+3.GeorgeJA,ParkPS,HunsbergerJ,etal.Ananalysisof34,218pe-
+2.Westbrook JI, Li L, Raban MZ, et al. Stepped-wedge cluster rando- diatric outpatient controlled substance prescriptions. Anesth
+mised controlled trial to assess the effectiveness of an electronic Analg.2016;122(3):807–813
+PEDIATRICSVolume154,number4,October2024 9
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+4.Slight SP, Berner ES, Galanter W, et al. Meaningful use of elec- 19.Centers for Disease Control and Prevention. IIS 2018-2020 strat-
+tronic healthrecords: experiences from the field and future op- egyinitiativeandplanintroduction.Availableat:https://www.cdc.
+portunities.JMIRMedInform.2015;3(3):e30 gov/vaccines/programs/iis/strategic-plan/iis-2018-2020.html. Accessed
+April7,2022
+5.DufendachKR,EichenbergerJA,McPheetersML,etal.CoreFunc-
+tionalityinPediatricElectronicHealthRecords.AgencyforHealth- 20.WeinbergST,MonsenC,LehmannCU,LeuMG;CouncilonClinical
+careResearchandQuality;2015 Information Technology. Integrating web services/applications to
+improvepediatricfunctionalitiesinelectronichealthrecords.Pe-
+6.LehmannCU;CouncilonClinicalInformationTechnology.Pediatric
+diatrics.2021;148(1):e2021052047
+aspectsofinpatienthealthinformationtechnologysystems.Pedi-
+atrics.2015;135(3):e756–e768 21.LeuMG,WeinbergST,MonsenC,LehmannCU;CouncilonClinical
+InformationTechnology.Webservicesandcloudcomputinginpe-
+7.Temple MW, Sisk B, Krams LA, Schneider JH, Kirkendall ES,
+diatriccare.Pediatrics.2021;148(1):e2021052048
+LehmannCU.Trendsinuseofelectronichealthrecordsinpe-
+diatricofficesettings.JPediatr.2019;206:164–171.e2 22.HackellJ,PalevskyS,ResnickM;CommitteeonPracticeandAm-
+bulatory Medicine; Council on Clinical Information Technology;
+8.BonamiciS.Text-H.R.34-114thCongress(2015-2016):21stCen-
+Section on Early Career Physicians. Immunization information
+tury Cures Act. Available at: https://www.congress.gov/bill/114th-
+systems.Pediatrics.2022;150(4):e2022059281
+congress/house-bill/34/text.AccessedMarch8,2022
+23.Centers for Disease Control and Prevention. Immunization regis-
+9.Health IT. Workforce compentencies for patient-centered health tryprogress–UnitedStates,2002. MMWRMorbMortal WklyRep.
+care delivery through health IT: a framework for practice trans- 2002;51(34):760–762
+formation. Available at: https://www.healthit.gov/sites/default/files/
+24.Centers for Disease Control and Prevention. Immunization infor-
+pcmh_role-based_competencies.pdf.AccessedOctober4,2018
+mation system progress–United States, 2003. MMWR Morb Mor-
+10.AsarnowJR,KolkoDJ,MirandaJ,KazakAE.Thepediatricpatient- talWklyRep.2005;54(29):722–724
+centered medical home: Innovative models for improving behav-
+25.MillerPL, FrawleySJ, Sayward FG.Issuesin computer-basedde-
+ioralhealth.AmPsychol.2017;72(1):13–27
+cision support in public health illustrated using projects involv-
+11.OfficeoftheNationalCoordinatorforHealthInformationTechnol- ing childhood immunization. J Public Health Manag Pract. 2001;
+ogy. Strategy on reducing regulatory and administrative burden 7(6):75–86
+relating to the use of health IT and EHRs. Available at: https://
+26.Centers for Disease Control and Prevention. Growth charts -
+www.healthit.gov/sites/default/files/page/2020-02/BurdenReport_
+homepage. Available at: https://www.cdc.gov/growthcharts/index.
+0.pdf.AccessedApril7,2022
+htm.AccessedApril7,2022
+12.AmericanAcademyofPediatrics,TaskForceonMedicalInformat-
+27.FentonTR,KimJH. Asystematic review andmeta-analysistore-
+ics. Special requirements forelectronic medical record systems
+vise the Fenton growth chart for preterm infants. BMC Pediatr.
+inpediatrics.Pediatrics.2001;108(2):513–515
+2013;13:59
+13.LehmannCU,O’ConnorKG,ShorteVA,JohnsonTD.Useofelectronic
+28.Rosenbloom ST, Qi X, Riddle WR, et al. Implementing pediatric
+health record systems by office-based pediatricians. Pediatrics. growth charts into an electronic health record system. J Am
+2015;135(1):e7–e15 MedInformAssoc.2006;13(3):302–308
+14.Brody M, Dickenson G, Janczewski M, Ritter J, Hufnagel S, Yu F. 29.Rosenbloom ST, McGregor TL, Chen Q, An AQ, Hsu S, Dupont WD.
+HL7 EHRS-FM release 2.1 pediatric care health IT functional pro- Specialized pediatric growth charts for electronic health record
+filerelease1;USrealm.Availableat:https://confluence.hl7.org/ systems:theexampleofdownsyndrome.AMIAAnnuSympProc.
+display/EHR/Pediatric+Care+Health+IT+Functional+Profile+-+ 2010;2010:687–691
+Project?preview=/91993486/120752709/pchit%20overview.pdf.
+30.ThompsonC,MargoT,YuFB,LehmannCU.Developingapediatric
+AccessedMarch23,2023
+EHR testing & certification program in the USA: initial phase.
+15.USCongress.NationalChildhoodVaccineInjuryActof1986.Vol42. StudHealthTechnolInform.2022;290:1020
+Available at: https://www.congress.gov/bill/99th-congress/house-
+31.Sices L, Stancin T, Kirchner L, Bauchner H. PEDS and ASQ devel-
+bill/5546#:(cid:3):text=Provides%20that%20no%20vaccine%20manufacturer,
+opmentalscreeningtestsmaynotidentifythesamechildren.Pe-
+failure%20to%20provide%20direct%20warnings.AccessedAugust27, diatrics.2009;124(4):e640-647–e647
+2024
+32.Limbos MM, Joyce DP. Comparison of the ASQ and PEDS in
+16.Leads from the MMWR. National Childhood Vaccine Injury screeningfordevelopmentaldelayinchildrenpresentingfor
+Act: requirements for permanent vaccination records and primarycare.JDevBehavPediatr.2011;32(7):499–511
+for reporting of selected events after vaccination. JAMA. 1988;
+33.Thomas SA, Cotton W, Pan X, Ratliff-Schaub K. Comparison of
+259(17):2527–2528
+systematic developmental surveillance with standardized de-
+17.Smith MH. National Childhood Vaccine Injury Compensation Act. velopmentalscreeninginprimarycare.ClinPediatr(Phila).2012;
+Pediatrics.1988;82(2):264–269 51(2):154–159
+18.DiekemaDS;AmericanAcademyofPediatricsCommitteeonBio- 34.Ferrari F, Cioni G, Prechtl HFR. Qualitative changes of general
+ethics. Responding to parental refusals of immunization of chil- movementsinpreterminfantswithbrainlesions.EarlyHumDev.
+dren.Pediatrics.2005;115(5):1428–1431 1990;23(3):193–231
+10 FROMTHEAMERICANACADEMYOFPEDIATRICS
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+35.Kumah-Crystal YA, Stein PM, Chen Q, et al. Before-visit question- 52.VukadinovichDM.Minors’rightstoconsenttotreatment:navigating
+naire: a tool to augment communication and decrease provider thecomplexityofStatelaws.JHealthLaw.2004;37(4):667–691
+documentation burden in pediatric diabetes. Appl Clin Inform.
+53.Ford C, English A, Sigman G. Confidential health careforadoles-
+2021;12(5):969–978
+cents: position paper of the Society for Adolescent Medicine.
+36.SokolR,AustinA,ChandlerC,etal.Screeningchildrenforsocial JournalofAdolescentHealth.2004;35(2):160–167
+determinantsof health: asystematicreview. Pediatrics. 2019;144(4):
+54.KatzAL,WebbSA,MacauleyRC,etal;CommitteeonBioethics.In-
+e20191622
+formed consent in decision-making in pediatric practice. Pediat-
+37.Schor EL; American Academy of Pediatrics, Task Force on the rics.2016;138(2):e20161485
+Family.Familypediatrics:reportoftheTaskForceontheFamily.
+55.Kuther TL. Medical decision-making and minors: issues of con-
+Pediatrics.2003;111(6Pt2):1541–1571
+sentandassent.Adolescence.2003;38(150):343–358
+38.CouncilonCommunityPediatrics.Povertyandchildhealthinthe
+56.Levy S, Siqueira LM, Ammerman SD, et al; Committee on Sub-
+UnitedStates.Pediatrics.2016;137(4):e20160339
+stanceAbuse.Testingfordrugsofabuseinchildrenandadoles-
+39.Healthy People 2030. Social determinants of health. Available at: cents.Pediatrics.2014;133(6):e1798–e1807
+https://health.gov/healthypeople/priority-areas/social-determinants-
+57.HornbergerLL,BreunerCC,etal;CommitteeonAdolescence.
+health.AccessedJuly11,2023
+Diagnosisofpregnancyandprovidingoptionscounselingfor
+40.Narayan A, Raphael J, Rattler T, Bocchini C. Social determinants theadolescentpatient.Pediatrics.2017;140(3):e20172273
+of health screening in the clinical setting. Available at: https://
+58.Hornberger LL; Committee on Adolescence. Options counseling
+www.texaschildrens.org/sites/default/files/uploads/documents/831
+for the pregnant adolescent patient. Pediatrics. 2017;140(3):
+76%20BRIEF%20Social%20Determinants%20of%20Health%20Policy
+e20172274
+%20Digital.pdf.AccessedJuly11,2023
+59.SharkoM,WilcoxL,HongMK,AnckerJS.Variabilityinadolescent
+41.Johnson KB, Lehmann CU; Council on Clinical Information Technol-
+portalprivacyfeatures:howtheuniqueprivacyneedsofthead-
+ogy of the AmericanAcademy of Pediatrics. Electronic prescribing
+olescent patient create a complex decision-making process. J
+inpediatrics:towardsaferandmoreeffectivemedicationmanage- AmMedInformAssoc.2018;25(8):1008–1017
+ment.Pediatrics.2013;131(4):e1350–e1356
+60.Pasternak RH, Alderman EM, English A. 21st Century Cures Act
+42.CDS Connect. Welcome to CDS connect. Available at: https://cds.
+ONC rule: implications for adolescent care and confidentiality
+ahrq.gov/cdsconnect.AccessedApril7,2022
+protections.Pediatrics.2023;151(Suppl1):e2022057267K
+43.CDS Hooks. CDS Hooks. Available at: https://cds-hooks.hl7.org/.
+61.Committee on Adolescent Health Care. ACOG committee opinion
+AccessedApril7,2022
+no.599:adolescentconfidentialityandelectronichealthrecords.
+44.Scharnweber C, Lau BD, Mollenkopf N, Thiemann DR, Veltri MA, ObstetGynecol.2014;123(5):1148–1150
+LehmannCU.Evaluationofmedicationdosealertsinpediatricin-
+62.Blythe MJ, Del Beccaro MA; Committee on Adolescence; Council
+patients.IntJMedInform.2013;82(8):676–683
+on Clinical and Information Technology. Standards for health in-
+45.Engle WA; American Academy of Pediatrics Committee on Fetus formation technology to ensure adolescent privacy. Pediatrics.
+andNewborn.Ageterminologyduringtheperinatalperiod.Pedi- 2012;130(5):987–990
+atrics.2004;114(5):1362–1364
+63.Swartz MK. Protecting the privacy rights of adolescents. J Pe-
+46.NationalHighBloodPressureEducationProgramWorkingGroup diatrHealthCare.2013;27(3):161
+on High Blood Pressure in Children andAdolescents. The fourth
+64.Anoshiravani A, Gaskin GL, Groshek MR, Kuelbs C, Longhurst CA.
+reportonthediagnosis,evaluation,andtreatmentofhighblood
+Special requirements for electronic medical records in adoles-
+pressure in children and adolescents. Pediatrics. 2004;114(2 centmedicine.JAdolescHealth.2012;51(5):409–414
+Suppl4thReport):555–576
+65.Steitz B, Cronin RM, Davis SE, Yan E, Jackson GP. Long-term pat-
+47.Tattersfield A, Cooper B. Lung function. Assessment and applica-
+ternsofpatientportaluseforpediatricpatientsatanacademic
+tion in medicine, 5th edition. Occup Environ Med. 1994;51(8): medicalcenter.ApplClinInform.2017;8(3):779–793
+576.2–576
+66.IpW,YangS,ParkerJ,etal.Assessmentofprevalenceofadoles-
+48.Schapiro NA, Mihaly LK. The 21st Century Cures Act and chal-
+cent patient portal account access by guardians. JAMA Netw
+lenges to adolescent confidentiality. J Pediatr Health Care. 2021;
+Open.2021;4(9):e2124733
+35(4):439–442
+67.HeathS. Balancing patient portal privacy and access for pediat-
+49.Committee on Pediatric Emergency Medicine and Committee on
+riccare.Availableat:https://patientengagementhit.com/features/
+Bioethics. Consent for emergency medical services for children
+balancing-patient-portal-privacy-and-access-for-pediatric-care. Ac-
+andadolescents.Pediatrics.2011;128(2):427–433
+cessedApril8,2022
+50.Society for Adolescent Medicine. Access to health care for ado-
+68.Bourgeois FC, Taylor PL, Emans SJ, Nigrin DJ, Mandl KD. Whose
+lescentsandyoungadults.JAdolescHealth.2004;35(4):342–344
+personal control? Creating private, personally controlled health
+51.Dickens BM, Cook RJ. Adolescentsand consent to treatment.Int recordsforpediatricandadolescentpatients.JAmMedInform
+JGynaecolObstet.2005;89(2):179–184 Assoc.2008;15(6):737–743
+PEDIATRICSVolume154,number4,October2024 11
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026
+
+69.Arvisais-AnhaltS,LauM,LehmannCU,etal.The21stCenturyCures 01/17/2012-31341/childrens-online-privacy-protection-rule. Accessed
+Actandmultiuserelectronichealthrecordaccess:potentialpitfalls March23,2023
+ofinformationrelease.JMedInternetRes.2022;24(2):e34085
+76.Meehan RA, Mon DT, Kelly KM, et al. Increasing EHR system us-
+70.American Academy of Pediatrics. Pediatric information blocking ability through standards: conformance criteria in the HL7 EHR-
+usecases.Availableat:https://www.aap.org/en/practice-management/ systemfunctionalmodel.JBiomedInform.2016;63:169–173
+health-information-technology/pediatric-information-blocking-use-cases/.
+77.Wald JS, Rizk S, Webb JR, et al. Children’s EHR Format Enhance-
+AccessedMarch23,2023
+ment:FinalRecommendationReport.AHRQPublication;2015
+71.American Academy of Pediatrics, Committee on Early Childhood,
+78.Mandel JC, Kreda DA, Mandl KD, Kohane IS, Ramoni RB. SMART
+Adoption, and Dependent Care. Health care of young children in
+fostercare.Pediatrics.2002;109(3):536–541 on FHIR: a standards-based, interoperable apps platform for
+electronic health records. J Am Med Inform Assoc. 2016;23(5):
+72.Jones VF, Schulte EE, Waite D; Council on Foster Care, Adoption,
+899–908
+andKinshipCare.Pediatricianguidanceinsupportingfamiliesof
+children who are adopted, fostered, or in kinship care. Pediat- 79.SMARTAppGallery.SMARThealthITproject.Availableat:https://
+rics.2020;146(6):e2020034629 apps.smarthealthit.org/apps.AccessedApril8,2022
+73.Fanaroff JM; Committee on Medical Liability and Risk Manage- 80.Bossens DM, Townsend NC, Sobey AJ. Learningtolearn with ac-
+ment.Consentbyproxyfornonurgentpediatriccare.Pediatrics. tiveadaptiveperception.NeuralNetw.2019;115:30–49
+2017;139(2):e20163911 81.SolomonidesAE,KoskiE,AtabakiSM,etal.DefiningAMIA’sartificial
+74.LiD,LiaoC.Incidentaldiscoveryofnonpaternityduringprenatal intelligenceprinciples.JAmMedInformAssoc.2022;29(4):585–591
+testingofgeneticdisease.FetalDiagnTher.2008;24(1):39–41
+82.Kemper AR, Uren RL, Clark SJ. Adoption of electronic health re-
+75.Federal Trade Commission. Children’s online privacy protection cords in primary care pediatric practices. Pediatrics. 2006;118(1):
+rule. Available at: https://www.federalregister.gov/documents/2013/ e20–e24
+12 FROMTHEAMERICANACADEMYOFPEDIATRICS
+Downloaded from http://publications.aap.org/pediatrics/article-pdf/154/4/e2024068509/1717386/peds.2024-068509.pdf
+by guest
+on 23 February 2026

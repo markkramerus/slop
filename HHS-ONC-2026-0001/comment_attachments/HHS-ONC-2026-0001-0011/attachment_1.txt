@@ -1,0 +1,305 @@
+Public Comment on Request for Information (RFI)
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care
+Federal Register Citation: 2025-23641 (90 FR 60108)
+Submitting Entity: EHY Consulting LLC
+Submitted by: Edward You
+Date: January 2026
+Opening statement
+This submission responds directly to each of the ten questions in the HHS Health Sector AI RFI
+and is structured to support cross-program review. Each response stands alone while also
+referencing related questions where system-level dependencies exist. The intent is not to
+recommend a single policy outcome, but to surface implementation realities, governance gaps,
+and second-order effects that emerge when AI systems are deployed within real clinical
+workflows.
+A workflow-to-entity crosswalk is included to clarify how responsibilities intersect across HHS
+StaffDivs and OpDivs and to help avoid gaps between policy intent and operational execution.
+EHY Consulting LLC respectfully submits these comments in alignment with the HHS Artificial
+Intelligence Strategy to support informed, non-prescriptive decision-making across the health
+sector. A consistent finding across AI deployments in clinical environments is that adoption and
+safety are determined less by model accuracy in controlled settings than by how AI systems
+interact with real-world clinical workflows, governance structures, data stewardship practices,
+procurement decisions, and learning feedback loops.
+Clinical AI functions as a socio-technical system: it shapes clinician behavior, redistributes
+responsibility, and generates compounding learning from data produced through routine
+operations. Accordingly, this submission answers each RFI question directly while cross-
+referencing related responses to keep system-level implications visible and to inform
+approaches to scaling clinical AI responsibly.
+HHS equities map (StaffDivs and OpDivs)
+Clinical AI adoption is inherently cross-cutting. The same AI-enabled workflow can engage
+multiple authorities and equities across HHS. A practical way to avoid gaps is to map
+responsibilities to the workflow itself.
+
+Workflow-to-entity crosswalk (illustrative)
+Workflow / decision point Primary HHS equities What success looks like
+(examples) (implementation)
+Clinical deployment and CMS (payment policy, quality Incentives reward
+payment incentives measures, demonstrations) measurable workflow value
+and outcomes, not superficial
+“AI presence”
+Health IT, interoperability, ASTP/ONC (health IT Standards enable safe
+data standards standards, interoperability integration and auditability;
+policy) interoperability does not
+imply unconstrained
+secondary use
+Privacy, patient rights, and OCR (HIPAA privacy/security Clear, enforceable
+enforcement enforcement and related boundaries on access, use,
+guidance) and disclosure; meaningful
+transparency and recourse
+Cybersecurity and national- CIO (enterprise security Security-by-design
+risk posture practices), ONS (national requirements are
+security risk and resilience enforceable; AI is treated as
+processes) part of critical clinical
+infrastructure
+International alignment, OGA (international Policies reconcile domestic
+standards, and data-sharing engagement, standards, safeguards with cross-border
+regimes agreements) standards and data-sharing
+realities
+Contract enforcement and Office of Acquisition / RFPs and contracts require
+vendor/subcontractor contracting functions (across auditability, learning
+controls HHS) controls, and secure
+operations; flow-down to
+subcontractors
+Safety of AI-enabled clinical FDA (device/SaMD, CDS Clear expectations for
+products and decision policy) validation, change control,
+support (where applicable) and post-market monitoring
+Evidence generation and AHRQ (evidence and Evaluation frameworks
+implementation science outcomes research) reflect real-world workflow
+effects and heterogeneous
+
+settings
+Public health integration CDC Defined boundaries between
+(where AI crosses into clinical and public health
+surveillance) uses; governance for
+secondary use
+Research and biomedical NIH Strong stewardship of
+data ecosystems (where clinical-research interfaces
+clinical AI relies on research and reuse pathways
+pipelines)
+Safety-net and underserved HRSA, IHS, SAMHSA Adoption pathways account
+delivery settings for resourcing constraints,
+equity, and operational
+realities
+Cross-cutting note: acquisition is the control plane that converts policy intent into enforceable
+obligations. Interoperability, cloud use, vendor access, and model-update practices are
+ultimately determined by contract terms, monitoring rights, and operational controls.
+Cross-cutting analytic lens: data, workflows, and learning
+Practical governance test for clinical AI deployments
+Use case and end-user clarity: identify the decision-maker, operator, and accountable party;
+specify the action taken because of the model output.
+Data lifecycle boundaries: define what data enters, what leaves, retention periods, and what is
+used for care delivery versus model improvement.
+Learning accumulation and sovereignty controls: specify whether operational data may be used
+for model improvement and under what constraints; treat derived artifacts (e.g., embeddings,
+fine-tunes, prompts, logs, telemetry) as governed outputs.
+Security posture and access paths: enforce identity, least privilege, logging, incident response,
+and subcontractor controls; define cloud and remote access defaults with audit rights.
+Bias introduction points and drift: identify where bias can enter (training data, workflow
+selection, labeling, clinician reliance, feedback loops) and require continuous monitoring and
+rollback.
+Across multiple clinical domains (including high-impact areas such as precision oncology and
+advanced therapies), the most durable advantage—and the most consequential vulnerability—
+
+often lies not in the AI model or the molecule, but in control over the learning system: the
+workflow-generated data, outcomes, failure modes, and process metadata that enable iterative
+optimization over time.
+Therefore, it is useful to distinguish:
+• Privacy: who can see my data.
+• Sovereignty: who determines what my data means and how much it is worth.
+• Security: who has access to my data and what they can do with it.
+Many governance approaches address privacy and baseline security, but do not explicitly govern
+learning accumulation (how data becomes compounding capability). In clinical AI, the latter
+increasingly determines long-run trust, competitiveness, and resilience.
+Responses to RFI questions (aligned to Federal Register ‘Specific
+Questions’)
+Each response below restates the Federal Register question verbatim (or with minimal
+formatting) and provides a direct answer. Cross-references are included where useful for
+synthesis across HHS teams.
+1. Biggest barriers to private sector innovation and adoption/use in clinical care
+Clinical AI frequently crosses mismatched risk frameworks (privacy, cybersecurity, clinical safety,
+enterprise risk, and vendor product risk). These frameworks do not align by default, and gaps
+emerge at their seams unless governance is explicitly integrated.
+Workflow misfit is the dominant barrier. AI systems that perform well in development can fail in
+practice when they add documentation burden, disrupt clinician cognitive flow, or create
+ambiguous responsibility at the point of care.
+Key barriers include:
+• Unclear accountability for AI-influenced decisions, especially when AI is adaptive or when
+vendor updates materially change behavior.
+• Trust gaps driven by opacity, inconsistent performance across subpopulations, and unclear
+post-deployment monitoring.
+• Data provenance and integration challenges (EHR heterogeneity, fragmented identifiers,
+incomplete documentation, variable labeling).
+• Operational and security constraints (network segmentation, device integration, patch
+management, identity and access management).
+• Procurement realities: contracts that do not specify auditability, model-update controls,
+data-use boundaries, or subcontractor constraints.
+See also: Q2, Q3, Q4, Q7, Q8.
+
+2. Regulatory, payment policy, or programmatic design changes; CFR citations
+where applicable
+Condition participation or incentives on auditability (minimum logs, update provenance, and
+model-change notification).
+Make data-use boundaries enforceable, clarifying whether operational data may be used for
+model improvement and under what authorizations.
+Across regulation, payment policy, and program design, the most leverage comes from making
+governance and monitoring enforceable at the workflow level while avoiding incentives for
+superficial AI adoption.
+Priority areas for HHS to consider include:
+• CMS-aligned incentives that reward measurable workflow value and outcomes rather than
+mere AI integration (see Q6).
+• Programmatic designs that require lifecycle governance (monitoring, drift management,
+change control) as a condition of participation in demonstrations, quality programs, or
+certifications (see Q4 and Q5).
+• Clear, enforceable expectations for data stewardship, auditability, and
+vendor/subcontractor controls, implemented through acquisition and contracting
+requirements where feasible (see Q3 and Q5).
+• Interoperability policies that distinguish data exchange for care delivery from secondary use
+for model training and learning accumulation (see Q8).
+See also: If HHS seeks specific CFR citations, a targeted follow-on request scoped to particular
+programs (e.g., Medicare conditions of participation, quality reporting, certification programs)
+would enable more precise citations by commenters.
+3. Non-medical devices: novel legal and implementation issues; HHS role
+Governance and contracts should explicitly cover workflow metadata and derived artifacts
+(prompts, embeddings, fine-tunes, telemetry), which often represent the primary signals of
+value and intent rather than mere exhaust.
+For non-medical device AI used in clinical care (e.g., workflow, triage, documentation,
+scheduling, or administrative decision support), key issues include liability allocation,
+indemnification, privacy/security obligations, and governance of adaptive behavior post-
+deployment.
+Novel legal and implementation issues commonly arise from:
+• Ambiguity in responsibility when AI influences clinician behavior or care pathways without
+being a regulated medical device.
+
+• Contracting and indemnification gaps that fail to define change control, performance
+representations, or audit rights.
+• Privacy/security frameworks that govern access and disclosure, but do not explicitly govern
+learning accumulation or model improvement using operational clinical data.
+• Third-party and subcontractor risk (cloud hosting, analytics, support), especially when access
+paths are opaque.
+See also: HHS can help by publishing model contract clauses and minimum auditability/lifecycle
+governance expectations usable by providers and payers, aligned across OCR, ASTP/ONC,
+CIO/ONS, and CMS.
+4. Non-medical devices: evaluation methods pre- and post-deployment;
+mechanisms
+Evaluate impact on clinician behavior, including automation bias, alert fatigue, de-skilling, and
+reliance shifts over time.
+The most promising evaluation approaches combine pre-deployment validation with post-
+deployment monitoring that is sensitive to workflow effects, site-to-site variation, and
+distribution shift.
+Recommended evaluation components include:
+• Human-centered workflow evaluation (cognitive load, alert fatigue, override rates, time-to-
+task, downstream workflow changes).
+• Robustness and stress testing across settings, subpopulations, and data quality conditions.
+• Post-deployment drift detection and performance monitoring linked to outcomes where
+feasible.
+• Change-control governance for model updates, including criteria for rollback.
+See also: HHS can support these via contracts, grants, cooperative agreements, and prize
+competitions (often with AHRQ/NIH/CMS partners), prioritizing monitoring, auditability, and
+workflow-aware evaluation methods.
+5. Support for accreditation, certification, testing, and credentialing
+Establish a minimum governance checklist for certification programs, including update control,
+monitoring, disclosure of data use for training, and incident response.
+HHS can amplify private-sector accreditation, certification, industry-driven testing, and
+credentialing by helping establish baseline expectations for trustworthy clinical AI that are
+measurable and auditable.
+Support could include:
+
+• Reference expectations for auditability (logging, traceability of inputs/outputs, update
+history) and minimum cybersecurity posture for clinical AI deployments.
+• Credentialing frameworks for AI governance roles within health care organizations (see Q7).
+• Model contract language and procurement checklists that incorporate security-by-design
+and lifecycle monitoring requirements (see Q3 and Q4).
+• Public-private benchmarking and validation resources, including shared evaluation protocols
+and testbeds (see Q8 and Q10).
+6. Where AI met/exceeded vs fell short; novel tools with greatest potential
+Distinguish value created for patients and providers from value transferred to vendors through
+learning accumulation from operational data.
+AI tends to meet or exceed expectations when it is tightly coupled to well-defined workflows
+with clear success metrics (e.g., reducing administrative burden, improving triage consistency,
+accelerating access, or reducing preventable harm). It tends to fall short when deployed as a
+generic overlay without governance, monitoring, or integration into decision rights.
+High-potential tool categories include:
+• Workflow-aware clinical documentation support that measurably reduces administrative
+burden without introducing silent errors.
+• Risk stratification and triage tools with clear accountability and monitoring, especially in
+resource-constrained settings.
+• Tools that surface quality insights by analyzing workflow metadata and outcomes (not only
+clinical text).
+• Patient-facing navigation and care coordination supports that improve adherence and
+reduce friction across care settings (see Q9).
+See also: To accelerate learning on ‘what works,’ HHS can support standardized reporting and
+privacy-preserving benchmarking (see Q10).
+7. Organizational roles and administrative hurdles for adoption
+Adoption decisions are typically shaped by clinical leadership, operational leadership,
+compliance/privacy, IT/security leadership, and (increasingly) AI governance committees or
+enterprise risk management functions.
+Primary administrative hurdles include:
+• Unclear ownership for AI lifecycle management and monitoring across clinical, IT, and
+compliance functions.
+• Procurement bottlenecks and contract limitations that impede auditability or change
+control.
+• Data access and interoperability friction across EHRs and ancillary systems (see Q8).
+• Training, credentialing, and change management requirements for clinicians and staff.
+
+• Security approvals and network integration constraints, especially where tools require cloud
+connectivity.
+See also: This is why HHS-wide coordination across CMS, ASTP/ONC, OCR, CIO/ONS, OGA, and
+acquisition functions is essential.
+8. Interoperability opportunities; data types, standards, and benchmarking
+tools
+Interoperability expands the attack surface and secondary-use risk unless paired with access
+control, provenance, and enforceable training boundaries.
+Enhanced interoperability can widen market opportunities and accelerate AI where it improves
+data provenance, reduces integration friction, and enables benchmarking—while still respecting
+governance boundaries on secondary use and learning accumulation.
+Priority opportunities include:
+• Standardized representations of clinical workflows and outcomes (including
+provenance/lineage metadata).
+• Consistent patient identity and record linkage across care settings.
+• Data standards and benchmarking tools that support monitoring and post-deployment
+evaluation (see Q4).
+• Mechanisms for privacy-preserving benchmarking and federated evaluation where direct
+pooling is impractical.
+See also: Interoperability policy should explicitly distinguish exchange for care delivery from
+secondary use for model training and learning accumulation.
+9. Patient/caregiver desired challenges and concerns
+Patients increasingly want clarity not only on who sees their data, but who benefits from
+derived learning and what recourse exists.
+Patients and caregivers often prioritize improvements that reduce friction, shorten wait times,
+improve communication, and increase transparency about decisions affecting care access and
+quality.
+Common concerns include:
+• Privacy and security of sensitive health information, including secondary uses beyond direct
+care.
+• Unclear accountability when AI influences clinical decisions or access to services.
+• Bias and inequitable treatment, especially when monitoring and recourse mechanisms are
+weak.
+
+• Reduced human agency or difficulty obtaining explanations, corrections, and escalation
+pathways.
+See also: These concerns reinforce the need for lifecycle governance, auditability, and clear
+decision rights (see Q3–Q5).
+10. AI research priorities; literature on impact and costs/benefits/transfers
+Prioritize methods to measure learning accumulation and value transfer across stakeholders,
+and governance models that integrate privacy, sovereignty, and security operationally.
+HHS research priorities that would accelerate responsible adoption include implementation
+science for clinical AI, workflow-aware evaluation methods, and scalable approaches to
+monitoring and governance.
+Priority research areas include:
+• Methods for post-deployment monitoring, drift detection, and change control in
+heterogeneous clinical settings.
+• Human-centered evaluation methods that quantify workflow impact and clinician reliance
+over time.
+• Privacy-preserving benchmarking, federated evaluation, and secure data-sharing
+architectures.
+• Governance models for adaptive systems that integrate privacy, sovereignty, and security
+considerations.
+See also: HHS can help curate and translate literature into practical evaluation playbooks and
+clarify how costs/benefits/value transfer are measured across providers, payers, vendors, and
+patients.
+Closing
+EHY Consulting LLC appreciates the opportunity to contribute to this RFI and supports HHS’s
+efforts to advance responsible, effective, and trustworthy adoption of AI in clinical care. These
+comments are intended to be practical and implementable, highlighting workflow-level realities
+and second-order effects so that accelerated adoption does not outpace governance of safety,
+trust, and resilience. We welcome continued dialogue to clarify implementation challenges and
+governance considerations as policy and practice evolve.

@@ -87,9 +87,28 @@ def load_comment_paths_from_csv(csv_path: Path, base_dir: Path | None = None) ->
             att_path = (row.get("attachment_path") or "").strip()
             if label == "comment" and att_path:
                 p = Path(att_path)
-                if base_dir and not p.is_absolute():
-                    p = base_dir / p
-                comment_paths.add(p.resolve())
+                if p.is_absolute():
+                    # Already absolute — use directly.
+                    comment_paths.add(p.resolve())
+                elif base_dir:
+                    # Relative path: check whether it already starts with the
+                    # base_dir prefix BEFORE joining.  The CSV stores paths like
+                    # "HHS-ONC-2026-0001\comment_attachments\...\file.pdf" which
+                    # are relative to the repo root, not to base_dir.  Naively
+                    # joining base_dir onto such a path doubles the prefix.
+                    resolved_base = Path(base_dir).resolve()
+                    resolved_p = p.resolve()
+                    try:
+                        resolved_p.relative_to(resolved_base)
+                        # p already resolves to somewhere under base_dir —
+                        # use it directly without joining.
+                        comment_paths.add(resolved_p)
+                    except ValueError:
+                        # p is genuinely relative to base_dir (e.g. just
+                        # "HHS-ONC-2026-0001-0004/attachment_1.pdf").
+                        comment_paths.add((Path(base_dir) / p).resolve())
+                else:
+                    comment_paths.add(p.resolve())
 
     logger.info(f"Loaded {len(comment_paths)} comment paths from {csv_path}")
     return comment_paths

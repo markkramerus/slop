@@ -1,0 +1,285 @@
+Christi J. Braun, Esq.
+christi.braun@ikshealth.com
+February 23, 2026
+Via Federal eRulemaking Portal:
+Assistant Secretary for Technology Policy
+Office of the National Coordinator for Health Information Technology
+Attn: HHS Health Sector AI RFI
+Mary E. Switzer Building
+Mail Stop: 7033A
+330 C Street SW
+Washington, DC 20201
+Re: HHS Health Sector Artificial Intelligence Request for Information
+Dear Assistant Secretary for Technology Policy,
+On December 4, 2025, the Department of Health and Human Services (HHS) issued the HHS
+Artificial Intelligence (AI) Strategy in response to OMB Memorandum 25-21. As the Department seeks
+public feedback to establish a forward-leaning, industry-supportive approach to AI in clinical care,
+Inventurus Knowledge Solutions, Inc. (d/b/a IKS Health) is pleased to provide our experience-based
+feedback.
+IKS Health is a healthcare solutions partner of health systems and physician organizations with
+nearly two decades of experience supporting clinical, operational, and revenue cycle performance across
+the care continuum. We improve revenue performance, enhance patient access and engagement, relieve
+administrative burden for care teams, and advance sustainable care delivery under both fee-for-service and
+value-based payment models. Our leadership team includes former health system executives and practicing
+clinicians with substantial experience in healthcare operations, clinical workflow design, and health data
+governance. This operational perspective informs how we develop, evaluate, and deploy Artificial
+Intelligence (AI) within complex delivery environments, integrating advanced automation with structured
+human oversight to promote safety, accountability, and demonstrable impact. Our ultimate goal, which AI
+makes possible, is to eliminate the “chores” that increasingly burden medical professionals, allowing them
+to focus on their core mission: care delivery.
+In response to HHS’s Request for Information regarding AI and the American healthcare system,
+we submit the following feedback to inform HHS’s strategy across regulation, reimbursement and research
+and development. Our recommendations center on dismantling data silos, modernizing regulatory
+frameworks, and aligning payment policies to ensure that AI serves as a tool for clinical excellence.
+1. What are the biggest barriers to private sector innovation in AI for health care and its adoption
+and use in clinical care?
+While issues of ethics and liability are frequently debated, the single greatest barrier to the adoption
+and scaling of AI is the persistent lack of access to clinical data stored in electronic health records (EHRs),
+practice management systems, remote patient monitoring, and population health technologies. AI presents
+a unique opportunity to fundamentally re-design the EHR experience itself, shifting away from
+8951 Cypress Waters Blvd, Suite 100, Coppell, TX 7501 9
+
+transactional billing and siloed documentation systems that prioritize physician time for documentation
+over patient care. By integrating AI into platforms that orchestrate relationships and automate non-core
+tasks, we can allow physicians to return to their primary role, but this evolution is entirely dependent on
+AI’s ability to read from and write to the EHR without vendor-imposed friction.
+For third-party applications to communicate with an EHR, the vendor must provide a functional
+application programming interface (API), which acts as a secure “doorway” between the EHR and the
+applications. Without a functional API, the EHR acts as a “walled garden,” trapping data inside and
+requiring manual, “click-heavy” human intervention. For an AI tool to effectively support a physician’s
+workflow, a seamless API connection is required for reading from and writing to the EHR.
+IKS Health’s ambient AI scribe solutions—Scribble Now, Scribble Swift, and Scribble Pro—
+illustrate this technical necessity. Through an API, the Scribble app can instantly query the patient’s medical
+history, current medications, and previous diagnoses. For ambient scribing, reading the longitudinal record
+ensures the AI understands the difference between a new acute symptom and a long-standing chronic
+condition, significantly reducing the risk of “hallucinations.” Once the Scribble app generates a clinical
+note, it must have the ability to write back to the EHR, or the clinician will be forced to copy and paste text,
+which maintains, rather than eliminates, the documentation chore. A robust, standardized API allows the
+Scribble app to write the clinical notes—in real time—directly into the correct EHR fields for the clinician
+to review and finalize.
+The challenge is not just the existence of APIs, but their variability. Many EHR vendors utilize
+proprietary, rather than standardized, APIs that force app developers to build unique connections for every
+hospital system and physician organization, a process that is cost-prohibitive for smaller innovators. The
+Health Level Seven (HL7®) Fast Healthcare Interoperability Resources (FHIR®) standard was intended to
+be the universal language of health data, allowing vendors to securely share information through standard
+HTTP operations and enabling health care providers and systems to get a more complete view of their
+patients and business processes. FHIR provides the necessary structure that allows AI to navigate through
+vast datasets consistently and efficiently. By utilizing the same “RESTful” architecture that enables global
+entities like Google and Amazon to exchange data over the internet, FHIR brings healthcare into the modern
+digital era.
+Despite the progress intended by the 21st Century Cures Act and the Cures Act Final Rule, which
+included the adoption a suite of FHIR-based requirements in the Health IT Certification Program and
+mandated that certified EHRs support FHIR APIs by the end of 2022, we are currently seeing a period of
+lax compliance regarding the Office of the National Coordinator for Health IT (ONC) requirements. Many
+EHR vendors have implemented FHIR inconsistently or in ways that maintain proprietary silos. By
+enforcing a standardized FHIR API, the Assistant Secretary for Technology Policy (ASTP)/ONC can
+ensure that an AI developer can build a tool once and deploy it across the entire healthcare ecosystem. This
+“plug-and-play” capability is the only way to scale AI tools that can meaningfully reduce clinician burnout
+and lower costs across the American healthcare system.
+In the Health Data, Technology, and Interoperability: ASTP/ONC Deregulatory Actions to Unleash
+Prosperity (HTI-5) Proposed Rule, ASTP/ONC recognizes that “[t]he transition to a FHIR-based API
+ecosystem is a strategic imperative”. While the proposed rule removes non-FHIR-based certification
+criteria, it takes no steps to require support for more updated criteria. ASTP/ONC must mandate and enforce
+specific technical standards that ensure data is not only available but “AI-ready.” Specifically, ASTP/ONC
+should require full adherence to the HL7® FHIR® Bulk Data Access (Flat FHIR) specification (v1.0.1 or
+higher) and HL7®’s FHIR US Core Implementation Guide (v5.0.1 or higher). These standards enable the
+standardized export of large-scale population datasets using NDJSON (Newline Delimited JSON), which
+2
+
+is essential for training robust AI models. Without this “bulk” capability, AI is fed data one patient at a
+time, which is insufficient for identifying systemic care gaps or performing population-level analytics.
+We support ASTP/ONC’s proposed revisions in HTI-5 to Part 171 to clarify that interfering with
+AI accessing EHI is information blocking. In particular, we agree that modifying the definitions of “access,”
+“exchange,” and “use” under 45 CFR §171.102 is necessary and appropriate and support retiring the “third
+party seeking modification use” condition of the Infeasibility Exception (45 CFR §171.204(a)(3)). We also
+agree with the removal of the Trusted Exchange Framework and Common Agreement™ (TEFCA™)
+Manner Exception (45 CFR §171.403).
+We note, however, that HHS cannot stop at rule making. It needs to prosecute information blocking
+and levy meaningful fines.
+2. What regulatory, payment policy, or programmatic design changes should HHS prioritize to
+incentivize the effective use of AI in clinical care and why? What HHS regulations, policies, or
+programs could be revisited to augment your ability to develop or use AI in clinical care? Please
+provide specific changes and applicable Code of Federal Regulations citations.
+To effectively incentivize AI adoption, HHS must address the misaligned regulatory and payment
+frameworks that currently penalize innovation. Our existing systems—built for a manual, encounter-based
+era—frequently obstruct the data-rich, longitudinal nature of AI-driven medicine.
+A primary bottleneck is the “minimum necessary” standard (45 CFR § 164.502(b)) within the
+HIPAA Privacy Rule, which is often interpreted to require significant restrictions on data use and
+access. Clarifying this standard is essential because modern clinical AI models require massive, high-
+fidelity datasets to ensure clinical safety and statistical reliability. HHS could issue guidance specifying
+that, for the purposes of training and validating clinical AI, a comprehensive longitudinal view of the patient
+is the baseline requirement. We recommend that HHS issue guidance that “bulk” access is the actual
+“minimum necessary” to achieve a safe and effective AI tool or revise 45 CFR § 164.506 to clarify that
+“health care operations” includes AI validation and includes the right to access comprehensive, longitudinal
+datasets.
+Furthermore, the requirement for specific patient consent for uses beyond treatment, payment, or
+operations (45 CFR § 164.508) creates friction for vital “secondary” uses like AI safety and bias monitoring.
+HHS could establish a new “AI-Ready De-identification Standard” refining the existing safe harbor
+methods under 45 CFR § 164.514 to allow for the use of “Limited Data Sets” that retain critical temporal
+and geographic information that are currently restricted but vital for AI to track disease progression.
+Scaling AI also requires moving away from manual data extraction. As noted above, ASTP/ONC
+should mandate HL7® FHIR® Bulk Data Access (v1.0.1+) to facilitate the export of population-level
+datasets in NDJSON format. This should be supported by the US Core Implementation Guide (v5.0.1+),
+ensuring an AI model built for one health system works in another without reconfiguration. Additionally,
+the SMART on FHIR Framework must be the standard for “plug-and-play” AI apps, allowing tools like
+ambient listening to integrate directly into the physician workflow without vendor-specific barriers.
+From a reimbursement standpoint, we must avoid the “Telehealth Trap,” where productivity gains
+from technology are used as a justification for immediate fee schedule cuts. When telehealth scaled,
+providers faced automatic reimbursement decreases under the assumption that cost-savings should be
+passed directly to the payers. HHS should prioritize a “Value-Preservation” payment model. If an AI tool
+reduces documentation time, CMS should not respond by simply lowering the Work Relative Value Units
+3
+
+(RVUs) for those services. We need a commitment that productivity gains realized through AI will be
+shared with the providers who invest in these technologies.
+The most profound shift required is a move away from our current per-encounter payment model
+toward population-based and outcome-based payments, such as via 42 CFR Part 414, Subpart O (the
+Quality Payment Program). As long as the financial “engine” of a hospital is built on the volume of visits,
+AI tools that prevent visits will be seen as a financial liability. We recommend 42 CFR §414.1375 (Quality
+Category) be updated to explicitly permit and reward “digital quality measures” (dQMs) that pull directly
+from AI-filtered data, reducing the manual “chart-chase” for staff and physicians. By aligning technical
+standards with a refreshed MIPS incentive structure, we can ensure that AI restores the clinician-patient
+relationship and shifts the focus toward lasting health outcomes.
+3. For non-medical devices, we understand that use of AI in clinical care may raise novel legal and
+implementation issues that challenge existing governance and accountability structures (e.g., relating
+to liability, indemnification, privacy, and security). What novel legal and implementation issues exist
+and what role, if any, should HHS play to help address them?
+While the question specifically focuses on “non-medical devices,” we want to acknowledge that a
+significant implementation barrier and administrative hurdle that stalls deployment of AI remains the “gray
+zone” of what constitutes “Software as a Medical Device” (SaMD) subject to FDA regulation under 21
+CFR § 860. While the Cures Act excluded some clinical decision support software from the definition of a
+medical device, current ambiguity makes it unclear if a novel AI application, particularly one involving
+predictive analytics or providing a differential diagnosis based on pattern recognition, is considered SaMD.
+This “gray zone” creates a culture of risk aversion, as health systems fear the legal and compliance
+ramifications of deploying unregulated software that may later be categorized as a medical device. HHS
+should clarify whether, if software output “drives” clinical action and the logic remains “opaque”—
+meaning the physician cannot fully verify the underlying reasoning—it should be classified as SaMD.
+Even when a tool requires regulatory oversight, premarket review cycles are incompatible with the
+rapid iterative nature of AI software. A model that is clinically sound today may be based on data that
+becomes obsolete during a twelve-month review period. Without a modernized, fast-track “process
+validation” pathway at the FDA, regulatory bottlenecks will continue to stifle innovative care.
+In addressing the governance and accountability of non-medical device AI, HHS should adopt a
+policy of “Augmented Intelligence,” where the physician remains the “final click” and ultimate authority.
+However, to prevent “automation bias,” the government must provide specific guardrails that ensure
+clinicians do not over-rely on AI outputs.
+If we are to have widespread adoption of AI, accountability cannot rest solely on the clinician. If a
+clinician follows the standard of care but is misled by an AI “hallucination,” the liability should shift. We
+need a dual-accountability framework where physicians are responsible for clinical application, while AI
+developers are responsible for structural failures, such as data-drift or hallucinations that a reasonable
+clinician could not have detected. To codify this, HHS should update 21 CFR §820 (Quality System
+Regulation) to include “AI hallucination monitoring” and “bias testing” as mandatory design controls. HHS
+should also clarify 42 CFR § 482 (Conditions of Participation) to require that hospitals establish a “Clinical
+AI Governance Committee.”
+4
+
+4. For non-medical devices, what are the most promising AI evaluation methods (pre- and post-
+deployment), metrics, robustness testing, and other workflow and human-centered evaluation
+methods for clinical care? Should HHS further support these processes? If so, which mechanisms
+would be most impactful (e.g., contracts, grants, cooperative agreements, and/or prize competitions)?
+HHS must move beyond static validation and adopt a “Human-in-the-Loop” (HITL) philosophy.
+This approach prioritizes real-world performance over laboratory accuracy. By treating AI evaluation as a
+continuous clinical audit, we can implement a lifecycle approach where pre-deployment adversarial testing
+identifies “hallucination” risks and post-deployment automated discrepancy checks flag outputs that
+diverge from human consensus. Shifting focus to human-centered metrics, such as “Intervention Accuracy,”
+allows us to measure how often an expert agrees with the AI.
+HHS should leverage the authorities granted by the One Big Beautiful Bill Act (Public Law 119-
+21) to catalyze this innovation. Specifically, the Rural Health Transformation (RHT) Program provides a
+prime opportunity to fund “AI-Human Teams” that help rural generalists practice at the top of their license.
+These cooperative agreements can be supplemented by prize competitions for clinical reasoning, modeled
+after the successful ARPA-H PARADIGM program, to incentivize “rugged” AI tools capable of
+maintaining accuracy in resource-constrained environments. Additionally, utilizing the framework of the
+AI in Medical Education Act, HRSA can provide educational grants to train the next generation of
+physicians to oversee these tools, specifically to close care disparities in minority communities.
+The most impactful move HHS can make is a CMMI Demonstration Project that shifts to outcome-
+aligned payments based on a patient’s current health status and longitudinal outcomes. Rewarding the
+prevention of acute events through AI’s predictive power aligns the financial success of a hospital or
+physician with the actual health of the community. This strategy directly supports Pillars 3 and 5 of the
+HHS AI Strategy (December 2025).
+5. How can HHS best support private sector activities (e.g., accreditation, certification, industry-
+driven testing, and credentialing) to promote innovative and effective AI use in clinical care?
+To foster a robust ecosystem for clinical AI, HHS must move toward a policy of active enablement.
+As noted above, the ONC Health IT Certification Program (45 CFR Part 170) should prioritize data
+accessibility as a core requirement for certification.
+To bridge the gap between private innovation and public safety, HHS could establish a Federally
+Qualified National Patient Database. By leveraging HL7® FHIR® standards, this repository could provide
+de-identified, population-level datasets that preserve clinical integrity while protecting individual privacy.
+Access to this database should be offered to developers and researchers through a subsidized, affordable
+fee structure, ensuring that American ingenuity is not sidelined by the prohibitive costs of data acquisition
+currently controlled by a few dominant firms.
+As the market for clinical AI grows, both providers and patients need a reliable way to verify the
+credibility of new tools. Rather than a rigid federal mandate, HHS should facilitate a Public-Private
+Partnership (PPP) to create a voluntary certification program for AI application developers. This model of
+co-regulation would allow industry leaders to participate in setting performance and safety standards,
+incorporating globally recognized frameworks, like ISO/IEC 42001 for AI Management Systems. Such a
+certification would serve as a “seal of trust,” signaling that a vendor adheres to rigorous self-regulatory
+standards and ethical design principles.
+Finally, we must establish a clear legal baseline for the digital age: EHR companies are stewards
+of data, not owners. HHS should issue definitive guidance or update 45 CFR §164 to clarify that patients
+5
+
+own their data. Under this principle, EHR vendors must be prohibited from claiming intellectual property
+rights over any AI product derived from patient data processed within their software. We need to ensure
+that medical progress remains a shared human benefit.
+6. Where have AI tools deployed in clinical care met or exceeded performance and cost expectations
+and where have they fallen short? What kinds of novel AI tools would have the greatest potential to
+improve health care outcomes, give new insights on quality, and help reduce costs?
+We are still in the nascent stages of AI deployment, so evidence of exceptional performance is
+currently limited to specific, controlled-use cases rather than systemic healthcare transformation. Despite
+this early stage, AI shows significant promise in disease prevention, closing persistent gaps in care, and
+reducing hospital readmissions. Perhaps most immediately, AI is effectively reducing "pajama time"—the
+time physicians spend after-hours on documentation—by automating clinical scribing and streamlining data
+retrieval for quality reporting.
+We have found that, where well-governed data is highly available with full clinical context, AI is
+remarkably cost-effective to develop and implement. Conversely, AI has consistently underperformed
+when developed as a “proof-of-concept” on limited or siloed data, as performance often collapses upon
+introduction to a live clinical workflow.
+The greatest potential for novel AI lies in its ability to act as a "great equalizer" for care delivery.
+AI could function like a clinical “Siri” or “Alexa” to triage patients to the appropriate level of care,
+significantly reducing the burden on overcrowded emergency departments. Additionally, AI tools with
+access to longitudinal records for large populations can provide treatment insights that are currently
+impossible for humans to synthesize. This is vital for rare diseases, where AI can identify "patients like me"
+and guide physicians toward specific tests and treatments, reducing both the time to diagnosis and the cost
+of care.
+7. Which role(s), decision maker(s), or governing bodies within health care organizations have the
+most influence on the adoption of AI for clinical care? What are the primary administrative hurdles
+to the adoption of AI in clinical care?
+In addressing the governance of AI within healthcare organizations, it is critical to distinguish
+between those who champion the technology and those who authorize its procurement. Within most health
+systems, physician-led committees—often structured as Clinical Technology Councils or AI Oversight
+Boards—exert the most significant influence on adoption. These clinicians are the primary arbiters of a
+tool's clinical validity, safety, and workflow compatibility. While hospital executives and Chief Information
+Officers typically hold the ultimate “purchasing” authority, they rarely move forward without a formal
+endorsement from these physician leaders, who ensure the technology serves as augmented intelligence,
+rather than an administrative burden.
+8. Where would enhanced interoperability widen market opportunities, fuel research, and accelerate
+the development of AI for clinical care? Please consider specific data types, data standards, and
+benchmarking tools.
+As explained in the answer to Question 1, interoperability, enabled through implementation of
+HL7® FHIR®, is the indispensable bridge that allows AI to move beyond theoretical analysis into
+meaningful, frontline care. For AI to truly transform the clinical landscape, it must have the capability to
+read directly from the EHR, capture the patient’s current state in real-time, and execute the "chores," such
+as writing care notes, supporting the creation of complex plans of care, and managing prescription refills.
+6
+
+By automating these administrative burdens, we allow physicians to return their focus to the patient,
+restoring the human element of medicine.
+Furthermore, to fuel research and large-scale model development, HL7® FHIR® Bulk Data Access
+(v1.0.1+) must be made universally available. Accessing data patient-by-patient is insufficient for the
+training and benchmarking of sophisticated AI; we require the ability to export population-level datasets to
+identify trends and validate clinical interventions at scale.
+Concluding Recommendations
+To facilitate innovation in AI, ASTP/ONC must enforce a standardized FHIR API and mandate
+and enforce specific technical standards like HL7® FHIR® Bulk Data Access (v1.0.1 or higher) and the
+FHIR® US Core Implementation Guide (v5.0.1 or higher). Further, HHS must issue guidance on the
+“minimum necessary” standard and ensure access to bulk data is permissible under HIPAA. By aligning
+technical standards with modernized payment and regulatory structures, HHS can ensure AI acts as a
+catalyst for clinician wellness and superior patient care.
+We appreciate the opportunity to respond to this Request for Information and stand ready to answer
+any questions. Given the complexities of integrating AI with healthcare workflows, IKS Health welcomes
+the opportunity to provide your staff with a technical briefing. We are also happy to facilitate a follow-up
+conversation with your policy team to discuss how a dual-accountability framework can be implemented
+to protect both patients and clinicians.
+Sincerely,
+CHRISTI J. BRAUN
+Chief Legal & Compliance Officer
+7

@@ -1,0 +1,429 @@
+NOETED
+Public Comment — Request for Information
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care
+Docket No. HHS-ONC-2026-0001 | Submitted February 2026
+Submitted by: About NOETED:
+Keith “Duv” Williams AI-powered healthcare compliance intelligence platform. Member, NVIDIA
+Founder & CEO, Inception Program. Building centralized regulatory intelligence infrastructure
+NOETED for U.S. healthcare organizations.
+duv@noeted.com |
+noeted.ai
+Redding, California
+Preamble
+NOETED is an AI‑enabled healthcare compliance intelligence platform headquartered in California. We
+are building what U.S. healthcare lacks today: a reliable regulatory intelligence layer that continuously
+monitors, aggregates, and connects compliance requirements from federal agencies (CMS, OIG, FDA,
+SAMHSA, ONC), state health departments, and regional regulators, and translates those signals into
+actionable guidance for payers and providers.
+Our perspective on this RFI reflects two things: (1) direct experience developing AI systems that must
+operate inside the U.S. healthcare regulatory environment, and (2) hands‑on attempts to
+programmatically consume federal and state regulatory data for large health systems, plans, and
+safety‑net providers.
+Across all ten questions, we return to a single, solvable root cause: the lack of modern, standardized
+regulatory data infrastructure. Today, many APIs, databases, and publication systems for healthcare
+rules are fragmented, inconsistently maintained, or simply absent. This forces organizations into
+manual monitoring, slows responsible AI adoption, and ultimately harms patients when preventable
+compliance failures disrupt care.
+We therefore focus our recommendations on a sequenced approach: (1) modernize regulatory data
+infrastructure; (2) standardize regulatory data formats; (3) embed regulatory intelligence in certification,
+payment, and safe‑harbor frameworks; and (4) fund the research needed to evaluate AI systems that
+depend on this infrastructure. NOETED is building a complementary private‑sector layer on top of such
+an infrastructure, and we are eager to partner with ONC and HHS so that public and private efforts
+reinforce each other.
+
+Q1 What are the biggest barriers to private sector innovation in AI for health care and its
+adoption and use in clinical care?
+NOETED Response
+From NOETED’s experience, four barriers consistently slow responsible AI innovation and adoption in
+clinical care:
+Regulatory fragmentation and limited machine‑readability.
+AI developers and health systems must comply with requirements from CMS, OIG, FDA, ONC, state
+regulators, and others. These rules are published through heterogeneous channels (Federal Register,
+PDFs, web pages, listservs) with no unified, machine‑readable structure. For many organizations—
+especially FQHCs, small hospitals, and regional plans—this makes it practically impossible to maintain
+a current, organization‑wide view of “what the rules actually are,” which in turn makes it risky to deploy
+AI at scale.
+Unclear and inconsistent reimbursement for AI‑enabled care.
+In the absence of durable, technology‑neutral payment pathways for AI‑assisted services, investments
+are skewed toward a narrow set of large systems and high‑margin use cases. Smaller and rural
+providers, who could benefit disproportionately from AI support, are often unable to make a business
+case for adoption.
+Liability ambiguity for AI‑assisted decisions.
+Existing frameworks do not clearly allocate responsibility among AI vendors, deploying organizations,
+clinicians, and data suppliers when AI contributions are involved in clinical decisions. This ambiguity
+encourages risk‑averse organizations to constrain AI to low‑stakes workflows, even where carefully
+governed AI could materially improve safety, quality, and equity.
+Regulatory data infrastructure that lags behind clinical data infrastructure.
+Substantial progress has been made on clinical and administrative data interoperability. By contrast,
+regulatory data—conditions of participation, coverage rules, enforcement guidance—is often published
+through APIs that are undocumented or deprecated, datasets that lag real‑time changes, and formats
+that vary widely across agencies. As an AI compliance platform, NOETED encounters this daily: we
+spend disproportionate effort normalizing and validating public regulatory data that should already be
+available in standardized, machine‑readable form. This raises costs, limits innovation, and leaves
+smaller organizations unable to automate compliance monitoring at all.
+HHS can have outsized impact by treating regulatory data infrastructure with the same seriousness as
+clinical data infrastructure—because AI cannot be safe, equitable, or scalable if health care
+organizations cannot reliably know the rules AI‑assisted workflows must follow.
+
+Q2 What regulatory, payment policy, or programmatic design changes should HHS
+prioritize to incentivize the effective use of AI in clinical care? What HHS regulations,
+policies, or programs could be revisited? Please provide specific changes and
+applicable CFR citations.
+NOETED Response
+NOETED recommends a sequenced set of actions that align with HHS’s goals for safe, equitable
+AI in clinical care:
+1. Modernize and standardize regulatory data publication across HHS.
+Direct CMS, OIG, FDA, SAMHSA, ONC and related entities to publish regulatory requirements,
+guidance, and change notices through maintained, documented, versioned APIs with common schema
+and metadata (effective date, affected entity type, CFR citations, superseded guidance).
+Use the Evidence Act and OMB A‑130 authorities to establish minimum publication standards for
+regulatory data, analogous to existing expectations for clinical data interoperability.
+Charge ONC with developing a “Regulatory Data Implementation Guide” aligned with FHIR, so that
+certified health IT can consume regulatory signals in the same way it consumes clinical data.
+2. Embed regulatory intelligence into certification criteria.
+Extend ONC’s Health IT Certification Program to include baseline requirements for AI tools that
+influence clinical workflows or compliance‑sensitive operations: documented regulatory data sources,
+update mechanisms, and auditability.
+Over time, require certified systems to demonstrate an ability to ingest and act on standardized
+regulatory notifications.
+3. Create durable reimbursement pathways for AI‑assisted services.
+Under 42 CFR Part 414, establish technology‑neutral codes and coverage criteria for AI‑assisted
+clinical services where evidence supports improved outcomes or efficiency, rather than relying solely on
+contractor‑level decisions.
+Prioritize use cases with clear equity impact (e.g., documentation support in safety‑net settings,
+AI‑assisted chronic disease management in underserved populations).
+4. Clarify safe harbors and HIPAA guidance for AI.
+Update OIG safe harbors to explicitly address provision of AI tools to affiliated providers under
+conditions similar to existing EHR safe harbors, enabling health systems to extend AI capabilities
+without AKS uncertainty.
+
+Issue targeted HIPAA guidance (45 CFR §164.514) clarifying permissible uses of de‑identified and
+synthetic data for AI training and evaluation, with plain‑language examples and guardrails.
+5. Explicitly recognize regulatory intelligence infrastructure as a funding priority.
+Through programs such as ONC’s LEAP in Health IT, explicitly invite proposals focused on regulatory
+intelligence infrastructure—systems that help organizations monitor and respond to evolving
+requirements in near real time. These platforms are a precondition for safe AI deployment in any
+compliance‑sensitive clinical workflow.
+Collectively, these actions would lower compliance uncertainty for innovators, reduce the burden on
+providers, and make it far more realistic for organizations of all sizes to adopt AI tools with confidence.
+Q3 For non-medical devices, what novel legal and implementation issues exist regarding AI
+in clinical care (liability, indemnification, privacy, security)? What role should HHS play?
+NOETED Response
+Several novel issues arise when AI is used in clinical care outside the medical‑device framework,
+particularly in compliance‑sensitive workflows:
+1. Multi‑party liability for AI‑assisted decisions.
+Today, it is unclear how responsibility is allocated among the AI developer, the deploying organization,
+clinicians, and data suppliers when AI contributes to a clinical or operational error. This uncertainty
+chills adoption, particularly in high‑stakes settings.
+HHS can lead by developing, with DOJ and state partners, model liability frameworks that:
+● Clarify roles and duties across the AI lifecycle.
+● Create safe harbors for organizations that follow defined governance and monitoring practices.
+● Encourage transparent incident reporting and learning instead of purely punitive responses.
+
+2. Compliance liability for AI recommendations.
+In compliance use cases, organizations remain fully responsible when AI‑generated guidance is wrong,
+yet they currently receive no recognition for using higher‑assurance tools or for following best‑practice
+evaluation processes.
+HHS could clarify, for example in OIG and CMS enforcement guidance, how reliance on certified or
+credentialed AI tools factors into penalty calculations and corrective‑action expectations. This would
+incentivize use of higher‑quality systems without shifting responsibility away from providers.
+3. Source data reliability in regulatory AI.
+For AI tools that depend on government‑published regulatory data, the quality and timeliness of that
+data is itself a risk factor. If a government API is outdated or deprecated, an otherwise well‑governed AI
+tool may produce incorrect recommendations.
+HHS can address this by:
+● Committing to service‑level expectations for key regulatory data feeds (timeliness, uptime,
+change logs).
+● Clarifying how documented reliance on official data sources will be treated in enforcement
+discretion, especially where those sources can be shown to be incomplete or out of date.
+4. Privacy in AI processing of unstructured data.
+Large‑scale processing of notes, images, and voice introduces questions about how HIPAA’s minimum
+necessary standard applies when models need broad context to function.
+HHS should issue targeted guidance on AI handling of unstructured PHI, including expectations for
+minimization, logging, access control, and secondary use (e.g., model training).
+Recommended HHS role.
+HHS is uniquely positioned to convene multi‑stakeholder working groups and convert their outputs into
+practical tools: model policies, certification criteria, and updated guidance. Extending ONC’s
+certification program to cover AI governance attributes (data provenance, monitoring, explainability, and
+incident response) would provide a concrete mechanism to operationalize these legal and
+implementation expectations.
+
+Q4 For non-medical devices, what are the most promising AI evaluation methods (pre- and
+post-deployment), metrics, robustness testing, and human-centered evaluation
+methods for clinical care? Should HHS support these? If so, which mechanisms?
+NOETED Response
+Pre‑deployment evaluation.
+The most promising pre‑deployment approaches for non‑device clinical AI share three traits:
+● They evaluate performance across demographically and clinically diverse subpopulations, not
+just aggregate metrics.
+● They test robustness under distribution shift (how models behave when “real‑world” data differs
+from training data).
+● They incorporate structured expert review of representative AI outputs before deployment.
+For compliance and operations AI, pre‑deployment evaluation must also include regulatory data source
+quality: what sources are used, how often they update, and how gaps or inconsistencies are handled. A
+compliance AI tool cannot be safer than the regulatory data infrastructure it depends on.
+Post‑deployment monitoring.
+Today, systematic post‑deployment monitoring is rare. For AI in clinical and compliance workflows,
+monitoring plans should:
+● Track performance drift over time and across subpopulations.
+● Detect bias emergence and unintended use cases.
+● Incorporate automatic checks for changes in underlying regulatory or policy data that could
+invalidate model assumptions.
+For compliance AI specifically, this means monitoring both: (1) model outputs and (2) the freshness of
+regulatory data sources—flagging when upstream data lags new rules.
+Human‑centered evaluation.
+
+Technical metrics alone cannot show whether AI improves care or compliance. HHS should support
+evaluations that measure:
+● How clinicians and compliance staff actually use or override AI recommendations and why.
+● Effects on workload, burnout, and error detection.
+● Downstream impact on patient outcomes, access, and equity.
+Recommended HHS mechanisms.
+HHS can:
+● Use cooperative agreements to fund multi‑site evaluations of AI tools in real clinical and
+compliance workflows.
+● Use prize challenges for well‑defined technical benchmarks (e.g., robustness under specified
+shift scenarios).
+● Create a Healthcare AI Evaluation Repository, a public (or tiered access) database where
+evaluation results for deployed AI tools are reported in a comparable format, helping providers
+and payers make informed procurement and governance decisions.
+NOETED would welcome the opportunity to participate in such evaluations specifically for compliance
+and regulatory intelligence use cases, contributing both tooling and real‑world evaluation data.
+
+Q5 How can HHS best support private sector activities (accreditation, certification, industry-
+driven testing, credentialing) to promote innovative and effective AI use in clinical care?
+NOETED Response
+HHS can accelerate safe AI adoption by aligning federal levers with emerging private‑sector
+accreditation and certification efforts:
+1. Extend ONC Health IT Certification to non‑device AI tools.
+Expand 45 CFR Part 170 to include criteria for AI systems that directly influence clinical workflows or
+compliance‑sensitive operations (e.g., documentation assistants, clinical decision support, compliance
+intelligence tools).
+Criteria should address data provenance, bias and robustness testing, interoperability with certified
+EHRs, update mechanisms for clinical and regulatory changes, and post‑deployment monitoring.
+2. Recognize industry‑driven credentialing frameworks.
+Professional bodies (e.g., HIMSS, AHIMA, and AI‑focused consortia) are designing voluntary AI
+credentials. HHS can create a formal “recognized credentialing framework” list, akin to how NCQA
+accreditation is recognized in Medicare/Medicaid programs.
+Such recognition would steer the market toward higher standards without requiring exhaustive federal
+rulemaking for every AI use case.
+3. Link certification/credentialing to enforcement incentives.
+In CMS and OIG enforcement guidance, clarify that healthcare organizations using AI tools that meet
+ONC certification or recognized credentialing can receive defined consideration (e.g., in penalty
+calculations or corrective‑action planning) when AI‑assisted errors occur.
+This does not shift responsibility away from providers, but rewards organizations that choose
+higher‑assurance tools and follow best‑practice governance.
+4. Make regulatory intelligence integration a medium‑term certification expectation.
+
+Once standardized regulatory data publication infrastructure exists, ONC could require that certified AI
+tools demonstrate an ability to detect and adapt to relevant regulatory changes via those standardized
+feeds.
+This would ensure that certified tools remain aligned with current rules, not just the rules in effect at the
+time of their initial evaluation.
+NOETED is designing its platform to be “certification‑ready” along these dimensions and would
+welcome collaboration with ONC and credentialing bodies to pilot certification criteria specifically for
+regulatory and compliance AI.
+
+Q6 Where have AI tools in clinical care met or exceeded performance and cost
+expectations, and where have they fallen short? What novel AI tools would have the
+greatest potential to improve health care outcomes, quality insights, and cost
+reduction?
+NOETED Response
+Areas where AI has met or exceeded expectations.
+● Ambient clinical documentation: AI‑assisted transcription and note generation has shown clear
+value in reducing clinician burden without requiring autonomous clinical judgment. Adoption has
+been strongest where integration with EHR workflows is tight and governance is clear.
+● Imaging and narrow diagnostic tasks: In radiology and pathology, AI models trained on
+well‑curated datasets have demonstrated high performance on specific classification tasks, with
+emerging evidence of real‑world impact when embedded thoughtfully into workflows.
+Areas where AI has fallen short.
+● Generalization and equity: Performance often degrades for under‑represented populations
+(racial/ethnic minorities, rural patients, rare conditions), especially when training data do not reflect
+real‑world diversity.
+● Dynamic regulatory and policy environments: AI tools that touch billing, utilization management,
+or compliance often lag behind rule changes. Here NOETED has seen two failure modes:
+● Update lag: Developers or implementers do not update logic promptly when rules change.
+● Infrastructure failures: Even when developers try to update, the necessary regulatory data are not
+available in timely, machine‑readable forms. This is especially problematic for smaller organizations
+that lack dedicated regulatory intelligence staff.
+High‑potential AI tools for outcomes, insight, and cost.
+● Regulatory intelligence and compliance monitoring: AI systems that continuously track
+regulatory changes, map impacts across an organization’s obligations, and surface actionable
+guidance for compliance, risk, and clinical operations. These tools are “infrastructure AI” that make
+other AI deployments safer.
+● Predictive compliance and integrity risk scoring: Models that identify organizations, service
+lines, or populations at elevated risk of quality or compliance failures before they manifest as
+
+adverse events, denials, or enforcement. When paired with supportive interventions, this can
+improve safety and reduce avoidable cost.
+● AI‑assisted care coordination and prior authorization: Tools that align clinical documentation,
+coverage rules, and medical necessity criteria in real time, reducing administrative friction and
+delays in care.
+HHS support for these categories—through pilots, reimbursement innovation, and inclusion in
+interoperability and certification efforts—would help direct AI innovation toward areas with high patient and
+system benefit, not just administrative efficiency.
+
+Q7 Which roles, decision makers, or governing bodies within health care organizations
+have the most influence on AI adoption? What are the primary administrative hurdles?
+NOETED Response
+From NOETED’s perspective, the most promising AI uses for improving care, equity, and access share
+three attributes: they reduce preventable variation, they make complex rules navigable for frontline
+teams, and they are explicitly designed to work in resource‑constrained settings. Examples include:
+● AI‑supported guideline and coverage alignment at the point of care
+● Tools that help clinicians document and order in ways that are simultaneously clinically
+appropriate and aligned with coverage criteria, reducing avoidable denials and care
+delays—especially important for safety‑net providers and Medicaid populations.
+● Proactive compliance and quality risk detection
+● AI that identifies emerging patterns (documentation gaps, ordering patterns, access
+bottlenecks) that put certain populations at higher risk of poor outcomes or coverage
+disruptions, enabling targeted interventions before harm occurs.
+● Navigation and communication tools tailored for underserved communities
+● AI‑driven patient communication, translation, and navigation tools designed with
+community input, that respect cultural and linguistic needs and help patients understand
+and act on care plans and benefits.
+HHS can promote these uses by:
+● Prioritizing them in demonstration projects and payment innovation models.
+● Including equity and access metrics as core evaluation endpoints in AI funding opportunities.
+● Ensuring that regulatory and data infrastructure investments explicitly consider the needs of
+rural, tribal, and safety‑net organizations that lack extensive IT and compliance staff.
+NOETED’s regulatory intelligence work is directly aligned with this: smaller organizations benefit the
+most when complex rules are translated into clear, actionable guidance that can be operationalized
+without large legal departments.
+
+Q8 Where would enhanced interoperability widen market opportunities, fuel research, and
+accelerate AI development for clinical care? Consider specific data types, data
+standards, and benchmarking tools.
+NOETED Response
+Interoperability has unlocked new AI possibilities wherever standardized data exist (e.g., FHIR for
+clinical data). To widen opportunities and accelerate AI, HHS should prioritize a third domain alongside
+clinical and administrative data: regulatory data interoperability.
+Current gaps.
+● Regulatory content—conditions of participation, coverage decisions, quality specifications,
+compliance guidance, enforcement summaries—is often available only as narrative documents
+or ad hoc web content.
+● APIs, where they exist, use inconsistent structures and are not uniformly documented or
+maintained.
+● As a result, AI tools that depend on “knowing the rules” must build custom scrapers and
+mappers for each source. Smaller organizations cannot realistically do this.
+Standards and infrastructure HHS could catalyze:
+1. Standardized regulatory change notifications
+● A common schema (potentially an implementation guide aligned with FHIR resources)
+for publishing regulatory and policy change events, with required metadata: effective
+date, affected entity types, relevant citations, superseded guidance, and unique
+identifiers.
+2. Structured program and quality specifications
+● Publishing measure definitions, participation requirements, and program guidance as
+versioned, machine‑readable resources rather than PDFs.
+3. Enforcement and oversight data
+● Providing de‑identified, structured data on enforcement actions and recurring findings to
+support AI‑driven risk modeling and benchmarking.
+
+Recommended HHS actions:
+● Direct ONC to work with CMS, OIG, and other agencies on a Regulatory Data Implementation
+Guide, leveraging FHIR where appropriate.
+● Treat regulatory data infrastructure as a core component of interoperability roadmaps and
+implementation funding.
+With such standards in place, private‑sector platforms like NOETED can build robust, reusable
+regulatory intelligence capabilities that every health system, plan, and safety‑net provider can
+leverage—dramatically lowering the barrier to safe, compliant AI deployment.
+
+Q9 What challenges do patients and caregivers wish to see addressed by AI in clinical
+care? What concerns do they have?
+NOETED Response
+Safety in AI‑assisted clinical care depends on more than model performance metrics; it requires
+governance, transparency, and continuous alignment with evolving standards. HHS can strengthen
+safety by:
+● Requiring risk‑appropriate governance frameworks.
+● For higher‑risk uses (diagnosis, treatment selection, utilization management), require
+documented governance structures: accountable owners, oversight committees, policies
+for model selection, and procedures for handling incidents and overrides.
+● Mandating documentation of data provenance and limitations.
+● AI tools should clearly describe training data characteristics, known limitations, intended
+use, and populations for which performance is uncertain, in language clinicians and
+compliance teams can understand.
+● Embedding safety checks into certification.
+● ONC certification for AI‑enabled systems should include:
+● Support for capturing clinician and staff feedback and overrides.
+● Logging sufficient to reconstruct AI‑assisted decisions in the event of an adverse
+event or audit.
+● Mechanisms to suspend or adjust AI behavior when performance concerns arise.
+● Aligning AI tools with regulatory intelligence.
+● For compliance‑sensitive workflows, a safe AI tool must be able to detect when
+relevant rules change and flag potential misalignment. This is where regulatory
+data interoperability and platforms like NOETED are critical.
+HHS’s role is to set these expectations through guidance, certification criteria, and funding conditions,
+while allowing innovation in specific technical approaches. NOETED stands ready to support this by
+demonstrating how regulatory intelligence can be integrated into AI governance for real‑world
+compliance use cases.
+
+Q10 What areas of AI research should HHS prioritize to accelerate AI adoption in clinical
+care? Are there published findings on AI tool impact and costs/benefits in clinical
+care?
+NOETED Response
+HHS should prioritize AI research that addresses foundational infrastructure gaps, equity in
+real‑world settings, and system‑level integration—areas where AI can deliver the greatest
+clinical and economic impact. Specific priorities include:
+1. Regulatory intelligence and compliance monitoring
+● Research on AI systems that continuously ingest, normalize, and operationalize
+regulatory, policy, and program data (CMS rules, OIG guidance, quality
+specifications, enforcement patterns).
+● Focus: mapping obligations to workflows, predicting compliance risk by
+population/service line, and auto‑generating remediation plans.
+● Impact: Enables safe AI deployment across compliance‑sensitive workflows
+(documentation, utilization management, quality reporting) by ensuring tools stay
+aligned with current rules.
+2. Equity‑focused model robustness and generalization
+● Research on techniques to ensure AI performance across under‑represented
+demographics, geographies, and clinical contexts (rural patients, minority
+populations, rare conditions).
+● Focus: adversarial robustness testing, domain adaptation for distribution shift, and
+synthetic data generation to augment limited real‑world datasets.
+● Impact: Prevents AI from deepening disparities and supports equitable care in
+safety‑net and rural settings.
+3. AI‑assisted care coordination and access optimization
+● Research on AI for prior authorization, documentation alignment with coverage
+criteria, and navigation tools tailored to underserved communities.
+● Focus: reducing administrative friction, aligning clinical decisions with coverage
+realities, and supporting culturally/linguistically appropriate communication.
+● Impact: Improves access, reduces delays, and lowers cost for Medicaid, Medicare
+Advantage, and safety‑net populations.
+4. Post‑deployment monitoring and continuous learning
+● Research on automated mechanisms for detecting drift, bias emergence, and
+performance degradation in deployed clinical AI, including clinician override
+patterns and downstream outcomes.
+● Focus: integration with regulatory change detection so models adapt to evolving
+clinical and policy standards.
+
+Published findings on AI impact and costs/benefits
+● Ambient documentation: Reduces clinician burden by 20–40% (e.g., Nuance
+DAX, Suki); studies show 1.5–2.5x ROI from reclaimed time and improved
+throughput.
+● Imaging diagnostics: Systematic reviews show AI improves specificity by 5–15%
+in radiology/pathology, with cost savings from reduced false positives (e.g., reduced
+downstream procedures); ICERs often < $10,000/QALY.
+● Chronic disease prediction: Models for AFib, diabetic retinopathy screening show
+14–20% cost reduction and QALY gains (e.g., Xie et al., 2023; ICERs
+~$1,100/QALY).
+● System‑level savings: NBER (2023) estimates 5–10% U.S. healthcare spending
+reduction ($200–400B annually) from broader AI adoption, primarily through
+efficiency and reduced unnecessary care.
+HHS can advance these priorities through LEAP funding, cooperative agreements for
+multi‑site pilots, and prize challenges for well‑defined benchmarks. NOETED is prepared to
+contribute regulatory intelligence capabilities to such research efforts.
+
+Conclusion
+NOETED thanks HHS and ONC for this opportunity to contribute to the future of AI in clinical
+care. Our recommendations center on a single, high‑leverage opportunity: treating regulatory
+data infrastructure with the same seriousness as clinical data infrastructure. By modernizing
+publication standards, embedding regulatory intelligence into certification and safe harbors, and
+funding practical pilots, HHS can unlock AI’s potential to improve care, equity, and efficiency
+across all provider types.
+We are eager to partner with ONC and HHS to make this vision real—through pilots, standards
+co‑development, and real‑world demonstrations of how regulatory intelligence enables safe,
+scalable AI. Please contact us at duv@noeted.com to discuss collaboration opportunities.
+Respectfully submitted,
+Keith “Duv” Williams
+Founder, NOETED
+noeted.ai
+duv@noeted.com
+NOETED | Every Change. Every Connection. Noeted. | noeted.ai

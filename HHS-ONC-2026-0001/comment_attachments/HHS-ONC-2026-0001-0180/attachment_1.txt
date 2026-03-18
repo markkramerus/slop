@@ -1,0 +1,122 @@
+To: Office of the Deputy Secretary and ASTP/ONC, Department of Health and Human Services
+From: Stephen Gabriel
+Date: February 23, 2026
+Re: Request for Information: Accelerating the Adoption and Use of Artificial Intelligence as Part
+of Clinical Care (Docket No. HHS-ONC-2026-0001)
+In response to HHS's request for information on accelerating AI adoption in clinical care, I write
+to highlight structural barriers often invisible from hospital-centered policy perspectives. Dental
+care serves as a useful case study because it combines significant population health need,
+extreme software fragmentation, and systematic exclusion from federal health IT modernization
+efforts. The patterns identified here likely extend to other ambulatory settings including
+behavioral health, home health, and long-term care.
+The current AI adoption problem in ambulatory settings traces directly to federal health IT policy
+decisions enacted nearly two decades ago. The HITECH Act of 2009 authorized approximately
+$27 billion to incentivize electronic health record adoption, operationalized through the
+Meaningful Use program. This program successfully drove hospital EHR adoption to
+near-universal levels and forced medical software vendors to adopt standardized data ontologies
+and exchange protocols.1 However, the statutory framework created a wide gap between standard
+medicine and specialized ambulatory care. Dentists were explicitly excluded from the Medicare
+EHR Incentive Program. While theoretically eligible for the parallel Medicaid program,
+participation required demonstrating 30% Medicaid patient volume, a threshold most private
+dental practices could not meet because adult dental benefits are frequently carved out of state
+Medicaid programs.2 The dental sector consequently received virtually no federal capital to
+subsidize the transition to digital records and no federal mandate to adopt certified, interoperable
+software.
+Without this mandate, the dental software market evolved through localized free-market
+dynamics, resulting in severe fragmentation. The current landscape features major vendors like
+Dentrix, Eaglesoft, and Open Dental alongside a long tail of over 150 disparate clinical, imaging,
+and practice management systems operating without standardized data exchange protocols.3 This
+fragmentation creates a significant barrier for AI developers. In the broader medical sector, an AI
+developer can use standard FHIR APIs to interface with dominant electronic health records,
+immediately scaling products to thousands of hospitals. A dental AI developer must build, test,
+and continuously maintain custom integration bridges for dozens of proprietary systems, many of
+which actively restrict third-party access or use proprietary data storage formats. This technical
+debt restricts scalability, inflates development costs, and leaves developers without the diverse,
+multi-site training data required to build robust algorithms.
+The fragmentation of source data leads to a secondary problem in AI evaluation and post-market
+safety. The FDA's AI/ML-Enabled Medical Devices database shows over 1,300 authorized
+devices by end of 2025, with 295 new clearances in 2025 alone.4 Approximately 52 of these are
+dental AI devices, predominantly for oral radiology applications including caries detection and
+cephalometric analysis.5 However, most clearances occur via the 510(k) pathway, which does not
+require the extensive prospective clinical trials of Premarket Approval. Many 510(k) summaries
+lack detail on demographic representation of training data and scope of cross-site validation. A
+
+systematic review of federated learning in healthcare found that only 5.2% of studies reached
+real-world clinical implementation. This 94.8% failure rate was driven not by mathematical
+flaws but by organizational, infrastructural, and economic barriers.6 Federated learning allows
+algorithms to train on distributed data without centralizing protected health information, which
+theoretically solves the privacy barrier. But it still requires computational overhead at edge nodes
+and baseline data harmonization that fragmented ambulatory systems cannot provide.
+The FDA has recognized these lifecycle management challenges. Title 21 CFR Part 820,
+governing the Quality System Regulation for medical devices, underwent a major shift effective
+February 2, 2026, transitioning to the Quality Management System Regulation (QMSR)
+harmonized with ISO 13485:2016.7 This framework imposes stricter documentation
+requirements for software validation and continuous post-market monitoring. For AI developers,
+compliance requires real-world performance tracking to detect algorithmic drift. Yet without
+standardized interoperability infrastructure in ambulatory settings, conducting effective
+post-market surveillance on dental AI tools is not currently feasible. The regulatory expectation
+for continuous monitoring does not match the reality of fragmented IT infrastructure.
+Even if technical barriers could be overcome, the economic mechanism for AI adoption remains
+broken. The CDT code system maintained by the American Dental Association contains no
+codes for AI-assisted diagnostics.8 The CDT 2026 update introduced codes for point-of-care
+saliva testing and cracked tooth diagnostics, but nothing for algorithmic image interpretation or
+predictive software analysis. Without billing codes, practices cannot submit claims to third-party
+payers for AI-enhanced services. The cost must be absorbed as overhead. This contrasts with the
+CPT system, where Category III codes now allow tracking of AI use in radiology and pathology,
+providing the foundation for eventual Medicare coverage determinations under 42 CFR Part
+414.9 The absence of dental AI codes creates a reimbursement problem that pushes private
+investment toward medical AI, where scalable payment pathways exist.
+These structural barriers have direct public health consequences. HRSA data for Q1 FY2026
+identifies 7,443 designated dental Health Professional Shortage Areas encompassing 63.7 million
+Americans, with only 32.93% of clinical need currently met.10 AI-assisted diagnostic tools have
+exactly the characteristics required to address this crisis. A dental hygienist could capture
+radiographs and run them through an FDA-cleared triage system, flagging acute pathologies for
+prioritized intervention by the covering dentist. But the safety-net practices operating in these
+shortage areas are the very organizations most affected by the barriers identified here: least able
+to afford AI software without reimbursement, least likely to operate interoperable systems, and
+least represented in validation datasets that skew toward affluent urban academic centers.
+Several targeted interventions would address these barriers. First, ONC should expand
+certification criteria under 45 CFR 170.315 to address dental workflows and imaging AI,
+potentially requiring certified software for clinics participating in Medicaid dental networks.11
+Second, the ADA CDT Committee should develop emerging technology codes for AI-assisted
+diagnostics, drawing precedent from CPT Category III codes, while CMS issues guidance to
+state Medicaid directors on coverage pathways. Third, FDA guidance on AI device lifecycle
+management under the new QMSR framework should include dental-specific examples given the
+unique variability of dental imaging acquisition. Fourth, ASTP/ONC should fund dental FHIR
+implementation guide development through HL7 cooperative agreements, integrating periodontal
+
+charting and dental imaging metadata into the US Core Data for Interoperability standard.
+Finally, FDA should sponsor federated benchmarking registries that evaluate algorithms against
+diverse datasets, including data from HPSA safety-net clinics, satisfying QMSR validation
+requirements while ensuring algorithms perform safely across underserved populations.
+The explicit policy exclusion of specialized ambulatory settings from historical health IT
+initiatives has resulted in fragmented software ecosystems, poor interoperability, and nonexistent
+reimbursement pathways. These failures ensure that the diagnostic potential of AI remains
+concentrated in well-resourced academic medical centers, bypassing the populations who need it
+most. Unlocking clinical AI across the full healthcare continuum requires more than software
+innovation. It demands realignment of ONC certification standards, FDA lifecycle management
+protocols, and CMS payment mechanics.
+Sincerely,
+Stephen Gabriel
+The views expressed above are solely those of the author and should not be attributed to any organization.
+References
+1. CMS, Medicare and Medicaid EHR Incentive Programs. The Meaningful Use program transitioned to Promoting
+Interoperability under MIPS.
+2. HITECH Act of 2009, Medicaid EHR Incentive Program eligibility requirements. 30% Medicaid patient volume
+threshold over 90-day period.
+3. Dental software market fragmentation documented in industry analyses. Major vendors lack standardized data
+exchange comparable to hospital EHR interoperability.
+4. FDA Artificial Intelligence and Machine Learning (AI/ML)-Enabled Medical Devices database.
+https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-ai
+ml-enabled-medical-devices
+5. FDA 510(k) Premarket Notification Database, dental AI device clearances through early 2026.
+6. Teo ZL, et al. Federated machine learning in healthcare: A systematic review on clinical applications and
+technical architecture. Cell Reports Medicine. 2024.
+7. 21 CFR Part 820, Quality Management System Regulation (QMSR), effective February 2, 2026, harmonizing
+with ISO 13485:2016.
+8. American Dental Association, CDT 2026 code set. 60 updates including 31 new codes; no codes for AI-assisted
+diagnostics.
+9. 42 CFR Part 414 (physician fee schedule); 42 CFR Part 410 (supplementary medical insurance benefits).
+10. HRSA Data Warehouse, Designated Health Professional Shortage Areas Quarterly Summary, Q1 FY2026.
+https://data.hrsa.gov/
+11. 45 CFR 170.315, ONC Health IT Certification Criteria.

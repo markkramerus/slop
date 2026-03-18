@@ -1,0 +1,291 @@
+HHS “Request for Information: Accelerating the Adoption and Use of Artificial
+Intelligence as part of Clinical Care”
+February 2026
+This response leverages the governance, targeted data collection, deviation logging,
+and rapid learning cycles central to Standardized Clinical Assessment and Management
+Plans (SCAMPs), and maps them to AI evaluation, regulation, reimbursement, and
+research needs in clinical care.
+Q1. What are the biggest barriers to private sector innovation in AI for health care and
+its adoption and use in clinical care?
+Response:
+• Evidence and generalizability gaps: Many AI tools lack prospective, real-world
+evidence across diverse settings; performance drifts over time without structured
+monitoring. SCAMPs’ targeted outcomes and deviation logging provide a
+blueprint for continuous, site-specific learning and generalization testing.
+• Integration and workflow friction: Limited point-of-care integration (CDS
+Hooks/SMART on FHIR), fragmented EHR data, and poor usability impede
+adoption. SCAMPs emphasize CDS integration and clinician-guided pathways for
+practical use.
+• Governance and liability uncertainty: Unclear accountability for “non-device” AI
+(e.g., clinical decision support) and continuous-learning systems. SCAMPs’
+multidisciplinary committees provide an actionable governance model for
+oversight, deviation review, and iterative improvements.
+• Payment and ROI ambiguity: Lack of clear reimbursement or recognized value
+signals for AI-enabled services and care redesign; hard to sustain QI cycles
+without payment alignment. SCAMPs demonstrate resource optimization through
+iterative refinement, but need payment models that reward measured outcome
+improvements.
+• Data access and quality: Incomplete, heterogeneous data; limited access to
+benchmarking datasets and shared evaluation tools; difficulty capturing
+rationales behind deviations. SCAMPs stress structured inputs and rationale
+capture to improve data fidelity and learning.
+• Trust, transparency, and safety: Insufficient post-deployment monitoring, fairness
+audits, and human-centered evaluation; clinician concerns about alert fatigue and
+explainability. SCAMPs’ rapid learning cycles and explicit documentation of
+diversions can build trust through transparent improvement.
+Q2. What regulatory, payment policy, or programmatic design changes should HHS
+prioritize to incentivize effective use of AI in clinical care and why? What HHS
+regulations, policies, or programs could be revisited?
+Response:
+• Create an AI-in-clinical-care evidence pathway:
+1
+
+o Establish a “coverage with evidence development” track for non-device AI-
+enabled clinical services that commit to SCAMPs-like targeted data
+collection, deviation logging, and iterative improvement. Align CMS
+payment with measurable outcome/resource improvements.
+o Expand New Technology Add-on Payment-like mechanisms for AI-
+enabled interventions demonstrating improved outcomes/costs in real-
+world learning cycles.
+• Certify AI-enabled CDS and learning loops:
+o Update ONC health IT certification criteria (e.g., 45 CFR Part 170) to
+include AI transparency, ongoing post-deployment monitoring, fairness,
+calibration drift checks, and integration hooks (CDS Hooks, SMART on
+FHIR, FHIR PlanDefinition).
+• Clarify privacy, security, and secondary use:
+o Provide guidance under HIPAA (e.g., 45 CFR Part 164) on responsible
+secondary use for QI and learning health systems; promote privacy-
+preserving analytics/federated learning for SCAMPs-like cycles.
+• Institutional governance standards:
+o Encourage Conditions of Participation-level expectations (e.g., 42 CFR
+Part 482) for AI safety governance: multidisciplinary oversight,
+deviation/rationale capture, and real-world performance reporting (akin to
+SCAMPs committees).
+• Programmatic supports:
+o Launch HHS grants/CRADAs for “SCAMPs+AI” pilots across varied
+conditions/settings using FHIR Clinical Reasoning, PlanDefinition, and
+GuidanceResponse to run targeted experiments and share updated
+pathways.
+Q3. For non-medical devices, what novel legal and implementation issues exist and
+what role, if any, should HHS play to address them?
+Response:
+• Issues:
+o Allocation of liability when AI advice is advisory and clinicians deviate or
+comply; continuous-learning updates changing behavior over time.
+o Vendor lock-in, data rights to rationales and outcomes, and responsibilities
+for monitoring/calibration drift.
+o Privacy risks in rationale capture and free-text deviation documentation;
+bias and fairness obligations for “learning” tools.
+• HHS roles:
+o Publish model contractual clauses for AI in clinical care covering
+auditability, drift monitoring, fairness testing, data/rationale rights, and
+update governance aligned with SCAMPs deviation logging.
+o Create guidance for shared accountability frameworks (clinician,
+institution, vendor) tied to documented deviations and outcomes, mirroring
+SCAMPs committees’ oversight.
+2
+
+o Issue privacy/security best practices for capturing rationales (structured
+inputs, de-identification, access controls) and human-centered evaluation.
+Q4. For non-medical devices, what are the most promising AI evaluation methods (pre-
+and post-deployment), and should HHS support them?
+Response:
+• Methods:
+o Pre-deployment: External validation across sites; fairness and subgroup
+performance checks; robustness to missing/noisy data; simulated
+workflow testing; human factors/usability studies.
+o Post-deployment: SCAMPs-like targeted outcomes with deviation logging;
+stepped-wedge trials; A/B testing; causal inference (propensity, synthetic
+controls); calibration drift monitoring; clinician override analysis; alert
+burden tracking.
+o Metrics: Outcome impact (clinical endpoints); resource use; safety (false
+positive/negative harm indices); equity (disparate impact); usability (time-
+on-task, override rates); economic (cost per improved outcome).
+• HHS support:
+o Fund real-world evaluation testbeds that embed SCAMPs’ learning cycles
+and share standardized metrics/benchmarks; support prize competitions
+for reproducible post-deployment monitoring toolkits.
+o Encourage registry reporting of performance, deviations, and rationales
+using FHIR Clinical Reasoning artifacts.
+Q5. How can HHS best support private sector activities (accreditation, certification,
+industry-driven testing, credentialing) to promote innovative and effective AI use?
+Response:
+• Establish an AI Clinical Care Trust Mark: A voluntary accreditation signaling
+adherence to SCAMPs-like governance (multidisciplinary oversight,
+deviation/rationale capture, iterative updates), robust evaluation, fairness audits,
+and transparent performance reporting.
+• Seed neutral testing labs: Fund third-party labs to run standardized cross-site
+evaluations using shared datasets and FHIR-integrated workflows (CDS
+Hooks/SMART apps), and publish comparative benchmarking.
+• Credentialing and training: Support curricula for clinicians and quality leaders on
+AI oversight, SCAMPs methodology, and human-centered evaluation; recognize
+institutions with mature AI governance.
+• Promote industry consortia: Convene payers, providers, EHR vendors, and AI
+developers to agree on “learning health system” reporting packages (deviations,
+outcomes, fairness) aligned to SCAMPs.
+Q6. Where have AI tools met/exceeded expectations and where fallen short? What
+novel AI tools have greatest potential?
+3
+
+Response:
+• Met/exceeded:
+o Imaging triage/diagnostics (e.g., prioritization, fracture/retinopathy
+detection) with workflow-integrated CDS; documentation productivity tools;
+some operational AI (e.g., scheduling) improving throughput.
+• Fallen short:
+o Generalization across sites/patient populations; alert fatigue in CDS;
+limited transparency; sepsis/risk scores with high false positives and
+equity concerns without robust monitoring.
+• High-potential tools:
+o AI+SCAMPs clinical pathways: Tools that embed PlanDefinition-based
+recommendations, capture deviations/rationales, and update iteratively.
+o Causal inference and real-time analytics dashboards for targeted
+outcomes, enabling rapid learning cycles at the point of care.
+o Safety and equity monitors (drift/fairness) integrated into EHRs; NLP to
+structure rationale capture; federated learning for multi-site improvement.
+Q7. Which roles/decision makers have the most influence on adoption? Primary
+administrative hurdles?
+Response:
+• Influencers:
+o CMIO, CMO, Chief Nursing Officer, Pharmacy & Therapeutics/Value
+Analysis committees, Quality & Safety leaders, Privacy/Compliance,
+Security/IT, Finance, and Patient/Family advisory councils. SCAMPs
+governance mirrors this multidisciplinary structure.
+• Administrative hurdles:
+o Procurement and contracting (risk/liability, data rights); integration costs;
+EHR workflow fit; governance/approval cycles; training and change
+management; performance monitoring resources; reimbursement/ROI
+clarity. SCAMPs can streamline approval via targeted outcomes and
+deviation-based learning commitments.
+Q8. Where would enhanced interoperability widen opportunities, fuel research, and
+accelerate AI? Consider data types, standards, benchmarking tools.
+Response:
+• Priorities:
+o Standards: Broader adoption of FHIR Clinical Reasoning (PlanDefinition,
+ActivityDefinition, GuidanceResponse), CDS Hooks, and SMART on FHIR
+apps to deliver SCAMPs-aligned recommendations and capture
+deviations/rationales.
+o Data types: Outcomes, orders, observations, imaging, genomics, device
+telemetry, SDOH, care plans; structured rationale inputs and deviation
+flags as first-class data.
+4
+
+o Benchmarking tools: Public test datasets and reference implementations
+for post-deployment monitoring (calibration/fairness), drift detection, and
+causal inference; shared dashboards and report formats.
+o Multicenter datasets and collaboration (especially for rare diseases):
+▪ Harmonize data capture and phenotyping across sites using FHIR
+profiles, PlanDefinition/ActivityDefinition, and standardized case
+definitions so targeted outcomes and deviation/rationale capture
+are consistent across institutions.
+▪ Support privacy-preserving analytics (federated learning, secure
+multiparty computation) to enable cross-site evaluation and
+improvement without centralizing raw patient data.
+▪ Leverage common data models (e.g., OMOP, PCORnet) alongside
+FHIR to enable reproducible cohort definition, benchmarking, and
+pathway performance comparisons in low-prevalence populations.
+• Actions:
+o Expand USCDI to include “rationale for deviation” and “targeted
+outcomes” elements; promote interoperable pathway updates (FHIR
+PlanDefinition) across sites.
+o Catalyze multicenter learning networks for rare diseases:
+▪ Provide model DUAs/BAAs and governance templates to
+streamline cross-institution collaboration, IRB reciprocity, and
+SCAMPs-like targeted data collection and deviation logging across
+sites.
+▪ Fund reference implementations that integrate FHIR Clinical
+Reasoning artifacts with federated analytics for multicenter
+evaluation, including drift/fairness monitoring and causal inference
+at low sample sizes.
+▪ Expand USCDI to include rare disease-relevant elements
+(standardized phenotype descriptors, natural history measures, and
+“rationale for deviation” fields) to improve data quality and
+comparability across centers.
+▪ Align with existing NIH/NCATS rare disease consortia and
+registries to ensure interoperable data exchange and shared
+benchmarking that can directly inform SCAMPs pathway updates.
+Q9. What challenges do patients/caregivers want addressed and what concerns do they
+have?
+Response:
+• Desired benefits:
+o Faster, more accurate diagnosis and triage; medication safety; care
+coordination and navigation; reduced burden in chronic disease
+management; equitable access and outcomes. SCAMPs’ iterative
+improvement focuses on measurable outcomes that matter to patients.
+o State-of-the-art, optimal care: Patients expect care plans and
+recommendations to reflect the most current, best-available evidence and
+5
+
+expert consensus. AI-enabled, SCAMPs-aligned pathways can help
+ensure care stays up to date by continuously incorporating new data,
+guideline changes, and documented clinician innovations (via
+deviation/rationale capture), with transparent update histories.
+• Concerns:
+o Privacy and data reuse; bias and fairness; transparency/explainability;
+overreliance on automation; consent and opt-out options; recourse for
+errors. SCAMPs’ explicit logging of deviations and rationales enables
+patient-centered accountability and continuous improvement.
+• Actions:
+o Require patient-facing explanations of how AI is used; offer opt-out where
+feasible; include patient councils in SCAMPs/AI governance committees;
+publish outcomes and equity metrics in plain language.
+o Provide patient-facing assurances that recommendations are current:
+Display pathway “last updated” dates, summarize recent evidence
+changes, and explain how SCAMPs/AI-driven learning cycles keep care
+aligned with the latest knowledge.
+Q10. Specific areas of AI research HHS should prioritize to accelerate adoption; a)
+published findings, b) costs/benefits literature?
+Response:
+• Research priorities:
+o Learning health systems methods: SCAMPs-aligned real-world evaluation
+frameworks (targeted outcomes, deviation/rationale capture, rapid
+iteration), federated learning and privacy-preserving analytics.
+o Robustness and fairness: Drift detection, re-calibration, subgroup
+performance, bias mitigation; human-centered design to reduce alert
+fatigue and increase safe overrides.
+o Causal inference at scale: Tools to attribute impact of AI-guided care
+pathways on outcomes and resource use; stepped-wedge/A/B designs
+integrated into EHR workflows.
+o Interoperability toolkits: FHIR Clinical Reasoning and CDS Hooks
+reference implementations; PlanDefinition authoring/sharing; standardized
+reporting packages.
+o Economic evaluation: Real-world cost-effectiveness analyses of AI-
+enabled SCAMPs, including downstream benefits (complication
+avoidance) and administrative savings.
+• a) Published findings:
+o Literature shows mixed impact: success in specific domains (e.g.,
+imaging, documentation) and limitations in generalization, fairness, and
+workflow fit—underscoring need for continuous, SCAMPs-like monitoring
+and iterative improvement.
+• b) Costs/benefits:
+o Studies increasingly consider total value: clinical outcomes, resource
+utilization, safety, equity, clinician burden, and operational efficiency;
+6
+
+strongest cases pair payment incentives with monitored improvements
+over time, which SCAMPs operationalize via targeted outcomes and
+iterative cycles.
+How SCAMPs can serve as a backbone for AI in clinical care
+• Governance: Multidisciplinary committees oversee pathway design, evidence
+review, and iterative updates; this maps directly to AI oversight and
+accountability.
+• Targeted data collection: Focused “plausible outcomes” and structured rationale
+capture enable high-signal learning and pragmatic evaluation of AI
+recommendations.
+• Deviation logging: Recording positive/negative diversions with rationale identifies
+innovation and safety signals, informing pathway and model updates.
+• Informatics integration: EHR cohort discovery, CDS Hooks/SMART on FHIR
+apps, structured inputs/NLP, AI-based causal inference, dashboards, and FHIR
+PlanDefinition sharing support scalable deployment and continuous
+improvement.
+• Outcomes: Published SCAMPs have demonstrated applicability across
+conditions/settings and can reduce resource use through rapid, evidence-
+informed iteration—providing a practical template to evaluate AI’s value.
+Citations:
+Farias M, Alexander PMA, Geppert JJ, Glavin P, Ramirez-Mendoza H, Casale P,
+Jenkins K. Standardized Clinical Assessment and Management Plans Revisited:
+Lessons Learned from a Decade of Implementation, Health Affairs Scholar, 2026;,
+qxag036, https://doi.org/10.1093/haschl/qxag036
+• HHS: Request for Information—Accelerating the Adoption and Use of Artificial
+Intelligence as part of Clinical Care (2025-23641).
+7

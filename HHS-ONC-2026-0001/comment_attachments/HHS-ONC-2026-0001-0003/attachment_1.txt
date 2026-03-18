@@ -1,0 +1,233 @@
+Public Comment on HHS Health Sector AI RFI (ASTP/ONC)
+Patient-Designated Longitudinal Routing to Enable Safe, Effective Clinical AI
+Submitted by: Amir Abrams
+Affiliation: Software Architect; former Director of Medical Informatics, LSU Health Sciences
+Center
+Docket/Document: HHS-ONC-2026-0001-0001
+Submission Type: Written comment (public)
+Contact: abramsamir@gmail.com
+Executive Summary
+The RFI correctly identifies that clinical AI adoption is constrained less by model capability than
+by whether care settings can reliably supply the longitudinal, high-fidelity context needed for
+safe inference. This comment proposes a structural solution: patient-designated longitudinal
+routing by default.
+Core Proposal: Enable a one-time patient designation of a certified longitudinal endpoint to
+which full-fidelity USCDI data is automatically delivered as it is created, across care settings.
+This is not a consumer portal strategy. It is a convergence layer that makes complete longitudinal
+records reliably available back to care delivery systems (with consent) where AI actually runs.
+Why This Matters for AI: Clinical AI fails when deployed into informationally impoverished
+workflows. Patient-designated routing changes the default so that longitudinal completeness
+becomes the expected input condition for AI, rather than a special-case integration achievement.
+Key Recommendations:
+1. Regulation: Define and certify patient-designated longitudinal endpoints with strict
+security, consent, provenance, and audit requirements.
+2. Reimbursement: Pilot payment models tied to verified delivery rather than capability
+attestations.
+3. R&D: Fund evaluations that connect longitudinal completeness improvements to clinical
+outcomes, workflow impact, and AI safety/bias monitoring.
+This is a narrow structural change with outsized impact: it improves care coordination
+immediately, reduces preventable harm, and creates the data conditions necessary for safe,
+effective, and equitable clinical AI.
+1. Introduction: Why I'm Commenting / Relevant Experience
+
+I am submitting this comment because the RFI correctly identifies a core problem: clinical AI
+adoption is constrained less by model capability than by whether the care setting can reliably
+supply the longitudinal, high-fidelity context needed for safe and clinically useful inference.
+My perspective comes from building and operating clinical data infrastructure in real healthcare
+delivery environments, including clinical data warehouses, integration pipelines, and
+point-of-care systems used by clinicians under real time constraints. In those settings, the central
+failure mode is not "no standards exist," but "the record is incomplete when and where clinical
+decisions are made." AI embedded into workflows inherits that incompleteness, which directly
+degrades safety, quality, and equity.
+2. Background: The Problem the RFI is Trying to Solve
+2.1 Fragmentation, not standards maturity, is the binding constraint
+Despite FHIR/USCDI maturity, national exchange efforts, and the shift toward API-based
+access, longitudinal aggregation remains the exception rather than the norm. The operational
+reality is that records are frequently split across hospitals, specialist groups, labs, urgent care,
+imaging centers, behavioral health providers, and post-acute settings. Clinicians often have an
+incomplete view of diagnoses, medications, prior workups, allergies, procedures, problem lists,
+and results performed elsewhere.
+For clinical AI, this is not a "nice-to-have." Longitudinal completeness is the substrate for:
+accurate clinical context and risk stratification; reduction of false positives/false negatives that
+arise from missing history; bias mitigation (because missingness is not random and often
+correlates with socioeconomic access patterns); and trustworthy post-deployment monitoring
+(drift, subgroup performance, safety event correlation).
+2.2 Why fragmentation persists: routing control is mis-assigned
+The underlying structural issue is that routing decisions are typically controlled by institutions
+and vendors, not by patients. Even when standards and exchange exist, the default routing
+behavior tends to produce episodic exchange, partial aggregation, and brittle "islands" of data
+that do not converge into a reliable longitudinal record accessible at the point of care.
+Stated differently: interoperability capability does not guarantee longitudinal completeness,
+because the system's routing defaults do not reliably cause data to converge.
+3. Core Proposal: Patient-Designated Longitudinal Routing by Default
+3.1 One structural change
+HHS can unlock meaningful clinical AI adoption by enabling patient-designated routing by
+default: a one-time patient designation of a certified longitudinal endpoint to which full-fidelity
+USCDI data is automatically delivered as it is created, across care settings.
+Key properties:
+
+4. One-time designation (like choosing a primary pharmacy or selecting a health plan PCP)
+5. Automatic delivery of standardized clinical payloads (USCDI-aligned) as events occur
+6. Persistent routing via a record-locator mechanism so the designation "follows" the
+patient
+7. No patient management burden (no requirement that patients log in, curate, or actively
+manage data)
+8. Return-to-care enablement: treating systems can retrieve a current longitudinal view
+with patient consent, supporting clinician workflow and embedded AI
+3.2 What this is not
+This is not "a consumer portal strategy" and not a burden-shift to patients. The endpoint is not
+primarily for human browsing or personal recordkeeping. It is a convergence layer intended to
+make a complete, current longitudinal record reliably available back to care delivery systems
+(with consent) where AI actually runs.
+3.3 Why this solves the AI adoption bottleneck
+Clinical AI fails in practice when deployed into workflows that are informationally
+impoverished. Patient-designated routing changes the default so that longitudinal completeness
+becomes the expected input condition for AI, rather than a special-case integration
+achievement.
+This is the smallest structural shift that: improves patient safety and care coordination
+immediately (even without AI); creates the precondition for AI systems to be reliable and
+monitorable; and aligns incentives in a way enforcement alone has not achieved.
+4. Analysis: Impacts, Unintended Consequences, and Why HHS Should Prefer
+This Approach
+4.1 Benefits to clinical care (even before AI)
+A persistent longitudinal record reduces: duplicated labs and imaging ordered because prior
+results are unavailable; medication reconciliation errors (a major source of preventable harm);
+delays in diagnosis due to missing prior workup and specialist notes; avoidable
+admissions/readmissions driven by incomplete outpatient history; and clinician time lost hunting
+for records across portals and faxes. These improvements are direct clinical quality benefits that
+also improve AI readiness.
+4.2 Why incentives matter more than capability attestations
+Interoperability has often been framed as "build capability" + "enforce compliance." That
+approach does not reliably create longitudinal completeness because it does not make
+completeness an operational default that organizations are paid to produce.
+
+If reimbursement is conditioned on verified delivery to a patient-designated endpoint (not mere
+"capability to deliver"), interoperability shifts from an enforcement problem to an operational
+norm. This is a durable behavioral change lever.
+4.3 Distributional impacts (equity)
+Fragmentation and missingness are not evenly distributed. People who receive care across
+multiple systems (often due to access patterns, insurance churn, transportation constraints, or
+regional provider availability) are disproportionately harmed by non-convergent records. These
+same populations are at higher risk of AI underperformance when missingness becomes a hidden
+input variable correlated with disadvantage.
+Patient-designated routing improves equity by making longitudinal completeness a default
+expectation across sites rather than a privilege of being "in the right health system."
+4.4 Semantic interoperability is a real risk—and a necessary forcing function
+Implementing default longitudinal routing will reveal known weaknesses in semantic
+consistency: coding variation, normalization drift, incomplete reconciliation of problem lists, and
+differing local interpretations. These issues exist today; episodic exchange often masks them.
+This should be treated as a forcing function rather than a reason to avoid reform. AI systems
+amplify semantic inconsistency risks; therefore, operationalizing longitudinal aggregation is the
+mechanism that makes semantic quality measurable, improvable, and tied to downstream
+usability.
+4.5 Privacy, security, and trust: the "central objection" and how to mitigate it
+A convergence endpoint increases the perceived "blast radius" of a breach if designed poorly.
+That concern is legitimate and should be addressed explicitly in the program design.
+Mitigations that can be required through certification and policy guardrails:
+• Consent + revocation: simple, durable patient consent workflows; immediate revocation
+capability
+• Strong provenance + auditability: comprehensive audit logs; patient-accessible "who
+accessed what and when"
+• Minimum necessary retrieval: retrieval into treating systems should be scoped;
+discourage uncontrolled bulk retrieval except when clinically justified
+• Segmentation & sensitive domains: phased inclusion for highly sensitive categories;
+require clear labeling and provenance for sensitive information
+• Security baseline: modern authentication/authorization, encryption in transit/at rest,
+continuous monitoring, and incident response controls commensurate with handling
+longitudinal clinical data
+A default routing policy must be paired with a certification program that makes "safe
+aggregation" non-negotiable.
+
+5. Recommended HHS Actions Using the RFI Levers
+(Explicitly aligned to the RFI's emphasis on regulation, reimbursement, and R&D.)
+5.1 Regulation: Define and certify "longitudinal endpoints" and routing behavior
+HHS/ASTP/ONC should define certification criteria for longitudinal endpoints and for EHR
+behaviors required to support patient designation and delivery.
+Certification should require longitudinal endpoints to:
+9. Accept complete USCDI-aligned payloads (full-fidelity, not lossy summaries)
+10. Support standardized query and return to treating systems with patient consent
+11. Provide robust provenance, versioning, and audit logs
+12. Enforce strong security controls and clear operational responsibilities
+13. Implement consent and revocation mechanisms appropriate for clinical workflows
+14. Support resilience and availability expectations appropriate for point-of-care retrieval
+Certification should require sending systems to:
+15. Support a patient-designated routing instruction
+16. Automatically deliver standardized payloads to that endpoint (subject to consent and
+policy)
+17. Support reliable event-based update flows (not just occasional exports)
+18. Provide delivery verification (receipt + integrity checks)
+This does not require redefining USCDI or replacing FHIR; it changes the default routing
+behavior and makes longitudinal convergence reliable.
+5.2 Persistent routing: record locator mechanism
+HHS should establish or enable a persistent routing pointer (record-locator-like) so a patient's
+designation is discoverable across care settings. That pointer should be patient-controlled,
+privacy-preserving, and designed to avoid enabling unauthorized tracking.
+Conceptually: the routing pointer says "where the longitudinal record lives," not "what is in it."
+Access to the content remains consent-governed and auditable.
+5.3 Reimbursement: tie payment to verified delivery and usability (critical)
+Regulation alone will not produce durable change. HHS should pilot reimbursement models
+where the measure is successful delivery (and, over time, usability) rather than capability
+attestation.
+Potential models:
+• Infrastructure payments for certified longitudinal endpoints with pricing guardrails
+
+• Quality / value-based measures tied to verified delivery performance (completeness +
+latency)
+• Incentives for treating systems that demonstrate retrieval use in workflows (without
+penalizing patients)
+CMS can directly influence Medicare/Medicaid. Commercial alignment can be approached via
+demonstrations that show ROI and reduced waste through fewer duplicates and improved
+coordination.
+5.4 R&D and pilots: fund implementation science, not just model research
+HHS should sponsor pilots that evaluate:
+• Completeness: USCDI coverage over time vs expected sources
+• Latency: time from data creation to endpoint availability
+• Clinical outcomes proxies: duplicate test reduction, medication discrepancy reduction,
+preventable adverse events
+• Operational burden: net clinician time saved vs added workflows
+• AI safety and bias: subgroup performance changes when longitudinal completeness
+improves
+• Total cost of ownership: endpoint ops, integration costs, and security compliance
+Study design suggestion: stepped-wedge rollout across sites or regions to enable causal
+inference without requiring all participants to switch simultaneously.
+6. Addressing Likely Counterarguments
+Counterargument A: "This is too hard / too expensive"
+The current model externalizes costs into duplicated testing, preventable errors, and
+administrative burden (fax, portal chasing, manual reconciliation). Patient-designated routing
+consolidates infrastructure investment into a measurable, reusable utility. By tying
+reimbursement to verified delivery and using certification to reduce bespoke integrations, the
+system becomes cheaper over time than the current patchwork of one-off interfaces.
+Counterargument B: "Patients won't participate"
+Patients already make durable healthcare designations (insurance plans, pharmacies, PCPs,
+consent forms). The program can be designed so designation occurs at registration, enrollment,
+or during standard administrative encounters, with minimal friction. Critically: patients do not
+need to "use an app" for this to work.
+Counterargument C: "Privacy risk is unacceptable"
+The risk is unacceptable only if the endpoint lacks rigorous controls. This is precisely why
+certification, auditability, consent, and security baselines must be central requirements. A poorly
+secured fragmented environment is not inherently safer than a well-governed convergence
+model; it is simply less visible and less accountable.
+
+7. Specific Requests to HHS (Recap as Actionable Items)
+19. Define and certify patient-designated longitudinal endpoints with strict security, consent,
+provenance, and audit requirements
+20. Require support in certified health IT for patient designation and automated delivery
+of standardized USCDI-aligned data to the designated endpoint
+21. Establish a persistent routing pointer (record-locator-like) so designations follow
+patients across care settings
+22. Pilot reimbursement models tied to verified delivery (and later, usability) rather than
+capability attestations
+23. Fund evaluations that connect longitudinal completeness improvements to clinical
+outcomes, workflow impact, and AI safety/bias monitoring
+8. Conclusion
+Clinical AI cannot reliably succeed without longitudinal completeness available in real
+workflows. The most direct way to achieve that completeness is to transfer routing control—by
+default—from institutions to patients through a one-time designation of a certified longitudinal
+endpoint, paired with persistent routing and strong consent/audit safeguards.
+This is a narrow structural change with outsized impact: it improves care coordination
+immediately, reduces preventable harm, and creates the data conditions necessary for safe,
+effective, and equitable clinical AI.
+References
+HHS Health Sector AI RFI (ASTP/ONC), Docket HHS-ONC-2026-0001:
+https://www.regulations.gov/document/HHS-ONC-2026-0001-0001
+Administrative Procedure Act (public comment process context): 5 U.S.C. § 553

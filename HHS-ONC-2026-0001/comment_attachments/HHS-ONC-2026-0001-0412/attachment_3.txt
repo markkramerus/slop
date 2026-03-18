@@ -1,0 +1,2224 @@
+Integrating the Healthcare Enterprise
+IHE Radiology
+5
+Technical Framework Supplement
+AI Result Assessment for Imaging
+10
+(AIRA)
+Revision 1.1 – Trial Implementation
+15
+20 Date: June 12, 2025
+Author: Radiology Technical Committee
+Email: radiology@ihe.net
+25 Please verify you have the most recent version of this document. See here for Trial
+Implementation and Final Text versions and here for Public Comment versions.
+Copyright © 2025: IHE International, Inc.
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Foreword
+This is a supplement to the IHE Radiology Technical Framework V23.0. Each supplement
+30 undergoes a process of public comment and trial implementation before being incorporated into
+the volumes of the Technical Frameworks.
+This supplement is published on June 12, 2025 for trial implementation and may be available for
+testing at subsequent IHE Connectathons. The supplement may be amended based on the results
+of testing. Following successful testing it will be incorporated into the Radiology Technical
+35 Framework. Comments are invited and may be submitted at
+http://www.ihe.net/Radiology_Public_Comments.
+This supplement describes changes to the existing technical framework documents.
+“Boxed” instructions like the sample below indicate to the Volume Editor how to integrate the
+relevant section(s) into the relevant Technical Framework volume.
+40 Amend section X.X by the following:
+Where the amendment adds text, make the added text bold underline. Where the amendment
+removes text, make the removed text bold strikethrough. When entire new sections are added,
+introduce with editor’s instructions to “add new text” or similar, which for readability are not
+bolded or underlined.
+45
+General information about IHE can be found at IHE.net.
+Information about the IHE Radiology domain can be found at IHE Domains.
+Information about the organization of IHE Technical Frameworks and Supplements and the
+process used to create them can be found at Profiles and IHE Process
+50 The current version of the Radiology Technical Framework can be found at
+https://profiles.ihe.net/RAD.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 2 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+CONTENTS
+55 Introduction to this Supplement ...................................................................................................... 5
+Open Issues and Questions ........................................................................................................ 5
+Closed Issues .............................................................................................................................. 5
+IHE Technical Frameworks General Introduction .......................................................................... 8
+9 Copyright Licenses..................................................................................................................... 8
+60 10 Trademark .................................................................................................................................. 8
+IHE Technical Frameworks General Introduction Appendices ...................................................... 9
+Appendix A – Actors ...................................................................................................................... 9
+Appendix B – Transactions ............................................................................................................. 9
+Appendix D – Glossary ................................................................................................................. 10
+65 Volume 1 – Profiles ..................................................................................................................... 11
+Domain-specific additions ....................................................................................................... 11
+57 AI Result Assessment for Imaging (AIRA) Profile ................................................................. 12
+57.1 AIRA Actors, Transactions, and Content Modules ......................................................... 12
+57.1.1 Actor Descriptions and Actor Profile Requirements ................................................ 15
+70 57.2 AIRA Actor Options ........................................................................................................ 18
+57.2.1 RESTFul Semantics Option ..................................................................................... 18
+57.3 AIRA Required Actor Groupings .................................................................................... 19
+57.4 AIRA Overview ............................................................................................................... 19
+57.4.1 Concepts ................................................................................................................... 19
+75 57.4.2 Use Cases ................................................................................................................. 36
+57.5 AIRA Security Considerations ......................................................................................... 42
+57.5.1 Security Considerations for Actors .......................................................................... 42
+57.5.2 Security Considerations for Assessment Results ..................................................... 42
+57.6 AIRA Cross Profile Considerations ................................................................................. 42
+80 Appendices to Volume 1 ............................................................................................................... 44
+Volume 2 – Transactions ............................................................................................................ 45
+4.14 Query Images [RAD-14] .................................................................................................. 45
+4.14.2 Actor Roles ............................................................................................................... 45
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 3 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+4.16 Retrieve Images [RAD-16] .............................................................................................. 45
+85 4.16.2 Actor Roles ......................................................................................................... 45
+4.45 Retrieve Evidence Documents [RAD-45] ........................................................................ 46
+4.45.2 Actor Roles ............................................................................................................... 46
+4.50 Store Instances [RAD-50] ................................................................................................ 47
+4.50.2 Actor Roles ......................................................................................................... 47
+90 4.66 Rejection Note Stored [RAD-66] ..................................................................................... 47
+4.66.2 Actor Roles ............................................................................................................... 47
+4.107 WADO-RS Retrieve [RAD-107] ................................................................................... 48
+4.107.2 Actor Roles ......................................................................................................... 48
+4.108 Store Instances over the Web [RAD-108] ................................................................ 49
+95 4.108.2 Actor Roles ......................................................................................................... 49
+4.129 QIDO-RS Query [RAD-129] .................................................................................... 50
+4.129.2 Actor Roles ......................................................................................................... 50
+4.137 Query Analysis Results [RAD-137]............................................................................... 51
+4.137.2 Actor Roles ............................................................................................................. 51
+100 Appendices to Volume 2 ............................................................................................................... 52
+Volume 3 – Content Modules ..................................................................................................... 53
+4 IHE Namespaces, Concept Domains and Vocabularies ............................................................ 53
+4.3 IHE Radiology Format Codes and Vocabularies ............................................................... 53
+5.1 ITI-20 Record Audit Event ................................................................................................ 55
+105 6.8 AI Result Assessment Content ........................................................................................... 56
+6.8.1 Reference Standards ................................................................................................... 56
+6.8.2 AI Result Assessment Data Encoding ........................................................................ 56
+Appendices to Volume 3 ............................................................................................................... 67
+Appendix C – AIRA Profile - Assessment Scenarios ................................................................... 67
+110 Appendix D – AIRA Profile - Example AI Result Assessment Encodings ................................. 69
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 4 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Introduction to this Supplement
+This profile, AI Result Assessment for Imaging, addresses the need to document and
+communicate the results from an assessment process that rates the individual results of AI
+115 solutions. There are two central use cases for which the output objects of the profile will provide
+information for
+• the assessment of AI findings for the purpose of only distributing the clinically relevant
+results as they are referenced in a written report
+• the assessment of AI findings for the purpose of computing metrics, e.g., alarm metrics
+120 showing the number of rejected findings over time, contribution of data for statistical
+analysis, e.g., positive predictive value.
+The profile encompasses human as well as machine assessment.
+The assessment result objects are defined for a variety of DICOM Objects, which could either
+have individually referenceable AI Results, e.g., DICOM SR, or which do not have individually
+125 referenceable AI Results e.g., DICOM Secondary Capture. Therefore, the assessment is not
+limited to typical AI result objects. Non-AI result objects, e.g., Softcopy Presentations State
+objects can also be processed.
+However, the assessment process itself is not defined by this profile. Therefore, e.g., the process
+for ensuring the correctness of the ratings is out of scope. Without additional processes
+130 established the usage of the assessment results for re-training AI models is limited.
+Open Issues and Questions
+1 Q: Do we need levels of rejection severity ?
+At the moment we do not have severities, the AI Result is rejected or not. We can
+envision rejection severity might be of interest to product developers, regulators
+and hospital QA processes, but is not particularly useful for imaging physicians.
+Closed Issues
+1 Report Creator out of scope.
+2 Q: Is it ok that the name of the verifying human or machine will be used for any
+finding referenced within that newly created object - regardless of the previous
+observer. Rational behind: The verifying human/ machine is responsible for any
+finding referenced within the newly created object.
+A: Yes, maybe not today but in the future, when AI systems are more mature and it
+becomes legally accepted.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 5 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+3 Q: How do we record assessments of different measurements when there are
+multiple in a parametric map instance?
+A: Only assess the entire instance. If necessary to distinguish different
+measurements, split into multiple instances.
+4 Q: What are the requirements on data to be assessed? (E.g., SR nodes must have
+Observation UIDs) And how should those requirements be specified?
+Currently the Evidence Creator is not part of this profile. However certain
+requirements for the different AI Result Objects apply for the presence of unique
+identifiers in order to be suitable for the assessment processes described in this
+profile.
+Added Requirements to Section 6.8.2.2.1 to indicate that these objects can only be
+assessed as a Single AI Result
+5 Q: Do we want to use a specific Rejection Code for rejected AI Result objects
+(which would trigger updates to [RAD-66] or do we want to re-use behavior
+defined for the (113001, DCM, “Rejected for Quality Reasons”) Document Title
+with Rejected for Quality Reason (111219,DCM,”Inappropriate image processing”)
+Document Modifier Title in KOS.
+Current profile text re-uses (113001, DCM, “Rejected for Quality Reasons”), since
+at this point we don’t see conflicting or additional requirements for the AI
+assessment process.
+Use Document Modifier code (AIRA_26, 99IHE, «Assessment Process Outcome» )
+6 Q: What happens next to instances which have multiple findings, some of which
+are rejected? E.g., are they rewritten to remove rejected findings? Are they kept
+with the findings tagged rejected?
+Rejecting an object due to all findings being rejected is obviously to be solved by
+IOCM using KOS rejection for Quality Reasons or Patient Safety. But what
+happens if not all findings of an object are rejected.
+In that case the existing object should simply be updated with a new version of that
+AI Result Object leaving the possibility for non-administrative users to gain access
+to the history of that object.
+How shall we solve this problem? IOCM with an update request instead of
+rejection request? Relying on Document Titles?
+Answer: Addressed in the use cases displayed in Figure 57.4.1.1-1
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 6 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+7 Q: Should we add devices as Verifying Observer (in DICOM)?
+Automated assessment of findings based on AI analysis of radiological reports
+could create an assessment as AI as the Verifying Observer.
+Answer: For now, a DICOM SR can only be verified by a human observer until a
+device observer is added as a Verifying Observer in the DICOM Standard.
+8 Q: Shall this profile define a way how to encode assessment objects that are
+incomplete, e.g., because the assessment activity was interrupted.
+This could be useful if the Quality Note Creator wanted to save the current,
+incomplete state of the assessment for the purpose of allowing the assessor to
+continue the assessment where it was left off instead of starting from scratch again.
+For example, certain tags like the Preliminary Flag could be used for this purpose.
+Answer: Preliminary and Completion Flag were added to the definition of Output
+AI Result Objects and the Assessment Status SR object. However, the usage of
+these attributes is left to the implementer
+135
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 7 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+IHE Technical Frameworks General Introduction
+The IHE Technical Frameworks General Introduction is shared by all of the IHE domain
+technical frameworks. Each technical framework volume contains links to this document where
+appropriate.
+140 9 Copyright Licenses
+IHE technical documents refer to, and make use of, a number of standards developed and
+published by several standards development organizations. Please refer to the IHE Technical
+Frameworks General Introduction, Section 9 - Copyright Licenses for copyright license
+information for frequently referenced base standards. Information pertaining to the use of IHE
+145 International copyrighted materials is also available there.
+10 Trademark
+IHE® and the IHE logo are trademarks of the Healthcare Information Management Systems
+Society in the United States and trademarks of IHE Europe in the European Community. Please
+refer to the IHE Technical Frameworks General Introduction, Section 10 - Trademark for
+150 information on their use.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 8 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+IHE Technical Frameworks General Introduction Appendices
+The IHE Technical Framework General Introduction Appendices are components shared by all
+of the IHE domain technical frameworks. Each technical framework volume contains links to
+these documents where appropriate.
+155
+Update the following appendices to the General Introduction as indicated below. Note that these
+are not appendices to this domain’s Technical Framework (TF-1, TF-2, TF-3 or TF-4) but
+rather, they are appendices to the IHE Technical Frameworks General Introduction located
+here.
+160
+Appendix A – Actors
+Add the following new or modified actors to the IHE Technical Frameworks General
+Introduction Appendix A:
+165 No new or modified actors.
+The table below lists existing actors that are utilized in this profile.
+Complete List of Existing Actors Utilized in this Profile
+Existing Actor Name Definition
+Quality Note Creator Flags medical data as having quality issues
+Quality Information Reporter Consumes quality information and supports Quality Assurance analysis processes.
+Image Manager/Image Archive A system that stores and manages imaging data
+Image Display A system that presents medical images and associated imaging data
+170 Appendix B – Transactions
+Add the following new or modified transaction definitions to the IHE Technical Frameworks
+General Introduction Appendix B:
+No new transactions and no definitions for existing transactions were modified.
+175
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 9 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Appendix D – Glossary
+Add the following new or modified glossary terms to the IHE Technical Frameworks General
+Introduction Appendix D:
+180
+New (or modified) Definition Synonyms Acronym/
+Glossary Term Abbreviation
+AI Result Smallest unit that can be assessed (depending on the AI
+algorithm/ solution this can be a complete object, a
+clinical finding (e.g., a lung nodule) or an observation on
+a clinical finding (e.g., the longest diameter of a specific
+lung nodule)
+AI Result Object Object format of an AI Result, e.g., DICOM SR, SEG,
+KOS, SC, encapsulated PDF, GSPS
+Assessor Human or machine that assesses AI Result Objects
+Assessment Status DICOM Structured Report containing the assessment
+Object status for each AI Result as defined in this glossary
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 10 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Volume 1 – Profiles
+Domain-specific additions
+185 None
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 11 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Add new Section 57
+57 AI Result Assessment for Imaging (AIRA) Profile
+190 With the increasing number of regulatory cleared AI-based SaMD (Software as a Medical
+Device) products available, validation of the results produced by AI becomes critical to the
+success of AI in clinical practice (e.g., deployment of valid findings, for acceptance testing
+during deployment, post market surveillance).
+The AIRA Profile specifies the structure and transactions for storage and communication of
+195 assessment of AI Results for different purposes, e.g., distribution of assessed AI results, post
+market surveillance, detection of data drift.
+This profile does not define assessment criteria or operational processes required to ensure the
+quality of the AI results.
+The AIRA Profile addresses AI Results encoded in DICOM objects only.
+200 57.1 AIRA Actors, Transactions, and Content Modules
+This section defines the actors, transactions, and/or content modules in this profile. General
+definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
+IHE Transactions can be found in the Technical Frameworks General Introduction Appendix B.
+Both appendices are located at https://profiles.ihe.net/GeneralIntro/index.html.
+205 Figure 57.1-1 shows the actors directly involved in the AIRA Profile and the relevant
+transactions between them. If needed for context, other actors that may be indirectly involved
+due to their participation in other related profiles are shown in dotted lines. Actors which have a
+required grouping (if any), are shown in conjoined boxes (see Section 57.3).
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 12 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+210
+Quality
+Quality Note
+Information
+Creator
+Reporter
+Store Instances [RAD-50] ↓
+↓ Query Images [RAD-14]
+Store Instance over Web [RAD-108] ↓
+Rejection Note Stored[RAD-66] ↓ ↓ Query Analysis Results [RAD137]
+Query Images [RAD-14] ↓ ↓ QIDO-RS Query [RAD-129]
+Query Analysis Results [RAD-137] ↓ ↓ Retrieve Images [RAD16]
+QIDO-RS Query [RAD-129] ↓ ↓ Retrieve Evidence Documents [RAD−45]
+Retrieve Images [RAD-16] ↓ ↓ WADO-RS Retrieve [RAD−107]
+Image Manager/
+Retrieve Evidence Documents [RAD-45] ↓
+WADO-RS Retrieve [RAD-107] ↓ Image Archive
+↓ Query Images [RAD-14]
+↓ Query Analysis Results [RAD137]
+↓ QIDO-RS Query [RAD-129]
+↓ Retrieve Images [RAD16]
+↓ Retrieve Evidence Documents [RAD−45]
+↓ WADO-RS Retrieve [RAD−107]
+Image
+Display
+Figure 57.1-1: AIRA Actor Diagram
+Table 57.1-1 lists the transactions for each actor directly involved in the AIRA Profile. To claim
+compliance with this profile, an actor shall support all required transactions (labeled “R”) and
+may support the optional transactions (labeled “O”).
+215 Table 57.1-1: AIRA Profile - Actors and Transactions
+Actors Transactions Initiator or Optionality Reference
+Responder
+Quality Note Store Instances [RAD-50] Initiator O RAD TF-2: 4.50
+Creator
+Store Instances over the Web Initiator O RAD TF-2: 4.108
+(See Sec. [RAD-108] (Note 1)
+57.1.1.1)
+Rejection Note Stored [RAD- Initiator R RAD TF-2: 4.66
+66]
+Query Images [RAD-14] Initiator O RAD TF-2: 4.14
+Query Analysis Results Initiator O RAD TF-2: 4.137
+[RAD-137]
+QIDO-RS Query [RAD-129] Initiator O RAD TF-2: 4.129
+(Note 1)
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 13 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Actors Transactions Initiator or Optionality Reference
+Responder
+Retrieve Images Initiator O RAD TF-2: 4.16
+[RAD-16]
+Retrieve Evidence Initiator O RAD TF-2: 4.45
+Documents [RAD-45]
+WADO-RS Retrieve Initiator O RAD TF-2: 4.107
+[RAD-107] (Note 1)
+Quality Query Images [RAD-14] Initiator O RAD TF-2: 4.14
+Information
+Query Analysis Results Initiator O RAD TF-2: 4.137
+Reporter
+[RAD-137]
+(See Sec.
+57.1.1.2) QIDO-RS Query [RAD-129] Initiator O RAD TF-2: 4.129
+(Note 1)
+Retrieve Images Initiator O RAD TF-2: 4.16
+[RAD-16]
+Retrieve Evidence Initiator O RAD TF-2: 4.45
+Documents [RAD-45]
+WADO-RS Retrieve Initiator O RAD TF-2: 4.107
+[RAD-107] (Note 1)
+Image Manager/ Store Instances [RAD-50] Responder R RAD TF-2: 4.50
+Image Archive
+Store Instances over the Web Responder O RAD TF-2: 4.108
+(See Sec. [RAD-108] RAD TF-1: 57.2.1
+57.1.1.3)
+Rejection Note Stored Responder R RAD TF-2: 4.66
+[RAD-66]
+Query Images [RAD-14] Responder R RAD TF-2: 4.14
+Query Analysis Results Responder R RAD TF-2: 4.137
+[RAD-137]
+QIDO-RS Query [RAD-129] Responder O RAD TF-2: 4.129
+RAD TF-1: 57.2.1
+Retrieve Images Responder R RAD TF-2: 4.16
+[RAD-16]
+Retrieve Evidence Responder R RAD TF-2: 4.45
+Documents [RAD-45]
+WADO-RS Retrieve Responder O RAD TF-2: 4.107
+[RAD-107] RAD TF-1: 57.2.1
+Image Display Query Images [RAD-14] Initiator O RAD TF-2: 4.14
+(See Sec. Query Analysis Results Initiator O RAD TF-2: 4.137
+57.1.1.4) [RAD-137]
+QIDO-RS Query [RAD-129] Initiator O RAD TF-2: 4.129
+(Note 1)
+Retrieve Images Initiator O RAD TF-2: 4.16
+[RAD-16]
+Retrieve Evidence Initiator O RAD TF-2: 4.45
+Documents [RAD-45]
+WADO-RS Retrieve Initiator O RAD TF-2: 4.107
+[RAD-107] (Note 1)
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 14 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Note 1: Use of this transaction in a deployment requires an Image Manager / Image Archive that supports the RESTful
+Semantics Option. See Section 57.2.1.
+57.1.1 Actor Descriptions and Actor Profile Requirements
+Most requirements are documented in RAD TF-2 Transactions. This section documents any
+220 additional requirements on profile’s actors.
+57.1.1.1 Quality Note Creator
+Quality Note Creators record assessments of the validity of AI Results found in AI Result
+Objects and, depending on those assessments, may create new AI Result Objects and/or flag AI
+Result Objects as rejected. Assessments may be performed by either a human reviewer or an
+225 automated function or a combination of both. The term AI Result is used broadly here to refer to
+individual details being assessed and may not necessarily correspond to a discrete clinical
+finding. Some AI Result Objects contain a single AI Result, others contain multiple AI Results.
+The Quality Note Creator shall create an Assessment Status Object for each assessment activity.
+An assessment activity involves one Verifying Observer recording the assessment of one or more
+230 AI Results in one or more AI Result Objects in a single study. The Assessment Status SR Object
+shall conform to the specification in RAD TF-3: 6.8.2.2 “AI Result Assessment data encoding”.
+The Quality Note Creator shall support storing Assessment Status SR Objects using at least one
+of the Store Instances over the Web [RAD-108] (RESTful) or Store Instances [RAD-50]
+(DIMSE) transactions, and it may support both.
+235 The Quality Note Creator shall be able to reject Assessment Status Objects by using the
+Rejection Note Stored [RAD-66] transaction to store a KOS object with a Document Title of
+(113001, DCM, “Rejected for Quality Reasons”) and a Document Title Modifier of (AIRA_26,
+99IHE, “Assessment Process Outcome”), if it is a predecessor to a subsequent Assessment
+Activity.
+240 The Quality Note Creator shall be able to reject AI Result Objects by using the Rejection Note
+Stored [RAD-66] transaction to store a KOS object with a Document Title of (113001, DCM,
+“Rejected for Quality Reasons”) and a Document Title Modifier of (AIRA_26, 99IHE,
+“Assessment Process Outcome”).
+The Quality Note Creator shall be able to create replacement AI Result Objects as described in
+245 RAD TF-3: Section 6.8.2.1. For related concepts, see Section 57.4.1.
+With two exceptions, the Quality Note Creator shall create a replacement AI Result Object for
+each assessed AI Result Object by removing any AI Results that were rejected or modified,
+including any corrected or new AI Results provide by the assessor, and retaining any other AI
+Results.
+250 • The first exception is when all AI Results in the AI Result Object were rejected. No
+replacement AI Result Object is needed.
+• The second exception is when no AI Results in the AI Result Object were rejected,
+modified, or added, and the AI Result Object SOP Class does not have a Verification
+Flag attribute.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 15 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+255 The Quality Note Creator shall reject a given AI Result Object when a replacement AI Result
+Object is created for it, or when it is rejected in its entirety.
+The Quality Note Creator shall support the different scenarios described in RAD TF-3: Table C-
+1 and Table C-2. These tables provide detailed information about the encoding and the
+dependency between the different objects created during an Assessment Activity depending on
+260 the Status of the individual AI Results.
+The Quality Note Creator shall support corresponding query and retrieval transactions listed in
+Table 57.1-1 for each SOP Class they consume. The Quality Note Creator may support the
+RESTful version of the transaction, or the conventional DIMSE version of the transaction, or
+both.
+265 If the Quality Note Creator supports the QIDO-RS Query [RAD-129] transaction, it shall
+additionally support the SCU Query Matching and Return Keys as defined in the Query Analysis
+Results [RAD-137] transaction (see RAD TF-2: 4.137.4.1.2 “Message Semantics”).
+Quality Note Creators shall be able to query and retrieve hidden rejected instances. This enables
+the Quality Note Creator to access Rejected Instances when retrieving AI Assessments
+270 performed by a previous Assessor.
+• A Quality Note Creator that supports Query Images [RAD-14] (DIMSE semantics), shall
+be able to query the AE Title on the Image Manager / Image Archive that exposes
+rejected instances. See Section 57.1.1.3.
+• A Quality Note Creator that supports QIDO-RS Query [RAD-107] (RESTful semantics),
+275 shall be able to query the QIDO-RS endpoint on the Image Manager / Image Archive that
+exposes rejected instances. See Section 57.1.1.3.
+57.1.1.2 Quality Information Reporter
+Quality Information Reporters retrieve Output AI Result Objects and the Assessment Status
+Object (and potentially the Input AI Result Objects) to do Q/A analysis based on the information
+280 provided in these objects.
+The Quality Information Reporter shall support retrieval and analysis of at least DICOM
+Comprehensive SR Storage SOP Class (1.2.840.10008.5.1.4.1.1.88.33) for the Assessment
+Status Object, and, depending on the Q/A analysis the Quality Information Reporter wants to
+perform, at least one of the AI Result Object types listed in RAD TF-3: Table 6.8.2-1 “IODs for
+285 Encoding AI Results”.
+The Quality Information Reporter shall support corresponding query and retrieval transactions
+listed in Table 57.1-1 for each SOP Class they consume. The Quality Information Reporter may
+support the RESTful version of the transaction, or the conventional DIMSE version of the
+transaction, or both.
+290 If the Quality Information Reporter supports the QIDO-RS Query [RAD-129] transaction, it
+shall additionally support the SCU Query Matching and Return Keys as defined in the Query
+Analysis Results [RAD-137] transaction (see RAD TF-2: 4.137.4.1.2 “Message Semantics”).
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 16 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+The Quality Information Reporter shall be able to query and retrieve hidden rejected instances:
+• A Quality Information Reporter that supports Query Images [RAD-14] (DIMSE
+295 semantics), shall be able to query the AE Title on the Image Manager / Image Archive
+that exposes rejected instances. See Section 57.1.1.3.
+• A Quality Information Reporter that supports QIDO-RS Query [RAD-107] (RESTful
+semantics), shall be able to query the QIDO-RS endpoint on the Image Manager / Image
+Archive that exposes rejected instances. See Section 57.1.1.3.
+300 57.1.1.3 Image Manager/Image Archive
+The Image Manager/Image Archive is responsible for managing the Imaging study, the
+associated Input AI Result Object, the update AI Result Objects, the Assessment Status Object
+and rejected AI Result Objects.
+Image Manager / Image Archive Actors shall support all the SOP Classes listed in RAD TF-3:
+305 6.8.2 “Result Assessment Data Encoding”.
+Instances referenced by the Quality Note Creator using a Rejection Note with a Document Title
+of "Rejected for Quality Reasons" are considered non-diagnostic and should not be visible in the
+clinical process. The Image Manager / Image Archive receives such Rejection Notes via
+Rejection Note Stored [RAD-66]. The Image Manager / Image Archive shall:
+310 • support the DIMSE Semantics of [RAD-66] as a C-STORE SCU. See RAD TF-2:
+4.66.4.1.2.1.
+• be able to expose or hide rejected instances as specified in RAD TF-2: 4.66.4.1.3 and
+4.66.4.1.3.1 (Expected Actions for Rejection Notes Stored for Quality Reasons). Briefly,
+this involves hiding the rejected instances in subsequent Query/Retrieve responses unless
+315 the client uses an AE Title specifically configured to provide access to hidden instances.
+57.1.1.4 Image Display
+The Image Display can be used to display an imaging study and AI Results. This actor may
+choose to only display a subset of AI Results based on their individual assessment status upon
+user request and/or the user’s role or configuration.
+320 The Image Display shall support query and retrieval of the imaging study, Output AI Result
+Objects and the Assessment Status Objects. Image Displays shall support corresponding query
+and retrieve transactions listed in Table 57.1-1 for each SOP Class they consume. The Image
+Displays may support the RESTful version of the transaction, or the conventional DIMSE
+version of the transaction, or both.
+325 If the Image Display supports the QIDO-RS Query [RAD-129] transaction, it shall additionally
+support the SCU Query Matching and Return Keys as defined in the Query Analysis Results
+[RAD-137] transaction (see RAD TF-2: 4.137.4.1.2 “Message Semantics”).
+To prevent inadvertent use of rejected results in clinical workflow, the rejected result instances
+are sequestered by the Image Manager / Image Archive. Some Image Display users may need to
+330 review rejected results, for example as part of a QA process.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 17 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+The Image Display shall be configurable to access an alternate AE Title (i.e., the “Expose
+Rejected Instances” Application Entity) or designated webservice endpoint provided by the
+Image Manager / Image Archive (see RAD TF-2: 4.66.4.1.3).
+Note: The Expose Rejected Instances Application Entity/Webservice endpoint bypasses sequestering behavior. It provides
+335 access to all available instances, both those that have been rejected and those that have not been rejected.
+The user of the Image Display might query and retrieve the Rejection Note instances or the
+Assessment Status Objects and then retrieve the result instances based on the contained
+references. The user might also query for the result instances directly and then retrieve selected
+results.
+340 The Image Display shall be configurable to enable only specific users on the Image Display to
+access rejected instances.
+57.2 AIRA Actor Options
+Options that may be selected for each actor in this profile, if any, are listed in the Table 57.2-1.
+Dependencies between options, when applicable, are specified in notes.
+345 Table 57.2-1: AIRA – Actors and Options
+Actor Option Name Reference
+Quality Note Creator None --
+Quality Information Reporter None --
+Image Manager/Image Archive RESTFul Semantics Section 57.2.1
+Image Display None --
+57.2.1 RESTFul Semantics Option
+This option enables Image Manager/Image Archive Actors to use RESTFul message semantics
+to communicate with other actors in this profile
+350 Image Manager/Image Archive Actors supporting this option shall serve as an Origin Server for
+the following transactions:
+• Rejection Note Stored [RAD-66] – See RAD TF-2: 4.66.4.1.2.2 RESTful Semantics
+The Image Manager / Image Archive shall be able to expose or hide rejected
+o
+instances as specified in RAD TF-2: 4.66.4.1.3 and 4.66.4.1.3.2 (Expected Actions
+355 for Rejection Notes Stored for Quality Reasons). Briefly, this involves hiding the
+rejected instances in subsequent Query/Retrieve responses unless the client uses a
+webservice endpoint specifically configured to provide access to hidden instances.
+• WADO-RS Retrieve [RAD-107]
+• Store Instances of the Web [RAD-108]
+360 • QIDO-RS Query [RAD-129]
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 18 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+When responding to a QIDO-RS Query [RAD-129] transaction, the Image Manager /
+o
+Image Archive shall additionally support Query Matching and Return Keys as
+defined in the Query Analysis Results [RAD-137] transaction (see RAD TF-2:
+4.137.4.1.2 “Message Semantics”).
+365 The Image Manager/Image Archive shall enable configuration of a designated set of IP addresses
+allowed to initiate the query and retrieve request.
+57.3 AIRA Required Actor Groupings
+An actor from this profile (Column 1) shall implement all of the required transactions and/or
+content modules in this profile in addition to all of the requirements for the grouped actor
+370 (Column 2).
+Section 57.5 describes some optional groupings that may be of interest for security
+considerations and Section 57.6 describes some optional groupings in other related profiles.
+Table 57.3-1: AI Result Assessment For Imaging - Required Actor Groupings
+AIRA Actor Actor(s) to be grouped Reference Content
+with Bindings
+Reference
+Quality Note Creator ITI CT / Time Client ITI TF-1: 7 --
+Quality Information Reporter None -- --
+Image Manager/Image Archive None -- --
+Image Display None -- --
+375 57.4 AIRA Overview
+57.4.1 Concepts
+This section describes some of the basic concepts underlying the Assessment of AI Results.
+Throughout this section and the AIRA Profile, the following definitions apply:
+• AI Result: Discrete outputs of an AI, e.g., a particular measurement or finding. The AI
+380 Assessment Activity operates on AI Results.
+• AI Result Object: An instance of a supported IOD that contains one or more AI Results
+(see Section 57.4.1.1 “Encoding of AI Results using different IODs”).
+57.4.1.1 Assessment Process and Outcome Encoding
+Applying AI to radiological workflows produces all different sorts of results. As not all of them
+385 are correct or in concordance with the physician responsible for reading the underlying study, it
+is essential to have a mechanism that allows those results to be assessed, and for the outcome of
+that assessment to be documented and communicated.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 19 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+The assessment process involves individual AI Results being assessed against a reference
+standard. Often the reference standard will be the direct judgement of a human practitioner.
+390 Sometimes the reference standard will involve the judgement of a human practitioner applied
+indirectly by comparing the contents of their final report to the AI Results.
+An assessment process can consist of one or more assessment activities. An assessment activity
+comprises assessing one or more Input AI Result Objects and potentially resulting in one or more
+Output AI Result objects. These Output AI Result Objects then can be used as input for a
+395 subsequent assessment activity.
+For any given assessment process, multiple assessors (who may be human or machine) may be
+involved, but one assessor must be responsible for the outcome. The Verifying Observer is
+recorded as described in Section 57.1.1.1 and RAD TF-3: 6.8.2. When multiple assessment
+activities are performed in sequence on the same results, the Verifying Observer of the current
+400 assessment activity will replace the Verifying Observer of the preceding activity.
+Possible outcomes of the assessment include the result being accepted unchanged, accepted with
+modification, or rejected. It is also possible that an assessment is inconclusive (i.e., the assessor
+is unable to assess), or that an assessment was not performed for some reason (i.e., the AI Result
+is unassessed), or that a new result (presumably missed by the AI) is added. Additionally, a result
+405 that is accepted, modified or added may be further assessed as being clinically relevant or being
+relevant for Q/A analysis (but not relevant for clinical purposes). See Figure 57.4.1.1-2 for the
+structure of this coding.
+In the context of this profile AI Results that are either accepted, modified or added are referred to
+as confirmed AI Results. AI Results that have been rejected, unassessed or which the Assessor
+410 has been unable to assess are referred to as unconfirmed.
+The encoding of the assessment outcome has three steps:
+1. Creation of Output AI Result Object(s): These created objects will replace the assessed
+Input AI Result Object. These Output AI Result Objects use the same IOD as the Input
+AI Result Object but have a new SOP Instance UID. The Output AI Result Object will
+415 contain all AI Results that are confirmed.
+2. Creation of an Assessment Status Object: This object is a DICOM Comprehensive SR
+with TID IHE_RADAIRA1 and provides detailed assessment information for each of the
+AI Results in the Output AI Result Object(s).
+3. Rejection of AI Result Objects: a KOS instance with Document Title “Rejected for
+420 Quality Reasons” and a Document Title Modifier “Assessment Process Outcome” will be
+issued and sent to the Image Manager either to hide Input AI Result Objects or if due to a
+rejection by the Assessor entire objects must be rejected. The Image Manager/Image
+Archive will manage the access to this/these objects (i.e., hide or expose them as
+described in the Rejection Note Stored [RAD-66] transaction)
+425 Unconfirmed AI Results will not be encoded in the Output AI Result Object(s); however, they
+will be referenced in the Assessment Status Object with their corresponding Status.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 20 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Some SOP Classes used for encoding AI Result Objects do not have individually referenceable
+AI Results (i.e., DICOM Secondary Capture, DICOM Encapsulated PDF or DICOM Parametric
+Maps). For these SOP Classes, the complete AI Result Object is considered a single AI Result
+430 and as such can only be assessed in its entirety. For details on these SOP classes refer to Section
+57.4.1.2.
+The example assessment scenario in Figure 57.4.1.1-1 shows relationships between various
+instances involved. The Assessment Input column shows AI Result Object instances that
+contain the AI Results being assessed. The Assessment Output Column shows instances that
+435 have been revised (either to remove rejected results, provide modified results, or encode newly
+created results). The Accompanying Assessment Output column shows the Assessment Status
+Object, and the KOS used to reject complete instances.
+Five cases are depicted (shown as numbers in circles).
+1. An input DICOM SR contains three AI Results, each identified by a unique Observation
+440 UID. During the Assessment Activity, one AI Result is rejected, one is accepted, one is
+modified, and a fourth result is added that the AI missed. The Output AI Result Object
+contains the two confirmed AI Results and the added result. The Assessment Status
+Object references the Observation UID of each individual AI Result and provides a status
+for each. Note that the Assessment Status Object references items in the Output AI Result
+445 Object for the confirmed results and references the item in the Input AI Result Object for
+the rejected result. The Original DICOM SR is rejected using a KOS object, since it is
+replaced by the Output AI Result Object.
+2. An input DICOM SR contains only one accepted AI Result. During the assessment
+activity, the complete object is accepted. Although the AI Result is unchanged, an Output
+450 AI Result Object is created to update the Verification Flag (0040,A493) value to
+VERIFIED. Since an Output AI Result Object was created, the Original DICOM SR is
+rejected using the KOS object.
+3. An input Secondary Capture contains multiple AI Results, but they are not individually
+referenceable. Therefore, the Secondary Capture object in its entirety is treated as a single
+455 AI Result. During the assessment activity, it is accepted. The Assessment Status Object
+references the SOP Instance UID of the Secondary Capture and assigns the accepted
+status. No Output AI Result Object or KOS is created.
+4. An input DICOM SR contains multiple AI Results. During the assessment activity, they
+are all rejected. The Assessment Status Object references the Observation UID of each
+460 individual AI Result in the Input AI Result Object with a status of rejected. The Original
+DICOM SR is rejected using the KOS. No Output AI Result Object is created.
+5. During the assessment activity, a new Segmentation object containing one segment is
+created. The Assessment Status Object references this segment and assigns a status of
+added.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 21 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+465
+Figure 57.4.1.1-1: Assessment Process
+The concepts for Assessment Status and Result Relevancy addressed by this profile are shown in
+Figure 57.4.1.1-2. See RAD TF-3: Table 4.3.2.3-1 for corresponding codes and definitions.
+470 Figure 57.4.1.1-2: Assessment Status and Result Relevancy
+Note: This profile does not define criteria for deciding whether results are “clinically relevant” or “relevant for Q/A analysis”.
+57.4.1.2 Encoding of AI Results using different IODs
+DICOM Structured Reports (SR) using TID 1500
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 22 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+475 DICOM SRs allow encoding of AI/Result/finding information as structured data at different
+levels of granularity:
+• Findings with multiple measurements and/or qualitative assessments (e.g., a finding of a
+lung lesion with diameter and volume measurements and a margin assessment).
+• The finding itself, any measurement or qualitative assessment can be associated with a
+480 visual representation (location, segmented region, or some other geometric primitive).
+• Each finding can be associated with a tracking identifier, which can be used to track this
+finding over time.
+• It is possible to reference a Segment of a Segmentation Object using the Referenced
+Segment Number (0062,000B) attribute of the IMAGE Value Type encoding as the
+485 visual representation of a finding.
+Figure 57.4.1.2-1: Finding Representation in DICOM SR
+Validation of the information in the SR can occur on any of the above-mentioned levels, e.g., the
+490 finding could be a false positive and as such be rejected. The visual representation could be
+inaccurate, or the measurement or qualitative assessment could be incorrect, but the finding itself
+is valid.
+DICOM SRs can be marked as unverified or verified (including information of the verifying
+observer) and provide a means to document predecessors.
+495 The results of the assessment (accepted, rejected, modified, etc.) of the content can be defined on
+all content levels, from the entire object down to the Observation level.
+The assessment result will be captured in an additional new SR Object using a new template that
+was designed for this profile (see RAD TF-3: 6.8.2.2 “Assessment Status Object”).
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 23 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+DICOM Encapsulated PDF Documents
+500 DICOM encapsulated PDF provides AI Results in report form (text with potentially graphics or
+tables embedded).
+The report object itself can only be accepted or rejected in total.
+DICOM Segmentation Objects
+DICOM Segmentation Objects are enhanced multi-frame objects, which represent a
+505 classification of pixels in one or more referenced images. Each identified structure is associated
+with a unique Segment number, as Segment Label and potentially Tracking Identifiers.
+Segments can be referenced from a DICOM SR encoded in TID 1500 using the Referenced
+Segment Number (0062,000B) of the IMAGE Value Type.
+It is possible to accept or reject Segments independent of each other.
+510 DICOM Grayscale Presentation States
+Presentation States specify information for the presentation/display of images. This includes
+overlays, graphical and textual annotations, which could represent AI findings.
+Each annotation can be stored as an item in the graphical Annotation Sequence and as such is
+individually referenceable for acceptance/rejection.
+515 DICOM Secondary Capture Image Objects
+Secondary Capture Images could either be used to burn the finding information directly into the
+images, or they could represent screen shots of result screens. The individual findings visible in
+these images are not individually referenceable and as such, the Secondary Capture objects can
+only be accepted or rejected in total.
+520 DICOM RT Structure Sets
+RT Structure Sets provide a means to store segmented patient structures and related data. Each
+Patient Structure is stored in a uniquely identified ROI which is associated with uniquely
+identifiable Observation. Therefore, each ROI can be accepted/rejected individually.
+Additionally, RTSS Objects provide a means to specify predecessors.
+525 DICOM Parametric Maps
+Parametric Maps are multi-frame images containing values that encode “parameters” such as
+physical quantities. A Parametric Map Instance allows encoding for multiple measurements in
+one Instance. However, for the purpose of this profile it is expected that one instance only
+contains one measurement and, as such, can only be assessed in total.
+530 57.4.1.3 Controlling Access Concept for unassessed AI Results
+Depending on the policy of an institution and/or legal issues, e.g., the requirements of the EU AI
+Act that only trained persons are allowed to use AI systems, it might be required to have access
+restrictions to unassessed AI Result objects.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 24 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+How this can be achieved depends on the capabilities of the software being used and the
+535 processes/use cases, the internal access policies, and the infrastructure of the individual
+institution.
+A possible solution might be that, in general, all unassessed AI Results are restricted from view
+by the PACS for those users/user groups outside the department where the images originated
+from, e.g., Radiology, Cardiology. One might debate that in emergency situations other personal
+540 shall also gain access to the AI Result Objects in the unassessed state. As mentioned earlier, this
+decision process is very specific for the individual organization.
+Therefore, handling of this topic is out of scope for this profile.
+57.4.1.4 Scenarios for the Assessment of AI Results
+There are two base scenarios for the assessment of AI results:
+545 • Scenario 1 - Clinical Usage
+During the written report creation process, the radiologist and/or an automated process
+marks the findings that will be copied to the report, documenting only the accepted and
+modified AI findings as well as additional findings which have not been covered by the
+AI system in the initial result objects in new AI Result Objects. These objects will be
+550 distributed to other clinicians for enabling them to see the study images with valid AI
+Results, i.e., the correct and accepted findings only.
+• Scenario 2 - Performance Monitoring
+In the evaluation phase before deploying an AI system, as well as for monitoring the
+performance after the deployment, the evaluation results must be assessed. All incorrect
+555 findings (false negative, false positive, wrong outlines etc.) must be documented. Any
+other finding will automatically be regarded as accepted. The outcome of this process
+must be persisted in a way that it can be distributed to other systems responsible for the
+analysis of these results.
+These two scenarios build the foundation for the use case dependent integration in real world
+560 workflows.
+57.4.1.4.1 AI supported report generation - Basic Assessment Process
+Figure 57.4.1.4.1-1 “Basic Assessment Process” illustrates the workflow steps for all assessment
+scenarios. In the figure, the initial steps for the Image Manager / Image Archive obtaining the AI
+Results and associated images are not specified in the AIRA Profile.
+565 The two main actors are the Image Manager and the Quality Note Creator. Existing DICOM
+objects (AI Result Objects, imaging study objects) will be retrieved from the Image Manager by
+the Quality Note Creator. The assessment of the DICOM object content will be performed by the
+Quality Note Creator with the underlying concept as described in Section 57.4.1.1. For this
+assessment, usually only the images and the valid AI Result Objects will be queried by the
+570 Quality Node Creator. However, on some occasions, e.g., all AI Result Objects have been
+rejected before, it might be that the Quality Note Creator also needs to query the rejected AI
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 25 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Result Objects. If, because of the assessment process, the initial AI Result Objects need to be
+updated, new AI Result Objects will be issued and stored replacing the initial AI Result Objects.
+In the best case, if all findings are accepted, the content of the existing AI Result Objects will be
+575 copied to new AI Result Objects that supersede the initial AI Result Objects.
+Figure 57.4.1.4.1-1 illustrates the Basic Assessment Process; the processes for sending the
+imaging study and Input AI Result Objects to the Image Manager, and the combined process of
+image reading, report generation, and AI Result assessment are out of scope of the AIRA Profile.
+580
+Figure 57.4.1.4.1-1: Basic Assessment Process
+57.4.1.4.2 AI supported report generation - two step Quality Note Creator
+integration
+585 There are two variants to integrate the Quality Note Creator in the AI-supported reporting
+workflow:
+Variant A uses the Quality Note Creator (Human) in a user-centered way, leaving the user going
+through a combined image reading, report generating and AI Result assessment activity. The
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 26 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+result of that process will then feed an activity performed automatically by another Quality Note
+590 Creator (see Figure 57.4.1.4.2-1 “Two Step Quality Assessment - manual / automated”). As a
+result of this assessment, it might be necessary to start a revision process for a synopsis of the
+results from both processes (see Section 57.4.1.4.3 “AI supported report generation - Revision of
+a performed Validation Process”).
+595
+Figure 57.4.1.4.2-1: Two Step Quality Assessment - manual / automated
+Variant B inverts the two Quality Note Creator steps by first running an automated activity,
+followed by a manual activity (see Figure 57.4.1.4.2-2 Two Step Quality Assessment -
+automated / manual). As a result, it might be that both, a new AI Result Object(s) and an
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 27 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+600 Assessment Status Object, will be written. In case the assessed AI Results are rejected, the
+corresponding AI Result Objects and Assessment Status Object must be hidden.
+Figure 57.4.1.4.2-2: Two Step Quality Assessment - automated / manual
+Both variants show that the Quality Note Creator must make use of other sources to perform its
+605 assigned tasks. However, the method the Quality Note Creator uses to access these sources is not
+specified by this profile.
+The output of this Two Step Quality Assessment is Output AI Result Object(s) and either a new
+(some findings are accepted) or an updated (all findings are rejected) Assessment Status Object.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 28 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+57.4.1.4.3 AI supported report generation - Revision of a performed Assessment
+610 A previously performed assessment of AI results may be re-evaluated. In this case, the Quality
+Note Creator accesses the Imaging Study, the AI Result Object(s), and the latest Assessment
+Status Object. Optionally it may be necessary for the Quality Note Creator to also query for
+rejected AI Result Objects.
+The revision process will result in either Output AI Result Object(s) with a new Assessment
+615 Object or, in case of a complete rejection of the previous evaluation, the rejection (KOS) of the
+previously created AI Result Object(s) and an updated Assessment Status Object (see Figure
+57.4.1.4.3-1 “Revision of a performed Assessment Process”).
+620 Figure 57.4.1.4.3-1: Revision of a performed Assessment
+57.4.1.4.4 Parallel Activities during AI Result Assessment
+The complete assessment of an AI Result Object might rely on the output of other activities that
+can start and finish at any time e.g.,:
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 29 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+• The AI Results in an AI Result Object can be examined by multiple activities. The
+625 Quality Note Creator always creates an Assessment Status Object as output from each
+activity.
+• During most assessments, an Output AI Result Object is stored that replaces the existing
+AI Result Objects.
+As these assessment activities are not linked in time, a new or an updated Assessment Status
+630 Object can only refer to the objects available at the time the validation process started.
+Therefore, an AI Result Object can represent a consensus of several review processes being a
+superset of several independent review processes of assessed AI Results. Figure 57.4.1.4.4-1
+“Parallel AI Result Assessment Processes” envisions this.
+This profile does not specify how to handle completing assessment results, e.g., they are created
+635 at the same time, or the assessments are in conflict.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 30 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Figure 57.4.1.4.4-1: Parallel Processes during AI Result Assessment
+57.4.1.5 Usage of Assessed AI Results
+The use cases (Section 57.4.2.1) will often correlate with specific Assessment Status Values (see
+640 Figure 57.4.1.1-2).
+AI Results assessed with the Assessment Status Values “accepted” or “modified” or “added”
+with the modifier “clinically relevant”” can be used for review processes for the purpose of
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 31 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+presenting only confirmed findings which might have an impact on the patient and/or the
+treatment. Findings marked as such are typically used in a review scenario where the study will
+645 be reviewed by a different physician than the one who created the initial written report and the
+resulting Output AI Result Object(s).
+The Assessment Status Values “accepted” or “modified” with the modifier “clinically relevant”
+only mark AI Results which are clinically relevant enough to be mentioned in the written report.
+This implies that there are also other results which might be correct but not marked as such.
+650 Therefore, findings from the categories “accepted” or “modified” with the modifier “clinically
+relevant” alone will be of limited use for performance statistics.
+For performance metrics results from the Assessment Status Value categories “accepted” or
+“modified” or “added” with the modifier “relevant for Q/A analysis” combined with “accepted”
+or “modified” or “added” with the modifier “clinically relevant” are of interest, e.g., for quality
+655 monitoring over time.
+The usage for performance metrics requires that all incorrect results are documented (rejected,
+missed, modified) and all other results must either automatically become accepted, or they must
+be assessed with “unable to assess”.
+Having all the findings assessed, the outcome can be used for different statistical evaluations,
+660 e.g., post market surveillance, data drift or other quality assurance purposes.
+Independent of the underlying acceptance criteria, the AI Results can be used for reprocessing
+purposes. Some AI solutions generate reports, e.g., DICOM Encapsulated PDF, DICOM SC, or
+text to be copied into the clinical report, based on the findings that were made by the algorithm.
+These AI solutions can retrieve the Output AI Result Object(s) and/or the Assessment Result
+665 Object to use them/it as input, generating an updated (corrected) version of the previous AI
+Result Object.
+In all these contexts it is essential that the unique identifiers of each accepted AI Result are kept
+in sync between the Input AI Result Object(s) and the Output AI Result Object(s).
+57.4.1.6 Access to Assessed AI Results
+670 Depending on the use case, the actors Image Display, Quality Note Creator and Quality
+Information Reporter must have access to different subsets of the stored AI Results and
+Assessment Status Objects.
+For any use case based on Scenario 1 - Clinical Usage (Section 57.4.1.4 “Base Scenarios for the
+Assessment of AI Results”), the Image Display must be granted access to the latest non-rejected
+675 object(s) as well as to the referenced imaging study.
+However, for use cases that encompass the revision of previously assessed AI Results, it might
+become necessary for the Image Display to access any accepted and rejected object.
+For use cases based on the base scenario “Performance Monitoring”, it might be enough for the
+Quality Information Reporter to access the Assessment Status Objects only for basic analysis.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 32 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+680 For more advanced analysis, it is inevitable that the actor must be granted access to any version
+of the AI Result Objects as well as to the existing Assessment Status Objects.
+As these access requirements are so use case-dependent, the rejection processes must take care of
+it. Therefore, using KOS instances for rejecting AI Result Objects with the Document Title
+(113001, DCM, “Rejected for Quality Reasons”) enables the Image Manager / Image Archive to
+685 expose rejected documents, when it is configured to do so.
+In essence, the access to the different versions of AI Results and Assessment Status Objects is
+completely dependent on the specific use case and its variants. Therefore, the Image Display
+must be responsible for which object it will access and display.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 33 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+690 57.4.1.7 Performance Metrics
+Assessment of AI Results can be input into calculating performance metrics for AI algorithms.
+There are at least two factors to consider: patient safety/legal and process optimization.
+For patient safety and legal reasons, the performance of an AI solution must be monitored.
+Therefore, the prevalence of correct results (PCR) over time and prevalence of incorrect results
+695 (PIR) over time are a solid base for alarm metrics.
+They are defined as follows:
+𝑃𝑃𝑃𝑃𝑃𝑃 = 𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓÷ (𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓 + 𝑎𝑎𝑐𝑐𝑐𝑐𝑐𝑐𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓)
+where:
+𝑃𝑃𝑃𝑃𝑃𝑃 = 𝑓𝑓𝑓𝑓𝑎𝑎𝑐𝑐𝑐𝑐𝑐𝑐𝑎𝑎𝑎𝑎𝑎𝑎 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓÷ (𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓 + 𝑎𝑎𝑐𝑐𝑐𝑐𝑐𝑐𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎𝑎 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓)
+700 Table 57.4.1.7-1: PCR and PIR Terms
+Term Definition
+accepted findings Sum of all findings assessed as “accepted”
+incorrect findings Sum of all findings assessed as “rejected”, “modified” and “added”
+corrected findings Sum of all findings assessed as “modified”
+Also, other performance indicators, e.g., Positive Predictive Value (PPV), Negative Predictive
+Value (NPV)
+705
+𝑃𝑃𝑃𝑃𝑃𝑃 = 𝑓𝑓𝑛𝑛𝑛𝑛𝑛𝑛𝑎𝑎𝑐𝑐 𝑐𝑐𝑓𝑓 𝑎𝑎𝑐𝑐𝑛𝑛𝑎𝑎 𝑎𝑎𝑐𝑐𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑝𝑝𝑎𝑎𝑓𝑓÷ (𝑓𝑓𝑛𝑛𝑛𝑛𝑛𝑛𝑎𝑎𝑐𝑐 𝑐𝑐𝑓𝑓 𝑎𝑎𝑐𝑐𝑛𝑛𝑎𝑎 𝑎𝑎𝑐𝑐𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑝𝑝𝑎𝑎𝑓𝑓 +𝑓𝑓𝑛𝑛𝑛𝑛𝑛𝑛𝑎𝑎𝑐𝑐 𝑐𝑐𝑓𝑓 𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑎𝑎 𝑓𝑓𝑎𝑎𝑓𝑓𝑎𝑎𝑎𝑎𝑓𝑓𝑝𝑝𝑎𝑎𝑓𝑓)
+can, according to the term definitions (Table 57.4.1.7-2 “PPV and NPV Terms”), in principle, be
+𝑁𝑁𝑃𝑃𝑃𝑃 = 𝑓𝑓𝑛𝑛𝑛𝑛𝑛𝑛𝑎𝑎𝑐𝑐 𝑐𝑐𝑓𝑓 𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑎𝑎 𝑎𝑎𝑐𝑐𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑝𝑝𝑎𝑎𝑓𝑓÷(𝑓𝑓𝑛𝑛𝑛𝑛𝑛𝑛𝑎𝑎𝑐𝑐 𝑐𝑐𝑓𝑓 𝑎𝑎𝑐𝑐𝑛𝑛𝑎𝑎 𝑎𝑎𝑐𝑐𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑝𝑝𝑎𝑎𝑓𝑓 + 𝑓𝑓𝑛𝑛𝑛𝑛𝑛𝑛𝑎𝑎𝑐𝑐 𝑐𝑐𝑓𝑓 𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑎𝑎 𝑎𝑎𝑐𝑐𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑝𝑝𝑎𝑎𝑓𝑓)
+calculated from the data provided by the output objects of this profile. The profile does not
+address the processes needed to provide gold standard quality for the assessment values.
+Table 57.4.1.7-2: PPV and NPV Terms
+Term Definition (see Table 57.4.1.7-1)
+true positives and / or true negative (See Note 1) accepted and modified findings
+false negatives added findings
+false positives rejected findings
+710 Note 1: The definition of “positive“ and “negative” can differ with the metric that is addressed and needs to be determined
+individually.
+For process optimization monitoring, there are a variety of metrics that are useful, depending on
+the purpose/use case of the monitoring. However, for most of them additional data is required,
+e.g., for the Enhanced Detection Rate (EDR) which is defined as follows:
+715
+𝐸𝐸𝐸𝐸𝑃𝑃 = 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓 ℎ𝑛𝑛𝑛𝑛𝑎𝑎𝑓𝑓÷𝑎𝑎𝑎𝑎𝑎𝑎𝑓𝑓𝑎𝑎𝑓𝑓𝑐𝑐𝑓𝑓𝑎𝑎𝑓𝑓 𝐴𝐴𝑃𝑃 𝑓𝑓𝑓𝑓𝑓𝑓𝑎𝑎𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 34 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Consequently, the output objects of this profile can only contribute parts of the needed data that
+must be acquired through other processes which are out of scope for this profile.
+57.4.1.8 AI Performance Troubleshooting Support
+This profile supports AI assessment either in the context of clinical usage or as the basic for the
+720 calculation of performance metrics.
+The capabilities of the metrics which can be directly covered with the assessment output from
+this profile will not be sufficient to cover every monitoring aspect or troubleshooting of high
+rejections rates.
+However, the data is sufficient to feed alarm metrics indicating whether something is not
+725 behaving as defined (see Section 57.4.1.7). Additionally, the assessment objects will give solid
+information about where to start to find the cause of the divergence.
+There could be a variety of causes for this divergence:
+• Image quality issues in the underlying images
+• Algorithm use outside the intended use and parameters
+730 • Data drift
+• Potential gaps in user training or system integration
+57.4.1.9 External Use of Assessments
+Some applications of the assessment data captured by this profile include its collection, collation,
+review, and analysis in the context of vendor product monitoring and improvement, and post-
+735 market surveillance for regulatory purposes.
+This could be served in part by aggregate assessment reports generated by the Quality
+Information Reporter on bulk performance metrics over time. Such reports conveniently address
+potential privacy issues by inherently removing patient-specific details in the process of
+aggregation.
+740 That said, vendors (and regulators) may also have an interest in specific case assessment results
+to better understand where an algorithm is failing or otherwise performing sub-optimally. Access
+to such data would need to involve appropriate anonymization of the assessment objects and
+associated study data. After such anonymization, the study images and data that served as the
+input to an AI algorithm, the AI Result Objects generated by the AI algorithm, and Assessment
+745 Status Objects for those results might be provided to a vendor, regulator, or registry, but this is
+outside the current scope of this profile.
+57.4.1.10 Addition of Unique Identifiers
+For this profile to function properly, the availability of unique identifiers for the individual AI
+Results is essential. However, these unique identifiers are, according to the DICOM Standard,
+750 not mandatory for all supported AI Result Object IODs even if they include individually
+referenceable AI Results. Therefore, they may not be available in the instances created by the AI
+solution (Evidence Creator).
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 35 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+If these unique identifiers are not present, the profile treats the AI result Objects as a single AI
+Result. However, to leverage the full capabilities of the profile, it is recommended that Quality
+755 Note Creator can create new instances containing these unique identifiers and hide the AI Result
+Object originated from the Evidence Creator using IOCM mechanisms.
+In the context of this profile the following two SOP Classes and their unique identifiers are
+impacted.
+• DICOM Structured Reports. Observation UID (A040,A171)
+760 • DICOM Presentation State Objects: Graphic Group ID (0070,0295) in either the Text
+Object Sequence (0070,0008) or in the Graphic Object Sequence (0070,0009)
+Note that the requirements in Section 6.8.2.1 would be applicable to these newly corrected
+instances as well.
+57.4.2 Use Cases
+765 The AIRA Profile focuses on
+• assessment of AI Results and the storage of the objects resulting from the assessment
+process
+• using the assessed AI Results either in a clinical context or for quality assurance
+which is reflected by the following use cases.
+770 57.4.2.1 Use Case #1: Assessment of AI Results
+This use case covers two sub-use cases, the assessment during a reporting process for clinical
+review and the assessment for quality assurance purposes.
+57.4.2.1.1 Assessment of AI Results during Reporting Use Case Description
+During the reporting process, a radiologist or an automated system (Assessor) reviews an
+775 imaging study including AI Result Objects. While reviewing the images, the Assessor selects
+some AI Results to be captured in the report. These findings will be marked as
+accepted/modified clinically relevant. However, not every AI finding or finding in the images
+will be assigned an Assessment Status Value (Figure 57.4.1.2-1) as some may not be relevant for
+the report, according to the Assessor. The underlying assessment concept is described in Section
+780 57.4.1.1 Assessment Process and Outcome Encoding.
+The Assessor may also add findings missed by the AI, modify findings, or reject some. The non-
+rejected findings will be stored in new AI Result Object(s) using the same IOD as the original.
+Also, the Assessment Status Values are written into a new Assessment Status Object.
+Note: It is also possible to create completely new DICOM objects during the Assessment Process (see Section 57.4.1.1)
+785 If specific AI Results were available in multiple AI Result Object(s) (e.g., if a measurement in a
+DICOM SR is associated with a segmented structure in a DICOM Segmentation objects), the
+Quality Note Creator ensures that all affected objects are updated, and referential integrity is
+maintained across all AI Result Objects.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 36 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+57.4.2.1.2 Assessment of AI Results for QA Purposes Use Case Description
+790 The Assessor assesses the AI Results in the context of the imaging study. This validation
+happens for quality assurance purposes, e.g., for regulatory requirements such as the EU AI Act,
+or for post market surveillance.
+Because the assessment is for QA purposes, this use case differs from an assessment for
+reporting in that all of the AI Results in the study will be assessed and receive an Assessment
+795 Status Value (Figure 57.4.1.2.3-1).
+57.4.2.1.3 Assessment of AI Results Use Case Process Flow
+Figure 57.4.2.1.3-1 shows the process flow for the Use Case Assessment of AI Results covering
+both sub-use cases.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 37 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+800 Figure 57.4.2.1.3-1: Assessment of AI Results
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 38 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+57.4.2.2 Use Case #2: Usage of Assessed AI Results for Clinical Review
+This use case describes how assessed AI Results are used for subsequent clinical reviews.
+57.4.2.2.1 Usage of Assessed AI Results for Clinical Review Description
+After the final written report has been created for an imaging study, another clinician wants to
+805 review the study. This could be the referring physician who ordered the study, or it could be a
+radiologist opening the study as a prior during the reporting process of a follow-up study.
+In any case, it is in the interest of the physician reviewing the study to be presented by default
+with the AI Results that have been recognized as clinically relevant, in concordance with the
+written report.
+810 After the retrieval of the study including all AI Result Object(s) and the Assessment Status
+Objects, the Image Display must identify the relevant AI Result Object(s) to be displayed.
+57.4.2.2.2 Usage of Assessed AI Results for Clinical Review Process Flow
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 39 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Figure 57.4.2.2.2-1: Usage of assessed AI Results for Clinical Review
+815 57.4.2.3 Use Case #3: Usage of Assessed AI Results for QA Analysis
+57.4.2.3.1 Usage of Assessed AI Results for QA Analysis Description
+For Quality Assurance (QA) the Quality Information Reporter needs all available AI Result
+Objects as well as all available Assessment Status Objects of an imaging study. Depending on
+the intended analysis it might optionally be necessary to also retrieve the rejected AI Result
+820 Objects and/or the objects of the imaging study.
+The retrieval of the objects is followed by the analysis process and the distribution of the output
+from this analysis, which are out of scope for this profile.
+57.4.2.3.2 Usage of Assessed AI Results for QA Analysis Process Flow
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 40 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+825 Figure 57.4.2.3.2-1: Usage of assessed AI Results for QA Analysis
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 41 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+57.5 AIRA Security Considerations
+Refer to RAD TF-1x: Appendix F “Security Environment Considerations”.
+Protected Healthcare Information (PHI) is present in the DICOM instances being stored,
+retrieved, processed, and displayed.
+830 57.5.1 Security Considerations for Actors
+This profile strongly recommends all AIRA actors be grouped with an ITI Audit Trail and Node
+Authentication (ATNA) Secure Application or Secure Node Actor using the Radiology Audit
+Trail Option.
+The ATNA Profile requires actors to implement:
+835 • Record Audit Event [ITI-20] transaction which would record when and where analysis
+results are distributed and displayed.
+• Authenticate Node [ITI-19] transaction to further ensure the integrity of transactions via
+node authentication and communication encryption.
+The AIRA Profile does not add security considerations beyond those already established for the
+840 transfer and storage of clinical data in other profiles.
+57.5.2 Security Considerations for Assessment Results
+Assessment Result instances as defined in this profile contain personal demographic information
+and clinical information. It is appropriate for products implementing the AIRA Profile to include
+appropriate PHI controls. Specifying such mechanisms and features is outside the scope of this
+845 profile.
+57.6 AIRA Cross Profile Considerations
+AI Results (AIR):
+• Quality Note Creator can be grouped with Evidence Creator in AIRA following the
+encoding rules for Output AI Result Objects.
+850 • Quality Note Creators can be grouped with an Image Display in the AIRA Profile to get
+access the imaging study and support standardized display of AI findings during the
+assessment process.
+• Image Display can be grouped with AIRA Image Display to allow standardized display
+of AI findings.
+855 AI Workflow for Imaging (AIW-I):
+• AIW-I provides the workflow to generate the AI Results that will be assessed in this
+profile.
+• The Quality Note Creator can be grouped with a Task Performer in AIW-I to perform the
+AI assessment as a scheduled work item.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 42 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+860 • The Quality Information Reporter can be grouped with a Watcher in the AIW-I Profile to
+communicate operational failures reported by the Task Performer (i.e., the Evidence
+Creator)
+Integrated Reporting Applications (IRA):
+• Quality Note Creator can be grouped with an Evidence Creator in IRA to use accepted
+865 findings in the reporting process.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 43 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Appendices to Volume 1
+None
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 44 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Volume 2 – Transactions
+870 Update Section 4.14.2 as indicated below.
+4.14 Query Images [RAD-14]
+…
+4.14.2 Actor Roles
+The roles in this transaction are defined in the following table and may be played by the actors
+875 shown here:
+Table 4.14.2-1: Actor Roles
+Role: Initiator:
+Issues queries for Studies, Series, Images
+Actor(s): The following actors may play the role of Initiator:
+Image Display
+Quality Note Creator
+Quality Information Reporter
+Role: Responder:
+Responds to queries for Studies, Series, and Images
+Actor(s): The following actors may play the role of Responder:
+Image Manager / Image Archive
+Update Section 4.16.2 as indicated below.
+880 4.16 Retrieve Images [RAD-16]
+…
+4.16.2 Actor Roles
+Table 4.16.2-1: Actor Roles
+Role: Requester:
+Submit retrieve requests for DICOM images
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 45 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Actor(s): The following actors may play the role of Requester:
+Imaging Display
+Imaging Document Consumer
+Evidence Creator
+Quality Note Creator
+Quality Information Reporter
+Role: Responder:
+Return the requested DICOM images
+Actor(s): The following actors may play the role of Responder:
+Image Manager / Image Archive
+Imaging Document Source
+885
+Update Section 4.45.2 as indicated below
+4.45 Retrieve Evidence Documents [RAD-45]
+…
+4.45.2 Actor Roles
+890 Table 4.45.2-1: Actor Roles
+Role: Requester:
+Requests and receives Evidence Documents
+Actor(s): The following actors may play the role of Requester:
+Imaging Display
+Imaging Document Consumer
+Quality Note Creator
+Quality Information Reporter
+Role: Responder:
+Sends requested Evidence Documents
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 46 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Actor(s): The following actors may play the role of Responder:
+Image Manager / Image Archive
+Imaging Document Source
+Update Section 4.50.2
+4.50 Store Instances [RAD-50]
+…
+895 4.50.2 Actor Roles
+Table 4.50.2-1: Actor Roles
+Role: Sender:
+Sends DICOM instances.
+Actor(s): The following actors may play the role of Sender:
+Export Selector
+Quality Note Creator
+Role: Responder:
+Receives and stores DICOM instances.
+Actor(s): The following actors may play the role of Receiver:
+Export Manager
+Image Manager / Image Archive
+Update Section 4.66 as indicated below
+900 4.66 Rejection Note Stored [RAD-66]
+…
+4.66.2 Actor Roles
+Table 4.66.2-1: Actor Roles
+Role: Sender:
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 47 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Flags significant rejected images instances by creating a Key
+Object Selection instance Rejection Note and sending it to the
+Receiver.
+Actor(s): The following actors may play the role of Sender:
+Acquisition Modality
+Evidence Creator
+Change Requester
+Quality Note Creator
+Image Display
+Role: Receiver:
+Receives and stores Key Object Selection instances the Rejection
+Notes and applies them by removing or sequestering the
+referenced images instances.
+Actor(s): The following actors may play the role of Receiver:
+Image Manager / Image Archive
+905 Modify Table 4.66.4-1 as shown
+Table 4.66.4-1: Key Object Selection Document Title Usage by Profile
+KOS Document Title IOCM RAM AIRA Section
+(113001, DCM, “Rejected for Quality Reasons”) X X X 4.66.4.1
+(113037, DCM, “Rejected for Patient Safety Reasons”) X 4.66.4.2
+(113038, DCM, “Incorrect Modality Worklist Entry”) X 4.66.4.3
+(113039, DCM, “Data Retention Policy Expired”) X 4.66.4.4
+Update Section 4.107 as indicated below
+910 4.107 WADO-RS Retrieve [RAD-107]
+…
+4.107.2 Actor Roles
+The Roles in this transaction are defined in the following table and may be played by the actors
+shown here:
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 48 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+915 Table 4.107.2-1: Actor Roles
+Role: Requester:
+Submit retrieve DICOM object requests
+Actor(s): The following actors may play the role of Requester:
+Imaging Document Consumer
+Image Display
+Quality Note Creator
+Quality Note Reporter
+Role: Responder:
+Returns the requested DICOM object
+Actor(s): The following actors may play the role of Responder:
+Imaging Document Source
+Image Manager / Image Archive
+Transaction text specifies behavior for each Role. The behavior of specific actors may also be
+specified when it goes beyond that of the general role.
+Update Section 4.108 as indicated below
+920
+4.108 Store Instances over the Web [RAD-108]
+…
+4.108.2 Actor Roles
+The Roles in this transaction are defined in the following table and may be played by the actors
+925 shown here:
+Table 4.108.2-1: Actor Roles
+Role: Sender: Creates and sends well-formed DICOM composite objects
+Actor(s): The following actors may play the role of Sender:
+Image Capturer
+Lightweight Modality
+Quality Note Creator
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 49 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Role: Receiver: Receives objects from the Sender
+Actor(s): The following actors may play the role of Receiver:
+Image Manager / Image Archive
+Transaction text specifies behavior for each Role. The behavior of specific actors may also be
+specified when it goes beyond that of the general Role.
+930 Update Section 4.129 as indicated below
+4.129 QIDO-RS Query [RAD-129]
+…
+4.129.2 Actor Roles
+The Roles for this transaction are defined in the following table and may be played by the actors
+935 shown here:
+Table 4.129.2-1: Actor Roles
+Role: Requester:
+Queries for study metadata
+Actor(s): The following actors may play the role of Requester:
+Imaging Document Consumer
+Image Display
+Quality Note Creator
+Quality Information Reporter
+Role: Responder:
+Returns metadata for matching query results
+Actor(s): The following actors may play the role of Responder:
+Imaging Document Responder
+Image Manager / Image Archive
+Transaction text specifies behavior for each Role. The behavior of specific actors may also be
+specified when it goes beyond that of the general Role.
+940 Update Section 4.137 as indicated below. Please note that [RAD-137] is added in the AIR
+Profile, which is currently in Trial Implementation
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 50 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+4.137 Query Analysis Results [RAD-137]
+This transaction is used to query for image analysis results.
+4.137.2 Actor Roles
+945 The roles in this transaction are defined in the following table and may be played by the actors
+shown here:
+Table 4.137.2-1: Actor Roles
+Role: Initiator:
+Queries for analysis result objects.
+Actor(s): The following actors may play the role of Initiator:
+Image Display
+Image Document Consumer
+Quality Note Creator
+Quality Information Reporter
+Role: Responder:
+Returns analysis result entries matching the request.
+Actor(s): The following actors may play the role of Initiator:
+Image Manager / Image Archive
+Transaction text specifies behavior for each role. The behavior of specific actors may also be
+950 specified when it goes beyond that of the general role.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 51 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Appendices to Volume 2
+None
+955
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 52 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Volume 3 – Content Modules
+4 IHE Namespaces, Concept Domains and Vocabularies
+960 4.3 IHE Radiology Format Codes and Vocabularies
+Add Section 4.3.2.3 Codes for the AIRA Profile
+4.3.2.3 Codes for the AIRA Profile
+The following codes have been defined for the AIRA Profile. They are shown here as part of the
+IHE coding system and should be used for Trial Implementation. IHE Radiology intends to
+965 migrate these codes, and the templates they are used in, to the DICOM Standard prior to
+advancing the AIRA Profile to Final Text.
+Table 4.3.2.3-1: Codes for the AIRA Profile
+Code Coding Code Meaning Definition Reference
+Scheme
+IHE_RADAIRA1 99IHE AI Assessment Result This is a template identifier RAD TF-3: 6.8.2.2.1
+(TID) for a private SR
+template defined by the
+AIRA Profile for
+constructing an Assessment
+Status Object
+AIRA_21 99IHE Input AI Result Object AI Object that has been RAD TF-3: 6.8.2.1
+reviewed during the
+Assessment process
+AIRA_22 99IHE Assessment Status Object A DICOM Comprehensive RAD TF-3: 6.8.2.1
+SR that references each
+single AI result and
+captures the outcome of the
+assessment.
+AIRA_24 99IHE Output AI Result Object AI Result object after RAD TF-3: 6.8.2.1
+assessment Process
+containing confirmed AI
+results
+AIRA_26 99IHE Assessment Process A document containing the RAD TF-1: 57.1.1.1
+Outcome outcome of an assessment
+process. Used as a KOS
+Document Title Modifier
+AIRA_001 99IHE Assessment Status Root node for the RAD TF-3: 6.8.2.2.1
+Encoding Assessment Status Object
+AIRA_002 99IHE Assessment Basis The basis on which the RAD TF-3: 6.8.2.2.1
+outcome of the assessment
+was determined
+AIRA_003 99IHE Result Assessment Assessment of an individual RAD TF-3: 6.8.2.2.1
+Result
+AIRA_004 99IHE Reference Type The type of reference result RAD TF-3: 6.8.2.2.1
+that was assessed
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 53 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Code Coding Code Meaning Definition Reference
+Scheme
+AIRA_005 99IHE Referenced Instance A referenced composite or RAD TF-3: 6.8.2.2.1
+image instance
+AIRA_006 99IHE Assessment Status The outcome of an RAD TF-3: 6.8.2.2.1
+assessment.
+AIRA_007 99IHE Result Relevancy An assessment of the RAD TF-3: 6.8.2.2.1
+relevancy of a result. E.g.,
+whether it is clinically
+relevant or only relevant for
+Q/A analysis.
+AIRA_111 99IHE Accepted The assessment target is RAD TF-3: 6.8.2.2.1
+considered by the Assessor
+to be correct.
+AIRA_112 99IHE Unassessed The assessment target has RAD TF-3: 6.8.2.2.1
+not been assessed.
+AIRA_113 99IHE Unable to Assess After assessment it remains RAD TF-3: 6.8.2.2.1
+unclear whether the
+assessment target is correct
+or incorrect.
+AIRA_114 99IHE Added An AI Result has been RAD TF-3: 6.8.2.2.1
+added by the Assessor
+which has been missed by
+the AI.
+AIRA_115 99IHE Rejected The assessment target is RAD TF-3: 6.8.2.2.1
+considered by the Assessor
+to be incorrect.
+AIRA_116 99IHE Modified The assessment target has RAD TF-3: 6.8.2.2.1
+been modified by the
+Assessor to be correct.
+AIRA_121 99IHE Clinically Relevant The assessment target is RAD TF-3: 6.8.2.2.1
+considered by the Assessor
+to be clinically relevant.
+E.g., it was used in a report.
+AIRA_122 99IHE Relevant for Q/A The assessment target is not RAD TF-3: 6.8.2.2.1
+Analysis considered by the Assessor
+to be clinically relevant, but
+is correct and should be
+retained for Q/A analysis.
+AIRA_141 99IHE Single Report The assessment is based on RAD TF-3: 6.8.2.2.1
+Concordance an automated comparison of
+the input AI Result with the
+recorded output of a single
+human.
+AIRA_142 99IHE Single Human The assessment is based on RAD TF-3: 6.8.2.2.1
+Assessment review by a single human
+assessor.
+AIRA_143 99IHE Multiple Human The assessment is based on RAD TF-3: 6.8.2.2.1
+Assessments review by a multiple human
+assessor.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 54 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Update Section 5.1 Record Audit Event to update the following Audit Event
+970 5.1 ITI-20 Record Audit Event
+Table 5.1-2: IHE Radiology transactions and resulting ATNA trigger events
+IHE Radiology Transaction ATNA Trigger Event(s) Actor(s) that shall be able to
+record audit event
+…
+Query Images [RAD-14] Query Information Image Display,
+Quality Information Reporter, Quality
+Note Creator
+Retrieve Images [RAD-16] Study-used Image Display, Image Document Consumer,
+Quality Information Reporter, Quality
+Note Creator
+…
+Store Instances [RAD-50] Begin-storing-instances Export Selector, Quality Note Creator
+Instances-Stored Export Manager, Image Manager/Image
+Archive
+…
+Retrieve Evidence Documents [RAD-45] Study-used Image Display, Quality Information
+Reporter, Quality Note Creator
+…
+Rejection Note Stored [RAD-66] Instances-deleted Sender: Acquisition Modality, Evidence
+Creator, Change Requester, Quality Note
+Creator.
+Note: The actor rejecting/correcting images
+must assume that the Image Archive may
+hide the images (similar to logical deletion)
+…
+WADO-RS Retrieve [RAD-107] Instances-Stored Imaging Document Source, Image
+Manager/Image Archive,
+Study Used Imaging Document Consumer, Image
+Display, Quality Note Creator, Quality
+Information Reporter
+Store Instances over the Web [RAD-108] Begin-storing-instances Sender: Image Capturer, Lightweight
+Modality, Evidence Creator, Quality Note
+Creator
+…
+QIDO-RS Query [RAD-129] Query Information Imaging Document Responder, Image
+Manager/Image Archive, Image Display,
+Quality Note Creator, Quality
+Information Reporter
+…
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 55 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+IHE Radiology Transaction ATNA Trigger Event(s) Actor(s) that shall be able to
+record audit event
+Query Analysis Results [RAD-137] Query Information Image Display, Image Document Consumer,
+Quality Information Reporter
+Add Section 6.8 Result Assessment Content Definitions
+6.8 AI Result Assessment Content
+975 This IHE Radiology Content Specification defines encoding rules for the results of an AI
+assessment step.
+6.8.1 Reference Standards
+DICOM PS3.3: A.8 Secondary Capture Image IODs
+DICOM PS3.3: A.19 RT Structure Set IOD
+980 DICOM PS3.3: A.33 Softcopy Presentation State IOD
+DICOM PS3.3: A.35 Structured Report Document IOD
+DICOM PS3.16: TID 1500 Measurement Report
+DICOM PS3.3: A.45 Encapsulated PDF Document IOD
+DICOM PS3.3: A.51 Segmentation IOD
+985 DICOM PS3.3: A.75 Parametric Map IOD
+6.8.2 AI Result Assessment Data Encoding
+Persisting the results of an AI assessment process includes three steps (see RAD TF-1: 57.4.1.1):
+1. Creation of Output AI Result Object(s) that include all confirmed findings. An Output AI
+result object is encoded using the same IOD as the Input AI Result Object.
+990 2. Creation of Assessment Status Objects which contain the Status for each AI Result as
+well as some additional information.
+3. Creation of KOS rejection notes for referencing all completely rejected instances and
+Input AI results for which Output AI Result Objects are created.
+The Quality Note Creator shall support the DICOM Comprehensive SR Storage SOP Class
+995 (1.2.840.10008.5.1.4.1.1.88.33) for encoding the Assessment Status Object.
+In addition, the Quality Note Creator shall support at least one of the DICOM SR SOP Classes
+listed in Table 6.8.2-1 following TID 1500 for the assessment process and storing the Output AI
+Result Objects.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 56 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Table 6.8.2-1: IODs for encoding AI results
+DICOM SOP Class Name SOP Class UID
+DICOM Enhanced SR Storage 1.2.840.10008.5.1.4.1.1.88.22
+DICOM Comprehensive SR Storage 1.2.840.10008.5.1.4.1.1.88.33
+DICOM Comprehensive 3D SR Storage 1.2.840.10008.5.1.4.1.1.88.34
+1000
+DICOM supports other SOP Classes that can carry AI results. Quality Note Creators may be able
+to handle them as well. Table 6.8.2-2 lists some of these SOP Classes. If the Quality Note
+Creator chooses to support any of them, requirements listed in Section 6.8.2.1 shall be fulfilled
+for the respective SOP Class.
+1005 Table 6.8.2-2: IODs for encoding AI results
+DICOM SOP Class Name SOP Class UID
+DICOM Secondary Capture Image Storage 1.2.840.10008.5.1.4.1.1.7
+DICOM RT Structure Set Storage 1.2.840.10008.5.1.4.1.1.481.3
+DICOM Grayscale Softcopy Presentation State Storage 1.2.840.10008.5.1.4.1.1.11.1
+DICOM Encapsulated PDF Storage 1.2.840.10008.5.1.4.1.1.104.1
+DICOM Segmentation Storage 1.2.840.10008.5.1.4.1.1.66.4
+DICOM Parametric Maps 1.2.840.10008.5.1.4.1.1.30
+The following two subsections address content definitions for instances produced in the above
+two steps.
+6.8.2.1 Output AI Result Objects
+1010 Quality Note Creators storing an AI Result Object updated during the assessment, shall use the
+same IOD as the one originally provided by the AI solution.
+The Quality Note Creator shall copy contextual metadata (e.g., patient demographics, patient
+identifiers, study context, accession number) from the Input AI Result objects. Additionally, the
+information listed in Table 6.8.2.1-1 shall be populated in the Output AI objects:
+1015 Table 6.8.2.1-1: Attribute Requirements for Output AI Objects
+Attribute Tag Option Value Comment
+ality
+All IODs
+Manufacturer (0008,0070) R+ Copied from the Input AI Result In some IODs these
+object if present otherwise empty attributes are Type 3 due
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 57 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Attribute Tag Option Value Comment
+ality
+Manufacturer’s Model (0008,0080) R+ Copied from the Input AI Result to the usage of the
+Name object if present otherwise empty General Equipment
+Module. This profile
+makes them Type 2
+Software Versions (0018,1020) R+ Copied from the Input AI Result
+object if present otherwise empty
+Contributing Equipment (0018,A001) R+ An item for the Quality
+Sequence Note Creator shall be
+created in addition to
+existing ones
+> Purpose of Reference (0040,A170) R (109103,DCM,
+Code Sequence ”Modifying Equipment”)
+> Manufacturer (0008,0070) R Manufacturer Name of the actor
+creating this object
+> Manufacturer’s Model (0008,0080) R+ Manufacturer’s Model Name of the
+Name actor creating this Object
+> Software Versions (0018,1020) R+ Software Version of the actor
+creating this object
+> Device UID (0018,1002) R+
+DICOM SR IODs
+Completion Flag (0040,A491) R PARTIAL
+COMPLETE
+Verification Flag (0040,A493) R VERIFIED VERIFIED means that
+UNVERIFIED the object has been
+created during the
+assessment process of the
+AIRA Profile by a Human
+verifier.
+UNVERIFIED means that
+the object has been
+created during the
+assessment process of the
+AIRA Profile by a Device
+verifier
+Verifying Observer (0040,A703) RC Must be provided if
+Sequence Verification Flag =
+VERIFIED
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 58 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Attribute Tag Option Value Comment
+ality
+>Verifying Observer (0040,A075) RC
+Name
+>Verifying Observer (0040,A088) O Type 2 in DICOM
+Identification Code therefore it at least needs
+Sequence to be present with zero
+length
+>Verifying Organization (0040,A027) R
+>Verification DateTime (0040,A030) R
+Predecessor Document (0040,A360) R+ Reference to input AI Result Use (121360,
+Sequence Object(s) (i.e., prior to the DCM, ”Replaced
+assessment of these AI Results Report”) in Purpose of
+Reference Code Sequence
+(0040,A170)
+Referenced Instance (0008,A170) R+ Reference to the Assessment Status Use (AIRA_22,
+Sequence Object 99IHE,”Assessment
+Status Object”) in
+Purpose of Reference
+Code Sequence
+(0040,A170)
+DICOM RT Structure Set IOD
+Predecessor Structure Set (3006,0018) R+ Reference to input AI Result Object Use (121360,
+Sequence (i.e., prior to the assessment of these DCM, ”Replaced
+AI Results Report”) in Purpose of
+Reference Code Sequence
+(0040,A170)
+Referenced Instance (0008,A170) R+ Reference to the Assessment Status Use (AIRA_22,
+Sequence Object 99IHE,”Assessment
+Status Object”) in
+Purpose of Reference
+Code Sequence
+(0040,A170)
+DICOM Presentation State IODs
+Content Creator’s Name (0070,0084) R+
+Content Creator’s (0070,0086) O
+Identification Code
+Sequence
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 59 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Attribute Tag Option Value Comment
+ality
+Referenced Instance (0008,A170) R+ Reference to the Assessment Status Use (AIRA_22,
+Sequence (Note) Object 99IHE,”Assessment
+Status Object”) in
+Purpose of Reference
+Code Sequence
+(0040,A170) (Note 1)
+DICOM Segmentation IODs
+Content Creator’s Name (0070,0084) R+
+Content Creator’s (0070,0086) O
+Identification Code
+Sequence
+Referenced Instance (0008,A170) R+ Reference to input AI Result Use (AIRA_21, 99IHE,
+Sequence Object(s) (i.e., prior to the “Input AI Result Object”)
+assessment of these AI Results in Purpose of Reference
+Code Sequence
+(0040,A170)
+Reference to the Assessment Status Use (AIRA_22,
+Object 99IHE,”Assessment
+Status Object”) in
+Purpose of Reference
+Code Sequence
+(0040,A170)
+Note: By adding these attributes the respective SOP Class will be a Standard extended SOP Class.
+The Quality Note Creator shall create the Output AI Result objects in the same study as the Input
+AI Result objects.
+1020 For each assessment activity the Quality Note Creator shall create new Series for each AI Result
+Object Type.
+Note: The requirements in DICOM for creating a new series apply.
+Output AI Result Objects shall only include confirmed AI Results (accepted, added, and
+modified) by default. However, it shall be configurable to also add AI Results with a Status of
+1025 unassessed or unable to assess to the Output AI Result Object.
+If a study has multiple AI Result Objects representing the same findings (e.g., Contour
+Segmentations referenced from a DICOM SR content tree), the Quality Note Creator shall ensure
+that all AI Result objects are updated according to the validation results and that referential
+integrity between different Output AI Result Objects is maintained, e.g.:
+1030 • References into completely rejected objects are removed
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 60 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+• References into rejected RTSS Observations are removed
+• References into rejected Segment Numbers are removed
+When creating Output AI Result Objects, the unique identifiers of each AI result shall be
+maintained. Table 6.8.2.1-2 list the unique identifiers used throughout various IODs used for AI
+1035 result encoding
+Table 6.8.2.1-2: Unique Identifiers for AI Results in IODs with individually referenceable
+AI Results
+IOD Attribute/Concept Name
+DICOM SR Observation UID (0040,A171) (Note 1)
+DICOM RTSS Structure Set ROI Sequence (3006,0020))
+> ROI Number (3006,0022)
+DICOM Presentation State Text Object Sequence (0070,0008)
+> Graphic Group ID (0070,0295
+Graphic Object Sequence (0070,0009)
+> Graphic Group ID (0070,0295)
+DICOM Segmentation IOD Segment Sequence (00062,0002)
+> Segment Number (0062,0004)
+Note 1: Tracking UID will be not used as the Unique Identifier for AI Results in a DICOM SR. Tracking UID represents an
+entity than can span multiple studies or observations over a time period. As such it is not suited to uniquely identify an
+1040 AI Result in a DICOM SR.
+6.8.2.2 Assessment Status Object
+An Assessment Status Object contains the results of an AI assessment process. An Assessment
+Status Object shall be encoded as an instance of the DICOM Comprehensive SR Storage SOP
+1045 class using TID IHE_RADAIRA1 as the Root Template. It may include the Result Status for AI
+Results for multiple (dependent or independent) AI Result Objects in a study.
+The Quality Note Creator of the Assessment Status object is expected to copy contextual
+metadata (e.g., patient demographics, patient identifiers, study context, accession number) from
+the Input AI Result objects. Additionally, the information listed in Table 6.8.2.2-1 shall be
+1050 provided:
+Table 6.8.2.2-1: Attribute Requirements for the Assessment Status Object
+Attribute Tag Option Value Comment
+ality
+Manufacturer (0008,0070) R+ Manufacturer Name of the
+actor creating initial
+Assessment Status Object
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 61 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Attribute Tag Option Value Comment
+ality
+Manufacturer’s Model (0008,0080) R+ Manufacturer’s Model Name
+Name of the actor creating initial
+Assessment Status Object
+Software Versions (0018,1020) R+ Manufacturer’s Model Name
+of the actor creating initial
+Assessment Status Object
+Contributing Equipment (0018,A001) R+ An item shall be added
+Sequence when previous version is
+replaced.
+> Purpose of Reference (0040,A170) R (109102, DCM,
+Code Sequence ”Processing Equipment”)
+> Manufacturer (0008,0070) R Manufacturer Name of the
+actor creating this object
+> Manufacturer’s Model (0008,0080) R+ Manufacturer’s Model Name
+Name of the actor creating this
+Object
+> Software Versions (0018,1020) R+ Software Version of the actor
+creating this object
+> Device UID (0018,1002) R+
+Preliminary Flag (0040,A496) O PRELIMINARY
+FINAL
+Completion Flag (0040,A491) R PARTIAL
+COMPLETE
+Verification Flag (0040,A493) R VERIFIED VERIFIED means that
+UNVERIFIED the object has been created
+during the assessment
+process of the AIRA Profile
+by a Human verifier.
+UNVERIFIED means that
+the object has been created
+during the assessment
+process of the AIRA Profile
+by a Device verifier
+Verifying Observer (0040,A703) RC Shall be provided if
+Sequence Verification Flag
+=VERIFIED
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 62 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Attribute Tag Option Value Comment
+ality
+>Verifying Observer (0040,A075) R
+Name
+>Verifying Observer (0040,A088) O Type 2 in DICOM therefore
+Identification Code it at least needs to be present
+Sequence with zero length
+>Verifying Organization (0040,A027) R
+>Verification DateTime (0040,A030) R
+Predecessor Document (0040,A360) RC Reference to the Predecessor Shall be provided when this
+Sequence Assessment Status Object (if Assessment Status Object
+one exists) replaces a predecessor
+object. Use (121360,
+DCM, ”Replaced Report”)
+in Purpose of Reference
+Code Sequence (0040,A170)
+Referenced Instance (0008,A170) R+ Reference to input AI Result Use (AIRA_21,
+Sequence Object(s) (i.e., prior to the 99IHE,“Input AI Result
+assessment of these AI Object”) in Purpose of
+Results) Reference Code Sequence
+(0040,A170)
+R+ References to AI Result Use (AIRA_24,
+Objects kept without changes 99IHE,“Output AI Result
+Object”) in Purpose of
+Reference Code Sequence
+(0040,A170)
+R+ References to Output AI Use (AIRA_24,
+Result Object(s) 99IHE,“Output AI Result
+Object”) in Purpose of
+Reference Code Sequence
+(0040,A170)
+The Quality Note Creator shall create the Assessment Status Objects in the same study as the
+Input AI Result objects. For each assessment activity, the Quality Note Creator shall create new
+Series for the resulting Assessment Status Object.
+1055 Note: The requirements in DICOM for creating a new series apply.
+6.8.2.2.1 TID IHE_RADAIRA1: AI Assessment Result
+The Quality Note Creator shall encode the Assessment Status for the AI Results as defined in
+Table 6.8.2.2.1-1.
+This TID is considered a "private" template, meaning it is specified by an organization other than
+1060 DICOM, i.e., by IHE. Accordingly, inside the Content Template Sequence (0040,A504),
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 63 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Mapping Resource (0008,0105) shall have a value of "99IHE" and Template Identifier
+(0040,DB00) shall have a value of IHE_RADAIRA1.
+Definitions for codes introduced by the AIRA Profile are found in Section 4.3.2.3.
+Assessments are applied to individual AI Results within an AI Result Object whenever those
+1065 results are individually referenceable (e.g., a referenced segment within a Segmentation Object).
+AI Result Objects that do not contain individually referenceable AI Results (e.g., Secondary
+Capture Objects, or DICOM SR instances where the AI Results do not have an Observation
+UID) shall be treated as a single AI Result, and therefore the Assessment Status shall apply to the
+complete AI Result Object.
+1070 Note: If an AI Result Object contains multiple individual results that are missing individual Unique Identifiers, Quality Note
+Creators can correct the instances prior to the Assessment Activity as described in RAD TF-1: 57.4.1.10.
+Type: Non-Extensible
+Order: Significant
+Root: Yes
+1075 Table 6.8.2.2.1-1: TID IHE_RADAIRA1 - AI Assessment Result
+NL Rel with VT VM Req Condition Value Set Constraint
+Parent Type
+1 CONTAINER EV (AIRA_001, 1 M
+99IHE, “Assessment
+Status Encoding”)
+2 > HAS INCLUDE DTID 1204 “Language 1 U
+CONCEPT of Content Item and
+MOD Descendants”
+3 > HAS OBS INCLUDE DTID 1002 “Observer 1-n M
+CONTEXT Context”
+4 > HAS OBS CODE EV (AIRA_002, 1 M DCID IHERADAIRA4
+CONTEXT 99IHE, “Assessment “Assessment Basis”
+Basis”)
+5 > CONTAINS CONTAINER EV (AIRA_003, 1-n M
+99IHE, “Result
+Assessment”)
+6 >> CONTAINS IMAGE EV (AIRA_005, 1 MC XOR Row 7
+99IHE, “AI Result
+Object”)
+7 >> CONTAINS COMPOSITE EV (AIRA_005, 1 MC XOR Row 6
+99IHE, “AI Result
+Object”)
+8 >> CONTAINS UIDREF EV (AIR005, 99IHE, 1 U XOR Row 9 Shall be the Observation UID
+“Referenced (0040,A171) of the assessed
+Observation UID”) content item in the referenced
+DICOM SR SOP Class
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 64 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+NL Rel with VT VM Req Condition Value Set Constraint
+Parent Type
+9 >> CONTAINS TEXT EV (130489, DCM, 1 U XOR Row 8 Shall be the ROI Number
+“Referenced Region of (3006,0022) of Structure Set
+Interest Identifier”) ROI Sequence (3006,0020) of
+the referenced Instance of the
+RT Structure Set Storage SOP
+Class
+or
+Shall be the Graphic Group ID
+(0070,0295) of either the Text
+Object Sequence (0070,0008) or
+Graphic Object Sequence
+(0070,0009) of the Reference
+Instance of GSPS SOP Class
+10 >> CONTAINS CODE EV (AIRA_006, DCM, 1 M BCID IHE_RADAIRA2,
+“Assessment Status” “Assessment Status”
+11 >>> HAS CODE EV (AIRA_007, 1 MC IF Row 12 = BCID IHE_RADAIRA3 “Result
+CONCEPT 99IHE, “Result (AIRA_111, Relevancy”
+MOD Relevancy” 99IHE,
+“Accepted”)
+or
+(AIRA_114,
+99IHE,
+“Added”)
+or
+(AIRA_116,
+99IHE,
+“Modified”)
+Content Item Descriptions
+Row 3 The Observer Context describes the observer (human or device) that performed the result assessments in
+this object. When multiple observers are present it means that they collaborated in some fashion during the
+assessment activity.
+Row 5 This container is included once for each assessed AI Result, including those with an Assessment Status
+(Row 10) of “rejected”.
+Row 6 If the AI Result is unconfirmed, reference the Input AI Result Object.
+If the AI Result is confirmed, reference the Output AI Result Object.
+For Segmentation instances, the Referenced Segment Number (0062,000B) of the IMAGE Value Type
+may be used to reference specific segments.
+Row 7 If the AI Result is unconfirmed, reference the Input AI Result Object.
+If the AI Result is confirmed, reference the Output AI Result Object.
+For composite instances, a unique identifier may be provided to reference a specific AI Result in the
+referenced object (see rows 8 or 9). If this unique identifier is not provided, the AI Result Object will be
+assessed as a whole.
+Type: Non-Extensible
+Version: yyyymmdd
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 65 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+1080 Table BCID IHE_RADAIRA2: Assessment Status
+Coding Scheme Code Value Code Meaning
+Designator
+99IHE AIRA_111 Accepted
+99IHE AIRA_112 Unassessed
+99IHE AIRA_113 Unable to Assess
+99IHE AIRA_114 Added
+99IHE AIRA_115 Rejected
+99IHE AIRA_116 Modified
+Type: Non-Extensible
+Version: yyyymmdd
+Table BCID IHE_RADAIRA3 Status Code Scope Modifier
+Coding Scheme Code Value Code Meaning
+Designator
+99IHE AIRA_121 Clinically Relevant
+99IHE AIRA_122 Relevant for Q/A analysis
+1085 Type: Non-Extensible
+Version: yyyymmdd
+Table BCID IHE_RADAIRA4 “Assessment Basis”
+Coding Scheme Code Value Code Meaning
+Designator
+99IHE AIRA_141 Single Report Concordance
+99IHE AIRA_142 Single Human Assessment
+99IHE AIRA_143 Multiple Human Assessments
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 66 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Appendices to Volume 3
+1090
+Add new Appendix C to Volume 3
+Appendix C – AIRA Profile - Assessment Scenarios
+Table C-1 describes the creation of the artefacts of the AI Result Assessment Process (Updated/
+Replacement AI Result Objects, Assessment Status Objects, and Rejection Notes) for different
+1095 scenarios depending on the Status of the individual AI Results.
+Table C-1: Assessment Scenarios
+Scenario (Note 1) Status Output Object Assessment Create
+values for Status Object KOS to
+Individual Create Include AI Result deprecate
+AI Results Replace- Individual Reference to Input AI
+(Note 2) ment AI Result Result
+Instance Object
+Input AI Result Objects Rejected, Yes No Individual Result in Yes
+with one or more Unassessed, Input AI Result
+individually Unable to Object
+referenceable AI Results Assess
+(with unique identifiers
+Accepted, Yes Yes Individual Result in Yes
+present) (Any IOD in
+Added, Output AI Result
+Table C-2)
+Modified Object
+Input AI Result Objects Rejected, No N/A Input AI Result Yes
+without individually Unassessed, Object
+referenceable AI Results Unable to
+(Secondary Capture, Assess
+Encapsulated PDF, or
+Accepted No N/A Input AI Result No
+Parametric Maps)
+(Note 3) Object
+Modified Yes N/A Output AI Result Yes
+Object
+Added N/A N/A N/A N/A
+AI Result Objects as a Unassessed N/A N/A Input AI Result Yes
+whole have not been Object
+assessed
+Input AI Result Objects Rejected, No No Input AI Result Yes
+with multiple Unable to Object
+individually Assess
+referenceable AI Results (all findings in
+– all unique identifiers the AI Result
+missing (SR and GSPS) Object must
+rejected, are
+inconclusive)
+Unassessed Corresponds with “AI Result Objects as a whole have not been assessed”
+scenario above
+Accepted, Yes Yes Output AI Result yes
+Modified Object
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 67 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+Scenario (Note 1) Status Output Object Assessment Create
+values for Status Object KOS to
+Individual Create Include AI Result deprecate
+AI Results Replace- Individual Reference to Input AI
+(Note 2) ment AI Result Result
+Instance Object
+Added N/A N/A N/A N/A
+Addition of new AI Added Yes Yes Individual AI N/A
+Result Objects with Results in Output AI
+individually Result Object
+referenceable AI Results
+(see Table C-2)
+Note 1: This table shows the default configuration, in which status values of “Unassessed” and “Unable to Assess” are treated
+as unconfirmed AI Results. However, note that that depending on the configuration, these status values may also be
+treated as confirmed AI Results.
+1100 Note 2: “Individual AI results “also includes objects without individually referenceable AI Results, for which the AI Result
+Object is treated as a single AI Result.
+Note 3: For Encapsulated PDF documents an Output AI Result Object shall be created, adding the Verification Flag and if the
+Verifying Observer is needed.
+Table C-2 provides the Mapping between the unique identifiers for the supported AI Result
+1105 Object IODs and the encoding in the Assessment Status Object.
+Table C-2: AI Result Objects with individually referenceable AI Results – Unique Identifier
+Mapping (TID IHE_RADAIRA1)
+IOD AI Result Unique Identifier in Result Reference Concept Row in
+Input AI Result Object TID
+IHE_RADARAI1
+SR Observation UID (0040,A171) (AIR005, 99IHE, Referenced 8
+Observation UID)
+RTSS Structure Set ROI Sequence (130489, DCM, Referenced Region of 9
+(3006,0020)) Interest Identifier)
+> ROI Number (3006,0022)
+GSPS Text Object Sequence (0070,0008) (130489, DCM, Referenced Region of 9
+> Graphic group ID (0070,0295) Interest Identifier)
+Graphic Object Sequence (0070,0009)
+> Graphic group ID (0070,0295)
+SEG Segment Sequence (0062,0002) Referenced Segment Number 6
+> Segment Number (0062,0004) (0062,000B) of the IMAGE Value Type
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 68 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6
+
+IHE RAD Technical Framework Supplement – AI Result Assessment for Imaging (AIRA)
+______________________________________________________________________________
+1110 Appendix D – AIRA Profile - Example AI Result Assessment
+Encodings
+Examples for the AIRA Profile are found in the IHE Google Drive in this folder.
+___________________________________________________________________________
+Rev. 1.1 – 2025-06-12 69 Copyright © 2025: IHE International, Inc.
+Template Rev. 10.6

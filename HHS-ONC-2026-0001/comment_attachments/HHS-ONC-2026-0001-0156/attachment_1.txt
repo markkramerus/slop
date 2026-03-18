@@ -1,0 +1,221 @@
+February 20, 2026
+Department of Health and Human Services,
+Assistant Secretary for Technology Policy and ONC for Health Information Technology
+Attention: HHS Health Sector AI RFI
+Mary E. Switzer Building, Mail Stop: 7033A
+330 C Street SW, Washington, DC 20201
+Subject: HHS RFI Response: Accelerating the Adoption and Use of AI as Part of Clinical Care
+Dear Assistant Secretary and ONC Leadership,
+MHK appreciates the opportunity to provide comments on the Request for Information (RFI) published on
+December 23, 2025, regarding strategies to accelerate the adoption and use of Artificial Intelligence (AI) in
+clinical care. We commend HHS, ASTP, and ONC for inviting stakeholder input across regulation,
+reimbursement, and research and development to responsibly scale AI tools that improve outcomes, reduce
+burden, and lower costs for patients and government programs.
+MHK delivers solutions that support more than 90 million lives served by health plans and pharmacy benefit
+managers nationwide, in care management, utilization management (including prior authorization), pharmacy
+management, appeals and grievances, and population health. Our mission is to enable health plans to deliver
+efficient, compliant, and patient-centered care through advanced technology solutions. AI can transform care
+delivery, reduce administrative burden, and improve outcomes when implemented responsibly and
+transparently.
+MHK supports HHS’s vision to accelerate AI adoption in clinical care and has developed responsible AI
+enablement within our platform. The AI Agentic event framework MHK has designed and implemented
+internally has been recognized by our channel partner, Amazon Web Services (AWS), as a best-in-class
+approach compared to other solutions in the market. Within this framework, we are leveraging AI agents to
+streamline processes and reduce administrative burdens. Our approach prioritizes compliance, transparency,
+and interoperability to ensure trust and safety. We offer the following detailed responses to the RFI questions
+based on our experience designing, validating, and integrating AI into payer workflows. We also welcome the
+opportunity to meet, share our learnings, and partner with you.
+Sincerely,
+Ashley Cabrera Geoff Felder Maurice Herbelin, MD
+Chief Compliance Officer Chief Technology Officer Chief Medical Officer
+ACabrera@mhk.com Geoff.Felder@mhk.com Maurice.Herbelin@mhk.com
+
+Detailed Responses to RFI Questions
+Question 1: What are the biggest barriers to private sector innovation in AI for health care and
+its adoption and use in clinical care?
+• Despite progress through FHIR and related ONC initiatives, access to complete, high-quality,
+standards-based data across EHRs, payer systems, and ancillary sources remains inconsistent.
+AI systems rely on longitudinal, well-structured datasets, and fragmentation increases
+development cost, limits generalizability, and slows deployment. Model Context Protocol (MCP)
+integration can accelerate adoption by enabling secure access to clinical data across client
+environments without requiring data migration or format standardization.
+• Fee-for-service reimbursement models do not always incentivize technologies to
+reduce utilization, shorten administrative cycle times, or lower the total cost of care. Therefore,
+AI tools that improve efficiency or prevent unnecessary services may lack a direct
+reimbursement pathway.
+• Public concern regarding algorithmic bias, lack of transparency, and the risk of automation-
+driven denials, particularly in prior authorization, creates skepticism and slows adoption even
+where safeguards exist. One approach is to avoid training proprietary AI models
+independently and instead use industry-standard foundation models (Anthropic Claude,
+Google Gemini) and provide clinical context through Retrieval-Augmented Generation (RAG) via
+MCP-connected data sources and unstructured document processing. This can reduce the
+introduction of training data bias. The bias concerns can be limited to prompt injection
+(malicious input manipulation), cross-tenant data access, decision confidence fairness, and RAG
+context completeness (ensuring the right clinical evidence is retrieved for all patient types).
+• Ambiguity in compliance frameworks, particularly around HIPAA and state-specific privacy
+regulations, can hinder adoption. Implementing comprehensive HIPAA Technical Safeguards (45
+CFR § 164.312) could streamline adoption. This should include: Access Control with 3-tier
+capability token system (24-hour job tokens, 1-hour agent tokens with automatic expiration),
+Audit Controls with 365-day CloudWatch retention and 7-year archive capability, Integrity
+Controls with client-specific KMS encryption, Person/Entity Authentication via AWS Cognito
+OAuth2, and Transmission Security with TLS 1.3. Our audit framework generates 9 report types
+(daily/monthly/quarterly/annual/on demand), providing concrete evidence of compliance.
+
+• Uncertainty regarding legal frameworks and governance, particularly relating to liability
+allocation, indemnification, and the documentation of human oversight, delays contracting and
+implementation processes, especially for AI applications within utilization management or
+clinical decision support integrated into electronic health records (EHRs). It is critical to have
+human-in-the-loop governance at multiple levels, including decision separation, confidence-
+based routing, progressive automation with safeguards, and administrative controls.
+Question 2: What regulatory, payment policy, or programmatic design changes should HHS
+prioritize to incentivize the effective use of AI in clinical care, and why? What HHS regulations,
+policies, or programs could be revisited to augment your ability to develop or use AI in clinical
+care? Please provide specific changes and applicable Code of Federal Regulations citations.
+• HHS should prioritize payment models that reward AI-enabled reductions in administrative
+burden, improvements in the timeliness of care, and measurable improvements in outcomes.
+Introduce value-based incentives for AI-enabled solutions and documentation tools that
+demonstrate reduced administrative burden, costs, and improved outcomes. Additionally, HHS
+should simplify approval pathways for AI-driven utilization management tools, provided they
+maintain clinical oversight by licensed professionals.
+• HHS policy should clearly distinguish between AI that assists clinicians or reviewers and AI
+that autonomously determines coverage or clinical actions. Existing CMS guidance stating that
+AI may support but not replace individualized medical necessity determinations should be
+codified.
+
+Question 3: For non-medical devices, we understand that the use of AI in clinical care may raise
+novel legal and implementation issues that challenge existing governance and accountability
+structures (including liability, indemnification, privacy, and security). What novel legal and
+implementation issues exist, and what role, if any, should HHS play to help address them?
+• We recommend establishing predictable regulatory guidance that balances innovation with
+patient safety. When AI informs but does not independently make clinical
+or utilization management decisions, existing legal frameworks do not clearly address:
+o Allocation of liability when AI recommendations are followed or overridden
+o Responsibility for performance drift, bias, or misclassification
+o Documentation standards demonstrating meaningful human review
+• HHS could play a constructive role by:
+o Issuing guidance on minimum governance expectations for clinical AI, including
+human-in-the-loop workflows, audit trails, and documentation requirements.
+o Providing optional model contract language addressing indemnification and liability
+for AI-assisted clinical use cases.
+o Clarifying permissible uses and disclosures under HIPAA for AI training, monitoring,
+and safety auditing, including recommended de-identification practices.
+Question 4: For non-medical devices, what are the most promising AI evaluation methods (pre-
+and post-deployment), metrics, robustness testing, and other workflow and human-centered
+evaluation methods for clinical care? Should HHS further support these processes? If so, which
+mechanisms would be most impactful (e.g., contracts, grants, cooperative agreements, and/or
+prize competitions)?
+• Promising evaluation methods and metrics include: bias and fairness testing using parity
+metrics; robustness testing with documentation standards; post-deployment continuous
+performance surveillance of FHIR loads and connections; and payer-linked outcomes
+(appeal rates, overturn rates, adverse events) for AI in prior authorization and care
+coordination.
+• HHS should support funding public-private development, such as shared datasets
+(clinical and claims), evaluation protocols, and independent measurement teams to
+prioritize tools, ambient documentation, prior authorization, and health care navigation.
+We recommend establishing grants for model registries and audit tools that use
+standardized metric schemas and reporting. HHS can also support competitions that
+incentivize reproducible processes that reduce bias and improve clinician trust, with
+performance-based awards.
+
+Question 5: How can HHS best support private sector activities (e.g., accreditation, certification,
+industry-driven testing, and credentialing) to promote innovative and effective AI use in clinical
+care?
+• HHS should support a voluntary, risk-tiered assurance framework aligned with ONC
+certification and TEFCA. HHS should also recognize the distinction between AI platforms
+that train proprietary models and those that orchestrate industry foundation models.
+• HHS should encourage third-party accreditation for prior authorization using AI and
+clinical documentation using AI (scribes), with audit trails that demonstrate
+human-in-the-loop governance, explainability, and outcomes (timeliness, overturn
+rates, adverse events).
+• Codify payer expectations and guardrails for AI use in coverage decisions and ensure
+the architecture embeds key guardrails.
+• Funding AI literacy and governance training for clinicians, medical directors,
+and utilization management professionals. Training curricula could incorporate
+anonymized examples to teach clinicians how to interpret AI confidence scores,
+recognize performance drift, and exercise effective oversight.
+Question 6: Where have AI tools deployed in clinical care met or exceeded performance and
+cost expectations, and where have they fallen short? What kinds of novel AI tools would have
+the greatest potential to improve health care outcomes, give new insights into quality, and help
+reduce costs?
+• Ambient clinical documentation tools have met expectations by reducing clinician
+burnout, preserving workforce capacity, and improving documentation quality.
+• AI deployment often lags expectations due to integration complexity, governance
+requirements, and validation burden.
+• AI tools with High-Potential include prior authorization orchestration with real-time
+data retrieval and human override, population-level risk navigation integrating social
+drivers and benefits data, and explainable quality signal extraction beyond traditional
+Healthcare Effectiveness Data and Information Set (HEDIS) measures.
+Question 7: Which role(s), decision maker(s), or governing bodies within health care
+organizations have the most influence on the adoption of AI for clinical care? What are the
+primary administrative hurdles to the adoption of AI in clinical care?
+• Roles that are key influencers and decision makers among health plans include:
+o Chief Medical Officer/Medical Directors (clinical sponsorship, guardrails).
+o Chief Information Officers and Clinical Informatics (workflow integration, EHR
+alignment).
+
+o Utilization Management/Case Management Leaders for payer-side adoption in
+prior authorization, concurrent review, and care coordination.
+o Compliance/Privacy/Legal Officers.
+• Primary administrative hurdles to the adoption of AI include
+o Interoperability friction, such as fragmented EHRs, a lack of standardized APIs,
+and mixed protocols.
+o Payment uncertainty, including the fact that fee-for-service rarely rewards
+deflationary technology, and coverage decisions could be slow.
+o Site-specific performance drift and bias audits, which could lead to validation
+and monitoring burdens.
+o Workforce readiness and change management are impacted by clinician trust,
+documentation standards, and governance.
+Question 8: Where would enhanced interoperability widen market opportunities, fuel research,
+and accelerate the development of AI for clinical care? Please consider specific data types, data
+standards, and benchmarking tools.
+• FHIR to enable plug and play across exchanges for clinical, claims, and prior
+authorization datasets.
+• Claims and clinical linkage for outcomes and total costs supported by AI tools (LOS,
+readmissions, adverse events, equity impacts).
+• Benchmarking tools such as national model registries with aligned metrics for pre- and
+post-deployment data.
+Question 9: What challenges within health care do patients and caregivers wish to see
+addressed by the adoption and use of AI in clinical care? Equally, what concerns do patients and
+caregivers have related to the adoption and use of AI in clinical care?
+• Some of the challenges that patients and caregivers wish to see addressed by the
+adoption and use of AI include:
+o Faster access to care by reducing prior authorization delays and having real-time
+decisions, as well as transparent reasons for determinations.
+o Fewer diagnostic delays because of AI triage and timely routing.
+o Increasing clinician presence: AI would reduce time spent on charting and
+increase time spent listening to ambient documentation.
+• Some of the concerns that patients and caregivers wish to see addressed by the
+adoption and use of AI include:
+o Patients express concern about algorithmic bias and unequal denials, particularly
+in utilization management.
+o There is significant concern about batch denials caused by automation.
+o Sharing data over networks raises privacy and trust concerns.
+
+Question 10: Are there specific areas of AI research that HHS should prioritize to accelerate the
+adoption of AI as part of clinical care?
+a. Are there published findings about the impact of adopted AI tools and their use in
+clinical care?
+b. How does the literature approach the costs, benefits, and transfers of using AI as part
+of clinical care?
+• The specific areas of AI research that HHS should prioritize include:
+o Implementation science for AI-enabled prior authorization
+o Real-world performance drift and monitoring methodologies
+o Total cost of ownership and payment models for deflationary technologies
+o Explainable quality measures linked to clinical outcomes
+Conclusion:
+MHK is committed to advancing responsible AI adoption in clinical care, and we applaud the
+Administration’s efforts to accelerate its use across the health care system. We believe
+collaboration between HHS, health plans, and technology partners is essential to achieving
+better outcomes, reducing costs, and improving patient experience. The AI agentic event
+framework we have built internally has been recognized by our channel partner, Amazon Web
+Services, as a best-in-class approach compared with other solutions in the market. Based on our
+experience designing, validating, and integrating AI into payer workflows, we would welcome
+the opportunity to meet, share our learnings, and partner with you.
+For reference, some of MHK’s current AI initiatives include:
+• Automated Prior Authorization: Leveraging AI to reduce turnaround times while
+maintaining compliance.
+• AI Agentic Enablement: Extracting insights from clinical notes to support decision-making.
+• Predictive Analytics for Care Management: Identifying high-risk members for early
+intervention.
+• Member Engagement Tools: AI-driven outreach tools to improve adherence and
+satisfaction.

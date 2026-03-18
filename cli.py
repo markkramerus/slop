@@ -29,7 +29,7 @@ Optional flags let you tune cost vs. quality:
     --no-argument-check     Skip LLM argument-presence QC
     --no-embedding-check    Skip embedding-based deduplication
     --include-failed-qc     Write QC-failed rows to the CSV (flagged)
-    --seed                  Random seed (default 42)
+    --seed                  Select random seed (for reproducibility)
     --similarity-threshold  Cosine similarity ceiling for dedup (default 0.92)
     --max-retries           Retries per comment slot on QC failure (default 3)
     --comment-period-days   Simulated comment period length in days (default 60)
@@ -56,47 +56,31 @@ def build_shuffle_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="slop shuffle",
         description=(
-            "Shuffler phase: (0) pre-process the real CMS CSV by substituting "
+            "Shuffler phase: (0) convert the real CSV by substituting "
             "attachment text where it is the bulk of the comment, then "
-            "(1) translate synthetic comments to CMS format, then "
+            "translating to PSV format"
+            "(1) translate synthetic comments from TXT to PSV format, "
             "(2) randomly interleave them with the pre-processed real comments "
             "and produce a key that labels every row as real or synthetic.  "
-            "Attachment URLs are cleared in the final combined.csv so no row "
+            "Attachment URLs are cleared in the final combined.psv so no row "
             "reveals whether it came from a real submission."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Convention-based defaults (when --docket-id is provided)
 ---------------------------------------------------------
-  --attachments-dir   {docket_id}/comment_attachments
-  --preprocessed-output {docket_id}/shuffled_comments/preprocessed_real.psv
-  --syncom-output     {docket_id}/synthetic_comments/synthetic.txt
-  --translated-output {docket_id}/shuffled_comments/synthetic_cms.psv
-  --real-comments     {docket_id}/comments/{docket_id}.csv
-  --combined-output   {docket_id}/shuffled_comments/combined.psv
-
-Examples
---------
-  # Simplest form — all paths derived from docket ID:
-  python cli.py shuffle --docket-id CMS-2025-0050
-
-  # Full pipeline (translate + shuffle) with explicit paths:
-  python cli.py shuffle \\
-      --syncom-output  CMS-2025-0050/synthetic_comments/synthetic.txt \\
-      --translated-output CMS-2025-0050/shuffled_comments/synthetic_cms.psv \\
-      --real-comments  CMS-2025-0050/comments/CMS-2025-0050.csv \\
-      --combined-output CMS-2025-0050/shuffled_comments/combined.psv
-
-  # Skip translation (provide an already-translated CMS CSV):
-  python cli.py shuffle --docket-id CMS-2025-0050 --skip-translation
-
-  # Skip pre-processing (no attachment substitution):
-  python cli.py shuffle --docket-id CMS-2025-0050 --skip-preprocess
+  --attachments-dir     {docket_id}/comment_attachments
+  --real-input-csv      {docket_id}/comments/{docket_id}.csv
+  --synth-input-txt     {docket_id}/synthetic_comments/synthetic.txt
+  --real-output-psv     {docket_id}/shuffled_comments/real.psv
+  --synth-output-psv    {docket_id}/shuffled_comments/synthetic.psv
+  --combined-output-psv {docket_id}/shuffled_comments/combined.psv
+  --combined-key-csv    {docket_id}/shuffled_comments/combined_key.csv
 
 Key file
 --------
   A companion key CSV is written automatically next to the combined output
-  (e.g., combined_key.csv).  Use --key-output to override its path.
+  (e.g., combined_key.csv).  Use --combined-key-csv to override its path.
   The key has four columns: row_number, uid, original_document_id, type (real | synthetic).
 """,
     )
@@ -122,7 +106,7 @@ Key file
         ),
     )
     p.add_argument(
-        "--preprocessed-output",
+        "--real-output-psv",
         default=None,
         metavar="PATH",
         help=(
@@ -139,7 +123,16 @@ Key file
         ),
     )
     p.add_argument(
-        "--syncom-output",
+        "--real-input-csv",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path to the real comments file (comma-delimited CSV). "
+            "Default: {docket_id}/comments/{docket_id}.csv"
+        ),
+    )
+    p.add_argument(
+        "--synth-input-txt",
         metavar="PATH",
         default=None,
         help=(
@@ -149,58 +142,51 @@ Key file
         ),
     )
     p.add_argument(
-        "--translated-output",
+        "--synth-output-psv",
         default=None,
         metavar="PATH",
         help=(
-            "Path where the translated synthetic CMS CSV will be saved.  "
+            "Path where the translated synthetic CSV will be saved.  "
             "If --skip-translation is set this file must already exist. "
-            "Default: {docket_id}/shuffled_comments/synthetic_cms.csv"
+            "Default: {docket_id}/shuffled_comments/synthetic.csv"
         ),
     )
+
     p.add_argument(
-        "--real-comments",
+        "--combined-output-psv",
         default=None,
         metavar="PATH",
         help=(
-            "Path to the real CMS comments file (comma-delimited CSV). "
-            "Default: {docket_id}/comments/{docket_id}.csv"
-        ),
-    )
-    p.add_argument(
-        "--combined-output",
-        default=None,
-        metavar="PATH",
-        help=(
-            "Path where the combined (shuffled) CMS CSV will be saved. "
+            "Path where the combined (shuffled) CSV will be saved. "
             "Default: {docket_id}/shuffled_comments/combined.csv"
         ),
     )
     p.add_argument(
-        "--key-output",
+        "--combined-key-csv",
         default=None,
         metavar="PATH",
         help=(
             "Path where the key CSV will be saved.  "
-            "Defaults to <combined-output-stem>_key.csv in the same directory."
+            "Defaults to <combined-output-psv-stem>_key.csv in the same directory."
         ),
     )
     p.add_argument(
         "--skip-translation",
         action="store_true",
         help=(
-            "Skip the translation step and use --translated-output directly "
-            "as the synthetic CMS CSV.  Useful when translation was run "
+            "Skip the translation step and use --synth-output-psv directly "
+            "as the synthetic CSV.  Useful when translation was run "
             "previously and the file already exists."
         ),
     )
     p.add_argument(
         "--seed",
         type=int,
-        default=42,
+        default=None,
         metavar="N",
-        help="Random seed for reproducible shuffling (default 42).",
+        help="Random seed (override for reproducible result)",
     )
+
     p.add_argument(
         "--quiet",
         action="store_true",
@@ -215,7 +201,12 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     parser = build_shuffle_parser()
     args = parser.parse_args(argv)
 
-    from shuffler.shuffler import preprocess_real_comments, translate_syncom_to_cms, shuffle_comments
+    from shuffler.shuffler import preprocess_real_comments, translate_syncom_to_psv, shuffle_comments
+
+    # Default seed if not supplied
+    if args.seed is None:
+        import random
+        args.seed = random.randint(0, 2**32 - 1)
 
     verbose = not args.quiet
 
@@ -223,23 +214,23 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     docket_id = args.docket_id
 
     attachments_dir      = args.attachments_dir
-    preprocessed_output  = args.preprocessed_output
-    syncom_output        = args.syncom_output
-    translated_output    = args.translated_output
-    real_comments        = args.real_comments
-    combined_output      = args.combined_output
+    preprocessed_output  = args.real_output_psv
+    syncom_output        = args.synth_input_txt
+    translated_output    = args.synth_output_psv
+    real_comments        = args.real_input_csv
+    combined_output      = args.combined_output_psv
 
     if docket_id:
         if attachments_dir is None:
             attachments_dir = os.path.join(docket_id, "comment_attachments")
         if preprocessed_output is None:
             preprocessed_output = os.path.join(
-                docket_id, "shuffled_comments", "preprocessed_real.psv"
+                docket_id, "shuffled_comments", "real.psv"
             )
         if syncom_output is None:
             syncom_output = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
         if translated_output is None:
-            translated_output = os.path.join(docket_id, "shuffled_comments", "synthetic_cms.psv")
+            translated_output = os.path.join(docket_id, "shuffled_comments", "synthetic.psv")
         if real_comments is None:
             real_comments = os.path.join(docket_id, "comments", f"{docket_id}.csv")
         if combined_output is None:
@@ -248,11 +239,11 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     # Validate that required args are present
     missing = []
     if translated_output is None:
-        missing.append("--translated-output")
+        missing.append("--synth-output-psv")
     if real_comments is None:
-        missing.append("--real-comments")
+        missing.append("--real-input-csv")
     if combined_output is None:
-        missing.append("--combined-output")
+        missing.append("--combined-output-psv")
     if missing:
         print(
             f"Error: the following arguments are required: {', '.join(missing)}\n"
@@ -268,12 +259,12 @@ def run_shuffle(argv: list[str] | None = None) -> int:
             os.makedirs(out_dir, exist_ok=True)
 
     # ── Step 0: Pre-process real comments (resolve attachment text) ─────────
-    # The file passed to shuffle_comments() is either the preprocessed CSV
+    # The file passed to shuffle_comments() is either the real_output_psv CSV
     # (attachment text substituted) or the original CSV (if --skip-preprocess).
     if args.skip_preprocess:
         if verbose:
             print(f"[shuffler] Skipping pre-processing — using {real_comments} directly")
-        real_cms_for_shuffle = real_comments
+        real_for_shuffle = real_comments
     else:
         if not os.path.exists(real_comments):
             print(
@@ -288,16 +279,16 @@ def run_shuffle(argv: list[str] | None = None) -> int:
                     f"[shuffler] Attachments directory not found "
                     f"({attachments_dir}); skipping pre-processing."
                 )
-            real_cms_for_shuffle = real_comments
+            real_for_shuffle = real_comments
         else:
             try:
                 preprocess_real_comments(
-                    real_cms_file=real_comments,
+                    real_file=real_comments,
                     attachments_dir=attachments_dir,
                     output_file=preprocessed_output,
                     verbose=verbose,
                 )
-                real_cms_for_shuffle = preprocessed_output
+                real_for_shuffle = preprocessed_output
             except Exception as exc:
                 print(f"Error during pre-processing: {exc}", file=sys.stderr)
                 import traceback
@@ -318,7 +309,7 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     else:
         if syncom_output is None:
             print(
-                "Error: --syncom-output is required unless --skip-translation is set.",
+                "Error: --synth-input-txt is required unless --skip-translation is set.",
                 file=sys.stderr,
             )
             return 1
@@ -330,7 +321,7 @@ def run_shuffle(argv: list[str] | None = None) -> int:
             return 1
 
         try:
-            translate_syncom_to_cms(
+            translate_syncom_to_psv(
                 syncom_input=syncom_output,
                 cms_output=translated_output,
                 verbose=verbose,
@@ -342,19 +333,19 @@ def run_shuffle(argv: list[str] | None = None) -> int:
             return 1
 
     # ── Step 2: Shuffle ─────────────────────────────────────────────────────
-    if not os.path.exists(real_cms_for_shuffle):
+    if not os.path.exists(real_for_shuffle):
         print(
-            f"Error: real comments file not found: {real_cms_for_shuffle}",
+            f"Error: real comments file not found: {real_for_shuffle}",
             file=sys.stderr,
         )
         return 1
 
     try:
         shuffle_comments(
-            synthetic_cms_file=translated_output,
-            real_cms_file=real_cms_for_shuffle,
+            synthetic_psv_file=translated_output,
+            real_file=real_for_shuffle,
             combined_output=combined_output,
-            key_output=args.key_output,
+            key_output=args.combined_key_csv,
             seed=args.seed,
             verbose=verbose,
         )
@@ -502,7 +493,7 @@ Simplest invocations
     # Generation options
     gen = p.add_argument_group("generation options")
     gen.add_argument("--seed", type=int, default=42,
-                     help="Random seed (default 42).")
+                     help="Random seed")
     gen.add_argument("--comment-period-days", type=int, default=60, metavar="N",
                      help="Simulated comment period length in days (default 60).")
     gen.add_argument("--max-concurrent", type=int, default=10, metavar="N",
@@ -511,6 +502,8 @@ Simplest invocations
                      help="Disable async parallelization (slower but more predictable).")
     gen.add_argument("--rebuild-world-model", action="store_true",
                      help="Force regeneration of the world model via LLM even if a cached version exists.")
+    gen.add_argument("--rebuild-org-pool", action="store_true",
+                     help="Force regeneration of the org name pool via LLM even if a cached version exists.")
 
     # Verbosity
     p.add_argument("--quiet", action="store_true", help="Suppress progress output.")
@@ -549,6 +542,10 @@ def main(argv: list[str] | None = None) -> int:
     if argv and argv[0] in ("phrase-check", "phrase_check"):
         from syncom.phrase_check import main as phrase_check_main
         return phrase_check_main(argv[1:])
+
+    if argv and argv[0] in ("phrase-fix", "phrase_fix"):
+        from syncom.phrase_fix import main as phrase_fix_main
+        return phrase_fix_main(argv[1:])
 
     # ── Generate (default) mode ─────────────────────────────────────────────
     parser = build_parser()
@@ -650,8 +647,8 @@ def main(argv: list[str] | None = None) -> int:
                 skip_embedding_check=args.no_embedding_check,
                 verbose=not args.quiet,
                 rebuild_world_model=args.rebuild_world_model,
+                rebuild_org_pool=args.rebuild_org_pool,
             )
-
             if args.no_async:
                 result = run_campaign(**common_kwargs)
             else:

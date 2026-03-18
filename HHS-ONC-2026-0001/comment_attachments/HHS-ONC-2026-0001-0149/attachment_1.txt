@@ -1,0 +1,589 @@
+February 20th, 2026
+HHS Health Sector AI RFI
+Request for Information: Accelerating the
+Adoption and Use of Artificial Intelligence as
+part of Clinical Care
+Submitted to: Submitted by:
+Department of Health and ICF Incorporated, L.L.C.
+Human Services 1902 Reston Metro Plaza
+Assistant Secretary for Technology Policy/ Reston, VA 20190
+Office of the National Coordinator for 703.934.3000
+Health Information Technology
+Patrick McConnell
+Mary E. Switzer Building
+404.909.2277
+330 C Street SW
+patrick.mcconnell@icf.com
+Washington, DC 20201
+Ratima Kataria
+Steven Posnack
+571.226.7979
+202.690.7151
+ratima.kataria@icf.com
+This proposal includes data that shall not be disclosed outside the Government and shall not be duplicated, used, or disclosed—in whole or in part—
+for any purpose other than to evaluate this proposal. If, however, a contract is awarded to this offeror as a result of—or in conjunction with—the
+submission of these data, the Government shall have the right to duplicate, use, or disclose the data to the extent provided in the resulting contract.
+This restriction does not limit the Government’s right to use information contained in these data if it is obtained from another source without
+restriction. The data subject to this restriction are contained in this volume and its appendices and attachments.
+
+February 20th, 2026
+Steven Posnack
+Principal Deputy Assistant Secretary for Technology Policy
+330 C Street SW
+Washington, DC 20201
+Subject: Request for Information: Accelerating the Adoption and Use of Artificial
+Intelligence as part of Clinical Care
+Dear Mr. Posnack:
+I am pleased to submit ICF’s response to the Department of Health and Human Services (HHS)
+Request for Information (RFI): Accelerating the Adoption and Use of Artificial Intelligence as
+Part of Clinical Care.
+ICF is a global consulting and technology firm with more than five decades of experience
+supporting federal health agencies in modernizing programs, data, and digital systems. Our
+interdisciplinary teams span policy, technology, analytics, and human-centered design and
+deliver integrated, practical solutions that strengthen performance and outcomes across CMS,
+NIH, and other HHS divisions.
+We bring direct experience translating policy into operational requirements, governance
+structures, measurable outcomes, and scalable technical approaches. Our work with CMS
+provides deep familiarity with program and payment levers that can incentivize safe clinical AI
+adoption. We develop certifiable and auditable frameworks that providers and vendors can
+implement to ensure trustworthy AI use.
+ICF supports agencies in advancing robust AI evaluation methods through layered testing
+aligned with NIST principles, real-world monitoring, and data infrastructure that enables
+validation over time. We also help expand interoperability and standards adoption to unlock
+high-quality datasets and enable scalable deployment, always grounded in human-centered
+design and clinician-focused usability considerations.
+We welcome the opportunity to help HHS address policy, reimbursement, and research
+considerations and accelerate safe, effective, and equitable clinical AI adoption.
+Sincerely,
+Patrick McConnell Ratima Kataria
+SVP Health Engineering Solutions VP Health IT Strategy and Growth
+404.909.2277 571.226.7979
+patrick.mcconnell@icf.com ratima.kataria@icf.com
+1902 Reston Metro Plaza, Reston, VA 20190 USA +1.703.934.3000 icf.com
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal.
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+Table of Contents
+Executive Summary .........................................................................................................................1
+Incentivizing Effective Use of AI in Clinical Care (Q. #2) .............................................................2
+Novel Issues with AI in Non-Medical Devices (Q. #3) ...................................................................3
+Most Promising AI Evaluation Methods (Q. #4) .............................................................................4
+Promising Evaluation Methods ............................................................................................4
+Evaluation Metrics ...............................................................................................................5
+Supporting the Development of Improved Evaluation Methods .........................................5
+HCD in Clinical Care AI ......................................................................................................5
+HHS Support for Private Sector Activities (Q. #5) ..........................................................................6
+Widening Opportunities through Interoperability (Q. #8) ...............................................................8
+Data Types ...........................................................................................................................8
+Data Standards .....................................................................................................................8
+Market Impact ......................................................................................................................9
+Benchmarking ......................................................................................................................9
+Specific Areas of AI Research to Prioritize (Q. #10) ......................................................................9
+Research Priorities for Clinical AI Adoption .....................................................................10
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. i
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+Executive Summary
+ICF (NASDAQ: ICFI) is a global consulting and
+technology services company with more than 50 years of
+successful performance helping public and private sector
+organizations navigate change and shape the future.
+Founded in 1969, ICF combines deep domain expertise in
+areas such as health, social programs, energy,
+environment, and digital modernization with advanced
+analytics, data science, and creative and digital
+engagement capabilities. Today, ICF is a publicly traded
+corporation with approximately 9,000 full-time and part-time employees worldwide and annual
+revenues of about $2.0 billion.
+ICF’s interdisciplinary teams—policy specialists, technologists, data scientists, and creatives—
+work together to deliver integrated solutions that are practical, evidence-based, and measurable.
+Clients rely on ICF for high-stakes, mission-critical work that requires both subject-matter depth
+and rigorous program management, supported by mature quality, information security, and IT
+service management systems.
+ICF brings a long-standing federal footprint, with expertise in federal health, supporting agencies
+as they modernize data, technology, and programs that improve outcomes, affordability, and
+equity. Across HHS and its operating divisions, ICF delivers end-to-end capabilities spanning
+strategy and policy, research and evaluation, digital modernization, data platforms and analytics,
+and implementation support for large-scale programs and systems. Our federal health work
+includes sustained support to CMS on enterprise solutions and modernization efforts and
+biomedical/public health data and modernization support for NIH/NLM, complemented by
+broader federal health offerings that strengthen surveillance, community programs, and health
+communications.
+This RFI response focuses on the questions where ICF has specific, demonstrable experience and
+expertise: translating policy intent into operational requirements, implementable governance,
+measurable outcomes, and scalable technology approaches. In particular, our recommendations
+reflect practical experience with (i) payment and program levers that can be operationalized
+through CMS quality programs and models, (ii) certifiable requirements and auditable controls
+that can be implemented by providers and vendors, and (iii) evaluation and human-centered
+methods that increase clinical usability, trust, and adoption over time.
+The remainder of this document recommends that HHS accelerate safe and effective clinical AI
+adoption by using proven CMS mechanisms to create meaningful incentives (e.g., QPP/PI
+measures, Improvement Activities, and MVP alignment) and by embedding outcome-based “pay
+for validated value” approaches within high-leverage CMMI models; establish a voluntary
+certification and contracting/procurement baseline for non-medical AI used in clinical settings;
+advance evaluation methods that combine NIST-aligned risk management with layered testing
+(model outputs, system artifacts, and real-world user experience) and robust post-deployment
+monitoring supported by gold-standard datasets, SBIR/prizes, and standards; and expand
+interoperability through consistent adoption of key health data standards to enable benchmark
+datasets, portability, and scalable deployment—while prioritizing HCD, trustworthy AI, and
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 1
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+human–AI interaction research to ensure solutions fit clinical workflows and improve
+patient experience.
+Incentivizing Effective Use of AI in Clinical Care (Q. #2)
+HHS can and should incentivize the effective use of AI in clinical care. For example, HHS can
+use the Quality Payment Program (QPP) and replicate the CEHRT/Promoting
+Interoperability (PI) playbook by setting a clear, testable “floor” for what qualifies as
+acceptable technology and use and then attaching meaningful scoring and payment
+consequences.
+Specifically, CMS should do the following:
+1. Add a QPP definition for a certifiable class of clinical AI (e.g., “certified clinical AI
+module”) by building on the existing CEHRT definitional structure in 42 CFR § 414.1305
+and aligning certification mechanics to the ONC Health IT Certification Program authorities
+in 45 CFR part 170, subpart E.
+2. Update the PI performance category at 42 CFR § 414.1375 to create a scored
+objective/measure set for “safe and effective clinical AI use,” limited to certified modules
+and requiring auditable basics (e.g., version transparency/audit logs, clinician override,
+performance monitoring). This will ensure CMS pays for verified capability rather than
+marketing claims.
+3. Add AI governance and post-deployment monitoring as high-weight Improvement Activities
+via the IA inventory process at 42 CFR § 414.1355.
+4. Prevent fragmented incentives by establishing one or more “AI-enabled care” MIPS Value
+Pathways (MVPs) under 42 CFR § 414.1365 that bundle the AI expectations across
+Quality/Cost/IA/PI instead of scattering optional attestations.
+In addition, because the CEHRT approach also flowed into Advanced APM design, CMS should
+extend the same logic to Advanced APM alignment by building on the existing Advanced APM
+CEHRT criterion at 42 CFR § 414.1415—not by requiring “AI” generically, but by requiring
+that any high-impact AI used in clinical decision support or automation within an Advanced
+APM context meet certifiable, auditable, monitored standards. This is a direct analogue to how
+“use CEHRT” is operationalized today. Together, these steps will allow HHS to incentivize
+effective AI use in clinical care using an established program and proven mechanisms.
+HHS can also use CMMI Innovation Models to incentivize AI use in clinical care settings. To do
+so, HHS should prioritize programmatic design changes that (a) lower the upfront adoption
+barrier the way CEHRT programs did, but (b) only “pay for AI” when it produces
+validated value and remains safe in real-world use. The fastest way to do this would be to
+hardwire an “AI capability track” into high-leverage models. LEAD is explicitly positioned to
+launch after ACO REACH concludes at the end of 2026, making it the cleanest successor vehicle
+for model-wide expectations (e.g., allowing infrastructure-style payments or enhanced care
+management payments for certified AI deployment while gating shared savings/benchmarks on
+monitored performance and equity checks).
+Similarly, models with longitudinal care management or defined episodes can incorporate AI in
+tightly measured ways. For example, Kidney Care Choices (KCC) has been extended through
+2027, so CMS can add a standardized option to support certified AI-enabled risk
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 2
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+stratification/care management as a covered “model capability,” while requiring ongoing
+monitoring and evaluation tied to model endpoints. The Enhancing Oncology Model (EOM)
+began July 1, 2023 and added a second cohort July 1, 2025, creating a ready platform for AI-
+enabled symptom monitoring and care navigation. As noted above, this will work best when
+paired with post-deployment monitoring requirements and outcome-based gates rather than pure
+technology attestation. Because TEAM is explicitly a mandatory episode-based model, CMS can
+require transparency and auditability safeguards whenever participants use AI for episode
+identification, discharge planning, or post-acute decision support—protecting beneficiaries while
+still encouraging adoption through standardized requirements rather than ad hoc vendor-by-
+vendor negotiations.
+By incentivizing AI use with these models, HHS can leverage existing processes and
+mechanisms to encourage AI adoption and use, accelerating innovation and maximizing benefit
+to citizens and stakeholders.
+Novel Issues with AI in Non-Medical Devices (Q. #3)
+It is true that use of AI in non-medical devices in clinical care settings may raise novel legal and
+implementation issues. AI technologies are rapidly evolving, and gaps are emerging in existing
+frameworks governing liability, privacy, safety, and accountability. However, HHS is
+well-positioned—through the OneHHS approach articulated in its recent AI Strategy—to lead by
+clarifying expectations, enabling innovation, and safeguarding patients. We recommend two
+priority actions.
+First, HHS should establish a voluntary certification framework for non-medical AI tools,
+modeled on ONC’s Health IT Certification Program. This framework would accelerate the
+responsible adoption AI tools while reducing the regulatory burden on innovators by providing a
+means to evaluate and compare:
+• Transparency and documentation.
+• Safety monitoring and performance metrics.
+• Bias and fairness assessments.
+• Data protection and access safeguards.
+Second, HHS should issue model contracting and procurement guidance. By building off
+OMB Memorandum M-25-22 and the HHS AI Strategy’s procurement guidance, especially the
+use of “Cross-Cutting Enablers,” HHS should provide health systems and vendors a consistent
+baseline by publishing contractual expectations for:
+• Model auditability
+• Data rights and ownership
+• Security and privacy protections
+• Prohibitions on unauthorized model training
+• Clear user responsibilities
+By taking these steps, HHS can provide the necessary guardrails to enable effective and safe
+innovation with AI in non-medical devices for clinical care settings.
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 3
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+Most Promising AI Evaluation Methods (Q. #4)
+There are several promising approaches for evaluating AI in non-medical devices and we believe
+HHS should support them, especially because the best methods for ensuring safe, reliable
+operation with LLM-powered AI solutions are currently subject to research and debate. Further
+work is required to devise the best approaches for understanding, testing, and evaluating these
+technologies, especially in clinical care settings. HHS should take the lead by establishing
+standards and supporting research and investment. Doing so will increase trust, improve
+performance, and accelerate adoption and use, thereby bringing benefit to providers and patients.
+NIST’s AI Risk Management Framework (RMF) is a useful lens for orienting this work, as its
+four functions (Govern, Map, Measure, Manage) provide a means of assessing LLM
+performance and the risks of inadequate evaluation mechanisms. Another useful lens is the user.
+We believe focusing on users will be the best way to ensure evaluation mechanisms align with
+desired outcomes. Care providers are likely to be the greatest obstacle to broad adoption in
+clinical care settings. Accordingly, HHS should use Human Centered Design (HCD) to position
+care providers and patients at the center of evaluation method design and development. In
+addition, when promoting adoption, HHS should encourage an incremental, evolutionary
+approach that will create successes and build confidence. If done well, this will create a flywheel
+effect that builds momentum. Initial successes will build confidence, leading to further adoption
+and additional successes. Adoption and use will expand from there.
+Promising Evaluation Methods
+A variety of AI evaluation methods should be used to support increased adoption and use.
+Currently, some of the most promising approaches include the following:
+• Employing LLMs as judges.
+• Adjusting LLM training approaches penalize hallucinations.
+• Using dynamic evaluation methods to adjust benchmarks as LLM capabilities improve, so
+that progress is consistent.
+• Employing observability with tools like Langfuse.
+• Red teaming to discover unanticipated LLM vulnerabilities.
+Each of these approaches merits further research and support, especially in the field of clinical
+care. We recommend integrating HCD with all these approaches, so that the behavior of AI
+solutions is evaluated comprehensively and friction in the human-machine interface is
+proactively identified and addressed.
+Our concept follows the effective pattern of layering AI evaluations to provide a comprehensive
+assessment of a solution’s effectiveness. These layers typically include evaluating LLM
+responses in isolation, evaluating artifacts created from those responses by AI solutions (the
+human-machine teaming that embeds the LLM), and evaluating the experiences that those
+responses, artifacts, and solutions create. This layered approach is especially important in clinical
+care. Both patients and care providers will interact with and experience an AI solution. If those
+experiences are positive and valuable, then AI can drive improved outcomes for everyone.
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 4
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+Evaluation Metrics
+There are several important metrics to consider for evaluation. Accuracy is crucial. Given the
+nature of LLMs, accuracy is best broken into components, such as consistency, factual
+correctness, and error count. Responses must also be relevant; LLMs should be evaluated on how
+well they answered the question and whether they accessed the right data. This necessitates
+subjectivity; user feedback on relevance, for example, is essential as people currently assess
+relevancy far better than machines. This is one of the primary reasons why we contend it is so
+important to employ HCD principles and approaches. Tone and clarity are also important factors
+that require human assessment. Was the response easily understood or did it lead to confusion?
+Was it at the right reading level? Finally, is the output fact-based and unbiased? As OMB Memo
+M-26-04 states, it is important to ensure that AI solutions present truthful, ideological neutral
+outputs. Accordingly, evaluation methods must account for these factors.
+Supporting the Development of Improved Evaluation Methods
+To support the development of improved evaluation mechanisms, several mechanisms are
+available. First, HHS ought to develop and provide “gold standard” datasets for training and
+evaluation of AI systems in clinical care settings. Those datasets could be created by HHS itself,
+or HHS could sponsor their creation through grants, prize competitions, or contract work. Once
+standardized data for training and evaluation is in place, progress with evaluation methods will
+be more rapid and advance with greater confidence.
+In addition, HHS should use SBIRs to encourage development of new evaluation methods and
+tools. Focused grants and prize competitions should explore how best to use LLMs-as-judges in
+specific clinical care domains. Grants and prizes should also be used to encourage the
+development of additional models and datasets well-tuned to medical needs. Grants should be
+issued for encouraging the development of automated mechanisms to dynamically keep those
+models and datasets up to date as the field advances, a current research focus that HHS ought to
+encourage. Grants should also be considered for developing effective red-teaming techniques for
+clinical care scenarios and for identifying the most suitable metrics for evaluating AI solutions in
+clinical care contexts.
+HHS can also support and accelerate adoption by providing guidance and standards. How should
+humans be centered in the evaluation process? How can vendors and partners leverage HCD with
+confidence to integrate actual patients and clinicians into evaluations? HHS should encourage the
+development of standards for these kinds of human-AI interactions in clinical care settings, so
+that the industry can integrate human impacts into evaluation methods and practices. Standards
+should also include acceptable levels of trust and bias, the use of LLMs-as-judges, and how AI
+solutions should handle unanticipated failure modes when their use goes beyond the scope of
+existing evaluations. By taking these steps, HHS can have the greatest impact on AI solutions
+used for clinical care outside of medical devices.
+HCD in Clinical Care AI
+Human-Centered Design (HCD) builds reliability and trust in clinical AI by turning human
+interactions, recovery from errors, and real-life use situations into clear evaluation goals.
+Otherwise, they risk being left as untested assumptions. While model-level checks (like
+accuracy, hallucination rates and robustness) show if an AI system can do a task, HCD looks at
+whether the system works reliably when used in clinical workflows. For instance, usability
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 5
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+testing with clinicians can reveal if uncertainty is communicated clearly, if explanations make
+sense under time pressure, and if the interface helps clinicians use AI properly. Signals, like how
+often clinicians override the AI, make corrections, or hesitate, act as early signs of trust and
+reveal potential system failures that model-only evaluations might miss.
+HCD complements other LLM evaluation methods by considering real-world context. While
+techniques like LLMs-as-judges or dynamic benchmarking can give scores to outputs, HCD
+methods check if those outputs are useful, easy to understand and fit for the specific clinical
+decision. For example, two models might get similar scores for factual accuracy, but HCD
+testing can reveal that one model offers explanations that are more likely to lead to
+misunderstanding of risk among clinicians. Usability testing with scenarios, participatory design
+sessions, and practice clinical walkthroughs let evaluators see how AI behaves in real situations
+(like during handoffs, interruptions, or with missing information) and make sure safety
+features—such as alerts, warnings, or escalation steps—work properly in real usage settings.
+HCD also assists effective monitoring after deployment. Instead of just tracking technical results,
+HCD-based monitoring looks at how trust in the system changes over time. For example, HCD can
+catch whether clinicians start ignoring AI outputs, start trusting them too much, or changing their
+work in unexpected ways. These patterns can be tracked with simple feedback tools—like pop-up
+prompts in the software, regular surveys linked to specific AI uses, or clinician decisions to
+override or correct AI suggestions—and used with technical checks to know when to review the
+system. In this way, HCD acts as the final layer of a comprehensive evaluation strategy that helps
+ensure AI stays safe, helpful, and trusted as clinical settings, users, and the technology change.
+To strengthen responsible clinical AI implementation, HHS should support HCD approaches that
+include intentional human‑to‑human engagement as a core component. Direct observation of
+clinicians who are using AI tools, paired with one‑on‑one interviews and small-group listening
+sessions, provides critical insight into how and why clinicians rely (or not) on these systems in real
+workflows. These interactions uncover tacit knowledge, context-specific decision cues, and early
+signs of misunderstanding or misuse that technical evaluations cannot detect. Just as importantly,
+involving clinicians in this way builds trust and accelerates adoption: they see their concerns
+reflected in design decisions, understand how their input influences implementation, and
+experience the tools as being shaped with them rather than delivered to them. By supporting HCD
+methods that prioritize these human touchpoints, HHS can help ensure clinical AI tools are
+implemented responsibly, safely, and in ways that genuinely support the clinicians who use them.
+HHS Support for Private Sector Activities (Q. #5)
+HHS can support private sector activities like accreditation, certification, industry-driven testing,
+and credentialing for clinical AI by adopting “tried-and-true” federal playbooks, such as:
+1. Risk-based premarket review and lifecycle oversight (FDA).
+2. Reusable third-party assurance that agencies can rely on (FedRAMP).
+3. Scaled compliance pathways that mix self-attestation with independent certification for
+higher-risk products (FCC).
+4. Rapid adoption enabled by clear flexibilities, aligned payment, and temporary enforcement
+discretion (COVID-era telehealth).
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 6
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+The common approach across these models is that government sets clear, testable expectations
+and then recognizes independent private-sector assurance artifacts, allowing providers and
+innovators to scale without every payer or program creating a unique and independent review.
+HHS can leverage all four.
+First, HHS can mirror the FDA approach by defining risk tiers and evidence expectations for
+clinical AI and then formally recognizing qualified private sector entities that generate
+standardized “assurance packages”—such as testing results, validation protocols, usability
+evidence, and monitoring plans—that HHS programs can trust. FDA already operates multiple,
+well-understood pathways for medical devices grounded in the FD&C Act and implemented
+through established review practice. Examples include 510(k) clearance, De Novo classification
+for novel low–moderate risk devices, and Premarket Approval (PMA) for Class III devices. HHS
+could apply the same logic to clinical AI that sits outside traditional device boundaries by
+publishing standardized submission templates that cover items such as intended use,
+training/validation data provenance, performance limits, human oversight, post-deployment
+monitoring, etc. and then recognizing third-party testing/certification programs that produce
+evidence in those formats. This would create a predictable, scalable path for “trusted AI”
+eligibility in Medicare and Medicaid program use cases.
+Second, HHS can emulate FedRAMP by establishing an “assess once, reuse many times” model
+for clinical AI assurance, where private assessors perform independent evaluations and HHS can
+reuse the results across programs. FedRAMP was established by OMB in 2011 and later codified
+in law through the FedRAMP provisions enacted in Public Law 117-263 (NDAA FY2023),
+Section 5921. FedRAMP capitalizes on scalable private sector assurance through Third-Party
+Assessment Organizations (3PAOs) that are independently assessed by the American
+Association for Laboratory Accreditation (A2LA). HHS can take the same approach for clinical
+AI by establishing a reusable authorization construct for AI used in clinical care that ensures
+standards regarding security, privacy, auditability, monitoring, and performance are met. HHS
+can then recognize accredited “clinical AI assessment organizations” and allow providers/payers
+to rely on those reusable authorizations to encourage adoption and use at scale.
+Third, HHS can borrow from the FCC’s equipment authorization framework by creating two
+compliance tracks that support innovation while protecting patients: a lower-friction supplier
+attestation path for low-risk tools and a higher-rigor independent certification path for higher-
+impact clinical uses. FCC rules in 47 CFR part 2, subpart J, explicitly contemplate equipment
+being authorized under Supplier’s Declaration of Conformity or receiving a grant of certification
+(including via Telecommunication Certification Bodies), and these authorities are tied to statutory
+foundations including 47 U.S.C. § 302a. HHS could employ a similar concept, permitting
+streamlined attestation for limited-scope administrative AI (with audit rights and disclosures),
+while requiring independent certification (and potentially accredited labs) for AI that materially
+influences diagnosis, triage, treatment, or autonomous clinical actions. Adopting this approach
+would encourage consistency in labels, logs, and change-management disclosures so that certified
+tools could be regularly evaluated to ensure they remain trustworthy as they evolve.
+Fourth, HHS can apply the COVID-era telehealth lesson: remove adoption blockers quickly,
+align payment, and clarify compliance expectations while using time-bound flexibilities and
+explicit evaluation to decide what becomes permanent. The Secretary’s emergency waiver
+authority under Social Security Act § 1135 (42 U.S.C. § 1320b–5) is designed to allow
+temporary waivers/modifications during emergencies. During COVID-19, CMS used this
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 7
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+posture to expand telehealth flexibility, noting that authority under the CARES Act broadened
+§1135 waiver authority and enabled additional telehealth waivers, including waivers tied to
+Medicare telehealth requirements and 42 CFR § 410.78 provisions. In parallel, HHS OCR issued
+the Notification of Enforcement Discretion for Telehealth Remote Communications under
+HIPAA during the nationwide public health emergency, reducing compliance friction for good-
+faith telehealth. HHS can adopt the same pattern for clinical AI by creating time-limited “AI
+adoption pilots” with clear guardrails to define what is allowed, aligned reimbursement and
+reporting to specify what is paid and measured, and targeted compliance flexibilities as and
+where appropriate to accelerate safe use. HHS could then use the collected evidence from these
+pilots to determine what aspects to institutionalize as durable accreditation/certification
+expectations.
+Widening Opportunities through Interoperability (Q. #8)
+Enhanced interoperability will widen market opportunities, advance clinical research, and
+accelerate the development and employment of AI for clinical care. AI use in healthcare will
+only be as effective as the consistency, quality, and portability of the data AI systems rely upon.
+Today, clinical data remains fragmented across EHR platforms, public health systems, research
+environments, claims systems, and social service data repositories, limiting the ability to create
+scalable, generalizable AI solutions that can operate reliably across populations and care settings.
+Additionally, data is often not “AI ready,” resulting unreliable, unsafe, biased, and non-portable
+outputs that undermine clinical trust and regulatory readiness.
+Data Types
+The greatest impact from interoperability will come from improving the clinical and contextual
+data used by AI systems and solutions. This includes EHR data (diagnosis, medications, lab
+results, etc.), imaging and diagnostics (DICOM) data, claims and utilization data, public health
+and surveillance data, genomic data, data from community resources, and data from personal
+devices. Incorporating unstructured clinical narratives and administrative metadata into available
+datasets will further strengthen AI’s ability to draw valuable inferences and support clinical care
+delivery. These data sources should be longitudinally linked so that AI can support predictive
+modeling, clinical decision support, assessments of population health, early interventions, and
+research at scale while enabling multimodal benchmarking and reproducible evaluations across
+representative cohorts.
+Data Standards
+Standards are essential for accelerating adoption and use of AI. We recommend consistent, broad
+adoption of HL7, FHIR, USCDI, DICOM, LOINC, and SNOMED standards to allow AI
+developers to build solutions that can operate across health systems and platforms without
+extensive data transformation. API-driven architectures will further allow AI tools to be
+embedded directly into clinical workflows rather than serving as standalone applications. These
+standards allow AI solution providers to build solutions once and deploy them across multiple
+EHRs, provider networks, research institutions, and public health agencies without costly data
+transformation for each environment. Effective use of standards will also reduce the need for
+custom integrations that would otherwise increase cost, limit competition, and slow innovation.
+By promoting standards in this way, HHS can lower barriers to entry for innovators and expand
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 8
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+the market for AI-enabled clinical tools that can be evaluated, procured, and implemented
+modularly to develop best-of-breed solutions.
+Market Impact
+Because AI effectiveness, safety, and reliability depend directly on the quality and structure of
+datasets used for solution development, validation, and deployment, interoperable data
+environments enable clinicians and researchers to confidently use AI tools in diagnostics,
+pediatric oncology, chronic disease research, and other high‑stakes areas. When data is poorly
+organized, inconsistent, or incomplete, predictions become less accurate and clinical
+decision‑making suffers. Interoperable systems directly address this by allowing normalization
+and semantic alignment across data sources, thereby maintaining strong data lineage and
+provenance and supporting transparent documentation. Interoperability also strengthens
+governance by enabling privacy‑preserving de‑identification, bias detection across diverse
+populations, and responsible data sharing. These elements streamline multi‑omic and clinical
+data integration, support reproducible science, and ultimately expand opportunities for
+cross‑institution research. Our recommended approach aligns with the HHS AI Strategy,
+especially the idea of cross-cutting enablers, as it will encourage clinical deployment of AI in
+ways that are aligned with federal strategies to reduce duplicative systems and strengthen
+enterprise-wide coordination.
+Benchmarking
+Enhanced interoperability will enable the creation and use of “gold standard” benchmark datasets
+that improve model validation across representative cohorts and care settings. We recommend
+the government either work to build such benchmark datasets or sponsor their development by
+establishing standards for development and evaluation of AI solutions in clinical care settings.
+HHS can ensure these datasets promote interoperability by requiring standardized structures,
+robust metadata, and privacy-preserving pipelines. This will ensure interoperability through by
+reducing model fragmentation and will prevent AI systems from being trained on narrow
+datasets that limit generalizability or introduce undesirable biases. By ensuring the use of
+consistent and validated datasets, HHS can increase the market viability for AI tools, accelerate
+evaluation and regulatory readiness, and strengthen confidence in real-world clinical use.
+Specific Areas of AI Research to Prioritize (Q. #10)
+AI’s true value will only be appreciated when it effectively augments human providers within
+clinical workflows. Today, most healthcare AI research focuses on algorithm accuracy in
+isolation, but ignores user experience, workflow integration, and human factors. This is
+unfortunate as these aspects are crucial for increased adoption and safe use. Accordingly, HHS
+should prioritize R&D that puts human users at the center of AI design and evaluation by
+embracing HCD. Two specific research areas stand out.
+1. Human-AI Interaction. Focusing on human-AI interaction will address one of the greatest
+obstacles to adoption: clinician buy-in and workflow fit. If AI tools and solutions are
+intuitive, reduce human effort, and demonstrably enhance care delivery, providers are far
+more likely to embrace them. Conversely, even a highly accurate algorithm will fail in
+practice if it is difficult to use or disrupts proven clinical routines. By investing in this
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 9
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+research, HHS would accelerate the transition of AI from an impressive technology to a core
+component of trusted approaches that improve productivity and patient outcomes.
+2. Trustworthy AI. Prioritizing Trustworthy AI research will help encourage adoption by
+reducing skepticism. Improved approaches to trustworthiness will provide the evidence,
+methods, and tools to create confidence that AI systems are safe, secure, and accountable.
+That will accelerate adoption by addressing doubt head-on. Clinicians will be more likely to
+trust AI recommendations if they know the system has been stress-tested for safety and bias,
+can explain itself, and is backed by governance that ensures issues are caught and addressed.
+Patients will be more receptive to AI-driven care if there’s transparency and unbiased output.
+By investing in trustworthy AI R&D, HHS will foster the foundational “social license” for
+AI in healthcare—building public trust and providing the guardrails so innovation can
+proceed more rapidly without undue risk.
+Ultimately, HHS should prioritize research investments that are designed to have a direct,
+positive impact on patients. Driving better patient outcomes is a clear goal. But we also
+recommend funding research designed to improve patient experience. Our nation's healthcare
+is the best in the world when we balance science with responsive, personalized care and clear,
+compassionate communication. Below is a broader summary of research areas worth further
+investment, aligned to patient experience.
+Research Priorities for Clinical AI Adoption
+Positive Impact on Patient
+Research Area and Relevance Key Focus / References
+Experience
+Human-AI Interaction • Develop frameworks to • More time with patients (less
+Ensure AI tools fit into clinical measure & improve real- time entering data)
+workflows and enhance (not hinder) world human-AI collaboration • Clearer communication and
+healthcare professionals’ performance in healthcare explanations
+and acceptance. • Use HCD to align AI with
+• Reduced frustration from
+user needs; prevent
+workflow delays or errors
+automation bias and user
+• Greater confidence of being
+frustration
+heard and understood
+Trustworthy AI (Safety, Security, • Focus on reliability • Confidence in safety and
+and Reliability) (robustness, adversarial fairness of care
+Builds a foundation of trust necessary defense), explainability, bias • Transparent, understandable AI
+for widespread adoption. If AI mitigation, and post- decisions
+systems are demonstrably safe, secure, deployment monitoring
+• Reduced risk of harm or
+transparent, and accountable, • Align with NIST AI RMF and
+misdiagnosis
+stakeholders will be confident using FUTURE-AI principles
+them in care. • Equitable treatment across
+populations
+Reinforcement Learning (RL) and • Use RL to optimize sequential • More personalized, responsive
+Adaptive AI decisions and personalize care care
+Enables AI to continuously improve • Develop safe RL techniques • Better long-term outcomes
+and personalize in complex clinical (offline training, human-in- through adaptive treatment
+decision scenarios (e.g., dynamic loop oversight)
+• Reduced trial-and-error in care
+treatment planning), potentially
+plans
+boosting outcomes beyond static
+protocols.
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 10
+
+HHS Health Sector AI RFI
+Accelerating the Adoption and Use of Artificial Intelligence as Part of Clinical Care February 20th, 2026
+Positive Impact on Patient
+Research Area and Relevance Key Focus / References
+Experience
+Collaborative & Multi-Agent • Study human-AI teaming and • Seamless, coordinated care
+Systems multi-AI collaboration across providers
+Ensures AI can operate in the complex • Explore multi-modal AI for • Fewer gaps or redundancies in
+multi-stakeholder environment of richer, more robust insights care
+healthcare. Research here yields AI
+• Apply game theory to multi- • Holistic decisions that consider
+that complements team-based care and
+stakeholder decision-making the full patient context
+coordinates decisions across various
+systems and actors.
+AI Security and Privacy • Defend against adversarial • Confidence that personal data
+Protects the integrity of AI tools and attacks is secure
+patient data, thereby safeguarding • Invest in privacy-preserving • Protection from malicious or
+trust. AI (federated learning, faulty AI behavior
+differential privacy)
+• Willingness to engage with
+digital tools
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this proposal. 11
+
+x.com/ICF
+linkedin.com/company/icf-international
+facebook.com/ThisIsICF
+icf.com #thisisicf
+About ICF
+ICF (NASDAQ:ICFI) is a global consulting services company with approximately 9,000 full-time and part-time employees, but
+we are not your typical consultants. At ICF, business analysts and policy specialists work together with digital strategists, data
+scientists and creatives. We combine unmatched industry expertise with cutting-edge engagement capabilities to help
+organizations solve their most complex challenges. Since 1969, public and private sector clients have worked with ICF to
+navigate change and shape the future.

@@ -110,6 +110,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="If tqdm is unavailable, print a status line every N PDFs (default 10).",
     )
     p.add_argument(
+        "--max-consecutive-errors",
+        type=int,
+        default=5,
+        metavar="N",
+        help=(
+            "Abort the run after N consecutive AI request failures (default 5). "
+            "Set to 0 to disable early abort."
+        ),
+    )
+    p.add_argument(
         "--reparse",
         action="store_true",
         help=(
@@ -164,6 +174,7 @@ def main(argv: list[str] | None = None) -> int:
         dpi=args.dpi,
         verbose=not args.quiet,
         progress_every=args.progress_every,
+        max_consecutive_errors=args.max_consecutive_errors,
     )
 
     print("\nClassification complete:")

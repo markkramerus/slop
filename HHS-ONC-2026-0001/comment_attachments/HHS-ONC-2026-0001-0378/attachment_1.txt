@@ -1,0 +1,513 @@
+In response to the Request for Information: Accelerating the Adoption
+and Use of Artificial Intelligence as Part of Clinical Care (Published
+Document: 2025-23641 (90 FR 60108)) by the US Department of Health and
+Human Services, Office of the Secretary (RIN 0955-AA13), Reveleer is
+submitting the following information for consideration to the specific
+questions outlined in the published document.
+Please direct any questions to the responses below to
+alan.tam@reveleer.com.
+1. Biggest barriers to AI innovation and adoption in clinical care
+From Reveleer’s work with health plans and risk‑bearing providers in
+value‑based care, the primary barriers are:
+• Fragmented data and limited interoperability. Despite
+interoperability policies, clinical and administrative data remain
+scattered across an array of systems EHRs, claims platforms, HIEs,
+point solutions, and document repositories, with critical signal
+buried in unstructured notes. There is some adoption of
+transmission standards through standard FHIR based APIs but this
+only covers part of the data needs required for AI to
+comprehensively and reliably gather the context for an accurate
+response. Given the variety of formats driving the source data,
+when AI is deployed on this landscape without first standardizing
+and normalizing the inputs, it tends to amplify gaps, increase
+hallucination risk, and produce inconsistent outputs that
+clinicians do not trust.
+
+• Lack of an AI‑ready evidence layer. Many organizations still depend
+on partial claims feeds, limited EHR connections, and manual chart
+retrieval, preventing the creation of longitudinal,
+provenance‑managed member records that can support risk adjustment,
+quality, member eligibility, and care management consistently
+across the care continuum.
+• Insufficient governance, explainability, and auditability. Leaders
+are wary of “black box” AI, hallucinations, bias, and opaque
+decision paths—especially where AI touches coding, quality
+reporting, or point‑of‑care decision support. Many offerings lack
+strong MLOps, traceability to source documents, or clear
+human‑in‑the‑loop controls. Explainable AI requires new approaches
+like our “clinical corpus” model that delivers reliable medical
+evidences in a language familiar to clinicians and auditors to
+reduce the cognitive load driving administrative burden. By using
+this approach, evidence is clear and defensible.
+• Misaligned incentives and unclear measurement. Value‑based
+contracts increasingly emphasize digital quality, equity, and
+downside risk, but organizations lack standardized outcome and ROI
+frameworks to compare AI‑assisted versus human‑only workflows. This
+uncertainty slows investment and scale. By using incentive
+management solutions like our Care Gap Manager, value alignment
+streamlines the coordination between payer and provider to focus
+on patient outcomes leading to lower costs for all.
+• Workflow disruption and provider abrasion. AI tools that require
+new portals, double documentation, or low‑precision suspect lists
+create extra work and “audit anxiety,” leading clinicians and
+coders to disengage even when underlying models are accurate. AI
+prediction and recommendation engines like our Hybrid AI, are
+built to support the placement of high value clinical next best
+
+actions in the right interface at the right time. EMRs must allow
+these tools into their ecosystems so that the richest and most
+reliable insight can drive the best patient outcome.
+• Regulatory uncertainty and overlapping oversight. Rapidly evolving
+rules around interoperability, PHI use, and expectations for
+transparency and safety create perceived legal and compliance
+risk, particularly for non‑device clinical AI that does not fit
+neatly into existing FDA, CMS, HSS, and TEFCA paradigms.
+As noted above, the Reveleer EVE framework —a predictive, explainable
+AI layer operating over a unified evidence foundation—is designed to
+mitigate these barriers, but they remain systemic obstacles to broader
+private‑sector innovation and adoption.
+2. Regulatory, payment, and programmatic changes HHS should prioritize
+Reveleer recommends that HHS prioritize the following changes to
+accelerate effective, safe AI use in clinical care, especially for
+non‑device AI used in risk adjustment and quality workflows.
+2.1. Codify expectations for explainable, evidence‑linked AI
+• Establish industry-wide guidance that clinical AI used in coding,
+quality measurement, and decision support must provide traceable
+links from each recommendation back to specific clinical evidence
+(e.g., note, lab, report) and maintain reproducible audit trails.
+• Encourage architectures that explicitly separate evidence
+extraction (which may use generative or agentic techniques) from
+deterministic clinical reasoning to establish a clear boundary
+separating AI from diagnoses generation or authoritative narrative
+
+content but instead organizes existing evidence and suggestions
+for human review. This is core to Reveleer’s design of EVE Hybrid
+AI, which combines two sequenced services—agentic evidence
+extraction and clinician‑authored rules in a human managed
+clinical corpus—to produce audit‑ready suspects.
+Possible regulatory anchors (illustrative):
+• Under 42 CFR part 422 (Medicare Advantage) and 42 CFR part 438
+(Medicaid managed care), clarify that AI‑assisted risk adjustment
+and quality workflows are acceptable when diagnoses and quality
+elements meet existing documentation standards, maintain
+traceability to source records, and are validated by human
+experts.
+• Through ONC’s health IT rulemaking, align deregulatory steps on
+certification with explicit expectations around standards‑based
+APIs, provenance metadata, and logging sufficient to support
+explainable AI.
+2.2. Align reimbursement and program design with AI‑enabled workflows
+• Recognize AI‑assisted digital abstraction, prospective risk
+suspecting, and real‑time quality gap closure as acceptable methods
+of documentation and reporting under CMS quality programs (e.g.,
+eCQMs, Star Ratings, HEDIS‑aligned measures), so long as evidence
+and audit standards are met.
+• Create value‑based payment model options (e.g., new Medicare
+Advantage and ACO model tests through CMMI) that explicitly reward
+investment in AI‑enabled evidence layers and prospective risk
+adjustment—rather than only retrospective chart review—by linking
+shared savings or bonuses to improvements in risk accuracy,
+quality performance, and avoidable utilization attributable to
+
+AI‑enabled workflows. Then manage those incentives through
+certified VBC incentive management applications like Reveleer Care
+Gap Manager which is designed specifically to guide providers and
+plans through annual VBC programs to ensure both parties
+understand and agree on the program performance and outcome each
+year.
+Specific references (non‑exhaustive and illustrative):
+• 42 CFR part 422 Subpart G (Payments to Medicare Advantage
+Organizations): clarify that AI‑assisted coding and suspecting are
+permissible when diagnoses conform to existing medical record
+documentation rules and remain subject to RADV and other audit
+requirements.
+• 42 CFR parts 412 and 413: acknowledge AI‑enabled documentation
+support as a form of clinical decision support and workflow
+optimization, without treating these tools as autonomous decision
+makers.
+2.3. Strengthen, but simplify, interoperability
+• Maintain and refine requirements that payers and providers expose
+standardized APIs (e.g., FHIR‑based patient access and provider
+directory APIs under CMS Interoperability and Patient Access
+rules) while avoiding overly prescriptive certification that
+impedes innovation. Emphasize outcome‑oriented metrics such as
+latency, uptime, and data completeness that directly enable safe
+AI.
+• Encourage payer and provider adoption of interoperable evidence
+layers that support reuse of curated clinical data across risk,
+quality, and care management programs, not just passive
+“warehousing.”
+
+• Require EHRs to make it easy for third party AI solutions to
+provide enriched evidence, suggestions, and potential diagnosis to
+relevant places within the provider workflow to enable choice of
+vendor for the best clinical insights and guidance.
+2.4. Create unified expectations for non‑device AI oversight inside HHS
+• Issue cross‑agency guidance clarifying the roles of ONC, CMS, OCR,
+OIG, and FDA for non‑device AI systems that support coding,
+quality, and decision support. This would allow organizations to
+build AI governance programs anchored in a single, coherent set of
+expectations instead of anticipating overlapping or conflicting
+requirements.
+These changes would directly support platforms like EVE, which already
+implement evidence‑linked, human‑in‑the‑loop AI within HIPAA‑ and
+HITRUST‑aligned governance frameworks.
+3. Novel legal and implementation issues, and HHS’s role
+For non‑device AI used in clinical workflows, Reveleer sees several
+emerging legal and implementation issues:
+• Attribution of liability in human‑AI collaboration. When AI
+surfaces a suspected diagnosis or quality gap that a clinician
+accepts or rejects, questions arise about responsibility if
+subsequent audits or outcomes suggest that the AI contributed to
+over‑ or under‑coding, or to missed care. Provide clear guidance
+for how accepted recommendations should be logged in systems and
+rules as to the significance a single instance can have on the
+continuous tuning of a model.
+
+• Use of PHI for training and cross‑client learning. Organizations
+must navigate HIPAA, state privacy laws, and contract terms when
+using PHI to train, fine‑tune, or adapt AI models. The line between
+de‑identified and identifiable data, and between client‑specific
+and shared models, is often unclear in practice. Expand on minimum
+necessary guidance to include the use of AI and explicit consent
+by the patient for this information to be used.
+• Black‑box models and due process. When AI models are opaque, plans
+and providers may struggle to demonstrate to regulators and courts
+how coding or care decisions were reached, raising due‑process and
+fairness concerns in payment disputes or audits. Establish rules
+or guidance blocking the use of black box models in clinical use
+cases.
+• Indemnification and vendor risk allocation. Contracts increasingly
+need to allocate risk where AI‑assisted workflows contribute to
+errors in submissions or clinical decisions, especially when both
+vendor AI design and client configuration choices interact.
+• Dynamic model behavior and “drift.” Continuous learning and
+retraining can change AI behavior in ways that are hard to
+document and explain to auditors absent robust MLOps, versioning,
+and change‑management practices.
+HHS can help by:
+• Publishing model contractual clauses or high‑level guidance that
+clarifies shared responsibility among vendors, payers, and
+providers in AI‑assisted workflows, emphasizing human final
+decision‑making and traceability to source evidence.
+• Clarifying under HIPAA that PHI may be used for training and
+validation of non‑device clinical AI subject to strict purpose
+
+limitation, de‑identification where feasible, and robust access
+controls, and by encouraging standardized language in business
+associate agreements to cover AI use.
+• Encouraging or requiring versioned records of datasets, model
+artifacts, and configurations used in AI‑assisted clinical
+workflows, so that AI behavior is reproducible and auditable over
+time.
+• Recognizing human‑in‑the‑loop, evidence‑linked AI as a distinct
+category from fully autonomous systems, with commensurate
+expectations for liability and oversight. This aligns with EVE’s
+design, which treats AI as clinical decision support rather than
+as a replacement for clinician judgment.
+4. Evaluation methods, metrics, robustness testing, and human‑centered
+evaluation
+For non‑device AI integrated into clinical workflows, Reveleer uses and
+recommends a layered evaluation approach.
+4.1. Technical and robustness evaluation
+Pre‑ and post‑deployment, models should be evaluated on:
+• Precision, recall, and accuracy for task‑specific outputs (e.g.,
+suspected diagnoses, chart prioritization, quality data element
+extraction), segmented by population, contract type, and data
+source. This should include standard definitions for selected
+benchmark metrics to prevent misinterpretation of model quality in
+the market.
+
+• Robustness and drift, via continuous monitoring for performance
+degradation, shifts in input distributions, and outlier confidence
+scores, with automated triggers for investigation and retraining.
+• Fairness, via segmented performance analysis across demographic
+and clinical subgroups to detect systematic differences in
+sensitivity, specificity, or error rates.
+4.2. Workflow and operational evaluation
+Because AI’s value is realized in workflow, Reveleer tracks:
+• Charts reviewed per coder per day, charts eliminated from need for
+first-pass review, and reductions in time per chart in AI‑assisted
+versus non‑assisted workflows.
+• Noise rate (the amount of inaccurate or in appropriate suggestions
+presented to the provider) and provider acceptance (the amount of
+accepted recommendations by the provider) are the two key metrics
+driving effective AI-driven suspecting. EVE Hybrid AI, for
+example, has shown up to three‑fold noise reduction compared with
+legacy NLP in prospective risk adjustment, which directly improves
+provider engagement and reduces abrasion.
+• Cycle times for risk and quality programs, including speed from
+data ingestion to action at the point of care.
+4.3. Clinical, financial, and user‑experience evaluation
+Reveleer’s measurement framework covers four domains:
+• Clinical outcomes, including condition detection and documentation
+rates, adherence to evidence‑based care pathways, and avoidable
+utilization.
+
+• Financial performance, including RAF accuracy, Star Ratings,
+medical loss ratio, and ROI for AI‑enabled programs (e.g.,
+increased value per chart, reduced administrative costs).
+• Operational efficiency, including abstraction throughput, error
+rates, and end‑to‑end cycle time for key value‑based workflows.
+• User experience and AI trust, including coder and clinician
+satisfaction, agreement rates with AI recommendations, and
+adoption analytics.
+HHS should support these processes by:
+• Funding multi‑site evaluation consortia and pragmatic trials that
+use standardized measurement frameworks to compare AI‑assisted and
+human‑only processes in risk adjustment and quality.
+• Supporting prize competitions and cooperative agreements for tools
+that provide open benchmarking harnesses, synthetic test sets, and
+measurement standards for non‑device AI in clinical care.
+• Using federal contracts and grant conditions to require
+evidence‑linked, explainable AI and continuous monitoring in
+HHS‑funded pilots, normalizing these evaluation practices.
+5. Supporting private‑sector accreditation, certification, and testing
+To promote responsible innovation while avoiding duplicative
+regulation, HHS could:
+• Endorse or co‑develop voluntary AI assurance frameworks for
+non‑device clinical AI that emphasize transparency, evidence
+linkage, bias monitoring, and human oversight—analogous to HITRUST
+and SOC 2 for security and privacy.
+
+• Partner with industry on “trustmarks” for AI‑ready clinical data
+and interoperable evidence layers, signaling that organizations
+meet standards for data quality, provenance tracking, and
+standardized APIs necessary for safe AI.
+• Support independent testing labs or collaboratives that benchmark
+AI tools against standardized test cases (including synthetic
+data) for risk adjustment, quality abstraction, and care gap
+detection, with results published in a transparent registry.
+• Leverage CMS contracts and quality programs to reward
+participation in such accreditation schemes—for example, by
+recognizing accredited AI workflows as meeting certain
+documentation sufficiency criteria for quality programs, while
+retaining audit rights.
+These actions would reinforce the direction Reveleer has already taken
+with EVE—emphasizing explainable, audit‑ready outputs and rigorous
+governance—while giving the broader market clear reference points for
+trustworthy AI.
+6. Where AI has met or fallen short; high‑impact future tools
+6.1. Areas where AI has met or exceeded expectations
+Reveleer and its clients have observed strong performance where AI is:
+• Powering prospective risk adjustment and clinical intelligence,
+enabling more accurate risk stratification, earlier detection of
+undiagnosed conditions, and improved provider documentation at the
+point of care. Organizations using such tools have seen better
+provider engagement and measurable RAF improvements.
+
+• Supporting digital quality abstraction and care gap closure,
+increasing throughput and precision in quality measures and
+improving Star Ratings through better gap targeting and closure.
+• Improving operational efficiency and staffing resilience, allowing
+organizations facing workforce shortages to process more charts
+per coder with higher yield, effectively increasing coding and
+abstraction capacity without proportional staffing increases.
+• Delivering favorable cost‑effectiveness, as broader literature
+shows AI can reduce screening costs, unnecessary procedures, and
+readmissions when seamlessly integrated into clinical workflows.
+6.2. Areas where AI has fallen short
+Common shortfalls include:
+• Noisy, non‑explainable suspect lists. Legacy NLP systems often
+produce high volumes of low‑specificity suspects without clear
+evidence links, overwhelming providers and eroding trust. This has
+been a key driver of provider abrasion.
+• Workflow misalignment and low adoption. Tools that sit outside
+core EHR workflows, require extra log‑ins, or lack role‑specific UX
+tend to underperform regardless of model accuracy.
+• Insufficient measurement and drift management. Many
+implementations lack rigorous pre/post evaluation and ongoing
+monitoring, obscuring true impact and allowing subtle performance
+degradation over time.
+6.3. High‑potential future tools
+Reveleer believes the most impactful future non‑device AI tools will:
+
+• Operate over unified, multimodal evidence layers, combining
+structured data, unstructured content, and in the future images
+and signals, to deliver richer, context‑aware clinical intelligence
+to help clinicians deliver the right care at the right moment from
+the right suggestion.
+• Use hybrid, agentic evidence extraction with deterministic
+clinical reasoning for a growing number of clinical workflows, as
+EVE Hybrid AI does today for prospective risk adjustment, enabling
+audit‑ready, configurable suspects with drastically reduced noise
+and rapid adaptation to new risk models and documentation
+standards.
+• Embed digital quality measurement directly into care pathways
+rather than treating quality as a standalone reporting workflow,
+surfacing in‑encounter opportunities to close gaps while
+maintaining measure‑aligned data and provenance for eCQMs and
+Stars.
+• Combine ambient AI and prospective AI, where ambient tools reduce
+point‑of‑care documentation burden and EVE‑like engines orchestrate
+pre‑ and post‑encounter planning and panel management across the
+year. Leverage ambient data as a data set in prospective AI to add
+another data dimension to recommendations leading to a virtuous
+cycle of ever improving care.
+7. Organizational roles and administrative hurdles
+In Reveleer’s experience, AI adoption decisions in clinical care are
+typically driven by:
+
+• Chief Medical Officers and clinical leadership, who assess
+clinical validity, workflow fit, and provider trust.
+• Chief Information Officers and IT/data leaders, who own data
+integration, interoperability, and infrastructure readiness.
+• Value‑based care and risk/quality program leaders, who are
+accountable for RAF, Star Ratings, and total cost of care and must
+see clear ROI and compliance alignment.
+The primary administrative hurdles include:
+• Fragmented governance across clinical, IT, compliance, and
+finance, which slows decisions and leads to inconsistent AI
+policies.
+• Lack of structured AI change‑management programs (stakeholder
+mapping, communication, training, escalation paths), which can
+cause confusion about roles, responsibilities, and safety
+oversight.
+• Procurement and contracting processes that are not adapted to AI
+(e.g., difficulty evaluating explainability, data usage terms, and
+model lifecycle commitments).
+• Unclear internal measurement standards, making it hard to
+prioritize AI investments or justify scaling pilots.
+Reveleer has found that formal AI steering committees—combining
+clinical, operational, IT, and compliance leadership—and clear,
+outcomes‑based measurement frameworks are critical to overcoming these
+hurdles and enabling durable adoption of an enterprise AI engine like
+EVE.
+8. Interoperability opportunities
+
+Enhanced interoperability would materially widen AI market
+opportunities and accelerate development in several areas:
+• FHIR‑based, near‑real‑time exchange of clinical data across payers
+and providers, beyond minimum USCDI, so AI engines can access
+timely, rich evidence for risk adjustment, quality, and care
+management rather than relying on delayed batch files and manual
+chart retrieval.
+• Standardized representation of data provenance and evidence links,
+including where each data element came from, how it was
+transformed, and which documents support a given diagnosis or
+quality data element. This directly supports explainable AI and
+auditability.
+• Shared, de‑identified benchmarking datasets for risk adjustment,
+quality measures, and care gap detection, enabling vendors and
+health systems to benchmark AI performance and robustness fairly.
+• Interoperable “evidence layers” across payers and providers, with
+standard interfaces and vocabularies for longitudinal records that
+can be reused across retrospective and prospective risk, quality,
+and utilization management.
+• Open EHRs to support AI-based insights tools to power the best
+intelligence within the provider workflow. Closed or pay-to-play
+EHR systems limit choice for the providers to the AI initiatives
+within the EHR infrastructure and in parallel contributes to the
+provider abrasion when new innovative tools are activated but must
+operate outside of the primary clinical workflow tools.
+The Reveleer platform already uses interoperable clinical repositories
+and standardized APIs to support EVE across risk adjustment and
+quality solutions; strengthening national interoperability in these
+
+areas would significantly expand the impact and safety of similar AI
+engines.
+9. Patient and caregiver challenges and concerns
+9.1. Challenges patients and caregivers want AI to address
+From the vantage point of value‑based care operations, patients and
+caregivers most want AI to help with:
+• Fragmented care and incomplete information. Patients want
+clinicians to see the full picture of their health across settings
+to ensure the care and advice they are getting considers their
+health conditions and needs uniquely. AI operating over unified
+evidence layers can help ensure important conditions and care gaps
+are not overlooked.
+• Delays and access barriers. AI‑enabled risk stratification and care
+gap identification can prioritize high‑risk patients for outreach,
+ensuring timelier care and reducing avoidable hospitalizations.
+But knowing that healthcare is local, these systems need to
+account for regional factors (medical personnel, geographic
+isolation, socioeconomic status, and population demographics) and
+physician-specific approaches to care.
+• Administrative burden and confusion. Patients benefit when AI
+reduces clinician documentation burden and back‑office
+inefficiencies, freeing more time for communication and shared,
+personalized decision‑making.
+• Health equity and tailored care. AI can help identify disparities
+in access and outcomes and support more targeted interventions,
+
+provided fairness is monitored and addressed. As above, need to
+account for regional factors (medical personnel, geographic
+isolation, socioeconomic status, and population demographics) and
+physician-specific approaches to care.
+9.2. Concerns about AI in clinical care
+Common concerns include:
+• Loss of human judgment and relationship. Patients and caregivers
+worry that AI may replace, rather than augment, clinician
+judgment. Reveleer deliberately positions EVE as clinical decision
+support, with non‑binding recommendations and required human
+validation.
+• Privacy, data security, and secondary use. There is concern that
+AI requires extensive sharing and repurposing of sensitive health
+data. Reveleer addresses this with HIPAA‑ and HITRUST‑aligned
+controls, de‑identification or redaction where appropriate, and
+strict purpose limitations on data use.
+• Bias and fairness. Patients may fear that AI will perpetuate or
+worsen inequities. Continuous fairness monitoring and transparent
+performance metrics by subgroup are essential to mitigate this
+risk.
+• Opacity and lack of recourse. Without explainability and clear
+appeal mechanisms, patients may feel that algorithmic decisions
+are unchallengeable. Evidence‑linked AI and human‑in‑the‑loop
+workflows provide a foundation for explainable decisions and
+remediation.
+HHS can support trust by emphasizing evidence‑linked, human‑supervised
+AI and promoting patient‑facing transparency about when and how AI is
+used in care decisions.
+
+10. Priority AI research areas; literature on costs, benefits, and
+transfers
+10.1. Priority research areas
+Reveleer recommends that HHS prioritize research in:
+• Hybrid AI architectures for non‑device clinical decision support.
+Comparative studies should evaluate hybrid
+agentic‑plus‑deterministic approaches (like EVE Hybrid AI) against
+pure generative or black‑box models in terms of accuracy,
+auditability, provider acceptance, and regulatory compliance in
+risk adjustment and quality workflows.
+• AI‑enabled evidence layers and continuous learning systems. Studies
+should examine how unified, provenance‑rich evidence layers coupled
+with continuous‑learning AI engines affect outcomes, costs, and
+resilience of value‑based care programs over multi‑year horizons.
+• Digital quality measurement embedded in care. Research should
+develop and validate methods for AI to maintain measure‑aligned
+quality data and surface in‑encounter opportunities to close gaps,
+instead of treating quality reporting as an after‑the‑fact
+exercise.
+• Human‑AI collaboration and workflow design. Empirical work should
+focus on UX patterns, alerting strategies, and feedback loops that
+maximize adoption, trust, and safety in AI‑augmented coding and
+clinical workflows.
+• Equity and fairness in AI‑enabled value‑based care. Research should
+investigate how AI affects care across different populations and
+
+payment models, including potential unintended consequences in
+risk selection and resource allocation.
+10.2. Published findings on impact, costs, benefits, and transfers
+The emerging literature on AI in clinical care shows:
+• Across multiple clinical domains (e.g., screening, chronic disease
+management, imaging), AI interventions have demonstrated strong
+cost‑effectiveness or cost‑saving potential, often via reduced
+unnecessary procedures, improved early detection, and fewer
+readmissions.
+• Evaluations of AI‑powered prospective risk and care management have
+found improvements in documentation completeness, reduced
+readmissions, and better alignment of reimbursement with true
+disease burden, while lowering administrative costs through
+automation of chart review and suspecting.
+• Economic evaluations typically combine clinical outcomes
+(sensitivity, specificity, readmission rates, adverse events) with
+utilization changes (length of stay, number of procedures,
+outpatient versus inpatient mix) to derive budget impact and ROI.
+Implementation costs such as integration, training, and model
+maintenance are explicitly accounted for, along with indirect
+effects on workflow and provider satisfaction.
+HHS‑funded research can extend this evidence base by focusing
+specifically on non‑device AI in value‑based care, using standardized
+frameworks to ensure that comparisons of AI‑assisted and traditional
+workflows are fair, transparent, and actionable for regulators and
+program designers.

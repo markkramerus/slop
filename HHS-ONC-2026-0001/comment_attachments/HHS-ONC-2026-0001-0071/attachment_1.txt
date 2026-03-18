@@ -1,0 +1,1475 @@
+Accelerating the Adoption and Use of Artificial
+Intelligence as Part of Clinical Care: A
+Comprehensive Analysis of Stakeholder Perspectives
+and Policy Recommendations
+Satyadhar Joshi
+Independent Researcher
+Alumnus, International MBA, Bar-Ilan University, Israel
+Alumnus, Touro College MSIT, NY, USA
+ORCID: 0009-0002-6011-5080
+satyadhar.joshi@gmail.com
+Abstract—The integration of Artificial Intelligence (AI) into outcomes. As noted in recent policy discussions, AI-enabled
+clinical care represents a transformative opportunity to enhance tools have the potential to enhance productivity, reduce burden,
+healthcare delivery, reduce costs, and improve patient outcomes.
+lower health care costs, and improve health outcomes for
+This paper synthesizes stakeholder responses to the Department
+patients, caregivers, and communities [1]. However, realizing
+of Health and Human Services (HHS) Request for Information
+on accelerating AI adoption in clinical care, analyzing barriers, thispotentialrequiresaddressingsystemicbarriersthatcurrently
+regulatory frameworks, payment policy reforms, and governance impede adoption across diverse healthcare settings.
+structures. Drawing from 15 stakeholder submissions—including TheliteraturedemonstratesthatAIapplicationsinhealthcare
+professional associations, technology developers, patient advocacy
+span a continuum from administrative workflow optimization
+groups,andhealthcareproviders—andsupportingacademiclitera-
+toclinicaldecisionsupportandautonomousdiagnosticsystems
+ture,weidentifycriticalchallengesincludingdatainteroperability
+gaps, fragmented governance, misaligned reimbursement incen- [2]. Generative AI and large language models have introduced
+tives, workforce constraints, and trust deficits among clinicians new capabilities and risks, particularly in mental health appli-
+and patients. The analysis reveals that successful AI adoption cations where chatbots may operate in regulatory gray areas
+requires a multi-faceted approach: modernized payment models
+[3], [4]. The World Health Organization has emphasized the
+thatrewardpreventionandvalue-basedcare,clearaccountability
+need for ethics and governance guidance for large multi-modal
+frameworksfornon-deviceAI,robustevaluationmethodologiesin-
+corporating continuous post-deployment monitoring, and patient- models in healthcare [5], while recent regulatory developments
+centered design principles that preserve human connection. We in the EU and U.S. reflect growing recognition of AI’s unique
+present eight architectural frameworks proposed by stakeholders, oversight requirements [6], [7].
+including shared capacity data utilities, real-time data refineries,
+This paper examines the current landscape of AI in clinical
+post-deployment algorithmic surveillance (PDAS), evidence-based
+care, analyzes barriers to adoption, and presents policy recom-
+medicine on FHIR (EBMonFHIR), and clinical governance
+structureswithnamedaccountability.Thepaperfurtherexamines mendations grounded in academic literature and stakeholder
+the future of work implications, including job displacement perspectives.
+concerns,emergingroles(AIClinicalGovernanceOfficer,Clinical
+AI Specialist), educational requirements across career stages, and II. PROPOSEDARCHITECTURALFRAMEWORKSFOR
+human-AI collaboration models. Policy recommendations span CLINICALAIINTEGRATION
+regulatory, reimbursement, and research domains, emphasizing
+the need for shared infrastructure, standardized evaluation Drawing from stakeholder submissions to the HHS RFI,
+frameworks, and governance mechanisms that enable innovation this section synthesizes proposed architectural frameworks
+whileprotectingpatientsafety.Thisintegratedapproachprovides for clinical AI integration. These proposals address critical
+a roadmap for federal investment and policy development to
+infrastructure needs including data interoperability, governance
+create an ecosystem where AI can safely and equitably augment
+mechanisms,andcontinuousmonitoringcapabilities,witheach
+clinical care.
+Index Terms—Artificial Intelligence, Clinical Care, Healthcare frameworklinkedtorelevantacademicliteratureandestablished
+Policy, Regulatory Framework, AI Governance, Digital Health, standards.
+Interoperability, Patient Safety
+A. Shared Capacity Data Utility Model
+I. INTRODUCTION
+VanPelt&Companyproposesa"sharedcapacitydatautility"
+Therapidevolutionofartificialintelligence(AI)technologies modeldesignedasvendor-agnostic,public-privateinfrastructure
+presents unprecedented opportunities to transform clinical care that leverages existing systems and non-PHI operational data
+delivery, reduce administrative burden, and improve patient to provide continuously available views of healthcare system
+
+Shared Capacity
+Data Utility
+Behavioral Health
+Real-time Bed Visibility
+Rural Care Statewide
+Transfer Decision Support Surge Response
+Regional
+Multi-State Coordination
+Fig. 1: Shared Capacity Data Utility Model operating across behavioral health, rural care, statewide coordination, and regional
+multi-state settings. This vendor-agnostic infrastructure leverages existing systems and non-PHI operational data to provide
+continuously available views of healthcare system capacity [8].
+capacity.Thisframeworkaddressesthefoundationalgapwhere as a Service" (DRaaS) model [13]. The proposed architecture
+AI tools are frequently deployed as point solutions optimized addresses core barriers including delayed data availability,
+for narrow workflows but blind to system-level constraints inconsistent data quality, and limited support for unstructured
+such as staffing shortages, bed availability, and regional surge data. Key components include:
+conditions [8]. • Real-time data streams: Moving from batch processes
+The utility model operates across multiple care settings: withlagtimesofdaysorweekstonear-real-timestreaming
+• Behavioral health: Real-time visibility into bed avail- architectures that enable immediate AI analysis. This
+ability and staffing constraints enables faster placement addresses data quality concerns identified in the literature
+decisions and reduces emergency department boarding. where "AI systems do not fail because of algorithms; they
+ThisalignswithresearchonAIchatbotsformentalhealth fail because of data" [14].
+that emphasizes the need for contextual awareness in • Inline data governance: Privacy protections and quality
+clinical decision support [9], [10]. checks applied at the point of data creation rather than as
+• Ruralcare:Supportsprecisedecision-makingaboutwhen post-hoc audits, consistent with HIPAA requirements and
+patients can be safely managed locally versus requiring recent OCR guidance [15].
+transfer to higher-acuity care, addressing equity concerns • AI-ready data repositories: Shared datasets and testbeds
+documented in the literature on healthcare AI access forAItrainingandevaluation,supportingthedevelopment
+disparities [11]. of representative, high-quality data for model validation
+• Statewide coordination: Provides continuous situational as emphasized in the Framework for AI Tool Assessment
+awarenessforpreparedness,surgeresponse,andalignment in Mental Health [16].
+with federal programs, consistent with WHO guidance on • Support for unstructured data: Integration of clinical
+health system resilience [5]. notes, images, and behavioral health data, addressing the
+• Regional multi-state coordination: Supports interop- limitation that many current systems handle structured
+erability across jurisdictional boundaries for disaster data but struggle with unstructured information critical
+response and medical surge scenarios, as outlined in for AI performance [2].
+federal interoperability frameworks [12].
+C. Continuous Monitoring and Post-Deployment Surveillance
+B. Data Refinery Architecture for AI Readiness Framework
+Interstella’s Lynqsys platform architecture emphasizes real- Dr. Akshaya Bhagavathula proposes a "Post-Deployment
+timedataintegrationandAIreadinessthrougha"DataRefinery Algorithmic Surveillance" (PDAS) framework for governing
+
+Data Sources
+EHRs • Claims • Devices
+Real-Time Data Streams
+Inline Data Governance Unstructured Data Integration
+AI-Ready Data Repositories
+AI / ML Analytics
+Fig. 2: Interstella’s Lynqsys platform architecture emphasizing real-time data integration, inline governance, and AI-ready
+repositories through a “Data Refinery as a Service” (DRaaS) model [13].
+Exposure Continuous
+Characterization Population Monitoring
+Structured Outcome-Linked
+Harm Reporting Evaluation
+Predefined
+Response Pathways
+Fig. 3: Post-Deployment Algorithmic Surveillance (PDAS) framework for governing clinical AI as population-level interventions,
+incorporating exposure characterization, continuous monitoring, outcome evaluation, harm reporting, and response pathways
+[17].
+
+clinicalAIaspopulation-levelinterventionsratherthandiscrete net effect estimates combining contributions [18]. This enables
+products [17]. This framework recognizes that once introduced transparent, auditable AI recommendations that clinicians can
+into a health system, AI systems reshape decisions, attention independently evaluate, addressing concerns about generative
+allocation, workflows, and care delivery across patient popula- AI producing contextually incorrect rationales to support
+tions. predetermined answers.
+The PDAS framework includes five core elements:
+1) Exposure characterization: Systematic measurement E. Reference Architecture for Non-Medical Device AI
+of who is exposed to AI-mediated decisions, how often,
+BlueHalo LLC proposes a reference architecture for non-
+and in what contexts, establishing foundational data for
+medical device AI that describes how evaluation, monitoring,
+causal assessment.
+interoperability, and governance components integrate across
+2) Continuous population-level performance monitoring:
+theAIlifecycle[19].Thisarchitectureaddressestherealitythat
+Longitudinal evaluation of calibration, discrimination,
+many AI tools operate outside traditional regulatory pathways
+and error patterns with mandatory stratification by key
+yet significantly influence clinical workflows.
+subgroups, treating performance drift as a safety signal
+The proposed architecture includes:
+rather than technical footnote.
+3) Outcome-linked evaluation: Assessment of whether AI • Evaluation layer: Pre-deployment testing in controlled
+environments combined with continuous post-deployment
+use improves downstream clinical outcomes, access, or
+assessment across diverse populations and settings, ad-
+utilization patterns, moving beyond surrogate metrics.
+dressing the limitation that "validation studies answer
+4) Structured reporting of algorithmic harms: Mecha-
+whether an algorithm can perform under specified condi-
+nisms to capture delayed care, silent misclassification,
+tions, but they do not answer whether the system remains
+workflow distortions, and disparity amplification that
+safe, effective, or equitable once it reshapes real-world
+rarely trigger traditional adverse event reports.
+clinical behavior" [17].
+5) Predefined regulatory response pathways: Clear pro-
+tocols for recalibration, restriction, suspension, or with- • Monitoring layer: Continuous drift detection, perfor-
+mance tracking, and safety signal surveillance with
+drawal when surveillance identifies concerns, with docu-
+automated flagging of deviations from expected behavior,
+mented enforcement actions.
+enablingearlyidentificationofdegradationbeforeadverse
+outcomes occur.
+D. Evidence-Based Medicine on FHIR (EBMonFHIR) Archi-
+tecture • Interoperability layer: Extended beyond data exchange
+to include metadata, data provenance, evaluation artifacts,
+SKAF proposes an interoperable framework for representing
+and governance policies, providing context necessary for
+scientific knowledge to support AI-generated clinical rec-
+interpretation and accountability.
+ommendations [18]. Building on HL7 FHIR standards, this
+• Governance layer: Clear role definitions, oversight mech-
+architecture enables both human-interpretable and machine-
+anisms, and escalation paths that reduce ambiguity and
+interpretable representation of evidence supporting AI recom-
+enable confident deployment in regulated environments.
+mendations,addressingFDAguidancerequiringthathealthcare
+professionals be able to "independently review the basis for
+F. Clinical Governance and Accountability Framework
+such recommendations."
+The EBMonFHIR Implementation Guide defines approxi- Sancian LLC proposes an operational framework for AI
+mately100profiles,extensions,andvaluesetsforrepresenting: governance emphasizing named accountability structures and
+• Citations for identification, location, classification, and readiness assessment before deployment [20]. Key elements
+attribution of knowledge artifacts include:
+• Research study design components including eligibility • Named AI Executive Owner model: Single accountable
+criteria and endpoint analysis plans leaderwithcross-functionalauthoritytoownAIoutcomes,
+• Research results including statistic findings, variable preventingthediffusionofresponsibilitythatoccurswhen
+definitions, and evidence certainty multiple stakeholders hold effective veto power.
+• Aggregation and synthesis of research results across • Cross-functional AI governance councils: Formalized
+multiple studies structures with defined decision rights including clinical,
+• Judgments regarding evidence syntheses and contextual technical, compliance, and patient safety leadership.
+factors related to recommendations • AI ReadyCheck™ assessment: Organizational readiness
+• Recommendations themselves with supporting evidence baseline evaluating data governance, workflow optimiza-
+A key component is the SummaryOfNetEffect Profile, tion, change management capacity, and leadership align-
+which combines data elements for clinical decisions including ment before technology procurement.
+population specification, intervention and comparator defini- • AI-EQUITYClear™ assessment: Equity impact evalu-
+tions, outcome considerations with risk estimates and effect ation before deployment to identify potential disparities
+changes, desirability and relative importance weighting, and across demographic subgroups.
+
+Citations Study Design
+Knowledge Artifacts Eligibility, Endpoints
+Aggregation Research Results
+Synthesis Statistics, Certainty
+Judgments
+Recommendations
+Contextual Factors
+Fig. 4: EBMonFHIR Implementation Guide defining approximately 100 profiles, extensions, and value sets for representing
+scientific knowledge in human-interpretable and machine-interpretable formats [18].
+Evaluation Layer Monitoring Layer
+Pre/Post-Deployment Testing Drift Detection, Safety Signals
+Interoperability Layer
+Metadata, Provenance, Artifacts
+Governance Layer
+Roles, Oversight, Escalation
+Fig. 5: BlueHalo’s reference architecture for non-medical device AI integrating evaluation, monitoring, interoperability, and
+governance layers across the AI lifecycle [19].
+• Decisionclaritybeforetooling:Governanceinfrastructure • Validation requirements for AI models across diverse
+established before product evaluation, ensuring organiza- clinical settings
+tions can responsibly manage AI systems once deployed. • Continuous quality monitoring including daily quality
+control, proficiency testing, and trend analysis
+G. Laboratory Data Harmonization Infrastructure
+H. Dental AI Standards and Validation Framework
+The Association for Diagnostics & Laboratory Medicine
+proposes infrastructure for harmonizing clinical laboratory test The Dental Standards Institute proposes a national dental
+results to enable AI interoperability across institutions [21]. AI trust framework addressing the unique challenges of AI
+Thisaddressesthecriticalbarrierthatdifferenttestingplatforms adoption in dentistry, where diagnostic coding is inconsistently
+producevaryingnumericresultsforthesameanalyte,degrading used, imaging workflows vary widely, clinical documentation
+model performance when data are pooled. remains largely unstructured, and dental and medical records
+The proposed infrastructure includes: remain disconnected [22].
+The proposed framework includes:
+• Standardized calibration protocols across assay systems
+• Metadata inclusion for test methods and validation param- • Standardized validation datasets across multiple imaging
+eters in AI models devices and clinical settings
+• Uniform guidelines for sample collection and reporting • Third-party testing and certification mechanisms
+
+Named AI Cross-Functional
+Executive Owner Governance Council
+AI ReadyCheck™ AI-EQUITYClear™
+Readiness Assessment Equity Impact Assessment
+Decision Clarity AI SoftLife™
+Before Tooling Human-Centered Design
+Fig. 6: Sancian LLC’s operational framework for AI governance emphasizing named accountability structures, readiness
+assessment, equity evaluation, and human-centered design principles [20].
+Standardized Metadata
+Calibration Protocols Inclusion
+Uniform Validation
+Guidelines Requirements
+Continuous
+Quality Monitoring
+Fig. 7: ADLM’s proposed infrastructure for harmonizing clinical laboratory test results to enable AI interoperability across
+institutions, addressing variability across testing platforms and methods [21].
+• MinimumtransparencyrequirementsfordentalAIvendors frameworksinterconnecttoaddressthefullspectrumofclinical
+• Standardized performance reporting formats AI adoption challenges.
+• AuditlogrequirementsforAIrecommendationsinclinical The integrated ecosystem demonstrates that successful
+workflows clinical AI adoption requires coordinated investment across
+• Guidanceforpost-deploymentmonitoringand modeldrift multiple dimensions:
+surveillance
+This infrastructure supports the modernization of diagnosis • Data infrastructure: Shared capacity utilities, data re-
+fineries, laboratory harmonization, and domain-specific
+capture in dentistry, enabling structured diagnostic labeling
+frameworks (dental) provide the foundation for AI-ready
+essential for AI training and validation. The framework
+data.
+emphasizesthat"self-validationisnotvalidation"andpromotes
+independent benchmarking to ensure patient safety and clinical • Standards: EBMonFHIR and similar interoperability
+standards enable consistent representation of clinical
+accountability.
+knowledge and AI recommendations.
+I. Integration of Proposed Architectures
+• Monitoring: PDAS frameworks ensure continuous evalu-
+The proposed architectural frameworks are complementary ation of AI performance and safety in real-world settings.
+and can be integrated to form a comprehensive AI governance • Governance: Reference architectures and clinical gover-
+and implementation ecosystem. Figure 9 illustrates how these nance frameworks establish accountability structures and
+
+Standardized Third-Party
+Validation Datasets Testing & Certification
+Transparency Standardized
+Requirements Performance Reporting
+Audit Log Post-Deployment
+Requirements Drift Surveillance
+Fig. 8: DSI’s national dental AI trust framework addressing unique challenges in dentistry including inconsistent diagnostic
+coding, imaging workflow variability, and disconnected medical records [22].
+Shared Capacity Data Utility
+Data Refinery Architecture
+Laboratory Harmonization
+Dental AI Framework
+EBMonFHIR Standards
+PDAS Framework
+Reference Architecture Clinical Governance
+Fig.9:Integrationofproposedarchitecturalframeworksshowingrelationshipsbetweendatainfrastructure,standards,monitoring,
+and governance layers.
+
+oversight mechanisms. 1) Retrieval-Augmented Generation (RAG) Pattern: The
+Thisintegratedapproachaddressesthesystemicbarriersiden- RAG pattern combines LLMs with external knowledge bases
+tifiedinstakeholdersubmissionswhileprovidingaroadmapfor to ground responses in verified clinical evidence. SKAF’s
+federal investment and policy development. By treating AI as EBMonFHIRarchitectureexemplifiesthispatternbyintegrating
+careinfrastructurerequiringcoordinatedgovernanceratherthan FHIR-based clinical data with LLM-generated recommenda-
+isolated technology deployment, HHS can accelerate adoption tions [18]. Key technical components include:
+while maintaining patient safety and public trust. • Vector Databases: Store embeddings of clinical guide-
+lines, research literature, and institutional protocols for
+III. TECHNICALARCHITECTUREREVIEWOFPROPOSEDAI
+semantic similarity search.
+FRAMEWORKSINCLINICALCARE
+• RetrievalMechanisms:Implementhybridsearchcombin-
+This section provides a comprehensive technical review
+ingkeywordmatching,semanticsimilarity,andknowledge
+of the architectural frameworks proposed by stakeholders in
+graph traversal.
+responsetotheHHSRFI.Weanalyzethetechnicalcomponents,
+• Context Integration: Retrieved evidence is injected into
+dataflows,integrationpatterns,andAI/MLmodelarchitectures
+LLM prompts to ensure responses are evidence-based and
+that underpin these proposals, with particular attention to
+citeable.
+agentic AI systems, generative models, and the infrastructure
+2) Fine-Tuning for Domain Adaptation: Fine-tuning adapts
+required for their safe deployment in clinical settings.
+base LLMs to clinical domains using specialized datasets.
+A. TaxonomyofAIModelsandAgentsinClinicalArchitectures Campelloneetal.demonstratedthatfine-tunedmodelsachieved
+The proposed architectures employ a diverse range of 98% accuracy in detecting and responding empathetically to
+AI models and agent types, each suited to specific clinical patient statements, compared to 69% for rules-based systems
+tasks. Table I presents a taxonomy of AI models referenced [4]. Technical considerations include:
+in stakeholder submissions, mapping them to architectural • Training Data: Curated clinical conversations, annotated
+components and clinical applications. with safety markers and empathy scores.
+B. Agentic AI Architectures for Clinical Workflow Automation • Parameter-Efficient Fine-Tuning: LoRA and adapter
+techniques enable domain adaptation with minimal com-
+Agentic AI systems—autonomous AI agents capable of
+putational overhead.
+perceiving their environment, making decisions, and taking
+• Validation Protocols: Rigorous testing across demo-
+actions—represent a significant advancement in clinical work-
+graphic subgroups to detect bias and ensure equitable
+flow automation. Figure 10 illustrates a generalized agentic AI
+performance [11].
+architecture synthesized from multiple stakeholder proposals.
+3) Guardrail Pattern for Safe Deployment: Guardrails are
+The agentic architecture comprises several key components:
+criticalforsafedeploymentofgenerativeAIinclinicalsettings.
+• Data Integration Layer: Aggregates structured and Ellipsis Health’s architecture incorporates multiple guardrail
+unstructureddatafromEHRs,claimssystems,IoTdevices,
+layers [23]:
+and patient-reported sources. Interstella’s DRaaS model
+1) Input Guardrails: Detect harmful inputs, off-topic
+emphasizes real-time streaming and inline governance at
+queries, and crisis indicators (suicidal ideation, self-
+this layer [13].
+harm).
+• Agent Orchestrator: Coordinates task allocation among
+2) Model Guardrails: Constrain output generation through
+specialized agents, manages agent communication, and
+controlled decoding, safety classifiers, and refusal mech-
+maintainssystemstate.Theorchestratorimplementssafety
+anisms.
+protocols and escalation pathways to human clinicians.
+3) Output Guardrails: Validate generated content against
+• Specialized Agent Pool: Includes scheduling agents for
+clinical guidelines, toxicity filters, and fact-checking
+appointment optimization, triage agents for initial patient
+systems.
+assessment,carecoordinationagentsforlongitudinalman-
+4) Escalation Guardrails: Trigger human clinician involve-
+agement, predictive analytics agents for risk stratification,
+ment when inputs or outputs exceed safety thresholds.
+and patient outreach agents for engagement [27], [28].
+• Human-in-the-Loop Interface: Ensures that autonomous D. Federated Learning Architectures for Privacy-Preserving
+actions are reviewed by clinicians when they exceed AI
+predefined confidence thresholds or involve high-risk
+Federated learning enables collaborative model training
+decisions, as emphasized by Sancian’s AI SoftLife™
+across institutions without centralizing sensitive patient data.
+philosophy [20].
+Figure 12 illustrates the federated learning architecture pro-
+C. Generative AI Integration Patterns posed for multi-institutional AI development.
+Generative AI models, particularly large language models Keytechnicalcomponentsoffederatedlearningarchitectures
+(LLMs), are integrated into clinical architectures through include:
+several patterns. Figure 11 illustrates the primary integration • Local Training: Each institution trains models on local
+patterns identified in stakeholder submissions. data, generating gradient updates or model weights.
+
+EHR Systems Claims Data
+AI Agent Orchestrator
+IoT / WearSabclheesduling AgePnattient-Reported
+Clinical Triage Agent
+Care Coordination Agent
+Predictive Analytics Agent
+Patient Outreach Agent
+Clinician Notification Patient Intervention
+Auto-Documentation
+Fig. 10: Agentic AI Architecture for Clinical Workflow Automation showing the orchestration layer, specialized agent pool, and
+task execution components. This architecture enables autonomous decision-making and action execution while maintaining
+human oversight through clinician notification pathways [14], [20].
+
+Base LLMs
+GPT • Gemini • LLaMA
+Specialized Clinical Models
+RAG Pattern
+Retrieval-Augmented Generation
+Fine-Tuning
+Domain Adaptation
+Prompt Engineering
+Task-Specific Templates
+Guardrail Pattern
+Safety Filters • Output Validation
+Clinical QA • Evidence Summarization
+Specialized Clinical Tasks
+Structured Outputs
+Safe Deployment
+Fig. 11: Generative AI integration patterns in clinical architectures showing four primary approaches: Retrieval-Augmented
+Generation (RAG) for evidence-based responses, fine-tuning for domain adaptation, prompt engineering for structured task
+outputs, and guardrail patterns for safety validation [4], [23].
+
+Institution A
+Local Data
+Institution B
+Local Data
+Institution C
+Encrypted
+Local Data
+Encrypted
+Institution D
+Encrypted
+Local Data
+Encrypted
+Federated Aggregation Server
+Differential Privacy
+Noise Addition
+Global Model
+Fig. 12: Federated Learning Architecture for Privacy-Preserving Multi-Institutional AI Development. Local institutions train
+models on their data and share only encrypted model updates with the central aggregator, which combines updates using secure
+aggregation protocols before distributing the improved global model [26], [14].
+
+TABLE I: Taxonomy of AI Models and Agents in Clinical Architectures
+Model/Agent Type Architectural Compo- Clinical Application Reference
+nent Submissions
+Generative AI (LLMs) Conversational Mental health chatbots, Ellipsis Health [23],
+Interfaces, Clinical ambient listening, clini- AORN [24]
+Documentation cal note generation
+Agentic AI Systems Autonomous Decision Carecoordination,prior Joshi Framework [14],
+Support, Workflow Or- authorization, patient Sancian LLC [20]
+chestration outreach
+Predictive ML Models Risk Stratification, Sepsis prediction, read- Bhagavathula PDAS
+Early Warning Systems mission risk, deteriora- [17]
+tion detection
+Computer Vision Mod- ImagingAnalysis,Diag- Radiology, pathology, DSI [22], IAC [25]
+els nostic Support dental imaging
+NLP Models Unstructured Data Pro- Clinical notes, social Interstella [13]
+cessing determinants, patient-
+reported outcomes
+Reinforcement Learn- AdaptiveTreatmentOp- Chronic disease man- BlueHalo [19]
+ing timization agement, personalized
+care pathways
+Federated Learning Privacy-Preserving Dis- Multi-institutional Nandagopal [26]
+Models tributed Training model development
+KnowledgeGraphMod- Clinical Decision Sup- EBMonFHIR, SKAF [18]
+els port, Evidence Synthe- guideline-based
+sis recommendations
+• Secure Aggregation: Cryptographic protocols (homomor- I. Technical Requirements and Implementation Considerations
+phic encryption, secure multi-party computation) combine
+Based on the architectural analysis, Table II summarizes the
+updates without revealing individual contributions.
+technical requirements for implementing these frameworks.
+• Differential Privacy: Noise injection ensures that ag-
+gregated models cannot be reverse-engineered to extract J. Summary
+patient-level information.
+The technical architectures proposed by stakeholders repre-
+• Federated Averaging: The central server computes sent a comprehensive ecosystem for clinical AI deployment.
+weighted averages of local updates to produce improved
+Key themes include:
+global models.
+• Modularity: Layered architectures enable independent
+evolution of data infrastructure, models, agents, and
+E. Data Pipeline Architectures for Real-Time AI
+governance.
+Real-time AI requires sophisticated data pipeline architec-
+• Safety-by-Design: Guardrails, monitoring, and response
+tures that minimize latency while maintaining data quality and
+mechanisms are integrated from the ground up.
+governance. Figure ?? illustrates the data pipeline architecture
+• Interoperability: FHIR-based standards ensure compati-
+proposed by Interstella and others.
+bility across institutions and systems.
+• Scalability: Cloud-native architectures support deploy-
+F. Knowledge Graph and Semantic Reasoning Architectures
+ment from small clinics to large health systems.
+SKAF’s EBMonFHIR architecture leverages knowledge • Privacy-Preservation: Federated learning and differential
+graphs and semantic reasoning to enable evidence-based AI privacy enable collaborative development without data
+recommendations. Figure 14 illustrates the knowledge graph sharing.
+architecture.
+These technical frameworks provide the foundation for safe,
+effective,andequitableAIadoptioninclinicalcare,addressing
+G. Continuous Monitoring and Drift Detection Architectures
+the systemic barriers identified in stakeholder submissions
+Bhagavathula’s Post-Deployment Algorithmic Surveillance while enabling innovation at scale.
+(PDAS) framework incorporates continuous monitoring and
+drift detection. Figure 15 illustrates the technical architecture IV. FUTUREOFWORKWITHAIADOPTION:WORKFORCE
+for real-time AI monitoring. TRANSFORMATION,JOBDISPLACEMENT,AND
+EDUCATIONALCHALLENGESINCLINICALCARE
+H. Color-Coded Reference Architecture Summary
+The integration of artificial intelligence into clinical care
+Figure ?? presents a color-coded summary of the integrated represents not merely a technological shift but a fundamental
+architectural layers, mapping technical components to func- transformation of healthcare work itself. This section examines
+tional domains. the multifaceted implications of AI adoption for the healthcare
+
+Real-Time Ingestion
+EHRs Raw Data Lake
+(Kafka / FHIR)
+Stream Processing
+(Flink / Spark)
+Claims
+Inline Governance Feature Store
+Validation & Anonymization
+Devices
+Model Registry
+Patient Apps
+ML Inference
+Real-Time Dashboards
+API Gateway
+Fig. 13: Two-Column AI Data Pipeline Architecture for Multi-Layer Clinical Workflows. Data sources, ingestion, and stream
+processing are shown in the left column, while storage, analytics, and serving layers are in the right column, preserving logical
+flow for narrow multi-column publications [13], [19].
+
+informs
+Clinical
+Guidelines
+Studies
+Patient
+Outcomes Interventions
+Population
+impacts
+FHIR FHIR
+Patient Observation
+SummaryOfNetEffect
+Profile
+Fig. 14: Knowledge Graph Architecture for Evidence-Based AI Recommendations. The graph integrates clinical studies,
+guidelines, outcomes, and interventions with FHIR resources, enabling semantic reasoning and evidence synthesis through the
+SummaryOfNetEffect Profile [18], [29].
+workforce,includingjobdisplacementconcerns,theemergence automation" but rather serves as a "force multiplier for human
+of new roles, educational requirements, and the critical im- care" that "extends the reach of care teams" [23]. This
+portance of human-AI collaboration. We analyze stakeholder perspective frames AI as capacity infrastructure that reduces
+perspectives on workforce impact and propose frameworks for cognitiveburdenandenablesclinicianstofocusonhigher-value
+managing this transition equitably and effectively. patient interactions.
+A. The Workforce Impact Spectrum: Automation vs. Augmen- B. Job Displacement: Realities and Mitigation Strategies
+tation
+Concerns about job displacement are legitimate but require
+The debate surrounding AI’s impact on healthcare em- nuanced analysis. The Association of perioperative Registered
+ployment often polarizes between fears of widespread job Nurses (AORN) takes a firm position: "AI is suitable for
+displacement and visions of seamless augmentation. Reality augmentation of clinical decision making, but AI cannot and
+lies on a spectrum, with different clinical roles experiencing must never be a replacement for a human’s clinical judgement.
+varying degrees of transformation. Figure 17 illustrates this The human expertise, empathy and accountability required for
+spectrum across healthcare professions. clinical decisionmaking in practice cannot be replicated" [24].
+EllipsisHealthemphasizesthat"themosteffectivehealthcare Figure 18 presents a framework for understanding job
+AI does not seek to replace clinicians or focus only on displacement risk factors in healthcare.
+
+Model Predictions
+Ground Truth Outcomes
+Feature Distributions
+Population Demographics
+Drift Detection
+Drift / Bias / Safety Alerts
+Statistical Tests
+Bias MonitoMrinogdel Recalibration Response Orchestrator Usage Restriction
+Subgroup Analysis
+Model Withdrawal
+Safety Signal Detection
+Fig. 15: Continuous Monitoring and Drift Detection Architecture for Clinical AI. The left column contains input and monitoring
+streams, while the right column contains alerting and response orchestration. This strictly fits within a two-column journal
+format [17], [30].
+1) Quantitative Impact Estimates: While precise job dis- this domain is more likely to reduce burnout and enable
+placement estimates vary, several stakeholder submissions focus on direct patient care than to eliminate positions.
+provide frameworks for assessment:
+C. Emerging Job Categories and Role Transformation
+• Administrative roles: Himmelstein et al. document that
+AI adoption creates new job categories while transforming
+administrative work consumes one-sixth of U.S. physi-
+existing ones. Table III summarizes emerging roles identified
+cians’ working hours [31]. AI automation of prior autho-
+in stakeholder submissions.
+rization,documentation,andschedulingcouldsignificantly
+reduce this burden without displacing clinical staff. Sancian LLC’s "Named AI Executive Owner" model es-
+• Diagnostic specialties: Radiology and pathology face tablishes accountability at the executive level, ensuring that
+highest automation potential for routine image interpreta- organizations have dedicated leadership for AI governance and
+tion, but demand for these specialties may shift toward workforce transition [20].
+complex case consultation and oversight of AI systems
+D. Educational and Training Requirements
+[29].
+• Nursing and care management: Ellipsis Health notes The transformation of healthcare work necessitates corre-
+that"nurses,caremanagers,andsocialworkersarealready sponding changes in education and training. Figure 19 presents
+managing unsustainable caseloads" [23]. AI adoption in a framework for AI-related education across career stages.
+
+Real-Time Data Streams
+Federated Learning
+Knowledge Graphs
+Generative AI LLMs Agentic AI Orchestrator
+Predictive Models Specialized Agents
+Guardrails & Safety Filters
+Computer Vision
+Monitoring & Drift Detection
+FHIR/HL7 Standards API Gateway Interfaces
+Response Orchestration
+DataInfrastructure
+AIModels
+AgenticSystems
+Governance&Safety
+IntegrationStandards
+Fig. 16: Portrait-oriented, compact Integrated Architecture Summary. Left column: data infrastructure and AI models; right
+column: agentic systems and governance; bottom row: integration standards. The layout fits within a two-column journal format.
+
+TABLE II: Technical Requirements for Clinical AI Architectures
+Component Technical Requirements Performance Targets
+Data Ingestion HL7 FHIR APIs, Kafka Latency<100ms,Through-
+streams, real-time ETL put > 10K events/sec
+Model Serving GPU/TPUinference,model Inference time < 500ms,
+versioning, A/B testing Availability 99.9%
+Agent Orchestration Workflow engines, state Taskcompletion<2s,Scal-
+management, inter-agent ability to 1000+ concurrent
+communication agents
+Guardrails Safety classifiers, output False positive rate < 1%,
+validation, escalation trig- Recall > 95% for safety
+gers events
+Monitoring Statistical drift detection, Detection latency < 1 hour,
+bias metrics, safety surveil- Alert precision > 90%
+lance
+Federated Learning Secure aggregation, differ- Privacybudgete<2,Model
+ential privacy, encrypted accuracy within 5% of cen-
+communication tralized
+Knowledge Graphs Graph databases, semantic Query latency < 200ms,
+reasoning,FHIRintegration Support for 10M+ triples
+AI Impact Spectrum Across Healthcare Roles
+Radiology Pathology Pharmacists Nurses Physicians Surgeons Therapists SocialWorkers Care
+Technicians Assistants Coordinators
+HighAutomation Moderate Hybrid Augmentation Enhanced
+Fig. 17: AI Impact Spectrum Across Healthcare Roles showing the continuum from high automation potential (left) to human
+augmentation and enhancement (right). Routine pattern recognition roles face higher automation risk, while complex human
+interaction and judgment roles are more likely to be augmented [11], [23].
+TABLE III: Emerging Job Categories in AI-Enhanced Healthcare
+Role Responsibilities Source
+AI Clinical Governance Of- OverseeAIdeployment,en- Sancian LLC [20]
+ficer suresafetyandequity,man-
+age algorithm lifecycle
+Clinical AI Specialist Bridge between clinical AORN [24]
+practice and AI develop-
+ment, validate model out-
+puts
+AI Quality Assurance Ana- Monitor model Bhagavathula [17]
+lyst performance, detect
+drift and bias, conduct
+audits
+Human-AI Collaboration Optimize workflow integra- Ellipsis Health [23]
+Specialist tion,trainteamsonAItools,
+manage change
+AI Ethics & Equity Officer Ensurefairnessacrosspopu- National MS Society [32]
+lations, address algorithmic
+bias
+Data Steward Manage data quality, gover- Interstella [13]
+nance, and interoperability
+for AI readiness
+AI-Enhanced Care Coordi- Leverage AI insights for Ellipsis Health [23]
+nator patient outreach and care
+management
+
+Figure 2: Job Displacement Risk Factors in Healthcare AI
+Routine Empathy
+PatternRecognition Requirement
+Rule-Based Clinical
+DecisionMaking Judgment
+Data-Intensive Legal
+Processing Accountability
+HighlyScalable Human
+Tasks Touch
+High Low
+DisplacementRisk DisplacementRisk
+Fig. 18: Job Displacement Risk Factors in Healthcare AI showing the interplay between automation-prone task characteristics
+(left) and human-essential qualities (right) that determine overall displacement risk. Roles combining high routine content with
+low empathy requirements face greatest displacement pressure [11], [20].
+1) Core Educational Competencies: The National Multiple E. Labor and Employment Considerations
+Sclerosis Society emphasizes that "AI education is essential
+and should be implemented in the academic setting and in The integration of AI into clinical care raises significant
+the organizations where the AI-enabled technology is used. labor and employment issues that require attention from poli-
+Competency should be assessed before using any AI-enabled cymakers, healthcare organizations, and labor representatives.
+technology" [32]. 1) Scope of Practice and Professional Boundaries: AORN
+emphasizes that "clinicians should be full partners in preparing
+Key educational competencies identified across stakeholder
+for the future of AI that intersects their respective practice
+submissions include:
+settings" [24]. As AI systems assume tasks traditionally
+performed by specific professional groups, scope of practice
+1) Technical Literacy: Understanding AI capabilities, limi- definitions may need revision. Figure 20 illustrates the shifting
+tations, and appropriate use cases. boundaries.
+2) Critical Evaluation: Assessing AI outputs, recognizing
+2) Liability and Accountability: Tavory’s ethics of care
+errors, and knowing when to override recommendations.
+perspective highlights that AI deployment raises "unresolved
+3) Ethical Awareness: Understanding bias, fairness, trans-
+questions regarding responsibility, liability, and oversight when
+parency, and accountability in AI systems.
+automated systems fail or when risks go unrecognized" [33].
+4) Workflow Integration: Incorporating AI tools into
+Key labor-related liability questions include:
+clinical workflows without disruption.
+5) Patient Communication: Explaining AI involvement to • Who is liable when a clinician relies on an AI recommen-
+patients and addressing concerns. dation that proves harmful?
+6) Continuous Learning: Staying current with evolving AI • How is accountability shared among AI developers,
+capabilities and best practices. healthcare organizations, and individual clinicians?
+
+Figure 3: AI Education Framework Across Career Stages
+Medical/Nursing
+AIFundamentals
+Students
+Residents/ CriticalEvaluation
+AIToolProficiency
+Trainees
+EthicalConsiderations
+Practicing WorkflowIntegration
+ContinuousLearning
+Clinicians
+ClinicalDecisionSupport
+Clinical PerformanceMonitoring
+GovernanceFrameworks
+Leadership
+BiasDetection
+ChangeManagement
+StrategicPlanning
+Fig. 19: AI Education Framework Across Career Stages showing progressive educational content from foundational knowledge
+through clinical integration to governance and leadership. This vertical layout supports columnar publication formats while
+preserving clarity of learning progression [24], [32].
+• What protections exist for clinicians who override AI F. Human-AI Collaboration Models
+recommendations that later prove correct?
+Successful AI integration depends on effective human-
+TheGlobalLiverInstituteemphasizesthat"cliniciansshould AI collaboration models. Figure 21 presents a taxonomy of
+be transparent with patients about when and how these tools collaboration models identified in stakeholder submissions.
+are assisting their care" and that "clear communication and Ellipsis Health’s "empathy and engagement as core safety
+clinician accountability are essential to maintaining trust" [34]. features" philosophy emphasizes that "AI tools that patients
+3) Collective Bargaining and Worker Voice: As AI trans- trust and interact with consistently are more likely to surface
+forms healthcare work, mechanisms for worker input into earlywarningsignsandlesslikelytomisscriticalinformation"
+AI deployment decisions become critical. Sancian LLC’s [23]. This perspective frames human-AI collaboration as
+governance framework includes "cross-functional AI gover- essential to patient safety, not merely workflow efficiency.
+nance councils" with representation from clinical, technical,
+G. Psychological and Emotional Impacts on Workers
+compliance,andpatientsafetyleadership[20].However,formal
+labor representation in these bodies remains inconsistent. The introduction of AI into clinical environments has signif-
+Anonymousstakeholdercommentshighlightthat"thesmaller icant psychological and emotional implications for healthcare
+institutions do not know how to move forward with clinical workers. Figure 22 illustrates these impacts.
+AI, how to start or what policy they should follow. On the Sancian LLC’s "AI SoftLife™ philosophy" explicitly ad-
+other hand, the larger institutions are overly bureaucratic in dressestheseconcerns,designingAIas"capacityinfrastructure
+making decisions" [35]. This disparity suggests that collective that reduces cognitive burden, protects clinicians’ energy, and
+bargaining and worker voice mechanisms may be more sustains humane care delivery" [20]. This human-centered
+accessible in larger, unionized settings. approach recognizes that worker wellbeing is not merely a
+
+Figure 4: Shifting Professional Boundaries with AI Integration
+Physicians NAuIrsSeysstems
+Technicians Administrators
+Fig. 20: Shifting Professional Boundaries with AI Integration showing the overlap between traditional professional domains
+and AI capabilities. As AI systems assume tasks spanning multiple professions, scope of practice definitions must evolve to
+accommodate new collaborative models [24], [33].
+secondary consideration but a prerequisite for successful AI 3) Establish liability frameworks that fairly allocate
+adoption. responsibility among developers, organizations, and clin-
+icians [33].
+H. Recommendations for Workforce Transition 4) Support research on workforce impacts, including lon-
+gitudinal studies of job transformation and displacement
+Basedonstakeholdersubmissions,wesynthesizerecommen-
+[11].
+dations for managing workforce transition:
+5) Incentivize inclusive governance that incorporates
+1) For Healthcare Organizations:
+worker voice in AI deployment decisions.
+1) Establish governance structures with worker represen-
+3) For Educational Institutions:
+tation to guide AI deployment decisions [20].
+1) Integrate AI competencies across healthcare curricula,
+2) Invest in continuous education and training programs
+from foundational education through continuing profes-
+that prepare workers for AI-augmented roles [32], [24].
+sional development [32].
+3) Design AI for augmentation, not replacement, pri-
+2) Develop interdisciplinary programs that combine clin-
+oritizing tools that reduce burden and enhance human
+ical expertise with data science and AI governance.
+capabilities [23].
+3) Create simulation environments where students can
+4) Create career pathways into emerging AI-related roles,
+safely learn to collaborate with AI systems.
+offering retraining and upskilling opportunities.
+4) Emphasize ethical reasoning and critical evaluation
+5) Monitor psychological impacts and provide support for
+skills alongside technical proficiency.
+workers experiencing anxiety or resistance.
+2) For Policymakers: I. Summary
+1) Fund workforce development programs specifically ThefutureofworkwithAIadoptioninclinicalcarepresents
+targeting AI-related skills in healthcare [36]. both challenges and opportunities. While concerns about
+2) Update scope of practice regulations to accommodate job displacement are legitimate, the predominant stakeholder
+AI-augmented care models while protecting professional perspective emphasizes augmentation over automation, with
+standards [24]. AI serving to reduce burden, enhance capabilities, and enable
+
+Figure 5: Human-AI Collaboration Models in Clinical Care
+Shadow Mode
+Training, Validation
+AI observes, no action
+Assistive Mode
+Decision Support, Low-Risk Tasks
+AI suggests, human decides
+Collaborative Mode
+Complex Diagnosis
+AI and human co-decide
+Delegated Mode
+Routine Operations
+Human delegates, AI acts
+Autonomous Mode
+Well-Validated Low-Risk Scenarios
+AI acts, human monitors
+Fig. 21: Human-AI Collaboration Models in Clinical Care showing the progression from AI as observer to AI as autonomous
+actor. The appropriate mode depends on task complexity, risk, and validation, with most clinical applications operating in
+assistive or collaborative modes [23], [20].
+focusonhigher-valuepatientinteractions.Successfulworkforce infrastructure needs including data interoperability, governance
+transition requires: mechanisms,andcontinuousmonitoringcapabilities,witheach
+• Recognition that different roles face different levels of frameworklinkedtorelevantacademicliteratureandestablished
+transformation risk. standards.
+• Investment in education and training across career stages.
+• Clear governance structures with worker representation. A. Shared Capacity Data Utility Model
+• Attention to psychological and emotional impacts.
+VanPelt&Companyproposesa"sharedcapacitydatautility"
+• Policy frameworks that support equitable transition.
+modeldesignedasvendor-agnostic,public-privateinfrastructure
+As AORN succinctly states, "Clinicians should be full
+that leverages existing systems and non-PHI operational data
+partners in preparing for the future of AI that intersects
+to provide continuously available views of healthcare system
+their respective practice settings" [24]. This partnership ap-
+capacity.Thisframeworkaddressesthefoundationalgapwhere
+proach—treatingworkersascollaboratorsinAIadoptionrather
+AI tools are frequently deployed as point solutions optimized
+thanpassiverecipientsoftechnologicalchange—offersthemost
+for narrow workflows but blind to system-level constraints
+promising path toward a future where AI enhances rather than
+such as staffing shortages, bed availability, and regional surge
+diminishes the human dimensions of healthcare.
+conditions [8].
+V. PROPOSEDARCHITECTURALFRAMEWORKSFOR The utility model operates across multiple care settings:
+CLINICALAIINTEGRATIONNON-QUANT • Behavioral health: Real-time visibility into bed avail-
+Drawing from stakeholder submissions to the HHS RFI, ability and staffing constraints enables faster placement
+this section synthesizes proposed architectural frameworks decisions and reduces emergency department boarding.
+for clinical AI integration. These proposals address critical ThisalignswithresearchonAIchatbotsformentalhealth
+
+Figure 6: Psychological and Emotional Impacts of AI Adoption on Healthcare Workers
+Reduced Focus on
+Cognitive Load Higher-Value Care
+Anxiety about
+Job Security
+Reduced Increased
+Burnout Job Satisfaction
+Deskilling
+Concerns
+Positive Adoption
+Outcomes
+Distrust of
+AI Systems
+Negative Adoption
+Outcomes
+Resistance
+to Adoption
+Fig. 22: Psychological and Emotional Impacts of AI Adoption on Healthcare Workers showing the dual nature of AI
+integration—potentially reducing burnout and cognitive load while simultaneously creating anxiety about job security and
+professional identity [23], [20], [11].
+that emphasizes the need for contextual awareness in health system resilience [5].
+clinical decision support [9], [10]. • Regional multi-state coordination: Supports interop-
+• Ruralcare:Supportsprecisedecision-makingaboutwhen erability across jurisdictional boundaries for disaster
+patients can be safely managed locally versus requiring response and medical surge scenarios, as outlined in
+transfer to higher-acuity care, addressing equity concerns federal interoperability frameworks [12].
+documented in the literature on healthcare AI access
+disparities [11]. This approach aligns with legislative frameworks including
+• Statewide coordination: Provides continuous situational H.R.2936forreal-timehospitalcapacityvisibilityandS.1974
+awarenessforpreparedness,surgeresponse,andalignment for healthcare system readiness coordination. The model also
+with federal programs, consistent with WHO guidance on reflects principles from the EU AI Act regarding proportionate,
+risk-based oversight of AI systems [6].
+
+B. Data Refinery Architecture for AI Readiness 4) Structured reporting of algorithmic harms: Mecha-
+nisms to capture delayed care, silent misclassification,
+Interstella’s Lynqsys platform architecture emphasizes real-
+workflow distortions, and disparity amplification that
+timedataintegrationandAIreadinessthrougha"DataRefinery
+rarely trigger traditional adverse event reports.
+as a Service" (DRaaS) model [13]. The proposed architecture
+5) Predefined regulatory response pathways: Clear pro-
+addresses core barriers including delayed data availability,
+tocols for recalibration, restriction, suspension, or with-
+inconsistent data quality, and limited support for unstructured
+drawal when surveillance identifies concerns, with docu-
+data. Key components include:
+mented enforcement actions.
+• Real-time data streams: Moving from batch processes ThisframeworkalignswithFDAguidanceonpredetermined
+withlagtimesofdaysorweekstonear-real-timestreaming
+change control plans for continuously learning algorithms [7]
+architectures that enable immediate AI analysis. This
+and research on AI safety monitoring in clinical settings [4].
+addresses data quality concerns identified in the literature
+The emphasis on population-level effects reflects epidemiolog-
+where "AI systems do not fail because of algorithms; they
+ical approaches to AI governance that treat deployed AI as
+fail because of data" [14].
+exhibiting properties of population-level exposures including
+• Inline data governance: Privacy protections and quality intensity, latency, effect modification, and spillover effects [11].
+checks applied at the point of data creation rather than as
+post-hoc audits, consistent with HIPAA requirements and D. Evidence-Based Medicine on FHIR (EBMonFHIR) Archi-
+recent OCR guidance [15]. tecture
+• AI-ready data repositories: Shared datasets and testbeds SKAF proposes an interoperable framework for representing
+forAItrainingandevaluation,supportingthedevelopment scientific knowledge to support AI-generated clinical rec-
+of representative, high-quality data for model validation ommendations [18]. Building on HL7 FHIR standards, this
+as emphasized in the Framework for AI Tool Assessment architecture enables both human-interpretable and machine-
+in Mental Health [16]. interpretable representation of evidence supporting AI recom-
+• Support for unstructured data: Integration of clinical mendations,addressingFDAguidancerequiringthathealthcare
+notes, images, and behavioral health data, addressing the professionals be able to "independently review the basis for
+limitation that many current systems handle structured such recommendations."
+data but struggle with unstructured information critical The EBMonFHIR Implementation Guide defines approxi-
+for AI performance [2]. mately100profiles,extensions,andvaluesetsforrepresenting:
+The architecture incorporates federated learning approaches • Citations for identification, location, classification, and
+foranonymizingdataandtrainingAImodelsthroughdecentral- attribution of knowledge artifacts
+ized data repositories, enhancing accessibility while improving • Research study design components including eligibility
+privacy as recommended in recent regulatory guidance [26]. criteria and endpoint analysis plans
+• Research results including statistic findings, variable
+C. Continuous Monitoring and Post-Deployment Surveillance definitions, and evidence certainty
+Framework • Aggregation and synthesis of research results across
+multiple studies
+Dr. Akshaya Bhagavathula proposes a "Post-Deployment
+• Judgments regarding evidence syntheses and contextual
+Algorithmic Surveillance" (PDAS) framework for governing
+factors related to recommendations
+clinicalAIaspopulation-levelinterventionsratherthandiscrete
+• Recommendations themselves with supporting evidence
+products [17]. This framework recognizes that once introduced
+AkeycomponentistheSummaryOfNetEffectProfile,which
+into a health system, AI systems reshape decisions, attention
+combines data elements for clinical decisions including pop-
+allocation, workflows, and care delivery across patient popula-
+ulation specification, intervention and comparator definitions,
+tions.
+outcome considerations with risk estimates and effect changes,
+The PDAS framework includes five core elements:
+desirability and relative importance weighting, and net effect
+1) Exposure characterization: Systematic measurement estimates combining contributions. This enables transparent,
+of who is exposed to AI-mediated decisions, how often, auditableAIrecommendationsthatclinicianscanindependently
+and in what contexts, establishing foundational data for evaluate, addressing concerns about generative AI producing
+causal assessment. contextually incorrect rationales to support predetermined
+2) Continuous population-level performance monitoring: answers [18].
+Longitudinal evaluation of calibration, discrimination, The architecture supports individualized shared decision-
+and error patterns with mandatory stratification by key making through tools like the NetBenefitCalculator, demon-
+subgroups, treating performance drift as a safety signal strating how standardized evidence representation can create
+rather than technical footnote. a "GPS for healthcare" analogous to navigation software
+3) Outcome-linked evaluation: Assessment of whether AI that functions through common data sharing expectations.
+use improves downstream clinical outcomes, access, or This approach aligns with international standards development
+utilization patterns, moving beyond surrogate metrics. efforts documented in the literature [29].
+
+E. Reference Architecture for Non-Medical Device AI • Decisionclaritybeforetooling:Governanceinfrastructure
+established before product evaluation, ensuring organiza-
+BlueHalo LLC proposes a reference architecture for non-
+tions can responsibly manage AI systems once deployed.
+medical device AI that describes how evaluation, monitoring,
+interoperability, and governance components integrate across The framework incorporates the "AI SoftLife™ philosophy"
+theAIlifecycle[19].Thisarchitectureaddressestherealitythat designing AI as capacity infrastructure that reduces cognitive
+many AI tools operate outside traditional regulatory pathways burden, protects clinicians’ energy, and sustains humane care
+yet significantly influence clinical workflows. delivery. This human-centered approach measures success
+The proposed architecture includes: through cognitive load reduction, time returned to patient care,
+and clinician trust rather than technical performance alone,
+• Evaluation layer: Pre-deployment testing in controlled
+consistentwithresearchonAIimplementationinmentalhealth
+environments combined with continuous post-deployment
+settings [33].
+assessment across diverse populations and settings, ad-
+dressing the limitation that "validation studies answer G. Laboratory Data Harmonization Infrastructure
+whether an algorithm can perform under specified condi-
+The Association for Diagnostics & Laboratory Medicine
+tions, but they do not answer whether the system remains
+proposes infrastructure for harmonizing clinical laboratory test
+safe, effective, or equitable once it reshapes real-world
+results to enable AI interoperability across institutions [21].
+clinical behavior" [17].
+Thisaddressesthecriticalbarrierthatdifferenttestingplatforms
+• Monitoring layer: Continuous drift detection, perfor- producevaryingnumericresultsforthesameanalyte,degrading
+mance tracking, and safety signal surveillance with
+model performance when data are pooled.
+automated flagging of deviations from expected behavior,
+The proposed infrastructure includes:
+enablingearlyidentificationofdegradationbeforeadverse
+• Standardized calibration protocols across assay systems
+outcomes occur.
+• Metadata inclusion for test methods and validation param-
+• Interoperability layer: Extended beyond data exchange eters in AI models
+to include metadata, data provenance, evaluation artifacts,
+• Uniform guidelines for sample collection and reporting
+and governance policies, providing context necessary for
+• Validation requirements for AI models across diverse
+interpretation and accountability.
+clinical settings
+• Governance layer: Clear role definitions, oversight mech- • Continuous quality monitoring including daily quality
+anisms, and escalation paths that reduce ambiguity and
+control, proficiency testing, and trend analysis
+enable confident deployment in regulated environments.
+This approach ensures that AI systems using laboratory
+This systems-level perspective recognizes that AI perfor-
+data can accurately interpret results regardless of testing site
+mance and safety depend on data quality, interoperability,
+or method, supporting equitable performance across diverse
+human oversight, and organizational context rather than model
+healthcare settings and populations [29].
+characteristics alone [37]. The architecture supports safe
+harbors for organizations implementing defined governance H. Dental AI Standards and Validation Framework
+practices, encouraging adoption of responsible AI frameworks The Dental Standards Institute proposes a national dental
+without prescriptive mandates [38]. AI trust framework addressing the unique challenges of AI
+adoption in dentistry, where diagnostic coding is inconsistently
+F. Clinical Governance and Accountability Framework
+used, imaging workflows vary widely, clinical documentation
+Sancian LLC proposes an operational framework for AI remains largely unstructured, and dental and medical records
+governance emphasizing named accountability structures and remain disconnected [22].
+readiness assessment before deployment [20]. Key elements The proposed framework includes:
+include: • Standardized validation datasets across multiple imaging
+• Named AI Executive Owner model: Single accountable devices and clinical settings
+leaderwithcross-functionalauthoritytoownAIoutcomes, • Third-party testing and certification mechanisms
+preventingthediffusionofresponsibilitythatoccurswhen • MinimumtransparencyrequirementsfordentalAIvendors
+multiple stakeholders hold effective veto power. • Standardized performance reporting formats
+• Cross-functional AI governance councils: Formalized • AuditlogrequirementsforAIrecommendationsinclinical
+structures with defined decision rights including clinical, workflows
+technical, compliance, and patient safety leadership. • Guidanceforpost-deploymentmonitoringandmodel drift
+• AI ReadyCheck™ assessment: Organizational readiness surveillance
+baseline evaluating data governance, workflow optimiza- This infrastructure supports the modernization of diagnosis
+tion, change management capacity, and leadership align- capture in dentistry, enabling structured diagnostic labeling
+ment before technology procurement. essential for AI training and validation. The framework
+• AI-EQUITYClear™ assessment: Equity impact evalu- emphasizesthat"self-validationisnotvalidation"andpromotes
+ation before deployment to identify potential disparities independent benchmarking to ensure patient safety and clinical
+across demographic subgroups. accountability.
+
+VI. THECURRENTLANDSCAPEOFAIINCLINICALCARE bestpracticesforhuman-centeredAIdevelopmentintheworld
+of work [45]. The UK’s Medicines and Healthcare Products
+Artificial intelligence has become increasingly embedded in
+Regulatory Agency has responded to the Regulatory Horizons
+healthcare delivery across multiple domains. As documented
+Council with guidance on AI as a medical device [?].
+by the Bipartisan Policy Center, AI-enabled medical devices
+are a routine part of clinical practice and many patients’ lives, VIII. BARRIERSTOAIADOPTIONINCLINICALCARE
+including applications for tumor detection on imaging scans,
+A. Data Readiness and Interoperability Gaps
+abnormal heart rhythm identification, and digital therapeutic
+Data fragmentation and quality issues represent primary
+apps for chronic disease management [39]. The proliferation
+barriers to AI adoption. The lack of harmonization among
+of generative AI has expanded these applications to include
+clinicaldatasourcesdegradesmodelperformancewhendataare
+conversational agents for mental health support [40], [9],
+pooled across institutions and limits algorithm generalizability.
+clinical documentation assistance, and predictive analytics for
+As Zhou and Gattinger note in their review of AI regulatory
+population health management [41].
+paradigms, the formation of an AI regulatory framework
+However, the adoption landscape remains highly uneven.
+requires the convergence of ethical, regulatory, technical,
+Mello and Cohen observe that health and healthcare AI tools
+societal, and practical considerations, with data standardization
+grow in a liminal regulatory space, wedged uncomfortably
+serving as a foundational element [29].
+betweentheambitsofregulatoryagencies[42].Thisregulatory
+Research from Joshi’s framework for government policy on
+ambiguity creates uncertainty for developers and healthcare
+agentic and generative AI in healthcare identifies data infras-
+organizations alike, potentially slowing innovation while ex-
+tructureascriticalforenablingautonomousAIsystemscapable
+posing patients to unmitigated risks.
+of real-time clinical decision support [14]. The fragmentation
+VII. REGULATORYFRAMEWORKSANDGOVERNANCE challenge is particularly acute in specialized domains such
+CHALLENGES as dentistry, where data remains fragmented across practice
+A. Federal Oversight Mechanisms management systems, imaging systems, payer workflows, and
+unstructured clinical notes.
+The regulatory landscape for clinical AI is fragmented
+across multiple agencies and frameworks. The FDA exercises B. Misaligned Incentives and Payment Barriers
+jurisdiction over AI-enabled medical devices through its Current payment models often fail to capture the value
+premarket review pathways, with recent guidance addressing generated by AI tools that prevent adverse events or improve
+predetermined change control plans for continuously learning care coordination. In fee-for-service environments, preventing
+algorithms [7], [?]. However, as De Freitas and Cohen note, hospitalizations may reduce revenue rather than creating it,
+mostgenerativeAI-poweredwellnessappswillnotbereviewed making it challenging for health systems to justify near-term
+by health regulators, creating a regulatory gray area where investment in AI. Research from the Congressional Budget
+consumer-facing tools may cross into medical territory without Office on AI’s potential effects on the federal budget notes
+appropriate oversight [3]. that current payment models may not adequately capture the
+The FDA’s Digital Health Advisory Committee has recently long-term savings generated by preventive AI applications [?].
+considered generative AI therapy chatbots for depression, Nandagopal’sanalysisofregulatoryhurdlesfordigitalmental
+signaling a risk-based framework for mental health tools [?]. health technologies argues that frameworks treating AI tools
+This aligns with broader international approaches, including as static products fail to account for their dynamic, service-
+the EU AI Act which aims to address risks to health, safety, oriented nature [26]. This mismatch between static product
+and fundamental rights [6]. logic and dynamic service reality complicates classification,
+evidence generation, and post-market oversight.
+B. State-Level Legislative Developments
+C. Workforce Constraints and Change Management
+State-level legislation has emerged as an additional layer of
+governance. Shumate et al. document that among 793 state Healthcare organizations operate under unprecedented work-
+bills reviewed, 143 were identified as potentially impactful to force strain. Research from Himmelstein et al. documents that
+mental health AI, with 20 enacted across 11 states [43]. This administrative work consumes one-sixth of U.S. physicians’
+patchwork of state approaches creates compliance complexity working hours, underscoring the potential value of AI-enabled
+for developers while potentially leaving gaps in patient protec- workflow optimization [31]. However, initial AI adoption
+tions.Theanalysisrevealsthatmostlawstreatmentalhealthas requires significant change management, including workflow
+incidental to broader AI or healthcare regulation, with explicit redesign, training and trust-building, and governance and
+mental health provisions remaining rare. oversight processes.
+Ohu et al.’s analysis of public health risk management
+C. International Regulatory Approaches
+emphasizes that AI implementation must consider clinician
+Internationalregulatoryframeworksprovidevaluablemodels cognitive load and workflow integration as critical success
+forU.S.policydevelopment.Australiahasintroducedanational factors[11].AIthataddscognitiveburdenratherthanreducing
+AI plan shaping investment, policy, and business approaches it creates friction regardless of technical performance, and
+to AI adoption [44]. Canada has developed a compendium of exhausted care teams cannot absorb poorly designed tools.
+
+D. Governance Uncertainty for Non-Device AI Joshi’s comprehensive framework for AI export leadership
+emphasizes the importance of continuous monitoring architec-
+A significant portion of AI used in care delivery does
+tures and automated compliance systems for maintaining AI
+not meet the definition of a regulated medical device yet
+safety and effectiveness over time [47]. The FDA’s guidance
+influences clinical prioritization and care coordination. Health
+on predetermined change control plans enables manufacturers
+systems often struggle with unclear liability and accountability
+to update AI-enabled devices without filing additional submis-
+frameworks, uncertainty around appropriate clinical oversight,
+sions, supporting continuous improvement while maintaining
+and lack of accepted frameworks for AI system governance
+safety oversight [7].
+and assessment.
+Tavory’s analysis of AI regulation in mental health through
+C. Human-Centered and Workflow-Based Evaluation
+an ethics of care perspective argues that existing frameworks
+overlook AI’s impact on human relationships and fail to AI in clinical care operates within complex clinical work-
+establish clear duties of care toward users [33]. Golden flows and human decision-making environments. Effective
+and Aboujaoude’s Framework for AI Tool Assessment in evaluation approaches include workflow impact assessments to
+MentalHealth(FAITA-MentalHealth)emphasizestheneedfor understand how AI changes care team behavior, cognitive load
+rigorous evaluation across credibility, user experience, crisis and alert fatigue analysis, qualitative feedback from frontline
+management, and transparency domains [16]. clinicians, and evaluation of how AI supports decision-making
+rather than overrides it.
+E. Patient Trust and Transparency Concerns The guidance on responsible AI use in healthcare outlines
+core elements including formal AI governance committees,
+Patientsconsistentlyexpressconcernthatincreasingreliance
+patienttransparency,andbiasmonitoringforsafeAIimplemen-
+on automated systems may erode the human connection
+tation[?].ThisframeworkemphasizesthatmanyAIfailuresin
+central to effective, compassionate health care. Research
+healthcare are not algorithmic failures but integration failures.
+from Bouderhem on shaping the future of AI in healthcare
+through ethics and governance identifies privacy, informed
+consent, patient autonomy, and health equity as central ethical
+X. POLICYRECOMMENDATIONS
+challenges requiring regulatory attention [46]. The WHO A. Modernizing Payment Models
+guidanceonethicsandgovernanceoflargemulti-modalmodels
+PaymentpolicyreformisessentialtoincentivizeAIadoption.
+similarlyemphasizesthatpatienttrustdependsontransparency,
+RecommendationsincludeexpandingCMSreimbursementpath-
+accountability, and meaningful human oversight [?].
+ways forAI-supported assessment, monitoring, andoutreach in
+IX. EVALUATIONMETHODOLOGIESFORCLINICALAI chronic disease management, behavioral health screening, and
+transitionalcare.Value-basedpaymentmodelsshouldrecognize
+A. Pre-Deployment Evaluation Frameworks
+AI-enabled activities that demonstrably reduce total cost of
+Severalevaluationframeworksandreportingguidelineshave care.
+beendevelopedtofacilitatehealthcareorganizations’evaluation Coleman’s analysis of lowering healthcare costs through AI
+of AI-enabled technology before widespread integration. These identifiesvalue-basedpaymentmodelsasessentialforcapturing
+include model cards (standardized documents explaining key AI’spreventivebenefits[?].TheCongressionalBudgetOffice’s
+characteristics of AI-enabled technology), expert consensus examination of AI’s potential effects on the economy and
+guidelines for reporting AI development and validation, and federal budget provides analytical support for such reforms
+evaluation frameworks for healthcare professionals. [?].
+Golden and Aboujaoude’s FAITA-Mental Health framework
+demonstrates the application of systematic evaluation to gener- B. Establishing Clear Governance Frameworks
+ativeAIplatforms,scoringtoolsoncredibility,userexperience,
+Clear governance frameworks for non-device AI are needed
+crisismanagement,useragency,healthequity,andtransparency
+to reduce uncertainty without over-regulating low-risk applica-
+[16]. The framework effectively identifies key strengths and
+tions. Recommendations include tiered, risk-based governance
+gaps in AI-driven mental health tools, highlighting the need
+pathways aligned with frameworks such as the NIST AI
+for stringent standards.
+Risk Management Framework, with lower-risk administrative
+AI following streamlined pathways while higher-risk clinical
+B. Post-Deployment Monitoring and Continuous Evaluation
+decision support requires rigorous evaluation.
+AI performance in healthcare is dynamic, with real-world Joshi’s regulatory reform recommendations for agentic AI
+safety depending not only on pre-deployment validation but advocate for governance frameworks that distinguish between
+on ongoing monitoring, bias detection, and clinical review. different risk levels and application contexts, integrating
+Campellone et al.’s randomized controlled trial of a genera- technical standards, risk management protocols, and policy
+tive AI digital mental health intervention provides an initial recommendations [37]. The International Comparative Legal
+blueprint for technical and conversational guardrails that can Guides provide overviews of current federal and state health
+be replicated to build safe AI systems [4]. regulatory structures for AI tools [15], [48].
+
+C. Supporting Independent Validation and Certification D. Cost-Benefit Analysis and Economic Impact
+Independent validation and certification mechanisms can The literature on AI cost impact remains fragmented and
+promote trust and accelerate adoption. Recommendations inconsistent. Research priorities include total cost of care
+include supporting third-party audit mechanisms, standardized impact over time, attribution models for AI-enabled prevention,
+evaluation metrics, independent testing datasets representing financial effects across different payment models, and labor
+diverse populations, and mandatory subgroup performance costs for equivalent tasks performed by AI. Clear evidence of
+reporting. cost reduction is essential to align incentives and accelerate
+adoption.
+D. Enhancing Interoperability and Data Standards
+DECLARATION
+Enhanced interoperability is essential for AI development
+The views expressed are those of the author and do not
+and deployment. Priority areas include integrating clinical, be-
+represent any affiliated institutions. This work is conducted
+havioral, and social data; enabling longitudinal, near-real-time
+as part of independent research. This is a review paper, and
+data access; standardizing care management and engagement
+all results, proposals, and findings are derived from the cited
+workflows;andsupportingsharedevaluationandbenchmarking.
+literature. The author does not claim any novel findings. The
+author’s work was to review and organize existing research.
+E. Patient-Centered AI Design
+Portions of this manuscript were drafted with the assistance
+Patient-centered AI design must prioritize transparency, en-
+of AI writing tools (including ChatGPT/Claude) to improve
+gagement, and trust. Recommendations include plain-language
+clarityandorganization.AllAI-generatedcontentwasreviewed,
+disclosure standards for AI use in care delivery, guidance
+edited, and verified by the author for coherence, and to
+emphasizing AI as an extension of the care team rather than
+eliminate potential hallucinations as much as possible. The
+replacement, and research into patient understanding and trust
+LaTeX code was developed with the assistance of GitHub
+related to AI-supported care. The WHO guidance on AI
+Copilot and edited through DeepSeek. Final responsibility for
+ethics and governance emphasizes that patients should retain
+all content, including any errors or omissions, rests solely with
+ownership of their personal health data with clear protections
+the readers. This is a working paper and edits are expected in
+[?].
+the next version.
+XI. RESEARCHPRIORITIES XII. CONCLUSION
+A. ImplementationScienceforAIinReal-WorldCareDelivery Artificial intelligence has reached a point of maturity where
+it can meaningfully improve patient safety, strengthen care
+One of the largest evidence gaps is not whether AI can
+delivery,andreducethetotalcostofcare—butonlyifdeployed
+work but how it works when deployed at scale across diverse
+with empathy, accountability, and strong clinical governance.
+settings and populations. Priority research areas include AI
+This comprehensive analysis of stakeholder submissions to
+integration into clinical workflows, change management and
+the HHS RFI reveals that the greatest opportunity for AI in
+adoptiondynamicsamongcareteams,longitudinalperformance
+clinical care lies not in automation for its own sake, but in
+and safety monitoring, and organizational governance models
+augmenting human care teams, engaging patients earlier and
+for AI oversight.
+moreconsistently,andpreventingavoidabledeteriorationbefore
+it becomes costly or harmful.
+B. Equity and Bias Mitigation
+Equitable AI requires evaluation beyond controlled datasets. A. Key Findings
+Research priorities include performance monitoring across Our synthesis of 15 stakeholder submissions and supporting
+race, ethnicity, age, language, and socioeconomic status; stress- literature yields several critical insights:
+testing AI performance in populations with low digital literacy First, the primary barriers to AI adoption are not tech-
+or limited access; and ongoing bias audits rather than one- nical but structural: data interoperability gaps, fragmented
+time assessments. Joshi’s framework for government policy on governance across federal and state agencies, misaligned
+agenticAIemphasizestheimportanceofaddressingalgorithmic reimbursement incentives that reward volume over prevention,
+bias and ensuring equitable access [14]. and workforce constraints that leave healthcare organizations
+with insufficient capacity to manage change. As multiple
+C. Workforce Impact and Sustainability
+stakeholders emphasized, "AI systems do not fail because
+AI research has historically focused on patient outcomes of algorithms; they fail because of data."
+whileunder-examiningworkforceeffects.Priorityareasinclude Second,stakeholder-proposedarchitecturalframeworksoffer
+impact of AI on clinician workload and burnout, redistribution a coherent roadmap for addressing these barriers. The shared
+of tasks across care teams, and training and competency capacity data utility model provides vendor-agnostic infrastruc-
+development for AI-supported care. Analysis notes that AI tureforreal-timeoperationalvisibilityacrossbehavioralhealth,
+adoption will not scale if it increases burden or undermines rural care, and emergency response. The PDAS framework
+workforce sustainability [49]. shifts evaluation from static pre-market approval to continuous
+
+population-level monitoring, treating deployed AI as dynamic • Reduce administrative friction and duplicationthrough
+interventionsrequiringongoingsurveillance.TheEBMonFHIR mutual recognition of credible private-sector accreditation
+architectureenablestransparent,auditableAIrecommendations programs and portability of evaluations across federal and
+through standardized representation of clinical evidence. state programs.
+Third,successfulAIgovernancerequiresnamedaccountabil- • Invest in real-world implementation science and public-
+ity structures. Sancian LLC’s AI Executive Owner model and private partnerships that generate evidence on AI integra-
+cross-functional governance councils address the diffusion of tion, workforce impact, and long-term outcomes. The
+responsibility that currently slows adoption. These frameworks PDAS framework exemplifies the shift from episodic
+recognize that AI safety depends as much on organizational validation to lifecycle-based oversight.
+readiness as on technical performance. • Fund workforce development programs targeting AI-
+Fourth, the future of work with AI adoption presents both related skills across career stages, from foundational
+challenges and opportunities. While routine pattern-recognition education through continuing professional development.
+roles face automation pressure, the predominant stakeholder Educational institutions must integrate AI competencies
+perspective emphasizes augmentation over replacement. AI into curricula, emphasizing ethical reasoning alongside
+can reduce cognitive burden, alleviate burnout, and enable technical proficiency.
+clinicians to focus on higher-value patient interactions—but
+D. A Call to Action
+only if workers are treated as partners in transformation rather
+than passive recipients of technological change. Emerging AI represents a rare opportunity to advance the shared goals
+roles—AI Clinical Governance Officer, Clinical AI Specialist, of patient safety, better outcomes, workforce sustainability, and
+AI Ethics & Equity Officer—require new educational compe- cost containment. Realizing this opportunity requires:
+tencies spanning technical literacy, critical evaluation, ethical • Patient-centered design grounded in empathy and trust,
+awareness, and workflow integration. with plain-language disclosure standards that explain AI
+involvementtopatientsandpreservethehumanconnection
+B. Patient Safety as Foundation central to compassionate care.
+PatientsafetymustremainthecornerstoneofAIdeployment • Strong clinical guardrails and continuous quality
+assurance, including input guardrails for crisis detection,
+in healthcare. The most effective AI systems operate within
+model guardrails constraining output generation, output
+clearlydefinedclinicalguardrails,incorporatehumanoversight,
+guardrails validating against clinical guidelines, and es-
+and are continuously monitored in real-world use. Engagement
+calation guardrails triggering human involvement when
+and empathy are safety features—AI tools that patients trust
+safety thresholds are exceeded.
+andinteractwithconsistentlyaremorelikelytodetectemerging
+concerns and less likely to miss critical signals. As Ellipsis • Incentives that reward prevention rather than volume,
+modernizingpaymentmodelstocapturethelong-termsav-
+Health emphasizes, empathy is not merely a usability feature
+ings generated by early detection, proactive engagement,
+but a patient safety imperative.
+and avoided utilization.
+C. Policy Imperatives • Federalpoliciesthatreduceuncertaintyandaccelerate
+adoption,providingclearrulesoftheroadwhileenabling
+HHS has a unique and critical role to play in accelerating
+innovation through regulatory sandboxes, safe harbors
+safe and effective AI adoption. Federal leadership should:
+for defined governance practices, and coordinated action
+• Align reimbursement with prevention and engagement, across HHS operating divisions.
+expanding CMS pathways for AI-supported assessment,
+E. Final Reflection
+monitoring, and outreach while ensuring that value-based
+payment models recognize AI-enabled activities that As the Association of perioperative Registered Nurses
+demonstrably reduce total cost of care. succinctlystates,"Cliniciansshouldbefullpartnersinpreparing
+• Clarify governance expectations for non-device AI, for the future of AI that intersects their respective practice
+issuing guidance on appropriate oversight models, human- settings."Thispartnershipapproach—treatingworkers,patients,
+in-the-loop review, and documentation standards propor- and communities as collaborators in AI adoption rather than
+tional to risk. Tiered, risk-based pathways aligned with passive recipients of technological change—offers the most
+frameworks such as the NIST AI Risk Management promising path toward a future where AI enhances rather than
+Frameworkcanreduceuncertaintywithoutover-regulating diminishes the human dimensions of healthcare.
+low-risk applications. The architectural frameworks, governance structures, and
+• Support standardized evaluation and accreditation policy recommendations synthesized in this paper provide a
+frameworks, including third-party audit mechanisms, roadmap for that future. By treating AI as care infrastruc-
+independent testing datasets representing diverse popula- ture requiring coordinated investment across data, standards,
+tions, and mandatory subgroup performance reporting. As monitoring, and governance—rather than isolated technology
+the Dental Standards Institute notes, "self-validation is deployment—HHS can accelerate adoption while maintaining
+not validation." patientsafetyandpublictrust.Thenext24-36monthsrepresent
+
+anarrowwindowtoembedtheseprinciplesbeforeAIbecomes [18] SKAF,“Responsetohhsrfionaiforclinicalcarefromskaf,”Jan.2026,
+irreversible infrastructure. With thoughtful leadership and sKAFSubmissiontoHHSRFIRIN0955-AA13.[Online].Available:
+https://www.regulations.gov/document/HHS-ONC-2026-0001-0021
+collaboration,AIcanhelpmakehealthcaresafer,morehumane,
+[19] BlueHalo LLC, “Response to hhs rfi on ai for clinical care,”
+and more affordable for all Americans. Feb. 2026, blueHalo LLC Submission to HHS RFI RIN 0955-
+AA13. [Online]. Available: https://www.regulations.gov/document/
+REFERENCES HHS-ONC-2026-0001-0039
+[20] SANCIAN LLC, “Response to request for information: Accelerating
+[1] Advocacy Insights: The current and future landscape of the adoption and use of artificial intelligence as part of clinical
+health care AI policy. American Medical Association. care,” Dec. 2025, sANCIAN LLC Submission to HHS RFI RIN
+[Online].Available:https://www.ama-assn.org/member-benefits/events/ 0955-AA13.[Online].Available:https://www.regulations.gov/document/
+advocacy-insights-current-and-future-landscape-health-care-ai-policy HHS-ONC-2026-0001-0012
+[2] E.E.Lee,J.Torous,M.DeChoudhury,C.A.Depp,S.A.Graham,H.-C. [21] AssociationforDiagnostics&LaboratoryMedicine,“Commentonhhs
+Kim,M.P.Paulus,J.H.Krystal,andD.V.Jeste,“ArtificialIntelligence health sector ai rfi,” Feb. 2026, aDLM Submission to HHS RFI RIN
+forMentalHealthCare:ClinicalApplications,Barriers,Facilitators,and 0955-AA13.[Online].Available:https://www.regulations.gov/document/
+Artificial Wisdom,” vol. 6, no. 9, pp. 856–864. [Online]. Available: HHS-ONC-2026-0001-0048
+https://www.sciencedirect.com/science/article/pii/S245190222100046X [22] Dental Standards Institute, “Supplemental detail (expanded comment
+[3] J.DeFreitasandI.G.Cohen,“ThehealthrisksofgenerativeAI-based from dsi),” Feb. 2026, dSI Submission to HHS RFI RIN 0955-
+wellness apps,” vol. 30, no. 5, pp. 1269–1275. [Online]. Available: AA13. [Online]. Available: https://www.regulations.gov/document/
+https://www.nature.com/articles/s41591-024-02943-6 HHS-ONC-2026-0001-0057
+[4] T. R. Campellone, M. Flom, R. M. Montgomery, L. Bullard, M. C. [23] Ellipsis Health, “Rfi: Accelerating the adoption and use of artificial
+Pirner, A. Pavez, M. Morales, D. Harper, C. Oddy, T. O’Connor, intelligence as part of clinical care,” Feb. 2026, ellipsis Health
+J. Daniels, S. Eaneff, V. L. Forman-Hoffman, C. Sackett, and Submission to HHS RFI RIN 0955-AA13. [Online]. Available:
+A. Darcy, “Safety and User Experience of a Generative Artificial https://www.regulations.gov/document/HHS-ONC-2026-0001-0045
+IntelligenceDigitalMentalHealthIntervention:ExploratoryRandomized [24] Association of perioperative Registered Nurses, “Comment on hhs
+Controlled Trial,” vol. 27, no. 1, p. e67365. [Online]. Available: health sector ai rfi,” Jan. 2026, aORN Submission to HHS RFI RIN
+https://www.jmir.org/2025/1/e67365 0955-AA13.[Online].Available:https://www.regulations.gov/document/
+[5] World Health Organization, “Who releases ai ethics HHS-ONC-2026-0001-0023
+and governance guidance for large multi-modal models,” [25] Intersocietal Accreditation Commission, “Comment on request for
+2024. [Online]. Available: https://www.who.int/news/item/ information:Acceleratingtheadoptionanduseofartificialintelligence
+18-01-2024-who-releases-ai-ethics-and-governance-guidance-for-large-multi-modaals-mpaordteolsfclinicalcare,”Feb.2026,iACSubmissiontoHHSRFIRIN
+[6] Artificialintelligence.EuropeanCommission-EuropeanCommission. 0955-AA13.[Online].Available:https://www.regulations.gov/document/
+[Online].Available:https://ec.europa.eu/commission/presscorner HHS-ONC-2026-0001-0041
+[7] MedTech Dive, “Fda issues final guidance
+[26] S.Nandagopal.BeyondStaticProducts:RethinkingRegulatoryHurdles
+on postmarket updates to ai-enabled de-
+and.[Online].Available:https://papers.ssrn.com/abstract=5824142
+vices.” [Online]. Available: https://www.medtechdive.com/news/
+[27] “Healthcare Agentic AI: Benefits & Use Cases,”
+fda-final-guidance-predetermined-change-control-plans-ai/734608/
+https://www.salesforce.com/healthcare-life-sciences/healthcare-artificial-
+[8] A.VanPelt,“Publiccommentonacceleratingtheadoptionanduseof
+intelligence/healthcare-agentic-ai/.
+artificial intelligence as part of clinical care,” Jan. 2026, van Pelt &
+[28] “HowAgenticAIHelpsImproveHealthOutcomes,Reimbursement,Star
+CompanySubmissiontoHHSRFIRIN0955-AA13.[Online].Available:
+Ratings.”
+https://www.regulations.gov/document/HHS-ONC-2026-0001-0029
+[29] K. Zhou and G. Gattinger, “The Evolving Regulatory Paradigm
+[9] Health advisory: Use of generative AI chatbots and wellness
+of AI in MedTech: A Review of Perspectives and Where We
+applications for mental health. https://www.apa.org. [Online]. Avail-
+Are Today,” vol. 58, no. 3, pp. 456–464. [Online]. Available:
+able:https://www.apa.org/topics/artificial-intelligence-machine-learning/
+https://doi.org/10.1007/s43441-024-00628-3
+health-advisory-chatbots-wellness-apps
+[30] (1) Regulating Generative AI-Enabled Medical De-
+[10] AI chatbots for promoting healthy habits: Legal, ethical, and
+vices - Part 3 - Post Market Monitoring |
+societal considerations - Hannah van Kolfschooten, João Gonçalves,
+LinkedIn. [Online]. Available: https://www.linkedin.com/pulse/
+Nic Orchard, Caroline Figueroa, 2025. [Online]. Available: https:
+regulating-generative-ai-enabled-medical-devices-3-conjeti-phd-xzt5e/
+//journals.sagepub.com/doi/10.1177/20552076251390004
+[31] D.U.Himmelstein,T.Campbell,andS.WoosterHandler,“Administrative
+[11] F. C. Ohu, D. N. Burrell, and L. A. Jones, “Public Health Risk
+workconsumesone-sixthofu.s.physicians’workinghoursandlowers
+Management,Policy,andEthicalImperativesintheUseofAIToolsfor
+theircareersatisfaction,”InternationalJournalofHealthServices,vol.51,
+MentalHealthTherapy,”vol.13,no.21,p.2721.[Online].Available:
+no.4,pp.431–445,2021.
+https://www.mdpi.com/2227-9032/13/21/2721
+[12] “Virtual and digital health digest,” 2025. [Online]. [32] National Multiple Sclerosis Society, “Comment on request for
+Available: https://www.mondaq.com/unitedstates/healthcare/1714620/ information:Acceleratingtheadoptionanduseofartificialintelligence
+virtual-and-digital-health-digest aspartofclinicalcare,”Feb.2026,nationalMultipleSclerosisSociety
+[13] Interstella,“Commentonhhshealthsectorairfi,”Jan.2026,interstella SubmissiontoHHSRFI.[Online].Available:https://www.regulations.
+Submission to HHS RFI RIN 0955-AA13. [Online]. Available: gov/document/HHS-ONC-2026-0001-0040
+https://www.regulations.gov/document/HHS-ONC-2026-0001-0022 [33] T. Tavory, “Regulating AI in Mental Health: Ethics of Care
+[14] S. Joshi. Framework for Government Policy on Agentic and Perspective,” vol. 11, no. 1, p. e58493. [Online]. Available:
+Generative AI in Healthcare: Governance, Regulation, and Risk https://mental.jmir.org/2024/1/e58493
+Management of Open-Source and Proprietary Models. [Online]. [34] Global Liver Institute, “Comment on hhs health sector ai rfi,”
+Available:https://www.preprints.org/manuscript/202509.1087 Feb. 2026, global Liver Institute Submission to HHS RFI RIN
+[15] G.L.Group.InternationalComparativeLegalGuides.InternationalCom- 0955-AA13.[Online].Available:https://www.regulations.gov/document/
+parativeLegalGuidesInternationalBusinessReports.[Online].Available: HHS-ONC-2026-0001-0047
+https://iclg.com/practice-areas/digital-health-laws-and-regulations/usa [35] Anonymous,“Commentonhhshealthsectorairfi,”Jan.2026,anonymous
+[16] A. Golden and E. Aboujaoude, “Describing the Framework for AI Submission to HHS RFI RIN 0955-AA13. [Online]. Available:
+ToolAssessmentinMentalHealthandApplyingIttoaGenerativeAI https://www.regulations.gov/document/HHS-ONC-2026-0001-0031
+Obsessive-Compulsive Disorder Platform: Tutorial,” vol. 8, no. 1, p. [36] S. Zecola, “Comments of steven zecola, a patient advocate,” Jan.
+e62963.[Online].Available:https://formative.jmir.org/2024/1/e62963 2026, patient Advocate Submission to HHS RFI. [Online]. Available:
+[17] A.Bhagavathula,“Commentonhhs-onc-2026-0001governingclinical https://www.regulations.gov/document/HHS-ONC-2026-0001-0016
+artificial intelligence as a population-level,” Jan. 2026, north Dakota [37] S.Joshi,“RegulatoryReformforAgenticAI:AddressingGovernance
+State University Submission to HHS RFI. [Online]. Available: Challenges in Federal AI Adoption.” [Online]. Available: https:
+https://www.regulations.gov/document/HHS-ONC-2026-0001-0006 //zenodo.org/records/17808694
+
+[38] (1) A Regulatory Compliance Warning for Mental Health AI
+Founders | LinkedIn. [Online]. Available: https://www.linkedin.com/
+pulse/regulatory-compliance-warning-mental-health-ai-scott-jb1kc/
+[39] FDA Oversight: Understanding the Regulation of Health
+AI Tools • Bipartisan Policy Center. Bipartisan Policy
+Center. [Online]. Available: https://bipartisanpolicy.org/issue-brief/
+fda-oversight-understanding-the-regulation-of-health-ai-tools/
+[40] L.Eliot.GenerativeAIForMentalHealthIsUppingTheAnteByGoing
+Multi-Modal,EmbracingE-Wearables,AndAWholeLotMore.Forbes.
+[Online].Available:https://www.forbes.com/sites/lanceeliot/2023/11/02/
+generative-ai-for-mental-health-is-upping-the-ante-by-going-multi-modal-embracing-e-wearables-and-a-whole-lot-more/
+[41] “Generative AI in healthcare: Emerging use for care | McKinsey,”
+https://www.mckinsey.com/industries/healthcare/our-insights/tackling-
+healthcares-biggest-burdens-with-generative-ai.
+[42] M. M. Mello and I. G. Cohen, “Regulation of Health and Health
+CareArtificialIntelligence,”vol.333,no.20,pp.1769–1770.[Online].
+Available:https://doi.org/10.1001/jama.2025.3308
+[43] J. N. Shumate, E. Rozenblit, M. Flathers, C. A. Larrauri, C. Hau,
+W.Xia,E.N.Torous,andJ.Torous,“GoverningAIinMentalHealth:
+50-State Legislative Review,” vol. 12, no. 1, p. e80739. [Online].
+Available:https://mental.jmir.org/2025/1/e80739
+[44] M.-S. Burrett, C. Gordon, and J. McQuillen. Australia introduces
+a national AI plan: Four things leaders need to know. Lexology.
+[Online]. Available: https://www.lexology.com/library/detail.aspx?g=
+a200e0e5-1829-4b27-89de-e426a345a201
+[45] E. a. S. D. Canada. Compendium of best prac-
+tices for a human-centered development and use of
+Artificial Intelligence in the world of work. [Online].
+Available: https://www.canada.ca/en/employment-social-development/
+corporate/reports/2025-best-practices-artificial-intelligence.html
+[46] R.Bouderhem,“ShapingthefutureofAIinhealthcarethroughethics
+and governance,” Humanities and Social Sciences Communications,
+vol. 11, no. 1, p. 416, Mar. 2024, publisher: Palgrave. [Online].
+Available:https://www.nature.com/articles/s41599-024-02894-w
+[47] S.Joshi,“AComprehensiveFrameworkforU.S.AIExportLeadership:
+Analysis,Implementation,andStrategicRecommendations.”[Online].
+Available:https://zenodo.org/records/17823269
+[48] G. L. Group. International Comparative Legal
+Guides. International Comparative Legal Guides
+International Business Reports. [Online]. Available:
+https://iclg.com/practice-areas/digital-health-laws-and-regulations/
+03-artificial-intelligence-tools-in-health-services-an-overview-of-current-and-evolving-us-federal-and-state-health-regulatory-structures
+[49] “The administrative reckoning in health care: Why
+agentic AI may be the system’s only escape hatch,”
+https://www.medicaleconomics.com/view/the-administrative-reckoning-
+in-health-care-why-agentic-ai-may-be-the-system-s-only-escape-hatch,
+May2025.

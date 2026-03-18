@@ -17,8 +17,8 @@ Comments are grouped by **explicit CSV properties** (not clustering):
 
 Examples:
 - `individual_consumer-low`: Short, simple, personal comments
-- `industry-high-org`: Long, formal, structured organizational comments
-- `advocacy_group-medium-org`: Mid-length, professional advocacy comments
+- `industry_high_org`: Long, formal, structured organizational comments
+- `advocacy_group_medium_org`: Mid-length, professional advocacy comments
 
 ### Skill Files
 
@@ -49,11 +49,11 @@ CMS-2025-0050/
 └── stylometry/
     ├── index.json
     ├── individual_consumer-low.md
-    ├── individual_consumer-medium.md
+    ├── individual_consumer_medium.md
     ├── individual_consumer-high.md
-    ├── industry-medium-org.md
-    ├── industry-high-org.md
-    ├── advocacy_group-medium-org.md
+    ├── industry_medium_org.md
+    ├── industry_high_org.md
+    ├── advocacy_group_medium_org.md
     └── ...
 ```
 
@@ -83,7 +83,7 @@ The index file provides a summary and archetype mapping:
   "total_comments": 980,
   "voice_groups": [
     {
-      "voice_id": "individual_consumer-low",
+      "voice_id": "individual_consumer_low",
       "filename": "individual_consumer-low.md",
       "archetype": "individual_consumer",
       "sophistication": "low",
@@ -93,7 +93,7 @@ The index file provides a summary and archetype mapping:
   "archetype_mapping": {
     "individual_consumer": [
       "individual_consumer-low.md",
-      "individual_consumer-medium.md",
+      "individual_consumer_medium.md",
       "individual_consumer-high.md"
     ],
     "industry": [...]
@@ -220,15 +220,15 @@ From analyzing 980 comments, we identified 9 voice groups:
 
 | Voice Group | Sample Size | Description |
 |-------------|-------------|-------------|
-| individual_consumer-medium | 491 | Most common: mid-length personal comments |
-| industry-medium-org | 188 | Professional organizational comments |
-| advocacy_group-medium-org | 112 | Advocacy group standard voice |
+| individual_consumer_medium | 491 | Most common: mid-length personal comments |
+| industry_medium_org | 188 | Professional organizational comments |
+| advocacy_group_medium_org | 112 | Advocacy group standard voice |
 | individual_consumer-low | 79 | Short, simple personal comments |
 | individual_consumer-high | 58 | Long, detailed individual comments |
-| industry-high-org | 17 | Highly formal corporate submissions |
-| academic-medium-org | 13 | Academic/research comments |
-| industry-low-org | 7 | Brief organizational notes |
-| advocacy_group-high-org | 6 | Formal advocacy submissions |
+| industry_high_org | 17 | Highly formal corporate submissions |
+| academic_medium_org | 13 | Academic/research comments |
+| industry_low_org | 7 | Brief organizational notes |
+| advocacy_group_high_org | 6 | Formal advocacy submissions |
 
 ## Advantages Over Generic Instructions
 

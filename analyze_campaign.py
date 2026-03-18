@@ -12,8 +12,8 @@ Produces a comprehensive report covering:
   7. Sentence length statistics
 
 Usage:
-  python analyze_campaign.py CMS-2025-0050
-  python analyze_campaign.py CMS-2025-0050 --verbose
+  python analyze_campaign.py <docket>
+  python analyze_campaign.py <docket> --verbose
 """
 
 from __future__ import annotations

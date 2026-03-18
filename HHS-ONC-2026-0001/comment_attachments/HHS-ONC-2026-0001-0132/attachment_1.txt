@@ -1,0 +1,274 @@
+Comment on HHS Health Sector AI RFI
+Docket: HHS-ONC-2026-0001
+Submitted by:
+Eli Talbert, PhD
+Senior Data Scientist, United States Special Operations Command
+The submitter works on operational AI governance in defense decision-support contexts, with a
+focus on accountability, documentation, and escalation design; this comment applies those
+governance principles to clinical AI adoption and oversight.
+RFI Questions Addressed: Q1, Q2, Q3, Q4, Q7, Q8, Q10
+Executive Summary: Four Immediate Policy
+Actions
+Regulatory uncertainty and liability ambiguity are among the most significant barriers to clinical
+AI adoption. The actions below would accelerate deployment by establishing a common
+accountability floor—reducing the duplicative institutional governance costs and defensive non-
+adoption that currently slows innovation. To that end, HHS should:
+1. Issue ONC interpretive guidance requiring minimum decision logging for high-
+impact AI-enabled clinical decision support integrated into EHR workflows.
+(Responds to RFI Questions 2, 3, 8)
+2. Clarify accountability allocation expectations for non-device AI through joint ONC–
+FDA guidance. (Responds to RFI Questions 2, 3)
+3. Direct CMS to incorporate accountable AI documentation standards into
+Conditions of Participation for hospitals deploying high-impact AI tools. (Responds
+to RFI Questions 2, 7)
+4. Fund NIH/AHRQ implementation science pilots testing post-deployment human–AI
+interaction metrics, including override monitoring. (Responds to RFI Questions 4, 10)
+These actions are likely to reduce liability ambiguity, strengthen interoperability, and create
+measurable governance standards that accelerate responsible adoption, though empirical
+evaluation of adoption and compliance effects should accompany implementation. This comment
+does not propose new regulatory agencies, pre-market approval requirements for non-device AI,
+or blanket restrictions on deployment. It proposes minimum documentation and logging
+standards that reduce the regulatory uncertainty currently driving defensive non-adoption and
+duplicative institutional compliance costs.
+1
+
+For purposes of this comment, “high-impact AI” refers to AI systems that materially influence
+diagnostic, triage, medication, procedural, or discharge decisions, particularly in settings where
+clinician workload, time pressure, or financial incentives may shape reliance patterns.
+I. Close the Regulatory Gap for Non-Device
+Clinical AI
+[Responds to RFI Questions 1, 2, 3, 7]
+Governance challenges in clinical AI mirror those in other high-stakes, time-pressured human-
+algorithm decision environments: authority boundaries, escalation design, and documentation
+standards determine whether hybrid systems remain accountable over time. In defense decision-
+support systems, these are not optional governance add-ons but prerequisites for deployment
+authorization. Clinical environments differ from military command structures in training
+standardization, liability regimes, and autonomy structures, but both domains confront the same
+core challenge: maintaining auditable authority boundaries in high-stakes human–algorithm
+collaboration.
+Existing HHS frameworks already address important components of this landscape, including:
+ FDA regulation of Software as a Medical Device (SaMD)
+ Predetermined Change Control Plans (PCCP) governing planned device modifications
+ ONC HTI-1 Decision Support Intervention (DSI) transparency requirements (45 CFR §
+170.315)
+ CMS documentation standards under the Conditions of Participation (42 CFR § 482.24)
+For clarity, this comment distinguishes between (a) FDA-regulated device software pathways,
+including SaMD submissions and PCCP-governed modifications, and (b) ONC-certified health
+IT functionality and CMS documentation expectations applicable to EHR-integrated decision
+support that may not meet device definitions. The governance gap identified here primarily
+concerns workflow-integrated, non-device AI functionality embedded within certified health IT
+environments.
+Within this non-device space, a structural gap remains. Current frameworks emphasize model
+transparency, performance reporting, and change management. They do not specify:
+ How clinician override behavior must be logged
+ How authority boundaries between model and clinician are operationally defined
+ How escalation pathways are monitored over time
+2
+
+This creates ambiguity in accountability allocation and increases institutional hesitation to
+deploy AI at scale.
+HHS can close this gap through interpretive guidance clarifying documentation and
+accountability expectations, using existing regulatory authority under 45 CFR § 170.315 (ONC
+certification criteria) and 42 CFR § 482.24 (CMS Conditions of Participation for medical record
+services).
+II. Establish Minimum Decision Logging
+Standards
+[Responds to RFI Questions 2, 4, 8]
+HHS should establish — through ONC guidance or certification updates under 45 CFR §
+170.315 — a minimum logging requirement for high-impact AI-enabled CDS.
+At minimum, systems should record:
+1. Timestamp of model output
+2. Model recommendation or risk score
+3. Clinician action (accept / modify / override)
+4. Override flag with standardized rationale category
+5. Escalation pathway triggered (if any)
+6. Linkage to downstream order or documented outcome
+7. Patient notification flag (whether the patient was informed AI contributed to the decision)
+Illustrative workflow: An EHR-integrated sepsis risk model generates a high-probability alert for
+a patient in a medical-surgical unit. The attending clinician reviews the alert but determines that
+the elevated score reflects a known chronic condition, and overrides the recommendation. Under
+the proposed schema, the system logs the model output (Elements 1–2), the override action with
+a standardized rationale code (Elements 3–4), and the absence of an escalation trigger (Element
+5). Downstream, the patient’s outcome is linked to the decision (Element 6). This structured
+record enables quality review to distinguish informed clinical judgment from unexamined
+dismissal—without requiring real-time intervention or additional clinician workflow steps.
+3
+
+Critically, this schema imposes minimal marginal burden. Elements 1–3 build directly on
+existing certified health IT audit logging capabilities required under 45 CFR § 170.315. Elements
+4–7 require structured configuration within EHR workflows but not novel infrastructure or
+hardware investment. The absence of a common standard imposes higher costs: each
+deploying institution must independently design governance documentation, negotiate
+liability allocation with vendors, and defend ad hoc logging practices—duplicative effort
+that a federal floor would eliminate. Standardization reduces institutional compliance burden
+while creating the interoperable evidence base that regulators, payers, and health systems need to
+support scaled deployment.
+4
+
+Implementation Feasibility
+Certified health IT must support audit logging of actions related to electronic health information.
+However, AI-specific decision telemetry, including structured capture of model output, override
+rationale, and escalation triggers, typically requires additional configuration or integration within
+EHR workflows. Elements 1–3 build on existing audit logging capabilities, while Elements 4–7
+generally require structured configuration but not novel infrastructure. The patient notification
+flag would indicate whether AI involvement was disclosed in accordance with institutional
+policy; this proposal does not prescribe the notification workflow itself. The schema should be
+machine-readable and expressible via FHIR AuditEvent or equivalent interoperable standards,
+consistent with USCDI expansion goals.
+This aligns with:
+ HTI-1 transparency requirements under 45 CFR § 170.315(b)(11)
+ FDA Predetermined Change Control Plan (PCCP) provisions under FD&C Act § 515C
+(21 U.S.C. § 360e-4), which address planned modifications and when additional
+premarket submissions are required; post-deployment monitoring expectations may arise
+under device quality system and postmarket reporting frameworks (e.g., 21 CFR Parts
+803 and 820), though PCCP provisions are primarily change-control focused.
+ Regulatory concern regarding superficial review or rubber-stamping of AI
+recommendations, consistent with HHS and OIG compliance principles on meaningful
+clinician oversight
+Such a schema would not inhibit innovation. It would reduce uncertainty and demonstrate
+accountable deployment. Additionally, structured logging enables detection of disparate override
+or recommendation patterns across protected characteristics, supporting existing
+nondiscrimination obligations under federal civil rights law and strengthening patient trust in AI-
+assisted care.
+III. Ground Oversight in Empirical Evidence
+[Responds to RFI Questions 4, 10]
+Automation bias in clinical decision support has been documented in peer-reviewed literature
+spanning over a decade, with recent findings confirming that the problem persists in production
+AI deployments:
+ Goddard et al., Journal of the American Medical Informatics Association (2012):
+Systematic review establishing that automation bias is a consistent and measurable
+phenomenon in clinical decision support, identifying frequency, effect mediators, and
+mitigators.
+ Lyell & Coiera, Journal of the American Medical Informatics Association (2017): A
+PRISMA-compliant systematic review of 40 studies that found that automation bias
+increases as verification complexity rises. This dynamic is particularly relevant to AI-
+5
+
+enabled clinical decision support, where clinicians often operate under high information
+load and time pressure.
+ Gaube et al., NPJ Digital Medicine (2021): In a randomized study of chest radiograph
+interpretation, clinicians were influenced by both accurate and inaccurate advice.
+Diagnostic accuracy declined substantially when participants received incorrect
+recommendations, regardless of whether the advice was labeled as coming from an “AI
+system” or a “human expert.” The source label affected perceived credibility ratings but
+did not significantly change diagnostic performance.
+ Sivaraman et al., Proceedings of the CHI Conference on Human Factors in Computing
+Systems (2023): Showed that clinician trust calibration in AI-based treatment
+recommendations is difficult to achieve, and that reliance patterns go beyond binary
+accept/reject decisions—reinforcing the need for structured override logging.
+ Khera, Simon & Ross, JAMA (2023): Editorial accompanying Jabbour et al. empirical
+research; warned that even in controlled settings without time pressure, clinicians favored
+AI-based decision-making systems despite contradictory or clinically nonsensical
+information, identifying automation bias as a direct risk of harm from AI-driven CDS.
+ Dratsch et al., Radiology (2023): In a study of AI-assisted mammography (BI-RADS)
+categorization, incorrect AI suggestions significantly impaired diagnostic performance
+across all experience levels. While greater expertise reduced the magnitude of the effect,
+even very experienced radiologists remained measurably susceptible to incorrect
+recommendations.
+These findings collectively establish that performance metrics alone do not capture behavioral
+adaptation in hybrid human–AI systems. Over-reliance patterns emerge even among experienced
+clinicians and are amplified under conditions of high information load and complexity. Existing
+evidence suggests that transparency or labeling interventions alone do not reliably eliminate
+these effects.
+Structured override monitoring enables evidence-based oversight without imposing blanket
+restrictions on deployment. Logging enables institutions to detect, quantify, and respond to
+behavioral adaptation patterns.
+IV. Clarify Accountability Allocation for Non-
+Device AI
+[Responds to RFI Questions 2, 3]
+HHS should clarify expectations regarding:
+ Designation of accountable organizational owner for AI deployment
+ Documentation requirements for AI-assisted high-risk decisions
+ Distinction between device-regulated AI and workflow-integrated non-device AI
+This clarification could be implemented through:
+6
+
+ ONC interpretive guidance under HTI authority (45 CFR § 170.315)
+ Joint FDA–ONC guidance on hybrid accountability allocation
+ CMS Conditions of Participation updates referencing documentation standards (42 CFR §
+482.24)
+Clear guidance reduces defensive non-adoption driven by liability uncertainty. Such
+clarification reduces uncertainty without altering tort standards; it establishes documentation
+expectations that support, rather than supplant, existing malpractice and product liability
+frameworks.
+V. Fund Research on Human–AI Interaction in
+Deployed Systems
+[Responds to RFI Questions 4, 10]
+HHS should fund applied research to:
+1. Measure longitudinal override patterns in deployed systems.
+2. Identify escalation pathway shifts following AI integration.
+3. Develop standardized human–AI coordination metrics.
+4. Pilot interoperable logging schemas across health systems.
+Implementation science funding through NIH, AHRQ, or cooperative agreements (including
+CRADAs) would generate the evidence base necessary for proportionate regulation. Contracts,
+cooperative agreements, and prize competitions (as referenced in the RFI) are all viable
+mechanisms; cooperative agreements may be particularly effective for multi-site logging schema
+pilots that require cross-institutional coordination.
+VI. Align Reimbursement Incentives with
+Documentation Standards
+[Responds to RFI Question 2]
+This comment focuses primarily on regulation and research levers. However, the documentation
+standards proposed above have natural connections to CMS payment policy that would reinforce
+adoption:
+ CMS could condition New Technology Add-on Payments (NTAPs) or Advanced APM
+incentive payments on demonstrated AI governance documentation, including the
+logging schema described in Section II.
+ Quality measure reporting under the Merit-based Incentive Payment System (MIPS)
+could incorporate AI-assisted decision documentation as an Improvement Activity,
+7
+
+creating a positive incentive for adoption of accountable logging without mandating
+specific technology choices.
+ Aligning documentation standards across regulatory and reimbursement frameworks
+would reduce the compliance burden for health systems deploying AI, rather than
+creating parallel reporting obligations.
+These reimbursement connections are noted here to signal their feasibility; detailed payment
+policy design is beyond the scope of this comment but warrants dedicated analysis in future
+rulemaking.
+Conclusion
+By clarifying documentation standards and encouraging minimal telemetry requirements, HHS
+would create conditions likely to:
+ Reduce liability ambiguity
+ Support responsible innovation
+ Strengthen patient trust
+ Provide regulators with objective oversight tools
+These measures are proportionate, technically feasible, and aligned with existing regulatory
+architecture. Much of this could be pursued under existing authorities through interpretive
+guidance, certification updates, and program conditions; however, binding requirements would
+likely require notice-and-comment rulemaking or enforceable Conditions of Participation
+consistent with Administrative Procedure Act constraints.
+The views expressed in this comment are those of the author and do not necessarily reflect the
+official policy or position of the Department of War, the U.S. Army, or the U.S. Government.
+8
+
+Appendix: RFI Question Crosswalk
+The following table maps this comment’s sections to the specific questions posed in the RFI.
+RFI Q# RFI Question (abbreviated) Comment Section(s)
+1 Biggest barriers to private sector AI innovation and adoption Section I
+2 Regulatory, payment, or programmatic changes to prioritize Sections I, II, IV, VI
+(with CFR citations)
+3 Novel legal and implementation issues for non-device AI Sections I, IV
+4 Most promising evaluation methods for non-device AI Sections II, III, V
+7 Roles and governing bodies influencing AI adoption; Sections I, IV
+administrative hurdles
+8 Enhanced interoperability to widen markets and accelerate AI Section II (FHIR AuditEvent,
+USCDI)
+10 AI research priorities; published findings on adopted AI tools Sections III, V
+Appendix: Key Regulatory Citations
+CFR Citation Authority Relevance to This Comment
+45 CFR § 170.315 ONC Health IT Certification Criteria Regulatory hook for requiring decision
+logging in certified health IT under
+HTI-1 DSI criteria
+45 CFR § 170.315(b)(11) ONC DSI Transparency Requirements Specific HTI-1 provision for decision
+support intervention source attributes
+and transparency
+42 CFR § 482.24 CMS Conditions of Participation: Hook for CMS to require AI-assisted
+Medical Record Services decision documentation in hospital
+medical records
+FD&C Act § 515C (21 FDA Predetermined Change Control Change-control framework for planned
+U.S.C. § 360e-4) Plans device modifications; post-deployment
+monitoring expectations arise under
+related device quality system and
+postmarket reporting frameworks (21
+CFR Parts 803, 820)
+9

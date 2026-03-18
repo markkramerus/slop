@@ -1,0 +1,1301 @@
+HHS Health Sector AI RFI Response
+Office of the Deputy Secretary and Assistant Secretary for Technology
+Policy (ASTP), Office of the National Coordinator for Health
+Information Technology (ONC) (collectively, ASTP/ONC), Department
+of Health and Human Services.
+Submitted by:
+LMI Consulting, LLC
+7940 Jones Branch Drive
+Tysons, VA 22102
+Laura Dial, Contracts Administration
+ldial@lmisolutions.com
+Restriction on use and disclosure of response information: This RFI response includes data that shall not be disclosed outside
+the government and shall not be duplicated, used, or disclosed—in whole or in part—for any purpose other than to evaluate this
+proposal. However, if a contract is awarded to LMI as a result of—or in connection with—the submission of these data, the government
+shall have the right to duplicate, use, or disclose the data to the extent provided in the resulting contract. This restriction does not limit
+the government’s right to use information contained in these data if they are obtained from another source without restriction. The
+data subject to this restriction are on pages marked “use or disclosure of data contained on this sheet is subject to the restriction on
+the title page of this proposal.”
+
+HHS Health Section AI RFI Response
+1.0 Executive Summary
+This document provides a comprehensive examination of the challenges and opportunities
+associated with the integration of artificial intelligence (AI) into clinical care and outlines proactive
+measures that HHS can take to accelerate responsible and ethical adoption. AI has the potential to
+be transformative in modernizing healthcare systems, improving operational efficiencies, reducing
+clinician burnout, enhancing patient outcomes, improving diagnostic accuracy, and expanding
+access to underserved populations. However, any strategy to accelerate AI in clinical settings will
+need to address barriers to adoption, including fragmented data governance, low trust in AI
+systems, liability questions, demographic bias, misaligned incentives, and workflow friction. As a
+trusted partner in government transformation and digital enablement, LMI advocates for forward-
+thinking strategies that promote the benefits of AI adoption and scalability while maintaining a
+robust framework for safety, equity, and long-term sustainability.
+Key Points:
+Challenges to Adoption
+• Trust & Liability: Clinicians and patients require confidence in AI accuracy and fairness,
+while liability ambiguities complicate adoption.
+• Outdated Infrastructure and Data Fragmentation: Fragmented and biased healthcare
+data undermines the scalability and reliability of AI systems across diverse populations.
+Additionally, aging infrastructure in large healthcare systems often proves incompatible
+with modern AI platforms, limiting real-time data exchange and promoting the use of
+standalone AI tools instead of seamless integration into existing systems.
+• Operational Friction: Lack of human-centered design and clinician/patient perspectives
+during development results in AI tools that fail to integrate seamlessly into workflows,
+leading to "friction-filled" systems rather than optimized productivity.
+• Economic Misalignment: Outdated fee-for-service models do not incentivize value-based
+outcomes achievable through AI capabilities.
+• Administrative Barriers to Adoption: Fragmented governance and oversight, lack of
+resources or understanding around change management processes, complex regulatory
+requirements, lack of standardized evaluation frameworks, and uncertainty around funding
+and reimbursement all contribute to delayed AI deployment.
+AI in Healthcare: Success so Far
+• Reduced Administrative Burnout: Research shows that AI scribes have resulted in
+decreased clinician burnout and increased patient capacity. A survey by the American
+Medical Association in 2024 found that the percentage of medical practices using AI
+almost doubled from 2023 and that clinicians are most comfortable with using these tools
+to assist with administrative tasks, rather than direct patient care.
+• Imaging and Diagnostics: Several emerging AI tools for radiology and pathology
+demonstrate accuracy that rivals or exceeds human accuracy in detecting disease (Jones et
+al., 2026; Phan et al., 2025).
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 1
+
+HHS Health Section AI RFI Response
+• Operational Efficiency: AI-driven scheduling has increased productivity and improved
+patient satisfaction by reducing wait times (Waligora et al, 2025).
+• Patient Triage and Virtual Assistance: Chatbots and symptom-checkers in patient portals
+have been successful in reducing unnecessary emergency room visits and provide safe
+triage advice (Elechi et al., 2025).
+LMI Recommendations for Strategic AI Integration
+Recommendations for accelerating AI adoption span multiple modalities and are outlined below.
+• Regulatory Modernization: To address barriers related to trust in AI, HHS can focus on
+the establishment of risk-based oversight frameworks, standardized data privacy
+requirements, and algorithm transparency and performance documentation.
+• Governance Frameworks: Introduce guidelines for or creating standardized contracting
+templates, transparency protocols, and model-lifecycle controls to address accountability
+gaps in non-medical AI tools.
+• Private Sector Collaboration: Foster public-private partnerships for scalable testing
+infrastructure and enable third-party certification frameworks to encourage independent
+validation of AI solutions.
+• Research and Development Priorities: Focus on explainable AI outputs, robust
+standards for data quality, performance benchmarks, and post-deployment monitoring and
+drift detection to ensure AI systems evolve alongside dynamic healthcare practices without
+undermining reliability.
+• Surfacing Patient Perspectives: Patient perspectives have not been adequately
+researched, but among those studies that have been done, the need for patient stakeholders
+in AI development, human oversight, transparency, and importance of data privacy have
+all been identified as key components for addressing patient trust in AI technologies.
+• Workflow Integration and Organizational Change Management: Prioritize human-in-
+the-loop models to incorporate clinician oversight, usability optimization, and cognitive
+burden reduction for seamless adoption. Combine usability testing, training strategies, and
+integrated change management to drive trusted adoption and scalable tools.
+• Innovative Payment Models: Transition from fee-for-service to value-based care models,
+like the model used by the CMS Advancing Chronic Care with Effective, Scalable
+Solutions (ACCESS) initiative, to create incentives for adopting AI systems that
+measurably improve patient outcomes and hospital efficiencies. Develop reimbursement
+pathways that align with AI's unique capacity to achieve long-term operational and clinical
+efficiencies.
+AI holds immense promise for revolutionizing clinical care by addressing clinician burnout,
+improving diagnosis, and increasing access for underserved populations. However, realizing this
+potential requires coordinated regulatory reforms, better data governance, clear reimbursement
+frameworks, human-centered implementation strategies, and alignment among clinicians, patients,
+vendors, and healthcare systems. By addressing these barriers collectively, the U.S. healthcare
+system can leverage AI to deliver safe, equitable, and high-quality care at scale.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 2
+
+HHS Health Section AI RFI Response
+2.0 Defining AI
+Before discussing strategies for promoting the development and adoption of AI tools it is important
+to understand what “AI” means. The term “Artificial Intelligence” or “AI” is frequently used
+inconsistently and interchangeably to describe different capabilities and use cases, particularly in
+vendor communications and popular discourse. This ambiguity complicates evaluation of actual
+system behavior, associated risks, and appropriate oversight.
+For the purposes of this document, AI is defined as falling into one of the following two categories:
+Machine Learning (ML)
+ML techniques are already widely deployed in healthcare and include both traditional statistical
+learning and modern deep learning methods. These systems typically operate on structured or
+semi-structured data and produce bounded, task-specific outputs.
+Examples include:
+• Risk prediction models (e.g., sepsis risk, readmission risk)
+• Medical imaging and signal analysis (e.g., radiology, pathology, ECG interpretation)
+• Population health stratification and resource optimization
+• Clinical decision support rules enhanced with learned parameters
+These systems are often deterministic at inference time, evaluated against predefined performance
+metrics, and more amenable to validation within existing regulatory and quality frameworks.
+Foundation models and Large Language Models (LLMs)
+Foundation models, such as LLMs and multimodal models, are pre-trained on large, heterogeneous
+datasets and adapted for downstream tasks and generation of ‘new’ content.
+Examples include:
+1. Clinical documentation assistance and summarization
+2. Natural language interfaces to EHR data
+3. Patient-facing chatbots and triage assistants
+4. Multimodal models combining text, images, and signals
+Unlike many traditional ML systems, these models:
+• Generate open-ended outputs
+• Exhibit probabilistic and context-sensitive behavior
+• Produce fluent but sometimes incorrect or misleading responses
+• Introduce new risks such as hallucination, automation bias, cognitive load, and alert fatigue
+As a result, LLMs and other foundation models require distinct evaluation methods, workflow
+testing, and human-centered safeguards. In the document below, LMI will speak to both categories
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 3
+
+HHS Health Section AI RFI Response
+of AI, their application in clinical spaces, and the ways HHS might support, promote, and regulate
+their use.
+3.0 Regulation and Adoption
+Existing Barriers to AI Adoption in Clinical Settings:
+With a solid foundation in the scope and capabilities of AI, the focus now shifts to the critical
+challenges and opportunities that influence its integration into clinical care. Private sector
+innovation in AI for health care and its adoption in clinical care is shaped by a range of barriers
+that differ depending on the stage of development, implementation, and the stakeholders involved.
+These include:
+Trust in AI: Clinicians and patients alike must have confidence in the safety, accuracy, and overall
+performance of AI tools. Clinicians remain liable for patient care, meaning AI must meet high
+standards of reliability, while patient trust depends on accurate, unbiassed tools for decision-
+making about their care.
+Liability concerns: Both clinicians and AI vendors face risks related to clinical errors caused by
+AI systems. While clinicians are legally accountable for patient outcomes, AI vendors are
+increasingly being called upon to share liability for faulty algorithms and design defects.
+AI System Biases: AI systems may unintentionally prioritize certain variables or identify invalid
+correlations, leading to biased outcomes. The lack of transparency in decision-making ("black box"
+issues) further complicates efforts to address these biases. AI tools are often more accessible in
+higher-resource settings, potentially widening healthcare gaps for underserved populations. Over-
+reliance on AI without human oversight may overlook critical individual and contextual factors as
+well. Mitigating such biases requires diverse datasets, regular auditing, human oversight, and
+inclusive collaboration to ensure these technologies improve care for all populations equitably
+(James, 2024). There are several examples of biased AI models resulting in discrepancies in patient
+care and outcomes. An independent study found that black patients were not identified with
+respiratory illness due to pulse oximeters being less accurate on darker skin. (UK Department of
+Health and Social Care, 2024) In a review of an algorithmic model to identify liver disease, AI
+missed it in 44% of female patients vs 23% of males. (Straw & Wu, 2022).
+Data Access: Access to high-quality, diverse, non-fragmented data is critical for developing robust
+AI models. Health data is often siloed across multiple systems and formats, making it difficult to
+aggregate and standardize. Also, privacy and security constraints such as HIPAA and PHI make
+data sharing and reuse complex. Even when data can be accessed, concerns over breaches,
+confidentiality and patient consent slow down innovation.
+Legacy Systems and Interoperability: Large healthcare systems often rely on aging
+infrastructure that cannot easily communicate with modern AI platforms. Incompatible data
+systems and lack of standardized data formats (e.g., FHIR) hinder real-time data exchange. In
+addition, many AI tools are implemented as separate, “bolted-on” applications rather than being
+seamlessly integrated into systems such as the electronic health record. This forces clinicians and
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 4
+
+HHS Health Section AI RFI Response
+care teams to toggle between systems causing frustration and workarounds which impact
+workflows, safety and efficiency (Pavuluri et Al., 2024).
+Disruption of Established Workflows: Poorly integrated AI can increase the cognitive load on
+clinicians and care teams rather than reducing it. If an AI tool adds extra steps to already busy,
+high-stress workflows for clinicians and care teams, it is likely to be abandoned (Elechi et al.,
+2025).
+Analysis of the Barriers to AI Adoption in Healthcare
+Early machine learning–based AI applications have exhibited model drift, algorithmic errors,
+unintended biases, and overfitting, leading to decreased accuracy, classification or prediction
+errors, and reduced ability to generalize. Generative AI applications can experience all these
+problems as well as “hallucinations,” and “sycophantic behavior” leading to blatantly incorrect or
+difficult-to-detect false information that can harm patients (Christophe et al., 2026; Peng et al.,
+2026; Sittig & Singh, 2025).
+Together, these barriers form a multi-layered ecosystem problem — not just a technical one.
+Overcoming them requires coordinated action across:
+• Policy and regulations to clarify standards and liability
+• Data governance that balances privacy with ethical access
+• Clinical partnerships to build trusted evidence and workflow fit
+• Funding and incentives to support innovation and long-term ROI
+• Education and change management to build clinician confidence
+Only by addressing these factors in tandem can private-sector AI innovation truly translate into
+reliable, safe, and widely used tools in clinical care.
+While tools incorporating AI are rapidly making their way into clinical practice, mechanisms to
+ensure their safety and effectiveness remain underdeveloped. For instance, there is little guidance
+for health care organizations (HCOs) and clinicians as they navigate the complexities of
+implementing AI into routine care. To ensure that integrating AI-enabled systems into health care
+transforms clinical decision-making and improves patient outcomes, it is essential to
+proactively address known risks and establish safeguards to manage potential unknown risks as
+they emerge.
+Clinicians are still liable for patient care quality and outcomes and therefore need to feel that the
+AI input is reliable and accurate. For example, documentation tools such as Deep Scribe or Freed
+reduce administrative workload and empower providers to focus on patient care by automating
+transcription. However, the Scribe doesn’t always get the transcription 100% right and human
+involvement is needed to ensure accuracy and maintain patient safety. To integrate AI safely, there
+is an ongoing need for a “human-in-the-loop”. This applies not only to administrative clinical
+applications, but also to diagnostic applications of AI. Algorithms have shown proficiency in
+detecting conditions such as tumors, malaria, and prenatal issues, performing at or above expert
+levels in certain cases (Fan et al., 2025; Faratisha et al., 2026; Isewon, Oba, & Oyelade, 2025;
+Kumar et al., 2025; Nishida et al., 2022; Pai et al., 2025; Yeganegi et al., 2025). However,
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 5
+
+HHS Health Section AI RFI Response
+diagnostic AI has also exhibited biases, for example, relying on factors like medical spending as
+proxies for care needs, which can lead to mislabeling or overlooking vulnerable patients
+(Obermeyer et al., 2019).
+Despite these challenges, AI offers hope for improving health care efficiency and accessibility,
+especially amid shortages of clinicians and nurses. Healthcare systems often operate at razor-thin
+margins, and AI has the potential to reduce personnel burdens, increase accuracy, and expand
+access, particularly for underserved rural populations. AI tools that address clinician burnout—
+such as enhancing documentation or decision support—are already easing operational strain and
+enabling quality time with patients (Albrecht et al., 2024; Shah et al., 2025).
+Concerns around liability where both the clinician (for overreliance on AI) and the AI vendor (for
+defective design) can both be liable also represent a barrier to adoption. There are also initiatives
+to hold AI vendors responsible for clinical harm. Previously, once the sale of AI capabilities was
+complete, all risk transferred to the provider. More recently, there have been initiatives to also hold
+AI vendors responsible for clinical harm. AI vendors are now being asked to not only provide
+capabilities but to also solve problems and to share risk. Clarifying the boundaries of liability is
+key for encouraging adoption and integration of AI in clinical settings, while also ensuring product
+vendors are providing safe and reliable tools.
+AI has been available since 2007 and as its capabilities grow, clinician trust continues to grow as
+well. With 27 million uninsured Americans, over 100 million lacking a primary care provider, and
+200,000 annual deaths each year from preventable medical errors, AI offers a way to ease
+documentation burdens, reduce provider burnout, and improve focus on patient care (Briones &
+Cohen, 2026; NACHC, 2023; Rodziewicz, et al., 2025). AI holds promise for enhancing
+efficiency, cutting costs, and expanding access, particularly in underserved rural areas. In an
+overburdened healthcare system with significant shortage of nurses and physicians AI presents
+opportunities for trusted scalable care.
+LMI Policy Recommendations for Addressing Barriers to AI Adoption:
+As HHS aims to shift the U.S. healthcare system toward "deflationary technologies"—tools that
+improve health outcomes while simultaneously lowering long-term costs, the current regulatory,
+payment policy and program design create an environment where AI adoption may remain limited
+to "experimentation" rather than becoming a standard part of safe, high-quality clinical care.
+To incentivize AI in clinical care, HHS should focus on modernizing outdated systems to ensure
+they do not hinder innovation. Key priorities involve moving from rigid fee-for-service models
+to outcomes-based incentives and establishing clear, risk-based regulatory guardrails.
+Revising current Payment Policy to reflect a prioritization of efforts and programs aimed at
+transitioning from episodic or fee-for-service payment models to alternative models that
+incentivize and reward the long-term efficiencies possible through reasonable adoption of AI
+technologies is one part of a strategy that will incentivize the adoption of AI in healthcare.
+Prioritizing emerging models like the CMS ACCESS Model (CMS, 2025) which aims to provide
+stable, recurring payments for technology supported chronic care rather than traditional fee-for-
+service payment models is a start on this journey. Coupling the CMS ACCESS Model program
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 6
+
+HHS Health Section AI RFI Response
+with efforts that incentive providers who adopt AI integrations that demonstrably reduce
+hospitalizations and/or improve diagnostic accuracy through “bonus points” or increased shared
+savings opportunity are potential payment policy changes that would encourage the reasonable AI
+adoption sought after here.
+When examining the regulatory landscape, opportunities exist to remove the “bottlenecks” that
+currently exist for developers and healthcare systems alike. Proposed regulatory changes to remove
+these barriers and incentivize the effective use of AI in healthcare include a transition to a Risk-
+Based Oversight model that employs rigidity on a sliding scale that is proportionate to the risk
+itself. For example, low risk tools (e.g. administrative automation) would be subject to less
+rigorous regulatory hurdles while high risk/impact tools (e.g. appeals and grievances and
+utilization management) require increased scrutiny and a higher regulatory bar to clear.
+Other regulatory design changes to consider would include:
+1. Addressing Health IT Certification and Transparency by updating the ONC Health IT
+Certification Program to include criteria for algorithm transparency and decision support,
+ensuring clinicians understand and trust AI-generated recommendations. Specifically,
+implement and refine the Health Data, Technology, and Interoperability (HTI-1)
+requirements under 45 CFR Part 170 to strengthen decision support transparency that requires
+certified health IT to provide users with a "consistent, baseline set of information" about
+algorithms, including their fairness, validity, and safety as well as simplifying the certification
+process for AI models to reduce development costs and administrative burdens.
+2. Data Privacy and Data De-identification: Modernize 45 CFR § 164.514(b) to address the
+risks of re-identification in the age of big data and AI. Specifically, move beyond the static
+“safe harbor” list of 18 identifiers to as few as four pieces of non-exclusive data can now re-
+identify an individual. Updates should provide more flexible, risk-based de-identification
+methods that allow for richer datasets while maintaining high privacy standards.
+3. Medicare Advantage and Prior Authorization: Update 42 CFR § 422.101(b)(6) and 42
+CFR § 422.138 regarding utilization management and prior authorization to explicitly state
+that Medicare Advantage (MA) Plans cannot use AI alone to deny coverage; decisions must
+be based on an individual’s specific circumstance and a must retain a Human-in-the-Loop. MA
+plans must make publicly available any internal coverage criteria used by the AI models.
+4. FDA Lifecycle Management for AI Devices: Shift from “static” device approvals to dynamic
+lifecycle oversight by formalizing the Predetermined Change Control Plans (PCCP) within the
+existing frameworks of 21 CFR Part 820 (Quality System Regulation) and marketing
+pathways (510(k), De Novo, PMA) to allow a PCCP to pre-authorize specific future algorithm
+updates (e.g., iterative machine learning improvements) without needing a new marketing
+submission for every change, provided they maintain rigorous quality standards.
+Other programmatic design changes to support AI adoption include:
+1. Create AI Implementation Grants through the CMS Innovation Center (CMMI) to pilot "AI
+Accelerators" that provide upfront technical assistance grants for training and workflow
+integration.
+2. Establish Interoperability Standards that ensure “data liquidity” is maintained for AI tools
+to pull/push information across platforms with minimal technical barriers.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 7
+
+HHS Health Section AI RFI Response
+3. Clarify of Liability Guidelines to protect clinicians when AI models produce incorrect or
+harmful recommendations. Currently, the risk of legal exposure in instances where AI makes
+an error would be a major barrier to adoption of AI technologies in a clinical setting.
+Administrative Influence on AI Adoption
+Updated policy and regulation cannot drive AI integration in a vacuum. AI adoption in clinical
+care is shaped by coordinated governance across clinical, technical, operational, and compliance
+stakeholders. Administrative barriers, including fragmented oversight, procurement complexity,
+regulatory requirements, and organizational change management, frequently present greater
+challenges than technical limitations. Addressing these barriers through standardized governance
+models, clear evaluation processes, and early multidisciplinary engagement will be critical to
+advancing responsible and scalable AI adoption across healthcare organizations.
+Adoption of new technology and processes is governed by a multidisciplinary decision structure
+that balances patient safety, regulatory compliance, clinical effectiveness, operational feasibility,
+and responsible data stewardship. Healthcare organizations typically require coordinated approval
+across executive leadership, clinical governance bodies, technical authorities, compliance
+functions, and operational stakeholders. Understanding these roles and the administrative barriers
+they face is critical to enabling responsible, scalable AI adoption aligned with HHS priorities.
+Key Decision Makers and Governing Bodies
+• Clinical and Executive Leadership—including Chief Medical Officers (CMOs), Chief
+Clinical or Nursing Officers (CCOs/CNOs), and executive leadership teams—determine
+whether AI solutions align with clinical quality goals, workforce needs, patient safety
+standards, and organizational risk tolerance. Clinical leadership endorsement is often the
+most significant driver of institutional trust and adoption readiness.
+• Information Technology, Data, and Security Leadership—including Chief Information
+Officers (CIOs), Chief Digital or Analytics Officers, and Chief Information Security
+Officers (CISOs)—serve as technical gatekeepers responsible for evaluating
+interoperability with electronic health records, cybersecurity risks, infrastructure readiness,
+and data governance compliance. Their approval is essential to implementation feasibility.
+• Clinical Governance and Patient Safety Bodies—such as Clinical Informatics
+Committees, Quality and Patient Safety Boards inclusive of patient advisory councils,
+Clinical Decision Support governance groups, and Institutional Review Boards (IRBs)—
+assess clinical evidence, bias mitigation strategies, monitoring requirements, and overall
+patient risk. These bodies determine whether AI solutions meet standards for safe and
+equitable clinical use.
+• Finance, Compliance, and Acquisition Functions—including Chief Financial Officers
+(CFOs), acquisition offices, legal counsel, and compliance teams—evaluate procurement
+requirements, cost sustainability, reimbursement considerations, vendor risk, and
+adherence to federal privacy and security regulations.
+• Operational and Frontline Clinical Leadership—including physician champions,
+nursing leaders, department chiefs, and clinical informaticists—validate workflow
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 8
+
+HHS Health Section AI RFI Response
+integration, support clinician adoption, and ensure solutions align with real-world care
+delivery practices.
+Primary Administrative Barriers to Adoption
+Healthcare organizations face several administrative challenges that can delay AI deployment:
+• Fragmented Governance and Oversight: Multiple committees and unclear approval
+pathways can create lengthy evaluation cycles, particularly in organizations without formal
+AI governance frameworks.
+• Complex Regulatory and Compliance Requirements: Privacy protections, safety
+oversight, liability considerations, and evolving regulatory expectations increase review
+timelines prior to clinical use.
+• Acquisition and Contracting Complexity: AI solutions introduce nontraditional
+licensing models, data use agreements, and cybersecurity assessments that extend
+procurement processes.
+• Lack of Standardized Evaluation Frameworks: Organizations often lack consistent
+methodologies for assessing clinical effectiveness, operational impact, and algorithm
+performance across diverse patient populations.
+• Operational and Change Management Demands: Implementation requires updates to
+clinical workflows, policies, training programs, and documentation practices, which can
+slow adoption without coordinated planning.
+• Funding and Reimbursement Uncertainty: Misalignment between budgets, uncertain
+reimbursement pathways, and competing organizational priorities can delay investment
+decisions.
+4.0 Reimbursement: Feedback on how HHS can approach reimbursement regulation to
+drive AI adoption
+One of the primary barriers to AI adoption and development is the uncertainty around funding and
+reimbursement. To align payment policies with the goal of promoting high-value clinical AI,
+fostering competition, and increasing affordability, the following key policy changes should be
+considered:
+• Establishing Predictable Reimbursement Pathways through proposals like Health Tech
+Investment Act (S. 1399) which would require CMS to place qualifying AI services into a
+"New Technology" Ambulatory Payment Classification (APC) for at least five years
+and/or Transitional Add-on Payments, similar to the Transitional Drug Add-on Payment
+(TDAP), which provide temporary extra funding for new AI tools, allowing CMS to gather
+data on their value before incorporating them into permanent bundled payments
+(“Medicare reimbursement pathway for AI-enabled medical devices considered in Senate's
+Health Tech Investment Act”, 2025; Levins, 2022).
+• Prevention of the “overuse" of risks associated with fee-for-service models by shifting
+toward Value-Based and Outcome-Aligned Models such as the ACCESS Model and
+continuing to encourage contracts where manufacturers share the financial risk. For
+example, providers might receive rebates if an AI tool fails to deliver the promised clinical
+or economic outcome.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 9
+
+HHS Health Section AI RFI Response
+• Incentivizing Equity, Interoperability, and Competition via policy changes designed to
+ensure AI tools work for diverse populations and aren’t restricted to wealthy, urban health
+systems. Proposed changes include financial rewards for bias mitigation where payers
+may offer higher reimbursement rates for AI tools that demonstrate interoperability and
+proven effectiveness across multiple demographic groups; and premarket Advance Market
+Commitments (AMCs) that offer monetary prizes for solving specific clinical challenges,
+with the requirement that the code eventually becomes more accessible to spur follow-on
+competition.
+• Modernizing Medicare Advantage (MA) Oversight with guidance to ensure AI tools are
+used to support, not supplant clinical judgment. Guidance should include a prohibition on
+automation bias meaning insurers cannot use AI to override established medical necessity
+standards or discriminate against specific patient histories, ensuring that high-value care
+remains the priority over automated cost-cutting.
+Analysis of Reimbursement Challenges Facing AI Integration in Clinical Spaces
+Many AI innovations improve or enhance workflows through workflow infrastructure (e.g.
+automate components of a workflow) or as decision support (e.g. make prescriptive
+recommendations). However, these capabilities don’t fit neatly into legacy health care billing
+structures, which are traditionally designed around billable procedures and specific outcomes. For
+example, an AI tool which assists in diagnosis or notes summarization may improve decision
+support or save time, but that’s not a specific procedure or billable outcome. This misalignment
+raises critical questions about reimbursement for AI-assisted or AI-enabled clinical functions.
+Many AI tools provide indirect benefits, such as improving provider workflows or enhancing
+decision-making, yet these contributions often involve broader infrastructure rather than discrete,
+billable outcomes.
+To address these complexities, health care leaders need to define clearer reimbursement
+frameworks. Key considerations include establishing what aspects of AI are reimbursable—
+such as AI as a service, AI-powered infrastructure, or AI-enabled outputs—while ensuring clarity
+around safeguards like human oversight, documentation, and quality control. Additionally, it's
+essential to outline standard criteria to justify reimbursement, which may involve demonstrating
+measurable clinical value, operational efficiency, or patient safety improvements. Developing
+a comprehensive checklist of dimensions for assessing AI reimbursement capabilities will be
+crucial as the industry seeks to navigate this emerging area.
+Payment models must evolve to reward measurable value rather than relying on traditional per-
+use reimbursement structures. Value in health care should be defined by outcomes such as
+improved patient care, enhanced clinical safety, or reduced administrative burden. For example, if
+an AI-enabled tool significantly decreases diagnostic errors or reduces administrative workload,
+these outcomes represent quantifiable improvements that could form the basis for reimbursement.
+By incentivizing outcomes over isolated usage, payment models can more effectively align with
+the capabilities and benefits of AI innovation. As AI continues to expand its role in health care,
+these efforts will ensure its benefits are realized in a financially sustainable and equitable manner.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 10
+
+HHS Health Section AI RFI Response
+5.1 Research and Development: Recommendations for prioritization of AI research and
+development subject areas
+In addition to targeting policy changes for regulation, reimbursement, and oversight of AI adoption
+and integration into clinical workflows, it is equally important to invest in strategic innovation to
+address technical, operational, and ethical barriers. By aligning research priorities with the needs
+of health care providers and patients, organizations can develop AI solutions that not only meet
+policy requirements but also enhance practical usability and outcomes, paving the way for broader
+and sustainable integration into health care systems.
+There are several key areas of AI research that should be prioritized to support and accelerate the
+adoption of AI in clinical care. These focus areas have been identified not only for their potential
+to drive adoption, but also for their ability to strengthen trust, reduce uncertainty, and implement
+guardrails for the responsible use of AI tools. These priorities are discussed below.
+Criteria for AI prioritization. In addition to identifying application areas, it is crucial to define
+criteria that guide AI prioritization. These criteria ensure that research and development efforts
+align with core objectives for successful adoption. They include:
+• Adoption: Facilitating widespread, rapid integration into clinical workflows with minimal
+disruptions.
+• Trust: Building confidence among clinicians, patients, and the public in the safety and
+reliability and resiliency of AI solutions.
+• Reducing uncertainty: Mitigating ambiguity around AI risks, outcomes, and
+implementation challenges, including administrative and reimbursement questions.
+• Guardrails: Establishing clear guidelines and safeguards to ensure ethical and responsible
+use of AI technologies.
+Research Target #1: Explainability for Accountability
+HHS should prioritize research on AI systems that support clinical reasoning by making their
+outputs interpretable and aligned with how clinicians make decisions in real-world settings. Care
+providers are ultimately accountable for patient outcomes and must be able to understand,
+validate and challenge AI generated care recommendations. AI systems are at risk of
+conveying conclusions or diagnosis while not stating the confidence or communicating
+uncertainty. AI should be able to clearly identify which patient features or clinical events drive a
+recommendation in a way that is rooted in science and that the care providers can validate.
+A multidisciplinary approach is essential in building healthcare AI to ensure safety, efficacy, and
+ethical compliance, as AI models require the combined expertise of data scientists, clinicians,
+patients, ethicists, and IT professionals to address complex patient data, regulatory requirements,
+and technical challenges. HHS should ensure such collaboration is supported to prevent
+algorithmic bias, build trust in clinical decisions, integrate AI into existing workflows, and
+monitor, audit, and update AI models as medical knowledge advances (Quinn et al., 2020).
+Further, HHS should support research into how accountability is shared and documented across
+stakeholders and multidisciplinary teams (such as stakeholders, facilities, technical and medical
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 11
+
+HHS Health Section AI RFI Response
+teams, etc.). If HHS can create an environment where care providers and patients can trust the AI
+recommendations and diagnosis, this will directly translate to increased adoption of AI as part of
+clinical care.
+Research Target #2: Knowledge Management Capabilities
+All data-driven approaches—from machine learning to generative AI to rules-based approaches
+and retrieval—depend on what content is accessible to the model, how that content is captured
+(e.g. database schema, unstructured document, etc.), and how it is stored. The success of any AI
+model is directly tied to the quality and structure of the data it relies upon. Fragmented data
+pipelines, such as siloed data sources, or unstructured, messy data, severely impair the
+functionality and reliability of any AI model. Addressing these challenges is crucial to unlocking
+the full potential of AI in clinical care. To this end, HHS should prioritize several key research
+areas in knowledge management:
+1. Digitalization, integration and structuring of content: One of the foundational priorities for
+the effective adoption of AI in clinical care is the digitization and integration of health care
+data into a structured format. Healthcare data exists in a myriad of formats, each with varying
+levels of security and sensitivity. A focus on developing and implementing systems that
+securely integrate health care content while adhering to rigorous security standards is vital for
+building robust and reliable AI technology. This requires advancements in encryption,
+regulatory safeguards, and collaboration between technology developers and regulatory
+bodies. Work has been done in areas such as data security protocols, but further efforts are
+needed to ensure sensitive health care data can be effectively stored and processed while
+meeting privacy and compliance requirements.
+2. Safe use of imperfect health care data: In real-world settings, health care data is often
+incomplete, noisy, or reflective of biases, as seen in many EHR systems. While perfect data
+may not always be attainable, HHS can prioritize research focused on the development of
+methods to use imperfect data safely and effectively. Techniques such as data quality
+assessments, validation protocols, and error detection frameworks can help mitigate risks
+associated with unreliable or inconsistent datasets. Furthermore, AI systems can be designed
+to operate with partial or fragmented information, with safeguards to prevent misinformation
+or harmful conclusions.
+3. Development of performance benchmarks and standards: Trust is one of the most
+significant barriers to AI adoption in clinical care, and a lack of transparency regarding how
+models perform only exacerbates uncertainty among users. Establishing clear performance
+benchmarks and standards can address this issue by providing proof of performance that
+users—whether clinicians, patients, or regulators—can rely upon. By supporting research to
+develop standardized methods for measuring and reporting AI performance, HHS can ensure
+consistent evaluation practices across AI solutions.
+Research Target #3: Improve AI Integration across Provider Network
+Research focused on human-centered coordination workflows—particularly how AI can
+enhance shared situational awareness among clinicians, nurses, and care managers across a
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 12
+
+HHS Health Section AI RFI Response
+provider network without increasing administrative burden—can help advance AI technology for
+seamless operations across organizations, data systems, and care teams. This makes it an especially
+relevant area for HHS leadership and investment. By centering research on understanding how
+AI can fit into real clinical workflows and reduce fragmentation instead of adding extra noise
+into an already chaotic system, HHS can meet clinical staff, administrators, and patients
+where they are and address real world needs.
+As part of this focus, research should explore how AI outputs can be optimized for the unique roles
+of care team members. For example, clinicians, nurses, and office staff each require different levels
+of detail, patient information, and timing to perform their roles effectively. A well-designed AI
+system would account for these variations and contribute to improving patient care while
+minimizing alert fatigue, a critical factor for driving adoption of AI in clinical workflows. By
+tailoring AI tools to the specific needs of each care team member, this research can ensure that AI
+enhances care delivery across the network without adding unnecessary complexity.
+A natural second phase of provider integration is the post-deployment modeling of AI systems
+integrated into health care systems. Key focus areas include model or data drift and updates to
+clinical practice patterns. Many AI tools demonstrate strong performance in controlled
+development or pilot settings. Far less is known about the system performance post deployment.
+As health care is always evolving, the AI used to support will need to keep pace as well. HHS
+should invest in research aimed at monitoring key metrics such as diagnostic accuracy,
+clinician workload, and AI response time and have the performance reports delivered in a way
+that does not impose additional documentation burden on clinicians. If care providers can have
+confidence that the AI they are working with is up to date, it will increase not only the adoption of
+and trust in the AI tool but also reduce the churn of AI tools in the future.
+5.2 Review of Existing Literature on AI in Healthcare Settings
+To best understand the most promising areas of Healthcare AI research and development, it is
+important to review the academic landscape as it currently exists. A growing body of published
+literature, including systematic reviews, meta-analyses, and observational studies, has examined
+how adopted AI tools influence clinical care, showcasing both potential benefits and emerging
+risks.
+One significant area of research into the benefits of AI in clinical spaces has surfaced evidence
+showing that AI tools can achieve diagnostic performance comparable to human clinicians across
+multiple medical domains. Takita et al. (2025) conducted a systematic review and meta-analysis
+comparing generative AI with physicians, finding that AI models performed similarly to clinicians
+overall, though performance was slightly lower than expert-level physicians in some tasks.
+Complementing this, McGenity et al. (2024) reviewed AI applications in digital pathology and
+reported high diagnostic accuracy, with pooled sensitivity and specificity exceeding 90% across
+diverse histopathological tasks. A growing collection of studies indicate that AI can serve as a
+reliable adjunct to clinical judgment, supporting diagnostic decision-making while emphasizing
+the need for continued validation and careful integration. Beyond diagnostic accuracy, studies have
+also examined whether AI integration translates into tangible improvements in patient outcomes.
+Burdick et al. (2020) evaluated a sepsis prediction algorithm across multiple U.S. hospitals and
+found that its use was associated with reductions in in-hospital mortality, length of stay, and 30-
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 13
+
+HHS Health Section AI RFI Response
+day readmissions. Similarly, Yuan et al. (2025) conducted a meta-analysis of AI-powered early
+warning systems and reported significant improvements in patient outcomes, including reduced
+mortality and timely recognition of clinical deterioration. Collectively, these findings suggest that
+AI can enhance patient safety and care quality, particularly when used to support early
+intervention and proactive clinical decision-making.
+Evidence from systematic reviews suggests that adopted AI tools can positively influence clinical
+decision-making and care delivery across multiple healthcare roles as well. AI-enabled clinical
+decision support systems have been shown to improve diagnostic accuracy, treatment selection,
+medication safety, and workflow efficiency by providing patient-specific recommendations to
+clinicians (Aggarwal et al., 2024). Similarly, nursing-focused research indicates that AI
+technologies support earlier detection of patient deterioration, reduce hospital readmissions,
+improve documentation accuracy, and enhance nurses’ confidence in clinical judgment (Mikkonen
+et al., 2025). However, both reviews highlight variability in implementation and emphasize the
+need for standardized evaluation, ethical oversight, transparency, and adequate training to
+ensure AI tools safely augment clinical practice. A systematic review and meta-analysis examining
+AI use in clinical documentation found that AI tools—particularly those using natural language
+processing and generative models—were associated with significant reductions in documentation
+time and workload (Zhao et al., 2026). AI-generated documentation was generally comparable in
+quality to clinician-authored notes, suggesting potential benefits for reducing clinician burnout.
+Nevertheless, the authors stressed that human oversight remains essential to maintain accuracy,
+safety, and accountability in clinical records.
+Emerging evidence also highlights potential risks associated with routine AI assistance. For
+example, an observational study of colonoscopy practice reported that clinicians who routinely
+relied on AI support demonstrated reduced detection performance when the AI was removed,
+suggesting possible skill degradation over time (Budzyń et al., 2025). While causality cannot be
+definitively established, these findings raise concerns about over-reliance on AI and the
+importance of maintaining clinician expertise alongside technological augmentation. It is
+important to note that the lag between conducting research and publications often spans 1-2 years
+or more. In contrast the advancement in AI technologies is occurring quickly; as Dr. Dashun Wang
+puts it, “The rapid rise of generative AI—which is reshaping research workflows faster than many
+scientific institutions can keep up—only makes the stakes higher and the future shape of science
+less certain” (Zhau, 2026). The strategy HHS adopts to support adoption of AI will need to include
+consideration for the vast differences between the speed of research and the speed of innovation.
+Economic Evaluation
+The literature on artificial intelligence in clinical care frames the costs and benefits of AI adoption
+through a spectrum of economic evaluation methods, ranging from traditional cost-effectiveness
+analyses (CEA) and cost-utility analyses (CUA) to budget impact analyses (BIA) (El Arab & Al
+Moosa., 2025). Currently, there are very few high-quality economic evaluations of AI in
+healthcare (Wolff et al., 2020). Many studies report partial or isolated cost savings, and many
+omit key costs such as implementation and maintenance.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 14
+
+HHS Health Section AI RFI Response
+El Arab & Al Moosa, 2025 outline that many evaluations rely on static decision models that may
+overestimate benefits, as they often exclude long-term, dynamic learning effects and critical cost
+components such as infrastructure and training. In general, they found that across oncology,
+cardiology, ophthalmology, and infectious disease applications, AI enhances diagnostic
+accuracy, increases quality-adjusted life years (QALYs), and reduces overall costs by
+minimizing unnecessary procedures and optimizing resource allocation.
+Complementing these findings, other systematic reviews highlight methodological gaps that
+temper overly optimistic conclusions. A separate review of health economic evaluations of medical
+AI tools found that while most studies report cost savings or cost effectiveness, reporting quality
+is often suboptimal and key cost categories are frequently omitted (Junior et al., 2026). For
+instance, only a minority of evaluations explicitly included implementation or operational costs,
+and many assessments focused on early-stage AI technologies with limited real-world validation.
+This raises concerns that published economic benefits may be inflated or insufficiently robust for
+policy or reimbursement decisions. The review calls for future studies to report complete cost
+components, adhere to rigorous economic reporting standards, and assess AI systems at higher
+technological maturity levels to ensure that cost benefits reflect real clinical deployment rather
+than theoretical or pilot settings.
+Another blind spot in AI adoption cost reporting pertains to the economic evaluation of Software
+as a Medical Device (SaMD). While Wu et al. (2025) found that cost-utility and cost-effectiveness
+analyses across 52 studies generally reported AI interventions as cost-effective, cost-beneficial, or
+cost-saving, comparisons were difficult when studies excluded key expenses such as software
+licensing, maintenance fees, and app access costs from reporting. This inconsistency limits the
+reliability of conclusions about AI’s true economic value and underscores the need for
+standardized frameworks that capture all relevant costs associated with SaMD.
+Recent literature also emphasizes equity, bias, and distributional concerns. It was found that
+evaluations often fail to stratify results by demographic or socioeconomic subgroups, potentially
+masking disparities in who benefits from AI and who may incur costs or harms (El Arab & Al
+Moosa, 2025). Equity considerations such as differential AI performance across populations,
+varied access to digital infrastructure, or unequal capacity to absorb training and integration costs
+are underreported, highlighting the need for inclusive and context-sensitive economic frameworks
+that consider both monetary and justice-related dimensions of AI adoption.
+In summary, current literature approaches the costs and benefits of AI in clinical care through a
+plurality of economic evaluation methods, with most evidence pointing to potential cost savings
+and improved clinical value, especially when AI enhances diagnostic accuracy or streamlines care
+delivery (Wolff et al., 2020; Wu et al., 2025). However, persistent methodological limitations (e.g.,
+incomplete cost inclusion, static modeling), the early maturity of many technologies, and
+underrepresentation of equity impacts, caution against simple cost-benefit conclusions. Robust,
+transparent, and context-specific studies, especially those incorporating full cost components over
+time and subgroup analyses, are essential for translating promising economic signals into reliable
+guidance for policymakers, health systems, and payers (El Arab & Al Moosa, 2025).
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 15
+
+HHS Health Section AI RFI Response
+6.1 AI Approach: Recommendations on how to support AI integration and responsible use
+in clinical settings
+AI Evaluation and Oversight
+The practical implementation of artificial intelligence (AI) tools in clinical care requires robust
+evaluation methods to ensure effectiveness, reliability, and human-centered integration. Pre-
+deployment assessments as well as post-deployment monitoring are both vital to ensuring AI
+systems are trustworthy from the moment they enter the clinical workflow and continue to be over
+time. Not only should evaluation focus on model function and accuracy, but it should also include
+human centered metrics for usability, integration into workflows, and training. This multifaceted
+approach paves the way for equitable and sustainable AI implementation across diverse healthcare
+settings.
+In pursuit of AI adoption in clinical care, leveraging standardized AI evaluation benchmark tests—
+such as BIG-bench, Massive Multitask Language Understanding, GLUE and the Holistic
+Evaluation of Language Models—serves as a powerful pre-deployment assessment strategy. These
+tests provide valuable insights into the general reasoning, linguistic competence, and failure cases
+of AI models and provide visibility into how the models follow instructions, conduct multi-step
+reasoning, and ensure robustness across task types. AI models can be compared against each other
+and human performance to identify which ones are worth investing in for specific use cases where
+defined criteria are highly prioritized. A complete evaluation using these benchmark tests will
+allow evaluators to assess where the model performs well and where performance is inadequate.
+Pre-deployment robustness testing should be a high priority for HHS support as part of regulatory
+policy. This includes perturbation testing and sensitivity analysis to minor data changes or missing
+data. Models should be able to surface uncertainty and work with humans to review responses
+when confidence is low. Before deployment, shadow runs and simulated deployment testing can
+be very valuable in generating buy in with care providers without influencing care. Shadow runs
+allow assessment of model decisions, output timing and error patterns, enabling gaps to be
+identified and corrected before deployment.
+Once deployed, AI systems must be continuously monitored to ensure that performance remains
+stable as patient populations, medical knowledge, care practices and data evolve. Support for
+evaluation approaches that enable early detection of model degradation and ensure timely updates
+before patient care is compromised is important for ensuring long term success of AI tools. One
+effective method to track post-deployment performance is input and output drift monitoring. Input
+drift tracks shifts in patient demographics, diagnosis prevalence care provider patterns, and
+documentation styles. This can be done using distributional distance metrics such as KL
+divergence and maximum mean discrepancy. Distributional distance metrics measure how
+different today’s data look compared to the data when the model was first deployed, providing
+early signals when changes in patients, documentation, or workflows may threaten model
+reliability—even before errors are visible in clinical outcomes. Output drift monitoring tracks
+sudden changes such as an increase in high-risk flags or shift in recommendation thresholds.
+Furthermore, humans should be constantly “in the loop” to ensure that the output drift reflects real
+changes in care and not hallucinogenic spikes.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 16
+
+HHS Health Section AI RFI Response
+The literature on AI evaluation methods for non-medical devices demonstrates a clear trend:
+technical performance metrics are often prioritized, while workflow integration and human-
+centered evaluation approaches receive comparatively less attention. To assess the overall efficacy
+of an AI tool in clinical settings, researchers recommend a more holistic evaluation framework
+(Jacob et al., 2025; El Arab et al., 2025).
+Adoption evaluation efforts should examine how AI tools align with existing clinical processes
+and identify potential benefits or disruptions. Examples of such methods include clinician usability
+testing, time-on-task analysis, and end-to-end workflow assessments. Human-centered evaluations
+should focus on the interaction between users and AI tools, addressing factors such as cognitive
+load, training and adoption dynamics, and trust between clinicians and AI systems.
+Evaluation methodologies should account for the diverse societal, cultural, and economic
+variations across U.S. healthcare systems to ensure adaptability and inclusivity. By taking this
+multifaceted approach, stakeholders can better understand the practical value and equitable
+implementation of AI tools across clinical environments. This perspective aligns with the AI for
+IMPACTS evaluation model (Jacob et al., 2025), which emphasizes holistic, sociotechnical
+assessment across dimensions such as integration, monitoring, performance, acceptability, cost,
+safety, and impact.
+Incentive Structures to promote AI Development and Optimization
+To best support the development and optimization of these processes and to encourage the
+accuracy and reliability of AI tools, HHS should continue its tradition of publicly supported
+challenges with academia and industry. Regardless of the method used, HHS should continue to
+encourage innovation and exploration of AI tools related to accuracy, security, and end user
+satisfaction.
+Data Strategy for Improved Interoperability
+Another critical focus for supporting AI adoption and development in healthcare spaces is
+enhanced interoperability in healthcare data exchange. This serves as a critical enabler for
+expanding market opportunities, fueling research innovation, and accelerating the development of
+AI for clinical care. By harmonizing diverse data types including structured Electronic Health
+Record (EHR) data, imaging data (DICOM), genomics and omics data, and patient-generated data,
+healthcare systems can unlock richer AI insights and applications. For instance, structured EHR
+data builds the foundation for predictive tools to improve chronic care management, while imaging
+and genomics provide the basis for precision diagnostics and personalized medicine. Patient-
+generated health signals offer longitudinal, real-time monitoring for risk prediction services, and
+unstructured text enriched through NLP creates opportunities for enhanced clinical reasoning.
+These advances empower vendors to design broader AI solutions that reach larger markets,
+including underserved patient populations and specialized medical services.
+Interoperability is further strengthened by standardized frameworks such as HL7’s Fast Healthcare
+Interoperability Resources (FHIR) and Common Data Models (CDMs) like the Observational
+Medical Outcomes Partnership (OMOP). FHIR, established as the standard for healthcare data
+exchange through the 21st Century Cures Act, enables seamless communication across electronic
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 17
+
+HHS Health Section AI RFI Response
+health records (EHRs) and digital tools using modular APIs (Office of the National Coordinator
+for Health IT [ONC], 2026). FHIR simplifies app integration—allowing developers to plug into
+EHR systems, fueling innovation in scalable healthcare platforms. Similarly, CDMs, like OMOP
+and Sentinel, harmonize data from diverse institutions to facilitate multi-site research and
+reproducible analytics for the FDA and NIH. By aligning clinical data standards for research,
+interoperability accelerates market entry for AI tools while encouraging collaboration across the
+healthcare ecosystem.
+In addition to improving data access, benchmarking tools rooted in interoperability play a crucial
+role in accelerating the development and adoption of clinical AI systems. Tools like FHIR-
+AgentBench assess AI agents on realistic clinical tasks, test their ability to extract data, reason
+within HL7 FHIR structures, and choose appropriate next steps without "hallucinating" responses
+(Lee et al., 2025). By evaluating AI models on their ability to employ interoperable frameworks
+effectively, benchmarks ensure that vendors prioritize functionality and data integration, not just
+predictive accuracy.
+Interoperability creates opportunities to fuel research by eliminating barriers to multi-institutional
+data sharing and collaboration. Unified frameworks like FHIR enable academic researchers,
+regulators, and industry stakeholders to analyze diverse datasets. Longitudinal and multimodal
+data across geographic and demographic settings fosters equity-focused outcomes research, while
+interoperable APIs make it easier for developers to refine tools for clinical trials and population
+health analytics. Research collaborations enabled by interoperable systems attract investment
+while ensuring that clinical AI pipelines remain evidence-based and scalable.
+It would be valuable for HHS to create a health care centered benchmark dataset against which
+AI tools can be consistently evaluated. This dataset could consist of task specific use cases and be
+used to evaluate documentation assistance, triage, care coordination, and risk prevention scenarios
+that AI systems are likely to support in real world clinical environments. Benchmark tasks should
+reflect realistic clinical workflows, data availability at the point of care, and the longitudinal nature
+of patient management rather than isolated predictions.
+The constructed dataset should be representative of the patient population and have set robustness
+and performance metrics. These metrics could include sensitivity, recall, precision, and Area
+Under the Curve (AUC). It could also evaluate robustness and sensitivity to noisy or missing data.
+The creation of the benchmark dataset would support reproducibility and reduce duplicative
+evaluation efforts across the whole health care system. By treating benchmarking infrastructure
+as a public good, HHS would lower barriers to entry and increase trust in the role of AI
+systems in clinical care.
+From streamlining AI tool integration to enabling reproducible research on diverse data sets,
+interoperability not only improves the quality of healthcare data but also positions the industry for
+innovative, scalable solutions that address emerging challenges in clinical care. By harmonizing
+data and setting industry-wide benchmarks, healthcare systems can unlock the full potential of AI
+to improve patient outcomes and advance precision medicine.
+AI Security and Governance
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 18
+
+HHS Health Section AI RFI Response
+While it is important that AI tools are accurate, it is also important to ensure security, governance
+and patient privacy and safety when implementing AI in healthcare settings. AI tools used in
+clinical care which are considered non-medical devices (such as documentation assistants,
+summarization tools, etc.) may still influence clinical judgement, prioritization, and work
+processes in ways that create risks around patient safety, privacy, and accountability. These tools
+often operate as infrastructure within workflows, which can place them outside traditional
+regulatory categories. This creates risk in areas not well addressed by traditional compliance
+frameworks.
+• New legal and implementation issues introduced. AI tools can introduce legal and
+implementation issues including influence on clinical decision-making, evolution in accuracy
+over time (through model updates or retraining, which can impact repeatability or unexplained
+differences in behavior), and probabilistic rather than deterministic operation. Existing
+governance and accountability structures typically assume functionality which does not change
+from one day to the next and assume deterministic outputs.
+• Liability and accountability ambiguity. Non-device AI tools may shape decisions without
+clear assignment of responsibility among clinician, health system, and vendor. This ambiguity
+is amplified by automation bias and by AI outputs presented in persuasive or sycophantic
+natural language.
+• Indemnification and contracting gaps. Many organizations lack leverage or technical
+capacity to negotiate appropriate vendor obligations related to model updates, monitoring,
+incident response, and performance drift.
+• Auditability and documentation limitations. AI tools may not log model versions, inputs,
+outputs, or clinician interactions in a structured way, complicating quality assurance, root-
+cause analysis, and legal defensibility. AI tools are often ‘black-box’, challenging auditability
+requirements.
+• Privacy and secondary data use concerns. Foundation model deployments raise uncertainty
+around PHI handling, data retention, and whether patient data may be used for training or fine-
+tuning, even when HIPAA compliance is asserted.
+• Security risks from expanded integration. AI tools often require broad access to EHRs and
+clinical systems, increasing the attack surface and introducing new vulnerabilities through
+third-party services and model manipulation risks.
+• Human factors risk (cognitive load, alert fatigue, automation bias). Even highly accurate
+tools can increase clinician burden or encourage over-reliance when outputs are verbose,
+confident, and timesaving. These risks are not captured by traditional performance metrics
+alone. For example, if AI is implemented poorly, it can create more clicks, more alerts leading
+to user fatigue and impeding adoption.
+HHS is uniquely positioned to support consistent governance of non-device AI through
+coordinated action across federal agencies. HHS should prioritize:
+1. Baseline governance guidance for AI tools used in clinical workflows including
+minimum expectations for monitoring, human oversight and escalation, and regulatory
+compliance. One approach could be to adapt existing models for risk management in
+healthcare to develop guidelines and standards for AI model approval processes.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 19
+
+HHS Health Section AI RFI Response
+2. Setting standardized transparency and auditability expectations, such as logging of
+model version, input sources, clinician interaction outcomes (accepted/edited/overridden),
+labeling if a record is AI generated, and confidence indicators (if applicable), to name just
+a few possible metrics.
+3. Evaluation and monitoring infrastructure. Coordinating development of evaluation
+frameworks and benchmarking methods for non-device AI, including outcomes and human
+factors measures (such as cognitive load, review fatigue, automation bias).
+4. Privacy and security clarification for appropriate use of protected health information in
+AI systems, such as acceptable architectures and protocols for cloud-hosted models, third-
+party data handling, and de-identification expectations for training or fine-tuning.
+5. Model procurement templates / recommended contracting clauses addressing update
+notification, vendor responsibilities for drift, incident response, auditability, and data
+retention. One potential avenue would be to publish recommended contract clauses for
+common themes like transparency requirements, audit rights, disclosure of training data,
+and update notifications.
+HHS can effectively support advancements in these areas through mechanisms such as grants,
+cooperative agreements, public-private partnerships, and prize competitions. Additionally, HHS
+could play a crucial role in reducing uncertainty and fostering the safe adoption of non-device AI
+by establishing governance expectations that are clear, transparent, and explicit. This would
+mitigate risks associated with fragmented accountability, which often arises from opaque contract
+language and complex workflow integrations.
+Certification and Industry-Driven Testing of AI Tools
+It follows naturally that if the AI tools themselves must be governed, so do the industries and
+practitioners developing, installing, and maintaining them. The Senate’s overwhelming rejection
+(99-1) of proposed legislation for a 10-year moratorium on state and local AI regulations favoring
+centralized federal oversight highlights the challenges of decentralized regulatory influence on AI
+(U.S. Senate Committee on Commerce, Science, & Transportation, 2025). The EU has shown
+promising regulatory initiatives due to its ability to bring 27 countries together with one voice and
+its mandatory conformity assessments for high-risk medical AI. It also requires extensive
+documentation of data provenance, fairness safeguards, and human oversight. Through the EU's
+Artificial Intelligence Act (AIA) algorithmic integrity is embedded within regulatory compliance
+frameworks. The United States does not have such an overarching regulatory system. HHS has an
+opportunity to center itself as a leader in this space to promote a regulatory framework that supports
+the responsible, safe, and equitable use of AI.
+HHS can further advance responsible AI adoption by enabling industry-driven testing through
+voluntary federal certification frameworks for third-party AI certifiers, rather than certifying AI
+tools directly. By publishing technical guidance, reference datasets, and evaluation frameworks,
+HHS can create a common foundation for independent testing and encourage transparency around
+performance, safety, and bias. The Office of the National Coordinator (ONC) Health IT
+Certification Program provides a strong precedent: ONC defines certification criteria and
+recognizes authorized certification bodies, while private entities conduct testing and certification
+of health IT products. This approach creates market pull, as hospitals, payers, and providers
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 20
+
+HHS Health Section AI RFI Response
+preferentially adopt technologies with recognized credentials, and could similarly incentivize AI
+developers to participate in rigorous, independent evaluation.
+Accreditation of organizations, programs, and systems. HHS can support private-sector
+accreditation by recognizing or endorsing independent accrediting bodies that assess
+organizational AI governance, model lifecycle management, and safety practices. This approach
+allows HHS to promote consistent standards for clinical AI while leveraging private expertise and
+avoiding duplicative oversight. A well-established precedent is CMS’s “deeming authority,” under
+which approved national accrediting organizations, such as The Joint Commission and DNV, are
+authorized to survey healthcare facilities for compliance with Medicare Conditions of
+Participation. Importantly, CMS retains oversight through validation surveys, demonstrating how
+federal agencies can rely on private accreditation while maintaining accountability and public trust.
+This model could be extended to accrediting AI governance programs and deployment
+environments in healthcare organizations.
+Public-private partnerships to enable scalable testing ecosystems. Public-private partnerships
+(PPPs) allow HHS to create the conditions necessary for credible, scalable, industry-led testing
+without positioning the federal government as the tester of record. Through PPPs, HHS can co-
+fund pilots, sandboxes, and shared infrastructure, responsibly provide access to federal data assets,
+and convene stakeholders to align on evaluation priorities. The NIH Science and Technology
+Research Infrastructure for Discovery, Experimentation, and Sustainability (STRIDES) initiative
+illustrates this model by connecting NIH researchers and NIH-funded institutions to commercial
+cloud services at discounted rates (NIH, 2025). STRIDES demonstrates how HHS can reduce
+technical and financial barriers, enabling the private sector to build and test advanced biomedical
+and AI capabilities at scale.
+Credentialing and workforce development for individuals. HHS can support private-sector
+credentialing and workforce development by defining high-level AI competency expectations,
+funding external credentialing initiatives, and encouraging healthcare organizations to recognize
+independently issued AI credentials. In this model, credentials are developed, issued, and
+maintained by professional societies, certifying bodies, or training organizations—not by HHS
+itself. HHS’s role is to align incentives and signal the importance of qualified AI use in clinical
+care. Medicare and Medicaid provider credentialing offers a clear precedent: CMS does not
+credential clinicians directly, but relies on private licensure, board certification, and employer-led
+credentialing processes to determine eligibility for participation in federal programs. A similar
+approach could be applied to AI-related clinical and oversight roles, ensuring safe and effective
+use while supporting a private credentialing ecosystem.
+6.2 AI Adoption: Successes and Failures
+There are many examples of AI being used or having been attempted in clinical settings. Reception
+of these tools are mixed due to variations in quality, functionality, rollout, user optimization,
+training and maintenance. For example, Legacy Health IT, including many EHR systems were
+designed around billing, not care. AI is now being layered upon that same architecture, so it
+naturally optimizes the wrong thing. Another example includes the CMS ACCESS models which
+lack software built directly into the EHR. Third party apps (Oracle, Epic, Meditech) connect via
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 21
+
+HHS Health Section AI RFI Response
+CMS-required APIs instead, creating inefficiencies. It follows that AI will need its own platform
+for clinical care.
+To date, AI tools in clinical care have demonstrated a stark contrast between their performance in
+administrative and diagnostic "closed loop" tasks versus complex bedside decision-making.
+Where AI Has Met or Exceeded Expectations
+• Automated Clinical Documentation: AI "scribes" (e.g., Nuance, DAX, Copilot) have
+significantly reduced administrative burnout. Organizations like Rush University Medical
+Center reported a 74% reduction in clinician burnout, while Northwestern Medicine saw
+doctors able to treat ~11 more patients monthly due to time savings (Dahdah, 2024;Siwicki,
+2025). Several recent studies support these anecdotal reports, indicating significant
+reductions in task load and burnout along with reports that physicians could see additional
+patients because of time saved (Albrecht et al., 2024; Shah et al., 2025).
+• Imaging and Diagnostics: AI has reached maturity in radiology and pathology. Tools
+often rival or exceed human accuracy in detecting colonic polyps, breast cancer in
+mammograms, and early-stage skin cancers. Jones et al. (2026) speaks to a significant
+finding in the use of AI and genomics data to assist in diagnosis of Pneumonia, a finding
+which could result in mor than an 80% decrease in inappropriate antibiotics (Phan et al.,
+2025).
+• Operational Efficiency: AI-driven scheduling at organizations like HCA Healthcare has
+yielded a 40% increase in productivity and a 60% enhancement in patient satisfaction by
+reducing wait times (Waligora et al, 2025).
+• Patient Triage and Virtual Assistance: Chatbots and symptom-checkers integrated into
+patient portals have successfully cut unscheduled emergency visits while providing safe
+triage advice (Elechi et al., 2025).
+Where AI Has Fallen Short
+• Real-World Predictive Accuracy: While models often show "excellent" accuracy in
+controlled trials, they frequently fail at the bedside. A March 2025 study found that
+mortality-prediction models missed 66% of high-risk cases in real-world hospital settings
+(Pias et al., 2025).
+• Early Disease Detection (Sepsis): Despite massive investment, many sepsis-detection
+models have underperformed. Research at the University of Michigan revealed a widely used
+model was wrong more often than if it was right, missing two-thirds of actual cases while
+triggering frequent false alarms (Lu et al., 2021).
+• Complex Clinical Reasoning: Leading AI systems struggle when standard medical
+questions are modified to include "none of the above" or require managing incomplete
+information, with accuracy dropping by more than a third in some tests.
+• Scalability and Workflow Friction: An estimated 80% to 95% of AI projects fail to scale
+beyond the pilot phase. Failure often occurs not due to technical flaws but because tools
+are not integrated into existing workflows, forcing clinicians to log into separate systems
+and adding "friction" rather than reducing it.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 22
+
+HHS Health Section AI RFI Response
+• Bias and Cultural Nuance: Many models exhibit calibration drift or perform poorly for
+non-white or low-income patient demographics because they were trained on limited, non-
+diverse datasets.
+• Failure to include patients in AI development: Healthcare has struggled to include
+patients in AI development, often prioritizing technical, administrative, or efficiency goals
+over user-centered design, leading to tools that disrupt clinical workflows and fail to
+address actual patient needs. Key failures include opaque, non-inclusive development
+processes, lack of patient input on, and inattention to, potential biases.
+The use of AI in medical practices nearly doubled, from 38% in 2023 to 66% in 2024, highlighting
+increased adoption of AI as an adjunct to patient care (American Medical Association, 2025).
+However, providers are most comfortable with AI tools related to administration, such as billing,
+transcription, discharge instructions, translation, research, and assistive diagnosis. A 2024 survey
+of the American Medical Association (AMA) revealed that doctors want AI tools that save time,
+improve accuracy, and strengthen patient care (AMA, 2025). In addition, they also want guarantees
+such as transparency, oversight, and ethical guardrails. Integration is a key consideration. In this
+survey, physicians emphasized the need for seamless EHR integration (84%), data privacy
+assurances (87%), and feedback channels (88%) to drive adoption (AMA, 2025). There is a
+recognized need to partner with AI not only for clinical input but for vendor liability when the AI
+tool gets it wrong.
+Furthermore, with respect specifically towards the use of LLMs for treatment, rather than
+administrative purposes, research testing the use of LLMs for mental health treatment also raised
+concerns for both privacy, safety, and for therapeutic outcomes (Moore et al., 2025). These
+concerns included inappropriate chatbot responses to common and critical conditions as well as
+expression of stigma towards mental health conditions (Moore et al., 2025). For this reason, in
+most clinical settings, human interaction is still considered best practice for safe and adequate care.
+While much of the discussion has been focused on the clinicians, administrators, vendors, and
+regulators of AI, patient input into AI expectations is extremely underrepresented in research
+(Moy et al, 2024; Nong & Ji, 2025). Studies, consisting mostly of smaller focus groups, have
+investigated patient perspectives on AI use in healthcare and generally surfaced the following
+priorities for AI:
+1. That human oversight and decision making remains at the forefront of healthcare delivery.
+2. That patients be involved in the AI development as stakeholders.
+3. That the solutions be user friendly, easy to understand, and transparent in nature.
+4. That data privacy remains of utmost importance.
+(Foresman et al., 2025, Gundlack et al., 2025; Mikkelsen et al., 2023; Osnat, 2025)
+Despite the concerns raised among patients regarding AI use in healthcare, it is also clear that
+many see the advantages of using these tools and hope they result in faster information delivery,
+reduced wait times, lower costs, and more personalized healthcare (Gundlack et al., 2025;
+Mikkelsen et al., 2023; Osnat, 2025). A 2023 study by Adus, Macklin, & Pinto explored patient
+perspectives on patient engagement with AI in healthcare and found that patients felt strongly
+about the importance of patient involvement in AI development as well as comprehensive AI
+education. Inclusion of diverse demographics in AI development was emphasized in this focus
+group study as vital to useful AI integration (Adus, Macklin, &Pinto, 2023). In summary, while
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 23
+
+HHS Health Section AI RFI Response
+patients recognize the potential benefits of AI in healthcare, they emphasize the need for human
+oversight, transparent processes, and equitable representation in AI development. Prioritizing
+patient perspectives will be essential to ensure that AI solutions align with the needs and values of
+those they aim to serve.
+7.0 Conclusions
+Artificial Intelligence (AI) has the potential to transform healthcare by enhancing efficiency,
+reducing clinician burnout, improving diagnostic accuracy, and expanding access to underserved
+populations. However, for this transformation to manifest, critical barriers must be addressed.
+Trust by clinicians, patients, and administrators in the tools being used must be earned through
+transparent algorithms, pre- and post-deployment monitoring, bias mitigation, clear standards and
+regulatory requirement, and adoption of data governance frameworks for adoption, evaluation, and
+maintenance. A comprehensive, human-centered approach that emphasizes safety, accountability,
+equity, and long-term sustainability is essential to the successful integration of AI into clinical
+workflows.
+This paper identifies actionable strategies across the healthcare landscape to enable responsible
+and scalable adoption of AI in healthcare. By transitioning to value-based payment models,
+improving data interoperability, fostering public-private collaborations, and implementing robust
+evaluation frameworks, AI can be integrated in ways that align with clinician trust, patient safety,
+and organizational priorities. Additionally, emphasizing human-in-the-loop design principles,
+transparency protocols, and dynamic post-deployment monitoring provides critical safeguards to
+mitigate risks such as automation bias, performance drift, and inequities in patient care as well as
+common issues with LLMs and hallucination.
+The path forward must prioritize alignment across stakeholders, including clinicians, patients,
+vendors, and policymakers, to ensure that AI tools meet the diverse and evolving needs of the
+healthcare system. As AI continues to advance, the U.S. healthcare system has an opportunity to
+leverage its transformative capabilities while mitigating risks to achieve improved health outcomes
+at lower costs. Through strategic action, public-private collaboration, and innovative governance
+mechanisms, AI can drive solutions to longstanding challenges such as workforce shortages,
+systemic inefficiencies, and disparities in care.
+With its extensive expertise in operational transformation and mission-first
+innovation, LMI stands ready to partner with HHS and other stakeholders to shape the future of
+healthcare.
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 24
+
+HHS Health Section AI RFI Response
+7.0 Citations
+1. Adus, S., Macklin, J. & Pinto, A. Exploring patient perspectives on how they can and should be engaged
+in the development of artificial intelligence (AI) applications in health care. BMC Health Serv Res 23,
+1163 (2023). https://doi.org/10.1186/s12913-023-10098-2
+2. Aggarwal, N., Ahmed, M., Basu, S., Curtin, J.J., Evans, B.J., Matheny, M.E., Nundy, S., Sendak, M.
+P., Shachar, C., & Shah, R.U. (2024). Effectiveness of Artificial Intelligence (AI) in Clinical Decision
+Support Systems and Care Delivery. PubMed. https://doi.org/10.1007/s10916-024-02098-4
+3. Albrecht, M., Shanks, D., Shah, T., Hudson, T., Thompson, J., Filardi, T., Wright, K., Ator, G.A., &
+Smith, T. R. (2024). Enhancing clinical documentation with ambient artificial intelligence: a quality
+improvement survey assessing clinician perspectives on work burden, burnout, and job
+satisfaction. JAMIA open, 8(1). https://doi.org/10.1093/jamiaopen/ooaf013
+4. American Medical Association (2025) AMA Augmented Intelligence Research: Physician sentiments
+around the use of AI in healthcare: motivations, opportunities, risks, and use cases. https://www.ama-
+assn.org/system/files/physician-ai-sentiment-report.pdf
+5. Briones, E. M., & Cohen, R. A. (2026). Health Insurance Coverage: Early Release of Estimates From
+the National Health Interview Survey, January–June 2025.
+https://www.cdc.gov/nchs/data/nhis/earlyrelease/Health-Insurance-Coverage-Early-Release-of-
+Estimates-January-June-2025.pdf
+6. Budzyń, K., Romańczyk, M., Kitala, D., Kołodziej, P., Bugajski, M., Adami, H. O., Blom, J.,
+Buszkiewicz, M., Halvorsen, N., Hassan, C., Romańczyk, T., Holme, Ø., Jarus, K., Fielding, S., Kunar,
+M., Pellise, M., Pilonis, N., Kamiński, M.F., Kalager, M., Bretthauer, M., & Mori, Y. (2025).
+Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: a multicentre,
+observational study. The Lancet Gastroenterology & Hepatology, 10(10), 896-903.
+https://doi.org/10.1016/S2468-1253(25)00133-5
+7. Burdick, H., Pino, E., Gabel-Comeau, D., McCoy, A., Gu, C., Roberts, J., Le, S., Slote, J., Pellegrini,
+E., Green-Saxena, A., Hoffman, J., & Das, R. (2020). Effect of a sepsis prediction algorithm on patient
+mortality, length of stay and readmission: a prospective multicentre clinical outcomes evaluation of
+real-world patient data from US hospitals. BMJ health & care informatics, 27(1), e100109.
+https://doi.org/10.1136/bmjhci-2019-100109
+8. Centers for Medicare & Medicaid Services. (2025). ACCESS (Advancing Chronic Care with Effective,
+Scalable Solutions) Model. U.S. Department of Health and Human
+Services. https://www.cms.gov/priorities/innovation/innovation-models/access
+9. Christophe, C., Abdul, W. M., Munjal, P., Raha, T., Rajan, R., & Kanithi, P. (2026). Overalignment in
+Frontier LLMs: An Empirical Study of Sycophantic Behaviour in Healthcare. arXiv preprint
+arXiv:2601.18334. https://doi.org/10.48550/arXiv.2601.18334
+10. Dahdah, R. (2024, September 26). A year of DAX Copilot: Healthcare innovation that refocuses on the
+clinician-patient connection. Microsoft. https://blogs.microsoft.com/blog/2024/09/26/a-year-of-dax-
+copilot-healthcare-innovation-that-refocuses-on-the-clinician-patient-connection/
+11. Drummond, M. F., Sculpher, M. J., Claxton, K., Stoddart, G. L., & Torrance, G. W. (2015). Methods
+for the Economic Evaluation of Health Care Programmes (4th ed.). Oxford University Press.
+https://doi.org/10.1093/oso/9780198529446.001.0001
+12. El Arab, R. A., Abu-Mahfouz, M. S., Abuadas, F. H., Alzghoul, H., Almari, M., Ghannam, A., &
+Seweid, M. M. (2025). Bridging the Gap: From AI Success in Clinical Trials to Real-World Healthcare
+Implementation-A Narrative Review. Healthcare (Basel, Switzerland), 13(7), 701.
+https://doi.org/10.3390/healthcare13070701
+13. El Arab, R. A., & Al Moosa, O. A. (2025). Systematic review of cost effectiveness and budget impact
+of artificial intelligence in healthcare. npj Digital Medicine, 8 (Article 548).
+https://doi.org/10.1038/s41746-025-01722-y
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 25
+
+HHS Health Section AI RFI Response
+14. Elechi, U., Orobator, E.T., Udoh, K., Ngozi, E.O., Uzoma, C.A.E., Forson, K.A.A.M., Akanbi, O.O &
+Tarawallie, M.A. (2025). Artificial intelligence in healthcare: A narrative review of recent clinical
+applications, implementation strategies, and challenges. Journal of Healthcare Leadership, 863-876.
+https://doi.org/10.2147/JHL.S553748
+15. Fan, J., Zhang, L., Lv, T., Liu, Y., Sun, H., Miao, K., Jiang, C., Li, L., & Pan, X. (2023). MEAI: an
+artificial intelligence platform for predicting distant and lymph node metastases directly from primary
+breast cancer. Journal of Cancer Research and Clinical Oncology, 149(11), 9229-9241.
+https://doi.org/10.1007/s00432-023-04787-y
+16. Faratisha, I. F. D., Yunita, K. C., Rahmawati, H. R., Fitri, L. E., Winaris, N., & Muflikah, L. (2026).
+Diagnostic Accuracy of Utilizing Artificial Intelligence for Malaria Diagnostic: A Systematic Review
+and Meta-Analysis. Infectious Disease Reports, 18(1), 11. https://doi.org/10.3390/idr18010011
+17. Foresman, G., Biro, J., Tran, A., MacRae, K., Kazi, S., Schubel, L., Visconti, A., Gallagher, W., Smith,
+K., Giardina, T., Haskell, H., & Miller, K. (2025). Patient perspectives on artificial intelligence in health
+care: focus group study for diagnostic communication and tool implementation. Journal of
+Participatory Medicine, 17(1), e69564. https://doi.org/10.2196/69564
+18. Gundlack, J., Thiel, C., Negash, S., Buch, C., Apfelbacher, T., Denny, K., Christoph, J., Mikolajczyk,
+R., Unverzagt, S., & Frese, T. (2025). Patients’ perceptions of artificial intelligence acceptance,
+challenges, and use in medical care: qualitative study. Journal of Medical Internet Research, 27,
+e70487. https://doi.org/10.2196/70487
+19. Isewon, I., Oba, E. B., & Oyelade, J. (2025). Bridging the Gap: Challenges and Innovations in the
+Adoption of Automated Malaria Diagnosis. NIPES JSTR SPECIAL ISSUE, 7(1), 2116-2127.
+https://doi.org/10.37933/nipes/7.4.2025.SI249
+20. Jacob, C., Brasier, N., Laurenzi, E., Heuss, S., Mougiakakou, S.-G., Cöltekin, A., & Peter, M. K.
+(2025). AI for IMPACTS framework for evaluating the long-term real-world impacts of AI-powered
+clinician tools: Systematic review and narrative synthesis. Journal of Medical Internet Research, 27,
+e67485. https://doi.org/10.2196/67485
+21. James, T. (2024). Confronting the Mirror: Reflecting on Our Biases Through AI in Health Care.
+Harvard Medical School. Retrieved from https://learn.hms.harvard.edu/insights/all-
+insights/confronting-mirror-reflecting-our-biases-through-ai-health-care
+22. Jones, B. E., Ramirez, J. A., Oren, E., Soni, N. J., Sullivan, L. R., Restrepo, M. I., Musher D.M., Erstad
+B.L., Pickens C., Vaughn V.M., Helgeson S.A., Crothers K., Metlay J.P., Bissell B., Cao B., Chalmers
+J.D., Dela Cruz C.S., Gendlina I., Hojat L.S., Laguio-Vila M., Liang S.Y., Waterer G.W., Paine M.,
+Hawkins C., & Wilson, K. (2026). Diagnosis and management of community-acquired pneumonia: an
+official American Thoracic Society Clinical Practice Guideline. American Journal of Respiratory and
+Critical Care Medicine, 212(1), 24-44. https://doi.org/10.1164/rccm.202507-1692ST
+23. Junior, C.A.G., van Boverhof, B.-J., Rutten-van Mölken, M. P. M. H., Bijleveld, L., Westhuis, B., Uyl-
+de Groot, C., & Redekop, K. (2026). Technological maturity and cost-effectiveness of medical AI: A
+systematic review of health economic evaluations. Value in Health.
+https://doi.org/10.1016/j.jval.2026.01.014
+24. Kumar, S. M., Nath, S. N., Vani, H. C., Shrinivasa, B. M., Ahmed, N., Tomer, V., Bankoti, K., Gunjan,
+M., Ali, S.S.B., Jaiswal, M.K., & Warkade, V. (2025). The role of artificial intelligence (AI) in the
+elimination of malaria: a systematic literature review. Malaria Journal, 24(1), 427.
+https://doi.org/10.1186/s12936-025-05661-7
+25. Lee, G., Bach, E., Yang, E., Pollard, T., Johnson, A., Choi, E., Jia, Y., & Lee, J. H. (2025).
+FHIR‑AgentBench: Benchmarking LLM agents for realistic interoperable EHR question answering
+(arXiv:2509.19319). arXiv. https://doi.org/10.48550/arXiv.2509.19319
+26. Levins, H. (2022, July 13). Choosing a clinical AI reimbursement system. Penn LDI.
+https://ldi.upenn.edu/our-work/research-updates/the-quandary-of-choosing-a-clinical-ai-
+reimbursement-system/
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 26
+
+HHS Health Section AI RFI Response
+27. Lu, J. H., Callahan, A., Patel, B. S., Morse, K. E., Dash, D., & Shah, N. H. (2021). Low adherence to
+existing model reporting guidelines by commonly used clinical prediction models. MedRXiv, 2021-07.
+https://doi.org/10.1101/2021.07.21.21260282
+28. McGenity, C., Clarke, E. L., Jennings, C., Matthews, G., Cartlidge, C., Freduah‑Agyemang, H.,
+Stocken, D., & Treanor, D. (2024). Artificial intelligence in digital pathology: A systematic review and
+meta‑analysis of diagnostic test accuracy. npj Digital Medicine. https://doi.org/10.1038/s41746-024-
+01106-8
+29. Medicare reimbursement pathway for AI-enabled medical devices considered in Senate’s Health Tech
+Investment Act: Insights: Sidley Austin LLP. Insights | Sidley Austin LLP. (2025, November 24).
+https://www.sidley.com/en/insights/newsupdates/2025/05/medicare-reimbursement-pathway-for-ai-
+enabled-medical-devices-considered
+30. Mikkelsen, J. G., Sørensen, N. L., Merrild, C. H., Jensen, M. B., & Thomsen, J. L. (2023). Patient
+perspectives on data sharing regarding implementing and using artificial intelligence in general
+practice–a qualitative study. BMC health services research, 23(1), 335.
+https://doi.org/10.1186/s12913-023-09324-8
+31. Mikkonen, K., Tuunainen, S., Oikarinen, A., Jansson, M., Woo, B., Zhou, W., Tam, W., Tuomikoski,
+A., Kaakinen, P., Juntunen, J., & Jarva, E. (2025). Artificial Intelligence Technologies Supporting
+Nurses' Clinical Decision‐Making: A Systematic Review. Journal of Clinical Nursing.
+https://doi.org/10.1111/jocn.70156
+32. Moore, J., Grabb, D., Agnew, W., Klyman, K., Chancellor, S., Ong, D. C., & Haber, N. (2025, June).
+Expressing stigma and inappropriate responses prevents LLMs from safely replacing mental health
+providers. In Proceedings of the 2025 ACM Conference on Fairness, Accountability, and
+Transparency (pp. 599-627). https://doi.org/10.48550/arXiv.2504.18412
+33. Moy, S., Irannejad, M., Manning, S. J., Farahani, M., Ahmed, Y., Gao, E., Prabhune, R., Lorenz, S.,
+Mirza, R., & Klinger, C. (2024). Patient perspectives on the use of artificial intelligence in health care:
+a scoping review. Journal of Patient-Centered Research and Reviews, 11(1), 51-62.
+https://doi.org/10.17294/2330-0698.2029
+34. National Association of Community Health Centers (NACHC). (2023). Closing the Primary Care Gap:
+How Community Health Centers Can Address the Nation’s Primary Care Crisis.
+https://www.nachc.org/wp-content/uploads/2023/06/Closing-the-Primary-Care-Gap_Full-
+Report_2023_digital-final.pdf
+35. National Institutes of Health. (2025, March 10). STRIDES Initiative. Data Science at NIH.
+https://datascience.nih.gov/strides
+36. Nishida, N., Yamakawa, M., Shiina, T., Mekada, Y., Nishida, M., Sakamoto, N., Nishimura, T., Iijima,
+H., Hirai, T., Takahashi, K., Sato, M., Tateishi, R., Ogawa, M., Mori, H., Kitano, M., Toyoda, H.,
+Ogawa, C., Kudo, M., & JSUM AI investigators. (2022). Artificial intelligence (AI) models for the
+ultrasonographic diagnosis of liver tumors and comparison of diagnostic accuracies between AI and
+human experts. Journal of gastroenterology, 57(4), 309-321. https://doi.org/10.1007/s00535-022-
+01849-9
+37. Nong, P., & Ji, M. (2025). Expectations of healthcare AI and the role of trust: understanding patient
+views on how AI will impact cost, access, and patient-provider relationships. Journal of the American
+Medical Informatics Association: JAMIA, 32(5), 795–799. https://doi.org/10.1093/jamia/ocaf031
+38. Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an
+algorithm used to manage the health of populations. Science, 366(6464), 447-453.
+https://doi.org/10.1126/science.aax2342
+39. Office of the National Coordinator for Health IT. (2026). FHIR ecosystem. https://isp.healthit.gov/fhir-
+ecosystem
+40. Osnat, B. (2025). Patient perspectives on artificial intelligence in healthcare: A global scoping review
+of benefits, ethical concerns, and implementation strategies. International Journal of Medical
+Informatics, 203, 106007. https://doi.org/10.1016/j.ijmedinf.2025.106007
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 27
+
+HHS Health Section AI RFI Response
+41. Pai, A., Brunekreef, J., Marcus, E., Sanders, J., Da Silva Guimaraes, M., Menezes, R., Sanchez, C.I.,
+Horlings, H.M., & Teuwen, J. (2025). A quantitative comparison between human experts and AI at
+estimating tumor-stroma ratio. medRxiv, 2025-08. https://doi.org/10.1101/2025.08.26.25334451
+42. Pavuluri, S., Sangal, R., Sather, J., & Taylor, R.A. (2024). Balancing Act: The Complex Rols of
+Artificial Intelligence in Addressing Burnout and Healthcare Workforce Dynamics. BMJ Health and
+Care Informatics, 31(1), 101120. https://doi.org/10.1136/bmjhci-2024-101120
+43. Peng, D., Wang, Y., Preiksaitis, C., & Rose, C. (2026). SycoEval-EM: Sycophancy Evaluation of Large
+Language Models in Simulated Clinical Encounters for Emergency Care. arXiv preprint
+arXiv:2601.16529. https://doi.org/10.48550/arXiv.2601.16529
+44. Phan, H. V., Spottiswoode, N., Lydon, E. C., Chu, V. T., Cuesta, A., Kazberouk, A. D., Richmnond,
+N., Deosthale, P., Calfee, C., & Langelier, C. R. (2025). Integrating a host biomarker with a large
+language model for diagnosis of lower respiratory tract infection. Nature Communications, 16(1),
+10882. https://doi.org/10.1038/s41467-025-66218-5
+45. Pias, T. S., Afrose, S., Tuli, M. D., Trisha, I. H., Deng, X., Nemeroff, C. B., & Yao, D. D. (2025). Low
+responsiveness of machine learning models to critical or deteriorating health
+conditions. Communications Medicine, 5(1), 62. https://doi.org/10.1038/s43856-025-00775-0
+46. Quinn, T.P., Senadeera, M., Jacobs, S., Coghlan, S., & Le, V. (2020). Trust and Medical AI: The
+Challenges We Face and the Expertise Needed to Overcome Them. J Am Med Inform Assoc, 28(4):890-
+894. https://doi.org/10.1093/jamia/ocaa268
+47. Rodziewicz, T. L., Houseman, B., Vaqar, S., & Hipskind, J. E. (2024). Medical Error Reduction and
+Prevention. In StatPearls. StatPearls Publishing. https://www.ncbi.nlm.nih.gov/books/NBK499956/
+48. Shah, S. J., Devon-Sand, A., Ma, S. P., Jeong, Y., Crowell, T., Smith, M., Liang, A. S., Delahaie, C.,
+Hsia, C., Shanafelt, T., Pfeffer, M. A., Sharp, C., Lin, S., & Garcia, P. (2025). Ambient artificial
+intelligence scribes: physician burnout and perspectives on usability and documentation
+burden. Journal of the American Medical Informatics Association: JAMIA, 32(2), 375–380.
+https://doi.org/10.1093/jamia/ocae295
+49. Sittig, D. F., & Singh, H. (2025). Recommendations to ensure safety of AI in real-world clinical
+care. JAMA, 333(6), 457-458. https://doi.org/10.1001/jama.2024.24598
+50. Siwicki, B. (2025). Chicago’s rush rolls out ambient ai after successful pilot. Healthcare IT News.
+Retrieved from https://www.healthcareitnews.com/news/chicagos-rush-rolls-out-ambient-ai-after-
+successful-pilot.
+51. Straw, I., & Wu, H. (2022). Investigating for bias in healthcare algorithms: a sex-stratified analysis of
+supervised machine learning models in liver disease prediction. BMJ health & care informatics, 29(1),
+e100457. https://doi.org/10.1136/bmjhci-2021-100457
+52. Takita, H., Kabata, D., Walston, S. L., Tatekawa, H., Saito, K., Tsujimoto, Y., Miki, Y., & Ueda, D.
+(2025). A systematic review and meta-analysis of diagnostic performance comparison between
+generative AI and physicians. npj Digital Medicine, 8(1), 175. https://doi.org/10.1038/s41746-025-
+01543-z
+53. UK. Department of Health and Social Care. (2024) Equity in medical devices: independent review—
+final report, The National Archives. https://www.gov.uk/government/publications/equity-in-medical-
+devices-independent-review-final-report
+54. U.S. Senate Committee on Commerce, Science, & Transportation (2025, July 1), Senate Strikes AI
+Moratorium from Budget Reconciliation Bill in Overwhelming 99-1 Vote. [Press
+Release].https://www.commerce.senate.gov/2025/7/senate-strikes-ai-moratorium-from-budget-
+reconciliation-bill-in-overwhelming-99-1-vote/8415a728-fd1d-4269-98ac-101d1d0c71e0
+55. Waligora, G., Sherwin, R., & Soucy, Z. (2025). Rapid Systematic Review: “CAN APPLICATION OF
+ARTIFICIAL INTELLIGENCE IMPROVE ED TRIAGE PERFORMANCE?”. The Journal of
+Emergency Medicine. https://doi.org/10.1016/j.jemermed.2025.04.001
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 28
+
+HHS Health Section AI RFI Response
+56. Wolff, J., Pauling, J., Keck, A., & Baumbach, J. (2020). The economic impact of artificial intelligence
+in health care: Systematic review. Journal of Medical Internet Research, 22(2), e16866.
+https://www.jmir.org/2020/2/e16866/
+57. Wu, W.-T., Chao, Y.-W., Lin, T.-K., Huang, C.-K., & Hsieh, P.-H. (2025). Economic evaluation of AI-
+assisted technologies in healthcare: A systematic review. Journal of Food and Drug Analysis, 33(4).
+https://doi.org/10.38212/2224-6614.3570
+58. Yeganegi, M., Danaei, M., Azizi, S., Jayervand, F., Bahrami, R., Dastgheib, S. A., Rashnavadi, H.,
+Masoudi, A., Shiri, A., Aghili, K., Noorishadkam, M., & Neamatzadeh, H. (2025). Research
+advancements in the Use of artificial intelligence for prenatal diagnosis of neural tube defects. Frontiers
+in Pediatrics, 13, 1514447. http://dx.doi.org/10.3389/fped.2025.1514447
+59. Yuan, S., Yang, Z., Li, J., Wu, C., & Liu, S. (2025). AI-Powered early warning systems for clinical
+deterioration significantly improve patient outcomes: a meta-analysis. BMC medical informatics and
+decision making, 25(1), 203. https://doi.org/10.1186/s12911-025-03048-x
+60. Zhao, J., Liu, H., Chen, Y., et al. (2026). Application of artificial intelligence tools and clinical
+documentation burden: a systematic review and meta-analysis. BMC Medical Informatics and
+Decision Making, 26, Article 29. https://doi.org/10.1186/s12911-025-03324-w
+61. Zhau, C. (2026). AI has supercharged scientists—but may have shrunk science. AAAS Articles DO
+Group. https://doi.org/10.1126/science.zc518iv
+February 23, 2026 | HHS Health Section AI RFI Response
+Use or disclosure of data contained on this sheet is subject to the restriction on the title page of this RFI response. 29

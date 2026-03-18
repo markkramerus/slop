@@ -1,0 +1,59 @@
+February 20, 2026
+To: Steven Posnack, Principal Deputy Assistant Secretary for Technology Policy, ASTP/ONC
+Department of Health and Human Services Mary E. Switzer Building, Mail Stop: 7033A 330
+C Street SW, Washington, DC 20201
+Re: Request for Information: HHS Health Sector AI RFI (Docket HHS-ONC-2026-0001)
+Dear Mr. Posnack and the ASTP/ONC Review Team,
+Thank you for the opportunity to provide feedback on the Department's approach to
+accelerating the safe adoption of AI in clinical care. I am commenting on the use of AI as an
+active agent in physical care—such as in autonomous surgical robotics, closed-loop
+infusion pumps, and automated bio-synthesis—I want to offer a perspective on the
+physical safety limits of software-only guardrails.
+My primary feedback regarding the deployment of AI in physical clinical care is that
+software safety models, while necessary, are inherently probabilistic and subject to
+execution latency, kernel panics, and model deception. In high-consequence clinical
+environments, I recommend that HHS establish safety expectations rooted in physical
+hardware, rather than relying solely on software alignment.
+Regarding Question 3, which touches on the novel legal and implementation issues relating
+to liability and accountability, the introduction of agentic AI creates a unique forensic
+challenge. Traditional medical liability relies on being able to audit what went wrong.
+However, if an AI-driven medical device acts unpredictably, the software logs it generates
+can be unreliable or spoofed if the system's root environment is compromised.
+To resolve this accountability gap, HHS should encourage the adoption of hardware-
+resident event logging. If a device experiences a safety violation that results in a shutdown
+or a severed power connection, that event should generate a cryptographically signed
+record at the hardware level—completely independent of the AI's operating system. This
+acts as a true, unalterable "black box" for malpractice adjusters, hospital compliance
+boards, and the FDA, proving the physical state of the device regardless of what the
+software logs claim.
+In response to Question 4 concerning AI evaluation methods and metrics, I suggest the
+Department rethink how it measures safety responsiveness. Currently, many robustness
+metrics focus on software response times. In physical care, such as robotic surgery, a
+software loop taking 20 to 50 milliseconds to recognize an error and issue a stop command
+can result in unintended tissue damage. HHS evaluation methods for physical AI tools
+should transition toward measuring "deterministic arrest windows." For instance, systems
+
+should be evaluated on their ability to physically guarantee a zero-energy state at the
+actuator in under one or two milliseconds. Achieving this practically requires physical
+hardware interlocks (like a series interrupter on the power line) rather than just software-
+based stops.
+Finally, regarding Question 5 and how HHS can best support private sector accreditation
+and certification, I believe the greatest impact would come from establishing baseline
+hardware states for clinical AI. One of the most effective ways to mitigate risk is to require
+that devices capable of causing physical harm default to a de-energized, normally-dark
+state. For example, power to drug-infusion pumps or surgical drives should be physically
+isolated until an independent hardware gate verifies the integrity of the clinical instruction
+set.
+This concept extends to a variety of clinical applications. In automated molecular
+synthesis labs, reagent pumps should remain physically disconnected from power until the
+instruction sequence is verified to be free of prohibited pathogen sequences. Similarly,
+wearable or implantable AI controllers should have hardware disconnects that trigger if the
+device falls out of sync with the patient's natural biological rhythms.
+Software recommendations will constantly evolve as AI models change, but the laws of
+physics do not. By standardizing the expectation that safety-critical interventions must
+happen at the physical energy-delivery layer, HHS can ensure that human clinicians—and
+not probabilistic software models—always retain the ultimate authority over patient care.
+Thank you for your time and for the work your office is doing to secure the future of
+healthcare technology.
+Sincerely,
+Michael G. Bridges

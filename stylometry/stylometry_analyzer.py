@@ -132,7 +132,7 @@ def analyze_voice_with_llm(comments: list[str], voice_id: str, config: Config) -
     comments : list[str]
         Sample of comments from this voice group (already cleaned)
     voice_id : str
-        Voice group identifier (e.g., "industry-high-org")
+        Voice group identifier (e.g., "industry_high_org")
     config : Config
         API configuration
     
@@ -207,6 +207,7 @@ class CommentRecord:
     fingerprint: dict[str, float]
     document_id: str = ""  # Source document ID
     sophistication: str = ""  # Computed from fingerprint
+    category: str = ""  # Raw regulations.gov Category field value
     
     def compute_sophistication(self) -> str:
         """Determine sophistication level from fingerprint metrics."""
@@ -231,7 +232,7 @@ def classify_voice_group(record: CommentRecord) -> str:
     Determine voice group ID based on explicit properties.
     
     Format: {archetype}-{sophistication}[-org]
-    Examples: "individual_consumer-low", "industry-high-org"
+    Examples: "individual_consumer_low", "industry_high_org"
     """
     has_org = bool(record.organization.strip())
     
@@ -452,7 +453,7 @@ class VoiceGroup:
         
         # Select cleaned examples (diverse, no boilerplate)
         import random
-        random.seed(42)  # Consistent sampling
+        random.seed(random.randint(0, 2**32 - 1))  # Consistent sampling
         
         # Clean all comments and filter out very short ones
         cleaned_comments = []
@@ -727,7 +728,7 @@ def analyze_docket_stylometry(
     state_col = find_col(df, "state/province")
     doc_id_col = find_col(df, "document id")
     attachment_col = find_col(df, "attachment files")
-    category = find_col(df, "category")
+    category_col = find_col(df, "category")
     
     if not comment_col:
         raise ValueError(f"Could not find comment column in {csv_path}")
@@ -780,7 +781,8 @@ def analyze_docket_stylometry(
         elif len(words) < 10:  # Skip very short comments
             continue
         
-        archetype = classify_archetype(org, name, category)
+        category_value = str(row.get(category_col, "")).strip() if category_col else ""
+        archetype = classify_archetype(org, name, category_value)
         fp = fingerprint(comment)
         
         record = CommentRecord(
@@ -791,6 +793,7 @@ def analyze_docket_stylometry(
             state=state,
             fingerprint=fp,
             document_id=document_id,
+            category=category_value,
         )
         record.sophistication = record.compute_sophistication()
         records.append(record)

@@ -37,19 +37,41 @@ class ArgumentAngle:
     id : str
         Short snake_case identifier (e.g. "patient_safety", "bias_detection").
     angle : str
-        One-sentence description of this argument angle.
+        One-sentence summary of this argument angle.
     weight : float
         Base rate weight w(A) for this angle (0–1). Used in computing
         P(A|V) ∝ w(A) × f(A,V). All weights are normalized at runtime.
     best_voices : list[str]
         Voice IDs (from stylometry index.json) most naturally suited to make
         this argument. These get the affinity_boost multiplier when computing
-        P(A|V). Example: ["advocacy_group-high-org", "academic-high-org"]
+        P(A|V). Example: ["advocacy_group_high_org", "academic_high_org"]
+    key_claims : list[str]
+        2–5 specific factual or logical claims this angle makes. These are the
+        concrete "what to say" — distinct enough that the frame-building LLM
+        can construct differentiated core_arguments from them rather than
+        defaulting to generic restatements of the objective.
+        Example: ["Model cards are the only existing transparency standard for
+        AI in health IT", "Absence of published evidence ≠ absence of value"]
+    rhetorical_approach : str
+        The argumentative strategy or framing lens for this angle. Tells the
+        frame-building LLM *how* to argue, not just *what* to argue.
+        Example: "precautionary principle — act before harm occurs, not after"
+        or "comparative regulatory analysis — AI faces fewer disclosure
+        obligations than traditional medical devices"
+    avoid : list[str]
+        Explicit guardrails to prevent angle collapse across comments. Lists
+        topics or framings this angle should NOT use because they are covered
+        by other angles in the campaign.
+        Example: ["do not focus on procurement costs — covered by
+        procurement_angle", "do not cite specific studies"]
     """
     id: str
     angle: str
     weight: float = 0.15
     best_voices: list[str] = field(default_factory=list)
+    key_claims: list[str] = field(default_factory=list)
+    rhetorical_approach: str = ""
+    avoid: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -57,6 +79,9 @@ class ArgumentAngle:
             "angle": self.angle,
             "weight": self.weight,
             "best_voices": self.best_voices,
+            "key_claims": self.key_claims,
+            "rhetorical_approach": self.rhetorical_approach,
+            "avoid": self.avoid,
         }
 
     @classmethod
@@ -68,6 +93,9 @@ class ArgumentAngle:
             angle=d["angle"],
             weight=float(d.get("weight", 0.15)),
             best_voices=best_voices,
+            key_claims=d.get("key_claims", []),
+            rhetorical_approach=d.get("rhetorical_approach", ""),
+            avoid=d.get("avoid", []),
         )
 
 
@@ -96,8 +124,8 @@ class CampaignPlan:
         Distinct argument angles to distribute across comments.
     campaign_voices : dict[str, float]
         Voice ID → weight mapping. Voice IDs correspond to entries in the
-        stylometry index.json (e.g. "advocacy_group-high-org",
-        "individual_consumer-low"). Weights are normalized at runtime to
+        stylometry index.json (e.g. "advocacy_group_high_org",
+        "individual_consumer_low"). Weights are normalized at runtime to
         give P(V).
     base_population : dict[str, float]
         Voice ID → proportion in the actual docket (before any campaign
@@ -161,14 +189,14 @@ class CampaignPlan:
         for angle in self.argument_angles:
             w = angle.weight
             # Check if voice_id matches any best_voice (exact match or
-            # archetype prefix match, e.g. "industry-high-org" matches "industry")
+            # archetype prefix match, e.g. "industry_high_org" matches "industry")
             affinity = 1.0
             for bv in angle.best_voices:
                 if voice_id == bv or voice_id.startswith(bv + "-"):
                     affinity = α
                     break
                 # Also allow archetype-level matching: if best_voice is
-                # "industry" and voice_id is "industry-high-org"
+                # "industry" and voice_id is "industry_high_org"
                 if "-" not in bv and voice_id.startswith(bv):
                     affinity = α
                     break

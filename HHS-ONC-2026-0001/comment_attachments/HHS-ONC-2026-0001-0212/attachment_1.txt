@@ -1,0 +1,676 @@
+RESPONSE TO HHS REQUEST FOR INFORMATION
+Accelerating the Adoption and Use of Artificial Intelligence as Part of
+Clinical Care
+90 FR 60108 | Document Number 2025-23641 | Submitted February 23, 2026
+Submitted by: Dennis Morrison, PhD, Eleos Health | Focus Area: Behavioral Health
+Introduction
+This response addresses the ten specific questions posed in HHS's RFI on accelerating AI
+adoption in clinical care (90 FR 60108), with an exclusive focus on behavioral health—
+encompassing mental health, substance use disorders (SUD), and community behavioral health
+organizations (CBHOs). Behavioral health occupies a unique position in the AI landscape: it faces
+the some of the most severe workforce shortages, the greatest documentation burden relative to
+encounter volume, the most significant access disparities, and clinical complexity that demands
+nuanced, evidence-based approaches that current AI tools are only beginning to approximate.
+Behavioral health organizations, particularly Certified Community Behavioral Health Clinics
+(CCBHCs) and community mental health centers (CMHCs), treat the nation's most vulnerable
+populations—individuals with serious mental illness (SMI), co-occurring disorders, and those
+involved in the justice system. These organizations have chronically operated on thin margins,
+and the combination of Medicaid funding pressures, clinician burnout, and documentation
+mandates threatens their sustainability. AI tools—properly governed, evaluated, and
+reimbursed—represent a rare opportunity to meaningfully address each of these challenges
+simultaneously.
+This response draws on the work of pioneering behavioral health AI companies including Eleos
+Health (ambient documentation and compliance AI) and Lyssn (clinical quality improvement and
+evidence-based practice fidelity AI), as well as the clinical research of Dr. John Torous, MD, MBI,
+Director of the Digital Psychiatry Division at Beth Israel Deaconess Medical Center (BIDMC) /
+Harvard Medical School, whose decade-plus body of work on digital mental health tools, AI
+chatbots, and mobile mental health applications provides essential evidence-based grounding.
+
+Question 1:
+What are the biggest barriers to private sector innovation in
+AI for health care and its adoption and use in clinical care?
+Workforce Crisis and Documentation Burden
+Behavioral health faces a workforce crisis of historic proportions. Clinicians in community
+behavioral health settings report spending 30-50% of their working hours on documentation rather
+than direct care. This documentation burden is a primary driver of the 90% burnout rate cited
+across the sector. Companies like Eleos Health have demonstrated that ambient AI
+documentation tools can reduce documentation time by more than 70%, with providers accepting
+80% of AI-generated note suggestions and 90% of notes submitted within 24 hours—dramatically
+reducing late submission denials.
+Yet adoption remains uneven because many behavioral health organizations, particularly rural
+and safety-net providers, lack the IT infrastructure, broadband connectivity, and technical staff to
+implement sophisticated AI platforms. The "digital divide" that Dr. John Torous has long
+documented in his research on digital equity and the BIDMC Digital Navigator program extends
+directly into organizational AI readiness.
+Regulatory Fragmentation
+The behavioral health regulatory environment is uniquely fragmented. Unlike general medical
+AI, which primarily navigates FDA and HIPAA frameworks, behavioral health AI must
+simultaneously address 42 CFR Part 2 restrictions on substance use disorder records, state-by-
+state licensure and telehealth regulations, payer-specific prior authorization requirements, and
+an emerging patchwork of state AI-specific legislation. Dr. Torous's 2025 50-state legislative
+review published in JMIR Mental Health identified widely varying approaches — from Illinois's
+near-ban on certain AI uses in behavioral health to Utah's disclosure-focused framework —
+creating a compliance environment that disadvantages smaller innovators and CBHOs.
+The Part 2 landscape shifted substantially with HHS's February 2024 Final Rule (89 Fed. Reg.
+12496), which implemented Section 3221 of the CARES Act by aligning significant portions of
+42 CFR Part 2 with HIPAA. The rule took effect April 16, 2024, with a compliance deadline of
+February 16, 2026 — the week this RFI comment period closes. Key changes include: a single
+patient consent now covers all future uses and disclosures for treatment, payment, and
+healthcare operations (TPO), replacing the previous per-disclosure consent requirement;
+covered entities and business associates receiving Part 2 records under TPO consent may
+redisclose in accordance with HIPAA, without separate patient authorization; record segregation
+is no longer required for entities receiving Part 2 records under a single TPO consent; and
+enforcement authority has shifted from DOJ-only criminal penalties to OCR civil and criminal
+enforcement aligned with the HIPAA penalty framework.
+
+Despite this significant alignment, important Part 2 barriers specific to behavioral health AI tools
+remain. The Final Rule created a new, highly protected category called "SUD Counseling
+Notes" — defined as a clinician's notes documenting or analyzing the content of a SUD
+counseling session, maintained separately from the treatment record — analogous to HIPAA's
+psychotherapy notes protections. SUD Counseling Notes require a separate patient consent
+and cannot be covered by a broad TPO consent. This new category is directly relevant to
+ambient AI documentation tools: when a system like Eleos Health captures and analyzes a SUD
+counseling session, the resulting AI-generated session analysis may constitute SUD Counseling
+Notes under the new definition, requiring consent workflows that current ambient AI
+implementations were not designed to accommodate. HHS has not yet issued guidance
+clarifying how ambient AI documentation systems should navigate this new category, leaving
+SUD treatment programs and their AI vendors in legal uncertainty.
+Furthermore, Part 2 does not preempt more protective state laws, and the prohibition on using
+SUD records in civil, criminal, administrative, or legislative proceedings against a patient
+remains absolute without separate written consent or a court order — a protection that goes well
+beyond HIPAA and has direct implications for AI-generated SUD documentation that could be
+discoverable in legal proceedings. HHS should issue specific guidance addressing how ambient
+AI documentation systems operating in SUD treatment settings should implement the SUD
+Counseling Notes consent requirements, and should clarify the conditions under which AI-
+generated session analysis constitutes Part 2-protected records. Because some ambient
+listening documentation assistants require retention of audio recordings and/or transcripts of the
+therapy session to analyze the session, HHS should declare these recordings as non-
+discoverable.
+A foundational barrier to AI adoption and interoperability in Community Mental Health Centers
+(CMHCs) serving Medicaid populations is the absence of standardized procedure coding and
+service definitions across state lines. While HCPCS Level II and CPT codes provide a nominal
+federal framework, Medicaid is a state-administered program, and individual states retain broad
+latitude to define covered services, establish documentation requirements, specify unit
+structures, and determine reimbursement rates independently. The practical consequence is
+that the same billing code — for example, an H-code for community-based mental health
+services — may carry materially different service definitions, staff qualification requirements,
+and clinical documentation expectations depending on the state and even the managed care
+payer within that state. For AI-powered clinical documentation and coding assistance tools to
+function reliably in CMHC environments, they must be trained, configured, and continuously
+updated to accommodate this patchwork of state- and payer-specific rules. This variability
+substantially increases the cost and complexity of AI implementation, limits the scalability of
+vendor solutions across state markets, and creates persistent risk of claim denials, audit
+exposure, and compliance failures when AI-generated outputs do not precisely align with
+jurisdictionally-specific requirements. HHS should consider whether federal guidance, technical
+assistance, or Medicaid waiver incentives could encourage greater harmonization of behavioral
+health service definitions and coding standards as a prerequisite for effective AI adoption in this
+sector.
+
+Lack of Behavioral Health-Specific AI Training Data and
+Validation
+General-purpose large language models (LLMs) like ChatGPT, Gemini and others perform poorly
+on behavioral health-specific tasks without domain-specific fine-tuning. As Dr. Torous noted in
+Congressional testimony (November 2025), one patient's apt observation captures the challenge:
+general AI tools tend to repeat the same responses 'in different ways' without demonstrating
+genuine clinical insight. These tools rely on sycophancy to build rapport. Lyssn, which has built
+its platform on 17 years of academic research and analysis of more than 4.3 million clinical
+sessions, and has produced over 60 peer-reviewed publications validating its approach,
+represents the kind of domain-specific foundation behavioral health AI requires—but that standard
+AI development pipelines do not automatically provide.
+Eleos Health has pursued a parallel but distinct data strategy — building what it describes as the
+industry's largest dataset of real-world behavioral health treatment sessions to train its ambient
+documentation and clinical insight AI. A peer-reviewed study published in the Journal of Medical
+Internet Research reports that Eleos's machine learning research drew on 2.83 million therapist-
+client micro-dialogues — a dataset the lead researcher described as "unprecedented," specifically
+because it captures how therapy is actually delivered in real-world clinical settings rather than in
+the controlled conditions that have historically characterized psychotherapy research. Eleos's in-
+house clinical team, with over 180 combined years of behavioral health experience, continuously
+tests, validates, and fine-tunes its models to recognize the clinical terminology, interaction
+patterns, and emotional indicators that a general-purpose LLM trained on broad internet text
+cannot reliably detect. The platform's coverage extends across CBT, DBT, ACT, Motivational
+Interviewing, and the Zero Suicide Framework, with active research studies conducted in
+collaboration with Stanford, MIT Sloan, Vanderbilt, Harvard, Palo Alto University, Imperial College
+London, and Hebrew University — including novel AI-based detection of social determinants of
+health discussions in session content and multi-modal audio feature analysis as indicators of
+depression and anxiety symptom severity. Critically, this dataset was assembled under a strict
+privacy architecture: Eleos does not store raw session recordings or use protected health
+information to train its models; any data used for model improvement is fully de-identified and
+reviewed exclusively by a clinically licensed, security-cleared team. Together, the Lyssn and
+Eleos datasets represent the most significant behavioral health-specific AI training foundations in
+existence, and the research programs surrounding them demonstrate precisely the kind of
+domain-specific investment that HHS should incentivize, protect, and replicate through federal
+research funding.
+The scarcity of large, well-labeled, consent-appropriate behavioral health datasets for AI
+training—particularly for specialized modalities like group therapy, peer support, and crisis
+intervention—limits the quality ceiling for behavioral health-specific AI.
+Reimbursement Gaps
+Current CMS reimbursement frameworks do not recognize AI-assisted clinical documentation or
+AI-enhanced quality improvement as billable services. Behavioral health organizations cannot
+
+claim additional reimbursement for deploying AI tools that improve documentation integrity,
+enhance evidence-based practice fidelity, or reduce clinician turnover—even when these tools
+demonstrably improve patient outcomes and organizational financial sustainability. The result is
+that the upfront cost of AI tools falls entirely on organizations that are already operating on thin
+margins.
+
+Question 2:
+What regulatory, payment policy, or programmatic design
+changes should HHS prioritize to incentivize the effective use of AI in clinical care
+and why? What HHS regulations, policies, or programs could be revisited to
+augment your ability to develop or use AI in clinical care? Please provide specific
+changes and applicable Code of Federal Regulations citations.
+42 CFR Part 2 Safe Harbor for AI Documentation Tools
+As described in the “Regulatory Fragmentation” section above, HIPAA and 42 CFR § 2
+alignment has helped providers’ significantly. However, issues remain especially regarding SUD
+Counseling Notes. HHS should take two targeted actions. First, issue authoritative interpretive
+guidance clarifying: (a) whether AI-generated session analysis in an ambient documentation tool
+constitutes SUD Counseling Notes under 42 CFR § 2.11; (b) the conditions under which AI
+vendor processing of session content constitutes a use or disclosure requiring Part 2 consent;
+and (c) what a compliant "separate consent" workflow for SUD Counseling Notes looks like in
+an ambient AI implementation. Second, establish a prospective safe harbor for AI
+documentation tools that process SUD session content within the treating provider's care
+setting, under a defined consent architecture, where the AI-generated output remains within the
+treating provider's EHR and is not disclosed to external parties — on the grounds that such use
+is analytically equivalent to a clinician's own note-taking rather than a disclosure to a third party.
+Applicable CFR citations: 42 CFR §§ 2.11 (SUD Counseling Notes definition), 2.31 (consent
+requirements), 2.32 (notice accompanying disclosure).
+CCBHC Prospective Payment System Recognition of AI-
+Enhanced Services
+CMS should modify the CCBHC Prospective Payment System (PPS) methodology under the
+CCBHC Medicaid Demonstration program to recognize AI-assisted documentation and quality
+improvement tools as qualifying infrastructure investments that affect the cost report used to
+establish PPS rates. Under the current framework, investments in AI tools that reduce
+documentation time and improve compliance do not result in sustainable revenue adjustments,
+because their value accrues primarily through avoided costs (reduced denials, improved staff
+retention) rather than through billable activity. Applicable CFR citation: 42 CFR § 438.6 (managed
+care CCBHC provisions); 42 CFR Part 447 (payment for services).
+Medicare Behavioral Health Integration and Digital Health
+Codes
+CMS should expand CPT code coverage for AI-augmented behavioral health services. The
+existing Behavioral Health Integration (BHI) codes (99492-99494) and General BHI (99484)
+should be updated or supplemented to recognize AI-assisted care coordination, digital
+
+phenotyping-informed treatment adjustment, and AI-enabled evidence-based practice
+supervision. Additionally, CMS should establish new HCPCS codes specifically for AI-assisted
+clinical documentation in behavioral health settings, analogous to how remote patient monitoring
+codes (CPT 99453-99458) created a reimbursement pathway for technology-mediated
+monitoring. Applicable CFR citation: 42 CFR § 410.67 (behavioral health integration services).
+ONC Behavioral Health EHR Certification Criteria
+ASTP/ONC should establish behavioral health-specific criteria within the Health IT Certification
+Program (45 CFR Part 170) that include requirements for AI transparency, bias testing on
+behavioral health populations, and interoperability with behavioral health data standards including
+SNOMED CT mental health subsets and the Gravity Project's social determinants of health
+(SDOH) terminology. Current certification criteria were developed primarily for acute and primary
+care workflows and do not adequately address behavioral health-specific documentation
+structures, group therapy notes, or the unique data elements relevant to SMI populations.
+
+Question 3:
+For non-medical devices, we understand that use of AI in
+clinical care may raise novel legal and implementation issues that
+challenge existing governance and accountability structures ( e.g., relating
+to liability, indemnification, privacy, and security). What novel legal and
+implementation issues exist and what role, if any, should HHS play to help
+address them?
+In general, there are currently two broad uses of AI in behavioral healthcare: the first is the use
+of AI to expedite and improve a clinician’s ability to complete the onerous documentation burden
+seen in behavioral healthcare, especially community based behavioral healthcare. When used
+in this manner, clinicians are being provided information to help them write clinical notes. They
+and they alone are the arbiters of what, if any of the suggestions provided by the AI are used in
+the clinical note. The second is AI being deployed without clinician oversight. AI chatbots are the
+most common example of this form of AI usage in behavioral health care. The fundamental
+difference between these two uses is that the former assists clinicians in their work but does not
+replace clinical judgement. The latter has no human clinical oversight.
+Liability in AI-Augmented Clinical Documentation
+Ambient AI documentation tools like Eleos Health's platform generate progress note suggestions
+that clinicians review, modify, incorporate into the EHR note and sign. For some, this has created
+confusion regarding liability questions: if an AI-generated note contains a clinical inaccuracy that
+contributes to a patient harm event, how should liability be apportioned among the parties that
+participated in the creation of that including the AI vendor, the EHR vendor, the clinician who
+approved the note, and the organization? Since these tools assist professionals only in
+documenting clinical interactions, current malpractice frameworks appropriately assume human
+authorship and human accountability for clinical documentation. HHS should reaffirm this position
+and work with state insurance commissioners and CMS to develop guidance clarifying that the
+supervising clinician retains professional responsibility for reviewed and approved AI-generated
+content, while establishing minimum accountability standards for AI vendors providing
+documentation assistance including transparency regarding model limitations, error rates, and
+update protocols. Some AI products allow or even require that transcripts and/or audio recordings
+of the clinical session and the recommendations made but not accepted by the clinician be
+retained for some period of time. These recordings and transcripts are similar to other quality
+improvement documents such as chart reviews and supervision and should be protected from
+legal discovery.
+AI Mental Health Chatbots and Crisis Situations
+Compared to AI tools that assist clinicians in documenting clinical transactions, mental health
+chatbots provide significantly more serious risks to end users. These products work semi-
+automously often without a “human in the loop”. Dr. John Torous and others have documented
+
+extensively the risks of AI chatbots deployed for mental health support without adequate safety
+guardrails. As he noted in Congressional testimony, OpenAI reported over one million users per
+week engaging ChatGPT with explicit indicators of suicidal planning, and numerous lawsuits have
+alleged AI chatbot involvement in patient suicides. The legal status of AI chatbots that provide
+mental health guidance but are not classified as medical devices creates a significant
+accountability gap. HHS should issue guidance establishing minimum safety requirements—
+including mandatory crisis detection, escalation protocols, and handoff to human crisis services—
+for AI applications marketed for mental health support, regardless of FDA classification. This
+would build on Dr. Torous's work benchmarking AI chatbot performance on mental health
+scenarios through platforms like mindApps.ai. See “Real World Performance Surveillance” below
+for more on this topic.
+Privacy in Psychotherapy and Group Therapy AI
+Lyssn's AI platform analyzes session recordings for quality improvement and evidence-based
+practice fidelity—a valuable capability that raises novel privacy questions when applied to group
+therapy, where multiple clients simultaneously disclose protected health information. Unlike
+individual therapy, group therapy transcripts contain the PHI of potentially 10-15 individuals per
+session. However, like individual notes, the information not used to create the clinical notes for
+group therapy participants should be regarded as legally non-discoverable.
+Informed Consent Standards for AI-Assisted Care
+No federal standard currently exists for what behavioral health patients must be told when AI tools
+are used in their care. Dr. Torous and others have long advocated for transparent disclosure to
+patients about digital health tool use. There are two use cases for consent regarding the use of
+AI tools. The first is general consent which is typically given when treatment begins along with
+other, more traditional consents to treatment. The second is specific consent, or more exactly,
+the ability for a patient to withdraw previously given consent for one or more treatment sessions.
+AI vendors must accommodate both. HHS should establish minimum informed consent standards
+for behavioral health settings that address: the use of ambient listening technologies during
+sessions, AI analysis of session content for documentation or quality improvement, and the use
+of AI chatbots or digital therapeutics as adjuncts to care.
+
+Question 4:
+For non-medical devices, what are the most promising AI
+evaluation methods (pre- and post-deployment), metrics, robustness testing, and
+other workflow and human-centered evaluation methods for clinical care? Should
+HHS further support these processes? If so, which mechanisms would be most
+impactful ( e.g., contracts, grants, cooperative agreements, and/or prize
+competitions)?
+Evidence-Based Practice Fidelity as a Core Metric
+For behavioral health AI, the most clinically meaningful evaluation metric is fidelity to evidence-
+based practices (EBPs)—the degree to which AI-assisted clinical encounters actually improve
+adherence to validated treatment protocols like Motivational Interviewing (MI), Cognitive
+Behavioral Therapy (CBT), and Dialectical Behavioral Therapy (DBT). Lyssn's platform, built on
+17 years of academic research and validated against more than 4.3 million analyzed sessions,
+represents the state of the art in AI-powered EBP fidelity measurement. Its approach—using
+natural language processing to assess therapist behaviors against validated coding systems like
+the Motivational Interviewing Treatment Integrity (MITI) scale—provides a model for how AI
+evaluation in behavioral health can be clinically grounded rather than purely technical. Using
+EBPs in this way presumes that managing the process i.e. the protocol will result in the same (or
+similar) outcomes achieved by the EBP when that protocol was validated. It is important to note
+that doing an EBP is a means to an end, not the end itself. EBPs exist to provide clinicians with a
+research-based way to get good clinical outcomes. They define what improvement is possible for
+various treatments, in a way defining a gold standard. In cases where delivering high fidelity EBPs
+is not possible or advisable, the outcomes demonstrated by the EBPs provide a benchmark for
+non-EBP interventions. That is, if a non-EBP intervention can achieve the same or better
+outcomes as demonstrated with the EBP for the same or less cost, the non-EBP intervention is
+achieving what the EBP treatment did even though it was not maintaining fidelity to the protocol.
+In this way, EBPs serve dual purposes: providing a detailed protocol for clinicians to follow and a
+clinical outcome benchmark that non-EBPs should strive to attain.
+Therapeutic Alliance Preservation
+The therapeutic relationship—the alliance between clinician and client—is one of the most
+powerful predictors of behavioral health treatment outcomes across all modalities. AI evaluation
+frameworks must assess whether AI tools enhance or diminish therapeutic alliance quality. Eleos
+Health's published research and received numerous anecdotal observations demonstrating that
+providers using its ambient documentation platform achieve 50% higher client engagement, 3-4x
+better symptom improvement, and 36% greater use of evidence-based techniques compared to
+baseline, suggesting that removing the documentation burden allows clinicians to be more fully
+present with clients. Post-deployment evaluation should systematically measure therapeutic
+alliance using validated tools such as the Working Alliance Inventory.
+
+Bias and Health Equity Testing
+AI systems trained primarily on data from majority populations can perform poorly for
+underrepresented groups—a particular concern in behavioral health, where racial and ethnic
+minorities, LGBTQ+ individuals, and people with limited English proficiency face well-documented
+care disparities. Dr. Torous's Digital Navigator program at BIDMC specifically addresses digital
+equity as a prerequisite for beneficial AI deployment. HHS should require that behavioral health
+AI tools undergo pre-deployment bias testing disaggregated by race, ethnicity, language, gender
+identity, and socioeconomic status, with post-deployment monitoring to detect disparate
+performance. Grant mechanisms through SAMHSA and NIMH would be the most appropriate
+vehicles for funding this research.
+Real-World Performance Surveillance
+Dr. Torous has consistently argued that most mental health apps and AI chatbots remain
+understudied, with unknown real-world risks — a position now supported by a robust independent
+evidence base. Linardon and colleagues conducted a systematic review of 171 clinical trials of
+mental health apps published in npj Digital Medicine (2024), finding that only 55 trials reported
+adverse events at all, the meta-analytic deterioration rate across app conditions was 6.7%, and
+those trials that did report adverse events frequently provided insufficient information to allow
+proper assessment of user risk. Writing in World Psychiatry (2025), the same research team
+documented that negative effects from apps can extend to symptom deterioration, onset of new
+symptoms, and suicidal ideation, with rates of negative effects in severe mental illness
+populations reaching as high as 20% in some trials — a state of evidence that, in their words,
+"makes it difficult to integrate apps into clinical practice safely."
+The crisis response failure problem has been quantified independently. Dwyer and colleagues
+publishing in Psychiatric Services (2024), evaluated 302 mental health apps available in January
+2024 using the APA's app evaluation model and found that only 15% referred users to 988, the
+national crisis standard, and — most strikingly — 14 apps with more than 3.5 million combined
+downloads provided incorrect or nonfunctional alternative crisis hotlines. This is not a theoretical
+risk: millions of people in potential crisis were being routed to telephone numbers that do not
+connect. This finding directly extends foundational work by Larsen, Nicholas, and Christensen,
+whose systematic review of suicide-focused apps found that none abided with best practices for
+providing visible crisis support information, and that the vast majority demonstrated limited ability
+to recognize anticipatory warning signs of suicidal crisis.
+For behavioral health AI, HHS should support the development of post-deployment surveillance
+infrastructure analogous to FDA's MedWatch system—a mechanism for clinicians and patients
+to report AI-related clinical errors, safety events, and unexpected behaviors in behavioral health
+settings. AHRQ's existing patient safety infrastructure could serve as a model.
+
+Question 5:
+How can HHS best support private sector activities ( e.g.,
+accreditation, certification, industry-driven testing, and credentialing) to
+promote innovative and effective AI use in clinical care?
+Behavioral Health-Specific AI Certification
+HHS should support the development of a behavioral health-specific AI certification program,
+potentially through SAMHSA or in partnership with the National Council for Mental Wellbeing.
+Such a program would extend beyond ONC's general health IT certification criteria to address
+behavioral health-specific requirements including EBP fidelity measurement, crisis protocol
+adequacy, 42 CFR Part 2 compliance for SUD applications, and therapeutic alliance preservation.
+Eleos Health's recent achievement of ISO 42001 certification (the AI-specific management
+system standard) demonstrates that behavioral health AI vendors are ready for rigorous
+certification frameworks.
+SAMHSA Technology Assessment Program
+SAMHSA should establish a technology assessment program analogous to the Substance Abuse
+Prevention and Treatment Block Grant's evidence-based practices mandate, creating a tiered
+recognition system for behavioral health AI tools based on evidence strength. Dr. Torous, who
+led the American Psychiatric Association's work group on smartphone app evaluation and
+developed the APA's technology evaluation framework, has created models for how this can be
+structured. His mindapps.org database—the largest mental health app registry—and mindApps.ai
+benchmarking platform provide a template for systematic, ongoing behavioral health AI evaluation
+that HHS could support and formalize. Other partners in this effort include The Joint Commission
+and CARF, two of the most used accrediting bodies in the behavioral health industry.
+Academic-Industry Research Partnerships
+HHS should incentivize partnerships between behavioral health AI companies and academic
+medical centers with established digital psychiatry programs. The BIDMC Digital Psychiatry
+Division's research collaborations—including studies validating Eleos Health's impact on
+documentation burden and clinical outcomes—demonstrate how these partnerships can produce
+rigorous peer-reviewed evidence that benefits the entire field. Cooperative research and
+development agreements (CRADAs) between NIMH-funded research centers and behavioral
+health AI companies would accelerate the evidence base.Eleos Health has established multiple
+academic partnerships with Stanford, Palo Alto University, Hebrew University and others.
+
+Question 6:
+Where have AI tools deployed in clinical care met or exceeded
+performance and cost expectations and where have they fallen short? What kinds
+of novel AI tools would have the greatest potential to improve health care
+outcomes, give new insights on quality, and help reduce costs?
+Successes: Ambient Documentation in Behavioral Health
+AI-assisted clinical documentation has clearly met or exceeded performance expectations in
+behavioral health settings. Eleos Health's deployments across organizations including Wellpower,
+Jefferson Center, GRAND Mental Health, and Gaudenzia demonstrate consistent documentation
+time reductions exceeding 70%, with providers accepting 80% of AI-generated note suggestions.
+It should be noted that Eleos Health believes this 80% mark is a best practice. That is, no more
+than 80% of the note should be AI-generated since all notes should also include the unique voice
+of the clinician. These results translate directly into organizational sustainability: 90% of notes
+submitted within 24 hours reduces claim denials, and reduced documentation burden improves
+staff retention in a sector experiencing severe workforce shortages. Dr. Brandon Ward, when he
+was CIO at Jefferson Center, reported that providers are enthusiastic about the technology,
+including initial skeptics. These results are particularly significant given that behavioral health
+organizations serve some of the most complex patients in the healthcare system.
+Successes: AI-Powered Quality Improvement and EBP
+Fidelity
+Lyssn's AI platform has demonstrated success in scaling evidence-based practice training and
+quality improvement in ways that were previously impossible at the organizational level.
+Traditional EBP fidelity assessment required manual coding of session recordings—a process so
+resource-intensive that most organizations could only evaluate a tiny fraction (5-10%) of clinical
+encounters. Lyssn's AI enables continuous, automated fidelity monitoring across entire
+workforces, allowing organizations to identify training needs, target coaching resources, and
+demonstrate fidelity to funders and accreditors. This addresses a longstanding gap between what
+EBP research says is effective and what actually occurs in real-world clinical practice.
+Shortfalls: AI Chatbots for Direct Mental Health Support
+AI chatbots deployed directly to patients for mental health support have not met clinical
+expectations and present documented safety risks. Dr. Torous, whose early research was
+foundational in assessing the potential of digital mental health tools, has documented that most
+mental health chatbots remain untested in clinical populations and present unknown risks. The
+2017 emergence of Woebot and similar chatbots was accompanied by enthusiasm that has been
+tempered by subsequent evidence: few have undergone randomized controlled trials, many fail
+to recognize crisis situations, and some have been associated with patient harm. The FDA's April
+2024 approval of the first app to treat depression (Rejoyn for adjunctive treatment of MDD)
+represents a positive regulatory development, but the vast majority of the thousands of mental
+
+health apps on the market remain unvalidated. NAMI does not endorse AI for mental health
+treatment and has partnered with Dr. Torous to develop independent benchmarks for AI tool
+safety.
+Shortfalls: Interoperability and EHR Integration
+AI tools in behavioral health consistently struggle with EHR integration. The behavioral health
+EHR market is highly fragmented, with dozens of specialized platforms (Netsmart's myAvatar and
+Streamline, Qualifacts/Credible, Kipu, ICANotes, and others) lacking the standardized APIs that
+acute care EHRs have developed under ONC's information blocking rules. Eleos Health
+addresses this by operating as an EHR-agnostic overlay via browser extension—a practical
+solution, but one that highlights the underlying interoperability problem rather than solving it. True
+integration requires standardized behavioral health data exchange frameworks that do not
+currently exist.
+
+Question 7:
+Which role(s), decision maker(s), or governing bodies within
+health care organizations have the most influence on the adoption of AI for
+clinical care? What are the primary administrative hurdles to the adoption of AI in
+clinical care?
+Key Decision Makers
+In community behavioral health organizations, AI adoption decisions typically require alignment
+among: the Chief Executive Officer (organizational mission and financial sustainability), the Chief
+Clinical Officer (clinical appropriateness, staff engagement, evidence base), the Chief Information
+Officer (technical infrastructure, security, EHR integration), and the Chief Medical Officer
+(psychiatrist or physician oversight of AI-generated clinical content). Unlike hospital systems,
+most CBHOs lack a dedicated Chief Digital Officer or Chief Innovation Officer, meaning AI
+advocacy must come from within existing leadership roles. Board-level engagement is
+increasingly common as AI represents both opportunity and liability.
+Eleos Health's deployment experience across organizations like Jefferson Center (where the
+Chief Innovation Officer and President/CEO both participated actively in adoption decisions)
+illustrates that multi-stakeholder buy-in is essential—and that mission alignment and clinician
+enthusiasm are as important as technical capability.
+Primary Administrative Hurdles
+The most consistently reported administrative hurdles to behavioral health AI adoption include:
+(1) procurement complexity, including legal review of BAAs for ambient listening technologies and
+vendor security assessments that small organizations lack capacity to conduct; (2) state licensing
+and consent requirements for AI tools that capture session content, which vary widely and are
+changing frequently and quickly and are rarely addressed in existing technology guidance; (3)
+payer contracting constraints, as some Medicaid managed care contracts include provisions that
+could be interpreted to restrict AI-generated documentation; (4) workforce training requirements,
+as even well-designed AI tools require change management investment that organizations with
+limited training budgets struggle to fund; and (5) skepticism from clinicians who have experienced
+technology-driven increases in administrative burden and are appropriately cautious about new
+tools promising relief.
+
+Question 8:
+Where would enhanced interoperability widen market
+opportunities, fuel research, and accelerate the development of AI for clinical
+care? Please consider specific data types, data standards, and benchmarking
+tools.
+Behavioral Health-Specific Data Standards
+The most significant interoperability gap affecting behavioral health AI is the absence of
+standardized behavioral health data exchange frameworks. The Meaningful Use standards first
+implemented with the passage of the Affordable Care Act started the process of interoperability,
+but behavioral health care organizations were immediately at a disadvantage since they were
+exempted from the EHR stimulus incentives available to medical care providers. Many Health
+Information Exchanges (HIEs) were hesitant to accept and coordinate behavioral health data
+because of the challenges of 42CFR Part 2 and a general hesitancy about the confidentiality
+requirements inherent in behavioral health information. Now, while HL7 FHIR has transformed
+data exchange in acute and primary care, behavioral health data—including mental status
+examinations, symptom rating scales, substance use assessment tools, and session notes—
+lacks standardized FHIR resource profiles. SAMHSA and ONC should jointly develop and
+mandate FHIR implementation guides specifically for behavioral health, including: standardized
+profiles for PHQ-9, GAD-7, Columbia Suicide Severity Rating Scale (C-SSRS), AUDIT, DAST,
+and other validated assessment instruments; FHIR resources for group therapy documentation;
+and behavioral health-specific social determinants of health data elements aligned with the
+Gravity Project.
+Digital Phenotyping Data Standards
+Dr. Torous's mindLAMP platform at BIDMC represents a leading approach to digital
+phenotyping—using passive smartphone sensor data (GPS, accelerometry, screen time,
+communication patterns) and active ecological momentary assessment to capture the lived
+experience of individuals with mental illness between clinical encounters. Standardized data
+models for digital phenotyping would enable AI systems to incorporate real-world behavioral data
+into clinical decision support, treatment planning, and relapse prediction. NIH's All of Us research
+program, in which Dr. Torous serves as an advisor for the smartphone mood study, provides a
+model for how such data could be collected at population scale.
+Crisis and Emergency Data Exchange
+Behavioral health AI crisis tools—including suicide risk prediction algorithms and crisis chatbot
+escalation systems—require seamless data exchange with crisis services, emergency
+departments, and 988 Suicide and Crisis Lifeline infrastructure. Currently, no standardized data
+exchange protocols exist for transmitting risk-relevant information between AI-powered
+behavioral health applications and crisis response systems. The 988 infrastructure buildout
+
+represents an opportunity to establish behavioral health AI crisis data standards that could benefit
+both direct patient-facing AI tools and clinician-facing decision support systems.
+
+Question 9:
+What challenges within health care do patients and caregivers
+wish to see addressed by the adoption and use of AI in clinical care? Equally,
+what concerns do patients and caregivers have related to the adoption and use of
+AI in clinical care?
+Desired Applications
+Patients and caregivers in behavioral health settings consistently express desire for AI
+applications that: increase access to care (particularly for those in underserved rural and urban
+areas); reduce administrative friction (appointment scheduling, medication refill requests, prior
+authorization navigation); extend the reach of therapeutic support between sessions through
+evidence-based digital tools; and improve the quality and attentiveness of clinical encounters by
+reducing the time their clinician spends looking at a screen. The last point is particularly salient—
+patients notice when their clinician is distracted by documentation. Eleos Health's research and
+clinical testimonials frequently highlight that clients receive more engaged, screen-free care when
+their providers use ambient documentation AI.
+Dr. Torous's research on patient perspectives on digital mental health, including his widely-cited
+guides to evaluating mental health apps, consistently finds that patients want tools that are
+evidence-based, privacy-respecting, and clinically supervised. The patient experience of AI
+chatbots varies widely—some find them accessible and destigmatizing, while others find them
+superficial and inadequate for their needs.
+Patient Concerns
+Patient concerns about AI in behavioral health are concentrated in three areas. First, privacy:
+psychotherapy is one of the most sensitive data categories, and patients fear that AI-analyzed
+session content could be used for insurance underwriting, employment decisions, or law
+enforcement purposes. The history of stigma and discrimination against people with mental illness
+and substance use disorders makes these fears reasonable and well-founded. Second,
+depersonalization: patients fear that AI will replace the human therapeutic relationship with
+algorithmic interaction, reducing their care to a transaction with a machine. Third, accuracy:
+patients worry that AI-generated documentation may misrepresent what was said or decided in a
+session, affecting their treatment or generating records they cannot correct.
+NAMI's partnership with Dr. Torous to develop independent AI safety benchmarks—explicitly
+centered on lived experience perspectives—represents a model for how patient voices can be
+systematically incorporated into behavioral health AI evaluation. HHS should require lived
+experience representation on any federal advisory bodies addressing behavioral health AI.
+
+Question 10:
+Are there specific areas of AI research that HHS should
+prioritize to accelerate the adoption of AI as part of clinical care?
+a. Are there published findings about the impact of adopted AI tools and their use
+clinical care?
+b. How does the literature approach the costs, benefits, and transfers of using AI
+as part of clinical care?
+10a: Published Findings on Adopted AI Tools
+The behavioral health AI evidence base is growing but remains insufficient relative to the pace of
+deployment. Key published findings include:
+• Eleos Health has produced 9 peer-reviewed studies on its ambient AI documentation
+platform, with more than a dozen in progress, including preliminary randomized
+controlled trial data suggesting improved mental health outcomes for patients whose
+clinicians use the platform. Findings include 50% higher client engagement, 3-4x better
+symptom improvement, and 36% greater use of evidence-based techniques.
+• Lyssn's platform is grounded in 60+ peer-reviewed academic publications developed
+over 17 years of research, validating its NLP-based approach to assessing Motivational
+Interviewing fidelity and other EBPs. The platform has analyzed more than 4.3 million
+sessions, providing an unparalleled evidence base for behavioral health AI quality
+measurement.
+• Dr. Torous and colleagues published a comprehensive review in World Psychiatry
+(2025) on the evolving field of digital mental health, covering smartphone apps,
+generative AI, chatbots, and virtual reality, concluding that while evidence for some
+modalities is accumulating, most mental health chatbots remain undertested. His team's
+50-state legislative review (JMIR Mental Health, 2025) provides the most comprehensive
+analysis of how states are regulating AI in mental health.
+• The FDA's April 2024 approval of Rejoyn (Otsuka and Alto Neuroscience's
+prescription digital therapeutic) for adjunctive treatment of major depressive disorder
+represents a regulatory milestone, demonstrating that behavioral health AI can meet the
+FDA's evidence standards for medical device clearance when rigorously evaluated.
+10b: Costs, Benefits, and Transfers
+The behavioral health AI literature approaches cost-benefit analysis with increasing
+sophistication, though significant gaps remain:
+• Documentation AI demonstrates clear return on investment through reduced
+clinician hours spent on notes (>70% reduction), improved claim submission timeliness
+(90% of notes within 24 hours with Eleos Health), reduced late/rejected claims, and
+
+improved staff retention. Given that behavioral health clinician turnover costs
+organizations an estimated $15,000-$30,000 per vacancy, retention benefits alone can
+justify AI investment within months.
+• Quality improvement AI (Lyssn) generates value through improved EBP fidelity,
+which correlates with better patient outcomes and reduced treatment duration—
+ultimately reducing the per-episode cost of care. The ability to evaluate 100% of clinical
+encounters rather than a 5-10% sample also reduces audit risk and accreditation
+vulnerability.
+• AI chatbots and direct-to-consumer mental health AI present a more complex cost-
+benefit picture. While they offer potential cost savings through reduced clinician time, Dr.
+Torous and colleagues have documented risks including failure to recognize crisis
+situations, inadequate evidence bases, and the possibility of displacing rather than
+supplementing human care. The costs of adverse events—including patient harm from
+inadequate crisis response—are difficult to quantify but potentially catastrophic.
+• A critical and underappreciated transfer dynamic is the reimbursement cliff:
+behavioral health organizations bear the full cost of AI tools while payers capture most of
+the financial benefit through reduced claims (fewer denials, improved documentation
+integrity). CMS and state Medicaid agencies should develop value-sharing mechanisms
+that ensure AI-adopting providers capture a fair share of the financial value they
+generate.
+Priority Research Investments for HHS
+Based on the above analysis, HHS—through NIMH, SAMHSA, AHRQ, and NIH—should prioritize
+the following behavioral health AI research investments:
+• Research support for AI use in crisis assessment and triage including AI tools to
+improve suicidal risk identification and prevention.
+• Rigorous clinical trials of AI ambient documentation tools measuring both provider
+outcomes (burnout, satisfaction, retention) and patient outcomes (therapeutic alliance,
+symptom improvement, treatment completion rates).
+• Development and validation of standardized behavioral health AI evaluation
+frameworks, building on Dr. Torous's APA technology evaluation framework and Lyssn's
+evidence-based practice fidelity measurement approaches.
+• Safety research on AI chatbots and digital mental health tools, including prospective
+studies of adverse event rates, crisis response adequacy, and the impact of AI tool use
+on suicidal ideation and self-harm outcomes.
+• Digital equity research examining differential outcomes of behavioral health AI
+deployment across racial, ethnic, linguistic, and socioeconomic groups, addressing the
+disparities documented in Dr. Torous's Digital Navigator program research.
+• Implementation science research on AI adoption in CCBHCs and CMHCs
+specifically, examining the organizational, workforce, and regulatory factors that predict
+successful adoption in under-resourced safety-net settings.
+
+Citations and References
+Eleos Health. (2026). Automation and AI Solutions for Behavioral Health. https://eleos.health. Accessed February
+2026. [Source for ambient documentation statistics: 70%+ documentation time reduction, 80% provider acceptance
+rate, 90% notes within 24 hours, 2x client engagement, 3-4x symptom improvement, 36% greater EBP use, 9 peer-
+reviewed studies.]
+Lyssn. (2026). Training & Quality Improvement AI Solutions for Health & Human Services. https://www.lyssn.io.
+Accessed February 2026. [Source for: 17 years academic research foundation, 4.3M+ analyzed sessions, 60+ peer-
+reviewed publications, NLP-based EBP fidelity measurement, CCBHC and crisis care applications.]
+Torous, J., et al. (2025). The evolving field of digital mental health: current evidence and implementation issues for
+smartphone apps, generative artificial intelligence, and virtual reality. World Psychiatry, 24(2), 156-174.
+doi:10.1002/wps.21299.
+Torous, J. (2025, November 18). Congressional Testimony: Governing AI in Mental Health. U.S. House of
+Representatives, Committee on Energy and Commerce.
+https://www.congress.gov/119/meeting/house/118669/witnesses/HHRG-119-IF02-Bio-TorousMDMBIJ-20251118.pdf
+Torous, J., et al. (2025). Governing AI in Mental Health: 50-State Legislative Review. JMIR Mental Health, 12,
+e80739. [Source for state-level AI regulation analysis.]
+Torous, J. (Director, Digital Psychiatry Division, BIDMC/Harvard Medical School). Profile and research overview.
+https://www.johntorousmd.com. [Source for mindapps.org, mindLAMP, mindApps.ai, Digital Navigator program, APA
+technology evaluation framework.]
+National Alliance on Mental Illness (NAMI). (December 2025/January 2026). NAMI Takes the Lead to Push for Clarity
+and Safety in AI Mental Health Tools. Partnership with Dr. John Torous, BIDMC. https://www.nami.org/press-
+releases/nami-takes-the-lead-to-push-for-clarity-and-safety-in-ai-mental-health-tools/
+NAMI. (2025). AI and Mental Health — FAQ with Dr. John Torous. https://www.nami.org/about-mental-illness/ai-and-
+mental-health/ [Source for NAMI's position that AI is not a substitute for mental health treatment.]
+Torous, J. (2017, September 25). 'I'm sorry to hear that': Why training Siri to be a therapist won't be easy. [Media
+coverage of early AI/NLP chatbot limitations for mental health applications.]
+Torous, J. (2017, December 3). 'The Woebot will see you now' — the rise of chatbot therapy. [Early analysis of AI
+chatbot mental health applications and evidence gaps.]
+Torous, J. (2017, July 1). How Clinicians Evaluate Mental Health Apps. [Foundation for APA app evaluation
+framework.]
+Torous, J. (2016, December 6). Smartphone health apps often miss real medical emergencies. [Source for AI/app
+safety concerns, failure to recognize crisis situations.]
+Torous, J. (2017, December 21). Why choosing a mental health app is harder than you think. [Source for app quality
+and safety disparities.]
+FDA. (April 4, 2024). The FDA has approved the first app to help treat depression. [Regulatory milestone for
+behavioral health digital therapeutics — Rejoyn approval.]
+Torous, J. (2025). Digital Psychiatry Division, BIDMC. Academic Profile. https://dci.bidmc.org/people/john-torous
+[Source for APA technology evaluation leadership, All of Us smartphone mood study advisory role.]
+HHS. (December 23, 2025). Request for Information: Accelerating the Adoption and Use of Artificial Intelligence as
+Part of Clinical Care. 90 FR 60108. Document Number 2025-23641.
+Sadeh-Sharvit, S., & Hollon, S.D. (2020). Leveraging the Power of Nondisruptive Technologies to Optimize Mental
+Health Treatment: Case Study. JMIR Mental Health, 7(11), e20646. [Source for Eleos AI platform clinical validation,
+
+2.83 million micro-dialogue dataset, and published RCT/retrospective study program.]
+https://pubmed.ncbi.nlm.nih.gov/33242025/
+Linardon, J., Fuller-Tyszkiewicz, M., Firth, J., Goldberg, S.B., Anderson, C., McClure, Z., & Torous, J. (2024).
+Systematic review and meta-analysis of adverse events in clinical trials of mental health apps. npj Digital Medicine,
+7(1), Article 363. doi:10.1038/s41746-024-01388-y
+Torous, J., Linardon, J., Goldberg, S.B., et al. (2025). The evolving field of digital mental health: current evidence and
+implementation issues for smartphone apps, generative artificial intelligence, and virtual reality. World Psychiatry,
+24(2), 156–174. doi:10.1002/wps.21299 [also cited elsewhere in this RFI response]
+Dwyer, B., et al. (2024). Mental Health Apps and Crisis Support: Exploring the Impact of 988. Psychiatric Services.
+doi:10.1176/appi.ps.20240485 [Lead author affiliated with BIDMC; published August 2024]
+Larsen, M.E., Nicholas, J., & Christensen, H. (2016). A systematic assessment of smartphone tools for suicide
+prevention. PLOS ONE, 11(4), e0152285. doi:10.1371/journal.pone.0152285

@@ -188,9 +188,19 @@ this exact schema:
   "argument_angles": [
     {{
       "id": "<short_snake_case_id>",
-      "angle": "<one sentence describing this specific argument angle>",
+      "angle": "<one sentence summarizing this specific argument angle>",
       "weight": <float 0.05-0.40, base rate importance of this angle>,
-      "best_voices": ["<voice_id_1>", "<voice_id_2>"]
+      "best_voices": ["<voice_id_1>", "<voice_id_2>"],
+      "key_claims": [
+        "<specific factual or logical claim 1 this angle makes>",
+        "<specific factual or logical claim 2>",
+        "<specific factual or logical claim 3 if warranted>"
+      ],
+      "rhetorical_approach": "<the argumentative strategy or framing lens for this angle — HOW to argue, not just WHAT>",
+      "avoid": [
+        "<topic or framing this angle must NOT use — because it is covered by another angle>",
+        "<another exclusion if needed>"
+      ]
     }}
   ],
 
@@ -204,9 +214,30 @@ this exact schema:
   "notes": "<strategic rationale: why this mix of voices, angles, and affinities>"
 }}
 
-RULES:
-- Generate 4-8 distinct argument angles. Each should be a genuinely different
-  lens on the position, not just rephrasing.
+RULES FOR ARGUMENT ANGLES:
+- Generate as many distinct argument angles as the scenario warrants. Do NOT
+  artificially cap the number. If the scenario brief contains 8 distinct
+  argumentative threads, produce 8 angles. Each angle must represent a
+  genuinely different argumentative thread from the scenario — not a
+  rephrasing of another angle.
+- Read the scenario brief carefully and extract every distinct argument,
+  concern, framing, or rhetorical strategy it mentions. Each should become
+  its own angle.
+- For each angle, key_claims must be 2–5 specific, concrete claims — not
+  restatements of the angle summary. These are the actual facts, comparisons,
+  or logical steps a commenter would cite. Make them specific enough that
+  two different angles could not share the same key_claims.
+- rhetorical_approach must name the argumentative strategy: e.g.
+  "precautionary principle — act before harm occurs, not after",
+  "comparative regulatory analysis — AI faces fewer disclosure obligations
+  than traditional medical devices", "personal narrative — clinician or
+  patient story of opaque AI recommendation", "epistemological critique —
+  absence of evidence is not evidence of absence". Be specific.
+- avoid must list topics or framings that other angles cover, so the
+  frame-building LLM does not collapse multiple angles into the same comment.
+  Each angle should have at least one entry in avoid.
+
+RULES FOR VOICES AND ALLOCATION:
 - For campaign_voices, you MUST use the exact voice_id strings from the
   population data above. Only include voices with archetype != 'unknown'.
 - campaign_voices weights represent the campaign's desired emphasis. These
@@ -368,6 +399,9 @@ def generate_campaign_plan(
             angle=a.get("angle", ""),
             weight=float(a.get("weight", 0.15)),
             best_voices=a.get("best_voices", []),
+            key_claims=a.get("key_claims", []),
+            rhetorical_approach=a.get("rhetorical_approach", ""),
+            avoid=a.get("avoid", []),
         ))
 
     # Build campaign_voices — validate against known voice_ids

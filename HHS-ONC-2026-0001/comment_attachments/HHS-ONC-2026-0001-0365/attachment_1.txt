@@ -1,0 +1,402 @@
+HHS AI RFI - Responses to 10 Specific Questions
+Submitted by: Health Universe, Inc.
+Docket: RIN 0955-AA13
+Date: February 18, 2026
+About Health Universe: We are one of fewer than 10 platforms nationally holding ONC certification for
+Decision Support Interventions (§170.315(b)(11)). Our FHIR-native platform enables developers to build,
+deploy, and scale clinical AI applications with embedded compliance and interoperability.
+QUESTION 1: What are the biggest barriers to private sector innovation in AI for health care
+and its adoption and use in clinical care?
+A. Regulatory Uncertainty
+The 21st Century Cures Act's four-factor test for CDS exclusion remains poorly understood. Developers cannot
+determine whether FDA oversight applies, causing investment hesitation and either over-engineering for
+anticipated FDA review or under-investing in safety validation.
+ONC Role: Work with FDA to publish joint guidance with worked examples categorizing common AI use
+cases into clear regulatory pathways.
+B. Data Access and Interoperability Fragmentation
+Despite FHIR adoption progress, implementation varies widely across EHR vendors. Startups face $50K-$500K
+integration costs per EHR vendor, favoring large companies with resources for multiple integrations.
+ONC Actions Needed:
+• Strengthen standards conformance, by mandating FHIR R4 conformance testing with public
+compliance dashboards
+• Expand USCDI to include: social determinants of health (housing, food security, transportation),
+wearable device data, patient-reported outcomes (PROMIS, PHQ-9), medication adherence data
+• Clarify information blocking provisions (45 CFR Part 171) to protect AI developers' data access rights
+C. Compliance Cost Concentration
+Every AI developer must independently achieve ONC certification ($200K-$500K), HIPAA compliance
+($100K-$300K), and SOC 2 attestation ($50K-$150K). Total costs of $500K-$2M create barriers favoring
+wellfunded companies. Combined with delay tactics for integration, many smaller companies with good ideas
+never come to market. In addition, the architecture of Health IT is beginning to change – platforms can perform
+many of the functions of integration and compliance and integrate with legacy EHR vendors and innovative
+new start-ups.
+
+ONC Solution: Establish platform certification framework in 45 CFR § 170.550 where certified platforms
+extend compliance to applications built on their infrastructure.
+As a B.11-certified platform, we enable developers to inherit our certification, reducing their costs by 75%+.
+Formalizing this model would accelerate innovation while maintaining quality oversight.
+D. Lack of Standardized Evaluation
+No consensus exists on AI validation methodology. Healthcare organizations struggle to compare AI systems
+objectively, leading to paralysis or poor decisions based on sales pitches rather than evidence. This is true of
+existing LLMs and becomes more complex with MCP and agentic AI systems.
+ONC Action: Establish standard AI performance reporting template (sensitivity, specificity, PPV, NPV, AUC
+stratified by demographics) recommended for certified AI systems, with public dashboard for comparison.
+QUESTION 2: What regulatory, payment policy, or programmatic design changes should
+HHS prioritize to incentivize the effective use of AI in clinical care and why?
+Priority 1: Establish Platform Certification Framework
+Change: Add provisions to 45 CFR § 170.550 recognizing platform certification with compliance inheritance.
+This is a logical extension of modular certification but creates new opportunities for new technology to be
+integrated into EHR systems that lack AI infrastructure.
+Mechanism: Certified platforms maintain comprehensive ONC certification; applications built on certified
+platforms inherit compliance status; ONC audits platforms rather than individual applications.
+Impact: Reduces developer costs from $500K-$2M to $50K-$200K, enabling startups to compete while
+maintaining oversight.
+Priority 2: Information Blocking Safe Harbors for AI
+Changes to 45 CFR § 171.202:
+• Protect AI training data requests when data is de-identified per 45 CFR § 164.514(b)
+• Protect algorithm validation for quality improvement under 45 CFR § 164.506(c)(4)\
+• Protect performance monitoring for bias/safety detection, including logs and other analytic tools
+Impact: Enables AI development while maintaining privacy. Healthcare organizations limit sharing of data
+because of privacy concerns. Strengthening safe harbors and clarify the rules will increase transparency and
+collaboration between health systems and AI developers.
+Priority 3: Mandate Consistent FHIR Implementation
+Changes to 45 CFR § 170.315:
+
+• Require conformance testing demonstrating full FHIR R4 implementation
+• Mandate CDS Hooks or FHIR Clinical Reasoning for decision support integration
+• Public dashboards showing EHR vendor compliance
+Impact: Standardized implementation enables AI developers to build once and deploy everywhere, reducing
+integration costs.
+Priority 3: Preserve Optional Certification for Decision Support
+ONC Should: Maintain §170.315(b)(11) as voluntary certification rather than eliminating it. Make certification
+valuable through:
+• Recognition in payment policies
+• Streamlined pathways for certified platforms
+• Public performance registries for certified AI
+Rationale: Complete elimination removes objective quality signals healthcare organizations use to evaluate AI
+platforms. Voluntary certification preserves market differentiation while reducing mandatory burden.
+QUESTION 3: What novel legal and implementation issues exist for non-medical device AI
+and what role should HHS play?
+A. Liability Allocation
+Issue: Unclear liability when AI generates incorrect recommendations - developer, platform, healthcare
+organization, or clinician?
+HHS Role: Issue guidance on standard of care for AI-augmented practice and convene stakeholders to develop
+model liability frameworks.
+B. Privacy Beyond HIPAA
+Issue: AI infers sensitive information not explicitly documented (genetic predisposition from family history,
+mental health from behavioral patterns).
+ONC Role: OCR guidance clarifying whether AI-inferred information qualifies as PHI under 45 CFR §
+164.501.
+C. Algorithmic Bias
+Issue: AI may perpetuate health disparities through biased algorithms.
+ONC Actions:
+
+• Establish maximum allowable performance disparities (e.g., sensitivity must not differ by >5% across
+racial groups)
+• Require bias impact assessments for certified AI
+• Mandate performance reporting stratified by demographics
+D. Data Governance for AI Training
+Issue: Healthcare organizations uncertain about legal basis for sharing data for AI development (research vs.
+quality improvement vs. information blocking).
+HHS Role: Unified guidance clarifying that de-identified data per Safe Harbor is not human subjects research
+and AI development doesn't trigger information blocking.
+E. Intellectual Property vs. Transparency
+Issue: Balance between transparency (clinical trust) and IP protection (innovation incentive).
+ONC Role: Establish minimum transparency standards protecting trade secrets:
+Require disclosure: Training data characteristics, intended use, validation performance, limitations
+Protect: Specific algorithms and proprietary training data
+Public reporting: Aggregate performance and bias metrics
+QUESTION 4: What are the most promising AI evaluation methods for non-medical devices?
+Should HHS support these processes?
+Pre-Deployment:
+A. Prospective Clinical Validation
+• Performance metrics stratified by demographics
+• Minimum sample sizes appropriate to risk (n≥100 simple, n≥1000 complex)
+• Confidence intervals and subgroup analysis
+B. Fairness Assessment
+• Multiple metrics: demographic parity, equalized odds, calibration
+• Maximum 5% performance difference across protected groups
+C. Robustness Testing
+• Performance with missing data, outliers, distributional shifts
+
+• Identification of failure modes
+Post-Deployment:
+D. Real World Performance Monitoring Given the rapidly changing ecosystem, this is the most important
+testing – real world performance monitoring with rapid response should there be any anomalies detected.
+• Monthly performance metrics
+• Data drift detection
+• Adverse event surveillance
+• Performance within 10% of validation
+ONC Support Mechanisms:
+1. Public Performance Registry Voluntary registry for certified platforms demonstrating ongoing quality.
+Participants report quarterly metrics, adverse events, bias assessments. Create safe harbor for good faith
+reporting.
+2. Benchmark Dataset Development Partner with healthcare organizations to create de-identified
+validation datasets for common use cases (sepsis, readmission, imaging).
+QUESTION 5: How can HHS best support private sector activities to promote innovative and
+effective AI use in clinical care?
+A. Federally Recognized AI Application Marketplace
+Concept: Industry-led marketplaces with federal endorsement (not operation).
+Trust Seals:
+• Platform Certified: Built on ONC-certified platform
+• Clinically Validated: Peer-reviewed evidence or Real World Testing
+• FDA Cleared: Medical device clearance
+ONC Role:
+• Recognize certification in payment policies
+• Avoid creating new mandatory requirements
+Critical Design: Marketplace displays certification status, preserving competitive value of certified technology
+B. Industry Testing Standards
+Support professional organizations (AMIA, ACR, CAP) developing testing protocols:
+• Standardized metrics by clinical domain
+
+• Benchmark datasets
+• Best practices for validation
+ONC Role: Incorporate industry benchmarks into certification criteria; recognize standards in guidance.
+C. Organizational Accreditation
+Extend Joint Commission model to AI developers - assess quality management systems:
+• ISO 13485 equivalent
+• Bias assessment methodology
+• Clinical safety framework Interoperability standards
+ONC Role: Streamlined certification requirements for accredited developers.
+D. Private Sector Performance Registry
+Structure:
+• Quarterly performance metrics stratified by demographics
+• Adverse event reports
+• Version tracking
+• Public dashboard
+ONC Support:
+• Technical infrastructure funding
+• Recognition in payment models
+• Safe harbor for reporting
+QUESTION 6: Where have AI tools met or exceeded expectations and where have they fallen
+short? What novel AI tools have greatest potential?
+Success Stories:
+A. Ambient Clinical Documentation (Nuance DAX, Suki)
+• 40-50% documentation time reduction
+• High physician satisfaction (>80%)
+• ROI within 6-12 months
+• Success factors: Clear use case, immediate benefit, low patient harm risk
+B. Radiology Screening (FDA-cleared AI)
+• Sensitivity >95% for critical findings
+• 30-40% faster time-to-diagnosis
+
+• Reduced radiologist fatigue
+• Success factors: Objective task, FDA clearance, augments not replaces
+C. Clinical Trial Matching
+• 3-10x increase in patients screened
+• 60-70% coordinator time reduction
+• Improved trial diversity
+• Success factors: High unmet need, low risk
+Disappointments:
+D. Sepsis Prediction
+• High false positives (>50%) causing alert fatigue
+• Poor generalization across hospitals
+• Limited evidence of outcome improvement
+• Lessons: Need continuous recalibration, local validation, actionable interventions
+E. Hospital Readmission Prediction
+• AUC 0.70-0.75 (modest improvement)
+• Prediction without intervention has limited value
+• Missing key predictors (social determinants not in EHR)
+• Lessons: Must couple prediction with effective interventions
+High-Potential Novel Tools:
+F. LLMs for Documentation Quality and Administrative Tasks
+• Real-time review for completeness, coding accuracy, clinical reasoning gaps
+• Could reduce denials (5-10% revenue improvement) and improve quality measures
+• Barrier: Regulatory uncertainty about medical device status
+G. Continuous Remote Monitoring
+• AI analysis of wearables, smart home sensors, patient-reported symptoms
+• Early detection of deterioration, medication adherence support
+• Barrier: Lack of reimbursement for non-FDA-cleared devices
+H. AI for SDOH Screening and Intervention
+• Screen for social needs, connect to resources, optimize allocation
+• Address root causes of disparities
+
+• Barrier: Lack of structured SDOH data in EHRs
+QUESTION 7: Which decision makers have most influence on AI adoption? What are
+primary administrative hurdles?
+Key Decision Makers:
+A. Chief Medical Information Officers (CMIOs) - Most Influential
+• Bridge clinical needs and technology
+• Criteria: Clinical evidence, workflow integration, physician support
+B. Chief Financial Officers (CFOs) - Budget Authority
+• Criteria: ROI <24 months, reimbursement clarity, revenue impact
+• Current barrier: Lack of CPT codes creates uncertainty and makes ROI more challenging
+C. Chief Information Officers (CIOs) - Technical Feasibility
+• Criteria: API compatibility, security, vendor stability
+Administrative Hurdles:
+1. Procurement Complexity (6-18 months)
+• Legal review of contracts, BAA negotiations, multi-stakeholder approvals, multiple IP reviews
+• ONC solution: Model contracts and BAAs for AI vendors; streamlined review for certified platforms
+2. EHR Integration
+• Custom work for each vendor ($50K-$200K per EHR)
+• ONC solution: Mandate standardized FHIR R4 and CDS Hooks; require conformance testing
+3. Validation Uncertainty
+• No standard methodology, difficult to compare vendors
+• ONC solution: Standard performance metrics, public dashboards, benchmark datasets
+4. Data Governance
+• Uncertainty about data sharing legality
+• ONC solution: Clear guidance on AI training data, information blocking safe harbors
+How Platform Certification Accelerates:
+
+Certified platforms would reduce timeline from 3-6 years to 12-18 months through:
+• Pre-negotiated contracts and BAAs
+• Proven EHR integration via FHIR
+• Validated security and compliance
+• Rapid deployment capability
+QUESTION 8: Where would enhanced interoperability widen market opportunities and
+accelerate AI development?
+Critical Data Types for USCDI Expansion:
+A. Social Determinants of Health
+• Housing status, food security, transportation, social isolation, Area Deprivation Index
+• Essential for: Readmission prediction, chronic disease management, health equity AI
+• Market impact: Enables community-based organization integration
+B. Patient-Reported Outcomes
+• PROMIS measures, PRO-CTCAE, PHQ-9, GAD-7, functional status
+• Essential for: Treatment response prediction, symptom management
+• AI Market impact: Patient engagement platforms can integrate
+C. Wearable Device Data
+• Continuous heart rate/HRV, activity, sleep, glucose, blood pressure
+• Essential for: Remote monitoring AI, early warning systems
+• Market impact: Consumer health AI at scale
+D. Medication Adherence
+• Pharmacy fill dates, MPR, PDC, gaps in therapy
+• Essential for: Treatment response prediction, adherence interventions
+• Market impact: $300B non-adherence problem
+E. Genomic Data
+• Structured variants (HGVS notation), pharmacogenomic implications, tumor molecular features
+• Essential for: Precision medicine AI
+• Market impact: Oncology treatment selection
+F. Nationally recognized guidelines
+
+• Standardized or computable access to authoritative guidelines
+• Less reliance on LLMs and incorporation of high quality peer-reviewed information into the
+clinician’s workflow
+Data Standards Needed:
+G. Standardized AI Performance Metrics
+• Public dashboard for comparison
+• Public deidentified datasets for gold standard assessments and comparison
+• Impact: Enables objective procurement decisions
+H. Fairness Assessment Standards
+• Multiple metrics with disclosure of tradeoffs
+• Maximum allowable disparities (5% for high-stakes)
+• Impact: Equity-focused organizations can select unbiased AI
+I. FHIR Clinical Reasoning Adoption
+• Mandate CDS Hooks or FHIR Clinical Reasoning for certified DSI
+• Deprecate proprietary integration methods
+• Impact: Reduces integration costs dramatically, enables platform models
+Market Opportunities:
+Expand innovation to independent, third-party apps stores that increase distribution channels for innovators,
+while providing more access to innovation for those EHR systems that serve smaller, rural and community
+practices.
+QUESTION 9: What challenges do patients wish AI to address? What concerns do they have?
+Patient Priorities:
+A. Access to Care
+• Wait times for appointments (weeks to months)
+• AI solutions: Virtual triage, optimized scheduling, 24/7 chatbots
+B. Care Coordination
+• "Nobody talks to each other" - repeating history, duplicate tests
+• AI solutions: Automated care summaries, medication reconciliation, care gap alerts
+C. Understanding Medical Information
+• Confusing terminology, limited provider time for questions
+
+• AI solutions: Plain language translation, visual explanations, personalized education
+D. Medication Management
+• Complex regimens, forgetting doses, unclear side effects
+• AI solutions: Smart reminders, adherence monitoring, interaction checking
+E. Cost Transparency
+• Unpredictable out-of-pocket costs
+• AI solutions: Cost estimation, financial assistance identification, prior auth support
+Patient Concerns:
+1. Privacy and Data Security
+• Will data be sold? Can AI be hacked? Will insurers discriminate?
+• Address through: Clear consent, data minimization, audit trails, federal protections, harmonization of
+privacy regulations (FTC, HIPAA, FIRPA, Common Rule, FDA)
+2. AI Errors and Safety
+• What if AI misses something important? Who's responsible?
+• Address through: Human oversight always, transparent performance, error reporting, liability clarity
+3. Bias and Fairness
+• Will AI discriminate based on race, gender, age, socioeconomic status?
+• Address through: Mandatory bias testing, diverse training data, community engagement, opt-out
+option
+4. Loss of Human Connection
+• Will AI replace my doctor?
+• Address through: Emphasize AI saves physician time for patients, enhances not replaces
+5. Lack of Control
+• "Black box" making decisions about my health
+• Address through: Plain explanations, transparency in recommendations, opt-in consent
+ONC Role:
+
+• OCR enforcement of HIPAA
+• Mandatory adverse event reporting for certified AI
+• Maximum allowable performance disparities
+• Health literacy standards for AI disclosures
+• Patient privacy bill of rights
+QUESTION 10: What AI research should HHS prioritize? What does literature show about
+costs, benefits, and transfers?
+A. Published Findings on AI Impact:
+Strong Evidence:
+Radiology AI: Sensitivity >90% for specific findings; improved detection, reduced reading time
+Diabetic retinopathy screening: FDA-cleared autonomous AI; cost-effective in primary care ($500/QALY)
+Pathology AI: High sensitivity for cancer detection; reduced inter-observer variability
+Moderate Evidence:
+• Clinical Decision support and guideline adherence - Mixed results - some early detection, others
+high false positives and poor generalization
+Clinical documentation AI: 30-50% time savings, high satisfaction in pilots
+Evidence Gaps:
+• Most studies report accuracy, not patient outcomes (mortality, quality of life)
+• Limited cost-effectiveness analyses
+• Sparse implementation science literature
+• Few studies assess health equity impact
+B. Literature on Costs, Benefits, Transfers:
+Implementation Costs (Well-Documented):
+• AI licensing: $10K-$500K annually
+• Integration: $50K-$500K
+• Training: $25K-$100K
+• Ongoing maintenance: 15-20% annually
+
+Cost Savings (Mixed Evidence):
+• Time savings: 20-50% depending on application
+• Revenue enhancement: 5-10% from improved coding
+• Cost avoidance: Limited evidence for avoided hospitalizations
+Value Transfers:
+• From payers to providers if AI reduces costs but payments unchanged
+• From providers to AI vendors through subscription fees
+• From physicians to organizations if productivity gains not shared
+• Risk of widening digital divide if AI only accessible to well-resourced organizations
+Research Priorities for ONC:
+1. Real World Performance Standards ONC should establish requirements for post-deployment monitoring:
+• Quarterly performance reports stratified by demographics
+• Adverse event reporting within 48 hours
+• Performance degradation triggers (>10% from validation)
+• Incentivize the development of standardized, annotated datasets for gold standard assessments and
+comparisons.
+2. Interoperability Standards Development ONC support for HL7 development of:
+• Model card format and content standards
+• AI performance reporting templates
+• CDS Hooks extensions for AI integration
+• FHIR resources for AI metadata
+3. Bias Assessment Methodologies ONC should define:
+• Standard fairness metrics for healthcare AI
+• Maximum allowable performance disparities
+• Reporting requirements for certified AI
+• Mitigation strategies when thresholds exceeded
+• Datasets that can benchmark and provide gold standard validation for AI tools.
+4. Validation Dataset Development ONC coordination of multi-institutional efforts to create de-identified
+benchmark datasets for common AI use cases.
+CONCLUSION
+
+Health Universe urges ONC to:
+1. Establish platform certification framework enabling compliance inheritance
+2. Preserve certification as optional but valuable market differentiator
+3. Mandate consistent FHIR implementation with public dashboards
+4. Expand USCDI with AI-essential data elements
+5. Create information blocking safe harbors for AI development
+6. Create standardized datasets with annotations for gold standard assessments and benchmarking
+7. Require bias impact assessments for certified AI
+These actions would accelerate beneficial AI innovation while maintaining patient safety and trust.
+Contact:
+Dan Caron, CEO: dan.caron@healthuniverse.com
+Doug Fridsma, M.D., Ph.D., CMIO: doug.fridsma@healthuniverse.com
+Health Universe, Inc.
+548 Market Street, Suite 35123
+San Francisco, CA 94104
+https://healthuniverse.com

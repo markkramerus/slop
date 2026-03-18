@@ -313,12 +313,32 @@ Confidence score: {score}/100 (0=definitely AI, 100=definitely real)
 Reasons flagged as AI:
 {reasons}
 
+{org_writing_constraint}
 === ORIGINAL COMMENT ===
 {comment_text}
 === END COMMENT ===
 
 Rewrite this comment to address the judge's specific criticisms while \
 preserving the arguments, length, identity, and tone.
+"""
+
+# Injected into the rewriter user prompt whenever the commenter is an
+# organization.  Prevents the rewriter from "humanizing" an org comment
+# by introducing lowercase sentence starts or missing punctuation — tactics
+# that would be plausible for an individual but are never appropriate for
+# a professional organization.
+_ORG_REWRITER_CONSTRAINT = """\
+=== ORGANIZATIONAL WRITING CONSTRAINT (non-negotiable) ===
+This comment is submitted by an organization ({org_name}).
+Regardless of what the judge flagged, you MUST NOT introduce:
+- Lowercase sentence starts
+- Missing end-of-sentence punctuation
+- Phone-typing shortcuts, voice-to-text artifacts, or all-lowercase passages
+Organizations always use proper capitalization and punctuation.
+If the judge flagged "too polished" or "too consistent capitalization," \
+address that through structural imperfections (e.g., an incomplete citation, \
+slightly inconsistent spacing, a dangling clause) — NOT typographic errors.
+
 """
 
 
@@ -432,15 +452,22 @@ def rewrite_comment(
     """
     client = config.rewrite_client()
 
+    org_name = persona_context.get("org_name", "None")
+    is_org = org_name not in ("", "None")
+    org_writing_constraint = (
+        _ORG_REWRITER_CONSTRAINT.format(org_name=org_name) if is_org else ""
+    )
+
     user_prompt = _REWRITER_USER_TEMPLATE.format(
         name=persona_context.get("name", "Unknown"),
         occupation=persona_context.get("occupation", "Unknown"),
-        org_name=persona_context.get("org_name", "None"),
+        org_name=org_name,
         state=persona_context.get("state", "Unknown"),
         age=persona_context.get("age", "Unknown"),
         archetype=persona_context.get("archetype", "Unknown"),
         score=judge_score,
         reasons=judge_reasons,
+        org_writing_constraint=org_writing_constraint,
         comment_text=comment_text,
     )
 
@@ -470,15 +497,22 @@ async def rewrite_comment_async(
     """Async version of rewrite_comment."""
     client = config.rewrite_client_async()
 
+    org_name = persona_context.get("org_name", "None")
+    is_org = org_name not in ("", "None")
+    org_writing_constraint = (
+        _ORG_REWRITER_CONSTRAINT.format(org_name=org_name) if is_org else ""
+    )
+
     user_prompt = _REWRITER_USER_TEMPLATE.format(
         name=persona_context.get("name", "Unknown"),
         occupation=persona_context.get("occupation", "Unknown"),
-        org_name=persona_context.get("org_name", "None"),
+        org_name=org_name,
         state=persona_context.get("state", "Unknown"),
         age=persona_context.get("age", "Unknown"),
         archetype=persona_context.get("archetype", "Unknown"),
         score=judge_score,
         reasons=judge_reasons,
+        org_writing_constraint=org_writing_constraint,
         comment_text=comment_text,
     )
 

@@ -1,0 +1,478 @@
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Response to RFI (2025-
+23641)
+Accelerating the Adoption and Use of Artificial Intelligence as
+part of Clinical Care
+Table of Contents
+Cover Letter ..................................................................................................................................................... 2
+Executive Summary ...................................................................................................................................... 4
+Introduction: About Leap Orbit................................................................................................................ 5
+Part I: Feedback on Primary Approaches for Federal Action ......................................................... 6
+Part II: Responses to Select Questions ................................................................................................ 12
+Conclusion ..................................................................................................................................................... 15
+Page | 1
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Cover Letter
+Office of the Deputy Secretary and Assistant Secretary for Technology Policy
+(ASTP) and Office of the National Coordinator for Health Information Technology
+(ONC) (collectively, ASTP/ONC)
+U.S. Department of Health and Human Services
+330 C St SW
+Floor 7
+Washington, DC 20201
+To Whom It May Concern:
+As technologists, architects, and implementers of systems that contend daily with the
+complexities of health data, Leap Orbit, LLC, is pleased to respond to ASTP/ONC’s
+Request for Information (RFI) regarding Accelerating the Adoption and Use of Artificial
+Intelligence as part of Clinical Care. Our response is predicated on a core belief: that the
+vision for a digitally integrated healthcare future hinges on getting the foundational
+data layers right.
+In our response, we offer insights into key areas we believe are critical to this mission -
+from voluntary frameworks to advance market-driven trust, to the need for technical
+and administrative metadata and its implications for information blocking, to the
+importance of incentivizing “AI-Ready” data infrastructure. Our experience developing
+and operating platforms like Convergent, a provider data management (PDM) system
+that has improved data integrity for our clients at a foundational level, informs these
+insights, as does our work involving extensive real-world implementation of HL7 Fast
+Healthcare Interoperability Resources (FHIR) standards, particularly the Da Vinci PDEX
+Plan Net Implementation Guide (IG). These insights are further informed by our
+collaborations with federal entities, including the Assistant Secretary for Technology
+Policy (ASTP), the Health Resources and Services Administration (HRSA) (notably on the
+UDS+ Modernization initiative), the Substance Abuse and Mental Health Services
+Administration (SAMHSA), and the Centers for Disease Control and Prevention (CDC).
+Page | 2
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+We use our work not as a product showcase, but as a case study in how specific
+technological approaches can address systemic problems and inform sound policies to
+accelerate AI adoption in clinical settings.
+We appreciate the opportunity to contribute to this vital conversation and to share the
+lessons learned from our efforts to make shared health data accurate, accessible, and
+useful for all Americans.
+Sincerely,
+David Finney
+Partner & Co-Founder @ Leap Orbit, LLC
+(443) 714-2797 | dfinney@leaporbit.com | www.leaporbit.com
+Page | 3
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Executive Summary
+The Paradox of Connectivity: Why Better Health Data Infrastructure is
+Non-Negotiable.
+The primary bottleneck to clinical AI is no longer the complexity of the algorithms, but
+the persistent “trust friction” created by fragmented, unverified data pipelines. The core
+challenge, as Leap Orbit has found in its work, is a misalignment in how we approach
+foundational data infrastructure. HHS, through this RFI, has wisely focused attention on
+these underpinnings.
+Through hard experience, we have learned that the acceleration of Artificial Intelligence
+(AI) in clinical care is primarily hindered by a lack of "AI-Ready" foundational data. For AI
+to be safe, equitable, and effective, it requires a "bedrock" of accurate, accessible, and
+interoperable data with traceable provenance. Recognizing this need, we recommend
+that HHS focus its initial efforts on three "Foundational Prerequisites":
+ Market-Driven Trust Frameworks: Move from prescriptive "black box"
+oversight toward fostering voluntary, industry-led standards for the integrity and
+provenance of the data pipelines feeding clinical AI. This approach ensures
+transparency without the weight of redundant regulatory mandates.
+ Incentivizing Data Integrity: Structure payment policy to reward "Consent-
+Aware" and "AI-Ready" infrastructure. By establishing reimbursement for digital
+consent orchestration and data quality, HHS can incentivize the maintenance of
+the high-fidelity provider and patient data necessary for autonomous AI to
+function.
+ Implementation Sandboxes for R&D: Foster and leverage public-private
+technical communities to bridge the gap between high-level policy and real-
+world implementation. These "sandboxes" allow for the rapid iteration of
+emerging standards, like the Model Context Protocol (MCP) and FHIR, ensuring
+they are refined by the market before being broadly adopted.
+Page | 4
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Introduction: About Leap Orbit
+Founded in 2015, Leap Orbit, LLC, is an AI-first U.S.-based healthcare IT firm dedicated
+to solving intricate health data challenges. We build and implement innovative
+solutions, including our Convergent Provider Data Management platform and the RxGov
+prescription drug monitoring (PDMP) suite. Our focus is on leveraging modern, cloud-
+native architectures—primarily Microsoft Azure—and an Application Programming
+Interface (API)-priority design philosophy (see developer docs). Increasingly, we see AI
+not just as a tool, but as a foundational capability that we embed into the core of every
+product to deliver smarter, more adaptive solutions that improve care and enhance
+compliance.
+Central to our work is a deep commitment to interoperability, exemplified by our
+leadership in the real-world application of HL7 FHIR standards. This is demonstrated in
+our contributions to national initiatives like HRSA's UDS+ Modernization and our
+current and past work with ASTP, SAMHSA, and the CDC. Our Convergent platform, for
+example, natively supports FHIR R4 and conforms to the Da Vinci PDEX Plan Net IG,
+serving as a testament to our approach. For clients, this has resulted in successfully
+standardizing over 98% of provider and facility addresses, a foundational step for
+accurate directory services.
+As a company committed to pushing boundaries and building what’s next, we believe in
+"glass box" data automation—providing transparency and traceable data provenance—
+because trust is paramount in health data. Our culture of experimentation and
+innovation drives our perspective, which is shaped by the technical realities of building
+and deploying solutions designed to make health data accurate, accessible, and useful.
+Our commitment to these principles is further underscored by third-party validations
+such as the Electronic Healthcare Network Accreditation Commission (EHNAC) Privacy &
+Security Accreditation and DirectTrust Privacy & Security Re-Accreditation for our
+services.
+Page | 5
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Part I: Feedback on Primary Approaches for Federal Action
+Regulation: Impact of Current HHS Frameworks on AI Adoption
+Current regulations often focus on the clinical end product(s) of an AI tool but neglect
+the upstream pipeline – i.e., the process by which clinical data is ingested, mapped, and
+cleaned or transformed before it reaches an AI model. By having limited or no visibility
+into how the clinical outputs are generated or informed by AI, a vacuum of trust is
+created among users. The following approaches can markedly improve the upstream
+data pipeline and therefore mitigate the trust gap that currently impairs AI adoption in
+clinical care settings:
+ Voluntary Integrity Frameworks to Advance Market-Driven Trust: In
+alignment with the deregulatory goals of HTI-5, HHS should pivot away from
+prescriptive transparency mandates in the Health IT Certification Program and
+instead focus on encouraging voluntary transparency for the “upstream” pipeline
+(e.g., data cleansing, identity matching, and provider roster ingestion). Rather
+than requiring "model cards" or specific source attributes by law, HHS should
+foster an environment where traceable data provenance and confidence scores
+are recognized as market-differentiators. In a deregulated environment, the
+market requires provenance transparency to manage risk. This is achieved
+through foundational data engineering - specifically, repeatable FHIR ingestion
+pipelines that “bake” metadata and consent enforcement into the data stream at
+the point of origin, rather than attempting to fix data quality downstream. Our
+experience with the Convergent platform and CareLoaDr AI indicates that trust is
+a prerequisite for automation; users are only willing to adopt AI in day-to-day use
+when they can see “behind the curtain” of the system to understand specifically
+how a record was matched or a provider’s credentials were verified.
+ Enabling AI-Ready Interoperability through Automated Access: AI systems
+require high-fidelity metadata to autonomously "use" clinical data without
+"special effort". We strongly support the proposed revisions to 45 CFR § 171.102
+in HTI-5 to explicitly include automated means, including autonomous AI and
+Page | 6
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+agentic systems, within the definitions of "access," "exchange," and "use". This
+modernization recognizes that AI is now a first-class "actor" in the health data
+ecosystem.
+To fully realize this vision, HHS should clarify, through sub-regulatory guidance
+under the 21st Century Cures Act information blocking provisions and 45 CFR
+Part 171, that failure to exchange clinically necessary provenance, integrity,
+semantic, and consent metadata, when such metadata is reasonably available and
+necessary for safe automated or clinical use, may constitute a limitation on “use”
+under the definition of access, exchange, and use (AEU). We recommend that
+HHS require that the metadata meet the following three criteria to avoid
+overburdening implementers while enabling innovation:
+ Necessary for clinical safety;
+ Necessary for interpretability or automation;
+ Already representable in existing standards (e.g., FHIR Provenance, Consent,
+AuditEvent, USCDI elements).
+A minimal set of metadata across clinical care AI use cases should include the
+following categories:
+ Provenance metadata (e.g., source, attribution),
+ Integrity metadata (e.g., currency, completeness, validation status,
+encounter context),
+ Semantic metadata (e.g., code system, terminology version,
+transformations, unit normalization, original text for coded elements),
+ Sensitivity metadata (e.g., consent status, use restrictions, sensitivity
+category, redisclosure constraints, revocation timestamp), and
+ AI Generation metadata (e.g., AI processing indicator, model identifier,
+confidence score, human validation status).
+Current information blocking concerns often stem from a "black box" approach
+where data is exchanged without context. Leap Orbit’s work with the Convergent
+Page | 7
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+platform and the FHIR Da Vinci PDEX Plan Net Implementation Guide (IG)
+demonstrates that when rich metadata is provided, AI systems can autonomously
+trace errors back to source files and assign confidence scores. This level of
+transparency prevents the "misuse and abuse" of information blocking exceptions
+by ensuring that third-party AI software has the technical context required to be
+safe and effective.
+Finally, we recommend that HHS promote voluntary, standardized metadata
+headers that includes the minimal set of metadata we describe above for AI-to-AI
+communication – i.e., a “cover sheet” for every piece of data exchanged between
+AI agents. An example might be a clinical AI agent designed to predict certain
+conditions that receives lab results as raw JSON data from disparate sources;
+having standardized metadata headers that contains provenance, quality scores,
+and privacy/consent information enables the AI agent to read and digest that
+data instantly without manual mapping. As a practical application, Leap Orbit
+recommends that HHS pilot a “Structured Insight Extractor” initiative. This
+program would utilize Large Language Models (LLMs) to ingest legacy, semi-
+structured data - such as CCDA clinical summaries or Electronic Lab Reporting
+(ELR) data - and extract them into high-fidelity FHIR resources. By automating
+this upstream pipeline, HHS can ensure that clinical AI models are fed
+standardized data with clear provenance, rather than being forced to infer clinical
+context from unstructured noise.
+ Standardizing Specialty Data as an Innovation Accelerator: HHS should
+prioritize the use of the USCDI+ model (as pioneered in the SAMSHA/ASTP
+Behavioral Health Information Technology Pilot) to establish voluntary,
+predictable "data floors" for specialty care. By standardizing these specialty
+bundles via USCDI+, HHS provides a predictable data floor. This eliminates the
+need for every AI developer to build custom, site-specific ingestion code,
+effectively lowering the barrier to entry for innovative clinical tools. The HTI-5
+Proposed Rule seeks to reset the Certification Program's scope to prioritize FHIR-
+Page | 8
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+based APIs that expand the data available for clinical efficiency. USCDI+ strongly
+aligns with this goal by providing the structured context that Large Language
+Models (LLMs) and agentic AI systems struggle to infer reliably. Rather than a
+regulatory checkbox, USCDI+ should be positioned as a market-driven resource
+that improves AI accuracy and reduces the heavy burden of constant human-in-
+the-loop validation.
+Reimbursement: Levers to Promote AI Adoption
+The greatest administrative burden in clinical AI adoption is the “data ingestion” tax – or
+the cost of cleaning “dirty” data. Payment policy and incentives should be used to lower
+the burden of this tax and reward the quality of the underlying data ecosystem.
+ Incentivizing "AI-Ready" Data Infrastructure: CMS should consider including
+"Data Integrity Scores" as part of Value-Based Care (VBC) benchmarks or Merit-
+Based Incentive Payment System (MIPS) reporting. For example, organizations
+that can demonstrate a high level of accuracy in their provider directories and
+consent frameworks should be eligible for incentive payments. Furthermore, HHS
+should use payment policy to reward targeted applied machine learning that
+improves the “ingredients” of the clinical record. Instead of leading with bespoke,
+high-risk clinical modeling, the private sector should be incentivized to use Data
+Science capacity to automate normalization, confidence scoring, and identity
+resolution. Once the underlying data model is stable and identity is resolved with
+high confidence, the risk profile for downstream clinical AI interventions is
+significantly lowered. This trusted data foundation has a direct impact on payers,
+providers, and patients. For payers, it enables compliance with federal mandates
+and improves operational efficiency; for one national payer, automating CMS 4I
+reporting through our solutions saved an estimated $240,000 per year and
+reduced a four-week manual process to under 48 hours. For providers, it reduces
+the administrative burden of attesting to their information across countless
+systems. For patients, it means directory tools are reliable, which is crucial for
+building trust and ensuring access to care. Organizations using autonomous AI
+Page | 9
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+systems to automate care coordination and reporting should be eligible for
+higher shared savings or performance bonuses if those systems leverage a
+standardized, consent-aware infrastructure to improve patient outcomes.
+ Incentivizing AI-Driven "Consent Orchestration": AI models, particularly those
+used for behavioral health integration or sensitive environmental factors affecting
+health, require data that is often protected by strict privacy laws like 42 CFR Part
+2 (substance use) or state-specific mental health statutes. Currently, because
+there is no standardized, automated way to orchestrate this consent across
+different systems, this high-value data is often excluded from AI training sets and
+real-time clinical feeds to avoid compliance risk.
+HHS should consider incentivizing the adoption of FHIR-native consent
+management (like our Consentric model) by establishing reimbursement codes
+that reimburse providers for the use of AI tools that demonstrate "Consent-
+Awareness" - the ability to programmatically respect granular patient restrictions
+in real-time. By incentivizing the use of automated, standards-based consent
+solutions, HHS can accelerate AI adoption by providing a scalable, real-time
+mechanism to ensure that care delivery across networks like TEFCA is always
+“consent-aware”, thereby reducing legal risk for providers while also allowing
+patients to maintain control over their sensitive clinical narratives. HHS could
+operationalize this through a “TEFCA Agentic Orchestrator” initiative. This
+program would deploy autonomous AI agents across TEFCA to perform real-time,
+consent-aware data surfacing. By filtering the massive volumes of network-
+exchanged data to present only the most relevant, authorized information to a
+clinician, this initiative would demonstrate how AI can move from being a source
+of noise to a tool used for clinical coordination.
+Research & Development: Public Private Partnerships and Pilot Programs
+Technical standards and reimbursement incentives alone do not drive adoption;
+Communities of Practice do. Leap Orbit recommends that HHS invest in
+“Implementation Science" through national or regional technical communities whose
+Page | 10
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+mission is to pilot and fine tune FHIR standards, ensuring they are truly “AI ready”
+before wider implementation.
+ The "Technical Community" Model for R&D: HHS should consider funding
+permanent National Technical Communities (modeled after the HRSA UDS+ UTC)
+to act as iterative implementation sandboxes. These test cooperatives allow
+federal agencies to test – and revise – emerging FHIR Implementation Guides
+(IGs) and newer standards like the Model Context Protocol (MCP) with real-world
+vendors and providers.
+HRSA’s UDS+ Unified Test Cooperative is an example of how a group of
+providers, administrators, and health IT vendors collectively iterated on a new,
+automated reporting standard leveraging FHIR with high adoption among
+community health centers (CHCs) in its first year of implementation. Rapidly
+iterating and refining FHIR IGs through these technical communities will feed the
+“flywheel” of AI adoption by providing a bedrock of consistent "AI-ready" data
+necessary to support the autonomous agentic AI systems now recognized under
+modernized information blocking rules.
+ Public-Private Partnerships for "Specialty AI Bundles": HHS should consider
+using pilot programs (similar to the BHIT Pilot Program) to research how
+specialized datasets, such as behavioral health or sensitive environmental factors
+affecting health can be harmonized for AI consumption. This "Pilot-to-Standard"
+approach ensures that federal R&D investments result in deployable, high-impact
+clinical tools that move beyond "document transport" to the delivery of context-
+aware data resources that fuel clinical efficiency and reduce provider burnout.
+Page | 11
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Part II: Responses to Select Questions
+Q2: “What regulatory, payment policy, or programmatic design changes
+should HHS prioritize to incentivize the effective use of AI in clinical care
+and why? What HHS regulations, policies, or programs could be revisited to
+augment your ability to develop or use AI in clinical care? Please provide
+specific changes and applicable Code of Federal Regulations citations.
+Payment Policy: As mentioned above, HHS should establish specific reimbursement
+pathways that recognize Digital Consent Management as a critical clinical support
+service – i.e., reimbursing providers that utilize FHIR-native consent orchestration tools.
+By establishing codes for the real-time orchestration of patient privacy preferences, CMS
+can provide the financial bridge for providers to move beyond all-or-nothing data
+exchange and adopt high-value AI interventions that are fully compliant with 42 CFR
+Part 2. Through this reimbursement, providers are more incentivized to adopt
+automated, standards-based tools that allow clinical AI to safely scale across networks
+like TEFCA.
+Programmatic Design: Additionally, HHS/CMS should incorporate "Data Readiness and
+Provenance Scores" into Value-Based Care (VBC) benchmarks and reporting. Currently,
+organizations lack a financial incentive to invest in technical metadata (e.g., provenance,
+confidence scores, and semantic tags) that makes clinical records consumable by
+autonomous systems without "special effort". Prioritizing the use of AI-assisted
+ingestion (e.g., CareLoaDr AI) would automate the administrative burden of data
+cleansing while providing "Glass Box" transparency. In an era of deregulated certification
+(as emphasized in HTI-5) where "model cards" are being removed, the market requires
+market-driven integrity scores to manage risk and helps to ensure that the appropriate
+clinical care is being delivered.
+Page | 12
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+Q5: How can HHS best support private sector activities (e.g., accreditation,
+certification, industry driven testing, and credentialing) to promote
+innovative and effective AI use in clinical care?
+HHS should position itself as the "Facilitator of Industry-Led Testing & Benchmarking."
+The most impactful support HHS can provide is to create the "Sandbox Environments"
+where the private sector can voluntarily test the trustworthiness and interoperability of
+their AI tools against real-world, standardized datasets. Specifically, HHS can best
+support the private sector by funding National Testing Collectives (modeled after our
+work with the HRSA UDS+ UTC). These collectives act as a bridge between federal policy
+and private-sector innovation. Additionally, HHS should support an "AI-Ready"
+designation - not a mandatory certification, but a voluntary testing badge achieved
+through these technical communities.
+Our work as frontline implementers and deep experience in convening diverse
+stakeholders proves that industry-driven testing is most successful when it uses a
+phased, incremental approach to iterate data standards before they are broadly
+adopted.
+Further, as HTI-5 expands the definition of "access" to include autonomous AI and
+agentic systems, the primary barrier becomes identity and trust. HHS can support the
+private sector by endorsing open standards that "credential" these agents.
+We recommend that HHS promote development and voluntary adoption of a
+standardized, FHIR-aligned AI Interaction Profile that enables secure, consent-aware
+retrieval of clinical context and structured return of AI-generated outputs with
+appropriate provenance and attribution metadata.
+Using existing authority under the 21st Century Cures Act certification program and
+related sub-regulatory guidance, HHS should encourage health IT developers to support
+Page | 13
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+standardized AI interaction capabilities that prevent proprietary lock-in and ensure
+auditable, interoperable, and safe AI integration.
+HHS should avoid mandating any specific private protocol or requiring disclosure of
+proprietary algorithms. Instead, it should promote open standards alignment,
+conformance testing, and reference implementations through cooperative agreements
+and federal funding mechanisms while allowing emerging standards such as the Model
+Context Protocol (MCP), which acts as a "universal interface" for AI agents, to mature.
+MCP allows AI to securely interact with clinical data while maintaining a
+cryptographically signed audit trail and serves as a standardized “handshake” between
+AI agents and data sources, such as FHIR - ensuring that context is preserved as
+information moves between disparate systems. By prioritizing outcomes over methods
+through standards alignment and testing, HHS can enable the private sector to
+"credential" their AI tools, ensuring every action is permissioned, auditable, and
+traceable, without foreclosing industry innovation and refinement.
+Q8: “Where would enhanced interoperability widen market opportunities, fuel
+research, and accelerate the development of AI for clinical care? Please
+consider specific data types, data standards, and benchmarking tools.”
+The scalability trap must be solved for AI to move from a "bespoke pilot" to a scalable
+clinical utility. Currently, every new AI deployment requires custom, site-specific data
+mapping that creates a significant training debt. Enhanced interoperability fuels AI by
+transforming fragmented information into “clean” data, i.e., data that is normalized,
+attributed, and consent-cleared at the point of ingestion.
+Enhanced interoperability widens market opportunities by eliminating the “bespoke
+training debt” typical of current AI deployments. By prioritizing repeatable FHIR
+ingestion pipelines, developers can ensure that provenance and consent are handled
+programmatically. This allows AI teams to focus on targeted applied machine learning
+for identity resolution and data stability, rather than spending much of their R&D
+Page | 14
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+budget on site-specific data cleansing. This approach, moving from custom code to
+repeatable pipelines, is the key to making clinical AI deflationary and scalable.
+When tools like CareLoaDr AI can use "Glass Box" machine learning to automate the
+mapping of complex provider rosters into standardized FHIR formats, it reduces the cost
+of entry for all AI developers. To catalyze this shift, we propose a “National Golden
+Provider Record” initiative. This multi-payer pilot would use AI to harmonize disparate
+administrative rosters and credentialing feeds into a single, trusted source of truth. By
+resolving provider identity at the point of ingestion, HHS would solve the scalability trap
+for the market, providing AI developers with a predictable foundation of accurate
+provider data and eliminating the need for redundant, site-specific identity resolution.
+Enhanced interoperability also fuels research that supports whole-person care, as “plus”
+categories of interoperability, such as behavioral health or sensitive environmental
+factors affecting health are often hampered by data gaps. We recommend accelerating
+the domain-specific extensions of USCDI+. Our experience managing the SAMHSA/ASTP
+BHIT Pilot shows that these "specialty bundles" are the essential ingredients for
+research-grade AI.
+Additionally, to fuel large-scale research, HHS should prioritize Bulk FHIR for population-
+level datasets, ensuring AI models can be trained on representative, cross-system data
+without manual intervention.
+Conclusion
+The task of accelerating AI adoption as part of clinical care is a task of getting the
+fundamentals right. While emerging technologies capture the imagination, Leap Orbit's
+experience building foundational data systems like Convergent reinforces the lesson
+that sustainable innovation rests upon a bedrock of accurate, accessible, and
+interoperable core information. The challenges in achieving this for data as complex and
+dynamic as all providers are significant, but as our own experience shows, they are not
+insurmountable.
+Page | 15
+
+7067 Columbia Gateway Drive
+Suite 190
+Columbia, MD 21046
+inspired@leaporbit.com
+As Leap Orbit’s experience with ASTP, HRSA, and the CDC demonstrates, the path to a
+high-performing, AI-enabled health system begins with a relentless focus on the
+foundational data architecture. By addressing the "prerequisites" of identity, consent,
+and data integrity, HHS can ensure that AI becomes a trusted partner in clinical care
+rather than a source of administrative complexity. The questions posed in this RFI are
+central to that endeavor. As a company committed to tackling these complex data
+challenges, we can collectively and incrementally shepherd approaches that support AI
+adoption in clinical care (and/or adjacent) settings. We welcome continued engagement
+on how to best achieve these shared, critical objectives.
+Page | 16

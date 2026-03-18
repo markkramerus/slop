@@ -49,6 +49,12 @@ from .rewriter import (
 # Format preambles — appended to style_instructions to vary the *apparent*
 # submission medium.  Each string tells the LLM what the final document
 # "looks like" so the surface artefacts differ wildly across generations.
+#
+# IMPORTANT: This is the FULL pool for individual commenters only.
+# Organizations use _FORMAT_PREAMBLES_ORG (below) — a curated subset that
+# reflects how real organizations actually submit comments (formal documents,
+# PDFs, Word files).  Never assign phone-typed, voice-to-text, or
+# stream-of-consciousness preambles to an organizational persona.
 _FORMAT_PREAMBLES = [
     'Format: Raw, unedited web-form submission from an angry iPad user who fat-fingers every third word.',
     'Format: Scraped text from a 3-page formal PDF submitted by a law firm, complete with page headers, footers, and occasional OCR artifacts.',
@@ -72,6 +78,23 @@ _FORMAT_PREAMBLES = [
     'Format: Multi-page submission with executive summary, numbered recommendations, and an appendix reference that is not attached.',
 ]
 
+# Org-safe format preambles — used exclusively for organizational personas
+# (advocacy_group, industry, academic, government).  Every entry here reflects
+# a realistic way a professional organization submits a formal comment.
+# Phone-typed, voice-to-text, fax-garbled, and stream-of-consciousness formats
+# are deliberately excluded: organizations NEVER submit comments that way.
+_FORMAT_PREAMBLES_ORG = [
+    'Format: Scraped text from a 3-page formal PDF submitted by a law firm, complete with page headers, footers, and occasional OCR artifacts.',
+    'Format: A neatly typed Microsoft Word document exported to plain text. Heading numbers survive but bold formatting is lost.',
+    'Format: Plain-text extraction from a formal PDF letter on organizational letterhead. Includes a date, addressee block, and "Sincerely," closing.',
+    'Format: Clinical, data-heavy comment exported from a shared Google Doc. Contains table-like whitespace alignment that didn\'t survive the paste.',
+    'Format: Formal comment from an association, with Roman-numeral section headings and footnote-style citations rendered inline.',
+    'Format: Academic-style comment with parenthetical citations and a "References" section at the end that may be incomplete.',
+    'Format: Multi-page submission with executive summary, numbered recommendations, and an appendix reference that is not attached.',
+    'Format: Plain-text export of a formal letter drafted in a word processor. The letterhead, date, and addressee block are preserved as plain text at the top.',
+    'Format: Text extracted from a PDF that was assembled by committee — slightly inconsistent spacing between sections, a stray blank line or two, but otherwise well-structured prose.',
+]
+
 # Off-topic complaints — things the commenter gripes about that the agency
 # doesn't actually control.  Used for the 30% stance-variation injection.
 _OFF_TOPIC_COMPLAINTS = [
@@ -79,7 +102,7 @@ _OFF_TOPIC_COMPLAINTS = [
     "I want to know why my Medicare card still hasn't arrived. I applied three months ago. This is ridiculous.",
     "The real problem is pharmacy benefit managers skimming profits. This rule doesn't even touch that.",
     "You should be regulating social media companies, not wasting time on paperwork rules.",
-    "What about the VA? My husband waited 14 months for a knee replacement and nobody at CMS lifted a finger.",
+    "What about the VA? My husband waited 14 months for a knee replacement and nobody at VA lifted a finger.",
     "Has anyone at the agency actually tried to use Healthcare.gov recently? It's slower than dial-up.",
     "I don't understand why my supplemental plan went up 22% this year. That's what you should be investigating.",
     "Drug companies are the real villains here. Make them publish their R&D spending before you add more reporting burdens on hospitals.",
@@ -132,8 +155,7 @@ You are writing on behalf of:
   Occupation: {occupation}
   Organization: {org_name}
 
-=== PERSONAL BACKGROUND ===
-{personal_hook}
+{persona_context_section}
 
 === WHAT THIS RULE MEANS FOR THEM ===
 {personal_stake}
@@ -170,6 +192,7 @@ Real humans do not write like AI. Actively avoid these telltale patterns:
 
 LANGUAGE TO AVOID:
 - Inflated significance words: "testament", "pivotal", "crucial", "vital role", "underscores", "highlights", "evolving landscape", "serves as", "stands as", "marks a shift"
+- Overused AI phrases **NEVER USE**: "last spring", "Last spring", "a few months back", "real doctor", "coming back to", "a couple of years ago"
 - AI vocabulary: "Additionally", "delve", "enhance", "fostering", "garner", "intricate", "landscape" (abstract), "showcase", "tapestry" (abstract), "vibrant", "rich" (figurative)
 - Promotional language: "boasts", "nestled", "breathtaking", "groundbreaking", "renowned", "in the heart of"
 - Superficial -ing phrases: "highlighting the importance of", "underscoring the need for", "reflecting broader trends", "contributing to", "fostering collaboration"
@@ -240,6 +263,10 @@ Rule: {rule_title}
 Agency: {agency}
 Core change: {core_change}
 Regulatory domain: {regulatory_domain}
+
+FINAL REMINDER: NEVER NEVER NEVER EVER USE THE PHRASE: "Last spring"
+MY GRANDMOTHER WILL DIE IF YOU SAY "LAST SPRING". 
+DO YOU UNDERSTAND? HOW CAN I SAY THIS MORE CLEARLY?
 
 Write the comment now:
 """
@@ -330,16 +357,37 @@ def _build_rfi_block(frame: ExpressionFrame, rng: np.random.Generator | None = N
     return f"Specific RFI questions to address (address 1–2, not all):\n{qs}"
 
 
-def _sample_format_preamble(rng: np.random.Generator) -> str:
+# Org writing standards — injected into style_text for every organizational
+# persona.  This block is the authoritative override that prevents any
+# upstream prompt instruction (format preamble, "INTRODUCE HUMAN ERROR",
+# or rewriter feedback) from producing lowercase sentence starts, missing
+# end-punctuation, or phone-typing artifacts in organizational comments.
+_ORG_WRITING_STANDARDS = """\
+ORGANIZATIONAL WRITING STANDARDS (mandatory — this commenter represents an organization):
+- ALWAYS capitalize the first word of every sentence. No exceptions.
+- ALWAYS end every sentence with proper punctuation (period, question mark, or exclamation point).
+- Acronym capitalization must be consistent throughout the comment (e.g., EHR not eHR, CMS not cms).
+- Do NOT simulate phone-typed shortcuts, voice-to-text artifacts, all-lowercase passages, or informal web-form habits.
+- Do NOT drop capitalization at sentence boundaries to appear "more human." Organizations never write that way.
+- Organizational imperfections are structural, not typographic: slightly inconsistent spacing, a dangling clause, \
+an incomplete citation — NOT lowercase sentences."""
+
+
+def _sample_format_preamble(rng: np.random.Generator, is_org: bool = False) -> str:
     """
     Pick a random format preamble to prepend to style_instructions.
 
-    This forces the LLM to simulate different submission media (web form,
-    PDF extraction, fax, phone dictation, etc.) so the surface artefacts
-    vary wildly across generated comments.
+    This forces the LLM to simulate different submission media so surface
+    artefacts vary across generated comments.
+
+    For organizational personas (*is_org=True*), only org-appropriate
+    preambles are used (formal PDFs, Word docs, association letters).
+    Phone-typed, voice-to-text, fax-garbled, and stream-of-consciousness
+    formats are excluded because organizations never submit comments that way.
     """
-    idx = int(rng.integers(0, len(_FORMAT_PREAMBLES)))
-    return _FORMAT_PREAMBLES[idx]
+    pool = _FORMAT_PREAMBLES_ORG if is_org else _FORMAT_PREAMBLES
+    idx = int(rng.integers(0, len(pool)))
+    return pool[idx]
 
 
 def _maybe_vary_stance(
@@ -537,8 +585,14 @@ def _build_and_call(
     # ── Anti-detection: format variation ─────────────────────────────────
     style_text = persona.style_instructions()
     if rng is not None:
-        format_preamble = _sample_format_preamble(rng)
+        format_preamble = _sample_format_preamble(rng, is_org=not persona.is_individual)
         style_text = f"{format_preamble}\n\n{style_text}"
+
+    # ── Org writing standards override ────────────────────────────────────
+    # Appended AFTER the format preamble so it takes precedence over any
+    # preamble that might still encourage informal capitalization.
+    if not persona.is_individual:
+        style_text = f"{style_text}\n\n{_ORG_WRITING_STANDARDS}"
 
     # Use directives' structural block if available, else fall back to stats
     if frame.directives is not None:
@@ -552,13 +606,26 @@ def _build_and_call(
         else config.max_tokens
     )
 
+    # Archetype-aware context section label tells the LLM how to use the content:
+    # individuals get a personal narrative label; orgs get an institutional one.
+    if persona.archetype == "individual_consumer":
+        persona_context_section = (
+            "=== PERSONAL BACKGROUND ===\n"
+            f"{persona.personal_hook}"
+        )
+    else:
+        persona_context_section = (
+            "=== INSTITUTIONAL CONTEXT ===\n"
+            f"{persona.personal_hook}"
+        )
+
     prompt = _USER_PROMPT_TEMPLATE.format(
         name=persona.full_name,
         age=persona.age,
         state=persona.state,
         occupation=persona.occupation,
         org_name=persona.org_name if persona.org_name else "None",
-        personal_hook=persona.personal_hook,
+        persona_context_section=persona_context_section,
         personal_stake=persona.personal_stake,
         core_arguments=core_args_block,
         framing=effective_framing,
@@ -619,8 +686,14 @@ async def _build_and_call_async(
     # ── Anti-detection: format variation ─────────────────────────────────
     style_text = persona.style_instructions()
     if rng is not None:
-        format_preamble = _sample_format_preamble(rng)
+        format_preamble = _sample_format_preamble(rng, is_org=not persona.is_individual)
         style_text = f"{format_preamble}\n\n{style_text}"
+
+    # ── Org writing standards override ────────────────────────────────────
+    # Appended AFTER the format preamble so it takes precedence over any
+    # preamble that might still encourage informal capitalization.
+    if not persona.is_individual:
+        style_text = f"{style_text}\n\n{_ORG_WRITING_STANDARDS}"
 
     # Use directives' structural block if available, else fall back to stats
     if frame.directives is not None:
@@ -634,13 +707,26 @@ async def _build_and_call_async(
         else config.max_tokens
     )
 
+    # Archetype-aware context section label tells the LLM how to use the content:
+    # individuals get a personal narrative label; orgs get an institutional one.
+    if persona.archetype == "individual_consumer":
+        persona_context_section = (
+            "=== PERSONAL BACKGROUND ===\n"
+            f"{persona.personal_hook}"
+        )
+    else:
+        persona_context_section = (
+            "=== INSTITUTIONAL CONTEXT ===\n"
+            f"{persona.personal_hook}"
+        )
+
     prompt = _USER_PROMPT_TEMPLATE.format(
         name=persona.full_name,
         age=persona.age,
         state=persona.state,
         occupation=persona.occupation,
         org_name=persona.org_name if persona.org_name else "None",
-        personal_hook=persona.personal_hook,
+        persona_context_section=persona_context_section,
         personal_stake=persona.personal_stake,
         core_arguments=core_args_block,
         framing=effective_framing,

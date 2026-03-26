@@ -1,22 +1,3 @@
-"""
-generator.py — LLM API calls to produce one synthetic comment.
-
-The generator assembles a rich prompt from:
-  - The persona (backstory, hook, style instructions)
-  - The expression frame (argument, framing, evidence types, citations)
-  - The world model (rule context, key terms)
-  - Voice-specific structural instructions
-
-The prompt is designed to produce a comment that:
-  1. Advances the objective through the persona's voice
-  2. Is appropriately imperfect (errors, off-topic tangents, partial scope)
-  3. Stays topically grounded in the rule
-  4. Does NOT look AI-generated (no generic phrasing, no over-coherence)
-
-The generator returns a GeneratedComment dataclass that carries both the
-comment text and all the metadata needed for quality control and export.
-"""
-
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -39,9 +20,216 @@ from .rewriter import (
     RewriterConfig,
     RewriteResult,
     build_persona_context,
-    judge_rewrite_loop,
     judge_rewrite_loop_async,
 )
+
+
+"""
+generator.py — LLM API calls to produce one synthetic comment.
+
+The generator assembles a rich prompt from:
+  - The persona (backstory, hook, style instructions)
+  - The expression frame (argument, framing, evidence types, citations)
+  - The world model (rule context, key terms)
+  - Voice-specific structural instructions
+
+Each part of the prompt can be toggled on or off independently
+
+The prompt is designed to produce a comment that:
+  1. Advances the objective through the persona's voice
+  2. Is appropriately imperfect (errors, off-topic tangents, partial scope)
+  3. Stays topically grounded in the rule
+  4. Does NOT look AI-generated (no generic phrasing, no over-coherence)
+
+The generator returns a GeneratedComment dataclass that carries both the
+comment text and all the metadata needed for quality control and export.
+"""
+
+
+@dataclass
+class PromptControls:
+    """Toggles controlling which sections are included in the generator user prompt.
+
+    All sections default to True (fully enabled). Disable individual sections
+    to slim the prompt down for experimentation or cost reduction.
+    """
+    use_persona: bool = True
+    use_core_arguments: bool = True
+    use_framing: bool = True
+    use_style_instructions: bool = True
+    use_voice_instructions: bool = True
+    use_citation_block: bool = True
+    use_voice_stats_block: bool = True
+    use_examples_block: bool = True
+
+
+# Helper function: build the user prompt template
+# Called once per pipeline run (not per comment) — the returned string
+# contains {placeholder} variables that are filled in per individual comment.
+
+def build_user_prompt_template(controls: PromptControls | None = None):
+    if controls is None:
+        controls = PromptControls()
+    parts = []
+    parts.append("=== HERE IS A SUMMARY OF THE PROPOSED RULE OR REQUEST FOR INFORMATION YOU ARE WRITING A RESPONSE TO ===")
+    parts.append("""\
+Rule: {rule_title}
+Agency: {agency}
+Core change: {core_change}
+Regulatory domain: {regulatory_domain}
+""")
+
+    if controls.use_persona:
+        parts.append("""\
+=== PERSONA ===
+You are writing on behalf of:
+  Name: {name}
+  Age: {age}
+  State: {state}
+  Occupation: {occupation}
+  Organization: {org_name}
+
+{persona_context_section}
+
+=== WHAT THIS RULE MEANS FOR THEM ===
+{personal_stake}
+""")
+
+    if controls.use_core_arguments or controls.use_framing:
+        parts.append("=== WHAT THEY WANT TO SAY ===")
+
+        if controls.use_core_arguments:
+            parts.append("""\
+Core argument(s) to advance:
+{core_arguments}
+""")
+
+        if controls.use_framing:
+            parts.append("""\
+Their framing: {framing}
+""")
+    else:
+        parts.append("""\
+=== OBJECTIVE OF THE COMMENT ===
+{scenario_brief}
+""")
+
+    if controls.use_style_instructions or controls.use_voice_instructions or controls.use_citation_block:
+        parts.append("=== HOW TO WRITE THE COMMENT ===")
+
+        if controls.use_style_instructions:
+            parts.append("""\
+Style instructions — follow these carefully:
+{style_instructions}
+""")
+
+        if controls.use_voice_instructions:
+            parts.append("""\
+Voice-specific instructions:
+{voice_instructions}
+""")
+
+        if controls.use_citation_block:
+            parts.append("""\
+{citation_block}
+""")
+
+    parts.append("""\
+ADDITIONAL REALISM INSTRUCTIONS:
+- Address at most 1–2 of the RFI questions, not all of them — real commenters rarely address everything
+- Include at least one concrete, specific detail (a number, a name, a place, a date) that makes it feel real
+- The comment should meander slightly — a real person doesn't write a perfectly structured argument
+- Do NOT use the phrase "I am writing to express" or any other form-letter opener
+- Do NOT start with "I" as the literal first word of the comment
+- Do NOT summarise the rule in your opener — dive in from the persona's perspective
+- CHOOSE YOUR CHAOS: Do not attempt to use every single "realism" trick in this prompt at once. If you are writing a corporate letter, use PDF artifacts but NO typos. If you are writing an angry citizen comment, use typos and emotion, but NO PDF artifacts. Pick 1 or 2 realism elements and ignore the rest.
+
+=== CRITICAL: AVOID AI WRITING PATTERNS ===
+Real humans do not write like AI. Actively avoid these telltale patterns:
+
+LANGUAGE TO AVOID:
+- Inflated significance words: "testament", "pivotal", "crucial", "vital role", "underscores", "highlights", "evolving landscape", "serves as", "stands as", "marks a shift"
+- Overused AI phrases **NEVER USE**: "last spring", "Last spring", "a few months back", "real doctor", "coming back to", "a couple of years ago"
+- AI vocabulary: "Additionally", "delve", "enhance", "fostering", "garner", "intricate", "landscape" (abstract), "showcase", "tapestry" (abstract), "vibrant", "rich" (figurative)
+- Promotional language: "boasts", "nestled", "breathtaking", "groundbreaking", "renowned", "in the heart of"
+- Superficial -ing phrases: "highlighting the importance of", "underscoring the need for", "reflecting broader trends", "contributing to", "fostering collaboration"
+- Negative parallelisms: "It's not just about X; it's about Y" or "Not only X, but also Y"
+- Vague attributions: "experts believe", "observers note", "some argue" (without naming who)
+
+STRUCTURES TO AVOID:
+- Em dash overuse (—) — use sparingly
+- Rule of three patterns (listing exactly three things repeatedly)
+- False ranges: "from X to Y" where X and Y aren't on a real scale
+- Copula avoidance: Don't write "serves as a solution" when you mean "is a solution"
+- Lists with bold headers like "**Key Point:** explanation here"
+
+WRITE LIKE A REAL HUMAN:
+- Vary sentence length naturally. Mix short punchy ones with longer meandering thoughts.
+- Use simple constructions: "is", "are", "has" instead of elaborate substitutes
+- Be specific over vague: real people cite actual experiences, not broad trends
+- Show complexity: "I'm not sure about this, but..." or "This concerns me for two reasons, though I see the other side"
+- Let personality show: real people have opinions, frustrations, mixed feelings
+- Use "I" naturally when appropriate: "I keep thinking about..." or "What bothers me is..."
+- Include minor imperfections: a tangent, a repeated point, an incomplete thought
+
+STRICT FORMATTING BAN (NO MARKDOWN)
+- CRITICAL: Do NOT use any Markdown formatting. Zero asterisks (**bold**), zero hashtags (# Header), and no standard Markdown bullet points (* or - followed by a space).
+- If you need a section header, use standard Title Case or ALL CAPS, followed by a hard line break.
+- If you need a list, simulate a copy-pasted Word document or PDF. Use numbers (1., 2.), letters (a., b.), or irregular characters like a lowercase o or  for sub-bullets.
+
+SHATTER THE "AI ESSAY" STRUCTURE
+- Do not use the standard AI narrative arc: Polite Introduction -> Perfectly tailored personal anecdote -> Regulatory argument -> Bulleted list of solutions -> Neatly wrapped conclusion.
+- Embrace structural chaos: Start abruptly. End without a summarizing conclusion. Sometimes forget to include an introduction entirely.
+- Vary the format: Write some responses as dry, point-by-point answers to specific RFI codes (e.g., "Regarding PR-3:"). Write others as rambling, unstructured paragraphs.
+- THE CLUNKY PIVOT: Do not smoothly transition from a personal anecdote to a regulatory argument. Real people are jarring. If you tell a personal story, drop it abruptly and jump straight into your technical demand or complaint without a neat bridging sentence.
+- THE KNOWLEDGE DISCONNECT: If the persona is a layperson (e.g., a teacher, a patient), they MUST NOT cite specific legal codes (e.g., "45 CFR 170"). They should refer to the rule vaguely ("this new certification thing", "the transparency rule"). Only lawyers, vendors, and associations cite exact legal codes.
+
+KILL THE "AI VOICE" AND SYMMETRICAL RHETORIC
+- Avoid perfectly balanced, dramatic phrasing (e.g., "This is not bureaucratic theater. It is basic trust." or "The burden reduction would be real. The safety preservation would be essential."). Humans rarely speak or write with this level of rhetorical symmetry in public comments.
+- ABSOLUTE BAN ON CONCLUSIONS: Your final sentence must NEVER summarize your point, offer a rhetorical flourish, or provide a neat wrap-up (e.g., NEVER write "That is not prosperity. That is a risk to safety.").
+- HOW TO END: End the comment on a highly specific, granular detail, a logistical complaint, a completely unresolved tangent, or simply cut the text off mid-thought as if the user hit "submit" too early.
+
+SIMULATE DOCUMENT EXTRACTION ARTIFACTS (FOR INSTITUTIONAL PERSONAS ONLY)
+- If the persona is an organization, association, or corporation, you MUST simulate a messy PDF-to-text extraction.
+- Break a paragraph randomly in the middle of a sentence, insert a repeating footer/header (e.g., `Smith LLC Comments | CMS-0042-NC | Page 3`), and then resume the sentence on the next line.
+- Simulate lost formatting: If you make a list, use floating, disconnected characters like `o` or `` or `` instead of bullets.
+- Include broken URLs or email addresses sitting alone on a line.
+
+EMBRACE EXTREME LENGTH VARIANCE
+- Do not default to a standard 400–600 word response.
+- Generate some comments that are a single, blunt sentence (e.g., "We need to adopt the Da Vinci standards immediately, the current system is broken.").
+- Generate others that are massive, dense walls of text with overly long paragraphs and heavy use of technical acronyms.
+
+INTRODUCE HUMAN ERROR
+- Include occasional, plausible human errors. Misspell a complicated medical or technical term, forget a closing parenthesis, use inconsistent capitalization for acronyms (e.g., eHR instead of EHR), or leave a messy line break in the middle of a sentence.
+
+PERSONALITY AND SOUL:
+Don't just avoid bad patterns — inject actual humanity. Real commenters:
+- Have opinions and react to information emotionally
+- Acknowledge uncertainty or mixed feelings when genuine
+- Use first-person perspective naturally
+- Vary rhythm and pacing in their writing
+- May go on slight tangents or circle back to a point
+""")
+
+    if controls.use_voice_stats_block:
+        parts.append("""\
+{voice_stats_block}
+""")
+
+    if controls.use_examples_block:
+        parts.append("""\
+{examples_block}
+""")
+
+    parts.append("""\
+FINAL REMINDER: NEVER EVER USE THE PHRASE: "Last spring"
+
+Write the comment now:
+""")
+
+    return "\n".join(part.rstrip() for part in parts if part and part.strip())
+
 
 
 # ── Variation pools for anti-detection ────────────────────────────────────────
@@ -61,7 +249,7 @@ _FORMAT_PREAMBLES = [
     'Format: Copy-pasted email body that was originally dictated via voice-to-text on an Android phone. Expect comma splices and missing periods.',
     'Format: Text extracted from a scanned fax — some characters are garbled, line breaks are random, and a footer reads "Page X of Y".',
     'Format: A neatly typed Microsoft Word document exported to plain text. Heading numbers survive but bold formatting is lost.',
-    'Format: Hasty comment typed on a phone during a lunch break. No capitalization, abbreviations everywhere, autocorrect errors.',
+    'Format: Hasty comment typed on a phone during a lunch break. Irregular capitalization, some abbreviations, autocorrect errors.',
     'Format: Plain-text extraction from a formal PDF letter on organizational letterhead. Includes a date, addressee block, and "Sincerely," closing.',
     'Format: Stream-of-consciousness web-form entry. One enormous paragraph, no line breaks, minimal punctuation.',
     'Format: Bullet-heavy PowerPoint speaker notes pasted into the comment box. Fragments, not sentences.',
@@ -135,7 +323,6 @@ _NAIVE_QUESTIONS = [
     "I'm a small business owner with 8 employees. Does this apply to me or just big companies?",
 ]
 
-
 # ── Prompt templates ──────────────────────────────────────────────────────────
 
 _SYSTEM_PROMPT = """\
@@ -146,130 +333,7 @@ no "Here is the comment:" — just the comment itself, exactly as it would
 appear in a regulatory submission.
 """
 
-_USER_PROMPT_TEMPLATE = """\
-=== PERSONA ===
-You are writing on behalf of:
-  Name: {name}
-  Age: {age}
-  State: {state}
-  Occupation: {occupation}
-  Organization: {org_name}
-
-{persona_context_section}
-
-=== WHAT THIS RULE MEANS FOR THEM ===
-{personal_stake}
-
-=== WHAT THEY WANT TO SAY ===
-Core argument(s) to advance:
-{core_arguments}
-
-Their framing: {framing}
-
-{rfi_block}
-
-=== HOW TO WRITE THE COMMENT ===
-Style instructions — follow these carefully:
-{style_instructions}
-
-Voice-specific instructions:
-{voice_instructions}
-
-{citation_block}
-
-ADDITIONAL REALISM INSTRUCTIONS:
-- Target length: approximately {word_count} words (vary ±50%)
-- Address at most 1–2 of the RFI questions, not all of them — real commenters rarely address everything
-- Include at least one concrete, specific detail (a number, a name, a place, a date) that makes it feel real
-- The comment should meander slightly — a real person doesn't write a perfectly structured argument
-- Do NOT use the phrase "I am writing to express" or any other form-letter opener
-- Do NOT start with "I" as the literal first word of the comment
-- Do NOT summarise the rule in your opener — dive in from the persona's perspective 
-- CHOOSE YOUR CHAOS: Do not attempt to use every single "realism" trick in this prompt at once. If you are writing a corporate letter, use PDF artifacts but NO typos. If you are writing an angry citizen comment, use typos and emotion, but NO PDF artifacts. Pick 1 or 2 realism elements and ignore the rest.
-
-=== CRITICAL: AVOID AI WRITING PATTERNS ===
-Real humans do not write like AI. Actively avoid these telltale patterns:
-
-LANGUAGE TO AVOID:
-- Inflated significance words: "testament", "pivotal", "crucial", "vital role", "underscores", "highlights", "evolving landscape", "serves as", "stands as", "marks a shift"
-- Overused AI phrases **NEVER USE**: "last spring", "Last spring", "a few months back", "real doctor", "coming back to", "a couple of years ago"
-- AI vocabulary: "Additionally", "delve", "enhance", "fostering", "garner", "intricate", "landscape" (abstract), "showcase", "tapestry" (abstract), "vibrant", "rich" (figurative)
-- Promotional language: "boasts", "nestled", "breathtaking", "groundbreaking", "renowned", "in the heart of"
-- Superficial -ing phrases: "highlighting the importance of", "underscoring the need for", "reflecting broader trends", "contributing to", "fostering collaboration"
-- Negative parallelisms: "It's not just about X; it's about Y" or "Not only X, but also Y"
-- Vague attributions: "experts believe", "observers note", "some argue" (without naming who)
-
-STRUCTURES TO AVOID:
-- Em dash overuse (—) — use sparingly
-- Rule of three patterns (listing exactly three things repeatedly)
-- False ranges: "from X to Y" where X and Y aren't on a real scale
-- Copula avoidance: Don't write "serves as a solution" when you mean "is a solution"
-- Lists with bold headers like "**Key Point:** explanation here"
-
-WRITE LIKE A REAL HUMAN:
-- Vary sentence length naturally. Mix short punchy ones with longer meandering thoughts.
-- Use simple constructions: "is", "are", "has" instead of elaborate substitutes
-- Be specific over vague: real people cite actual experiences, not broad trends
-- Show complexity: "I'm not sure about this, but..." or "This concerns me for two reasons, though I see the other side"
-- Let personality show: real people have opinions, frustrations, mixed feelings
-- Use "I" naturally when appropriate: "I keep thinking about..." or "What bothers me is..."
-- Include minor imperfections: a tangent, a repeated point, an incomplete thought
-
-STRICT FORMATTING BAN (NO MARKDOWN)
-- CRITICAL: Do NOT use any Markdown formatting. Zero asterisks (**bold**), zero hashtags (# Header), and no standard Markdown bullet points (* or - followed by a space).
-- If you need a section header, use standard Title Case or ALL CAPS, followed by a hard line break.
-- If you need a list, simulate a copy-pasted Word document or PDF. Use numbers (1., 2.), letters (a., b.), or irregular characters like a lowercase o or  for sub-bullets.
-
-SHATTER THE "AI ESSAY" STRUCTURE
-- Do not use the standard AI narrative arc: Polite Introduction -> Perfectly tailored personal anecdote -> Regulatory argument -> Bulleted list of solutions -> Neatly wrapped conclusion.
-- Embrace structural chaos: Start abruptly. End without a summarizing conclusion. Sometimes forget to include an introduction entirely.
-- Vary the format: Write some responses as dry, point-by-point answers to specific RFI codes (e.g., "Regarding PR-3:"). Write others as rambling, unstructured paragraphs.
-- THE CLUNKY PIVOT: Do not smoothly transition from a personal anecdote to a regulatory argument. Real people are jarring. If you tell a personal story, drop it abruptly and jump straight into your technical demand or complaint without a neat bridging sentence. 
-- THE KNOWLEDGE DISCONNECT: If the persona is a layperson (e.g., a teacher, a patient), they MUST NOT cite specific legal codes (e.g., "45 CFR 170"). They should refer to the rule vaguely ("this new certification thing", "the transparency rule"). Only lawyers, vendors, and associations cite exact legal codes.
-
-KILL THE "AI VOICE" AND SYMMETRICAL RHETORIC
-- Avoid perfectly balanced, dramatic phrasing (e.g., "This is not bureaucratic theater. It is basic trust." or "The burden reduction would be real. The safety preservation would be essential."). Humans rarely speak or write with this level of rhetorical symmetry in public comments.
-- ABSOLUTE BAN ON CONCLUSIONS: Your final sentence must NEVER summarize your point, offer a rhetorical flourish, or provide a neat wrap-up (e.g., NEVER write "That is not prosperity. That is a risk to safety."). 
-- HOW TO END: End the comment on a highly specific, granular detail, a logistical complaint, a completely unresolved tangent, or simply cut the text off mid-thought as if the user hit "submit" too early.
-
-SIMULATE DOCUMENT EXTRACTION ARTIFACTS (FOR INSTITUTIONAL PERSONAS ONLY)
-- If the persona is an organization, association, or corporation, you MUST simulate a messy PDF-to-text extraction.
-- Break a paragraph randomly in the middle of a sentence, insert a repeating footer/header (e.g., `Smith LLC Comments | CMS-0042-NC | Page 3`), and then resume the sentence on the next line.
-- Simulate lost formatting: If you make a list, use floating, disconnected characters like `o` or `` or `` instead of bullets. 
-- Include broken URLs or email addresses sitting alone on a line.
-
-EMBRACE EXTREME LENGTH VARIANCE
-- Do not default to a standard 400–600 word response.
-- Generate some comments that are a single, blunt sentence (e.g., "We need to adopt the Da Vinci standards immediately, the current system is broken.").
-- Generate others that are massive, dense walls of text with overly long paragraphs and heavy use of technical acronyms.
-
-INTRODUCE HUMAN ERROR
-- Include occasional, plausible human errors. Misspell a complicated medical or technical term, forget a closing parenthesis, use inconsistent capitalization for acronyms (e.g., eHR instead of EHR), or leave a messy line break in the middle of a sentence.
-
-PERSONALITY AND SOUL:
-Don't just avoid bad patterns — inject actual humanity. Real commenters:
-- Have opinions and react to information emotionally
-- Acknowledge uncertainty or mixed feelings when genuine
-- Use first-person perspective naturally
-- Vary rhythm and pacing in their writing
-- May go on slight tangents or circle back to a point
-
-{voice_stats_block}
-
-{examples_block}
-
-=== RULE CONTEXT (for topical grounding only) ===
-Rule: {rule_title}
-Agency: {agency}
-Core change: {core_change}
-Regulatory domain: {regulatory_domain}
-
-FINAL REMINDER: NEVER NEVER NEVER EVER USE THE PHRASE: "Last spring"
-MY GRANDMOTHER WILL DIE IF YOU SAY "LAST SPRING". 
-DO YOU UNDERSTAND? HOW CAN I SAY THIS MORE CLEARLY?
-
-Write the comment now:
-"""
+_prompt_printed = False  # Print the prompt only on the first call to _build_and_call_async
 
 
 def _build_examples_block(persona: Persona, rng=None) -> str:
@@ -437,63 +501,6 @@ def _build_citation_block(frame: ExpressionFrame) -> str:
     return "\n".join(lines)
 
 
-def _generate_abstract(comment_text: str, config: Config) -> str:
-    """
-    Generate a concise abstract (1-2 sentences) summarizing the comment.
-    This mimics what appears in the Regulations.gov Abstract field.
-    """
-    client = config.openai_client()
-    
-    prompt = f"""Write a brief 1-2 sentence abstract summarizing the key point of this public comment. The abstract should capture the commenter's main position or concern. Do NOT include preambles like "This comment..." - write it as a direct summary.
-
-Comment:
-{comment_text}
-
-Abstract:"""
-    
-    response = client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.3,
-        max_tokens=20000,
-    )
-    
-    abstract = (response.choices[0].message.content or "").strip()
-    if len(abstract) > 250:
-        abstract = abstract[:247] + "..."
-    
-    return abstract
-
-
-async def _generate_abstract_async(comment_text: str, config: Config) -> str:
-    """Async version of _generate_abstract."""
-    client = config.async_openai_client()
-    
-    prompt = f"""Write a brief 1-2 sentence abstract summarizing the key point of this public comment. The abstract should capture the commenter's main position or concern. Do NOT include preambles like "This comment..." - write it as a direct summary.
-
-Comment:
-{comment_text}
-
-Abstract:"""
-    
-    response = await client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.3,
-        max_tokens=20000,
-    )
-    
-    abstract = (response.choices[0].message.content or "").strip()
-    if len(abstract) > 250:
-        abstract = abstract[:247] + "..."
-    
-    return abstract
-
-
 # ── Generated comment ─────────────────────────────────────────────────────────
 
 @dataclass
@@ -548,125 +555,30 @@ class GeneratedComment:
 
 # ── Main generation function ──────────────────────────────────────────────────
 
-def _build_and_call(
-    persona: Persona,
-    frame: ExpressionFrame,
-    world_model: WorldModel,
-    config: Config,
-    rng: np.random.Generator | None = None,
-) -> str:
-    """Build the prompt and call the LLM. Returns the comment text.
-
-    When *rng* is provided, three anti-detection variations are applied:
-
-    1. **Sub-topic variation** — the RFI block is subsampled to 1–2 questions
-       so the LLM doesn't always gravitate to the most dramatic one.
-    2. **Stance variation** — 30 % of the time the core arguments are replaced
-       with an off-topic complaint or a naïve question.
-    3. **Format variation** — a random format preamble is prepended to the
-       style instructions (e.g. "scraped PDF", "angry iPad web-form").
-    """
-    client = config.openai_client()
-
-    core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
-    rfi_block = _build_rfi_block(frame, rng)
-    citation_block = _build_citation_block(frame)
-    examples_block = _build_examples_block(persona, rng)
-
-    # ── Anti-detection: stance variation (30 % off-topic / naïve) ────────
-    effective_framing = frame.framing
-    if rng is not None:
-        core_args_block, rfi_block, framing_override = _maybe_vary_stance(
-            core_args_block, rfi_block, world_model, rng,
-        )
-        if framing_override:
-            effective_framing = framing_override
-
-    # ── Anti-detection: format variation ─────────────────────────────────
-    style_text = persona.style_instructions()
-    if rng is not None:
-        format_preamble = _sample_format_preamble(rng, is_org=not persona.is_individual)
-        style_text = f"{format_preamble}\n\n{style_text}"
-
-    # ── Org writing standards override ────────────────────────────────────
-    # Appended AFTER the format preamble so it takes precedence over any
-    # preamble that might still encourage informal capitalization.
-    if not persona.is_individual:
-        style_text = f"{style_text}\n\n{_ORG_WRITING_STANDARDS}"
-
-    # Use directives' structural block if available, else fall back to stats
-    if frame.directives is not None:
-        voice_stats_block = frame.directives.structural_prompt_block()
-    else:
-        voice_stats_block = _build_voice_stats_block(persona)
-
-    # Dynamic max_tokens from directives (Phase 5)
-    effective_max_tokens = (
-        frame.directives.max_tokens if frame.directives is not None
-        else config.max_tokens
-    )
-
-    # Archetype-aware context section label tells the LLM how to use the content:
-    # individuals get a personal narrative label; orgs get an institutional one.
-    if persona.archetype == "individual_consumer":
-        persona_context_section = (
-            "=== PERSONAL BACKGROUND ===\n"
-            f"{persona.personal_hook}"
-        )
-    else:
-        persona_context_section = (
-            "=== INSTITUTIONAL CONTEXT ===\n"
-            f"{persona.personal_hook}"
-        )
-
-    prompt = _USER_PROMPT_TEMPLATE.format(
-        name=persona.full_name,
-        age=persona.age,
-        state=persona.state,
-        occupation=persona.occupation,
-        org_name=persona.org_name if persona.org_name else "None",
-        persona_context_section=persona_context_section,
-        personal_stake=persona.personal_stake,
-        core_arguments=core_args_block,
-        framing=effective_framing,
-        rfi_block=rfi_block,
-        style_instructions=style_text,
-        voice_instructions=frame.voice_instructions,
-        citation_block=citation_block,
-        word_count=frame.target_word_count,
-        voice_stats_block=voice_stats_block,
-        examples_block=examples_block,
-        rule_title=world_model.rule_title,
-        agency=world_model.agency,
-        core_change=world_model.core_change,
-        regulatory_domain=world_model.regulatory_domain,
-    )
-
-    response = client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=frame.temperature,
-        max_tokens=effective_max_tokens,
-    )
-
-    return (response.choices[0].message.content or "").strip()
-
-
 async def _build_and_call_async(
     persona: Persona,
     frame: ExpressionFrame,
     world_model: WorldModel,
     config: Config,
     rng: np.random.Generator | None = None,
+    scenario_brief: str = "",
+    prompt_template: str = "",
 ) -> str:
-    """Async version: build prompt and call LLM. Returns comment text.
+    """Build prompt and call LLM. Returns comment text.
 
     Applies the same three anti-detection variations as the sync version
     when *rng* is provided (sub-topic, stance, and format variation).
+
+    Parameters
+    ----------
+    prompt_template:
+        Pre-built prompt template string (with {placeholder} variables).
+        Built once per pipeline run by build_user_prompt_template() and
+        passed in so the same template is reused for all comments in a run.
+        Falls back to a default PromptControls() template if empty.
     """
+    if not prompt_template:
+        prompt_template = build_user_prompt_template()
     client = config.async_openai_client()
 
     core_args_block = "\n".join(f"  - {a}" for a in frame.core_arguments)
@@ -701,12 +613,6 @@ async def _build_and_call_async(
     else:
         voice_stats_block = _build_voice_stats_block(persona)
 
-    # Dynamic max_tokens from directives (Phase 5)
-    effective_max_tokens = (
-        frame.directives.max_tokens if frame.directives is not None
-        else config.max_tokens
-    )
-
     # Archetype-aware context section label tells the LLM how to use the content:
     # individuals get a personal narrative label; orgs get an institutional one.
     if persona.archetype == "individual_consumer":
@@ -720,7 +626,7 @@ async def _build_and_call_async(
             f"{persona.personal_hook}"
         )
 
-    prompt = _USER_PROMPT_TEMPLATE.format(
+    prompt = prompt_template.format(
         name=persona.full_name,
         age=persona.age,
         state=persona.state,
@@ -737,11 +643,19 @@ async def _build_and_call_async(
         word_count=frame.target_word_count,
         voice_stats_block=voice_stats_block,
         examples_block=examples_block,
+        scenario_brief=scenario_brief,
         rule_title=world_model.rule_title,
         agency=world_model.agency,
         core_change=world_model.core_change,
         regulatory_domain=world_model.regulatory_domain,
     )
+
+    global _prompt_printed
+    if not _prompt_printed:
+        print("===========  PROMPT =========== ")
+        print(prompt)
+        print("===========  END PROMPT =========== ")
+        _prompt_printed = True
 
     response = await client.chat.completions.create(
         model=config.chat_model,
@@ -750,90 +664,9 @@ async def _build_and_call_async(
             {"role": "user", "content": prompt},
         ],
         temperature=frame.temperature,
-        max_tokens=effective_max_tokens,
     )
 
     return (response.choices[0].message.content or "").strip()
-
-
-def generate_comment(
-    persona: Persona,
-    frame: ExpressionFrame,
-    world_model: WorldModel,
-    vector: int,
-    objective: str,
-    config: Config,
-    rng: np.random.Generator | None = None,
-    verbose: bool = False,
-) -> GeneratedComment:
-    """
-    Generate a single synthetic comment, then optionally run the judge→rewrite
-    loop to improve its authenticity.
-
-    The judge→rewrite loop runs automatically when the JUDGE_API_KEY and
-    REWRITE_COMMENT_API_KEY environment variables are configured.  Set
-    MAX_REWRITES=0 to disable the loop.
-
-    Parameters
-    ----------
-    persona:
-        Fully-instantiated persona.
-    frame:
-        Expression frame from argument_mapper.
-    world_model:
-        Rule world model.
-    vector:
-        Attack vector (1–4 for direct mode, 0 for campaign mode).
-    objective:
-        The attack objective string.
-    config:
-        API config.
-    rng:
-        Optional seeded random generator.  When provided, enables three
-        anti-detection variations: sub-topic subsampling, stance variation
-        (30 % off-topic / naïve), and format preamble injection.
-    verbose:
-        Print judge→rewrite progress to stderr.
-    """
-    config.validate()
-    comment_text = _build_and_call(persona, frame, world_model, config, rng)
-
-    # ── Judge→rewrite loop ────────────────────────────────────────────────
-    judge_score = -1
-    judge_reasons = ""
-    rewrites_performed = 0
-
-    rewriter_config = RewriterConfig()
-    if rewriter_config.is_available() and rewriter_config.max_rewrites > 0:
-        persona_ctx = build_persona_context(persona)
-        rewrite_result = judge_rewrite_loop(
-            comment_text=comment_text,
-            persona_context=persona_ctx,
-            config=rewriter_config,
-            verbose=verbose,
-        )
-        comment_text = rewrite_result.final_text
-        judge_score = rewrite_result.final_score
-        judge_reasons = rewrite_result.final_reasons
-        rewrites_performed = rewrite_result.rewrites_performed
-
-    # ── Generate abstract from final comment text ─────────────────────────
-    abstract = _generate_abstract(comment_text, config)
-
-    return GeneratedComment(
-        comment_text=comment_text,
-        persona=persona,
-        frame=frame,
-        vector=vector,
-        objective=objective,
-        rule_title=world_model.rule_title,
-        docket_id=world_model.docket_id,
-        abstract=abstract,
-        voice_id=persona.voice_id,
-        judge_score=judge_score,
-        judge_reasons=judge_reasons,
-        rewrites_performed=rewrites_performed,
-    )
 
 
 async def generate_comment_async(
@@ -845,11 +678,13 @@ async def generate_comment_async(
     config: Config,
     rng: np.random.Generator | None = None,
     verbose: bool = False,
+    scenario_brief: str = "",
+    prompt_template: str = "",
+    skip_judge_rewrite: bool = False,
 ) -> GeneratedComment:
     """
-    Async version of generate_comment.
-
-    Generates a comment then runs the judge→rewrite loop (if configured).
+    Generates a comment then runs the judge→rewrite loop (if configured and
+    not skipped).
     Each step within this comment is strictly sequential, but multiple
     comments can run their loops concurrently via the async pipeline.
 
@@ -873,31 +708,43 @@ async def generate_comment_async(
         (30 % off-topic / naïve), and format preamble injection.
     verbose:
         Print judge→rewrite progress to stderr.
+    scenario_brief:
+        The full text of the scenario brief entered by the user in Step 3
+        (Campaign Planner).  Injected into the generator prompt as the
+        "=== OBJECTIVE OF THE COMMENT ===" block.  Empty string in direct mode.
+    prompt_template:
+        Pre-built prompt template string passed down from the pipeline.
+        Built once per run via build_user_prompt_template(controls).
+    skip_judge_rewrite:
+        When True, bypass the judge→rewrite humanization loop entirely.
+        judge_score will be -1 and rewrites_performed will be 0 in the output.
     """
     config.validate()
-    comment_text = await _build_and_call_async(persona, frame, world_model, config, rng)
+    comment_text = await _build_and_call_async(
+        persona, frame, world_model, config, rng,
+        scenario_brief=scenario_brief,
+        prompt_template=prompt_template,
+    )
 
     # ── Judge→rewrite loop ────────────────────────────────────────────────
     judge_score = -1
     judge_reasons = ""
     rewrites_performed = 0
 
-    rewriter_config = RewriterConfig()
-    if rewriter_config.is_available() and rewriter_config.max_rewrites > 0:
-        persona_ctx = build_persona_context(persona)
-        rewrite_result = await judge_rewrite_loop_async(
-            comment_text=comment_text,
-            persona_context=persona_ctx,
-            config=rewriter_config,
-            verbose=verbose,
-        )
-        comment_text = rewrite_result.final_text
-        judge_score = rewrite_result.final_score
-        judge_reasons = rewrite_result.final_reasons
-        rewrites_performed = rewrite_result.rewrites_performed
-
-    # ── Generate abstract from final comment text ─────────────────────────
-    abstract = await _generate_abstract_async(comment_text, config)
+    if not skip_judge_rewrite:
+        rewriter_config = RewriterConfig()
+        if rewriter_config.is_available() and rewriter_config.max_rewrites > 0:
+            persona_ctx = build_persona_context(persona)
+            rewrite_result = await judge_rewrite_loop_async(
+                comment_text=comment_text,
+                persona_context=persona_ctx,
+                config=rewriter_config,
+                verbose=verbose,
+            )
+            comment_text = rewrite_result.final_text
+            judge_score = rewrite_result.final_score
+            judge_reasons = rewrite_result.final_reasons
+            rewrites_performed = rewrite_result.rewrites_performed
 
     return GeneratedComment(
         comment_text=comment_text,
@@ -907,7 +754,7 @@ async def generate_comment_async(
         objective=objective,
         rule_title=world_model.rule_title,
         docket_id=world_model.docket_id,
-        abstract=abstract,
+        abstract="",
         voice_id=persona.voice_id,
         judge_score=judge_score,
         judge_reasons=judge_reasons,

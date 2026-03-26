@@ -230,7 +230,6 @@ def build_world_model(
             {"role": "user", "content": prompt},
         ],
         temperature=0.2,  # Low temperature for structured analysis
-        max_tokens=20000,
     )
 
     raw = response.choices[0].message.content or "{}"

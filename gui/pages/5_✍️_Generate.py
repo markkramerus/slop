@@ -163,6 +163,51 @@ with common_cols[1]:
         help="Leave blank to use the convention-based default.",
     )
 
+# ── Prompt controls ────────────────────────────────────────────────────────────
+with st.expander("🔧 Prompt Controls", expanded=False):
+    st.caption(
+        "Toggle which sections are included in the generator prompt. "
+        "All sections are enabled by default. Disabling sections slims the prompt "
+        "for experimentation or cost reduction."
+    )
+    pc_col1, pc_col2 = st.columns(2)
+    with pc_col1:
+        use_persona = st.checkbox(
+            "Persona", value=True,
+            help="Include the persona section (name, age, state, occupation, backstory, personal stake).",
+        )
+        use_core_arguments = st.checkbox(
+            "Core arguments", value=True,
+            help="Include the core argument(s) the commenter advances.",
+        )
+        use_framing = st.checkbox(
+            "Framing", value=True,
+            help="Include the framing line that contextualises the argument.",
+        )
+        use_style_instructions = st.checkbox(
+            "Style instructions", value=True,
+            help="Include the per-voice style instructions (format preamble + voice description).",
+        )
+    with pc_col2:
+        use_voice_instructions = st.checkbox(
+            "Voice instructions", value=True,
+            help="Include voice-specific writing instructions from the expression frame.",
+        )
+        use_citation_block = st.checkbox(
+            "Citation block", value=True,
+            help="Include the citation seeds to weave into the comment.",
+        )
+        use_voice_stats_block = st.checkbox(
+            "Voice statistics block", value=True,
+            help="Include structural guidance derived from analysed real comments (word count, sentence length, etc.).",
+        )
+        use_examples_block = st.checkbox(
+            "Examples block", value=True,
+            help="Include 1–2 real comment examples for few-shot voice mimicry.",
+        )
+
+st.divider()
+
 # ── Advanced / QC options ──────────────────────────────────────────────────────
 with st.expander("⚙️ Advanced & Quality Control Options"):
     adv_cols = st.columns(3)
@@ -175,8 +220,46 @@ with st.expander("⚙️ Advanced & Quality Control Options"):
                                   help="--no-argument-check")
         no_embedding = st.checkbox("Skip embedding dedup check", value=False,
                                    help="--no-embedding-check")
-        include_failed = st.checkbox("Include failed-QC rows in output", value=False,
-                                     help="--include-failed-qc")
+        no_word_count = st.checkbox(
+            "Skip word count bounds check", value=False,
+            help=(
+                "--no-word-count-check. Validates that generated comments fall within "
+                "50–200% of the voice-statistics target word count. "
+                "Also skipped automatically when 'Voice statistics block' is disabled, "
+                "since the LLM was never told the target."
+            ),
+        )
+        
+        no_judge_rewrite = st.checkbox(
+            "Skip judge-rewrite loop",
+            value=False,
+            help=(
+                "Disables the per-comment adversarial judge→rewrite humanization "
+                "pass that runs inside the generation loop for each comment. "
+                "Speeds up runs significantly; use when "
+                "JUDGE_API_KEY / REWRITE_COMMENT_API_KEY are not configured, or "
+                "when you want raw generated output. --no-judge-rewrite"
+            ),
+        )
+
+
+        st.markdown("**Post-Generation Passes**")
+        no_phrase_check = st.checkbox(
+            "Skip phrase repetition check",
+            value=False,
+            help=(
+                "Skips the phrase-repetition analysis and report "
+                "(.phrase_report.md). --no-phrase-check"
+            ),
+        )
+        no_phrase_fix = st.checkbox(
+            "Skip phrase fix",
+            value=False,
+            help=(
+                "Skips the phrase-fix rewriting pass that rewrites comments "
+                "containing suspiciously repeated phrases. --no-phrase-fix"
+            ),
+        )
 
     with adv_cols[1]:
         st.markdown("**Generation**")
@@ -186,10 +269,8 @@ with st.expander("⚙️ Advanced & Quality Control Options"):
         )
         max_concurrent = st.number_input(
             "Max concurrent requests", value=10, min_value=1, max_value=50,
-            help="--max-concurrent  (async mode)"
+            help="--max-concurrent  (parallel)"
         )
-        no_async = st.checkbox("Disable async (slower)", value=False,
-                               help="--no-async")
         rebuild_wm = st.checkbox(
             "Rebuild world model",
             value=False,
@@ -199,6 +280,7 @@ with st.expander("⚙️ Advanced & Quality Control Options"):
                 "--rebuild-world-model"
             ),
         )
+        include_failed = st.checkbox("Include failed-QC rows in output", value=False, help="--include-failed-qc")
 
     with adv_cols[2]:
         st.markdown("**Quality Thresholds**")
@@ -232,28 +314,54 @@ def build_generate_cmd() -> list[str]:
     if output_override.strip():
         args += ["--output", output_override.strip()]
 
-    # QC
+    # QC checks
     if no_relevance:
         args.append("--no-relevance-check")
     if no_argument:
         args.append("--no-argument-check")
     if no_embedding:
         args.append("--no-embedding-check")
+    if no_word_count or not use_voice_stats_block:
+        args.append("--no-word-count-check")
     if include_failed:
         args.append("--include-failed-qc")
+
+    # Post-generation passes
+    if no_judge_rewrite:
+        args.append("--no-judge-rewrite")
+    if no_phrase_check:
+        args.append("--no-phrase-check")
+    if no_phrase_fix:
+        args.append("--no-phrase-fix")
 
     # Generation
     args += ["--seed", str(seed)]
     args += ["--comment-period-days", str(comment_period)]
     args += ["--max-concurrent", str(max_concurrent)]
-    if no_async:
-        args.append("--no-async")
     if rebuild_wm:
         args.append("--rebuild-world-model")
 
     # QC thresholds
     args += ["--similarity-threshold", str(sim_threshold)]
     args += ["--max-retries", str(max_retries)]
+
+    # Prompt controls (only emit flags for disabled sections)
+    if not use_persona:
+        args.append("--no-persona")
+    if not use_core_arguments:
+        args.append("--no-core-arguments")
+    if not use_framing:
+        args.append("--no-framing")
+    if not use_style_instructions:
+        args.append("--no-style-instructions")
+    if not use_voice_instructions:
+        args.append("--no-voice-instructions")
+    if not use_citation_block:
+        args.append("--no-citation-block")
+    if not use_voice_stats_block:
+        args.append("--no-voice-stats-block")
+    if not use_examples_block:
+        args.append("--no-examples-block")
 
     # API overrides
     if api_key_override.strip():

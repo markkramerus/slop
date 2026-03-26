@@ -78,7 +78,7 @@ Convention-based defaults (when --docket-id is provided)
   --combined-key-csv    {docket_id}/shuffled_comments/combined_key.csv
 
 Key file
---------
+----
   A companion key CSV is written automatically next to the combined output
   (e.g., combined_key.csv).  Use --combined-key-csv to override its path.
   The key has four columns: row_number, uid, original_document_id, type (real | synthetic).
@@ -483,6 +483,18 @@ Simplest invocations
                     help="Skip LLM argument-presence check.")
     qc.add_argument("--no-embedding-check", action="store_true",
                     help="Skip embedding-based near-duplicate check.")
+    qc.add_argument("--no-word-count-check", action="store_true",
+                    help=(
+                        "Skip the word-count bounds structural check. "
+                        "Also skipped automatically when --no-voice-stats-block is set, "
+                        "since the LLM was never told the target word count."
+                    ))
+    qc.add_argument("--no-judge-rewrite", action="store_true",
+                    help="Skip the judge→rewrite loop (humanization pass).")
+    qc.add_argument("--no-phrase-check", action="store_true",
+                    help="Skip the phrase-repetition check / report.")
+    qc.add_argument("--no-phrase-fix", action="store_true",
+                    help="Skip the phrase-fix rewriting pass.")
     qc.add_argument("--include-failed-qc", action="store_true",
                     help="Include QC-failed rows in the output CSV (flagged).")
     qc.add_argument("--similarity-threshold", type=float, default=0.92, metavar="FLOAT",
@@ -497,13 +509,30 @@ Simplest invocations
     gen.add_argument("--comment-period-days", type=int, default=60, metavar="N",
                      help="Simulated comment period length in days (default 60).")
     gen.add_argument("--max-concurrent", type=int, default=10, metavar="N",
-                     help="Max concurrent API requests (async mode, default 10).")
-    gen.add_argument("--no-async", action="store_true",
-                     help="Disable async parallelization (slower but more predictable).")
+                     help="Max concurrent API requests (default 10).")
     gen.add_argument("--rebuild-world-model", action="store_true",
                      help="Force regeneration of the world model via LLM even if a cached version exists.")
     gen.add_argument("--rebuild-org-pool", action="store_true",
                      help="Force regeneration of the org name pool via LLM even if a cached version exists.")
+
+    # Prompt section controls (all enabled by default; use --no-* to disable)
+    prompt = p.add_argument_group("prompt controls (all enabled by default)")
+    prompt.add_argument("--no-persona", dest="use_persona", action="store_false", default=True,
+                        help="Exclude the persona section from the generator prompt.")
+    prompt.add_argument("--no-core-arguments", dest="use_core_arguments", action="store_false", default=True,
+                        help="Exclude the core-arguments block from the generator prompt.")
+    prompt.add_argument("--no-framing", dest="use_framing", action="store_false", default=True,
+                        help="Exclude the framing line from the generator prompt.")
+    prompt.add_argument("--no-style-instructions", dest="use_style_instructions", action="store_false", default=True,
+                        help="Exclude style instructions from the generator prompt.")
+    prompt.add_argument("--no-voice-instructions", dest="use_voice_instructions", action="store_false", default=True,
+                        help="Exclude voice-specific instructions from the generator prompt.")
+    prompt.add_argument("--no-citation-block", dest="use_citation_block", action="store_false", default=True,
+                        help="Exclude the citation-seeds block from the generator prompt.")
+    prompt.add_argument("--no-voice-stats-block", dest="use_voice_stats_block", action="store_false", default=True,
+                        help="Exclude the voice statistics / structural guidance block from the generator prompt.")
+    prompt.add_argument("--no-examples-block", dest="use_examples_block", action="store_false", default=True,
+                        help="Exclude the real-comment examples block from the generator prompt.")
 
     # Verbosity
     p.add_argument("--quiet", action="store_true", help="Suppress progress output.")
@@ -554,7 +583,8 @@ def main(argv: list[str] | None = None) -> int:
     # Import here so the module is usable without installed deps when just
     # running --help
     from config import Config
-    from syncom.pipeline import run, run_async, run_campaign, run_campaign_async
+    from syncom.pipeline import run, run_campaign
+    from syncom.generator import PromptControls
 
     docket_id = args.docket_id
 
@@ -624,6 +654,18 @@ def main(argv: list[str] | None = None) -> int:
 
     rule_text = resolve_rule_text(rule_text_path)
 
+    # Build prompt controls from CLI flags
+    prompt_controls = PromptControls(
+        use_persona=args.use_persona,
+        use_core_arguments=args.use_core_arguments,
+        use_framing=args.use_framing,
+        use_style_instructions=args.use_style_instructions,
+        use_voice_instructions=args.use_voice_instructions,
+        use_citation_block=args.use_citation_block,
+        use_voice_stats_block=args.use_voice_stats_block,
+        use_examples_block=args.use_examples_block,
+    )
+
     try:
         if use_campaign:
             # ── Campaign-plan mode ────────────────────────────────────────
@@ -645,61 +687,47 @@ def main(argv: list[str] | None = None) -> int:
                 skip_relevance_check=args.no_relevance_check,
                 skip_argument_check=args.no_argument_check,
                 skip_embedding_check=args.no_embedding_check,
+                skip_word_count_check=args.no_word_count_check,
+                skip_judge_rewrite=args.no_judge_rewrite,
+                skip_phrase_check=args.no_phrase_check,
+                skip_phrase_fix=args.no_phrase_fix,
                 verbose=not args.quiet,
                 rebuild_world_model=args.rebuild_world_model,
                 rebuild_org_pool=args.rebuild_org_pool,
             )
-            if args.no_async:
-                result = run_campaign(**common_kwargs)
-            else:
-                result = run_campaign_async(
-                    **common_kwargs,
-                    max_concurrent=args.max_concurrent,
-                )
+            result = run_campaign(
+                **common_kwargs,
+                max_concurrent=args.max_concurrent,
+                prompt_controls=prompt_controls,
+            )
 
         else:
             # ── Direct mode (original behavior) ──────────────────────────
-            if args.no_async:
-                result = run(
-                    docket_id=docket_id,
-                    rule_text=rule_text,
-                    vector=args.vector,
-                    objective=args.objective,
-                    volume=args.volume,
-                    output_path=output_path,
-                    config=config,
-                    seed=args.seed,
-                    similarity_threshold=args.similarity_threshold,
-                    max_retries=args.max_retries,
-                    comment_period_days=args.comment_period_days,
-                    include_failed_qc=args.include_failed_qc,
-                    skip_relevance_check=args.no_relevance_check,
-                    skip_argument_check=args.no_argument_check,
-                    skip_embedding_check=args.no_embedding_check,
-                    verbose=not args.quiet,
-                    rebuild_world_model=args.rebuild_world_model,
-                )
-            else:
-                result = run_async(
-                    docket_id=docket_id,
-                    rule_text=rule_text,
-                    vector=args.vector,
-                    objective=args.objective,
-                    volume=args.volume,
-                    output_path=output_path,
-                    config=config,
-                    seed=args.seed,
-                    similarity_threshold=args.similarity_threshold,
-                    max_retries=args.max_retries,
-                    comment_period_days=args.comment_period_days,
-                    include_failed_qc=args.include_failed_qc,
-                    skip_relevance_check=args.no_relevance_check,
-                    skip_argument_check=args.no_argument_check,
-                    skip_embedding_check=args.no_embedding_check,
-                    verbose=not args.quiet,
-                    max_concurrent=args.max_concurrent,
-                    rebuild_world_model=args.rebuild_world_model,
-                )
+            result = run(
+                docket_id=docket_id,
+                rule_text=rule_text,
+                vector=args.vector,
+                objective=args.objective,
+                volume=args.volume,
+                output_path=output_path,
+                config=config,
+                seed=args.seed,
+                similarity_threshold=args.similarity_threshold,
+                max_retries=args.max_retries,
+                comment_period_days=args.comment_period_days,
+                include_failed_qc=args.include_failed_qc,
+                skip_relevance_check=args.no_relevance_check,
+                skip_argument_check=args.no_argument_check,
+                skip_embedding_check=args.no_embedding_check,
+                skip_word_count_check=args.no_word_count_check,
+                skip_judge_rewrite=args.no_judge_rewrite,
+                skip_phrase_check=args.no_phrase_check,
+                skip_phrase_fix=args.no_phrase_fix,
+                verbose=not args.quiet,
+                max_concurrent=args.max_concurrent,
+                rebuild_world_model=args.rebuild_world_model,
+                prompt_controls=prompt_controls,
+            )
     except Exception as exc:
         print(f"Fatal error: {exc}", file=sys.stderr)
         import traceback

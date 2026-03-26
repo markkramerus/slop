@@ -4,12 +4,6 @@
 Walk a comment_attachments directory tree and classify each PDF attachment as
 "comment" vs "not_comment" using an AI endpoint.
 
-The AI endpoint is configured by environment variables (loaded from .env if
-present):
-  - ATTACHMENT_CLASSIFIER_API_BASE_URL
-  - ATTACHMENT_CLASSIFIER_API_KEY
-  - ATTACHMENT_CLASSIFIER_MODEL
-
 Output is a CSV (default name: attachment_classification.csv) with one row per
 attachment containing the AI classification result.
 

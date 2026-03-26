@@ -71,7 +71,8 @@ WATCH_LIST: list[str] = [
 
 # Minimum number of distinct comments a watch-list phrase must appear in
 # to be included in the report.
-WATCH_LIST_MIN_COMMENTS: int = 2
+WATCH_LIST_MIN_COMMENTS: int = 3
+MIN_REPEATS_DEFAULT = 2
 
 
 # ── English stopwords (no external dependency) ────────────────────────────────
@@ -464,7 +465,7 @@ def find_repeated_phrases(
     comments: Sequence[GeneratedComment],
     min_n: int = 4,
     max_n: int = 8,
-    min_count: int = 3,
+    min_count: int = MIN_REPEATS_DEFAULT,
     only_passed_qc: bool = True,
     verbose: bool = True,
 ) -> list[RepeatedPhrase]:
@@ -492,7 +493,7 @@ def find_repeated_phrases(
         N-gram window sizes to consider.
     min_count:
         Minimum number of distinct comments a phrase must appear in to be
-        reported (default 2).
+        reported (default MIN_REPEATS_DEFAULT).
     only_passed_qc:
         If True, skip comments that failed QC.
     verbose:
@@ -625,7 +626,7 @@ def find_repeated_phrases(
 
             # Use the actual Document ID from the PSV file; fall back only
             # when no document_id was loaded (e.g. in-memory generation).
-            comment_id = comment.document_id or f"SYNTH-{idx}"
+            comment_id = comment.document_id or f"SYNTH-{str(idx + 1).zfill(4)}"
 
             submitter_name = _build_submitter_name(comment.persona)
             submitter_detail = _build_submitter_detail(comment.persona)
@@ -812,9 +813,9 @@ def stream_report(
 def run_phrase_check(
     comments: Sequence[GeneratedComment],
     output_path: str,
-    min_n: int = 4,
-    max_n: int = 8,
-    min_count: int = 2,
+    min_n: int = 4,  # min ngram length
+    max_n: int = 8,  # max ngram length
+    min_count: int = MIN_REPEATS_DEFAULT,
     only_passed_qc: bool = True,
     verbose: bool = True,
 ) -> str:
@@ -837,7 +838,7 @@ def run_phrase_check(
         N-gram window sizes to consider (default 4–8).
     min_count:
         Minimum number of distinct comments a phrase must appear in to be
-        reported (default 2).
+        reported (default MIN_REPEATS_DEFAULT).
     only_passed_qc:
         If True, only analyse comments that passed QC.
     verbose:
@@ -1037,7 +1038,7 @@ def run_phrase_check_on_psv(
     output_path: str | None = None,
     min_n: int = 4,
     max_n: int = 8,
-    min_count: int = 2,
+    min_count: int = MIN_REPEATS_DEFAULT,
     verbose: bool = True,
 ) -> str:
     """
@@ -1055,7 +1056,7 @@ def run_phrase_check_on_psv(
         N-gram window sizes to consider (default 4–8).
     min_count:
         Minimum number of distinct comments a phrase must appear in to be
-        reported (default 2).
+        reported (default MIN_REPEATS_DEFAULT).
     verbose:
         Print progress to stderr.
 
@@ -1143,11 +1144,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--min-count",
-        type=int, default=2,
+        type=int, default= MIN_REPEATS_DEFAULT,
         metavar="N",
         help=(
             "Minimum number of comments a phrase must appear in to be "
-            "reported (default 2).  Raise to 3+ for a shorter, more "
+            "reported (default 3).  Raise to 3+ for a shorter, more "
             "actionable report."
         ),
     )

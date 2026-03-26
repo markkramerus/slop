@@ -51,7 +51,7 @@ class RewriterConfig:
         default_factory=lambda: os.getenv("JUDGE_API_KEY", "")
     )
     judge_model: str = field(
-        default_factory=lambda: os.getenv("JUDGE_CHAT_MODEL", "gpt-4o")
+        default_factory=lambda: os.getenv("JUDGE_CHAT_MODEL", "gpt-5")
     )
 
     # Comment-rewrite model — rewrites comments using judge feedback
@@ -180,8 +180,7 @@ def _parse_json_response(raw: str) -> dict[str, Any]:
     """Parse a JSON response, stripping markdown code fences if present.
 
     If standard JSON parsing fails (e.g. because the response was truncated
-    mid-string by a max_tokens limit), falls back to regex extraction of
-    known fields.
+    mid-string), falls back to regex extraction of known fields.
     """
     cleaned = raw.strip()
     if cleaned.startswith("```"):
@@ -195,7 +194,7 @@ def _parse_json_response(raw: str) -> dict[str, Any]:
         pass
 
     # ── Regex fallback for truncated JSON ─────────────────────────────
-    # The model may have returned valid JSON that was cut off by max_tokens.
+    # The model may have returned valid JSON that was cut off.
     # Try to extract individual fields from the raw text.
     result: dict[str, Any] = {}
 
@@ -234,12 +233,14 @@ You must return a JSON object with exactly two fields:
 }
 
 human_author_probability:
-  0  = many distinctive AI features marking it definitively as AI-generated text with zero possibility of human authorship 
+  0  = many AI features marking it definitively as AI-generated text with near-zero possibility of human authorship 
   20 = some distinctive AI features making it highly likely to be AI-generated
   40 = a few typical AI features, enough to conclude the text is AI-generated
   60 = mostly resembles human text with some features that hinting at AI generation
   80 = human features far outweigh anything that might hint at AI generation
-  100 = absolutely human writing with no discernable features of AI-generated text
+  100 = absolutely human writing with zero discernable features of AI-generated text
+
+Do not rate comments as 0 or 100 unless you are absolutely certain of the source. Be humble in your judgments and consider both possibilities, but in the end, make your best guess. Keep in mind that AI can be prompted to include human-like features in its writing and telling the difference can be subtle and tricky. Think not only about the words, but also about the meaning that the writer is trying to convey.
 
 reasons:
   If you think the comment was written by AI (human_author_probability < 50), then create a numbered list including **every** AI-like feature you detected, described in enough detail to be rectified \
@@ -248,15 +249,13 @@ reasons:
   5. copula avoidance — uses 'serves as' instead of 'is'"). \
   Make sure the list is comprehensive, with specific, concrete observations. \
   \
-  Conversely, if you think the comment is human-written, briefly explain what convinced you \
-  (e.g., "inconsistent capitalization", "single-issue frustration without \
-  comprehensive policy framing", "abrupt ending mid-thought", "genuine typos").
+  Conversely, if you think the comment is human-written, briefly explain what convinced you of human authorship. \
 
 Output ONLY the JSON object. No preamble, no explanation outside the JSON.
 """
 
 _JUDGE_USER_TEMPLATE = """\
-Classify the following public comment as AI-generated or human-written.
+Classify the following public comment as AI-generated or human-written following the instructions in the system prompt.
 
 === COMMENT ===
 {comment_text}
@@ -366,7 +365,6 @@ def judge_comment(
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.1,
-            max_tokens=50000,
         )
 
     response = _retry_with_backoff(_call, label="judge")
@@ -392,7 +390,7 @@ async def judge_comment_async(
     """Async version of judge_comment."""
     client = config.judge_client_async()
     user_prompt = _JUDGE_USER_TEMPLATE.format(
-        comment_text=comment_text[:6000],
+        comment_text=comment_text[:10000],
     )
 
     async def _call():
@@ -403,7 +401,6 @@ async def judge_comment_async(
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.1,
-            max_tokens=50000,
         )
 
     response = await _retry_with_backoff_async(_call, label="judge")
@@ -479,7 +476,6 @@ def rewrite_comment(
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.8,
-            max_tokens=50000,
         )
 
     response = _retry_with_backoff(_call, label="rewrite")
@@ -524,7 +520,6 @@ async def rewrite_comment_async(
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.8,
-            max_tokens=50000,
         )
 
     response = await _retry_with_backoff_async(_call, label="rewrite")

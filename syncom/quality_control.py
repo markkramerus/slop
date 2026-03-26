@@ -99,29 +99,6 @@ def _parse_json_response(raw: str) -> dict[str, Any]:
     except json.JSONDecodeError:
         return {}
 
-
-def _check_relevance(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
-    client = config.openai_client()
-    prompt = _RELEVANCE_USER.format(
-        rule_title=comment.rule_title,
-        core_change=comment.frame.core_arguments[0] if comment.frame.core_arguments else "",
-        comment_text=comment.comment_text[:1500],
-    )
-    response = client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "system", "content": _RELEVANCE_SYSTEM},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.0,
-        max_tokens=20000,
-    )
-    parsed = _parse_json_response(response.choices[0].message.content or "{}")
-    relevant = bool(parsed.get("relevant", True))
-    reason = str(parsed.get("reason", ""))
-    return relevant, reason
-
-
 async def _check_relevance_async(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
     client = config.async_openai_client()
     prompt = _RELEVANCE_USER.format(
@@ -136,34 +113,11 @@ async def _check_relevance_async(comment: GeneratedComment, config: Config) -> t
             {"role": "user", "content": prompt},
         ],
         temperature=0.0,
-        max_tokens=20000,
     )
     parsed = _parse_json_response(response.choices[0].message.content or "{}")
     relevant = bool(parsed.get("relevant", True))
     reason = str(parsed.get("reason", ""))
     return relevant, reason
-
-
-def _check_argument(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
-    client = config.openai_client()
-    prompt = _ARGUMENT_USER.format(
-        objective=comment.objective,
-        comment_text=comment.comment_text[:1500],
-    )
-    response = client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "system", "content": _ARGUMENT_SYSTEM},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.0,
-        max_tokens=20000,
-    )
-    parsed = _parse_json_response(response.choices[0].message.content or "{}")
-    on_message = bool(parsed.get("on_message", True))
-    reason = str(parsed.get("reason", ""))
-    return on_message, reason
-
 
 async def _check_argument_async(comment: GeneratedComment, config: Config) -> tuple[bool, str]:
     client = config.async_openai_client()
@@ -178,7 +132,6 @@ async def _check_argument_async(comment: GeneratedComment, config: Config) -> tu
             {"role": "user", "content": prompt},
         ],
         temperature=0.0,
-        max_tokens=20000,
     )
     parsed = _parse_json_response(response.choices[0].message.content or "{}")
     on_message = bool(parsed.get("on_message", True))
@@ -187,15 +140,6 @@ async def _check_argument_async(comment: GeneratedComment, config: Config) -> tu
 
 
 # ── Embedding computation ──────────────────────────────────────────────────────
-
-def _get_embedding(text: str, config: Config) -> list[float]:
-    client = config.embedding_client()
-    response = client.embeddings.create(
-        model=config.embed_model,
-        input=text[:8000],
-    )
-    return response.data[0].embedding
-
 
 async def _get_embedding_async(text: str, config: Config) -> list[float]:
     client = config.async_embedding_client()
@@ -261,6 +205,7 @@ class QualityController:
         skip_relevance_check: bool = False,
         skip_argument_check: bool = False,
         skip_embedding_check: bool = False,
+        skip_word_count_check: bool = False,
     ) -> None:
         self.config = config
         self.objective = objective
@@ -268,83 +213,11 @@ class QualityController:
         self.skip_relevance_check = skip_relevance_check
         self.skip_argument_check = skip_argument_check
         self.skip_embedding_check = skip_embedding_check
+        self.skip_word_count_check = skip_word_count_check
         self._accepted_embeddings: list[list[float]] = []
-
-    def check(self, comment: GeneratedComment) -> QCResult:
-        """
-        Run all QC checks on `comment`.  Mutates `comment.qc_passed` and
-        `comment.qc_notes` and `comment.embedding` in-place, and also returns
-        a QCResult for the caller.
-        """
-        notes: list[str] = []
-
-        # 1. Topical relevance
-        relevant = True
-        if not self.skip_relevance_check:
-            relevant, reason = _check_relevance(comment, self.config)
-            if not relevant:
-                notes.append(f"relevance_fail: {reason}")
-
-        # 2. Argument presence
-        on_message = True
-        if not self.skip_argument_check:
-            on_message, reason = _check_argument(comment, self.config)
-            if not on_message:
-                notes.append(f"argument_fail: {reason}")
-
-        # 3. Embedding uniqueness
-        unique = True
-        nearest_sim = 0.0
-        if not self.skip_embedding_check:
-            emb = _get_embedding(comment.comment_text, self.config)
-            comment.embedding = emb
-
-            if self._accepted_embeddings:
-                sims = [_cosine_similarity(emb, e) for e in self._accepted_embeddings]
-                nearest_sim = max(sims)
-                if nearest_sim >= self.similarity_threshold:
-                    unique = False
-                    notes.append(
-                        f"near_duplicate: nearest_similarity={nearest_sim:.4f}"
-                    )
-
-        # 4. Word-count bounds (structural QC — Phase 6)
-        in_word_bounds = True
-        if comment.frame.directives is not None:
-            target = comment.frame.directives.target_word_count
-            actual = comment.word_count()
-            lo = max(int(target * 0.5), 20)
-            hi = int(target * 2.0)
-            if actual < lo or actual > hi:
-                in_word_bounds = False
-                notes.append(
-                    f"word_count_out_of_bounds: target={target}, actual={actual}, "
-                    f"range=[{lo},{hi}]"
-                )
-
-        passed = relevant and on_message and unique and in_word_bounds
-
-        if passed and not self.skip_embedding_check and comment.embedding:
-            self._accepted_embeddings.append(comment.embedding)
-
-        result = QCResult(
-            passed=passed,
-            relevant=relevant,
-            on_message=on_message,
-            unique=unique,
-            in_word_bounds=in_word_bounds,
-            nearest_similarity=nearest_sim,
-            notes="; ".join(notes),
-        )
-
-        comment.qc_passed = passed
-        comment.qc_notes = result.notes
-
-        return result
 
     async def check_async(self, comment: GeneratedComment) -> QCResult:
         """
-        Async version of check.
         Run all QC checks on `comment` using async API calls. Mutates 
         `comment.qc_passed` and `comment.qc_notes` and `comment.embedding` 
         in-place, and also returns a QCResult for the caller.
@@ -392,8 +265,11 @@ class QualityController:
                     )
 
         # 4. Word-count bounds (structural QC — Phase 6)
+        # Skipped automatically when the structural prompt block was not included in the
+        # generator prompt (use_voice_stats_block=False), because the LLM was never told
+        # the target word count and checking against it would be meaningless.
         in_word_bounds = True
-        if comment.frame.directives is not None:
+        if not self.skip_word_count_check and comment.frame.directives is not None:
             target = comment.frame.directives.target_word_count
             actual = comment.word_count()
             lo = max(int(target * 0.5), 20)

@@ -127,7 +127,7 @@ def _build_row(
     # Using a rare Unicode character rather than <br> keeps the encoding neutral
     # and indistinguishable between real and synthetic comments.
     _NL = "\u23ce"   # ⏎ RETURN SYMBOL
-    abstract = (comment.abstract if comment.abstract else comment.comment_text[:250])
+    abstract = (comment.abstract if comment.abstract else "")
     abstract = abstract.replace("\r\n", _NL).replace("\r", _NL).replace("\n", _NL)
     comment_text = comment.comment_text.replace("\r\n", _NL).replace("\r", _NL).replace("\n", _NL)
 

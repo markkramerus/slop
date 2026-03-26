@@ -389,7 +389,6 @@ def _call_pool_llm_variable(
             {"role": "user", "content": prompt},
         ],
         temperature=0.8,
-        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -447,7 +446,6 @@ def _top_up_pool(
             {"role": "user", "content": prompt},
         ],
         temperature=0.8,
-        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "[]").strip()

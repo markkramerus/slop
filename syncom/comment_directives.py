@@ -10,7 +10,6 @@ nor the generator LLM may override:
   - use_headings       (coin flip at voice's heading-usage rate)
   - target_citations   (sampled from voice's citation distribution)
   - first_person_level (from voice stats: "none", "light", "heavy")
-  - max_tokens         (derived from target_word_count)
 
 These directives flow through the pipeline as an immutable specification.
 The argument_mapper LLM generates framing/arguments but cannot change
@@ -35,7 +34,6 @@ class CommentDirectives:
     use_headings: bool
     target_citations: int
     first_person_level: str   # "none" | "light" | "heavy"
-    max_tokens: int
     paragraph_count: int
 
     def structural_prompt_block(self) -> str:
@@ -189,15 +187,11 @@ def _sample_from_stats(
         # Fallback: ~100 words per paragraph
         para_count = max(1, target_wc // 100)
 
-    # ── max_tokens: words × 5 (tokens per word), with a floor ─────────
-    max_tokens = max(20000, int(target_wc * 5.0))
-
     return CommentDirectives(
         target_word_count=target_wc,
         use_bullets=use_bullets,
         use_headings=use_headings,
         target_citations=target_citations,
         first_person_level=first_person_level,
-        max_tokens=max_tokens,
         paragraph_count=para_count,
     )

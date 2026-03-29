@@ -101,48 +101,9 @@ class ArgumentAngle:
 
 @dataclass
 class CampaignPlan:
-    """
-    A structured campaign plan that tells syncom how to distribute N synthetic
-    comments across voice groups and argument angles.
-
-    The plan implements a Bayesian allocation framework:
-
-        P(V, A) = P(V) × P(A|V)
-
-    where:
-        P(V)   = campaign_voices distribution
-        P(A|V) ∝ w(A) × f(A,V)
-        f(A,V) = affinity_boost if V ∈ best_voices(A), else 1.0
-
-    Attributes
-    ----------
-    objective : str
-        The refined objective statement (position to advance or oppose).
-    scenario_summary : str
-        Brief summary of the user's original scenario/brief.
-    argument_angles : list[ArgumentAngle]
-        Distinct argument angles to distribute across comments.
-    campaign_voices : dict[str, float]
-        Voice ID → weight mapping. Voice IDs correspond to entries in the
-        stylometry index.json (e.g. "advocacy_group_high_org",
-        "individual_consumer_low"). Weights are normalized at runtime to
-        give P(V).
-    base_population : dict[str, float]
-        Voice ID → proportion in the actual docket (before any campaign
-        emphasis). Stored for reference / audit only; not used at runtime.
-    affinity_boost : float
-        Multiplier α applied when a voice is in an angle's best_voices list.
-        Controls how strongly voice identity biases argument selection.
-        α=1 → independent; α=3 → moderate preference; α=10 → strong channeling.
-    notes : str
-        Free-text notes from the planner (human-readable rationale).
-    created : str
-        ISO timestamp of plan creation.
-    plan_version : str
-        Schema version for forward compatibility.
-    """
     objective: str
     scenario_summary: str = ""
+    scenario_brief: str = ""
     argument_angles: list[ArgumentAngle] = field(default_factory=list)
     campaign_voices: dict[str, float] = field(default_factory=dict)
     base_population: dict[str, float] = field(default_factory=dict)
@@ -253,6 +214,7 @@ class CampaignPlan:
             "plan_version": self.plan_version,
             "created": self.created,
             "scenario_summary": self.scenario_summary,
+            "scenario_brief": self.scenario_brief,
             "objective": self.objective,
             "argument_angles": [a.to_dict() for a in self.argument_angles],
             "campaign_voices": self.campaign_voices,
@@ -309,6 +271,7 @@ class CampaignPlan:
         return cls(
             objective=d.get("objective", ""),
             scenario_summary=d.get("scenario_summary", ""),
+            scenario_brief=d.get("scenario_brief", ""),
             argument_angles=angles,
             campaign_voices=d.get("campaign_voices", {}),
             base_population=d.get("base_population", {}),

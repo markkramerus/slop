@@ -28,12 +28,12 @@ from config import Config
 from shared_models import PopulationModel
 from .world_model import build_world_model, build_or_load_world_model, WorldModel
 from .persona import sample_persona, Persona
-from .argument_mapper import map_argument, ExpressionFrame
-from .generator import generate_comment, GeneratedComment
+from .argument_mapper import map_argument_async, ExpressionFrame
+from .generator import generate_comment_async, GeneratedComment
 from .quality_control import QualityController
 from .export import export_to_txt
 from .phrase_check import run_phrase_check, find_repeated_phrases
-from .pipeline import run_campaign, run_campaign_async
+from .pipeline import run_campaign
 
 __all__ = [
     "Config",
@@ -44,14 +44,13 @@ __all__ = [
     "WorldModel",
     "sample_persona",
     "Persona",
-    "map_argument",
+    "map_argument_async",
     "ExpressionFrame",
-    "generate_comment",
+    "generate_comment_async",
     "GeneratedComment",
     "QualityController",
     "export_to_txt",
     "run_phrase_check",
     "find_repeated_phrases",
     "run_campaign",
-    "run_campaign_async",
 ]

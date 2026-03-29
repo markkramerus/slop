@@ -412,8 +412,6 @@ Generation options:
   --seed N              Random seed (default 42)
   --comment-period-days N  Simulated comment period length in days (default 60)
   --max-concurrent N    Max concurrent API requests (default 10)
-  --no-async            Disable async parallelization
-
   --quiet               Suppress progress output
 ```
 
@@ -654,7 +652,7 @@ slop/
 │   └── STYLOMETRY_README.md
 │
 └── syncom/                     # Core Synthetic Comment Engine
-    ├── pipeline.py             # Orchestrate generation (sync + async + campaign)
+    ├── pipeline.py             # Orchestrate generation
     ├── world_model.py          # Extract policy context from rule text
     ├── persona.py              # Generate commenter personas
     ├── argument_mapper.py      # Map arguments to personas
@@ -699,7 +697,6 @@ python test_stylometry_integration.py
 
 **API rate limit errors**
 - Reduce concurrency: `--max-concurrent 5`
-- Or fall back to sync: `--no-async`
 
 ## Theory & Background
 

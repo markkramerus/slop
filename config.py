@@ -3,18 +3,6 @@ config.py — API client configuration for any OpenAI-compatible endpoint.
 
 Set via environment variables or pass a Config object explicitly.
 
-Environment variables:
-  GENERATOR_API_BASE_URL        Base URL for the chat completions API
-                           Default: https://api.openai.com/v1
-  GENERATOR_API_KEY             API key for chat/generation
-  GENERATOR_CHAT_MODEL          Model name for chat/generation
-                           Default: gpt-4o
-  SLOP_MAX_TOKENS          Maximum tokens for generated comment
-                           Default: 1024
-  SLOP_TEMPERATURE         Default sampling temperature (overridden per vector)
-                           Default: 0.9
-  MAX_REWRITES             Maximum judge→rewrite passes per comment
-                           Default: 2 (0 disables the rewrite loop)
 """
 
 from __future__ import annotations
@@ -51,7 +39,6 @@ class Config:
     )
     
     # Generation parameters
-    max_tokens= 20000
     temperature=0.9
 
     def validate(self) -> None:

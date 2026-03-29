@@ -370,7 +370,6 @@ def generate_campaign_plan(
             {"role": "user", "content": prompt},
         ],
         temperature=0.4,
-        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -417,8 +416,9 @@ def generate_campaign_plan(
     affinity_boost = float(parsed.get("affinity_boost", 3.0))
 
     plan = CampaignPlan(
-        objective=parsed.get("objective", scenario[:200]),
-        scenario_summary=parsed.get("scenario_summary", scenario[:300]),
+        objective=parsed.get("objective", scenario),
+        scenario_summary=parsed.get("scenario_summary", scenario),
+        scenario_brief=scenario,
         argument_angles=angles,
         campaign_voices=campaign_voices,
         base_population=base_population,

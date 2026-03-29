@@ -40,12 +40,6 @@ document type, and rationale. The classifier renders the first pages of each PDF
 to images and sends them to an OpenAI-compatible endpoint. It does **not** need
 `.txt` files — classification is completely independent of text conversion.
 
-**Environment variables required** (set in `.env` or your shell):
-
-- `ATTACHMENT_CLASSIFIER_API_BASE_URL`
-- `ATTACHMENT_CLASSIFIER_API_KEY`
-- `ATTACHMENT_CLASSIFIER_MODEL`
-
 ### Resume / re-run
 
 Re-running skips PDFs already in the CSV. To force reclassification:

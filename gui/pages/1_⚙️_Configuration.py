@@ -147,7 +147,6 @@ with test_col1:
                     resp = client.chat.completions.create(
                         model=model,
                         messages=[{"role": "user", "content": "Say OK"}],
-                        max_tokens=100,
                     )
                     st.success(f"✅ Chat API OK — model `{model}` responded: *{resp.choices[0].message.content.strip()}*")
                 except Exception as exc:

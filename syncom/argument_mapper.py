@@ -240,133 +240,6 @@ def _build_angle_detail_blocks(
 
     return key_claims_block, rhetorical_approach_block, avoid_block
 
-
-def build_campaign_frame(
-    objective: str,
-    argument_angle: str,
-    persona: Persona,
-    world_model: WorldModel,
-    config: Config,
-    rng: np.random.Generator,
-    key_claims: list[str] | None = None,
-    rhetorical_approach: str = "",
-    avoid: list[str] | None = None,
-) -> ExpressionFrame:
-    """
-    Build an ExpressionFrame for campaign mode (v2.0).
-
-    The argument angle comes from the campaign plan's P(A|V) sampling.
-    Temperature and citation behavior are derived from the voice profile.
-
-    Parameters
-    ----------
-    objective : str
-        The campaign objective.
-    argument_angle : str
-        The specific argument angle text (one-sentence summary).
-    persona : Persona
-        The instantiated persona (with voice skill loaded).
-    world_model : WorldModel
-        The rule's world model.
-    config : Config
-        API config.
-    rng : np.random.Generator
-        Random number generator.
-    key_claims : list[str] | None
-        Optional specific claims from the ArgumentAngle. When provided,
-        these are passed to the frame LLM to produce more differentiated
-        core_arguments.
-    rhetorical_approach : str
-        Optional rhetorical strategy from the ArgumentAngle. Tells the
-        frame LLM *how* to argue, not just *what* to argue.
-    avoid : list[str] | None
-        Optional list of topics/framings to exclude, preventing angle
-        collapse across comments.
-    """
-    client = config.openai_client()
-
-    # Subsample RFI questions so the frame LLM doesn't always gravitate to
-    # the most dramatic question in the full list
-    rfi_qs = _subsample_rfi_questions(world_model.rfi_questions, rng)
-    rfi_block = "\n".join(f"  - {q}" for q in rfi_qs) if rfi_qs else "  (none specified)"
-    citation_guidance = _derive_citation_guidance(persona)
-
-    key_claims_block, rhetorical_approach_block, avoid_block = _build_angle_detail_blocks(
-        key_claims or [], rhetorical_approach, avoid or []
-    )
-
-    prompt = _CAMPAIGN_FRAME_USER.format(
-        objective=objective,
-        argument_angle=argument_angle,
-        key_claims_block=key_claims_block,
-        rhetorical_approach_block=rhetorical_approach_block,
-        avoid_block=avoid_block,
-        archetype=persona.archetype,
-        voice_id=persona.voice_id,
-        name=persona.full_name,
-        state=persona.state,
-        occupation=persona.occupation,
-        sophistication=persona.sophistication,
-        emotional_register=persona.emotional_register,
-        hook=persona.personal_hook,
-        rule_title=world_model.rule_title,
-        core_change=world_model.core_change,
-        consequence=world_model.consequence_for(persona.archetype),
-        key_terms=", ".join(world_model.key_terms[:8]),
-        rfi_questions=rfi_block,
-        citation_guidance=citation_guidance,
-    )
-
-    response = client.chat.completions.create(
-        model=config.chat_model,
-        messages=[
-            {"role": "system", "content": _CAMPAIGN_FRAME_SYSTEM},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.3,
-        max_tokens=20000,
-    )
-
-    raw = (response.choices[0].message.content or "{}").strip()
-    if raw.startswith("```"):
-        raw = raw.split("```", 2)[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.rsplit("```", 1)[0]
-
-    try:
-        parsed = json.loads(raw)
-    except json.JSONDecodeError:
-        parsed = {}
-
-    # ── Sample structural directives from voice statistics ────────────────
-    if persona.voice_skill:
-        directives = sample_directives(persona.voice_skill, rng, persona.sophistication)
-    else:
-        directives = sample_directives_default(rng, persona.sophistication)
-
-    # Use directives' word count — LLM does NOT control this
-    twc = directives.target_word_count
-
-    # Detect brief/dilution-style comments for low-sophistication individuals
-    is_brief = (persona.sophistication == "low" and twc < 120)
-
-    temperature = _derive_temperature(persona)
-
-    return ExpressionFrame(
-        core_arguments=parsed.get("core_arguments", [objective]),
-        framing=parsed.get("framing", ""),
-        evidence_types=parsed.get("evidence_types", ["personal anecdote"]),
-        rfi_questions_to_address=parsed.get("rfi_questions_to_address", []),
-        citation_agenda=parsed.get("citation_agenda", []),
-        target_word_count=twc,
-        temperature=temperature,
-        voice_instructions=parsed.get("voice_instructions", ""),
-        is_brief=is_brief,
-        directives=directives,
-    )
-
-
 async def build_campaign_frame_async(
     objective: str,
     argument_angle: str,
@@ -379,7 +252,6 @@ async def build_campaign_frame_async(
     avoid: list[str] | None = None,
 ) -> ExpressionFrame:
     """
-    Async version of build_campaign_frame.
 
     Parameters
     ----------
@@ -443,7 +315,6 @@ async def build_campaign_frame_async(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -624,7 +495,6 @@ def _build_frame_via_llm(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()
@@ -667,42 +537,7 @@ def _build_frame_via_llm(
     )
 
 
-# ── Public API (direct mode, backward compatible) ────────────────────────────
-
-def map_argument(
-    objective: str,
-    vector: AttackVector,
-    persona: Persona,
-    world_model: WorldModel,
-    config: Config,
-    rng: np.random.Generator,
-    argument_angle: str | None = None,
-) -> ExpressionFrame:
-    """
-    Produce an ExpressionFrame for a single comment (direct/vector mode).
-
-    Parameters
-    ----------
-    objective:
-        The position to advance or undermine.
-    vector:
-        Attack vector (1–4).
-    persona:
-        The instantiated persona who will write the comment.
-    world_model:
-        The rule's world model.
-    config:
-        API config.
-    rng:
-        Seeded random number generator.
-    argument_angle:
-        Optional specific argument angle from a campaign plan.
-    """
-    if vector not in (1, 2, 3, 4):
-        raise ValueError(f"Attack vector must be 1–4, got {vector}")
-
-    return _build_frame_via_llm(objective, vector, persona, world_model, config, rng, argument_angle)
-
+# ── Public API ────────────────────────────
 
 async def map_argument_async(
     objective: str,
@@ -713,9 +548,7 @@ async def map_argument_async(
     rng: np.random.Generator,
     argument_angle: str | None = None,
 ) -> ExpressionFrame:
-    """
-    Async version of map_argument (direct/vector mode).
-    """
+
     if vector not in (1, 2, 3, 4):
         raise ValueError(f"Attack vector must be 1–4, got {vector}")
 
@@ -752,7 +585,6 @@ async def map_argument_async(
             {"role": "user", "content": prompt},
         ],
         temperature=0.3,
-        max_tokens=20000,
     )
 
     raw = (response.choices[0].message.content or "{}").strip()

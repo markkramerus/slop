@@ -220,7 +220,7 @@ def _parse_json_response(raw: str) -> dict[str, Any]:
                         break
 
     # ── Strategy 3: truncated-JSON repair ──────────────────────────────
-    # The response may have been cut off by max_tokens. Try to close any
+    # The response may have been cut off. Try to close any
     # open string literal and open braces, then parse.
     if start is not None and start >= 0:
         fragment = raw[start:]
@@ -373,7 +373,6 @@ def _build_payload_content_parts(filename: str, document_id: str, pdf_bytes: byt
             },
         ],
         "temperature": 0.0,
-        "max_tokens": 20000,
     }
 
 
@@ -460,7 +459,6 @@ def _build_payload_attachments_field(filename: str, document_id: str, pdf_bytes:
             }
         ],
         "temperature": 0.0,
-        "max_tokens": 20000,
     }
 
 
@@ -549,7 +547,6 @@ def classify_pdf_via_ai(
             "system": _SYSTEM_PROMPT,
             "user": _USER_PROMPT.format(filename=item.filename, document_id=item.document_id),
             "temperature": "0.0",
-            "max_tokens": "20000",
         }
         try:
             resp = requests.post(

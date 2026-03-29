@@ -44,7 +44,7 @@ from .persona import (
     sample_persona_async, sample_persona_by_voice_id_async,
 )
 from .phrase_check import run_phrase_check
-from .phrase_fix import run_phrase_fix
+from .phrase_fix import run_phrase_fix, build_rule_ngrams
 from .quality_control import QualityController
 from .world_model import build_or_load_world_model, WorldModel
 from stylometry.stylometry_loader import build_population_model
@@ -431,6 +431,15 @@ def run_campaign_async(
 
     # ── Phrase repetition check ───────────────────────────────────────────
     phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    _world_model_path = os.path.join(docket_id, "world_model.json")
+    _wm_path = _world_model_path if os.path.exists(_world_model_path) else None
+
+    # Build the rule n-gram index once so it can be shared by both the phrase
+    # check (to filter rule-anchored phrases from the report at collection time)
+    # and phrase_fix (for triage).  This avoids rebuilding the index twice and
+    # keeps both the initial report and the post-fix re-check report clean.
+    _rule_ngrams = build_rule_ngrams(rule_text, _wm_path) if rule_text else None
+
     if skip_phrase_check:
         if verbose:
             print("[phrase-check] Skipping — disabled by skip_phrase_check.", file=sys.stderr)
@@ -440,6 +449,7 @@ def run_campaign_async(
             output_path=phrase_report_path,
             only_passed_qc=not include_failed_qc,
             verbose=verbose,
+            rule_ngrams=_rule_ngrams,
         )
 
     # ── Phrase fix: classify and rewrite suspicious repeated phrases ──────
@@ -447,13 +457,12 @@ def run_campaign_async(
         if verbose:
             print("[phrase-fix] Skipping — disabled by skip_phrase_fix.", file=sys.stderr)
     else:
-        _world_model_path = os.path.join(docket_id, "world_model.json")
         run_phrase_fix(
             psv_path=output_path,
             report_path=phrase_report_path,
             rule_text=rule_text,
             output_path=output_path,
-            world_model_path=_world_model_path if os.path.exists(_world_model_path) else None,
+            world_model_path=_wm_path,
             verbose=verbose,
         )
 
@@ -654,6 +663,15 @@ def run(
 
     # ── Phrase repetition check ───────────────────────────────────────────
     phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    _world_model_path = os.path.join(docket_id, "world_model.json")
+    _wm_path = _world_model_path if os.path.exists(_world_model_path) else None
+
+    # Build the rule n-gram index once so it can be shared by both the phrase
+    # check (to filter rule-anchored phrases from the report at collection time)
+    # and phrase_fix (for triage).  This avoids rebuilding the index twice and
+    # keeps both the initial report and the post-fix re-check report clean.
+    _rule_ngrams = build_rule_ngrams(rule_text, _wm_path) if rule_text else None
+
     if skip_phrase_check:
         if verbose:
             print("[phrase-check] Skipping — disabled by skip_phrase_check.", file=sys.stderr)
@@ -663,6 +681,7 @@ def run(
             output_path=phrase_report_path,
             only_passed_qc=not include_failed_qc,
             verbose=verbose,
+            rule_ngrams=_rule_ngrams,
         )
 
     # ── Phrase fix: classify and rewrite suspicious repeated phrases ──────
@@ -670,13 +689,12 @@ def run(
         if verbose:
             print("[phrase-fix] Skipping — disabled by skip_phrase_fix.", file=sys.stderr)
     else:
-        _world_model_path = os.path.join(docket_id, "world_model.json")
         run_phrase_fix(
             psv_path=output_path,
             report_path=phrase_report_path,
             rule_text=rule_text,
             output_path=output_path,
-            world_model_path=_world_model_path if os.path.exists(_world_model_path) else None,
+            world_model_path=_wm_path,
             verbose=verbose,
         )
 

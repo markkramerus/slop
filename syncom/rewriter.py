@@ -255,7 +255,7 @@ Output ONLY the JSON object. No preamble, no explanation outside the JSON.
 """
 
 _JUDGE_USER_TEMPLATE = """\
-Classify the following public comment as AI-generated or human-written following the instructions in the system prompt.
+Classify the following public comment as AI-generated or human-written following the instructions in the system prompt. Today's date is March 27, 2026, so do not base you conclusion on occurence of dates that are later than your training cut-off date.
 
 === COMMENT ===
 {comment_text}

@@ -47,6 +47,59 @@ from shuffler.translate_to_psv_format import translate_synthetic_to_psv
 from syncom.phrase_check import run_phrase_check_on_psv
 
 
+# ── Rule-text helpers ─────────────────────────────────────────────────────────
+
+def _load_text_file(path: Path) -> str | None:
+    """Load a text file with encoding fallback.  Returns None on failure."""
+    for enc in ("utf-8", "latin-1", "cp1252"):
+        try:
+            return path.read_text(encoding=enc)
+        except UnicodeDecodeError:
+            continue
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+def _find_rule_text(psv_path: Path, rule_arg: str | None) -> str | None:
+    """
+    Locate and load the rule/RFI text file.
+
+    Resolution order
+    ----------------
+    1. If ``--rule`` was supplied and points to a file, load that file.
+    2. If ``--rule`` points to a directory, load the first ``.txt`` file inside it.
+    3. Auto-detect: walk up from the PSV file directory looking for a sibling
+       ``rule/`` folder (checks up to 3 levels up), then load the first
+       ``.txt`` file found there.
+    4. If nothing is found, return ``None`` (classification is skipped).
+    """
+    # ── Explicit --rule argument ───────────────────────────────────────────
+    if rule_arg:
+        p = Path(rule_arg)
+        if p.is_file():
+            return _load_text_file(p)
+        if p.is_dir():
+            txts = sorted(p.glob("*.txt"))
+            if txts:
+                return _load_text_file(txts[0])
+        print(
+            f"[phrase-report] Warning: --rule path not found or empty: {rule_arg}",
+            file=sys.stderr,
+        )
+        return None
+
+    # ── Auto-detect from docket directory structure ────────────────────────
+    parent = psv_path.parent
+    for _ in range(3):
+        rule_dir = parent / "rule"
+        if rule_dir.is_dir():
+            txts = sorted(rule_dir.glob("*.txt"))
+            if txts:
+                return _load_text_file(txts[0])
+        parent = parent.parent
+
+    return None
+
+
 # ── CLI entry point ────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -99,6 +152,19 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--rule",
+        default=None,
+        metavar="PATH",
+        help=(
+            "Path to the rule/RFI text file (or directory containing one). "
+            "When provided, phrases are classified as 'slopical' (generic "
+            "AI-generation signals) or 'topical' (domain-specific vocabulary) "
+            "using TF-IDF scoring against the rule text.  If omitted, "
+            "phrase_report auto-detects a 'rule/' folder adjacent to the "
+            "input file's docket root."
+        ),
+    )
+    parser.add_argument(
         "-q", "--quiet",
         action="store_true",
         help="Suppress progress output.",
@@ -138,14 +204,21 @@ def main() -> None:
         stem = original_input_path.stem
         output_path = str(original_input_path.with_name(f"{stem}_phrase_report.md"))
 
+    # ── Step 2: Locate rule text ───────────────────────────────────────────────
+    rule_text = _find_rule_text(input_path, getattr(args, "rule", None))
+
     if not args.quiet:
         print(f"[phrase-report] Input   : {input_path}")
         print(f"[phrase-report] Output  : {output_path}")
         print(f"[phrase-report] N-gram  : {args.min_n}–{args.max_n} words")
         print(f"[phrase-report] Min hits: {args.min_count} comments")
+        if rule_text:
+            print(f"[phrase-report] Rule    : {len(rule_text):,} chars — TF-IDF classification enabled")
+        else:
+            print("[phrase-report] Rule    : not found — phrases will not be classified")
         print()
 
-    # ── Step 2: Run phrase check ───────────────────────────────────────────────
+    # ── Step 3: Run phrase check ───────────────────────────────────────────────
     try:
         report_path = run_phrase_check_on_psv(
             psv_path=str(input_path),
@@ -154,6 +227,7 @@ def main() -> None:
             max_n=args.max_n,
             min_count=args.min_count,
             verbose=not args.quiet,
+            rule_text=rule_text,
         )
     except Exception as exc:
         print(f"Error during phrase check: {exc}", file=sys.stderr)

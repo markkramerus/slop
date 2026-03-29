@@ -42,6 +42,8 @@ from .phrase_check import (
     WATCH_LIST,
     _normalise,
     _tokenise,
+    _gram_has_digit,
+    _gram_is_comment_boilerplate,
     run_phrase_check_on_psv,
 )
 from .rewriter import RewriterConfig, rewrite_comment
@@ -206,9 +208,30 @@ def triage_repeated_phrases(
     """
     Classify each repeated phrase as EXPECTED or SUSPICIOUS.
 
-    A phrase is EXPECTED (and therefore skipped) if:
-      - It is a known document-formatting artefact (e.g. "page 1 of 1"), OR
-      - Any 2–4-gram sub-sequence of the phrase appears in the rule vocabulary.
+    A phrase is EXPECTED (and therefore skipped by the rewriter) if ANY of
+    the following conditions is true:
+
+    1. **Formatting artefact** — matches a known document-formatting pattern
+       such as "page 1 of 1".
+    2. **Rule-anchored** — any 2–4-gram sub-sequence of the phrase appears in
+       the rule/RFI vocabulary.  These are expected repetitions because the
+       rule text drives commenters to use the same regulatory language.
+    3. **Contains a digit** — any token in the phrase contains a digit.
+       Catches docket numbers, CFR citations, street addresses, ZIP codes,
+       date fragments, and year-based references that slipped through Pass 1
+       (e.g. when a phrase appeared at sentence start and was exempt from the
+       mid-sentence capitalisation filter).
+    4. **Public-comment boilerplate** — a 2–4 token sub-window of the phrase
+       matches an entry in :data:`~syncom.phrase_check.PUBLIC_COMMENT_BOILERPLATE_NGRAMS`.
+       Catches all-lowercase procedural phrases such as "the opportunity to
+       provide", "on behalf of", "please feel free to", etc.
+
+    Note: the mid-sentence capitalisation filter (acronyms and proper nouns)
+    is applied at n-gram extraction time in Pass 1 of
+    :func:`~syncom.phrase_check.find_repeated_phrases`.  Because phrases in
+    the report are already normalised to lowercase, that filter cannot be
+    re-applied here — but it will have already removed the vast majority of
+    acronym- and proper-noun-containing n-grams before they reach the report.
 
     Parameters
     ----------
@@ -225,7 +248,13 @@ def triage_repeated_phrases(
     suspicious: list[RepeatedPhrase] = []
 
     for rp in repeated:
-        if _is_formatting_artefact(rp.phrase) or is_rule_anchored(rp.phrase, rule_ngrams):
+        tokens = tuple(_tokenise(_normalise(rp.phrase)))
+        if (
+            _is_formatting_artefact(rp.phrase)
+            or is_rule_anchored(rp.phrase, rule_ngrams)
+            or _gram_has_digit(tokens)
+            or _gram_is_comment_boilerplate(tokens)
+        ):
             expected.append(rp)
         else:
             suspicious.append(rp)
@@ -833,10 +862,13 @@ def run_phrase_fix(
     output_stem = Path(output_path).stem.replace(".", "_")
     output_dir = Path(output_path).parent
     new_report_path = str(output_dir / f"{output_stem}_phrase_report.md")
+    # Pass the already-built rule_ngrams so the re-check report is also
+    # filtered to novel phrases only — no need to rebuild the index.
     run_phrase_check_on_psv(
         psv_path=output_path,
         output_path=new_report_path,
         verbose=verbose,
+        rule_ngrams=rule_ngrams,
     )
 
     result.output_path = output_path

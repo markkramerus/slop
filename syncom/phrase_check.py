@@ -1578,7 +1578,7 @@ def _load_comments_from_psv(psv_path: str) -> list[GeneratedComment]:
         # Load synth_personal_hook so the watch-list scan can detect
         # watch-list phrases that slipped through in the hook field.
         personal_hook = row.get("synth_personal_hook", "") or ""
-        archetype = row.get("synth_persona_archetype", "individual_consumer") or "individual_consumer"
+        archetype = row.get("synth_persona_archetype", "individual") or "individual"
 
         persona = Persona(
             archetype=archetype,
@@ -1674,7 +1674,7 @@ def run_phrase_check_on_psv(
 
     if output_path is None:
         p = Path(psv_path)
-        output_path = str(p.with_suffix(".phrase_report.md"))
+        output_path = str(p.with_suffix("_phrase_report.md"))
 
     if verbose:
         print(f"[phrase-check] Loading comments from {psv_path} …", file=sys.stderr)
@@ -1753,7 +1753,7 @@ def main(argv: list[str] | None = None) -> int:
         metavar="PATH",
         help=(
             "Output Markdown report path.  "
-            "Default: <input_stem>.phrase_report.md"
+            "Default: <input_stem>_phrase_report.md"
         ),
     )
     parser.add_argument(

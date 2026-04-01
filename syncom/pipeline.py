@@ -355,7 +355,7 @@ def run_campaign_async(
             )
             # Pre-assign org name synchronously to avoid concurrent pool access
             archetype, _ = _parse_voice_id(voice_id)
-            pre_org_name = org_pool.sample(archetype, rng=rng) if archetype != "individual_consumer" else ""
+            pre_org_name = org_pool.sample(archetype, rng=rng) if archetype != "individual" else ""
             task_specs.append((voice_id, angle_text, key_claims, rhetorical_approach, avoid, pre_org_name))
 
     # Run
@@ -430,7 +430,7 @@ def run_campaign_async(
     result.output_path = output_path
 
     # ── Phrase repetition check ───────────────────────────────────────────
-    phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    phrase_report_path = str(Path(output_path).with_suffix("_phrase_report.md"))
     _world_model_path = os.path.join(docket_id, "world_model.json")
     _wm_path = _world_model_path if os.path.exists(_world_model_path) else None
 
@@ -662,7 +662,7 @@ def run(
     result.output_path = output_path
 
     # ── Phrase repetition check ───────────────────────────────────────────
-    phrase_report_path = str(Path(output_path).with_suffix(".phrase_report.md"))
+    phrase_report_path = str(Path(output_path).with_suffix("_phrase_report.md"))
     _world_model_path = os.path.join(docket_id, "world_model.json")
     _wm_path = _world_model_path if os.path.exists(_world_model_path) else None
 

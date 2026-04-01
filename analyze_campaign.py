@@ -120,8 +120,8 @@ def derive_voice_id(row: dict) -> str:
     soph = row.get("synth_sophistication", "medium").strip()
     org = row.get("Organization Name", "").strip()
     parts = [arch, soph]
-    if org and arch != "individual_consumer":
-        parts.append("org")
+    if org and arch != "individual":
+        pass  # org suffix no longer used in voice IDs (new format: archetype_sophistication)
     return "-".join(parts)
 
 

@@ -19,7 +19,9 @@ st.set_page_config(page_title="Stylometry — SLOP", page_icon="🔬", layout="w
 st.title("🔬 Step 2 — Stylometry Analysis")
 st.caption(
     "Analyses real commenter writing styles and generates **voice skill** `.md` files "
-    "that guide the generator to mimic authentic writing patterns."
+    "that guide the generator to mimic authentic writing patterns.  "
+    "If the preprocessed PSV does not yet exist, it will be generated automatically "
+    "at the start of the analysis run."
 )
 st.divider()
 
@@ -34,15 +36,31 @@ if not docket_id:
 st.subheader("Prerequisites")
 
 comments_csv = Path(docket_id, "comments", f"{docket_id}.csv")
+comments_psv = Path(docket_id, "comments", f"{docket_id}.psv")
 csv_found = comments_csv.is_file()
+psv_found = comments_psv.is_file()
 
-if csv_found:
-    st.success(f"✅ Comments CSV found: `{comments_csv}`")
-else:
-    st.error(
-        f"❌ Comments CSV not found at `{comments_csv}`.  \n"
-        "The stylometry analyzer reads from this file.  Place the CSV there before running."
-    )
+pre_cols = st.columns(2)
+
+with pre_cols[0]:
+    if csv_found:
+        st.success(f"✅ Comments CSV found: `{comments_csv}`")
+    else:
+        st.error(
+            f"❌ Comments CSV not found at `{comments_csv}`.  \n"
+            "Place the docket CSV there before continuing."
+        )
+
+with pre_cols[1]:
+    if psv_found:
+        size_kb = round(comments_psv.stat().st_size / 1024, 1)
+        st.success(f"✅ Preprocessed PSV found: `{comments_psv}` ({size_kb} KB)")
+    else:
+        st.info(
+            f"ℹ️ Preprocessed PSV not yet found at `{comments_psv}`.  \n"
+            "It will be **generated automatically** when you click "
+            "**Analyze Writing Styles** below."
+        )
 
 st.divider()
 
@@ -61,20 +79,39 @@ st.divider()
 # ── Run ────────────────────────────────────────────────────────────────────────
 st.subheader("Run Stylometry Analyzer")
 
-if st.button("🔬 Analyze Writing Styles", type="primary", disabled=not csv_found and not explicit_csv.strip()):
-    target = explicit_csv.strip() if explicit_csv.strip() else docket_id
-    cmd = build_script_command("stylometry/stylometry_analyzer.py", [target])
-    st.caption(f"Command: `{' '.join(cmd)}`")
+analyze_disabled = not csv_found and not explicit_csv.strip()
 
-    with st.status("Analysing…", expanded=True) as run_status:
+if st.button("🔬 Analyze Writing Styles", type="primary", disabled=analyze_disabled):
+    target = explicit_csv.strip() if explicit_csv.strip() else docket_id
+
+    with st.status("Running stylometry analysis…", expanded=True) as run_status:
         log = st.empty()
-        exit_code, _ = run_command(cmd, log)
-        if exit_code == 0:
+
+        # ── Step 1: Preprocess (generate PSV) if it doesn't exist yet ──────────
+        if not psv_found:
+            log.code("Step 1/2 — Preprocessing: generating PSV from CSV + attachments…", language="text")
+            pre_cmd = ["python", "-m", "shuffler", "preprocess", docket_id]
+            pre_exit, _ = run_command(pre_cmd, log)
+            if pre_exit != 0:
+                run_status.update(label="Preprocessing failed ❌", state="error")
+                st.error(
+                    f"Preprocessor exited with code {pre_exit}.  "
+                    "Check the log above for details."
+                )
+                st.stop()
+
+        # ── Step 2: Run the stylometry analyzer ────────────────────────────────
+        step_label = "Step 2/2" if not psv_found else "Step 1/1"
+        log.code(f"{step_label} — Analysing writing styles…", language="text")
+        ana_cmd = build_script_command("stylometry/stylometry_analyzer.py", [target])
+        ana_exit, _ = run_command(ana_cmd, log)
+
+        if ana_exit == 0:
             run_status.update(label="Analysis complete ✅", state="complete")
             st.success("Stylometry analysis finished successfully.")
         else:
             run_status.update(label="Analysis failed ❌", state="error")
-            st.error(f"Stylometry analyzer exited with code {exit_code}.")
+            st.error(f"Stylometry analyzer exited with code {ana_exit}.")
 
 st.divider()
 

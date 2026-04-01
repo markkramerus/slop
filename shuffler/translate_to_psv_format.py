@@ -183,7 +183,7 @@ def main() -> None:
 
     if not output_file:
         p = Path(input_file)
-        output_file = str(p.with_suffix("").with_name(p.stem + "_cms.psv"))
+        output_file = str(p.with_suffix("").with_name(p.stem + ".psv"))
 
     print("Synthetic Comments → PSV Translator")
     print("=" * 50)

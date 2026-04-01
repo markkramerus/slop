@@ -49,6 +49,116 @@ from config import Config
 from campaign.campaign_models import CampaignPlan, ArgumentAngle
 
 
+# ── CSV population anchors ────────────────────────────────────────────────────
+
+def _load_csv_population_anchors(docket_id: str) -> tuple[float, float]:
+    """
+    Read the docket CSV and compute individual vs. organization fractions
+    directly from the Organization Name column.
+
+    The CSV Organization Name column is the gold standard for submitter type:
+      - Blank org   → individual submitter
+      - Non-blank org → institutional submitter
+
+    Returns
+    -------
+    (individual_pct, org_pct)
+        Fractions of total rows that are individual vs. institutional.
+        Falls back to (0.5, 0.5) if the CSV is unavailable or malformed.
+    """
+    import csv as _csv
+
+    csv_path = Path(docket_id) / "comments" / f"{docket_id}.csv"
+    if not csv_path.exists():
+        print(
+            f"      [warn] CSV not found for population anchors: {csv_path}  "
+            f"(using 50/50 fallback)",
+            file=sys.stderr,
+        )
+        return 0.5, 0.5
+
+    try:
+        total = 0
+        n_individual = 0
+        with open(csv_path, newline="", encoding="utf-8-sig") as fh:
+            reader = _csv.DictReader(fh)
+            # Find the organization column (case-insensitive)
+            org_header = next(
+                (h for h in (reader.fieldnames or [])
+                 if "organization" in h.lower()),
+                None,
+            )
+            if org_header is None:
+                print(
+                    f"      [warn] No 'Organization' column in {csv_path}  "
+                    f"(using 50/50 fallback)",
+                    file=sys.stderr,
+                )
+                return 0.5, 0.5
+
+            for row in reader:
+                total += 1
+                if not row.get(org_header, "").strip():
+                    n_individual += 1
+
+        if total == 0:
+            return 0.5, 0.5
+
+        individual_pct = n_individual / total
+        org_pct = 1.0 - individual_pct
+        print(
+            f"      CSV anchors: {n_individual}/{total} individual "
+            f"({individual_pct:.1%}),  {total - n_individual}/{total} org "
+            f"({org_pct:.1%})",
+            file=sys.stderr,
+        )
+        return individual_pct, org_pct
+
+    except Exception as exc:
+        print(
+            f"      [warn] Could not compute CSV population anchors: {exc}  "
+            f"(using 50/50 fallback)",
+            file=sys.stderr,
+        )
+        return 0.5, 0.5
+
+
+def _rescale_population_by_csv_anchors(
+    base_population: dict[str, float],
+    voice_info: dict[str, dict],
+    individual_pct: float,
+    org_pct: float,
+) -> None:
+    """
+    Rescale base_population so that individual voices collectively
+    account for individual_pct of the total, and all other voices for org_pct.
+
+    Within-bucket relative proportions from the stylometry index are preserved.
+    Modifies base_population in-place.
+    """
+    individual_vids = [
+        vid for vid, info in voice_info.items()
+        if info["archetype"] == "individual"
+    ]
+    org_vids = [
+        vid for vid, info in voice_info.items()
+        if info["archetype"] != "individual"
+    ]
+
+    indiv_total = sum(base_population.get(v, 0.0) for v in individual_vids)
+    org_total = sum(base_population.get(v, 0.0) for v in org_vids)
+
+    if indiv_total > 0 and individual_pct > 0:
+        scale = individual_pct / indiv_total
+        for vid in individual_vids:
+            base_population[vid] = base_population.get(vid, 0.0) * scale
+
+    if org_total > 0 and org_pct > 0:
+        scale = org_pct / org_total
+        for vid in org_vids:
+            base_population[vid] = base_population.get(vid, 0.0) * scale
+
+
 # ── Stylometry loading ────────────────────────────────────────────────────────
 
 def _load_stylometry_summary(docket_id: str) -> tuple[dict[str, dict], dict[str, float]]:
@@ -75,26 +185,24 @@ def _load_stylometry_summary(docket_id: str) -> tuple[dict[str, dict], dict[str,
 
     for vg in index.get("voice_groups", []):
         archetype = vg["archetype"]
-        # Exclude 'unknown' archetypes from campaign allocation
-        if archetype == "unknown":
-            continue
         voice_id = vg["voice_id"]
         sample_size = vg["sample_size"]
         total_known += sample_size
 
         # Build a short description for the LLM
         soph = vg.get("sophistication", "medium")
-        is_org = voice_id.endswith("-org")
-        if archetype == "individual_consumer":
+        # All org archetypes embed the word "organization"
+        is_org = "organization" in archetype
+        if archetype == "individual":
             desc = f"Individual commenters, {soph} sophistication"
-        elif archetype == "advocacy_group":
+        elif archetype == "advocacy_organization":
             desc = f"Advocacy/nonprofit organizations, {soph} sophistication"
-        elif archetype == "industry":
-            desc = f"Industry/corporate organizations, {soph} sophistication"
-        elif archetype == "academic":
+        elif archetype == "organization":
+            desc = f"Organizations (unspecified type), {soph} sophistication"
+        elif archetype == "academic_organization":
             desc = f"Academic/research institutions, {soph} sophistication"
-        elif archetype == "government":
-            desc = f"State/local government entities, {soph} sophistication"
+        elif archetype == "government_organization":
+            desc = f"Government entities, {soph} sophistication"
         else:
             desc = f"{archetype}, {soph} sophistication"
 
@@ -111,6 +219,16 @@ def _load_stylometry_summary(docket_id: str) -> tuple[dict[str, dict], dict[str,
     if total_known > 0:
         for vid, info in voice_info.items():
             base_population[vid] = info["sample_size"] / total_known
+
+    # ── Rescale using CSV gold standard for individual/org split ──────────────
+    # The stylometry index may over- or under-count individuals because the
+    # old classify_archetype fallback used name presence (not org absence).
+    # The CSV Organization Name column is the authoritative source.
+    if base_population and docket_id:
+        individual_pct, org_pct = _load_csv_population_anchors(docket_id)
+        _rescale_population_by_csv_anchors(
+            base_population, voice_info, individual_pct, org_pct
+        )
 
     return voice_info, base_population
 
@@ -209,7 +327,7 @@ this exact schema:
     ...
   }},
 
-  "affinity_boost": <float, typically 3.0, the multiplier for preferred voice-argument pairings>,
+  "affinity_boost": <float, typically 2.0, the multiplier for preferred voice-argument pairings>,
 
   "notes": "<strategic rationale: why this mix of voices, angles, and affinities>"
 }}
@@ -239,7 +357,7 @@ RULES FOR ARGUMENT ANGLES:
 
 RULES FOR VOICES AND ALLOCATION:
 - For campaign_voices, you MUST use the exact voice_id strings from the
-  population data above. Only include voices with archetype != 'unknown'.
+  population data above.
 - campaign_voices weights represent the campaign's desired emphasis. These
   may differ from the base population. A campaign might amplify certain
   voices (e.g., increase advocacy_group from 18% to 30%) but the result
@@ -249,7 +367,7 @@ RULES FOR VOICES AND ALLOCATION:
   most naturally suited to make that argument. These voices get an
   affinity_boost multiplier when the argument is assigned.
 - affinity_boost controls how strongly voice identity channels argument
-  selection. 3.0 means preferred voices are 3x more likely to get that
+  selection. 2.0 means preferred voices are 2x more likely to get that
   argument. Use 2.0-5.0 depending on how strongly you want to channel.
 - All weight values are relative — they will be normalized at runtime.
 - The notes field should explain YOUR strategic reasoning, including why
@@ -413,7 +531,7 @@ def generate_campaign_plan(
         campaign_voices = {vid: 1.0 for vid in voice_info}
 
     # Affinity boost
-    affinity_boost = float(parsed.get("affinity_boost", 3.0))
+    affinity_boost = float(parsed.get("affinity_boost", 2.0))
 
     plan = CampaignPlan(
         objective=parsed.get("objective", scenario),

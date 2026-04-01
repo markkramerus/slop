@@ -32,7 +32,7 @@ Usage
     )
 
     # In persona generation:
-    org_name = org_pool.sample("advocacy_group")
+    org_name = org_pool.sample("advocacy_organization")
 """
 
 from __future__ import annotations
@@ -102,14 +102,14 @@ EXCLUSION LIST — do NOT include any of these (they already submitted real comm
 
 Return a JSON object with this exact schema:
 {{
-  "advocacy_group": ["Org Name 1", "Org Name 2", ...],
-  "industry": ["Org Name 1", "Org Name 2", ...],
-  "academic": ["Org Name 1", "Org Name 2", ...],
-  "government": ["Org Name 1", "Org Name 2", ...],
-  "individual_consumer": []
+  "advocacy_organization": ["Org Name 1", "Org Name 2", ...],
+  "organization": ["Org Name 1", "Org Name 2", ...],
+  "academic_organization": ["Org Name 1", "Org Name 2", ...],
+  "government_organization": ["Org Name 1", "Org Name 2", ...],
+  "individual": []
 }}
 
-Only include archetypes from the list above. Leave individual_consumer as an
+Only include archetypes from the list above. Leave individual as an
 empty list (individuals don't have org names). Generate exactly
 {count_per_archetype} names per non-individual archetype.
 """
@@ -170,7 +170,7 @@ class OrgPool:
         Parameters
         ----------
         archetype : str
-            The persona archetype (e.g., "advocacy_group").
+            The persona archetype (e.g., "advocacy_organization").
         rng : np.random.Generator, optional
             Random generator for shuffling. If None, uses system random.
         config : Config, optional
@@ -181,7 +181,7 @@ class OrgPool:
             Print warnings to stderr.
         """
         # Individuals don't have org names
-        if archetype == "individual_consumer":
+        if archetype == "individual":
             return ""
 
         archetype_pool = self.pool.get(archetype, [])
@@ -314,9 +314,9 @@ specified for each archetype.
 
 Example schema:
 {{
-  "advocacy_group": ["Org Name 1", "Org Name 2", ...],
-  "industry": ["Org Name 1", ...],
-  "academic": ["Org Name 1", ...]
+  "advocacy_organization": ["Org Name 1", "Org Name 2", ...],
+  "organization": ["Org Name 1", ...],
+  "academic_organization": ["Org Name 1", ...]
 }}
 
 Each organization should appear only once across all archetypes.
@@ -512,12 +512,12 @@ def build_org_pool(
     """
     exclusion_set = _build_exclusion_list(population)
 
-    # Determine which archetypes need org names (not individual_consumer)
+    # Determine which archetypes need org names (not individual)
     if archetype_counts is not None:
         # Only include archetypes that will actually be used (count > 0)
         org_archetypes = [
             a for a, cnt in archetype_counts.items()
-            if a != "individual_consumer" and cnt > 0
+            if a != "individual" and cnt > 0
         ]
         # Per-archetype pool sizes: count * multiplier (minimum 1 to avoid empty requests)
         per_archetype_sizes = {
@@ -528,10 +528,10 @@ def build_org_pool(
         # Fallback: flat sizing based on total volume
         org_archetypes = [
             a for a in population.archetypes.keys()
-            if a != "individual_consumer"
+            if a != "individual"
         ]
         # Always include standard archetypes even if not in this docket's population
-        for standard in ["advocacy_group", "industry", "academic", "government"]:
+        for standard in ["advocacy_organization", "organization", "academic_organization", "government_organization"]:
             if standard not in org_archetypes:
                 org_archetypes.append(standard)
         flat_count = max(_MIN_POOL_SIZE, volume_hint * _POOL_MULTIPLIER)
@@ -540,7 +540,7 @@ def build_org_pool(
     if not org_archetypes:
         if verbose:
             print(
-                f"[org_pool] No org archetypes to populate (all counts are 0 or individual_consumer).",
+                f"[org_pool] No org archetypes to populate (all counts are 0 or individual).",
                 file=sys.stderr,
             )
         org_pool = OrgPool(docket_id=docket_id, pool={}, used={}, exclusion_set=exclusion_set)
@@ -655,7 +655,7 @@ def load_or_build_org_pool(
             # Check per-archetype sufficiency
             needs_rebuild = False
             for archetype, needed in archetype_counts.items():
-                if archetype == "individual_consumer" or needed == 0:
+                if archetype == "individual" or needed == 0:
                     continue
                 remaining = pool.remaining(archetype)
                 if remaining < needed:

@@ -36,9 +36,10 @@ if not docket_id:
 st.subheader("Prerequisites")
 
 rule_path = Path(docket_id, "rule", "rule.txt")
+comments_csv = Path(docket_id, "comments", f"{docket_id}.csv")
 skills = list_voice_skills(docket_id)
 
-col_pre1, col_pre2 = st.columns(2)
+col_pre1, col_pre2, col_pre3 = st.columns(3)
 with col_pre1:
     if rule_path.is_file():
         st.success(f"✅ Rule text found: `{rule_path}`")
@@ -53,6 +54,44 @@ with col_pre2:
         st.success(f"✅ {len(skills)} voice skills found in `{docket_id}/stylometry/`")
     else:
         st.info("ℹ️ No voice skills yet — run Stylometry (step 2) first for best results.")
+with col_pre3:
+    if comments_csv.is_file():
+        # Read CSV to show the individual/org split the planner will anchor to
+        try:
+            import csv as _csv
+            total = 0
+            n_individual = 0
+            with open(comments_csv, newline="", encoding="utf-8-sig") as fh:
+                reader = _csv.DictReader(fh)
+                org_header = next(
+                    (h for h in (reader.fieldnames or []) if "organization" in h.lower()),
+                    None,
+                )
+                if org_header:
+                    for row in reader:
+                        total += 1
+                        if not row.get(org_header, "").strip():
+                            n_individual += 1
+            if total > 0 and org_header:
+                indiv_pct = n_individual / total
+                org_pct = 1.0 - indiv_pct
+                st.success(
+                    f"✅ Comments CSV found: `{comments_csv}`  \n"
+                    f"Population anchors (from CSV): "
+                    f"**{indiv_pct:.0%} individual**, **{org_pct:.0%} org** "
+                    f"({n_individual}/{total})"
+                )
+            else:
+                st.success(f"✅ Comments CSV found: `{comments_csv}`")
+        except Exception:
+            st.success(f"✅ Comments CSV found: `{comments_csv}`")
+    else:
+        st.warning(
+            f"⚠️ Comments CSV not found at `{comments_csv}`.  \n"
+            "The planner reads this file to anchor the individual vs. org "
+            "population split in `base_population`.  Without it, a 50/50 "
+            "fallback is used."
+        )
 
 st.divider()
 

@@ -66,7 +66,7 @@ _STATES = [
 ]
 
 _OCCUPATIONS_BY_ARCHETYPE: dict[str, list[str]] = {
-    "individual_consumer": [
+    "individual": [
         "retired teacher", "nurse", "retired nurse", "social worker",
         "small business owner", "office manager", "truck driver",
         "stay-at-home parent", "retail worker", "construction worker",
@@ -74,22 +74,22 @@ _OCCUPATIONS_BY_ARCHETYPE: dict[str, list[str]] = {
         "firefighter", "administrative assistant", "warehouse worker",
         "home health aide", "customer service representative",
     ],
-    "advocacy_group": [
+    "advocacy_organization": [
         "executive director", "policy director", "senior policy analyst",
         "director of government affairs", "community organizer",
         "campaign director", "research director",
     ],
-    "industry": [
+    "organization": [
         "compliance officer", "chief medical officer", "VP of regulatory affairs",
         "director of government relations", "healthcare administrator",
         "hospital CFO", "practice manager", "health IT director",
     ],
-    "academic": [
+    "academic_organization": [
         "professor of health policy", "associate professor", "PhD researcher",
         "postdoctoral fellow", "assistant professor", "health economist",
         "biostatistician", "public health researcher",
     ],
-    "government": [
+    "government_organization": [
         "Medicaid director", "state insurance commissioner",
         "county health officer", "city public health director",
         "state budget analyst",
@@ -97,19 +97,19 @@ _OCCUPATIONS_BY_ARCHETYPE: dict[str, list[str]] = {
 }
 
 _AGE_RANGES_BY_ARCHETYPE: dict[str, tuple[int, int]] = {
-    "individual_consumer": (35, 78),
-    "advocacy_group": (30, 65),
-    "industry": (35, 60),
-    "academic": (30, 65),
-    "government": (35, 60),
+    "individual": (35, 78),
+    "advocacy_organization": (30, 65),
+    "organization": (35, 60),
+    "academic_organization": (30, 65),
+    "government_organization": (35, 60),
 }
 
 _SOPHISTICATION_BY_ARCHETYPE: dict[str, list[str]] = {
-    "individual_consumer": ["low", "low", "medium"],
-    "advocacy_group": ["medium", "high"],
-    "industry": ["high", "high", "medium"],
-    "academic": ["high", "high"],
-    "government": ["medium", "high"],
+    "individual": ["low", "low", "medium"],
+    "advocacy_organization": ["medium", "high"],
+    "organization": ["high", "high", "medium"],
+    "academic_organization": ["high", "high"],
+    "government_organization": ["medium", "high"],
 }
 
 _EMOTIONAL_REGISTERS = ["frustrated", "concerned", "hopeful", "urgent", "resigned", "angry", "supportive"]
@@ -139,7 +139,7 @@ class Persona:
 
     @property
     def is_individual(self) -> bool:
-        return self.archetype == "individual_consumer"
+        return self.archetype == "individual"
 
     def style_instructions(self) -> str:
         """
@@ -225,23 +225,17 @@ def parse_voice_id(voice_id: str) -> tuple[str, str]:
     """
     Parse a voice_id into (archetype, sophistication).
 
+    Format: {archetype}_{sophistication}  (all underscores, no -org suffix)
+
     Examples:
-        "individual_consumer_low"     → ("individual_consumer", "low")
-        "industry_high_org"           → ("industry", "high")
-        "advocacy_group_high_org"     → ("advocacy_group", "high")
-        "academic_high_org"           → ("academic", "high")
-
-    The "-org" suffix is stripped; it indicates organizational voice but
-    the archetype is what matters for persona metadata generation.
+        "individual_low"               → ("individual", "low")
+        "organization_medium"          → ("organization", "medium")
+        "advocacy_organization_high"   → ("advocacy_organization", "high")
+        "academic_organization_high"   → ("academic_organization", "high")
+        "government_organization_high" → ("government_organization", "high")
     """
-    # Remove -org suffix if present
-    clean = voice_id
-    if clean.endswith("-org"):
-        clean = clean[:-4]
-
-    # Split on last hyphen to get archetype and sophistication
-    # Handle multi-word archetypes like "individual_consumer"
-    parts = clean.rsplit("-", 1)
+    # Split on last underscore to extract sophistication suffix
+    parts = voice_id.rsplit("_", 1)
     if len(parts) == 2:
         archetype, sophistication = parts
         if sophistication in ("low", "medium", "high"):
@@ -255,13 +249,13 @@ def parse_voice_id(voice_id: str) -> tuple[str, str]:
 #
 # Personas come in two fundamentally different types:
 #
-#   individual_consumer  → personal anecdote hook: a specific lived-experience
+#   individual           → personal anecdote hook: a specific lived-experience
 #                          micro-narrative that grounds the comment in a real-
 #                          feeling human moment.
 #
 #   all org archetypes   → institutional anchor: a concrete data point, member
-#   (advocacy_group,       report, or policy observation that grounds the org's
-#    industry, academic,   comment in institutional evidence — NOT a personal
+#   (advocacy_organization, report, or policy observation that grounds the org's
+#    organization,        comment in institutional evidence — NOT a personal
 #    government)           story.
 #
 # Keeping these separate prevents the LLM from defaulting to "Last spring, I…"
@@ -439,7 +433,7 @@ def _generate_anchor(persona: Persona, world_model: WorldModel, config: Config) 
     """
     Call the LLM to generate an institutional anchor for an organizational persona.
 
-    Used for advocacy_group, industry, academic, and government archetypes.
+    Used for advocacy_organization, organization, academic_organization, and government_organization archetypes.
     Returns a data-grounded institutional observation rather than a personal anecdote.
     """
     client = config.openai_client()
@@ -466,7 +460,7 @@ async def _generate_anchor_async(persona: Persona, world_model: WorldModel, conf
     """
     Async version of _generate_anchor.
 
-    Used for advocacy_group, industry, academic, and government archetypes.
+    Used for advocacy_organization, organization, academic_organization, and government_organization archetypes.
     """
     client = config.async_openai_client()
     consequence = world_model.consequence_for(persona.archetype) or world_model.core_change
@@ -533,7 +527,7 @@ def _build_persona_metadata(
 
     # Org name — use the pre-generated pool (preferred) or fall back to legacy
     org_name = ""
-    if archetype != "individual_consumer":
+    if archetype != "individual":
         if org_pool is not None:
             # Sample without replacement from the pre-generated pool of real,
             # non-docket org names. This prevents duplicates and avoids using
@@ -624,7 +618,7 @@ def instantiate_persona(
             persona.voice_skill = skill
 
     # Generate hook (individual) or institutional anchor (org archetypes)
-    if archetype == "individual_consumer":
+    if archetype == "individual":
         persona.personal_hook = _generate_hook(persona, world_model, config)
     else:
         persona.personal_hook = _generate_anchor(persona, world_model, config)
@@ -724,7 +718,7 @@ async def sample_persona_by_voice_id_async(
             persona.voice_skill = skill
 
     # Generate hook (individual) or institutional anchor (org archetypes)
-    if archetype == "individual_consumer":
+    if archetype == "individual":
         persona.personal_hook = await _generate_hook_async(persona, world_model, config)
     else:
         persona.personal_hook = await _generate_anchor_async(persona, world_model, config)
@@ -846,7 +840,7 @@ async def sample_persona_async(
             persona.voice_skill = skill
 
     # Generate hook (individual) or institutional anchor (org archetypes)
-    if archetype == "individual_consumer":
+    if archetype == "individual":
         persona.personal_hook = await _generate_hook_async(persona, world_model, config)
     else:
         persona.personal_hook = await _generate_anchor_async(persona, world_model, config)

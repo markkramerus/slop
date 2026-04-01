@@ -373,7 +373,7 @@ def load_voice_skill(
     docket_id : str
         Docket identifier (e.g., "CMS-2025-0050")
     archetype : str
-        Persona archetype (individual_consumer, industry, etc.)
+        Persona archetype (individual, organization, etc.)
     sophistication : str
         Sophistication level (low, medium, high)
     base_dir : str, optional
@@ -653,10 +653,10 @@ def demo_integration():
     print()
     
     # Load a skill and parse it
-    skill = load_voice_skill(docket_id, "individual_consumer", "low")
+    skill = load_voice_skill(docket_id, "individual", "low")
     if skill:
         stats = parse_statistical_profile(skill)
-        print(f"Stats for individual_consumer-low:")
+        print(f"Stats for individual-low:")
         print(f"  Word count: {stats.word_count_median} (range: {stats.word_count_low}-{stats.word_count_high})")
         print(f"  Words/sentence: {stats.words_per_sentence} ± {stats.words_per_sentence_std}")
         print(f"  First-person: {stats.first_person_pct}%")

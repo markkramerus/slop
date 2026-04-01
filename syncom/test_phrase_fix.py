@@ -542,7 +542,7 @@ class TestFindWatchListPhrases:
         from syncom.argument_mapper import ExpressionFrame
 
         persona = Persona(
-            archetype="individual_consumer",
+            archetype="individual",
             first_name="Test",
             last_name="User",
             state="Ohio",

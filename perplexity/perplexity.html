@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perplexity Analyzer</title>
+    
+    <!-- Mammoth.js for DOCX parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        input[type="key"],
+        input[type="file"],
+        input[type="number"],
+        select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="key"]:focus,
+        input[type="file"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        select {
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover:not(:disabled) {
+            background-color: #2980b9;
+        }
+        
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .button-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        /* Status and Progress */
+        .status-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .header h1 { font-size: 28px; margin-bottom: 6px; }
+        .header p { font-size: 14px; text-align: center; margin-bottom: 20px; }
+
+        .status-section.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .status-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        /* Results Display */
+        .results-section {
+            display: none;
+        }
+        
+        .results-section.active {
+            display: block;
+        }
+        
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .text-output {
+            line-height: 1.8;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        
+        .sentence {
+            padding: 2px 4px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .sentence:hover {
+            opacity: 0.8;
+        }
+        
+        .sentence.q4 { background-color: rgba(46, 204, 113, 0.4); }
+        .sentence.q3 { background-color: rgba(226, 241, 15, 0.4); }
+        .sentence.q2 { background-color: rgba(255, 158, 2, 0.4); }
+        .sentence.q1 { background-color: rgba(250, 3, 3, 0.4); }
+
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+        
+        /* Error display */
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c00;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .error-message.active {
+            display: block;
+        }
+        
+        /* API Info */
+        .api-info {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        /* Mode Toggle */
+        .mode-toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .mode-toggle-label {
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+        }
+        
+        .mode-toggle-label.active {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .mode-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .mode-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .mode-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #3498db;
+            transition: 0.3s;
+            border-radius: 30px;
+        }
+        
+        .mode-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        
+        .mode-toggle input:checked + .mode-slider {
+            background-color: #9b59b6;
+        }
+        
+        .mode-toggle input:checked + .mode-slider:before {
+            transform: translateX(30px);
+        }
+        
+        /* Upload Section */
+        .upload-section {
+            margin-bottom: 20px;
+        }
+
+        /* Input Mode Tabs */
+        .input-mode-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 0;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .input-mode-tab {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            background: #f0f0f0;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .input-mode-tab:hover {
+            color: #555;
+            background: #e0e8f4;
+        }
+
+        .input-mode-tab.active {
+            color: #2c3e50;
+            background: white;
+            border-color: #ddd;
+            border-bottom-color: white;
+        }
+
+        .input-mode-panel {
+            display: none;
+            border: 2px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            padding: 16px;
+            background: white;
+        }
+
+        .input-mode-panel.active {
+            display: block;
+        }
+
+        /* Paste text area */
+        .paste-textarea {
+            width: 100%;
+            min-height: 160px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .paste-textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .paste-hint {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 6px;
+        }
+
+        .paste-preview {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f0faf4;
+            border: 1px solid #b2dfcc;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #2c3e50;
+            display: none;
+        }
+
+        /* Drop zone */
+        .drop-zone {
+            border: 2px dashed #3498db;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            background: #f8fbff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone:hover {
+            background: #e8f4ff;
+            border-color: #2980b9;
+        }
+        
+        .drop-zone.drag-over {
+            background: #d5e9ff;
+            border-color: #2980b9;
+            border-style: solid;
+        }
+        
+        .drop-zone.has-file {
+            border-style: solid;
+            border-color: #27ae60;
+            background: #e8f8f0;
+        }
+        
+        .drop-zone-content {
+            pointer-events: none;
+        }
+        
+        .drop-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .drop-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .drop-hint {
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+        
+        #documentPreview {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 6px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        #documentPreview strong {
+            color: #2c3e50;
+        }
+        
+        /* Overall Evaluation Section */
+        .overall-evaluation {
+            margin-top: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid;
+        }
+        
+        .overall-evaluation h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .overall-evaluation p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .q1-color { background-color: #2ecc71; } /* High perplexity - Most surprising - Green */
+        .q2-color { background-color: #e6f10f; } /* Yellow */
+        .q3-color { background-color: #f9b803; } /* Orange */
+        .q4-color { background-color: #e74c3c; } /* Low perplexity - Least surprising - Red */
+
+        .evaluation-creative {
+            background-color: #e8f8f0;
+            border-color: #2ecc71;
+        }
+        
+        .evaluation-creative h3 {
+            color: #2ecc71;
+        }
+
+        .evaluation-engaging {
+            background-color: #fef9e7;
+            border-color: #e6f10f;
+        }
+        
+        .evaluation-engaging h3 {
+            color: #333;
+        }
+        
+        .evaluation-standard {
+            background-color: #fef9e7;
+            border-color: #f9b803;
+        }
+        
+        .evaluation-standard h3 {
+            color: #f9b803;
+        }
+        
+        .evaluation-dull {
+            background-color: #fdedec;
+            border-color: #e74c3c;
+        }
+        
+        .evaluation-dull h3 {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>✍🏽 Did AI Write This?</h1>
+        <p>That's hard to say, but you can measure the predictability of text and gain insight on AI versus human authorship.</p>
+    </div>
+
+    <!-- Input Section -->
+    <div class="container">
+        <div class="input-section" style="grid-template-columns: 1fr 1fr 150px;">
+            <div class="input-group">
+                <label for="apiKey">🔑 MITRE API Key 
+                <a href="https://key-manager.k8s.aip.mitre.org/dashboard" target="_blank"> (get key here)</a></label>
+                <input type="key" id="apiKey" placeholder="Enter your MITRE API key" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="none" inputmode="text"/>
+                <span class="api-info">Your API key for the LLM endpoint</span>
+            </div>
+            <div class="input-group">
+                <label for="modelSelect"> LLM Model
+                <a href="https://uptime.k8s.aip.mitre.org/status/aip" class="underline" target="_blank"> (is this service up?)</a></label>
+                <select id="modelSelect">
+                    <option value="openai/gpt-oss-120b" selected>GPT Open 120B</option>
+                    <option value="devstral">Mistral Small (Devstral)</option>
+                    <option value="nemotron-3-nano">Nemotron 3 Nano</option>
+                </select>
+                <span class="api-info">MITRE-hosted LLM model for analysis</span>
+            </div>
+            <div class="input-group">
+                <label for="parallelRequests"># Parallel Calls</label>
+                <input type="number" id="parallelRequests" min="1" max="20" value="20" 
+                       style="text-align: center;">
+                <span class="api-info">Reduce if getting errors</span>
+            </div>
+        </div>
+        
+        <!-- Full-width Upload / Paste Section -->
+        <div class="upload-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <label style="margin-bottom: 0;">📄 Document Input</label>
+                <button onclick="loadExampleDocument()" style="font-size: 10px; background-color: #3498db; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">Load Example</button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="input-mode-tabs">
+                <div class="input-mode-tab active" id="tabFile" onclick="switchInputTab('file')">📁 Upload .docx File</div>
+                <div class="input-mode-tab" id="tabPaste" onclick="switchInputTab('paste')">📋 Paste Text</div>
+            </div>
+
+            <!-- File Upload Panel -->
+            <div class="input-mode-panel active" id="panelFile">
+                <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" accept=".docx" onchange="previewDocument()" style="display: none;">
+                    <div class="drop-zone-content" id="dropZoneContent">
+                        <div class="drop-icon">📁</div>
+                        <div class="drop-text">Click to browse or drag and drop your file here</div>
+                        <div class="drop-hint">Supported format: Microsoft Word (.docx)</div>
+                    </div>
+                    <div id="documentPreview" style="display: none;">
+                        <span id="previewText"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paste Text Panel -->
+            <div class="input-mode-panel" id="panelPaste">
+                <textarea id="pasteTextarea" class="paste-textarea"
+                    placeholder="Paste your text here…"
+                    oninput="updatePastePreview()"></textarea>
+                <p class="paste-hint">Paste any plain text. Tables, citations, and headings are automatically filtered out before analysis.</p>
+                <div class="paste-preview" id="pastePreview"></div>
+            </div>
+        </div>
+        
+        <div class="button-row">
+            <button id="analyzeBtn" onclick="startAnalysis()">🔍 Analyze Document</button>
+            <button id="stopBtn" onclick="stopAnalysis()" style="background-color: #e74c3c; display: none;">⏹️ Stop</button>
+            <button id="clearBtn" onclick="clearResults()" style="background-color: #95a5a6;">🗑️ Clear</button>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="status-section" id="statusSection">
+            <div class="status-text" id="statusText">Initializing...</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Results Section -->
+    <div class="container results-section" id="resultsSection">
+        <h2>📈 Analysis Results</h2>
+        
+        <div class="stats-summary" id="statsSummary">
+            <!-- Stats will be populated dynamically -->
+        </div>
+        
+        <!-- Overall Evaluation Section -->
+        <div id="overallEvaluation">
+            <!-- Evaluation will be populated dynamically -->
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-toggle-container">
+            <span class="mode-toggle-label active" id="relativeModeLabel" onclick="setColorMode('relative')">Relative (Quartiles)</span>
+            <label class="mode-toggle">
+                <input type="checkbox" id="colorModeToggle" onchange="toggleColorMode()">
+                <span class="mode-slider"></span>
+            </label>
+            <span class="mode-toggle-label" id="absoluteModeLabel" onclick="setColorMode('absolute')">Absolute (Thresholds)</span>
+        </div>
+
+        <div>
+            <h3 id="colorModeHeading">Relative predictability (within-document quartiles)</h3>
+        </div>
+
+        <div class="legend" id="colorLegend">
+            <div class="legend-item">
+                <div class="legend-color q4-color"></div>
+                <span>Lowest 25% Score</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color q3-color"></div>
+                <span>Next Lowest 25%</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color q2-color"></div>
+                <span>Second Highest 25%</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color q1-color"></div>
+                <span>Highest 25% Score</span>
+            </div>
+        </div>
+        
+        <div class="text-output" id="textOutput">
+            <!-- Highlighted text will appear here -->
+        </div>
+    </div>
+    
+    <!-- Tooltip for hover info -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            API_BASE_URL: 'https://models.k8s.aip.mitre.org',
+            // Model is selected by user from dropdown - see getSelectedModel()
+            MAX_TOKENS_PER_REQUEST: 2000,
+            BATCH_DELAY_MS: 100,
+            PARALLEL_REQUESTS: 8  // Default number of parallel API calls
+        };
+        
+        // Global state
+        let analysisResults = [];
+        let stopRequested = false;
+        let currentColorMode = 'relative';  // 'relative' or 'absolute'
+        let cachedQuartiles = null;  // Cache quartiles for mode switching
+        let currentInputTab = 'file';  // 'file' or 'paste'
+
+        // ============================================
+        // Input Tab Switching
+        // ============================================
+
+        function switchInputTab(tab) {
+            currentInputTab = tab;
+            document.getElementById('tabFile').classList.toggle('active', tab === 'file');
+            document.getElementById('tabPaste').classList.toggle('active', tab === 'paste');
+            document.getElementById('panelFile').classList.toggle('active', tab === 'file');
+            document.getElementById('panelPaste').classList.toggle('active', tab === 'paste');
+        }
+
+        /**
+         * Update paste preview stats as the user types/pastes
+         */
+        function updatePastePreview() {
+            const text = document.getElementById('pasteTextarea').value;
+            const previewDiv = document.getElementById('pastePreview');
+
+            if (!text.trim()) {
+                previewDiv.style.display = 'none';
+                return;
+            }
+
+            const cleanedText = cleanText(text);
+            const sentences = tokenizeSentences(cleanedText);
+            const wordCount = cleanedText.split(/\s+/).filter(w => w.length > 0).length;
+
+            previewDiv.style.display = 'block';
+            previewDiv.innerHTML = `✅ <strong>${sentences.length}</strong> sentences detected | ~${wordCount.toLocaleString()} words`;
+        }
+        
+        // ============================================
+        // STEP 4 & 5: Document Parsing Functions
+        // ============================================
+        
+        /**
+         * Extract text from a DOCX file using Mammoth.js
+         * Uses HTML conversion to properly identify and remove tables
+         */
+        async function extractTextFromDOCX(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            
+            // Convert to HTML first to preserve structure (especially tables)
+            const htmlResult = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
+            let html = htmlResult.value;
+            
+            // Remove tables completely from the HTML
+            html = removeTablesFromHTML(html);
+            
+            // Remove other non-narrative elements
+            html = removeNonNarrativeHTML(html);
+            
+            // Extract plain text from the cleaned HTML
+            const text = extractTextFromHTML(html);
+            
+            return text;
+        }
+        
+        /**
+         * Remove table elements from HTML
+         */
+        function removeTablesFromHTML(html) {
+            // Remove table elements and their contents
+            // This regex handles nested tables and various table formats
+            let cleaned = html;
+            
+            // Remove <table>...</table> including contents
+            cleaned = cleaned.replace(/<table[^>]*>[\s\S]*?<\/table>/gi, '');
+            
+            // Also remove any orphaned table-related tags
+            cleaned = cleaned.replace(/<\/?(?:thead|tbody|tfoot|tr|th|td)[^>]*>/gi, '');
+            
+            return cleaned;
+        }
+        
+        /**
+         * Remove other non-narrative HTML elements (headers used as captions, etc.)
+         */
+        function removeNonNarrativeHTML(html) {
+            let cleaned = html;
+            
+            // Remove figure and figcaption elements
+            cleaned = cleaned.replace(/<figure[^>]*>[\s\S]*?<\/figure>/gi, '');
+            cleaned = cleaned.replace(/<figcaption[^>]*>[\s\S]*?<\/figcaption>/gi, '');
+            
+            // Remove image elements
+            cleaned = cleaned.replace(/<img[^>]*\/?>/gi, '');
+            
+            return cleaned;
+        }
+        
+        /**
+         * Extract plain text from HTML while preserving paragraph structure
+         */
+        function extractTextFromHTML(html) {
+            // Create a temporary DOM element to parse HTML
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            
+            // Process block elements to preserve paragraph breaks
+            const blockElements = ['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'blockquote'];
+            
+            // Add double newlines after block elements for paragraph detection
+            blockElements.forEach(tag => {
+                const elements = temp.getElementsByTagName(tag);
+                for (let i = elements.length - 1; i >= 0; i--) {
+                    const el = elements[i];
+                    el.insertAdjacentText('afterend', '\n\n');
+                }
+            });
+            
+            // Get text content
+            let text = temp.textContent || temp.innerText || '';
+            
+            // Clean up excessive whitespace while preserving paragraph breaks
+            text = text.replace(/\n\s*\n\s*\n+/g, '\n\n');
+            text = text.replace(/[ \t]+/g, ' ');
+            
+            return text.trim();
+        }
+        
+        // ============================================
+        // STEP 6: Text Cleaning Functions
+        // ============================================
+        
+        /**
+         * Clean text by removing non-narrative elements
+         * Preserves paragraph breaks (double newlines)
+         * IMPORTANT: Removes the entire References/Bibliography section at the end
+         */
+        function cleanText(text) {
+            let cleaned = text;
+            
+            // Remove figure/table references and captions
+            cleaned = cleaned.replace(/\b(Figure|Fig\.|Table|Tbl\.)\s*\d+[^.]*\./gi, '');
+            cleaned = cleaned.replace(/\b(Figure|Fig\.|Table|Tbl\.)\s*\d+[^.]*:/gi, '');
+            
+            // Remove inline citations only (not parenthetical years which could break references)
+            // Bracketed numbers: [1], [1-3], [1,2,3]
+            cleaned = cleaned.replace(/\[\d+(?:[-,\s]*\d+)*\]/g, '');
+            // Superscript-style: remove standalone numbers that look like references after punctuation
+            cleaned = cleaned.replace(/(?<=[.!?])\s*\d{1,3}(?=\s)/g, '');
+            
+            // Remove email addresses
+            cleaned = cleaned.replace(/[\w.-]+@[\w.-]+\.\w+/gi, '');
+            
+            // Remove page numbers (standalone numbers on lines)
+            cleaned = cleaned.replace(/^\s*\d+\s*$/gm, '');
+            
+            // Remove common header/footer patterns
+            cleaned = cleaned.replace(/^(page|chapter|section)\s*\d+.*$/gim, '');
+            
+            // Remove bibliography/references section entirely (everything after "References" heading)
+            // Try multiple patterns to catch different formats
+            const refSectionPatterns = [
+                /\n\s*(References|Bibliography|Works Cited|Literature Cited|Reference List|Citations)\s*\n[\s\S]*$/i,
+                /\n\s*\d+\.?\s*(References|Bibliography|Works Cited)\s*\n[\s\S]*$/i,  // Numbered: "8. References"
+                /\n\s*(REFERENCES|BIBLIOGRAPHY|WORKS CITED)\s*\n[\s\S]*$/,  // All caps
+                /\n\s*Appendix\s+[A-Z0-9]+\.?\s*(References|Bibliography|Works Cited|Citations)\s*\n[\s\S]*$/i,  // "Appendix F. References"
+                /\n\s*[A-Z]\.?\s*(References|Bibliography)\s*\n[\s\S]*$/i,  // "F. References" or "A. Bibliography"
+                /\n\s*\bReferences\b\s*$/im  // Just "References" at end with nothing after (catches edge cases)
+            ];
+            
+            for (const pattern of refSectionPatterns) {
+                cleaned = cleaned.replace(pattern, '');
+            }
+            
+            // Normalize paragraph breaks: convert 2+ newlines to a paragraph marker
+            cleaned = cleaned.replace(/\n\s*\n+/g, '\n\n');
+            
+            // Remove excessive whitespace within paragraphs (but preserve \n\n)
+            cleaned = cleaned.replace(/[ \t]+/g, ' ');
+            
+            // Clean up single newlines within paragraphs (merge them)
+            cleaned = cleaned.replace(/(?<!\n)\n(?!\n)/g, ' ');
+            
+            return cleaned.trim();
+        }
+        
+        // ============================================
+        // STEP 7: Smart Sentence Tokenization
+        // ============================================
+        
+        /**
+         * Check if a sentence looks like a heading
+         * Headings are typically: short, no ending punctuation, all caps, or numbered titles
+         */
+        function isHeading(sentence) {
+            const trimmed = sentence.trim();
+            
+            // Check for numbered section headings (e.g., "1. Introduction", "2.1 Methods")
+            if (/^\d+(\.\d+)*\.?\s+[A-Z]/.test(trimmed) && trimmed.length < 100) {
+                return true;
+            }
+            
+            // Check for all caps headings
+            if (trimmed === trimmed.toUpperCase() && trimmed.length > 3 && trimmed.length < 100) {
+                return true;
+            }
+            
+            // Check for title case short lines without ending punctuation
+            if (trimmed.length < 80 && !/[.!?]$/.test(trimmed)) {
+                const words = trimmed.split(/\s+/);
+                // Most words start with capital letter = likely heading
+                const capsWords = words.filter(w => /^[A-Z]/.test(w)).length;
+                if (capsWords >= words.length * 0.6 && words.length <= 10) {
+                    return true;
+                }
+            }
+            
+            // Common heading patterns
+            const headingPatterns = [
+                /^(Abstract|Introduction|Background|Methods?|Results?|Discussion|Conclusion|Summary|References|Bibliography|Acknowledgements?|Appendix|Table of Contents|List of Figures|List of Tables)/i,
+                /^(Chapter|Section|Part)\s+\d+/i,
+                /^[IVXLCDM]+\.\s+/,  // Roman numerals
+                /^[A-Z]\.\s+[A-Z]/,   // Letter headings like "A. Introduction"
+            ];
+            
+            for (const pattern of headingPatterns) {
+                if (pattern.test(trimmed) && trimmed.length < 100) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        /**
+         * Check if a sentence looks like a table entry
+         * Table entries typically have: tab separators, multiple numbers, pipe characters, sparse text
+         */
+        function isTableEntry(sentence) {
+            const trimmed = sentence.trim();
+            
+            // Contains tab characters (common in tables)
+            if (/\t/.test(trimmed)) {
+                return true;
+            }
+            
+            // Contains pipe characters (markdown/ascii tables)
+            if (/\|/.test(trimmed)) {
+                return true;
+            }
+            
+            // Mostly numbers with few words (data row)
+            const numbers = trimmed.match(/\d+\.?\d*/g) || [];
+            const words = trimmed.match(/[a-zA-Z]+/g) || [];
+            if (numbers.length > 3 && numbers.length > words.length) {
+                return true;
+            }
+            
+            // Very short with numbers (like "Row 1", "Item 23", table cell)
+            if (trimmed.length < 30 && numbers.length >= 1 && words.length <= 3) {
+                return true;
+            }
+            
+            // Multiple consecutive spaces (aligned table columns)
+            if (/\s{3,}/.test(trimmed)) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        /**
+         * Check if a sentence looks like a reference/citation entry
+         * This function detects various reference formats (APA, MLA, numbered, etc.)
+         */
+        function isReference(sentence) {
+            const trimmed = sentence.trim();
+            
+            // Pattern 1: Starts with bracketed number [1], [2], etc.
+            if (/^\[\d+\]/.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 2: Starts with "Author, Initial." format (APA/academic style)
+            // e.g., "Varzi, A.", "Smith, J. K.", "Johnson, A., & Smith, B."
+            if (/^[A-Z][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ'-]+,\s*[A-Z]\./.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 3: Starts with number and period followed by author
+            // e.g., "1. Smith, J." or "23. Author Name"
+            if (/^\d+\.\s*[A-Z]/.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 4: Contains DOI
+            if (/\bdoi[:\s]/i.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 5: Contains typical journal/publication indicators
+            if (/\b(Journal|Proceedings|Conference|Trans\.|IEEE|ACM|NIPS|ICML|Springer|Elsevier|Cambridge|Oxford|Press|Publishing|arXiv|bioRxiv|medRxiv)\b/i.test(trimmed)) {
+                // Make sure it's not just a mention in regular text - check for volume/page numbers
+                if (/\d+[:\(]\d+/.test(trimmed) || /pp?\.\s*\d+/i.test(trimmed) || /vol\./i.test(trimmed)) {
+                    return true;
+                }
+            }
+            
+            // Pattern 6: Contains URL (likely a reference with online source)
+            if (/https?:\/\//.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 7: Contains "et al." (very common in references)
+            if (/\bet\s+al\./i.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 8: Contains year in parentheses with typical reference context
+            // Look for patterns like "(1996)" or "(2023a)" followed by title-like content
+            if (/\(\d{4}[a-z]?\)/.test(trimmed)) {
+                // Check if it looks like a citation in a reference list (has comma-separated authors, journal info, etc.)
+                if (/^[A-Z][^.]*,\s*[A-Z]/.test(trimmed) || /\d+[-–:]\d+/.test(trimmed)) {
+                    return true;
+                }
+            }
+            
+            // Pattern 9: Ends with page range (common in references)
+            // e.g., "89-116." or "71-83." or "pp. 100-150"
+            if (/\d+[-–]\d+\.?\s*$/.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 10: Contains ISBN
+            if (/\bISBN/i.test(trimmed)) {
+                return true;
+            }
+            
+            // Pattern 11: Retrieved/Accessed date patterns
+            if (/\b(Retrieved|Accessed|Available)\s+(from|at|on)/i.test(trimmed)) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        /**
+         * Count words in a sentence (simple word count)
+         */
+        function countWords(sentence) {
+            return sentence.trim().split(/\s+/).filter(w => w.length > 0).length;
+        }
+        
+        /**
+         * Filter out non-narrative sentences
+         * Removes: short sentences (<=5 words), headings, table entries, references
+         */
+        function isNarrativeSentence(sentence) {
+            const trimmed = sentence.trim();
+            
+            // Filter 1: Too short (5 words or less)
+            if (countWords(trimmed) <= 5) {
+                return false;
+            }
+            
+            // Filter 2: Headings
+            if (isHeading(trimmed)) {
+                return false;
+            }
+            
+            // Filter 3: Table entries
+            if (isTableEntry(trimmed)) {
+                return false;
+            }
+            
+            // Filter 4: References
+            if (isReference(trimmed)) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        /**
+         * Smart sentence tokenization that handles abbreviations and edge cases
+         * Returns array of objects with sentence text and paragraph number
+         * Now filters out non-narrative content
+         */
+        function tokenizeSentences(text) {
+            // Common abbreviations that shouldn't end sentences
+            const abbreviations = [
+                'Dr', 'Mr', 'Mrs', 'Ms', 'Prof', 'Sr', 'Jr', 'vs', 'etc', 'al',
+                'Inc', 'Ltd', 'Corp', 'Co', 'St', 'Ave', 'Blvd', 'Rd',
+                'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+                'U\\.S\\.A', 'U\\.S', 'U\\.K', 'E\\.U', 'i\\.e', 'e\\.g', 'cf', 'viz',
+                'Fig', 'Figs', 'Eq', 'Eqs', 'No', 'Nos', 'Vol', 'pp', 'ed', 'eds',
+                'Ph\\.D', 'M\\.D', 'B\\.A', 'M\\.A', 'B\\.S', 'M\\.S'
+            ];
+            
+            // Split text into paragraphs first
+            const paragraphs = text.split(/\n\n+/);
+            const sentences = [];
+            
+            paragraphs.forEach((paragraph, paragraphIndex) => {
+                if (!paragraph.trim()) return;
+                
+                // Create pattern for abbreviations
+                const abbrevPattern = abbreviations.join('|');
+                
+                // Protect abbreviations by temporarily replacing their periods
+                let processed = paragraph;
+                
+                // Protect abbreviations
+                const abbrevRegex = new RegExp(`\\b(${abbrevPattern})\\.`, 'gi');
+                processed = processed.replace(abbrevRegex, '$1<<<DOT>>>');
+                
+                // Protect decimal numbers
+                processed = processed.replace(/(\d)\.(\d)/g, '$1<<<DOT>>>$2');
+                
+                // Protect initials (single letter followed by period)
+                processed = processed.replace(/\b([A-Z])\.(?=\s*[A-Z])/g, '$1<<<DOT>>>');
+                
+                // Protect ellipsis
+                processed = processed.replace(/\.{3}/g, '<<<ELLIPSIS>>>');
+                
+                // Now split on sentence boundaries
+                let current = '';
+                
+                for (let i = 0; i < processed.length; i++) {
+                    current += processed[i];
+                    
+                    if ((processed[i] === '.' || processed[i] === '!' || processed[i] === '?')) {
+                        // Check if this looks like end of sentence
+                        const nextChar = processed[i + 1];
+                        const nextNextChar = processed[i + 2];
+                        
+                        if (nextChar === undefined || 
+                            (nextChar === ' ' && (nextNextChar === undefined || /[A-Z"\'\(]/.test(nextNextChar))) ||
+                            nextChar === '\n') {
+                            // End of sentence
+                            let sentence = current.trim();
+                            // Restore protected characters
+                            sentence = sentence.replace(/<<<DOT>>>/g, '.');
+                            sentence = sentence.replace(/<<<ELLIPSIS>>>/g, '...');
+                            
+                            if (sentence.length > 10) { // Only keep meaningful sentences
+                                sentences.push({
+                                    text: sentence,
+                                    paragraph: paragraphIndex
+                                });
+                            }
+                            current = '';
+                        }
+                    }
+                }
+                
+                // Add any remaining text in this paragraph
+                if (current.trim().length > 10) {
+                    let sentence = current.trim();
+                    sentence = sentence.replace(/<<<DOT>>>/g, '.');
+                    sentence = sentence.replace(/<<<ELLIPSIS>>>/g, '...');
+                    sentences.push({
+                        text: sentence,
+                        paragraph: paragraphIndex
+                    });
+                }
+            });
+            
+            // Filter out non-narrative sentences (short sentences, headings, table entries, references)
+            const narrativeSentences = sentences.filter(s => isNarrativeSentence(s.text));
+            
+            return narrativeSentences;
+        }
+        
+        /**
+         * Simple tokenization for backward compatibility (preview, etc.)
+         * Returns just the sentence texts
+         */
+        function tokenizeSentencesSimple(text) {
+            const sentencesWithParagraphs = tokenizeSentences(text);
+            return sentencesWithParagraphs.map(s => s.text);
+        }
+        
+        // ============================================
+        // STEP 8: LLM API Communication
+        // ============================================
+        
+        /**
+         * Get the selected model from the dropdown
+         */
+        function getSelectedModel() {
+            return document.getElementById('modelSelect').value;
+        }
+        
+        /**
+         * Get logprobs for a text from the LLM API
+         * Includes timeout handling and detailed logging
+         */
+        async function getLogprobs(text, apiKey) {
+            const selectedModel = getSelectedModel();
+            const timeoutMs = 60000; // 60 second timeout
+            
+            // Create an AbortController for timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => {
+                console.warn('⏰ API request timed out after 60s, aborting...');
+                controller.abort();
+            }, timeoutMs);
+            
+            try {
+                console.log('    📡 Sending API request...');
+                const response = await fetch(`${CONFIG.API_BASE_URL}/v1/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: selectedModel,
+                        prompt: text,
+                        max_tokens: 1,
+                        echo: true,
+                        logprobs: 1
+                    }),
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                console.log(`    📥 Response received: ${response.status} ${response.statusText}`);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`API Error (${response.status}): ${errorText}`);
+                }
+                
+                const json = await response.json();
+                console.log('    ✅ JSON parsed successfully');
+                return json;
+            } catch (error) {
+                clearTimeout(timeoutId);
+                if (error.name === 'AbortError') {
+                    throw new Error('Request timed out after 60 seconds');
+                }
+                throw error;
+            }
+        }
+        
+        // ============================================
+        // STEP 9: Perplexity Calculation
+        // ============================================
+        
+        /**
+         * Calculate perplexity from logprobs
+         * Perplexity = exp(-1/N * sum(log_probs))
+         */
+        function calculatePerplexity(logprobs) {
+            if (!logprobs || logprobs.length === 0) {
+                return null;
+            }
+            
+            // Filter out null values and get valid logprobs
+            const validLogprobs = logprobs.filter(lp => lp !== null && !isNaN(lp));
+            
+            if (validLogprobs.length === 0) {
+                return null;
+            }
+            
+            const avgLogprob = validLogprobs.reduce((sum, lp) => sum + lp, 0) / validLogprobs.length;
+            const perplexity = Math.exp(-avgLogprob);
+            
+            return perplexity;
+        }
+        
+        /**
+         * Process a single sentence and get its perplexity
+         */
+        async function processSentence(sentence, apiKey) {
+            try {
+                const result = await getLogprobs(sentence, apiKey);
+                
+                if (result.choices && result.choices[0] && result.choices[0].logprobs) {
+                    const tokenLogprobs = result.choices[0].logprobs.token_logprobs;
+                    const perplexity = calculatePerplexity(tokenLogprobs);
+                    return {
+                        sentence: sentence,
+                        perplexity: perplexity,
+                        tokenCount: tokenLogprobs ? tokenLogprobs.length : 0
+                    };
+                }
+                
+                return {
+                    sentence: sentence,
+                    perplexity: null,
+                    error: 'No logprobs returned'
+                };
+            } catch (error) {
+                return {
+                    sentence: sentence,
+                    perplexity: null,
+                    error: error.message
+                };
+            }
+        }
+        
+        // ============================================
+        // STEP 9b: Parallel Processing Functions
+        // ============================================
+        
+        /**
+         * Create a job object for parallel processing
+         * Each job has a unique ID to match results with original sentence order
+         * Now includes previous sentence as context for better perplexity calculation
+         */
+        function createJob(sentence, index, paragraph, previousSentence) {
+            return {
+                id: index,                      // Unique ID matching original sentence position
+                sentence: sentence,             // The sentence text
+                previousSentence: previousSentence || null,  // Previous sentence for context
+                paragraph: paragraph,           // Paragraph index for display
+                status: 'pending',              // pending | processing | complete | error
+                perplexity: null,
+                tokenCount: 0,
+                logprobs: null,                 // Raw logprobs for post-processing
+                error: null
+            };
+        }
+        
+        /**
+         * Process a single job (sentence) and return the result with job ID
+         * Now sends previous sentence as context and returns raw logprobs for post-processing
+         */
+        async function processJob(job, apiKey) {
+            const startTime = performance.now();
+            const sentencePreview = job.sentence.substring(0, 50) + (job.sentence.length > 50 ? '...' : '');
+            console.log(`  → Job ${job.id + 1}: Starting "${sentencePreview}"`);
+            
+            const result = {
+                id: job.id,
+                sentence: job.sentence,
+                paragraph: job.paragraph,
+                status: 'complete',
+                perplexity: null,
+                tokenCount: 0,
+                logprobs: null,         // Raw logprobs array for post-processing
+                totalTokens: 0,         // Total tokens in the combined prompt
+                error: null
+            };
+            
+            try {
+                // Build the prompt: previous sentence (if any) + current sentence
+                // Add a space between them to ensure proper tokenization
+                const prompt = job.previousSentence 
+                    ? job.previousSentence + ' ' + job.sentence 
+                    : job.sentence;
+                
+                const apiResult = await getLogprobs(prompt, apiKey);
+                
+                if (apiResult.choices && apiResult.choices[0] && apiResult.choices[0].logprobs) {
+                    const tokenLogprobs = apiResult.choices[0].logprobs.token_logprobs;
+                    result.logprobs = tokenLogprobs;  // Store raw logprobs for post-processing
+                    result.totalTokens = tokenLogprobs ? tokenLogprobs.length : 0;
+                    // Don't calculate perplexity here - will be done in post-processing
+                } else {
+                    result.status = 'error';
+                    result.error = 'No logprobs returned';
+                }
+            } catch (error) {
+                result.status = 'error';
+                result.error = error.message;
+                const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+                console.error(`  ✗ Job ${job.id + 1}: FAILED after ${elapsed}s - ${error.message}`);
+            }
+            
+            // Log completion for successful jobs
+            if (result.status === 'complete') {
+                const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+                console.log(`  ✓ Job ${job.id + 1}: Complete (${result.totalTokens} tokens, ${elapsed}s)`);
+            }
+            
+            return result;
+        }
+        
+        /**
+         * Process jobs in parallel batches with configurable concurrency
+         * @param {Array} jobs - Array of job objects to process
+         * @param {string} apiKey - API key for authentication
+         * @param {number} concurrency - Number of parallel requests
+         * @param {function} onProgress - Callback for progress updates
+         * @returns {Array} - Results sorted by job ID with perplexity calculated
+         */
+        async function processJobsInParallel(jobs, apiKey, concurrency, onProgress) {
+            const results = [];
+            let completedCount = 0;
+            const totalJobs = jobs.length;
+            const totalBatches = Math.ceil(totalJobs / concurrency);
+            let batchNumber = 0;
+            
+            console.log(`\n📊 Starting perplexity analysis: ${totalJobs} sentences in ${totalBatches} batches (${concurrency} parallel)`);
+            
+            // Process jobs in batches
+            for (let i = 0; i < jobs.length; i += concurrency) {
+                // Check if stop was requested
+                if (stopRequested) {
+                    console.log('⏹️ Analysis stopped by user');
+                    break;
+                }
+                
+                // Get the current batch of jobs
+                const batch = jobs.slice(i, Math.min(i + concurrency, jobs.length));
+                const batchStart = i + 1;
+                const batchEnd = Math.min(i + concurrency, jobs.length);
+                batchNumber++;
+                
+                // Log batch start
+                const batchStartTime = performance.now();
+                console.log(`\n📦 Batch ${batchNumber}/${totalBatches}: Processing jobs ${batchStart}-${batchEnd}...`);
+                
+                // Update progress before batch starts
+                if (onProgress) {
+                    const progress = 10 + (completedCount / totalJobs) * 85;
+                    onProgress(progress, `Processing sentences ${batchStart}-${batchEnd} of ${totalJobs} (${concurrency} parallel)...`);
+                }
+                
+                // Process all jobs in the batch simultaneously
+                const batchPromises = batch.map(job => processJob(job, apiKey));
+                const batchResults = await Promise.allSettled(batchPromises);
+                
+                // Count successes and failures in this batch
+                let batchSuccesses = 0;
+                let batchFailures = 0;
+                
+                // Collect results from this batch
+                for (const result of batchResults) {
+                    if (result.status === 'fulfilled') {
+                        results.push(result.value);
+                        if (result.value.status === 'complete') {
+                            batchSuccesses++;
+                        } else {
+                            batchFailures++;
+                        }
+                    } else {
+                        // Handle rejected promise (shouldn't happen since processJob catches errors)
+                        console.error('Unexpected promise rejection:', result.reason);
+                        batchFailures++;
+                    }
+                    completedCount++;
+                }
+                
+                // Log batch completion
+                const batchElapsed = ((performance.now() - batchStartTime) / 1000).toFixed(2);
+                const statusEmoji = batchFailures === 0 ? '✅' : '⚠️';
+                console.log(`${statusEmoji} Batch ${batchNumber}/${totalBatches} complete: ${batchSuccesses}/${batch.length} succeeded (${batchElapsed}s)`);
+                
+                // Small delay between batches to be nice to the API
+                if (i + concurrency < jobs.length && !stopRequested) {
+                    await new Promise(resolve => setTimeout(resolve, CONFIG.BATCH_DELAY_MS));
+                }
+            }
+            
+            // Sort results by job ID to maintain original sentence order
+            results.sort((a, b) => a.id - b.id);
+            
+            // Log final summary
+            const successCount = results.filter(r => r.status === 'complete').length;
+            const failCount = results.filter(r => r.status === 'error').length;
+            console.log(`\n🏁 Analysis complete: ${successCount} succeeded, ${failCount} failed out of ${results.length} total`);
+            
+            // Post-processing: Calculate perplexity using token offsets
+            // This is done sequentially because each sentence's token count depends on the previous
+            if (onProgress) {
+                onProgress(95, 'Calculating perplexity with context normalization...');
+            }
+            
+            calculatePerplexitiesWithContext(results);
+            
+            return results;
+        }
+        
+        /**
+         * Calculate perplexities for all results using context-aware token offsets
+         * 
+         * The algorithm:
+         * - Sentence 0 has no context, so perplexity is calculated from all its tokens (N0 = totalTokens)
+         * - Sentence i (i > 0) was sent with context "[sentence i-1] [sentence i]"
+         * - The previous sentence's token count (N_{i-1}) tells us how many tokens to skip
+         * - We calculate: N_i = totalTokens_i - N_{i-1}
+         * - Perplexity is calculated from only the current sentence's tokens (the last N_i tokens)
+         * 
+         * @param {Array} results - Array of results sorted by ID, modified in place
+         */
+        function calculatePerplexitiesWithContext(results) {
+            let prevTokenCount = 0;
+            
+            for (let i = 0; i < results.length; i++) {
+                const result = results[i];
+                
+                // Skip if there was an error or no logprobs
+                if (result.status === 'error' || !result.logprobs) {
+                    result.perplexity = null;
+                    result.tokenCount = 0;
+                    continue;
+                }
+                
+                const totalTokens = result.totalTokens;
+                
+                if (i === 0) {
+                    // First sentence: no context, use all tokens
+                    result.tokenCount = totalTokens;
+                    result.perplexity = calculatePerplexity(result.logprobs);
+                } else {
+                    // Subsequent sentences: skip context tokens (from previous sentence)
+                    // Current sentence tokens = total tokens - previous sentence's token count
+                    const currentSentenceTokenCount = totalTokens - prevTokenCount;
+                    
+                    if (currentSentenceTokenCount > 0 && currentSentenceTokenCount <= totalTokens) {
+                        // Get only the logprobs for the current sentence (skip context tokens)
+                        const currentSentenceLogprobs = result.logprobs.slice(prevTokenCount);
+                        result.tokenCount = currentSentenceTokenCount;
+                        result.perplexity = calculatePerplexity(currentSentenceLogprobs);
+                    } else {
+                        // Fallback: something went wrong with token counting, use all tokens
+                        console.warn(`Token count mismatch for sentence ${i}: total=${totalTokens}, prev=${prevTokenCount}`);
+                        result.tokenCount = totalTokens;
+                        result.perplexity = calculatePerplexity(result.logprobs);
+                    }
+                }
+                
+                // Update prevTokenCount for the next iteration
+                // This is the token count of the CURRENT sentence (to be used as context for the next)
+                prevTokenCount = result.tokenCount;
+            }
+        }
+        
+        /**
+         * Get the parallel request count from the UI slider
+         */
+        function getParallelRequestCount() {
+            const slider = document.getElementById('parallelRequests');
+            return slider ? parseInt(slider.value, 10) : CONFIG.PARALLEL_REQUESTS;
+        }
+        
+        // ============================================
+        // STEP 10: Dynamic Quartile Thresholds
+        // ============================================
+        
+        /**
+         * Calculate quartile thresholds from perplexity scores
+         */
+        function calculateQuartiles(results) {
+            const validScores = results
+                .filter(r => r.perplexity !== null && !isNaN(r.perplexity))
+                .map(r => r.perplexity)
+                .sort((a, b) => a - b);
+            
+            if (validScores.length === 0) {
+                return { q1: 0, q2: 0, q3: 0 };
+            }
+            
+            const getPercentile = (arr, p) => {
+                const index = (p / 100) * (arr.length - 1);
+                const lower = Math.floor(index);
+                const upper = Math.ceil(index);
+                if (lower === upper) return arr[lower];
+                return arr[lower] * (upper - index) + arr[upper] * (index - lower);
+            };
+            
+            return {
+                q1: getPercentile(validScores, 25),
+                q2: getPercentile(validScores, 50),
+                q3: getPercentile(validScores, 75),
+                min: validScores[0],
+                max: validScores[validScores.length - 1]
+            };
+        }
+        
+        /**
+         * Assign quartile class to a perplexity score (relative mode)
+         */
+        function getQuartileClass(perplexity, quartiles) {
+            if (perplexity === null) return 'q2'; // Default for errors
+            if (perplexity <= quartiles.q1) return 'q1';
+            if (perplexity <= quartiles.q2) return 'q2';
+            if (perplexity <= quartiles.q3) return 'q3';
+            return 'q4';
+        }
+        
+        /**
+         * Assign class based on absolute perplexity thresholds (absolute mode)
+         * >50: creative (q4 - green)
+         * >30: engaging (q3 - yellow)
+         * >10: standard (q2 - orange)
+         * ≤10: dull (q1 - red)
+         */
+        function getAbsoluteClass(perplexity) {
+            if (perplexity === null) return 'q2'; // Default for errors
+            if (perplexity > 50) return 'q4';  // Creative - greenish
+            if (perplexity > 30) return 'q3';  // Engaging - yellowish
+            if (perplexity > 10) return 'q2';  // Standard - orangish
+            return 'q1';                        // Dull - reddish
+        }
+        
+        /**
+         * Get the appropriate color class based on current mode
+         */
+        function getColorClass(perplexity, quartiles) {
+            if (currentColorMode === 'absolute') {
+                return getAbsoluteClass(perplexity);
+            }
+            return getQuartileClass(perplexity, quartiles);
+        }
+        
+        // ============================================
+        // STEP 11: Display Functions
+        // ============================================
+        
+        /**
+         * Render the highlighted text output with paragraph breaks
+         */
+        function renderResults(results, quartiles) {
+            const textOutput = document.getElementById('textOutput');
+            textOutput.innerHTML = '';
+            
+            let currentParagraph = -1;
+            let paragraphDiv = null;
+            
+            results.forEach((result, index) => {
+                // Check if we need to start a new paragraph
+                if (result.paragraph !== currentParagraph) {
+                    // Create new paragraph container
+                    paragraphDiv = document.createElement('p');
+                    paragraphDiv.style.marginBottom = '1em';
+                    paragraphDiv.style.marginTop = index === 0 ? '0' : '1em';
+                    textOutput.appendChild(paragraphDiv);
+                    currentParagraph = result.paragraph;
+                }
+                
+                const span = document.createElement('span');
+                span.className = `sentence ${getColorClass(result.perplexity, quartiles)}`;
+                span.textContent = result.sentence + ' ';
+                span.dataset.perplexity = result.perplexity !== null ? result.perplexity.toFixed(2) : 'N/A';
+                span.dataset.index = index;
+                
+                // Add hover events for tooltip
+                span.addEventListener('mouseenter', showTooltip);
+                span.addEventListener('mouseleave', hideTooltip);
+                span.addEventListener('mousemove', moveTooltip);
+                
+                paragraphDiv.appendChild(span);
+            });
+        }
+        
+        /**
+         * Render statistics summary
+         */
+        function renderStats(results, quartiles) {
+            const statsSummary = document.getElementById('statsSummary');
+            const validResults = results.filter(r => r.perplexity !== null);
+            
+            const avgPerplexity = validResults.length > 0
+                ? validResults.reduce((sum, r) => sum + r.perplexity, 0) / validResults.length
+                : 0;
+            
+            statsSummary.innerHTML = `
+                <div class="stat-box">
+                    <div class="stat-value">${results.length}</div>
+                    <div class="stat-label">Total Sentences</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${validResults.length}</div>
+                    <div class="stat-label">Analyzed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${avgPerplexity.toFixed(2)}</div>
+                    <div class="stat-label">Avg Perplexity</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${quartiles.min?.toFixed(2) || 'N/A'}</div>
+                    <div class="stat-label">Min Perplexity</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${quartiles.max?.toFixed(2) || 'N/A'}</div>
+                    <div class="stat-label">Max Perplexity</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${quartiles.q2?.toFixed(2) || 'N/A'}</div>
+                    <div class="stat-label">Median</div>
+                </div>
+            `;
+            
+            // Render overall evaluation based on median perplexity
+            renderOverallEvaluation(quartiles.q2, avgPerplexity);
+        }
+        
+        /**
+         * Render overall evaluation based on median and average perplexity
+         */
+        function renderOverallEvaluation(median, average) {
+            const evaluationDiv = document.getElementById('overallEvaluation');
+            
+            if (median === null || median === undefined) {
+                evaluationDiv.innerHTML = '';
+                return;
+            }
+            
+            let evaluationClass, icon, title, description;
+            
+            if (median >= 50) {
+                evaluationClass = 'evaluation-creative';
+                icon = '✨';
+                title = 'Creative Language Patterns';
+                description = `With a median perplexity of <strong>${median.toFixed(2)}</strong>, this document displays inventive writing. The text shows mostly unpredictable patterns with interesting word choices and phrases. It is more imaginative (or more disorganized) than typical business and technical writing. Creativity does not imply human authorship; both humans and AI (given the right prompting) are capable of producing creative output.`;
+            } else if (median >= 30) {
+                evaluationClass = 'evaluation-engaging';
+                icon = '😊';
+                title = 'Engaging Language Patterns';
+                description = `With a median perplexity of <strong>${median.toFixed(2)}</strong>, this document shows language patterns typical of engaging business and technical documents. The text uses a mixture of expected and unexpected word sequences, demonstrating some inventiveness (or disorganization). These patterns do not imply authorship; both humans and AI are capable of producing engaging output.`;
+            } else if (median >= 10) {
+                evaluationClass = 'evaluation-standard';
+                icon = '😑';
+                title = 'Standard Language Patterns';
+                description = `With a median perplexity of <strong>${median.toFixed(2)}</strong>, this document shows well-balanced language patterns typical of business and technical documents. The writing uses mostly expected word sequences with some interesting constructions. Both humans and AI are capable of producing well-balanced output.`;
+            } else {
+                evaluationClass = 'evaluation-dull';
+                icon = '💻';
+                title = 'Dull Language Patterns';
+                description = `With a median perplexity of <strong>${median.toFixed(2)}</strong>, this document shows predictable language patterns. The writing uses common phrases and expected word sequences. This could indicate formulaic writing, "bland-is-beautiful" aesthetic, or AI generation.`;
+            }
+            
+            evaluationDiv.innerHTML = `
+                <div class="overall-evaluation ${evaluationClass}">
+                    <h3>${icon} Overall Evaluation: ${title}</h3>
+                    <p>${description}</p>
+                </div>
+            `;
+        }
+        
+        // ============================================
+        // UI Helper Functions
+        // ============================================
+        
+        function showTooltip(event) {
+            const tooltip = document.getElementById('tooltip');
+            const perplexity = event.target.dataset.perplexity;
+            tooltip.textContent = `Perplexity: ${perplexity}`;
+            tooltip.style.display = 'block';
+        }
+        
+        function hideTooltip() {
+            document.getElementById('tooltip').style.display = 'none';
+        }
+        
+        function moveTooltip(event) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.left = (event.clientX + 10) + 'px';
+            tooltip.style.top = (event.clientY + 10) + 'px';
+        }
+        
+        function updateProgress(percent, message) {
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('statusText').textContent = message;
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('active');
+        }
+        
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('active');
+        }
+        
+        function clearResults() {
+            // Clear results section
+            document.getElementById('resultsSection').classList.remove('active');
+            document.getElementById('statusSection').classList.remove('active');
+            document.getElementById('textOutput').innerHTML = '';
+            document.getElementById('statsSummary').innerHTML = '';
+            document.getElementById('overallEvaluation').innerHTML = '';
+            document.getElementById('stopBtn').style.display = 'none';
+            hideError();
+            analysisResults = [];
+            stopRequested = false;
+            cachedQuartiles = null;
+            
+            // Reset color mode to default (relative)
+            currentColorMode = 'relative';
+            document.getElementById('colorModeToggle').checked = false;
+            document.getElementById('relativeModeLabel').classList.add('active');
+            document.getElementById('absoluteModeLabel').classList.remove('active');
+            updateColorModeUI();
+            
+            // Clear file input
+            document.getElementById('fileInput').value = '';
+            document.getElementById('documentPreview').style.display = 'none';
+            document.getElementById('previewText').innerHTML = '';
+            document.getElementById('dropZone').classList.remove('has-file');
+            document.getElementById('dropZoneContent').style.display = 'block';
+
+            // Clear paste textarea
+            document.getElementById('pasteTextarea').value = '';
+            document.getElementById('pastePreview').style.display = 'none';
+            document.getElementById('pastePreview').innerHTML = '';
+        }
+        
+        function stopAnalysis() {
+            stopRequested = true;
+            updateProgress(0, 'Stopping analysis...');
+        }
+        
+        // ============================================
+        // Color Mode Toggle Functions
+        // ============================================
+        
+        /**
+         * Toggle color mode when checkbox changes
+         */
+        function toggleColorMode() {
+            const checkbox = document.getElementById('colorModeToggle');
+            const newMode = checkbox.checked ? 'absolute' : 'relative';
+            setColorMode(newMode);
+        }
+        
+        /**
+         * Set color mode and update display
+         */
+        function setColorMode(mode) {
+            currentColorMode = mode;
+            
+            // Update toggle checkbox
+            const checkbox = document.getElementById('colorModeToggle');
+            checkbox.checked = (mode === 'absolute');
+            
+            // Update label highlighting
+            const relativeLabel = document.getElementById('relativeModeLabel');
+            const absoluteLabel = document.getElementById('absoluteModeLabel');
+            
+            if (mode === 'absolute') {
+                relativeLabel.classList.remove('active');
+                absoluteLabel.classList.add('active');
+            } else {
+                relativeLabel.classList.add('active');
+                absoluteLabel.classList.remove('active');
+            }
+            
+            // Update heading and legend
+            updateColorModeUI();
+            
+            // Re-render results if we have data
+            if (analysisResults.length > 0 && cachedQuartiles) {
+                renderResults(analysisResults, cachedQuartiles);
+            }
+        }
+        
+        /**
+         * Update the heading and legend based on current color mode
+         */
+        function updateColorModeUI() {
+            const heading = document.getElementById('colorModeHeading');
+            const legend = document.getElementById('colorLegend');
+            
+            if (currentColorMode === 'absolute') {
+                heading.textContent = 'Absolute predictability (fixed perplexity thresholds)';
+                legend.innerHTML = `
+                    <div class="legend-item">
+                        <div class="legend-color q4-color"></div>
+                        <span>Dull (perplexity score≤10)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color q3-color"></div>
+                        <span>Standard (10-30)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color q2-color"></div>
+                        <span>Engaging (30-50)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color q1-color"></div>
+                        <span>Creative (perplexity score>50)</span>
+                    </div>
+                `;
+            } else {
+                heading.textContent = 'Relative predictability (within-document quartiles)';
+
+                legend.innerHTML = `
+                    <div class="legend-item">
+                        <div class="legend-color q4-color"></div>
+                        <span>Most Predictable (lowest 25%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color q3-color"></div>
+                        <span>Less Predictable (next lowest 25%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color q2-color"></div>
+                        <span>Even Less Predictable (second highest 25%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color q1-color"></div>
+                        <span>Least Predictable (highest 25%)</span>
+                    </div>
+                `;
+            }
+        }
+        
+        // ============================================
+        // Drag and Drop Setup
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            // Highlight drop zone when dragging over
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => {
+                    dropZone.classList.add('drag-over');
+                }, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => {
+                    dropZone.classList.remove('drag-over');
+                }, false);
+            });
+            
+            // Handle dropped files
+            dropZone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    previewDocument();
+                }
+            }, false);
+        });
+        
+        /**
+         * Preview document and count sentences when file is selected
+         */
+        async function previewDocument() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const previewDiv = document.getElementById('documentPreview');
+            const previewText = document.getElementById('previewText');
+            const dropZone = document.getElementById('dropZone');
+            const dropZoneContent = document.getElementById('dropZoneContent');
+            
+            if (!file) {
+                previewDiv.style.display = 'none';
+                dropZone.classList.remove('has-file');
+                dropZoneContent.style.display = 'block';
+                return;
+            }
+            
+            // Show loading state
+            previewDiv.style.display = 'block';
+            dropZoneContent.style.display = 'none';
+            dropZone.classList.add('has-file');
+            previewText.innerHTML = '⏳ Parsing document...';
+            
+            try {
+                // Extract text from document (DOCX only)
+                let rawText;
+                if (file.name.toLowerCase().endsWith('.docx')) {
+                    rawText = await extractTextFromDOCX(file);
+                } else {
+                    previewText.innerHTML = '❌ Unsupported file format. Please use a .docx file.';
+                    return;
+                }
+                
+                // Clean and tokenize
+                const cleanedText = cleanText(rawText);
+                const sentences = tokenizeSentences(cleanedText);
+                
+                // Estimate word count
+                const wordCount = cleanedText.split(/\s+/).filter(w => w.length > 0).length;
+                
+                // Display preview info
+                previewText.innerHTML = `
+                    📄 <strong>${file.name}</strong><br>
+                    📝 <strong>${sentences.length}</strong> sentences detected | 
+                    📊 ~${wordCount.toLocaleString()} words
+                `;
+                
+            } catch (error) {
+                previewText.innerHTML = `❌ Error parsing document: ${error.message}`;
+                console.error('Preview error:', error);
+            }
+        }
+        
+        // ============================================
+        // STEP 12: Main Analysis Function
+        // ============================================
+        
+        async function startAnalysis() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            // Validation
+            if (!apiKey) {
+                showError('Please enter your API key.');
+                return;
+            }
+            try {
+                localStorage.setItem('mitre_llm_api_key', apiKey);
+            } catch (e) {
+                console.warn('Unable to store API key in localStorage:', e);
+            }
+
+            hideError();
+            stopRequested = false;
+
+            // Determine input source
+            let rawText = null;
+
+            if (currentInputTab === 'paste') {
+                // --- Paste text mode ---
+                const pastedText = document.getElementById('pasteTextarea').value.trim();
+                if (!pastedText) {
+                    showError('Please paste some text to analyze.');
+                    return;
+                }
+                rawText = pastedText;
+            } else {
+                // --- File upload mode ---
+                const fileInput = document.getElementById('fileInput');
+                const file = fileInput.files[0];
+                if (!file) {
+                    showError('Please select a .docx document to analyze.');
+                    return;
+                }
+                if (!file.name.toLowerCase().endsWith('.docx')) {
+                    showError('Unsupported file format. Please use a .docx file.');
+                    return;
+                }
+                // Extract text from DOCX
+                try {
+                    rawText = await extractTextFromDOCX(file);
+                } catch (err) {
+                    showError(`Error reading document: ${err.message}`);
+                    return;
+                }
+            }
+            
+            // Disable button and show progress
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            analyzeBtn.disabled = true;
+            stopBtn.style.display = 'inline-block';
+            document.getElementById('statusSection').classList.add('active');
+            document.getElementById('resultsSection').classList.remove('active');
+            
+            try {
+                // Check if stop was requested
+                if (stopRequested) {
+                    throw new Error('Analysis stopped by user.');
+                }
+                
+                // Step 2: Clean the text
+                const cleanedText = cleanText(rawText);
+                
+                // Step 3: Tokenize into sentences
+                const sentences = tokenizeSentences(cleanedText);
+                
+                if (sentences.length === 0) {
+                    throw new Error('No sentences found in the input text.');
+                }
+                
+                // Get parallel request count from UI
+                const parallelCount = getParallelRequestCount();
+                
+                // Step 4: Create jobs with unique IDs for each sentence
+                // Each job includes the previous sentence as context for better perplexity calculation
+                const jobs = sentences.map((sentence, index) => {
+                    const previousSentence = index > 0 ? sentences[index - 1].text : null;
+                    return createJob(sentence.text, index, sentence.paragraph, previousSentence);
+                });
+                
+                // Step 5: Process jobs in parallel batches
+                analysisResults = await processJobsInParallel(
+                    jobs,
+                    apiKey,
+                    parallelCount,
+                    updateProgress  // Pass progress callback
+                );
+                
+                // Only show results if we have some data (even partial)
+                if (analysisResults.length > 0) {
+                    cachedQuartiles = calculateQuartiles(analysisResults);
+                    
+                    renderStats(analysisResults, cachedQuartiles);
+                    renderResults(analysisResults, cachedQuartiles);
+                    
+                    if (stopRequested) {
+                        updateProgress(100, `Analysis stopped. Showing ${analysisResults.length} sentences.`);
+                    } else {
+                        updateProgress(100, 'Analysis complete!');
+                    }
+                    document.getElementById('resultsSection').classList.add('active');
+                }
+                
+            } catch (error) {
+                if (!stopRequested) {
+                    showError(`Error: ${error.message}`);
+                    console.error('Analysis error:', error);
+                }
+            } finally {
+                analyzeBtn.disabled = false;
+                stopBtn.style.display = 'none';
+            }
+        }
+
+        // ============================================
+        // Load Example Document Function
+        // ============================================
+        
+        /**
+         * Load example document (deskilling.docx) for demo purposes
+         */
+        async function loadExampleDocument() {
+            // Switch to file tab and load the example
+            switchInputTab('file');
+
+            const dropZone = document.getElementById('dropZone');
+            const dropZoneContent = document.getElementById('dropZoneContent');
+            const previewDiv = document.getElementById('documentPreview');
+            const previewText = document.getElementById('previewText');
+            const fileInput = document.getElementById('fileInput');
+            
+            try {
+                // Show loading state
+                dropZone.classList.add('has-file');
+                dropZoneContent.style.display = 'none';
+                previewDiv.style.display = 'block';
+                previewText.innerHTML = '⏳ Loading example document...';
+                
+                // Fetch the example document
+                const response = await fetch('../test/deskilling.docx');
+                if (!response.ok) {
+                    throw new Error(`Failed to load example: ${response.status}`);
+                }
+                
+                const blob = await response.blob();
+                const file = new File([blob], 'deskilling.docx', {
+                    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                });
+                
+                // Create a DataTransfer to set the file input
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+                
+                // Trigger preview
+                await previewDocument();
+                
+            } catch (error) {
+                console.error('Error loading example document:', error);
+                previewText.innerHTML = `❌ Error loading example: ${error.message}`;
+                setTimeout(() => {
+                    dropZone.classList.remove('has-file');
+                    dropZoneContent.style.display = 'block';
+                    previewDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Pre-populate API key if available
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedKey = localStorage.getItem('mitre_llm_api_key');
+            if (storedKey) {
+                console.log('Stored MITRE API key found.');
+                const apiInput = document.getElementById('apiKey');
+                if (storedKey && apiInput && !apiInput.value) {
+                    apiInput.value = storedKey;
+                }
+            } else {
+                console.log('No stored MITRE API key found.');
+            }
+        });
+    </script>
+    <script 
+        data-goatcounter="https://kramermark.goatcounter.com/count" async src="https://gc.zgo.at/count.js">
+    </script>
+</body>
+</html>

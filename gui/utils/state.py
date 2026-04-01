@@ -64,6 +64,7 @@ def pipeline_status(docket_id: str) -> dict[str, bool | None]:
         return p.is_file() and p.stat().st_size > 0
 
     download = _nonempty_dir(base / "comment_attachments")
+    preprocess_psv = _nonempty_file(base / "comments" / f"{docket_id}.psv")
     stylometry = _nonempty_file(base / "stylometry" / "index.json")
     campaign_plan = base / "campaign" / "campaign_plan.json"
     campaign = campaign_plan.is_file()
@@ -72,6 +73,7 @@ def pipeline_status(docket_id: str) -> dict[str, bool | None]:
 
     return {
         "download": download,
+        "preprocess_psv": preprocess_psv,
         "stylometry": stylometry,
         "campaign": campaign,
         "generate": generate,

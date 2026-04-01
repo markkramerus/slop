@@ -59,10 +59,7 @@ def get_voice_id(row: dict) -> str:
     soph = row.get("synth_sophistication", "")
     if not arch or not soph:
         return "unknown"
-    # Determine if org voice
-    if arch in ("industry", "advocacy_group", "academic", "government"):
-        return f"{arch}-{soph}-org"
-    return f"{arch}-{soph}"
+    return f"{arch}_{soph}"
 
 
 # ── Text analysis functions ───────────────────────────────────────────────────
@@ -309,12 +306,8 @@ def main():
             print(f"\n  {voice}: NO COMMENTS GENERATED — SKIP")
             continue
         
-        # Load expected stats
-        if voice.endswith("-org"):
-            clean = voice[:-4]
-            archetype, soph = clean.rsplit("-", 1)
-        else:
-            archetype, soph = voice.rsplit("-", 1)
+        # Load expected stats — new format: {archetype}_{sophistication}
+        archetype, soph = voice.rsplit("_", 1)
         
         skill = load_voice_skill(DOCKET_ID, archetype, soph)
         if not skill:

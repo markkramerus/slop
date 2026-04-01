@@ -6,9 +6,9 @@ reusable "voice skill" markdown files that can be used to generate more realisti
 synthetic comments.
 
 Instead of clustering, we group comments by explicit CSV properties:
-  - Archetype (individual_consumer, advocacy_group, industry, academic, government)
+  - Archetype (individual, organization, government_organization,
+    advocacy_organization, academic_organization)
   - Sophistication level (low, medium, high) - computed from fingerprints
-  - Organization presence (has org vs individual)
 
 Each unique combination gets its own skill file with:
   - Statistical profile (word count, sentence length, paragraph structure)
@@ -229,17 +229,14 @@ class CommentRecord:
 def classify_voice_group(record: CommentRecord) -> str:
     """
     Determine voice group ID based on explicit properties.
-    
-    Format: {archetype}-{sophistication}[-org]
-    Examples: "individual_consumer_low", "industry_high_org"
+
+    Format: {archetype}_{sophistication}
+    Examples: "individual_low", "organization_medium", "advocacy_organization_high"
+
+    The org/individual distinction is already encoded in the archetype
+    (all org archetypes contain the word "organization"); no suffix needed.
     """
-    has_org = bool(record.organization.strip())
-    
-    parts = [record.archetype, record.sophistication]
-    if has_org and record.archetype != "individual_consumer":
-        parts.append("org")
-    
-    return "-".join(parts)
+    return f"{record.archetype}_{record.sophistication}"
 
 
 # ── Enhanced Stylometric Analysis ─────────────────────────────────────────────
@@ -657,10 +654,11 @@ def generate_skill_markdown(voice: VoiceGroup, docket_id: str, llm_analysis: str
 # ── Main Analysis Function ────────────────────────────────────────────────────
 
 def analyze_docket_stylometry(
-    csv_path: str,
+        csv_path: str,
     output_dir: str | None = None,
     attachments_dir: str | None = None,
     min_group_size: int = 5,
+    psv_path: str | None = None,
 ) -> dict[str, Any]:
     """
     Analyze a docket CSV and generate voice skill files.
@@ -696,15 +694,7 @@ def analyze_docket_stylometry(
     # Extract docket ID from filename
     # Handle both "CMS-2025-0050.csv" and "CMS-2025-0050-0031.csv" formats
     docket_id_full = Path(csv_path).stem
-    
-    # Extract base docket ID for attachment lookup (e.g., "CMS-2025-0050" from "CMS-2025-0050-0031")
-    # Most dockets follow pattern: AGENCY-YEAR-NUMBER or AGENCY-YEAR-NUMBER-DOCID
-    parts = docket_id_full.split('-')
-    if len(parts) >= 3:
-        # Use first 3 parts as base docket ID for downloads directory
-        docket_id_base = '-'.join(parts[:3])
-    else:
-        docket_id_base = docket_id_full
+    docket_id_base = docket_id_full
     
     # Set default attachments_dir now that we know docket_id_base
     if not attachments_dir:
@@ -715,9 +705,34 @@ def analyze_docket_stylometry(
     logger.info(f"Base docket ID for attachments: {docket_id_base}")
     logger.info(f"Loading CSV: {csv_path}")
     
-    # Load CSV
+    # Load CSV — metadata gold standard: org/name/category ALWAYS from CSV
     df = pd.read_csv(csv_path, dtype=str, low_memory=False).fillna("")
     df = normalise_columns(df)
+
+    # ── Load PSV (mandatory for comment text) ─────────────────────────────────
+    # The PSV contains each comment's final merged text (CSV comment +
+    # converted attachment content).  Produce it first with:
+    #   python -m shuffler preprocess <docket_id>
+    # The CSV remains the gold standard for all metadata columns
+    # (Organization Name, First Name, Last Name, Category).
+    if psv_path is None:
+        _csv_p = Path(csv_path)
+        psv_path = str(_csv_p.parent / (_csv_p.stem + ".psv"))
+
+    if not Path(psv_path).exists():
+        raise FileNotFoundError(
+            f"PSV file not found: {psv_path}\n"
+            f"Run: python -m shuffler preprocess {docket_id_base}"
+        )
+
+    from shuffler.psv_io import read_psv as _read_psv
+    _psv_rows, _ = _read_psv(psv_path)
+    psv_comments: dict[str, str] = {
+        str(r.get("Document ID", "")).strip(): str(r.get("Comment", "")).strip()
+        for r in _psv_rows
+        if str(r.get("Document ID", "")).strip()
+    }
+    logger.info(f"Loaded {len(psv_comments)} comment texts from PSV: {psv_path}")
 
     # Columns to extract
     comment_col = find_col(df, "comment")
@@ -747,10 +762,15 @@ def analyze_docket_stylometry(
         state = str(row.get(state_col, "")).strip() if state_col else ""
         document_id = str(row.get(doc_id_col, "")).strip() if doc_id_col else ""
         name = f"{first_name} {last_name}".strip()
-        
-        # Extract text from attachments if available
+        # PSV is the gold standard for comment text — override the CSV comment
+        # with the pre-merged text (CSV comment + attachment) from the PSV.
+        comment = psv_comments.get(document_id, comment)
+
+        # Attachment loading is bypassed when the PSV already provides merged
+        # text for this document.  Falls back to live attachment extraction
+        # only for documents not present in the PSV (edge-case safety net).
         attachment_text = ""
-        if attachments_dir and doc_id_col and attachment_col:
+        if attachments_dir and doc_id_col and attachment_col and document_id not in psv_comments:
             attachment_urls = str(row.get(attachment_col, "")).strip()
             
             # Check if this row has attachments
@@ -813,7 +833,8 @@ def analyze_docket_stylometry(
         voice_id = classify_voice_group(record)
         
         if voice_id not in voice_groups:
-            has_org = "-org" in voice_id
+            # All org archetypes embed the word "organization" in their name
+            has_org = "organization" in record.archetype
             voice_groups[voice_id] = VoiceGroup(
                 voice_id=voice_id,
                 archetype=record.archetype,

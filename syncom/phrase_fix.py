@@ -276,7 +276,7 @@ def parse_phrase_report(report_path: str) -> list[RepeatedPhrase]:
     Parameters
     ----------
     report_path:
-        Path to the .phrase_report.md file.
+        Path to the _phrase_report.md file.
 
     Returns
     -------
@@ -609,7 +609,7 @@ def _load_persona_contexts_from_psv(psv_path: str) -> dict[str, dict[str, str]]:
         occupation = row.get("synth_persona_occupation", "")
         state = row.get("synth_persona_state", "")
         age = row.get("synth_persona_age", "")
-        archetype = row.get("synth_archetype", "individual_consumer")
+        archetype = row.get("synth_archetype", "individual")
 
         contexts[comment_id] = {
             "name": submitter_name,
@@ -811,7 +811,7 @@ def run_phrase_fix(
             "org_name": "None",
             "state": "Unknown",
             "age": "Unknown",
-            "archetype": "individual_consumer",
+            "archetype": "individual",
         })
 
         # One LLM call fixes ALL suspicious phrases in this comment at once

@@ -275,7 +275,7 @@ class CampaignPlan:
             argument_angles=angles,
             campaign_voices=d.get("campaign_voices", {}),
             base_population=d.get("base_population", {}),
-            affinity_boost=float(d.get("affinity_boost", 3.0)),
+            affinity_boost=float(d.get("affinity_boost", 2.0)),
             notes=d.get("notes", ""),
             created=d.get("created", datetime.now(timezone.utc).isoformat()),
             plan_version=d.get("plan_version", PLAN_VERSION),

@@ -54,11 +54,11 @@ exact schema (all fields required):
     "..."
   ],
   "plausible_consequences": {{
-    "individual_consumer": "<likely direct impact on ordinary people>",
-    "advocacy_group": "<how advocacy orgs would likely frame impact>",
-    "industry": "<likely industry concerns>",
-    "academic": "<policy/research angles>",
-    "government": "<intergovernmental or implementation concerns>"
+    "individual": "<likely direct impact on ordinary people>",
+    "advocacy_organization": "<how advocacy orgs would likely frame impact>",
+    "organization": "<likely industry concerns>",
+    "academic_organization": "<policy/research angles>",
+    "government_organization": "<intergovernmental or implementation concerns>"
   }},
   "key_terms": ["<important technical or policy term>", "..."],
   "controversy_level": "<low | medium | high>"
@@ -116,7 +116,7 @@ class WorldModel:
         """Return the plausible consequence description for a given archetype."""
         return self.plausible_consequences.get(
             archetype,
-            self.plausible_consequences.get("individual_consumer", "")
+            self.plausible_consequences.get("individual", "")
         )
 
     def random_rfi_question(self, rng) -> str | None:

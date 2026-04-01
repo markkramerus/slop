@@ -30,90 +30,93 @@ def find_col(df: pd.DataFrame, col_name: str) -> str | None:
 
 
 # ── Archetype classification ──────────────────────────────────────────────────
+#
+# Five archetypes — all organization archetypes embed the word "organization":
+#
+#   individual              — Organization Name field is empty (mandatory rule)
+#   organization            — non-empty org, no specific sub-type match (catch-all)
+#   government_organization — government agencies
+#   advocacy_organization   — associations, coalitions, foundations, etc.
+#   academic_organization   — universities, research institutions
+#
+# Detecting "is this an org?" downstream: "organization" in archetype
+# Detecting "is this an individual?":     archetype == "individual"
 
+# Keywords used to sub-classify organizations (applied to org name text only).
+# Only consulted when Organization Name is non-empty.
 ARCHETYPE_KEYWORDS: dict[str, list[str]] = {
-    "government": [
+    "government_organization": [
         "department", "agency", "bureau", "administration", "office of", "congressional",
         "county", "city of", "state of", "federal", "municipal", "government",
     ],
-    "advocacy_group": [
+    "advocacy_organization": [
         "association", "coalition", "alliance", "network", "federation",
         "foundation", "institute", "center for", "advocates", "council",
         "society", "union",
     ],
-    "industry": [
-        "industry", "vendor", "inc", "llc", "corp", "ltd", "co.", "group", "solutions",
-        "systems", "services", "technologies", "hospital", "health system",
-        "medical center", "clinic", "hospice"
-    ],
-    "academic": [
-        "academic", "university", "college", "school of", "professor", "phd",
+    "academic_organization": [
+        "university", "college", "school of",
         "research", "lab",
     ],
-    "individual": [
-        "consumer", "individual", 
-    ],
-    "professional": [
-        "provider", "lawyer", "doctor", "dr", "nurse", "attorney", "therapist","md",
-    ]
 }
 
-# ── Regulations.gov Category → Archetype mapping ──────────────────────────────
-# Maps known regulations.gov Category field prefixes/values to archetypes.
-# Checked before keyword inference; more specific entries should come first.
+# ── Regulations.gov Category → org archetype mapping ─────────────────────────
+# Only consulted when Organization Name is non-empty (org comments only).
+# Maps known regulations.gov Category field prefixes/values to org archetypes.
+# More specific entries should come first.
 CATEGORY_TO_ARCHETYPE: list[tuple[str, str]] = [
     # Government
-    ("Federal Government", "government"),
-    ("State Government", "government"),
-    ("Other Government", "government"),
-    ("Government - Federal", "government"),
-    ("Government - State", "government"),
-    ("Government - Local", "government"),
-    ("Government - Other", "government"),
-    ("Government", "government"),
-    ("Congressional", "government"),
+    ("Federal Government", "government_organization"),
+    ("State Government", "government_organization"),
+    ("Other Government", "government_organization"),
+    ("Government - Federal", "government_organization"),
+    ("Government - State", "government_organization"),
+    ("Government - Local", "government_organization"),
+    ("Government - Other", "government_organization"),
+    ("Government", "government_organization"),
+    ("Congressional", "government_organization"),
     # Advocacy / associations
-    ("Health Care Professional/Association", "advocacy_group"),
-    ("Health Care Provider/Association", "advocacy_group"),
-    ("Health Plan or Association", "advocacy_group"),
-    ("Association", "advocacy_group"),
-    ("Device Association", "advocacy_group"),
-    # Industry
-    ("Health Care Industry", "industry"),
-    ("Private Industry", "industry"),
-    ("Device Industry", "industry"),
-    ("Drug Industry", "industry"),
-    ("Hospital", "industry"),
-    ("Home Health Facility", "industry"),
-    ("Hospice", "industry"),
-    ("Ambulatory Surgical Center", "industry"),
-    ("Long-term Care", "industry"),
-    ("Other Health Care Provider", "industry"),
+    ("Health Care Professional/Association", "advocacy_organization"),
+    ("Health Care Provider/Association", "advocacy_organization"),
+    ("Health Plan or Association", "advocacy_organization"),
+    ("Association", "advocacy_organization"),
+    ("Device Association", "advocacy_organization"),
+    # Industry / provider org (generic organization)
+    ("Health Care Industry", "organization"),
+    ("Private Industry", "organization"),
+    ("Device Industry", "organization"),
+    ("Drug Industry", "organization"),
+    ("Hospital", "organization"),
+    ("Home Health Facility", "organization"),
+    ("Hospice", "organization"),
+    ("Ambulatory Surgical Center", "organization"),
+    ("Long-term Care", "organization"),
+    ("Other Health Care Provider", "organization"),
+    # Professionals submitting as individuals — these categories map to
+    # individual when org is blank; when org is non-empty, treat as organization.
+    ("Physician", "organization"),
+    ("Nurse", "organization"),
+    ("Pharmacist", "organization"),
+    ("Other Health Care Professional", "organization"),
+    ("Occupational Therapist", "organization"),
+    ("Physical Therapist", "organization"),
+    ("Physician Assistant", "organization"),
+    ("Radiologist", "organization"),
+    ("Social Worker", "organization"),
+    ("Attorney/Law Firm", "organization"),
     # Academic
-    ("Academic", "academic"),
-    # Professionals (individual practitioners)
-    ("Physician", "professional"),
-    ("Nurse", "professional"),
-    ("Pharmacist", "professional"),
-    ("Other Health Care Professional", "professional"),
-    ("Occupational Therapist", "professional"),
-    ("Physical Therapist", "professional"),
-    ("Physician Assistant", "professional"),
-    ("Radiologist", "professional"),
-    ("Social Worker", "professional"),
-    ("Attorney/Law Firm", "professional"),
-    # Individuals / consumers
-    ("Individual", "individual_consumer"),
-    ("Consumer Group", "individual_consumer"),
+    ("Academic", "academic_organization"),
 ]
 
 
-def classify_archetype_from_category(category: str) -> str | None:
+def classify_org_archetype_from_category(category: str) -> str | None:
     """
-    Map a regulations.gov Category field value to an archetype.
+    Map a regulations.gov Category field value to an org archetype.
 
-    Returns the archetype string if a match is found, or None if the category
-    is blank or unrecognized (caller should fall back to keyword inference).
+    Only called when the Organization Name field is non-empty (i.e. the
+    submitter is known to be an org).  Returns the archetype string if a
+    match is found, or None if the category is blank or unrecognized
+    (caller should fall back to keyword / default logic).
     """
     cat = category.strip()
     if not cat:
@@ -127,32 +130,39 @@ def classify_archetype_from_category(category: str) -> str | None:
 
 def classify_archetype(org: str, name: str, category: str) -> str:
     """
-    Classify a submitter into an archetype.
+    Classify a submitter into one of five archetypes.
 
-    Priority:
-    1. If the regulations.gov ``category`` field is populated and recognized,
-       use that directly (authoritative).
-    2. Otherwise fall back to keyword matching on the organization name and
-       category text.
-    3. If still unresolved and a name is present, default to
-       ``individual_consumer``; otherwise ``unknown``.
+    **Mandatory rule**: the Organization Name field is the gold standard for
+    the individual/organization split.
+
+      - Empty org  →  ``individual``  (no further checks)
+      - Non-empty org  →  one of the four org archetypes below
+
+    For non-empty orgs, classification priority:
+      1. regulations.gov ``category`` field lookup (org-only archetypes).
+      2. Keyword match on the organization name text.
+      3. Default catch-all: ``organization``.
+
+    All org archetypes embed the word ``organization`` so downstream code
+    can detect any org with: ``"organization" in archetype``.
     """
-    # 1. Authoritative category lookup
-    archetype = classify_archetype_from_category(category)
+    # Mandatory rule: empty org = individual (no exceptions)
+    if not org.strip():
+        return "individual"
+
+    # Non-empty org: try category lookup first (sparse but authoritative)
+    archetype = classify_org_archetype_from_category(category)
     if archetype is not None:
         return archetype
 
-    # 2. Keyword inference on org + category text
-    combined = f"{org} {category}".lower()
+    # Keyword match on org name text only
+    org_lower = org.lower()
     for kw_archetype, keywords in ARCHETYPE_KEYWORDS.items():
-        if any(kw in combined for kw in keywords):
+        if any(kw in org_lower for kw in keywords):
             return kw_archetype
 
-    # 3. Default
-    if name:
-        return "individual_consumer"
-    else:
-        return "unknown"
+    # Default catch-all: unclassified organization
+    return "organization"
 
 
 # ── Linguistic fingerprinting ─────────────────────────────────────────────────

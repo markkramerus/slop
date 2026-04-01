@@ -167,7 +167,7 @@ def _derive_citation_guidance(persona: Persona) -> str:
     Academic and industry-high voices naturally cite more.
     """
     if not persona.voice_skill:
-        if persona.sophistication == "high" and persona.archetype in ("academic", "industry"):
+        if persona.sophistication == "high" and persona.archetype in ("academic_organization", "organization"):
             return (
                 "This voice typically includes regulatory citations and references.\n"
                 "Include 2-4 plausible-sounding citations in the citation_agenda."

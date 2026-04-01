@@ -33,7 +33,7 @@ from syncom.persona import Persona
 
 def _make_persona(name: str = "Jane Doe", occupation: str = "nurse", state: str = "Ohio") -> Persona:
     return Persona(
-        archetype="individual_consumer",
+        archetype="individual",
         first_name=name.split()[0],
         last_name=name.split()[-1] if " " in name else "Doe",
         state=state,

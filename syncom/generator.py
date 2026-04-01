@@ -615,7 +615,7 @@ async def _build_and_call_async(
 
     # Archetype-aware context section label tells the LLM how to use the content:
     # individuals get a personal narrative label; orgs get an institutional one.
-    if persona.archetype == "individual_consumer":
+    if persona.archetype == "individual":
         persona_context_section = (
             "=== PERSONAL BACKGROUND ===\n"
             f"{persona.personal_hook}"

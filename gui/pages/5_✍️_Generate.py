@@ -158,9 +158,9 @@ with common_cols[0]:
 with common_cols[1]:
     output_override = st.text_input(
         "Output path override",
-        value="",
-        placeholder=f"{docket_id}/synthetic_comments/synthetic.txt",
-        help="Leave blank to use the convention-based default.",
+        value=f"{docket_id}/synthetic_comments/synthetic.txt",
+        placeholder="",
+        help="Edit to replace default.",
     )
 
 # ── Prompt controls ────────────────────────────────────────────────────────────
@@ -249,7 +249,7 @@ with st.expander("⚙️ Advanced & Quality Control Options"):
             value=False,
             help=(
                 "Skips the phrase-repetition analysis and report "
-                "(.phrase_report.md). --no-phrase-check"
+                "(_phrase_report.md). --no-phrase-check"
             ),
         )
         no_phrase_fix = st.checkbox(

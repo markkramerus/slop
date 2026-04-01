@@ -135,10 +135,10 @@ def _build_row(
     row: dict[str, str] = {
         "Document ID": _make_comment_id(index),
         "Docket ID": docket_id,
-        "Submitter Name": comment.persona.full_name,
+        "Submitter Name": comment.persona.full_name if comment.persona.is_individual else "",
         "Organization Name": comment.persona.org_name,
         "Submitter's Representative": "",
-        "Government Agency Type": "Government Agency" if comment.persona.archetype == "government" else "",
+        "Government Agency Type": "Government Agency" if comment.persona.archetype == "government_organization" else "",
         "Government Agency": "",
         "Abstract": abstract,
         "Comment": comment_text,

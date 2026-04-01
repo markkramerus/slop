@@ -40,7 +40,9 @@ st.subheader("Prerequisites")
 
 synth_input_txt   = Path(docket_id, "synthetic_comments", "synthetic.txt")
 real_input_csv        = Path(docket_id, "comments", f"{docket_id}.csv")
+comments_psv      = Path(docket_id, "comments", f"{docket_id}.psv")
 attachments_dir = Path(docket_id, "comment_attachments")
+psv_found = comments_psv.is_file()
 
 pre_cols = st.columns(3)
 with pre_cols[0]:
@@ -85,13 +87,26 @@ with opt_cols[0]:
         help="Controls the shuffling order. Override for reproducible results.",
     )
     skip_preprocess = st.checkbox(
-        "Skip pre-processing step (use raw real CSV directly)",
-        value=False,
+        "Skip pre-processing step (use preprocessed PSV from stylometry)"
+        if psv_found
+        else "Skip pre-processing step (use raw real CSV directly)",
+        value=psv_found,
         help=(
-            "--skip-preprocess.  Skip attachment-text substitution and feed the "
-            "original comments CSV straight into the shuffle."
+            "--skip-preprocess.  "
+            + (
+                "The preprocessed PSV from the Stylometry step already exists "
+                "and will be used directly — no attachment substitution needed."
+                if psv_found
+                else "Skip attachment-text substitution and feed the original "
+                     "comments CSV straight into the shuffle."
+            )
         ),
     )
+    if psv_found and skip_preprocess:
+        st.info(
+            f"ℹ️ **Using preprocessed PSV from stylometry step:** `{comments_psv}`  \n"
+            "Preprocess will be skipped — the PSV already contains merged attachment text."
+        )
     skip_translation = st.checkbox(
         "Skip translation step (already translated)",
         value=False,
@@ -120,8 +135,8 @@ with st.expander("Advanced — Explicit path overrides"):
     adv_cols = st.columns(2)
     with adv_cols[0]:
         real_input_csv_override = st.text_input(
-            "Real comments input path (.csv)",
-            value=str(real_input_csv),
+            "Real comments input path (.csv or .psv)",
+            value=str(comments_psv) if psv_found else str(real_input_csv),
         )
         synth_input_txt_override = st.text_input(
             "Synthetic comments input path (.txt)",

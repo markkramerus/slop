@@ -1,0 +1,407 @@
+"""
+human_or_ai.py — Standalone AI-vs-human evaluator (no rewriting dependency).
+
+Reads a ♔-delimited PSV file, calls the LLM judge on every comment
+concurrently, and writes the results to a CSV.
+
+This file is self-contained: it does not import from syncom or any other
+pipeline module beyond the shuffler's PSV utilities.
+
+Usage
+-----
+    python human_or_ai.py <input_file.psv>
+    python human_or_ai.py <input_file.psv> -o out.csv
+    python human_or_ai.py <input_file.psv> --verbose
+
+Output
+------
+  <input_stem>_judged.csv   with columns: UID, human_author_probability, reason
+
+Environment variables
+---------------------
+  JUDGE_API_BASE_URL   default: https://api.openai.com/v1
+  JUDGE_API_KEY        (required)
+  JUDGE_CHAT_MODEL     default: gpt-4o
+"""
+
+from __future__ import annotations
+
+import argparse
+import asyncio
+import csv
+import json
+import os
+import random
+import re
+import sys
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Callable
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from shuffler.psv_io import read_psv
+
+
+# ── Output column names ────────────────────────────────────────────────────────
+
+_OUT_FIELDNAMES = ["UID", "human_author_probability", "reason"]
+
+# Maximum number of concurrent judge calls.
+_MAX_CONCURRENCY = 10
+
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+
+@dataclass
+class JudgeConfig:
+    """Configuration for the judge model only."""
+
+    api_base_url: str = field(
+        default_factory=lambda: os.getenv("JUDGE_API_BASE_URL", "https://api.openai.com/v1")
+    )
+    api_key: str = field(
+        default_factory=lambda: os.getenv("JUDGE_API_KEY", "")
+    )
+    model: str = field(
+        default_factory=lambda: os.getenv("JUDGE_CHAT_MODEL", "gpt-4o")
+    )
+
+    def async_client(self):
+        import openai
+        return openai.AsyncOpenAI(base_url=self.api_base_url, api_key=self.api_key)
+
+    def validate(self) -> None:
+        if not self.api_key:
+            raise ValueError("JUDGE_API_KEY environment variable is not set.")
+
+
+# ── Data class ─────────────────────────────────────────────────────────────────
+
+@dataclass
+class JudgeVerdict:
+    """Result of a single judge evaluation."""
+    human_author_probability: int   # 0=definitely AI … 100=definitely human
+    reasons: str
+    raw_response: str = ""
+
+
+# ── Retry helper ──────────────────────────────────────────────────────────────
+
+async def _retry_with_backoff_async(
+    fn: Callable,
+    max_retries: int = 5,
+    base_delay: float = 4.0,
+) -> Any:
+    """Call awaitable *fn()* with exponential backoff on transient errors."""
+    for attempt in range(1, max_retries + 1):
+        try:
+            return await fn()
+        except Exception as e:
+            err_str = str(e).lower()
+            is_transient = any(k in err_str for k in (
+                "connection error", "rate limit", "429", "503", "502",
+                "500", "timeout", "resource_exhausted", "overloaded",
+            ))
+            if is_transient and attempt < max_retries:
+                delay = base_delay * (2 ** (attempt - 1)) + random.uniform(0, 2)
+                await asyncio.sleep(delay)
+            else:
+                raise
+
+
+# ── JSON parsing helper ───────────────────────────────────────────────────────
+
+def _parse_json_response(raw: str) -> dict[str, Any]:
+    """
+    Parse a JSON response, stripping markdown code fences if present.
+    Falls back to regex extraction when JSON is truncated.
+    """
+    cleaned = raw.strip()
+    if cleaned.startswith("```"):
+        cleaned = cleaned.split("```", 2)[1]
+        if cleaned.startswith("json"):
+            cleaned = cleaned[4:]
+        cleaned = cleaned.rsplit("```", 1)[0]
+    try:
+        return json.loads(cleaned.strip())
+    except json.JSONDecodeError:
+        pass
+
+    # Regex fallback for truncated JSON
+    result: dict[str, Any] = {}
+
+    score_match = re.search(r'"human_author_probability"\s*:\s*(\d+)', raw)
+    if score_match:
+        result["human_author_probability"] = int(score_match.group(1))
+
+    reasons_match = re.search(r'"reasons"\s*:\s*"(.*?)(?:"\s*[,}]|$)', raw, re.DOTALL)
+    if reasons_match:
+        reasons_text = reasons_match.group(1)
+        reasons_text = reasons_text.replace('\\"', '"').replace('\\n', '\n')
+        if not reasons_text.rstrip().endswith(('.', '"', ')')):
+            reasons_text = reasons_text.rstrip() + " [truncated]"
+        result["reasons"] = reasons_text
+
+    return result
+
+
+# ── Judge prompts ─────────────────────────────────────────────────────────────
+
+_JUDGE_SYSTEM_PROMPT = """\
+You are an expert forensic linguist specializing in detecting AI-generated text.
+
+You will be given a single public comment submitted to a U.S. federal regulatory \
+docket. Your job is to determine whether it was written by a real human or \
+generated by an AI model.
+
+You must return a JSON object with exactly two fields:
+
+{
+  "human_author_probability": <integer between 0-100>,
+  "reasons": "<string>"
+}
+
+human_author_probability:
+  0  = many AI features marking it definitively as AI-generated text with near-zero possibility of human authorship 
+  20 = some distinctive AI features making it highly likely to be AI-generated
+  40 = a few typical AI features, enough to conclude the text is AI-generated
+  60 = mostly resembles human text with some features that hinting at AI generation
+  80 = human features far outweigh anything that might hint at AI generation
+  100 = absolutely human writing with zero discernable features of AI-generated text
+
+Do not rate comments as 0 or 100 unless you are absolutely certain of the source. Be humble in your judgments and consider both possibilities, but in the end, make your best guess. Keep in mind that AI can be prompted to include human-like features in its writing and telling the difference can be subtle and tricky. Think not only about the words, but also about the meaning that the writer is trying to convey.
+
+reasons:
+  If you think the comment was written by AI (human_author_probability < 50), then create a numbered list including **every** AI-like feature you detected, described in enough detail to be rectified \
+  (e.g., "1. perfectly balanced rhetoric in paragraph 4; 2. rule-of-three pattern in the \
+  opening; 3. too smooth a narrative arc from anecdote to policy argument, 4. em dash in paragrah 6, \
+  5. copula avoidance — uses 'serves as' instead of 'is'"). \
+  Make sure the list is comprehensive, with specific, concrete observations. \
+  \
+  Conversely, if you think the comment is human-written, briefly explain what convinced you of human authorship. \
+
+Output ONLY the JSON object. No preamble, no explanation outside the JSON.
+"""
+
+_JUDGE_USER_TEMPLATE = """\
+Classify the following public comment as AI-generated or human-written following the instructions in the system prompt. Today's date is March 27, 2026, so do not base you conclusion on occurence of dates that are later than your training cut-off date.
+
+=== COMMENT ===
+{comment_text}
+=== END COMMENT ===
+"""
+
+
+# ── Core judge call ────────────────────────────────────────────────────────────
+
+async def _judge_comment_async(
+    comment_text: str,
+    config: JudgeConfig,
+) -> JudgeVerdict:
+    """Call the judge model asynchronously for a single comment."""
+    client = config.async_client()
+    user_prompt = _JUDGE_USER_TEMPLATE.format(comment_text=comment_text[:10000])
+
+    async def _call():
+        return await client.chat.completions.create(
+            model=config.model,
+            messages=[
+                {"role": "system", "content": _JUDGE_SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt},
+            ],
+            temperature=0.1,
+        )
+
+    response = await _retry_with_backoff_async(_call)
+    raw = (response.choices[0].message.content or "").strip()
+    parsed = _parse_json_response(raw)
+
+    score = parsed.get("human_author_probability", 0)
+    if isinstance(score, (int, float)):
+        score = max(0, min(100, int(score)))
+    else:
+        score = 0
+
+    reasons = str(parsed.get("reasons", raw))
+    return JudgeVerdict(human_author_probability=score, reasons=reasons, raw_response=raw)
+
+
+# ── Per-row task ──────────────────────────────────────────────────────────────
+
+async def _judge_row(
+    uid: str,
+    comment_text: str,
+    config: JudgeConfig,
+    semaphore: asyncio.Semaphore,
+    index: int,
+    total: int,
+    verbose: bool,
+) -> dict:
+    """Judge a single comment and return a result dict."""
+    async with semaphore:
+        if verbose:
+            print(f"  [{index}/{total}] Judging {uid} …", flush=True)
+        try:
+            verdict = await _judge_comment_async(comment_text, config)
+            score = verdict.human_author_probability
+            reason = verdict.reasons
+        except Exception as exc:
+            print(f"  [{index}/{total}] ERROR judging {uid}: {exc}", file=sys.stderr)
+            score = -1
+            reason = f"Error: {exc}"
+
+        if verbose:
+            label = "HUMAN" if score > 50 else "AI" if score >= 0 else "ERROR"
+            print(f"  [{index}/{total}] {uid} → {score}/100  ({label})", flush=True)
+        else:
+            print(f"[{index}/{total}] {uid} → {score}/100", flush=True)
+
+        return {
+            "UID": uid,
+            "human_author_probability": score,
+            "reason": reason,
+        }
+
+
+# ── Async runner ──────────────────────────────────────────────────────────────
+
+async def _run_async(
+    rows: list[dict],
+    config: JudgeConfig,
+    verbose: bool,
+    concurrency: int = _MAX_CONCURRENCY,
+) -> list[dict]:
+    """Judge all rows concurrently (bounded by *concurrency*)."""
+    semaphore = asyncio.Semaphore(concurrency)
+    total = len(rows)
+
+    tasks = [
+        _judge_row(
+            uid=row.get("Document ID", f"ROW-{i+1:04d}"),
+            comment_text=row.get("Comment", ""),
+            config=config,
+            semaphore=semaphore,
+            index=i + 1,
+            total=total,
+            verbose=verbose,
+        )
+        for i, row in enumerate(rows)
+    ]
+
+    results = await asyncio.gather(*tasks)
+    return list(results)
+
+
+# ── CLI entry point ────────────────────────────────────────────────────────────
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        prog="human_or_ai",
+        description=(
+            "Evaluate every comment in a PSV file with the LLM judge and "
+            "write a CSV of UID, human_author_probability, reason.  "
+            "No rewriting is performed — this is a pure classification pass."
+        ),
+    )
+    parser.add_argument(
+        "input_file",
+        help="Path to a ♔-delimited .psv file (e.g. real.psv or combined.psv).",
+    )
+    parser.add_argument(
+        "-o", "--output",
+        default=None,
+        help=(
+            "Output CSV path.  Defaults to <input_stem>_judged.csv "
+            "in the same directory as the input file."
+        ),
+    )
+    parser.add_argument(
+        "-v", "--verbose",
+        action="store_true",
+        help="Print extra details for each comment.",
+    )
+    parser.add_argument(
+        "--concurrency",
+        type=int,
+        default=_MAX_CONCURRENCY,
+        metavar="N",
+        help=f"Maximum concurrent judge calls (default: {_MAX_CONCURRENCY}).",
+    )
+
+    args = parser.parse_args()
+
+    input_path = Path(args.input_file)
+    if not input_path.exists():
+        print(f"Error: input file not found: {input_path}", file=sys.stderr)
+        sys.exit(1)
+
+    if input_path.suffix.lower() != ".psv":
+        print(
+            f"Warning: unexpected file extension '{input_path.suffix}'. "
+            "Expected a .psv file.  Attempting to read as PSV.",
+            file=sys.stderr,
+        )
+
+    # ── Step 1: Read PSV ───────────────────────────────────────────────────────
+    print(f"[human_or_ai] Reading PSV: {input_path}")
+    rows, fieldnames = read_psv(str(input_path))
+    print(f"[human_or_ai] {len(rows)} comments loaded.\n")
+
+    if not rows:
+        print("No comments found in input file. Nothing to judge.", file=sys.stderr)
+        sys.exit(0)
+
+    # ── Step 2: Determine output path ─────────────────────────────────────────
+    if args.output:
+        output_path = Path(args.output)
+    else:
+        output_path = input_path.with_name(f"{input_path.stem}_judged.csv")
+
+    # ── Step 3: Build config and validate ─────────────────────────────────────
+    config = JudgeConfig()
+    try:
+        config.validate()
+    except ValueError as exc:
+        print(f"Configuration error: {exc}", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"[human_or_ai] Judge model  : {config.model}")
+    print(f"[human_or_ai] Concurrency  : {args.concurrency}")
+    print(f"[human_or_ai] Output       : {output_path}")
+    print()
+
+    # ── Step 4: Judge concurrently ─────────────────────────────────────────────
+    results = asyncio.run(
+        _run_async(rows, config, verbose=args.verbose, concurrency=args.concurrency)
+    )
+
+    # ── Step 5: Write output CSV ───────────────────────────────────────────────
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=_OUT_FIELDNAMES)
+        writer.writeheader()
+        writer.writerows(results)
+
+    # ── Summary ────────────────────────────────────────────────────────────────
+    likely_human = sum(1 for r in results if isinstance(r["human_author_probability"], int) and r["human_author_probability"] > 50)
+    likely_ai    = sum(1 for r in results if isinstance(r["human_author_probability"], int) and 0 <= r["human_author_probability"] <= 50)
+    errors       = sum(1 for r in results if r["human_author_probability"] == -1)
+    total        = len(results)
+
+    print()
+    print("=" * 60)
+    print("Judgment complete!")
+    print(f"  Total comments : {total}")
+    print(f"  Likely human   : {likely_human}  (score > 50)")
+    print(f"  Likely AI      : {likely_ai}  (score 0–50)")
+    if errors:
+        print(f"  Errors         : {errors}")
+    print(f"  Output         : {output_path}")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    main()

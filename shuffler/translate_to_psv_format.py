@@ -20,6 +20,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from shuffler.psv_io import read_psv, write_psv
+from psv_to_excel import psv_to_excel
 
 
 # ── regulations.gov column schema ──────────────────────────────────────────────────────────
@@ -157,8 +158,9 @@ def translate_synthetic_to_psv(input_file: str, output_file: str) -> int:
         }
         cms_rows.append(cms_row)
 
-    # ── Write ♔-PSV ────────────────────────────────────────────────────────
+    # ── Write ♔-PSV and Excel ──────────────────────────────────────────────
     write_psv(output_file, PSV_HEADERS, cms_rows)
+    psv_to_excel(output_file)
 
     return len(cms_rows)
 

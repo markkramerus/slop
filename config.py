@@ -38,9 +38,6 @@ class Config:
         default_factory=lambda: os.getenv("EMBED_MODEL", "text-embedding-3-small")
     )
     
-    # Generation parameters
-    temperature=0.9
-
     def validate(self) -> None:
         if not self.api_key:
             raise ValueError(

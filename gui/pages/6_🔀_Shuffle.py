@@ -17,14 +17,15 @@ from gui.utils.state import docket_id_widget
 from gui.utils.runner import run_command, build_cli_command
 
 st.set_page_config(page_title="Shuffle — SLOP", page_icon="🔀", layout="wide")
-st.title("🔀 Step 6 — Pre-process, Translate & Shuffle")
+st.title("🔀 Step 6 — Translate & Shuffle")
 st.caption(
-    "**Step 1** — Pre-processes the real comments CSV by substituting attachment text "
-    "where it is longer than the inline comment body and converting PSV format. "
-    "**Step 2** — Convert the ♔-delimited synthetic comments to PSV format.  "
-    "**Step 3** — Randomly interleaves synthetic comments with the pre-processed real "
-    "comments and produces `combined.psv` (attachment URLs and tracking numbers cleared) "
-    "and a ground-truth `combined_key.csv`."
+    "Provide the synthetic comments as either a ♔-delimited **.txt** file "
+    "(translation to PSV is performed automatically, writing a **.psv** beside it) "
+    "or an already-translated **.psv** file (translation is skipped).  "
+    "**Step 2** — Randomly interleaves synthetic comments with the real comments PSV "
+    "and produces `combined.psv` (attachment URLs and tracking numbers cleared) "
+    "and a ground-truth `combined_key.csv`.  "
+    "The real comments must already be in PSV format before running this step."
 )
 st.divider()
 
@@ -38,39 +39,32 @@ if not docket_id:
 # ── Prerequisite checks ────────────────────────────────────────────────────────
 st.subheader("Prerequisites")
 
-synth_input_txt   = Path(docket_id, "synthetic_comments", "synthetic.txt")
-real_input_csv        = Path(docket_id, "comments", f"{docket_id}.csv")
-comments_psv      = Path(docket_id, "comments", f"{docket_id}.psv")
-attachments_dir = Path(docket_id, "comment_attachments")
-psv_found = comments_psv.is_file()
+_synth_psv_default = Path(docket_id, "synthetic_comments", "synthetic.psv")
+_synth_txt_default = Path(docket_id, "synthetic_comments", "synthetic.txt")
+synth_input_default = _synth_psv_default # if _synth_psv_default.is_file() else _synth_txt_default
+real_input_psv = Path(docket_id, "comments", "real.psv")
 
-pre_cols = st.columns(3)
+pre_cols = st.columns(2)
 with pre_cols[0]:
-    if synth_input_txt.is_file() and synth_input_txt.stat().st_size > 0:
-        size_kb = round(synth_input_txt.stat().st_size / 1024, 1)
-        st.success(f"✅ Synthetic output found: `{synth_input_txt}` ({size_kb} KB)")
+    if synth_input_default.is_file() and synth_input_default.stat().st_size > 0:
+        size_kb = round(synth_input_default.stat().st_size / 1024, 1)
+        st.success(f"✅ Synthetic output found: `{synth_input_default}` ({size_kb} KB)")
+    elif _synth_txt_default.is_file() and _synth_txt_default.stat().st_size > 0:
+        size_kb = round(_synth_txt_default.stat().st_size / 1024, 1)
+        st.success(f"✅ Synthetic output found: `{_synth_txt_default}` ({size_kb} KB)")
     else:
         st.error(
-            f"❌ Synthetic output not found at `{synth_input_txt}`.  "
+            f"❌ Synthetic output not found at `{_synth_psv_default}` or `{_synth_txt_default}`.  "
             "Run the **Generate** step first."
         )
 with pre_cols[1]:
-    if real_input_csv.is_file():
-        st.success(f"✅ Real comments CSV found: `{real_input_csv}`")
+    if real_input_psv.is_file():
+        size_kb = round(real_input_psv.stat().st_size / 1024, 1)
+        st.success(f"✅ Real comments PSV found: `{real_input_psv}` ({size_kb} KB)")
     else:
         st.error(
-            f"❌ Real comments CSV not found at `{real_input_csv}`.  "
-            "Place the docket CSV there before shuffling."
-        )
-with pre_cols[2]:
-    if attachments_dir.is_dir():
-        att_count = sum(1 for p in attachments_dir.iterdir() if p.is_dir())
-        st.success(f"✅ Attachments directory found ({att_count:,} comment dirs)")
-    else:
-        st.warning(
-            f"⚠️ Attachments directory not found at `{attachments_dir}`.  "
-            "Pre-processing will be skipped — run the **Download** step first "
-            "to get attachment text."
+            f"❌ Real comments PSV not found at `{real_input_psv}`.  "
+            "The real comments must be in PSV format before shuffling."
         )
 
 st.divider()
@@ -78,83 +72,28 @@ st.divider()
 # ── Options ────────────────────────────────────────────────────────────────────
 st.subheader("Shuffle Options")
 
-opt_cols = st.columns(2)
-with opt_cols[0]:
-    seed = st.number_input(
-        "Random seed",
-        value=random.randint(0, 2**32 - 1),
-        min_value=0,
-        help="Controls the shuffling order. Override for reproducible results.",
-    )
-    skip_preprocess = st.checkbox(
-        "Skip pre-processing step (use preprocessed PSV from stylometry)"
-        if psv_found
-        else "Skip pre-processing step (use raw real CSV directly)",
-        value=psv_found,
-        help=(
-            "--skip-preprocess.  "
-            + (
-                "The preprocessed PSV from the Stylometry step already exists "
-                "and will be used directly — no attachment substitution needed."
-                if psv_found
-                else "Skip attachment-text substitution and feed the original "
-                     "comments CSV straight into the shuffle."
-            )
-        ),
-    )
-    if psv_found and skip_preprocess:
-        st.info(
-            f"ℹ️ **Using preprocessed PSV from stylometry step:** `{comments_psv}`  \n"
-            "Preprocess will be skipped — the PSV already contains merged attachment text."
-        )
-    skip_translation = st.checkbox(
-        "Skip translation step (already translated)",
-        value=False,
-        help=(
-            "--skip-translation.  Use if you have already run translation and "
-            "`synthetic.psv` exists."
-        ),
-    )
+seed = st.number_input(
+    "Random seed",
+    value=random.randint(0, 2**32 - 1),
+    min_value=0,
+    help="Controls the shuffling order. Override for reproducible results.",
+)
 
-with opt_cols[1]:
-    synth_output_psv = Path(docket_id, "shuffled_comments", "synthetic.psv")
-    real_output_psv = Path(docket_id, "shuffled_comments", "real.psv")
-    combined_output_psv = Path(docket_id, "shuffled_comments", "combined.psv")
-    combined_key_csv = Path(docket_id, "shuffled_comments", "combined_key.csv")
-    if skip_translation and synth_output_psv.is_file():
-        st.success(f"✅ Translated PSV found: `{synth_output_psv}`")
-    elif skip_translation:
-        st.warning(f"⚠️ Translated PSV not found at `{synth_output_psv}`")
-    if skip_preprocess:
-        st.info("ℹ️ Pre-processing skipped — raw real CSV will be used for shuffling.")
-    elif real_output_psv.is_file():
-        size_kb = round(real_output_psv.stat().st_size / 1024, 1)
-        st.success(f"✅ Pre-processed PSV already exists: `{real_output_psv}` ({size_kb} KB)")
+combined_output_psv = Path(docket_id, "shuffled_comments", "combined.psv")
+combined_key_csv = Path(docket_id, "shuffled_comments", "combined_key.csv")
 
 with st.expander("Advanced — Explicit path overrides"):
     adv_cols = st.columns(2)
     with adv_cols[0]:
-        real_input_csv_override = st.text_input(
-            "Real comments input path (.csv or .psv)",
-            value=str(comments_psv) if psv_found else str(real_input_csv),
+        real_input_psv_override = st.text_input(
+            "Real comments input path (.psv)",
+            value=str(real_input_psv),
         )
-        synth_input_txt_override = st.text_input(
-            "Synthetic comments input path (.txt)",
-            value=str(synth_input_txt),
-        )
-        attachments_dir_override = st.text_input(
-            "Attachments directory path",
-            value=str(attachments_dir),
+        synth_input_override = st.text_input(
+            "Synthetic comments input path (.txt or .psv)",
+            value=str(synth_input_default),
         )
     with adv_cols[1]:
-        real_output_psv_override = st.text_input(
-            "Real comment output path (.psv)",
-            value=str(real_output_psv),
-        )
-        synth_output_psv_override = st.text_input(
-            "Synthetic comment output path (.psv)",
-            value=str(synth_output_psv),
-        )
         combined_output_psv_override = st.text_input(
             "Combined output path (.psv)",
             value=str(combined_output_psv),
@@ -169,20 +108,10 @@ st.divider()
 # ── Build command ──────────────────────────────────────────────────────────────
 def build_shuffle_cmd() -> list[str]:
     args = ["shuffle", "--docket-id", docket_id, "--seed", str(seed)]
-    if skip_preprocess:
-        args.append("--skip-preprocess")
-    if skip_translation:
-        args.append("--skip-translation")
-    if synth_input_txt_override.strip():
-        args += ["--synth-input-txt", synth_input_txt_override.strip()]
-    if synth_output_psv_override.strip():
-        args += ["--synth-output-psv", synth_output_psv_override.strip()]
-    if attachments_dir_override.strip():
-        args += ["--attachments-dir", attachments_dir_override.strip()]
-    if real_output_psv_override.strip():
-        args += ["--real-output-psv", real_output_psv_override.strip()]
-    if real_input_csv_override.strip():
-        args += ["--real-input-csv", real_input_csv_override.strip()]
+    if synth_input_override.strip():
+        args += ["--synth-input", synth_input_override.strip()]
+    if real_input_psv_override.strip():
+        args += ["--real-input-psv", real_input_psv_override.strip()]
     if combined_output_psv_override.strip():
         args += ["--combined-output-psv", combined_output_psv_override.strip()]
     if combined_key_csv_override.strip():
@@ -194,8 +123,9 @@ with st.expander("🖥️ Preview command", expanded=False):
     st.code(" ".join(build_shuffle_cmd()), language="bash")
 
 # ── Run ────────────────────────────────────────────────────────────────────────
-run_disabled = not (synth_input_txt.is_file() or synth_input_txt_override.strip()) or \
-               not (real_input_csv.is_file() or real_input_csv_override.strip())
+synth_input_path = Path(synth_input_override.strip()) if synth_input_override.strip() else synth_input_default
+run_disabled = not (synth_input_path.is_file()) or \
+               not (real_input_psv.is_file() or real_input_psv_override.strip())
 
 if st.button("🔀 Run Shuffler", type="primary", disabled=run_disabled):
     cmd = build_shuffle_cmd()
@@ -216,16 +146,17 @@ st.divider()
 # ── Output summary & downloads ─────────────────────────────────────────────────
 st.subheader("Outputs")
 
-shuffled_dir    = Path(docket_id, "shuffled_comments")
-combined_output_psv    = Path(combined_output_psv_override.strip()) if combined_output_psv_override.strip() else shuffled_dir / "combined.psv"
+shuffled_dir        = Path(docket_id, "shuffled_comments")
+combined_output_psv = Path(combined_output_psv_override.strip()) if combined_output_psv_override.strip() else shuffled_dir / "combined.psv"
 combined_key_csv    = Path(combined_key_csv_override.strip()) if combined_key_csv_override.strip() else shuffled_dir / "combined_key.csv"
-synth_output_psv   = Path(synth_output_psv_override.strip()) if synth_output_psv_override.strip() else shuffled_dir / "synthetic.psv"
-real_output_psv    = Path(real_output_psv_override.strip()) if real_output_psv_override.strip() else shuffled_dir / "real.psv"
+
+# Derive the translated PSV path from the synth input (same stem, .psv extension)
+_synth_in = Path(synth_input_override.strip()) if synth_input_override.strip() else synth_input_default
+synth_output_psv = _synth_in.with_suffix(".psv")
 
 output_files = [
     ("Combined Comments, PSV format (no attachment hints)", combined_output_psv),
     ("Combined Key CSV (real vs. synthetic labels)", combined_key_csv),
-    ("Real Comments, PSV format", real_output_psv),
     ("Synthetic Comments, PSV format", synth_output_psv),
 ]
 
@@ -273,13 +204,14 @@ st.divider()
 st.subheader("Translation Only")
 st.caption(
     "Run only the ♔-delimited synthetic comments → PSV translation step, without shuffling.  "
+    "The output PSV is written beside the source .txt with the same stem.  "
     "Useful for inspection before committing to a shuffle."
 )
 
 if st.button("🔄 Translate Only (no shuffle)"):
     from gui.utils.runner import build_script_command
-    source = synth_input_txt_override.strip() or str(synth_input_txt)
-    dest   = synth_output_psv_override.strip() or str(synth_output_psv)
+    source = synth_input_override.strip() or str(synth_input_default)
+    dest   = str(Path(source).with_suffix(".psv"))
     cmd = build_script_command(
         "shuffler/translate_to_psv_format.py",
         [source, dest],

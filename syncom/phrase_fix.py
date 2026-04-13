@@ -522,6 +522,7 @@ def patch_psv_comments(
         _sys.path.insert(0, str(_REPO_ROOT))
 
     from shuffler.psv_io import read_psv, write_psv, NEWLINE_ENC
+    from psv_to_excel import psv_to_excel
 
     rows, fieldnames = read_psv(psv_path)
 
@@ -547,6 +548,7 @@ def patch_psv_comments(
             patched_count += 1
 
     write_psv(output_path, fieldnames, rows)
+    psv_to_excel(output_path)
     return patched_count
 
 

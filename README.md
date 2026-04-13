@@ -161,7 +161,7 @@ SLOP is organized into five sub-applications, each with its own README:
 | **Stylometry** | `stylometry/` | Analyze real-comment writing styles; generate voice skill files |
 | **Campaign Planner** | `campaign/` | Decompose a scenario into a structured generation strategy |
 | **syncom** | `syncom/` | Core synthetic comment generator |
-| **Shuffler** | `shuffler/` | Translate synthetic output to CMS CSV format and shuffle it into a real comment file with a ground-truth key |
+| **Shuffler** | `shuffler/` | Translate synthetic output to PSV format and shuffle it into the real comments PSV with a ground-truth key |
 
 ---
 
@@ -291,7 +291,7 @@ The core generation engine. Invoked via `cli.py`.
 
 ### Shuffler (`shuffler/`)
 
-The final phase of the pipeline. It takes the ♔-delimited syncom output, translates it to standard CMS CSV format, then randomly interleaves the synthetic comments into a real CMS comment file. The result is a combined CSV indistinguishable in format from a real docket export, plus a **key file** that records the ground truth for every row.
+The final phase of the pipeline. It takes the ♔-delimited syncom output, translates it to PSV format, then randomly interleaves the synthetic comments into the real comments PSV (which must already be in PSV format). The result is a combined PSV indistinguishable in format from a real docket export, plus a **key file** that records the ground truth for every row.
 
 #### Full pipeline via `cli.py shuffle`
 
@@ -301,17 +301,17 @@ python cli.py shuffle --docket-id CMS-2025-0050
 
 # Explicit paths also still work:
 python cli.py shuffle \
-    --syncom-output     CMS-2025-0050/synthetic_comments/synthetic.txt \
-    --translated-output CMS-2025-0050/shuffled_comments/synthetic.csv \
-    --real-comments     CMS-2025-0050/comments/CMS-2025-0050.csv \
-    --combined-output   CMS-2025-0050/shuffled_comments/combined.csv
+    --real-input-psv      CMS-2025-0050/comments/CMS-2025-0050.psv \
+    --synth-input-txt     CMS-2025-0050/synthetic_comments/synthetic.txt \
+    --synth-output-psv    CMS-2025-0050/shuffled_comments/synthetic.psv \
+    --combined-output-psv CMS-2025-0050/shuffled_comments/combined.psv
 ```
 
 This single command:
-1. Translates `synthetic.txt` (♔-delimited) → `synthetic.csv` (CMS CSV)
-2. Loads the real comment file and the translated synthetic file
+1. Translates `synthetic.txt` (♔-delimited) → `synthetic.psv` (PSV format)
+2. Loads the real comments PSV and the translated synthetic PSV
 3. Randomly shuffles them together (reproducible via `--seed`)
-4. Writes the combined file to `combined.csv`
+4. Writes the combined file to `combined.psv`
 5. Auto-generates `combined_key.csv` in the same directory
 
 #### Key file format
@@ -421,19 +421,19 @@ Generation options:
 python cli.py shuffle [OPTIONS]
 
 Required:
-  --docket-id ID            Docket identifier — all paths derived automatically.
-                            (or provide individual path arguments below)
+  --docket-id ID              Docket identifier — all paths derived automatically.
+                              (or provide individual path arguments below)
 
 Convention-based defaults (derived from --docket-id):
-  --syncom-output PATH      Default: {docket_id}/synthetic_comments/synthetic.txt
-  --translated-output PATH  Default: {docket_id}/shuffled_comments/synthetic.psv
-  --real-comments PATH      Default: {docket_id}/comments/{docket_id}.csv
-  --combined-output PATH    Default: {docket_id}/shuffled_comments/combined.psv
+  --real-input-psv PATH       Default: {docket_id}/comments/{docket_id}.psv  (required, PSV format)
+  --synth-input-txt PATH      Default: {docket_id}/synthetic_comments/synthetic.txt
+  --synth-output-psv PATH     Default: {docket_id}/shuffled_comments/synthetic.psv
+  --combined-output-psv PATH  Default: {docket_id}/shuffled_comments/combined.psv
 
 Shuffle options:
-  --key-output PATH         Path for the key CSV (default: <combined-stem>_key.csv).
-  --skip-translation        Skip translation; use --translated-output as-is.
-  --seed N                  Random seed for reproducible shuffling (default 42).
+  --combined-key-csv PATH   Path for the key CSV (default: <combined-stem>_key.csv).
+  --skip-translation        Skip translation; use --synth-output-psv as-is.
+  --seed N                  Random seed for reproducible shuffling.
 
   --quiet                   Suppress progress output
 ```

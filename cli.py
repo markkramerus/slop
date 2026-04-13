@@ -56,24 +56,24 @@ def build_shuffle_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="slop shuffle",
         description=(
-            "Shuffler phase: (0) convert the real CSV by substituting "
-            "attachment text where it is the bulk of the comment, then "
-            "translating to PSV format"
-            "(1) translate synthetic comments from TXT to PSV format, "
-            "(2) randomly interleave them with the pre-processed real comments "
+            "Shuffler phase: (1) optionally translate synthetic comments from TXT to PSV "
+            "format (auto-detected from the file extension of --synth-input), "
+            "(2) randomly interleave them with the real comments PSV "
             "and produce a key that labels every row as real or synthetic.  "
             "Attachment URLs are cleared in the final combined.psv so no row "
-            "reveals whether it came from a real submission."
+            "reveals whether it came from a real submission.  "
+            "The real comments must already be in PSV format before running this command.  "
+            "If a .txt file is supplied the translation is performed automatically and the "
+            "resulting .psv is written next to the .txt with the same stem.  "
+            "If a .psv file is supplied translation is skipped."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Convention-based defaults (when --docket-id is provided)
 ---------------------------------------------------------
-  --attachments-dir     {docket_id}/comment_attachments
-  --real-input-csv      {docket_id}/comments/{docket_id}.csv
-  --synth-input-txt     {docket_id}/synthetic_comments/synthetic.txt
-  --real-output-psv     {docket_id}/shuffled_comments/real.psv
-  --synth-output-psv    {docket_id}/shuffled_comments/synthetic.psv
+  --real-input-psv      {docket_id}/comments/real.psv
+  --synth-input         {docket_id}/synthetic_comments/synthetic.psv
+                        (fallback: {docket_id}/synthetic_comments/synthetic.txt)
   --combined-output-psv {docket_id}/shuffled_comments/combined.psv
   --combined-key-csv    {docket_id}/shuffled_comments/combined_key.csv
 
@@ -96,59 +96,25 @@ Key file
         ),
     )
     p.add_argument(
-        "--attachments-dir",
+        "--real-input-psv",
         default=None,
         metavar="PATH",
         help=(
-            "Path to the directory containing per-comment attachment "
-            "subdirectories (e.g. 'CMS-2025-0050/comment_attachments'). "
-            "Default: {docket_id}/comment_attachments"
+            "Path to the real comments file in PSV format (pipe-separated). "
+            "This file is required and must already be in PSV format. "
+            "Default: {docket_id}/comments/real.psv"
         ),
     )
     p.add_argument(
-        "--real-output-psv",
-        default=None,
-        metavar="PATH",
-        help=(
-            "Path where the pre-processed real comments CSV will be saved. "
-            "Default: {docket_id}/shuffled_comments/preprocessed_real.csv"
-        ),
-    )
-    p.add_argument(
-        "--skip-preprocess",
-        action="store_true",
-        help=(
-            "Skip the attachment pre-processing step.  The raw real comments "
-            "CSV will be used directly for shuffling."
-        ),
-    )
-    p.add_argument(
-        "--real-input-csv",
-        default=None,
-        metavar="PATH",
-        help=(
-            "Path to the real comments file (comma-delimited CSV). "
-            "Default: {docket_id}/comments/{docket_id}.csv"
-        ),
-    )
-    p.add_argument(
-        "--synth-input-txt",
+        "--synth-input",
         metavar="PATH",
         default=None,
         help=(
-            "Path to the ♔-delimited syncom output file produced by the "
-            "generate phase.  Required unless --skip-translation is set. "
+            "Path to the synthetic comment file produced by the generate phase.  "
+            "Accepts either a ♔-delimited .txt file (translation is performed "
+            "automatically; the resulting .psv is written beside the .txt with the "
+            "same stem) or an already-translated .psv file (translation is skipped).  "
             "Default: {docket_id}/synthetic_comments/synthetic.txt"
-        ),
-    )
-    p.add_argument(
-        "--synth-output-psv",
-        default=None,
-        metavar="PATH",
-        help=(
-            "Path where the translated synthetic CSV will be saved.  "
-            "If --skip-translation is set this file must already exist. "
-            "Default: {docket_id}/shuffled_comments/synthetic.csv"
         ),
     )
 
@@ -168,15 +134,6 @@ Key file
         help=(
             "Path where the key CSV will be saved.  "
             "Defaults to <combined-output-psv-stem>_key.csv in the same directory."
-        ),
-    )
-    p.add_argument(
-        "--skip-translation",
-        action="store_true",
-        help=(
-            "Skip the translation step and use --synth-output-psv directly "
-            "as the synthetic CSV.  Useful when translation was run "
-            "previously and the file already exists."
         ),
     )
     p.add_argument(
@@ -201,7 +158,7 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     parser = build_shuffle_parser()
     args = parser.parse_args(argv)
 
-    from shuffler.shuffler import preprocess_real_comments, translate_syncom_to_psv, shuffle_comments
+    from shuffler.shuffler import translate_syncom_to_psv, shuffle_comments
 
     # Default seed if not supplied
     if args.seed is None:
@@ -213,35 +170,26 @@ def run_shuffle(argv: list[str] | None = None) -> int:
     # ── Resolve defaults from docket-id ────────────────────────────────────
     docket_id = args.docket_id
 
-    attachments_dir      = args.attachments_dir
-    preprocessed_output  = args.real_output_psv
-    syncom_output        = args.synth_input_txt
-    translated_output    = args.synth_output_psv
-    real_comments        = args.real_input_csv
-    combined_output      = args.combined_output_psv
+    synth_input     = args.synth_input
+    real_comments   = args.real_input_psv
+    combined_output = args.combined_output_psv
 
     if docket_id:
-        if attachments_dir is None:
-            attachments_dir = os.path.join(docket_id, "comment_attachments")
-        if preprocessed_output is None:
-            preprocessed_output = os.path.join(
-                docket_id, "shuffled_comments", "real.psv"
-            )
-        if syncom_output is None:
-            syncom_output = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
-        if translated_output is None:
-            translated_output = os.path.join(docket_id, "shuffled_comments", "synthetic.psv")
+        if synth_input is None:
+            psv_default = os.path.join(docket_id, "synthetic_comments", "synthetic.psv")
+            txt_fallback = os.path.join(docket_id, "synthetic_comments", "synthetic.txt")
+            synth_input = psv_default if os.path.exists(psv_default) else txt_fallback
         if real_comments is None:
-            real_comments = os.path.join(docket_id, "comments", f"{docket_id}.csv")
+            real_comments = os.path.join(docket_id, "comments", "real.psv")
         if combined_output is None:
             combined_output = os.path.join(docket_id, "shuffled_comments", "combined.psv")
 
     # Validate that required args are present
     missing = []
-    if translated_output is None:
-        missing.append("--synth-output-psv")
+    if synth_input is None:
+        missing.append("--synth-input")
     if real_comments is None:
-        missing.append("--real-input-csv")
+        missing.append("--real-input-psv")
     if combined_output is None:
         missing.append("--combined-output-psv")
     if missing:
@@ -252,77 +200,53 @@ def run_shuffle(argv: list[str] | None = None) -> int:
         )
         return 1
 
+    # ── Determine translated PSV path based on synth_input extension ────────
+    synth_ext = os.path.splitext(synth_input)[1].lower()
+    if synth_ext == ".psv":
+        translated_output = synth_input
+        need_translation = False
+    elif synth_ext == ".txt":
+        translated_output = os.path.splitext(synth_input)[0] + ".psv"
+        need_translation = True
+    else:
+        print(
+            f"Error: --synth-input must be a .txt or .psv file, got: {synth_input}",
+            file=sys.stderr,
+        )
+        return 1
+
     # Ensure output directories exist
     for path in [translated_output, combined_output]:
         out_dir = os.path.dirname(path)
         if out_dir:
             os.makedirs(out_dir, exist_ok=True)
 
-    # ── Step 0: Pre-process real comments (resolve attachment text) ─────────
-    # The file passed to shuffle_comments() is either the real_output_psv CSV
-    # (attachment text substituted) or the original CSV (if --skip-preprocess).
-    if args.skip_preprocess:
-        if verbose:
-            print(f"[shuffler] Skipping pre-processing — using {real_comments} directly")
-        real_for_shuffle = real_comments
-    else:
-        if not os.path.exists(real_comments):
-            print(
-                f"Error: real comments file not found: {real_comments}",
-                file=sys.stderr,
-            )
-            return 1
-        if attachments_dir is None or not os.path.isdir(attachments_dir):
-            # No attachments dir — fall back gracefully
-            if verbose:
-                print(
-                    f"[shuffler] Attachments directory not found "
-                    f"({attachments_dir}); skipping pre-processing."
-                )
-            real_for_shuffle = real_comments
-        else:
-            try:
-                preprocess_real_comments(
-                    real_file=real_comments,
-                    attachments_dir=attachments_dir,
-                    output_file=preprocessed_output,
-                    verbose=verbose,
-                )
-                real_for_shuffle = preprocessed_output
-            except Exception as exc:
-                print(f"Error during pre-processing: {exc}", file=sys.stderr)
-                import traceback
-                traceback.print_exc()
-                return 1
+    # Validate that the real PSV file exists
+    if not os.path.exists(real_comments):
+        print(
+            f"Error: real comments PSV file not found: {real_comments}",
+            file=sys.stderr,
+        )
+        return 1
 
-    # ── Step 1: Translation ─────────────────────────────────────────────────
-    if args.skip_translation:
-        if not os.path.exists(translated_output):
-            print(
-                f"Error: --skip-translation was set but translated file not found: "
-                f"{translated_output}",
-                file=sys.stderr,
-            )
-            return 1
-        if verbose:
-            print(f"[shuffler] Skipping translation — using {translated_output}")
-    else:
-        if syncom_output is None:
-            print(
-                "Error: --synth-input-txt is required unless --skip-translation is set.",
-                file=sys.stderr,
-            )
-            return 1
-        if not os.path.exists(syncom_output):
-            print(
-                f"Error: syncom output file not found: {syncom_output}",
-                file=sys.stderr,
-            )
-            return 1
+    # Validate that the synthetic input file exists
+    if not os.path.exists(synth_input):
+        print(
+            f"Error: synthetic input file not found: {synth_input}",
+            file=sys.stderr,
+        )
+        return 1
 
+    real_for_shuffle = real_comments
+
+    # ── Step 1: Translation (only when input is .txt) ───────────────────────
+    if not need_translation:
+        if verbose:
+            print(f"[shuffler] Input is already PSV — skipping translation, using {translated_output}")
+    else:
         try:
             translate_syncom_to_psv(
-                syncom_input=syncom_output,
+                syncom_input=synth_input,
                 cms_output=translated_output,
                 verbose=verbose,
             )
@@ -333,19 +257,17 @@ def run_shuffle(argv: list[str] | None = None) -> int:
             return 1
 
     # ── Step 2: Shuffle ─────────────────────────────────────────────────────
-    if not os.path.exists(real_for_shuffle):
-        print(
-            f"Error: real comments file not found: {real_for_shuffle}",
-            file=sys.stderr,
-        )
-        return 1
+
+    key_output = args.combined_key_csv
+    if key_output is None and docket_id:
+        key_output = os.path.join(docket_id, "shuffled_comments", "combined_key.csv")
 
     try:
         shuffle_comments(
             synthetic_psv_file=translated_output,
             real_file=real_for_shuffle,
             combined_output=combined_output,
-            key_output=args.combined_key_csv,
+            key_output=key_output,
             seed=args.seed,
             verbose=verbose,
         )

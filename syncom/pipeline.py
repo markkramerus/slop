@@ -38,6 +38,7 @@ from .argument_mapper import (
 )
 from config import Config
 from .export import export_to_txt
+from shuffler.translate_to_psv_format import translate_synthetic_to_psv
 from .generator import generate_comment_async, GeneratedComment, PromptControls, build_user_prompt_template
 from .org_pool import load_or_build_org_pool
 from .persona import (
@@ -466,6 +467,12 @@ def run_campaign_async(
             verbose=verbose,
         )
 
+    # ── PSV export (always) ───────────────────────────────────────────────
+    psv_path = str(Path(output_path).with_suffix(".psv"))
+    if verbose:
+        print(f"[export] Writing PSV → {psv_path}", file=sys.stderr)
+    translate_synthetic_to_psv(output_path, psv_path)
+
     if verbose:
         print(result.summary(), file=sys.stderr)
 
@@ -697,6 +704,12 @@ def run(
             world_model_path=_wm_path,
             verbose=verbose,
         )
+
+    # ── PSV export (always) ───────────────────────────────────────────────
+    psv_path = str(Path(output_path).with_suffix(".psv"))
+    if verbose:
+        print(f"[export] Writing PSV → {psv_path}", file=sys.stderr)
+    translate_synthetic_to_psv(output_path, psv_path)
 
     if verbose:
         print(result.summary(), file=sys.stderr)

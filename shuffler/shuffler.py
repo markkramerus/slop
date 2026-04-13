@@ -29,6 +29,7 @@ import sys
 from pathlib import Path
 
 from shuffler import psv_io
+from psv_to_excel import psv_to_excel
 
 # Some attachment texts are very large; raise the csv field-size limit to match.
 # sys.maxsize overflows the C long on Windows 64-bit, so cap at 2**31 - 1.
@@ -139,6 +140,7 @@ def preprocess_real_comments(
     # psv_io.write_psv encodes newlines as ⏎ so the file is safe to parse
     # line-by-line regardless of comment length.
     psv_io.write_psv(output_file, fieldnames, rows)
+    psv_to_excel(output_file)
 
     if verbose:
         print(
@@ -287,6 +289,7 @@ def shuffle_comments(
         clean_rows.append(clean)
 
     psv_io.write_psv(combined_output, combined_fieldnames, clean_rows)
+    psv_to_excel(combined_output)
 
     if verbose:
         print(f"[shuffler] Combined file written      : {combined_output}")
